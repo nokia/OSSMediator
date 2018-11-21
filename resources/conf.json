@@ -1,0 +1,28 @@
+{
+	"base_url": "https://api.dac.nokia.com/api/v1",
+	"users": [
+		{
+			"email_id": "<USER EMAIL>",
+			"response_dest": "<DIRECTORY PATH>"
+		},
+		{
+			"email_id": "<USER EMAIL>",
+			"response_dest": "<DIRECTORY PATH>"
+		}
+	],
+	"um_api": {
+		"login": "/sessions/login",
+		"refresh": "/sessions/refresh",
+		"logout": "/sessions/logout"
+	},
+	"apis": [
+		{
+			"api": "/metrics/radios/pm",
+			"interval": 15
+		},
+		{
+			"api": "/metrics/radios/fm",
+			"interval": 15
+		}
+	]
+}

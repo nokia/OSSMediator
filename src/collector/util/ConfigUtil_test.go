@@ -2,7 +2,7 @@
 * Copyright 2018 Nokia
 * Licensed under BSD 3-Clause Clear License,
 * see LICENSE file for details.
-*/
+ */
 
 package util
 
@@ -40,7 +40,7 @@ func TestReadConfigWithEmptyFile(t *testing.T) {
 //Reading valid config
 func TestReadConfig(t *testing.T) {
 	content := []byte(`{
-		"base_url": "https://api.ci-dev2.daaas.dynamic.nsn-net.net/api/v2",
+		"base_url": "https://localhost:8080",
 		"users":
 		[
 			{
@@ -94,7 +94,7 @@ func TestReadConfig(t *testing.T) {
 		t.Log(err)
 		t.Fail()
 	}
-	if Conf.BaseURL != "https://api.ci-dev2.daaas.dynamic.nsn-net.net/api/v2" || len(Conf.Users) != 2 || Conf.Users[0].Email != "user1@nokia.com" {
+	if Conf.BaseURL != "https://localhost:8080" || len(Conf.Users) != 2 || Conf.Users[0].Email != "user1@nokia.com" {
 		t.Fail()
 	}
 }

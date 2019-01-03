@@ -7,7 +7,6 @@
 package main
 
 import (
-	"collector/util"
 	"flag"
 	"fmt"
 	"io/ioutil"
@@ -15,7 +14,8 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
+
+	"collector/util"
 
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -30,13 +30,12 @@ var (
 )
 
 func main() {
-	//Read command line opions
+	//Read command line options
 	parseFlags()
-
 	//initialize logger
 	initLogger(logDir, logLevel)
-	log.Info("Starting DA OSS Collector...")
 
+	log.Info("Starting DA OSS Collector...")
 	//Reading config from json file
 	err := util.ReadConfig(confFile)
 	if err != nil {
@@ -58,18 +57,15 @@ func main() {
 
 	//refreshing access token before expiry
 	for _, user := range util.Conf.Users {
-		go util.RefreshSession(user)
-	}
-
-	//For each APIs creates ticker to trigger the API periodically at specified interval.
-	for _, user := range util.Conf.Users {
+		go util.RefreshToken(user)
+		//Create the sub response directory for the API under the user's base response directory.
 		for _, api := range util.Conf.APIs {
-			//Create the sub response directory for the API under the user's base response directory.
 			util.CreateResponseDirectory(user.ResponseDest, api.API)
-			ticker := time.NewTicker(time.Duration(api.Interval) * time.Minute)
-			go util.Trigger(ticker, util.Conf.BaseURL+api.API, user)
 		}
 	}
+
+	//start data collection from PM/FM APIs
+	util.StartDataCollection()
 
 	//Perform logout when program terminates using os.Interrupt(ctrl+c)
 	shutdownHook()

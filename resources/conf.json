@@ -17,12 +17,19 @@
 	},
 	"apis": [
 		{
-			"api": "/metrics/radios/pm",
+			"api": "/metrics/radios/pmdata",
 			"interval": 15
 		},
 		{
-			"api": "/metrics/radios/fm",
+			"api": "/metrics/radios/fmdata",
+			"type": "ACTIVE",
+			"interval": 60
+		},
+		{
+			"api": "/metrics/radios/fmdata",
+			"type": "HISTORY",
 			"interval": 15
 		}
-	]
+	],
+	"limit": 100
 }

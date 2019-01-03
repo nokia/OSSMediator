@@ -21,7 +21,6 @@ build_package:
 	@mkdir -p bin
 	@docker create --name ossmediatorcollector ossmediatorcollector:1
 	@docker cp ossmediatorcollector:/OSSMediatorCollector/bin/collector ./bin/
-	@docker cp ossmediatorcollector:/OSSMediatorCollector/coverage.out .
 	@docker rm ossmediatorcollector
 	@mkdir -p package && mkdir -p package/bin && cp -R resources package && cp bin/collector package/bin && chmod 777 package/bin/collector
 	@cd package && zip -r  OSSMediatorCollector.zip  bin resources && rm -rf bin resources

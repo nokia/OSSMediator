@@ -1,5 +1,5 @@
 /*
-* Copyright 2018 Nokia
+* Copyright 2018 Nokia 
 * Licensed under BSD 3-Clause Clear License,
 * see LICENSE file for details.
 */
@@ -44,13 +44,14 @@ func TestRefresh(t *testing.T) {
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
-		expiryTime:   time.Now().Add(31 * time.Second),
+		expiryTime:   time.Now().Add(61 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI(testServer.URL, &user)
 	if err != nil {
-		t.Fail()
+		t.Error(err)
 	}
+	time.Sleep(1 * time.Second)
 }
 
 func TestRefreshWithInvalidResponse(t *testing.T) {
@@ -63,7 +64,7 @@ func TestRefreshWithInvalidResponse(t *testing.T) {
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
-		expiryTime:   time.Now().Add(31 * time.Second),
+		expiryTime:   time.Now().Add(61 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI(testServer.URL, &user)
@@ -96,7 +97,7 @@ func TestRefreshForEmptyRefreshToken(t *testing.T) {
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "",
-		expiryTime:   time.Now().Add(35 * time.Second),
+		expiryTime:   time.Now().Add(65 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI(testServer.URL, &user)
@@ -110,7 +111,7 @@ func TestRefreshForWrongURL(t *testing.T) {
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "",
-		expiryTime:   time.Now().Add(35 * time.Second),
+		expiryTime:   time.Now().Add(65 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI("http://localhost:8080", &user)
@@ -124,7 +125,7 @@ func TestRefreshForEmptyURL(t *testing.T) {
 	user.sessionToken = &sessionToken{
 		accessToken:  "",
 		refreshToken: "",
-		expiryTime:   time.Now().Add(35 * time.Second),
+		expiryTime:   time.Now().Add(65 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI("", &user)
@@ -138,7 +139,7 @@ func TestRefreshForInvalidURL(t *testing.T) {
 	user.sessionToken = &sessionToken{
 		accessToken:  "",
 		refreshToken: "",
-		expiryTime:   time.Now().Add(35 * time.Second),
+		expiryTime:   time.Now().Add(65 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI(":", &user)
@@ -152,11 +153,11 @@ func TestGetRefreshDuration(t *testing.T) {
 	user.sessionToken = &sessionToken{
 		accessToken:  "",
 		refreshToken: "",
-		expiryTime:   time.Now().Add(35 * time.Second),
+		expiryTime:   time.Now().Add(65 * time.Second),
 	}
 	duration := getRefreshDuration(&user)
 	if duration < 0 {
-		t.Fail()
+		t.Error(duration)
 	}
 }
 
@@ -270,7 +271,7 @@ func TestLogin(t *testing.T) {
 	user := User{Email: "testuser@nokia.com", password: "1234"}
 	err := Login(&user)
 	if err != nil {
-		t.Fail()
+		t.Error(err)
 	}
 }
 
@@ -316,7 +317,7 @@ func TestSetToken(t *testing.T) {
 	}
 }
 
-func TestRefreshSession(t *testing.T) {
+func TestRefreshToken(t *testing.T) {
 	mySigningKey := []byte("testtoken")
 	claims := &jwt.StandardClaims{
 		ExpiresAt: time.Now().Add(60 * time.Second).Unix(),
@@ -356,57 +357,11 @@ func TestRefreshSession(t *testing.T) {
 	user.sessionToken = &sessionToken{
 		accessToken:  "",
 		refreshToken: "",
-		expiryTime:   time.Now().Add(31 * time.Second),
+		expiryTime:   time.Now().Add(30100 * time.Millisecond),
 	}
-	go RefreshSession(&user)
-	time.Sleep(1500 * time.Millisecond)
+	go RefreshToken(&user)
+	time.Sleep(200 * time.Millisecond)
 	if user.sessionToken.accessToken != tokenString && user.sessionToken.refreshToken != tokenString {
-		t.Fail()
-	}
-}
-
-func TestRefreshSessionForFailureCase(t *testing.T) {
-	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, `{
-			"status": {
-				"status_code": "FAILURE",
-				"status_description": {
-					"description_code": "INVALID_ARGUMENT",
-					"description": "Refresh token sent is empty. Invalid Token"
-				}
-			},
-			"uat": {
-				"access_token": "Undefined"
-			},
-			"rt": {
-				"refresh_token": "Undefined"
-			}
-		}`)
-	}))
-	defer testServer.Close()
-	Conf = Config{
-		BaseURL: testServer.URL,
-		UMAPIs: UMConf{
-			Login:   "/login",
-			Refresh: "",
-		},
-	}
-	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", password: "1234"}
-	user.sessionToken = &sessionToken{
-		accessToken:  "",
-		refreshToken: "",
-		expiryTime:   time.Now().Add(31 * time.Second),
-	}
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
-	go RefreshSession(&user)
-	time.Sleep(1500 * time.Millisecond)
-	if !strings.Contains(buf.String(), "Refresh token failed for "+user.Email+", retrying to login") {
 		t.Fail()
 	}
 }
@@ -558,7 +513,7 @@ func TestLogout(t *testing.T) {
 	CreateHTTPClient("", true)
 	err := Logout(&user)
 	if err != nil {
-		t.Fail()
+		t.Error(err)
 	}
 }
 

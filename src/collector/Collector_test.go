@@ -16,10 +16,10 @@ func TestInitLogger(t *testing.T) {
 	logLevel = 5
 	initLogger(logDir, logLevel)
 	logFile := logDir + "/collector.log"
+	defer os.RemoveAll(logDir)
 	if _, err := os.Stat(logFile); os.IsNotExist(err) {
 		t.Fail()
 	}
-	os.RemoveAll(logDir)
 }
 
 func TestParseFlag(t *testing.T) {

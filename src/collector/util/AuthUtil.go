@@ -2,7 +2,7 @@
 * Copyright 2018 Nokia
 * Licensed under BSD 3-Clause Clear License,
 * see LICENSE file for details.
-*/
+ */
 
 package util
 
@@ -17,7 +17,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-//UMResponse keeps track of response recevied from UM APIs
+//UMResponse keeps track of response received from UM APIs
 type UMResponse struct {
 	UAT struct {
 		AccessToken string `json:"access_token"` //access token
@@ -98,9 +98,9 @@ func setToken(response *UMResponse, user *User) {
 	log.Debugf("Expiry time: %v for %s", user.sessionToken.expiryTime, user.Email)
 }
 
-//RefreshSession refreshes the session token before expiry_time.
-//Imput parameter apiUrl is the API URL for refreshing session.
-func RefreshSession(user *User) {
+//RefreshToken refreshes the session token before expiry_time.
+//Input parameter apiUrl is the API URL for refreshing session.
+func RefreshToken(user *User) {
 	apiURL := Conf.BaseURL + Conf.UMAPIs.Refresh
 	duration := getRefreshDuration(user)
 	refreshTimer := time.NewTimer(duration)
@@ -129,16 +129,16 @@ func RefreshSession(user *User) {
 
 //Return the expiry duration.
 func getRefreshDuration(user *User) time.Duration {
-	duration := user.sessionToken.expiryTime.Sub(time.Now())
+	duration := user.sessionToken.expiryTime.Sub(currentTime())
 	duration -= 30 * time.Second
-	log.Debugf("Refresh duration %v for %s:", duration, user.Email)
+	log.Debugf("Refresh duration for %s: %v", user.Email, duration)
 	return duration
 }
 
 //calls the refresh API, return nil when successful.
 func callRefreshAPI(apiURL string, user *User) error {
-	user.sessionToken.access.Lock()
 	log.Infof("Refreshing token for %s", user.Email)
+	user.sessionToken.access.Lock()
 	//forming body for refresh session API
 	reqBody := RefreshAndLogoutRequestBody{
 		RefreshToken: user.sessionToken.refreshToken,
@@ -182,8 +182,8 @@ func retryLogin(backoff time.Duration, user *User) {
 		err := Login(user)
 		if err != nil {
 			log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s, login will be retried after %v", user.Email, backoff)
-			backoff = backoff * 2
-			if backoff >= (60 * time.Minute) {
+			backoff = backoff * multiplier
+			if backoff >= maxBackoff {
 				backoff = initialBackoff
 			}
 			timer.Reset(backoff)
@@ -214,6 +214,7 @@ func Logout(user *User) error {
 	if err != nil {
 		return err
 	}
+
 	//Map the received response to umResponse struct
 	resp := new(UMResponse)
 	err = json.NewDecoder(bytes.NewReader(response)).Decode(resp)

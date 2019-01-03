@@ -86,14 +86,21 @@ PM / FM data collection by collector is performed using REST interface at regula
     },
     "apis": [
         {
-            "api": "/metrics/radios/pm",
+            "api": "/metrics/radios/pmdata",
             "interval": 15
         },
         {
-            "api": "/metrics/radios/fm",
+            "api": "/metrics/radios/fmdata",
+            "type": "ACTIVE",
+            "interval": 60
+        },
+        {
+            "api": "/metrics/radios/fmdata",
+            "type": "HISTORY",
             "interval": 15
         }
-    ]
+    ],
+    "limit": 100
 }
 ````
 
@@ -109,7 +116,9 @@ PM / FM data collection by collector is performed using REST interface at regula
 | um_api.logout  | string      | Customer portal logout API.                                                                                                                                                   |
 | apis           | [api_conf]  | Get PM/FM APIs.                                                                                                                                                               |
 | api            | string      | API URL of get PM/FM data.                                                                                                                                                    |
-| interval       | integer     | Interval at which API should be called to collect data.
+| interval       | integer     | Interval at which API should be called to collect data.                                                                                                                       |
+| type           | string      | Type of FM request ("ACTIVE" or "HISTORY")                                                                                                                                    |
+| limit          | integer     | Number of records to be fetched from the API.
 
 * To start collector, go to the installed path of the collector bin directory and start by calling the following command:
 

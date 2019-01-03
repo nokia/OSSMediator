@@ -8,10 +8,8 @@ package util
 
 import (
 	"bytes"
-	"crypto/md5"
-	"encoding/base64"
+	"encoding/json"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -23,6 +21,21 @@ import (
 
 	log "github.com/sirupsen/logrus"
 )
+
+var response = `{
+		"data": "[{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"Equipment Alarm\",\"LastUpdatedTime\":\"2018-12-12T03:31:46Z\",\"Severity\":\"Minor\",\"EventTime\":\"2018-12-11T23:15:13+05:30:00\",\"NotificationType\":\"NewAlarm\"}},{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"communications\",\"LastUpdatedTime\":\"2018-12-12T08:57:43+05:30\",\"Severity\":\"major\",\"EventTime\":\"2018-12-11T12:52:34+05:30\",\"NotificationType\":\"alarmNew\"}}]",
+		"next_record": 0,
+		"num_of_records": 2,
+		"status": {
+		  "status_code": "SUCCESS",
+		  "status_description": {
+			"description": "Records transferred successfully",
+			"description_code": "NOT_SPECIFIED"
+		  }
+		},
+		"total_num_records": 2,
+		"type": "fmdata"
+	  }`
 
 func TestCreateHTTPClientForSkipTLS(t *testing.T) {
 	//capturing the logs in buffer for assertion
@@ -67,17 +80,8 @@ func TestCreateHTTPClientWithNonExistingCRTFile(t *testing.T) {
 }
 
 func TestCreateHTTPClientWithCRTFile(t *testing.T) {
-	tmpfile, err := ioutil.TempFile(".", "crt")
-	if err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-	if err = tmpfile.Close(); err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-	defer os.Remove(tmpfile.Name())
-
+	tmpfile := createTmpFile(".", "crt", []byte(``))
+	defer os.Remove(tmpfile)
 	//capturing the logs in buffer for assertion
 	var buf bytes.Buffer
 	log.SetOutput(&buf)
@@ -86,126 +90,20 @@ func TestCreateHTTPClientWithCRTFile(t *testing.T) {
 		log.SetOutput(os.Stderr)
 	}()
 
-	CreateHTTPClient(tmpfile.Name(), false)
-	if !strings.Contains(buf.String(), "Using CA certificate "+tmpfile.Name()) {
-		t.Fail()
-	}
-}
-
-//Checksum validation test
-func TestValidateCheckSum(t *testing.T) {
-	content := []byte("test file")
-	tmpfile, err := ioutil.TempFile(".", "tmp")
-	if err != nil {
-		t.Log(err)
+	CreateHTTPClient(tmpfile, false)
+	if !strings.Contains(buf.String(), "Using CA certificate "+tmpfile) {
 		t.Fail()
 	}
 
-	defer os.Remove(tmpfile.Name())
-	if _, err = tmpfile.Write(content); err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-	if err = tmpfile.Close(); err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-
-	err = validateCheckSum(tmpfile.Name(), "f20d9f2072bbeb6691c0f9c5099b01f3")
-	if err != nil {
-		t.Fail()
-	}
-}
-
-//Checksum validation test with wrong checksum value
-func TestValidateCheckSumWithWrongSum(t *testing.T) {
-	content := []byte("test tmp file")
-	tmpfile, err := ioutil.TempFile(".", "tmp")
-	if err != nil {
-		t.Log(err)
-	}
-
-	defer os.Remove(tmpfile.Name())
-	if _, err = tmpfile.Write(content); err != nil {
-		t.Log(err)
-	}
-	if err = tmpfile.Close(); err != nil {
-		t.Log(err)
-	}
-
-	err = validateCheckSum(tmpfile.Name(), "f20d9f2072bbeb6691c0f9c5099b01f3")
-	if err == nil {
-		t.Fail()
-	}
-}
-
-func TestValidateCheckSumWithEmptyFile(t *testing.T) {
-	err := validateCheckSum("", "f20d9f2072bbeb6691c0f9c5099b01f3")
-	if err == nil {
-		t.Fail()
-	}
-}
-
-func TestUntar(t *testing.T) {
-	responseDir := "./tmp"
-	fileName := "./_testdata/test_file.tgz"
-	CreateResponseDirectory(responseDir, "")
-	defer os.RemoveAll(responseDir)
-	err := untar(fileName, responseDir)
-	if err != nil {
-		t.Fail()
-	}
-	files, _ := ioutil.ReadDir(responseDir)
-	if len(files) != 10 {
-		t.Fail()
-	}
-}
-
-func TestUntarWithEmptyFile(t *testing.T) {
-	err := untar("", "./tmp")
-	if err == nil {
-		t.Fail()
-	}
-}
-
-func TestWriteResponseWithWrongEncodedFile(t *testing.T) {
-	responseDir := "./tmp"
-	CreateResponseDirectory(responseDir, "")
-	defer os.RemoveAll(responseDir)
-	response := &GetAPIResponse{
-		FileName:    "test_file.tgz",
-		MD5CheckSum: "checkSum",
-		EncodedFile: "encoded",
-	}
-	user := &User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
-
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
-
-	writeResponse(response, user, "")
-	if !strings.Contains(buf.String(), "Unable to decode response") {
-		t.Fail()
-	}
 }
 
 func TestWriteResponseWithWrongDir(t *testing.T) {
-	fileName := "./_testdata/test_file.tgz"
-	content, _ := ioutil.ReadFile(fileName)
-	encoded := base64.StdEncoding.EncodeToString(content)
-	f, err := os.Open(fileName)
-	if err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-	defer f.Close()
-
 	response := &GetAPIResponse{
-		FileName:    "test_file.tgz",
-		MD5CheckSum: "checkSum",
-		EncodedFile: encoded,
+		Data:            "test data",
+		NextRecord:      0,
+		NumOfRecords:    10,
+		Type:            pmResponseType,
+		TotalNumRecords: 10,
 	}
 	user := &User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
 	var buf bytes.Buffer
@@ -220,70 +118,50 @@ func TestWriteResponseWithWrongDir(t *testing.T) {
 	}
 }
 
-func TestWriteResponseWithWrongCheckSum(t *testing.T) {
-	responseDir := "./tmp"
-	CreateResponseDirectory(responseDir, "")
-	defer os.RemoveAll(responseDir)
-	fileName := "./_testdata/test_file.tgz"
-	content, _ := ioutil.ReadFile(fileName)
-	encoded := base64.StdEncoding.EncodeToString(content)
-	f, err := os.Open(fileName)
+func TestWriteResponseForPM(t *testing.T) {
+	response := &GetAPIResponse{
+		Data:            `{"data":"test data"}`,
+		NextRecord:      0,
+		NumOfRecords:    10,
+		Type:            pmResponseType,
+		TotalNumRecords: 10,
+	}
+
+	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp"}
+	CreateResponseDirectory(user.ResponseDest, "/pm")
+	writeResponse(response, user, "/pm")
+	defer os.RemoveAll(user.ResponseDest)
+	files, err := ioutil.ReadDir(user.ResponseDest + "/pm")
 	if err != nil {
 		t.Log(err)
 		t.Fail()
 	}
-	defer f.Close()
-
-	response := &GetAPIResponse{
-		FileName:    "test_file.tgz",
-		MD5CheckSum: "checkSum",
-		EncodedFile: encoded,
-	}
-	user := &User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
-
-	writeResponse(response, user, "")
-	if !strings.Contains(buf.String(), "CheckSum Validation failed") {
+	data, err := ioutil.ReadFile(user.ResponseDest + "/pm/" + files[0].Name())
+	if err != nil || len(data) == 0 {
 		t.Fail()
 	}
 }
 
-func TestWriteResponse(t *testing.T) {
-	responseDir := "./tmp"
-	CreateResponseDirectory(responseDir, "")
-	fileName := "./_testdata/test_file.tgz"
-	content, _ := ioutil.ReadFile(fileName)
-	encoded := base64.StdEncoding.EncodeToString(content)
-	f, err := os.Open(fileName)
+func TestWriteResponseForFM(t *testing.T) {
+	response := &GetAPIResponse{
+		Data:            `{"data":"test data"}`,
+		NextRecord:      0,
+		NumOfRecords:    10,
+		Type:            "fmdata",
+		TotalNumRecords: 10,
+	}
+
+	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp"}
+	CreateResponseDirectory(user.ResponseDest, "/fm")
+	writeResponse(response, user, "/fm")
+	defer os.RemoveAll(user.ResponseDest)
+	files, err := ioutil.ReadDir(user.ResponseDest + "/fm")
 	if err != nil {
 		t.Log(err)
 		t.Fail()
 	}
-	defer f.Close()
-
-	h := md5.New()
-	if _, err := io.Copy(h, f); err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-
-	checkSum := fmt.Sprintf("%x", h.Sum(nil))
-	response := &GetAPIResponse{
-		FileName:    "test_file.tgz",
-		MD5CheckSum: checkSum,
-		EncodedFile: encoded,
-	}
-	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp"}
-	apiLastReceivedFile := lastReceivedFile + "_" + user.Email + "_."
-	defer os.RemoveAll(responseDir)
-	defer os.Remove(apiLastReceivedFile)
-	writeResponse(response, user, "")
-	data, _ := ioutil.ReadFile(apiLastReceivedFile)
-	if string(data) != "2018-03-14T13:55:00+05:30" {
+	data, err := ioutil.ReadFile(user.ResponseDest + "/fm/" + files[0].Name())
+	if err != nil || len(data) == 0 {
 		t.Fail()
 	}
 }
@@ -294,7 +172,7 @@ func TestCallAPIForInvalidCase(t *testing.T) {
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
-		expiryTime:   time.Now(),
+		expiryTime:   currentTime(),
 	}
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
@@ -309,9 +187,16 @@ func TestCallAPIForInvalidCase(t *testing.T) {
 		}`)
 	}))
 	defer testServer.Close()
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+
 	CreateHTTPClient("", true)
-	response := callAPI(testServer.URL, &user)
-	if response != nil {
+	startTime, endTime := getTimeInterval(&user, "", 15)
+	response := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "")
+	if response != nil || !strings.Contains(buf.String(), "Invalid status code received") {
 		t.Fail()
 	}
 }
@@ -321,45 +206,140 @@ func TestCallAPIForInvalidURL(t *testing.T) {
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
-		expiryTime:   time.Now(),
+		expiryTime:   currentTime(),
 	}
 	CreateHTTPClient("", true)
-	response := callAPI(":", &user)
-	if response != nil {
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+
+	CreateHTTPClient("", true)
+	startTime, endTime := getTimeInterval(&user, "", 15)
+	response := callAPI(":", &user, startTime, endTime, 0, 100, "")
+	if response != nil || !strings.Contains(buf.String(), "missing protocol scheme") {
 		t.Fail()
 	}
 }
 
-//Unit test for callAPI and doRequest
+// //Unit test for callAPI and doRequest
 func TestCallAPI(t *testing.T) {
 	user := User{Email: "testuser@nokia.com", password: "1234"}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
-		expiryTime:   time.Now(),
+		expiryTime:   currentTime(),
 	}
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, `{
-			"filename":"test_file.tgz",
-			"md5_checksum":"checksum",
-			"encoded_file":"encoded_file",
-			"status": {
-				"status_code": "SUCCESS",
-				"status_description": {
-					"description_code": "NOT_SPECIFIED",
-					"description": "Success"
-				}
-			}
-		}`)
+		fmt.Fprintln(w, response)
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", false)
-	resp := callAPI(testServer.URL, &user)
-	if resp == nil {
+	startTime, endTime := getTimeInterval(&user, "", 15)
+	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "")
+	if resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
 	}
-	if resp.Status.StatusCode != "SUCCESS" || resp.Status.StatusDescription.Description != "Success" || resp.FileName != "test_file.tgz" || resp.EncodedFile != "encoded_file" || resp.MD5CheckSum != "checksum" {
+}
+
+func TestCallAPIWithInvalidResponse(t *testing.T) {
+	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user.sessionToken = &sessionToken{
+		accessToken:  "accessToken",
+		refreshToken: "refreshToken",
+		expiryTime:   currentTime(),
+	}
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintln(w, ``)
+	}))
+	defer testServer.Close()
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+	CreateHTTPClient("", false)
+	startTime, endTime := getTimeInterval(&user, "", 15)
+	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "")
+	if resp != nil && strings.Contains(buf.String(), "Unable to decode response") {
+		t.Fail()
+	}
+}
+
+func TestCallAPIWIthLastReceivedFile(t *testing.T) {
+	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user.sessionToken = &sessionToken{
+		accessToken:  "accessToken",
+		refreshToken: "refreshToken",
+		expiryTime:   currentTime(),
+	}
+
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintln(w, response)
+	}))
+
+	tmpFile := lastReceivedDataTime + "_" + user.Email + "_" + path.Base(testServer.URL)
+	file, err := os.Create(tmpFile)
+	if err != nil {
+		t.Error(err)
+	}
+	defer file.Close()
+	_, err = file.Write([]byte("2018-03-14T13:55:00+05:30"))
+	if err != nil {
+		t.Error(err)
+	}
+	defer testServer.Close()
+	defer os.Remove(tmpFile)
+	CreateHTTPClient("", false)
+	startTime, endTime := getTimeInterval(&user, "", 15)
+	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "")
+	if resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
+		t.Fail()
+	}
+}
+
+func TestCallAPIWithSkipCert(t *testing.T) {
+	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user.sessionToken = &sessionToken{
+		accessToken:  "accessToken",
+		refreshToken: "refreshToken",
+		expiryTime:   currentTime(),
+	}
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintln(w, response)
+	}))
+	defer testServer.Close()
+	CreateHTTPClient("", true)
+	startTime, endTime := getTimeInterval(&user, "", 15)
+	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "")
+	if resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
+		t.Fail()
+	}
+}
+
+func TestCallAPIWithCert(t *testing.T) {
+	tmpfile := createTmpFile(".", "crt", []byte(``))
+	CreateHTTPClient(tmpfile, false)
+	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user.sessionToken = &sessionToken{
+		accessToken:  "accessToken",
+		refreshToken: "refreshToken",
+		expiryTime:   currentTime(),
+	}
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintln(w, response)
+	}))
+	defer testServer.Close()
+	defer os.Remove(tmpfile)
+	startTime, endTime := getTimeInterval(&user, "", 15)
+	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "")
+	if resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
 	}
 }
@@ -378,292 +358,49 @@ func TestCallAPIWithErrorStatusCode(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", false)
-	resp := callAPI(testServer.URL, &user)
+	startTime, endTime := getTimeInterval(&user, "", 15)
+	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "")
 	if resp != nil {
 		t.Fail()
 	}
 }
 
-func TestCallAPIWithInvalidResponse(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
-		refreshToken: "refreshToken",
-		expiryTime:   time.Now(),
-	}
-	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, ``)
-	}))
-	defer testServer.Close()
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
-	CreateHTTPClient("", false)
-	resp := callAPI(testServer.URL, &user)
-	if resp != nil && strings.Contains(buf.String(), "Unable to decode response") {
-		t.Fail()
-	}
-}
+func TestStoreLastReceivedDataTime(t *testing.T) {
+	resp := new(GetAPIResponse)
+	err := json.NewDecoder(bytes.NewReader([]byte(response))).Decode(resp)
 
-func TestCallAPIWIthLastReceivedFile(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
-		refreshToken: "refreshToken",
-		expiryTime:   time.Now(),
-	}
-
-	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, `{
-			"filename":"test_file.tgz",
-			"md5_checksum":"checksum",
-			"encoded_file":"encoded_file",
-			"status": {
-				"status_code": "SUCCESS",
-				"status_description": {
-					"description_code": "NOT_SPECIFIED",
-					"description": "Success"
-				}
-			}
-		}`)
-	}))
-	tmpFile := lastReceivedFile + "_" + user.Email + "_" + path.Base(testServer.URL)
-	file, err := os.Create(tmpFile)
-	if err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-	defer file.Close()
-	_, err = file.Write([]byte("2018-03-14T13:55:00+05:30"))
-	if err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-	defer testServer.Close()
-	defer os.Remove(tmpFile)
-	CreateHTTPClient("", false)
-	resp := callAPI(testServer.URL, &user)
-	if resp == nil {
-		t.Fail()
-	}
-	if resp.Status.StatusCode != "SUCCESS" || resp.Status.StatusDescription.Description != "Success" || resp.FileName != "test_file.tgz" || resp.EncodedFile != "encoded_file" || resp.MD5CheckSum != "checksum" {
-		t.Fail()
-	}
-}
-func TestCallAPIWithSkipCert(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
-		refreshToken: "refreshToken",
-		expiryTime:   time.Now(),
-	}
-	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, `{
-			"filename":"test_file.tgz",
-			"md5_checksum":"checksum",
-			"encoded_file":"encoded_file",
-			"status": {
-				"status_code": "SUCCESS",
-				"status_description": {
-					"description_code": "NOT_SPECIFIED",
-					"description": "Success"
-				}
-			}
-		}`)
-	}))
-	defer testServer.Close()
-	CreateHTTPClient("", true)
-	resp := callAPI(testServer.URL, &user)
-	if resp == nil {
-		t.Fail()
-	}
-	if resp.Status.StatusCode != "SUCCESS" || resp.Status.StatusDescription.Description != "Success" || resp.FileName != "test_file.tgz" || resp.EncodedFile != "encoded_file" || resp.MD5CheckSum != "checksum" {
-		t.Fail()
-	}
-}
-
-func TestCallAPIWithCert(t *testing.T) {
-	tmpfile, err := ioutil.TempFile(".", "crt")
-	if err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-
-	if err = tmpfile.Close(); err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-
-	CreateHTTPClient(tmpfile.Name(), false)
-	user := User{Email: "testuser@nokia.com", password: "1234"}
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
-		refreshToken: "refreshToken",
-		expiryTime:   time.Now(),
-	}
-	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, `{
-			"filename":"test_file.tgz",
-			"md5_checksum":"checksum",
-			"encoded_file":"encoded_file",
-			"status": {
-				"status_code": "SUCCESS",
-				"status_description": {
-					"description_code": "NOT_SPECIFIED",
-					"description": "Success"
-				}
-			}
-		}`)
-	}))
-	defer testServer.Close()
-	defer os.Remove(tmpfile.Name())
-	resp := callAPI(testServer.URL, &user)
-	if resp == nil {
-		t.Fail()
-	}
-	if resp.Status.StatusCode != "SUCCESS" || resp.Status.StatusDescription.Description != "Success" || resp.FileName != "test_file.tgz" || resp.EncodedFile != "encoded_file" || resp.MD5CheckSum != "checksum" {
-		t.Fail()
-	}
-}
-
-func TestTrigger(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234", ResponseDest: "./tmp"}
-	user.sessionToken = &sessionToken{
-		accessToken:  "",
-		refreshToken: "",
-		expiryTime:   time.Now(),
-	}
-	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, `{
-			"filename":"test_file.tgz",
-			"md5_checksum":"checksum",
-			"encoded_file":"encoded_file",
-			"status": {
-				"status_code": "SUCCESS",
-				"status_description": {
-					"description_code": "NOT_SPECIFIED",
-					"description": "Success"
-				}
-			}
-		}`)
-	}))
-	defer testServer.Close()
-	CreateHTTPClient("", true)
-	ticker := time.NewTicker(500 * time.Millisecond)
-
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
-	go Trigger(ticker, testServer.URL, &user)
-	time.Sleep(1 * time.Second)
-	if !strings.Contains(buf.String(), "Triggered "+testServer.URL+" for "+user.Email) {
-		t.Fail()
-	}
-	if !strings.Contains(buf.String(), "Writting response for "+user.Email) {
-		t.Fail()
-	}
-}
-
-func TestTriggerWithWrongURL(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234", ResponseDest: "./tmp"}
-	user.sessionToken = &sessionToken{
-		accessToken:  "",
-		refreshToken: "",
-		expiryTime:   time.Now(),
-	}
-	CreateHTTPClient("", true)
-	ticker := time.NewTicker(500 * time.Millisecond)
-
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
-	go Trigger(ticker, "http://localhost:8080", &user)
-	time.Sleep(1 * time.Second)
-	if strings.Contains(buf.String(), "Writting response") {
-		t.Fail()
-	}
-}
-
-func TestStoreLastReceivedFileTimePM(t *testing.T) {
-	responseDir := "./tmp/pm"
-	fileName := "./_testdata/test_file.tgz"
-	err := os.MkdirAll(responseDir, os.ModePerm)
-	if err != nil {
-		t.Fail()
-	}
-	defer os.RemoveAll("./tmp")
-	err = untar(fileName, responseDir)
-	if err != nil {
-		t.Fail()
-	}
 	user := &User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
-	err = storeLastReceivedFileTime(user, "/pm")
+	err = storeLastReceivedDataTime(user, "/fm", resp.Data, fmResponseType)
 	if err != nil {
 		t.Fail()
 	}
 	//Reading LastReceivedFile value from file
-	fileName = lastReceivedFile + "_" + user.Email + "_" + "pm"
-	defer os.Remove(fileName)
+	fileName := lastReceivedDataTime + "_" + user.Email + "_" + "fm"
 	data, err := ioutil.ReadFile(fileName)
-	if err != nil || string(data) != "2018-03-14T13:55:00+05:30" {
-		t.Fail()
-	}
-}
-
-func TestStoreLastReceivedFileTimeFM(t *testing.T) {
-	responseDir := "./tmp/fm"
-	fileName := "./_testdata/test_file.tgz"
-	err := os.MkdirAll(responseDir, os.ModePerm)
-	if err != nil {
-		t.Fail()
-	}
-	defer os.RemoveAll("./tmp")
-	err = untar(fileName, responseDir)
-	if err != nil {
-		t.Fail()
-	}
-	user := &User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
-	err = storeLastReceivedFileTime(user, "/fm")
-	if err != nil {
-		t.Fail()
-	}
-	//Reading LastReceivedFile value from file
-	fileName = lastReceivedFile + "_" + user.Email + "_" + "fm"
 	defer os.Remove(fileName)
-	_, err = ioutil.ReadFile(fileName)
-	if err != nil {
+	if err != nil && len(data) == 0 {
 		t.Fail()
 	}
 }
 
-func TestStoreLastReceivedFileTimeWithoutFiles(t *testing.T) {
+func TestStoreLastReceivedDataTimeWithoutData(t *testing.T) {
 	responseDir := "./tmp"
-	err := os.MkdirAll(responseDir, os.ModePerm)
-	if err != nil {
-		t.Fail()
+	if _, err := os.Stat(responseDir); os.IsNotExist(err) {
+		os.MkdirAll(responseDir, os.ModePerm)
 	}
 	defer os.RemoveAll(responseDir)
 	user := &User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
-	err = storeLastReceivedFileTime(user, "")
-	if err == nil {
+	err := storeLastReceivedDataTime(user, "", "", fmResponseType)
+	t.Log(err)
+	if err == nil || !strings.Contains(err.Error(), "Unable to write last received data time, error: unexpected end of JSON input") {
 		t.Fail()
 	}
 }
 
 func TestStoreLastReceivedFileTimeWithWrongDirectory(t *testing.T) {
 	user := &User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
-	err := storeLastReceivedFileTime(user, "")
+	err := storeLastReceivedDataTime(user, "", "", fmResponseType)
+	t.Log(err)
 	if err == nil {
 		t.Fail()
 	}
@@ -674,6 +411,109 @@ func TestCreateResponseDirectory(t *testing.T) {
 	CreateResponseDirectory(respDir, "http://localhost:8080/pmdata")
 	defer os.RemoveAll(respDir)
 	if _, err := os.Stat(respDir + "/pmdata"); os.IsNotExist(err) {
+		t.Fail()
+	}
+}
+
+func createTmpFile(dir string, prefix string, content []byte) string {
+	tmpfile, err := ioutil.TempFile(dir, prefix)
+	if err != nil {
+		log.Error(err)
+		return ""
+	}
+
+	if _, err = tmpfile.Write(content); err != nil {
+		log.Error(err)
+		return ""
+	}
+	if err = tmpfile.Close(); err != nil {
+		log.Error(err)
+		return ""
+	}
+	return tmpfile.Name()
+}
+
+func TestStartDataCollectionWithInvalidURL(t *testing.T) {
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+
+	oldCurrentTime := currentTime
+	defer func() { currentTime = oldCurrentTime }()
+
+	myCurrentTime := func() time.Time {
+		return time.Date(2018, 12, 17, 20, 9, 58, 0, time.UTC)
+	}
+	currentTime = myCurrentTime
+	Conf.BaseURL = "http://localhost:8080"
+	Conf.Users = []*User{
+		{
+			Email:        "testuser@nokia.com",
+			password:     "1234",
+			ResponseDest: "./tmp",
+			sessionToken: &sessionToken{
+				accessToken:  "",
+				refreshToken: "",
+				expiryTime:   currentTime(),
+			},
+		},
+	}
+	Conf.APIs = []APIConf{{API: "/pmdata", Interval: 15}, {API: "/fmdata", Interval: 15, Type: "HISTORY"}}
+	Conf.Limit = 10
+	CreateHTTPClient("", true)
+
+	StartDataCollection()
+	if !strings.Contains(buf.String(), "Triggered http://localhost:8080/fmdata") || !strings.Contains(buf.String(), "Triggered http://localhost:8080/pmdata") {
+		t.Fail()
+	}
+	if strings.Contains(buf.String(), "Writting response") {
+		t.Fail()
+	}
+}
+
+func TestStartDataCollection(t *testing.T) {
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintln(w, response)
+	}))
+	defer testServer.Close()
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+
+	oldCurrentTime := currentTime
+	defer func() { currentTime = oldCurrentTime }()
+
+	myCurrentTime := func() time.Time {
+		return time.Date(2018, 12, 17, 20, 9, 58, 0, time.UTC)
+	}
+	currentTime = myCurrentTime
+	Conf.BaseURL = testServer.URL
+	Conf.Users = []*User{
+		{
+			Email:        "testuser@nokia.com",
+			password:     "1234",
+			ResponseDest: "./tmp",
+			sessionToken: &sessionToken{
+				accessToken:  "",
+				refreshToken: "",
+				expiryTime:   currentTime(),
+			},
+		},
+	}
+	Conf.APIs = []APIConf{{API: "/pmdata", Interval: 15}, {API: "/fmdata", Interval: 15, Type: "HISTORY"}}
+	Conf.Limit = 10
+	CreateHTTPClient("", true)
+
+	StartDataCollection()
+	if !strings.Contains(buf.String(), "Triggered "+testServer.URL) {
+		t.Fail()
+	}
+	if !strings.Contains(buf.String(), "Writing response") {
 		t.Fail()
 	}
 }

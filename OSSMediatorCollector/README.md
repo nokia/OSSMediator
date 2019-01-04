@@ -1,6 +1,6 @@
 # OSS Mediator Collector
 
-The OSS Mediator Collector is a command line API client. It connects with NDAC APIGW and gets the FM and PM data periodically as configured.
+The OSS Mediator Collector is a command line API client. It connects with NDAC APIGW and gets the FM and PM data using REST interface at regular intervals based on the collector configuration for the customer’s managed networks only.
 
 ### Prerequisites
 
@@ -122,10 +122,13 @@ PM / FM data collection by collector is performed using REST interface at regula
 
 * To start collector, go to the installed path of the collector bin directory and start by calling the following command:
 
+````
 ./collector
-Enter the password for each customer having the right permission.
-Email ID and password should be created in maintenance portal under User Delegation with a role as “NDAC-PNM-VIEW”.
+````
 
-Once the login is successful, the collector will periodically start collecting the data by calling the configured APIs.
+Enter the password for each customer having the right permission.  
+NOTE: For login details (email ID and password) contact Nokia DAC support/operations team.  
 
-* Collector logs can be checked in $Collector_HOME/log/collector.log file.
+Once the login is successful for all users, the collector will periodically start collecting the data by calling the configured APIs for the customer’s managed network.
+
+Collector logs can be checked in $cd $collector_basepath/log/collector.log file.

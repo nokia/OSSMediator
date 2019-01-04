@@ -116,6 +116,8 @@ OpenNMSPlugin reads all the collected PM/FM file to convert it to OpenNMS readab
 
 * To start opennmsplugin, go to the installed path of the mediator bin directory and start by calling the following command:
 
+````
 ./opennmsplugin
+````
 
 * OpenNMSPlugin logs can be checked in $OpenNMSPlugin_HOME/log/OpenNMSPlugin.log file.

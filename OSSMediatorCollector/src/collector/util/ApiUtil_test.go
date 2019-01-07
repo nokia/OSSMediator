@@ -7,7 +7,9 @@
 package util
 
 import (
+	"archive/tar"
 	"bytes"
+	"compress/gzip"
 	"crypto/md5"
 	"encoding/base64"
 	"fmt"
@@ -23,6 +25,13 @@ import (
 
 	log "github.com/sirupsen/logrus"
 )
+
+func TestMain(m *testing.M) {
+	createTar()
+	retCode := m.Run()
+	os.Remove("test_data.tgz")
+	os.Exit(retCode)
+}
 
 func TestCreateHTTPClientForSkipTLS(t *testing.T) {
 	//capturing the logs in buffer for assertion
@@ -69,12 +78,10 @@ func TestCreateHTTPClientWithNonExistingCRTFile(t *testing.T) {
 func TestCreateHTTPClientWithCRTFile(t *testing.T) {
 	tmpfile, err := ioutil.TempFile(".", "crt")
 	if err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 	if err = tmpfile.Close(); err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 	defer os.Remove(tmpfile.Name())
 
@@ -97,18 +104,15 @@ func TestValidateCheckSum(t *testing.T) {
 	content := []byte("test file")
 	tmpfile, err := ioutil.TempFile(".", "tmp")
 	if err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 
 	defer os.Remove(tmpfile.Name())
 	if _, err = tmpfile.Write(content); err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 	if err = tmpfile.Close(); err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 
 	err = validateCheckSum(tmpfile.Name(), "f20d9f2072bbeb6691c0f9c5099b01f3")
@@ -122,15 +126,15 @@ func TestValidateCheckSumWithWrongSum(t *testing.T) {
 	content := []byte("test tmp file")
 	tmpfile, err := ioutil.TempFile(".", "tmp")
 	if err != nil {
-		t.Log(err)
+		t.Error(err)
 	}
 
 	defer os.Remove(tmpfile.Name())
 	if _, err = tmpfile.Write(content); err != nil {
-		t.Log(err)
+		t.Error(err)
 	}
 	if err = tmpfile.Close(); err != nil {
-		t.Log(err)
+		t.Error(err)
 	}
 
 	err = validateCheckSum(tmpfile.Name(), "f20d9f2072bbeb6691c0f9c5099b01f3")
@@ -148,15 +152,15 @@ func TestValidateCheckSumWithEmptyFile(t *testing.T) {
 
 func TestUntar(t *testing.T) {
 	responseDir := "./tmp"
-	fileName := "./_testdata/test_file.tgz"
+	fileName := "./test_data.tgz"
 	CreateResponseDirectory(responseDir, "")
 	defer os.RemoveAll(responseDir)
 	err := untar(fileName, responseDir)
 	if err != nil {
-		t.Fail()
+		t.Error(err)
 	}
 	files, _ := ioutil.ReadDir(responseDir)
-	if len(files) != 10 {
+	if len(files) != 3 {
 		t.Fail()
 	}
 }
@@ -173,7 +177,7 @@ func TestWriteResponseWithWrongEncodedFile(t *testing.T) {
 	CreateResponseDirectory(responseDir, "")
 	defer os.RemoveAll(responseDir)
 	response := &GetAPIResponse{
-		FileName:    "test_file.tgz",
+		FileName:    "test_data.tgz",
 		MD5CheckSum: "checkSum",
 		EncodedFile: "encoded",
 	}
@@ -192,18 +196,17 @@ func TestWriteResponseWithWrongEncodedFile(t *testing.T) {
 }
 
 func TestWriteResponseWithWrongDir(t *testing.T) {
-	fileName := "./_testdata/test_file.tgz"
+	fileName := "./test_data.tgz"
 	content, _ := ioutil.ReadFile(fileName)
 	encoded := base64.StdEncoding.EncodeToString(content)
 	f, err := os.Open(fileName)
 	if err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 	defer f.Close()
 
 	response := &GetAPIResponse{
-		FileName:    "test_file.tgz",
+		FileName:    "test_data.tgz",
 		MD5CheckSum: "checkSum",
 		EncodedFile: encoded,
 	}
@@ -224,18 +227,17 @@ func TestWriteResponseWithWrongCheckSum(t *testing.T) {
 	responseDir := "./tmp"
 	CreateResponseDirectory(responseDir, "")
 	defer os.RemoveAll(responseDir)
-	fileName := "./_testdata/test_file.tgz"
+	fileName := "./test_data.tgz"
 	content, _ := ioutil.ReadFile(fileName)
 	encoded := base64.StdEncoding.EncodeToString(content)
 	f, err := os.Open(fileName)
 	if err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 	defer f.Close()
 
 	response := &GetAPIResponse{
-		FileName:    "test_file.tgz",
+		FileName:    "test_data.tgz",
 		MD5CheckSum: "checkSum",
 		EncodedFile: encoded,
 	}
@@ -255,25 +257,23 @@ func TestWriteResponseWithWrongCheckSum(t *testing.T) {
 func TestWriteResponse(t *testing.T) {
 	responseDir := "./tmp"
 	CreateResponseDirectory(responseDir, "")
-	fileName := "./_testdata/test_file.tgz"
+	fileName := "./test_data.tgz"
 	content, _ := ioutil.ReadFile(fileName)
 	encoded := base64.StdEncoding.EncodeToString(content)
 	f, err := os.Open(fileName)
 	if err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 	defer f.Close()
 
 	h := md5.New()
 	if _, err := io.Copy(h, f); err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 
 	checkSum := fmt.Sprintf("%x", h.Sum(nil))
 	response := &GetAPIResponse{
-		FileName:    "test_file.tgz",
+		FileName:    "test_data.tgz",
 		MD5CheckSum: checkSum,
 		EncodedFile: encoded,
 	}
@@ -283,7 +283,7 @@ func TestWriteResponse(t *testing.T) {
 	defer os.Remove(apiLastReceivedFile)
 	writeResponse(response, user, "")
 	data, _ := ioutil.ReadFile(apiLastReceivedFile)
-	if string(data) != "2018-03-14T13:55:00+05:30" {
+	if string(data) != "2018-03-14T13:20:00+05:30" {
 		t.Fail()
 	}
 }
@@ -341,7 +341,7 @@ func TestCallAPI(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintln(w, `{
-			"filename":"test_file.tgz",
+			"filename":"test_data.tgz",
 			"md5_checksum":"checksum",
 			"encoded_file":"encoded_file",
 			"status": {
@@ -359,7 +359,7 @@ func TestCallAPI(t *testing.T) {
 	if resp == nil {
 		t.Fail()
 	}
-	if resp.Status.StatusCode != "SUCCESS" || resp.Status.StatusDescription.Description != "Success" || resp.FileName != "test_file.tgz" || resp.EncodedFile != "encoded_file" || resp.MD5CheckSum != "checksum" {
+	if resp.Status.StatusCode != "SUCCESS" || resp.Status.StatusDescription.Description != "Success" || resp.FileName != "test_data.tgz" || resp.EncodedFile != "encoded_file" || resp.MD5CheckSum != "checksum" {
 		t.Fail()
 	}
 }
@@ -419,7 +419,7 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintln(w, `{
-			"filename":"test_file.tgz",
+			"filename":"test_data.tgz",
 			"md5_checksum":"checksum",
 			"encoded_file":"encoded_file",
 			"status": {
@@ -434,14 +434,12 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 	tmpFile := lastReceivedFile + "_" + user.Email + "_" + path.Base(testServer.URL)
 	file, err := os.Create(tmpFile)
 	if err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 	defer file.Close()
 	_, err = file.Write([]byte("2018-03-14T13:55:00+05:30"))
 	if err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 	defer testServer.Close()
 	defer os.Remove(tmpFile)
@@ -450,7 +448,7 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 	if resp == nil {
 		t.Fail()
 	}
-	if resp.Status.StatusCode != "SUCCESS" || resp.Status.StatusDescription.Description != "Success" || resp.FileName != "test_file.tgz" || resp.EncodedFile != "encoded_file" || resp.MD5CheckSum != "checksum" {
+	if resp.Status.StatusCode != "SUCCESS" || resp.Status.StatusDescription.Description != "Success" || resp.FileName != "test_data.tgz" || resp.EncodedFile != "encoded_file" || resp.MD5CheckSum != "checksum" {
 		t.Fail()
 	}
 }
@@ -464,7 +462,7 @@ func TestCallAPIWithSkipCert(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintln(w, `{
-			"filename":"test_file.tgz",
+			"filename":"test_data.tgz",
 			"md5_checksum":"checksum",
 			"encoded_file":"encoded_file",
 			"status": {
@@ -482,7 +480,7 @@ func TestCallAPIWithSkipCert(t *testing.T) {
 	if resp == nil {
 		t.Fail()
 	}
-	if resp.Status.StatusCode != "SUCCESS" || resp.Status.StatusDescription.Description != "Success" || resp.FileName != "test_file.tgz" || resp.EncodedFile != "encoded_file" || resp.MD5CheckSum != "checksum" {
+	if resp.Status.StatusCode != "SUCCESS" || resp.Status.StatusDescription.Description != "Success" || resp.FileName != "test_data.tgz" || resp.EncodedFile != "encoded_file" || resp.MD5CheckSum != "checksum" {
 		t.Fail()
 	}
 }
@@ -490,13 +488,11 @@ func TestCallAPIWithSkipCert(t *testing.T) {
 func TestCallAPIWithCert(t *testing.T) {
 	tmpfile, err := ioutil.TempFile(".", "crt")
 	if err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 
 	if err = tmpfile.Close(); err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 
 	CreateHTTPClient(tmpfile.Name(), false)
@@ -509,7 +505,7 @@ func TestCallAPIWithCert(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintln(w, `{
-			"filename":"test_file.tgz",
+			"filename":"test_data.tgz",
 			"md5_checksum":"checksum",
 			"encoded_file":"encoded_file",
 			"status": {
@@ -527,7 +523,7 @@ func TestCallAPIWithCert(t *testing.T) {
 	if resp == nil {
 		t.Fail()
 	}
-	if resp.Status.StatusCode != "SUCCESS" || resp.Status.StatusDescription.Description != "Success" || resp.FileName != "test_file.tgz" || resp.EncodedFile != "encoded_file" || resp.MD5CheckSum != "checksum" {
+	if resp.Status.StatusCode != "SUCCESS" || resp.Status.StatusDescription.Description != "Success" || resp.FileName != "test_data.tgz" || resp.EncodedFile != "encoded_file" || resp.MD5CheckSum != "checksum" {
 		t.Fail()
 	}
 }
@@ -542,7 +538,7 @@ func TestTrigger(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintln(w, `{
-			"filename":"test_file.tgz",
+			"filename":"test_data.tgz",
 			"md5_checksum":"checksum",
 			"encoded_file":"encoded_file",
 			"status": {
@@ -597,33 +593,33 @@ func TestTriggerWithWrongURL(t *testing.T) {
 
 func TestStoreLastReceivedFileTimePM(t *testing.T) {
 	responseDir := "./tmp/pm"
-	fileName := "./_testdata/test_file.tgz"
+	fileName := "./test_data.tgz"
 	err := os.MkdirAll(responseDir, os.ModePerm)
 	if err != nil {
-		t.Fail()
+		t.Error(err)
 	}
 	defer os.RemoveAll("./tmp")
 	err = untar(fileName, responseDir)
 	if err != nil {
-		t.Fail()
+		t.Error(err)
 	}
-	user := &User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
+	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp"}
 	err = storeLastReceivedFileTime(user, "/pm")
 	if err != nil {
-		t.Fail()
+		t.Error(err)
 	}
 	//Reading LastReceivedFile value from file
 	fileName = lastReceivedFile + "_" + user.Email + "_" + "pm"
 	defer os.Remove(fileName)
 	data, err := ioutil.ReadFile(fileName)
-	if err != nil || string(data) != "2018-03-14T13:55:00+05:30" {
+	if err != nil || string(data) != "2018-03-14T13:20:00+05:30" {
 		t.Fail()
 	}
 }
 
 func TestStoreLastReceivedFileTimeFM(t *testing.T) {
 	responseDir := "./tmp/fm"
-	fileName := "./_testdata/test_file.tgz"
+	fileName := "./test_data.tgz"
 	err := os.MkdirAll(responseDir, os.ModePerm)
 	if err != nil {
 		t.Fail()
@@ -676,4 +672,43 @@ func TestCreateResponseDirectory(t *testing.T) {
 	if _, err := os.Stat(respDir + "/pmdata"); os.IsNotExist(err) {
 		t.Fail()
 	}
+}
+
+func createTar() error {
+	var b bytes.Buffer
+	gz := gzip.NewWriter(&b)
+	tw := tar.NewWriter(gz)
+	var files = []struct {
+		Name, Body string
+	}{
+		{"PM201803141310+0530.xml", "text files."},
+		{"PM201803141315+0530.xml", "text files."},
+		{"PM201803141320+0530.xml", "text files."},
+	}
+	for _, file := range files {
+		hdr := &tar.Header{
+			Name:     file.Name,
+			Mode:     0600,
+			Size:     int64(len(file.Body)),
+			Typeflag: tar.TypeReg,
+		}
+		if err := tw.WriteHeader(hdr); err != nil {
+			return err
+		}
+		if _, err := tw.Write([]byte(file.Body)); err != nil {
+			return err
+		}
+	}
+	if err := tw.Close(); err != nil {
+		return err
+	}
+	if err := gz.Close(); err != nil {
+		return err
+	}
+
+	err := ioutil.WriteFile("test_data.tgz", b.Bytes(), 0666)
+	if err != nil {
+		return err
+	}
+	return nil
 }

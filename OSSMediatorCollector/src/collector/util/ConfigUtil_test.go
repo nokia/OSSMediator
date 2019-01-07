@@ -10,28 +10,15 @@ import (
 	"io/ioutil"
 	"os"
 	"testing"
+
+	log "github.com/sirupsen/logrus"
 )
 
 //Reading config from invalid json file
 func TestReadConfigWithEmptyFile(t *testing.T) {
-	content := []byte(``)
-	tmpfile, err := ioutil.TempFile(".", "conf")
-	if err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-
-	defer os.Remove(tmpfile.Name())
-	if _, err = tmpfile.Write(content); err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-	if err = tmpfile.Close(); err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-
-	err = ReadConfig(tmpfile.Name())
+	tmpfile := createTmpFile(".", "conf", []byte(``))
+	defer os.Remove(tmpfile)
+	err := ReadConfig(tmpfile)
 	if err == nil {
 		t.Fail()
 	}
@@ -66,21 +53,8 @@ func TestReadConfig(t *testing.T) {
 			}
 		]
 	}`)
-	tmpfile, err := ioutil.TempFile(".", "conf")
-	if err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-
-	defer os.Remove(tmpfile.Name())
-	if _, err = tmpfile.Write(content); err != nil {
-		t.Log(err)
-		t.Fail()
-	}
-	if err = tmpfile.Close(); err != nil {
-		t.Log(err)
-		t.Fail()
-	}
+	tmpfile := createTmpFile(".", "conf", content)
+	defer os.Remove(tmpfile)
 
 	oldReadPassword := readPassword
 	defer func() { readPassword = oldReadPassword }()
@@ -89,10 +63,9 @@ func TestReadConfig(t *testing.T) {
 		return []byte("password"), nil
 	}
 	readPassword = myReadPassword
-	err = ReadConfig(tmpfile.Name())
+	err := ReadConfig(tmpfile)
 	if err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 	if Conf.BaseURL != "https://localhost:8080" || len(Conf.Users) != 2 || Conf.Users[0].Email != "user1@nokia.com" {
 		t.Fail()
@@ -117,7 +90,25 @@ func TestReadCredentials(t *testing.T) {
 	readPassword = myReadPassword
 	Conf.Users = []*User{&User{Email: "user@nokia.com"}}
 	ReadCredentials()
-	if Conf.Users[0].Email != "user@nokia.com" && Conf.Users[0].Email != "password" {
+	if Conf.Users[0].Email != "user@nokia.com" && Conf.Users[0].password != "password" {
 		t.Fail()
 	}
+}
+
+func createTmpFile(dir string, prefix string, content []byte) string {
+	tmpfile, err := ioutil.TempFile(dir, prefix)
+	if err != nil {
+		log.Error(err)
+		return ""
+	}
+
+	if _, err = tmpfile.Write(content); err != nil {
+		log.Error(err)
+		return ""
+	}
+	if err = tmpfile.Close(); err != nil {
+		log.Error(err)
+		return ""
+	}
+	return tmpfile.Name()
 }

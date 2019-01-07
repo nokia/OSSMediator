@@ -350,16 +350,15 @@ func untar(filename string, responseDest string) error {
 		// if it's a file create it
 		case tar.TypeReg:
 			f, err := os.OpenFile(target, os.O_CREATE|os.O_RDWR, os.FileMode(header.Mode))
+			defer f.Close()
 			if err != nil {
 				return err
 			}
 
 			// copy over contents
 			if _, err := io.Copy(f, tr); err != nil {
-				f.Close()
 				return err
 			}
-			f.Close()
 		}
 	}
 }

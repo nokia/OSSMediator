@@ -1,8 +1,8 @@
 /*
-* Copyright 2018 Nokia 
+* Copyright 2018 Nokia
 * Licensed under BSD 3-Clause Clear License,
 * see LICENSE file for details.
-*/
+ */
 
 package util
 

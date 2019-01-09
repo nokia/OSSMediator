@@ -148,7 +148,6 @@ func renameFile(metricTime string, pmConfig config.PMConfig) (string, error) {
 		counter++
 	}
 	fileName = name
-	log.Debug("renamed filename:", fileName)
 	return fileName, nil
 }
 

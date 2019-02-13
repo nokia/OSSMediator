@@ -8,7 +8,7 @@ docker_build:
 	@echo ""
 	@echo "Docker Build..."
 	@echo "..............."
-	@docker build -t ossmediatorcollector:1 .
+	@docker build -t ossmediatorcollector:1 . --network host
 	@echo "docker build completed."
 
 build:

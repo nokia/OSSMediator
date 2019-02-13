@@ -19,7 +19,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-var testFMData = `[  
+var testFMData = `[
     {
        "_index":"test_index",
        "_type":"",

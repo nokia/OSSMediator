@@ -3,7 +3,7 @@
 * Licensed under BSD 3-Clause Clear License,
 * see LICENSE file for details.
  */
- 
+
 package formatter
 
 import (
@@ -88,8 +88,8 @@ type Source struct {
 	LastUpdatedTime       string      `json:"LastUpdatedTime"`
 	EdgeID                string      `json:"edge_id"`
 	Severity              string      `json:"Severity"`
-	NESerialNo            string      `json:"NESerialNo"`
-	NEName                string      `json:"NeName"`
+	NESerialNo            string      `json:"neserialno"`
+	NEName                string      `json:"nename"`
 	AdditionalText        string      `json:"AdditionalText"`
 	EdgeHostname          string      `json:"edge_hostname"`
 	ManagedObjectInstance string      `json:"ManagedObjectInstance"`
@@ -98,7 +98,9 @@ type Source struct {
 	EventTime             string      `json:"EventTime"`
 	NotificationType      string      `json:"NotificationType"`
 	AlarmID               interface{} `json:"AlarmIdentifier"`
-	EdgeName              string      `json:"EdgeName"`
+	EdgeName              string      `json:"edgename"`
+	NeHwID                string      `json:"ne_hw_id"`
+	Dn                    string      `json:"Dn"`
 }
 
 //FormatFMData reads csv file containing fm data and converts it to xml and pushes the generated xml file to NMS.
@@ -126,15 +128,17 @@ func FormatFMData(filePath string, fmConfig config.FMConfig, openNMSAddress stri
 		params = append(params, createParam("SpecificProblem", data.Source.SpecificProblem))
 		params = append(params, createParam("EventTime", data.Source.EventTime))
 		params = append(params, createParam("edge_id", data.Source.EdgeID))
-		params = append(params, createParam("NESerialNo", data.Source.NESerialNo))
-		params = append(params, createParam("NeName", data.Source.NEName))
+		params = append(params, createParam("neserialno", data.Source.NESerialNo))
 		params = append(params, createParam("AdditionalText", data.Source.AdditionalText))
 		params = append(params, createParam("edge_hostname", data.Source.EdgeHostname))
 		params = append(params, createParam("ManagedObjectInstance", data.Source.ManagedObjectInstance))
 		params = append(params, createParam("ProbableCause", data.Source.ProbableCause))
 		params = append(params, createParam("AlarmText", data.Source.AlarmText))
-		params = append(params, createParam("NotificationType", data.Source.NotificationType))
-		params = append(params, createParam("EdgeName", data.Source.EdgeName))
+		params = append(params, createParam("nename", data.Source.NEName))
+		params = append(params, createParam("edgename", data.Source.EdgeName))
+		params = append(params, createParam("AlarmIdentifier", fmt.Sprintf("%v", data.Source.AlarmID)))
+		params = append(params, createParam("ne_hw_id", data.Source.NeHwID))
+		params = append(params, createParam("Dn", data.Source.Dn))
 
 		alarmTime := formatTime(data.Source.LastUpdatedTime)
 		var severity string
@@ -143,7 +147,7 @@ func FormatFMData(filePath string, fmConfig config.FMConfig, openNMSAddress stri
 		} else {
 			severity = data.Source.Severity
 		}
-		event := Event{UEI: strings.TrimSpace(fmt.Sprintf("%v", data.Source.AlarmID)), Source: fmConfig.Source, NodeID: fmConfig.NodeID, Time: strings.TrimSpace(alarmTime), Host: fmConfig.Host, Severity: strings.TrimSpace(severity), Service: fmConfig.Service}
+		event := Event{UEI: strings.TrimSpace(fmt.Sprintf("%v", data.Source.NotificationType)), Source: fmConfig.Source, NodeID: fmConfig.NodeID, Time: strings.TrimSpace(alarmTime), Host: fmConfig.Host, Severity: strings.TrimSpace(severity), Service: fmConfig.Service}
 		event.Params.Param = params
 		fmData.Events.Event = append(fmData.Events.Event, event)
 	}

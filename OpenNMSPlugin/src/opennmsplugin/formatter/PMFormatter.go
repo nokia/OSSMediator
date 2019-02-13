@@ -3,7 +3,7 @@
 * Licensed under BSD 3-Clause Clear License,
 * see LICENSE file for details.
  */
- 
+
 package formatter
 
 import (
@@ -34,7 +34,7 @@ const (
 )
 
 type response struct {
-	Data []interface{} `json:"data"`
+	Data interface{} `json:"data"`
 }
 
 //FormatPMData formats PM Data from A2 to A3 format
@@ -61,13 +61,8 @@ func FormatPMData(filePath string, pmConfig config.PMConfig) {
 		return
 	}
 
-	data := make(map[string][]interface{})
 	for _, value := range pmData.([]interface{}) {
 		metricTime := value.(map[string]interface{})[sourceField].(map[string]interface{})[eventTimeField].(string)
-		data[metricTime] = append(data[metricTime], value)
-	}
-
-	for metricTime, value := range data {
 		resp := &response{
 			Data: value,
 		}

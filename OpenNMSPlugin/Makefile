@@ -1,4 +1,6 @@
 SHELL := /bin/bash
+VERSION = $(shell cat ../VERSION)
+
 all: clean docker_build build_package
 
 docker_build:
@@ -23,8 +25,8 @@ build_package:
 	@docker cp opennmsplugin:/OpenNMSPlugin/bin/opennmsplugin ./bin/
 	@docker rm opennmsplugin
 	@mkdir -p package && mkdir -p package/bin && cp -R resources package && cp bin/opennmsplugin package/bin && chmod 777 package/bin/opennmsplugin
-	@cd package && zip -r  OpenNMSPlugin.zip  bin resources && rm -rf bin resources
-	@echo Package created at package/OpenNMSPlugin.zip
+	@cd package && zip -r OpenNMSPlugin-$(VERSION).zip bin resources && rm -rf bin resources
+	@echo Package created at package/OpenNMSPlugin-$(VERSION).zip
 
 test:
 	@echo "Started :OpenNMSPlugin Tests"

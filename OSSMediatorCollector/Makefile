@@ -1,4 +1,6 @@
 SHELL := /bin/bash
+VERSION = $(shell cat ../VERSION)
+
 all: clean docker_build build_package
 
 docker_build:
@@ -23,8 +25,8 @@ build_package:
 	@docker cp ossmediatorcollector:/OSSMediatorCollector/bin/collector ./bin/
 	@docker rm ossmediatorcollector
 	@mkdir -p package && mkdir -p package/bin && cp -R resources package && cp bin/collector package/bin && chmod 777 package/bin/collector
-	@cd package && zip -r  OSSMediatorCollector.zip  bin resources && rm -rf bin resources
-	@echo Package created at package/OSSMediatorCollector.zip
+	@cd package && zip -r OSSMediatorCollector-$(VERSION).zip bin resources && rm -rf bin resources
+	@echo Package created at OSSMediatorCollector-$(VERSION).zip
 
 test:
 	@echo "Started :OSSMediatorCollector Tests"

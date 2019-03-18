@@ -150,7 +150,11 @@ func call(baseURL string, api APIConf, user *User, txnID int) {
 		nextRecord := writeResponse(response, user, apiURL, txnID)
 		for nextRecord > 0 {
 			response = callAPI(apiURL, user, startTime, endTime, nextRecord, Conf.Limit, api.Type, txnID)
-			nextRecord = writeResponse(response, user, apiURL, txnID)
+			if response != nil && response.NumOfRecords > 0 {
+				nextRecord = writeResponse(response, user, apiURL, txnID)
+			} else {
+				break
+			}
 		}
 	}
 }

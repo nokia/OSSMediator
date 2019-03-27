@@ -10,12 +10,13 @@ docker_build:
 	@echo ""
 	@echo "Docker Build..."
 	@echo "..............."
+	@cp ../VERSION .
 	@docker build -t ossmediatorcollector:1 . --network host
 	@echo "docker build completed."
 
 build:
 	@echo Building OSSMediatorCollector
-	@cd src/collector && go install || (echo "OSSMediatorCollector build failed"; exit 1)
+	@cd src/collector && go install -ldflags "-X main.appVersion=$(VERSION)" || (echo "OSSMediatorCollector build failed"; exit 1)
 	@echo Build Successful.
 
 build_package:
@@ -42,5 +43,5 @@ test:
 
 clean:
 	@echo "Started :OSSMediatorCollector CleanUp"
-	@rm -rf pkg package bin/collector
+	@rm -rf pkg package bin/collector VERSION
 	@echo "Completed :OSSMediatorCollector CleanUp"

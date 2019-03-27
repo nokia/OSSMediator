@@ -3,7 +3,7 @@
 * Licensed under BSD 3-Clause Clear License,
 * see LICENSE file for details.
  */
- 
+
 package main
 
 import (
@@ -21,14 +21,21 @@ import (
 )
 
 var (
-	confFile string
-	logDir   string
-	logLevel int
+	confFile   string
+	logDir     string
+	logLevel   int
+	version    bool
+	appVersion string
 )
 
 func main() {
 	//Read command line options
 	parseFlags()
+	if version {
+		fmt.Println(appVersion)
+		os.Exit(0)
+	}
+
 	//initialize logger
 	initLogger(logDir, logLevel)
 
@@ -67,6 +74,7 @@ func parseFlags() {
 	flag.StringVar(&confFile, "conf_file", "../resources/conf.json", "config file path")
 	flag.StringVar(&logDir, "log_dir", "../log", "Log directory")
 	flag.IntVar(&logLevel, "log_level", 4, "Log level")
+	flag.BoolVar(&version, "v", false, "Prints OSSMediator's version")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: ./opennmsplugin [options]\n")
 		fmt.Fprintf(os.Stderr, "Options:\n")
@@ -74,6 +82,7 @@ func parseFlags() {
 		fmt.Fprintf(os.Stderr, "\t-conf_file\n\t\tConfig file path (default \"../resources/conf.json\")\n")
 		fmt.Fprintf(os.Stderr, "\t-log_dir\n\t\tLog Directory (default \"../log\"), logs will be stored in OpenNMSPlugin.log file.\n")
 		fmt.Fprintf(os.Stderr, "\t-log_level\n\t\tLog Level (default 4), logger level in collector.log file. Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
+		fmt.Fprintf(os.Stderr, "\t-v\n\t\tPrints OSSMediator's version\n")
 	}
 	flag.Parse()
 }

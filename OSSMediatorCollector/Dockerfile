@@ -30,6 +30,7 @@ RUN cd ./src/collector/ && dep ensure -vendor-only
 
 # copy project directory to be built
 COPY ./Makefile .
+COPY ./VERSION ../.
 COPY ./src/collector ./src/collector/
 COPY ./resources ./resources/
 

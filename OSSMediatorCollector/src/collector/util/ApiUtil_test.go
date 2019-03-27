@@ -194,7 +194,7 @@ func TestCallAPIForInvalidCase(t *testing.T) {
 	}()
 
 	CreateHTTPClient("", true)
-	startTime, endTime := getTimeInterval(&user, "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15)
 	response := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if response != nil || !strings.Contains(buf.String(), "Invalid status code received") {
 		t.Fail()
@@ -216,7 +216,7 @@ func TestCallAPIForInvalidURL(t *testing.T) {
 	}()
 
 	CreateHTTPClient("", true)
-	startTime, endTime := getTimeInterval(&user, "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15)
 	response := callAPI(":", &user, startTime, endTime, 0, 100, "", 123)
 	if response != nil || !strings.Contains(buf.String(), "missing protocol scheme") {
 		t.Fail()
@@ -237,7 +237,7 @@ func TestCallAPI(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", false)
-	startTime, endTime := getTimeInterval(&user, "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15)
 	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
@@ -262,7 +262,7 @@ func TestCallAPIWithInvalidResponse(t *testing.T) {
 		log.SetOutput(os.Stderr)
 	}()
 	CreateHTTPClient("", false)
-	startTime, endTime := getTimeInterval(&user, "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15)
 	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if resp != nil && strings.Contains(buf.String(), "Unable to decode response") {
 		t.Fail()
@@ -295,7 +295,7 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 	defer testServer.Close()
 	defer os.Remove(tmpFile)
 	CreateHTTPClient("", false)
-	startTime, endTime := getTimeInterval(&user, "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15)
 	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
@@ -315,7 +315,7 @@ func TestCallAPIWithSkipCert(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", true)
-	startTime, endTime := getTimeInterval(&user, "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15)
 	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
@@ -337,7 +337,7 @@ func TestCallAPIWithCert(t *testing.T) {
 	}))
 	defer testServer.Close()
 	defer os.Remove(tmpfile)
-	startTime, endTime := getTimeInterval(&user, "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15)
 	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
@@ -358,7 +358,7 @@ func TestCallAPIWithErrorStatusCode(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", false)
-	startTime, endTime := getTimeInterval(&user, "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15)
 	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if resp != nil {
 		t.Fail()
@@ -369,13 +369,13 @@ func TestStoreLastReceivedDataTime(t *testing.T) {
 	resp := new(GetAPIResponse)
 	err := json.NewDecoder(bytes.NewReader([]byte(response))).Decode(resp)
 
-	user := &User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
-	err = storeLastReceivedDataTime(user, "/fm", resp.Data, fmResponseType, 123)
+	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp"}
+	err = storeLastReceivedDataTime(user, "/fm", resp.Data, fmResponseType, "ACTIVE", 123)
 	if err != nil {
 		t.Fail()
 	}
 	//Reading LastReceivedFile value from file
-	fileName := lastReceivedDataTime + "_" + user.Email + "_" + "fm"
+	fileName := lastReceivedDataTime + "_" + user.Email + "_" + "fm" + "_" + "ACTIVE"
 	data, err := ioutil.ReadFile(fileName)
 	defer os.Remove(fileName)
 	if err != nil && len(data) == 0 {
@@ -389,8 +389,8 @@ func TestStoreLastReceivedDataTimeWithoutData(t *testing.T) {
 		os.MkdirAll(responseDir, os.ModePerm)
 	}
 	defer os.RemoveAll(responseDir)
-	user := &User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
-	err := storeLastReceivedDataTime(user, "", "", fmResponseType, 123)
+	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp"}
+	err := storeLastReceivedDataTime(user, "", "", fmResponseType, "ACTIVE", 123)
 	t.Log(err)
 	if err == nil || !strings.Contains(err.Error(), "Unable to write last received data time, error: unexpected end of JSON input") {
 		t.Fail()
@@ -398,8 +398,8 @@ func TestStoreLastReceivedDataTimeWithoutData(t *testing.T) {
 }
 
 func TestStoreLastReceivedFileTimeWithWrongDirectory(t *testing.T) {
-	user := &User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
-	err := storeLastReceivedDataTime(user, "", "", fmResponseType, 123)
+	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp"}
+	err := storeLastReceivedDataTime(user, "", "", fmResponseType, "ACTIVE", 123)
 	t.Log(err)
 	if err == nil {
 		t.Fail()

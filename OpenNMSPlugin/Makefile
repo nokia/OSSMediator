@@ -10,12 +10,13 @@ docker_build:
 	@echo ""
 	@echo "Docker Build..."
 	@echo "..............."
+	@cp ../VERSION .
 	@docker build -t opennmsplugin:1 . --network host
 	@echo "docker build completed."
 
 build:
 	@echo Building OpenNMSPlugin
-	@cd src/opennmsplugin &&  go install || (echo "OpenNMSPlugin build failed"; exit 1)
+	@cd src/opennmsplugin &&  go install -ldflags "-X main.appVersion=$(VERSION)" || (echo "OpenNMSPlugin build failed"; exit 1)
 	@echo Build Successful.
 
 build_package:
@@ -41,5 +42,5 @@ test:
 
 clean:
 	@echo "Started :OpenNMSPlugin CleanUp"
-	@rm -rf package bin/opennmsplugin
+	@rm -rf package bin/opennmsplugin VERSION
 	@echo "Completed :OpenNMSPlugin CleanUp"

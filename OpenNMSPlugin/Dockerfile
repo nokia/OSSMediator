@@ -30,6 +30,7 @@ RUN cd ./src/opennmsplugin/ && dep ensure -vendor-only
 
 # copy project directory to be built
 COPY ./Makefile .
+COPY ./VERSION ../.
 COPY ./src/opennmsplugin ./src/opennmsplugin/
 COPY ./resources ./resources/
 

@@ -143,7 +143,7 @@ func StartDataCollection() {
 func call(baseURL string, api APIConf, user *User, txnID int) {
 	apiURL := baseURL + api.API
 	log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, currentTime())
-	startTime, endTime := getTimeInterval(user, apiURL, api.Interval)
+	startTime, endTime := getTimeInterval(user, apiURL, api.Type, api.Interval)
 	response := callAPI(apiURL, user, startTime, endTime, 0, Conf.Limit, api.Type, txnID)
 	log.WithFields(log.Fields{"tid": txnID}).Debugf("response: %v", response)
 	if response != nil && response.NumOfRecords > 0 {
@@ -255,7 +255,7 @@ func callAPI(apiURL string, user *User, startTime string, endTime string, indx i
 	log.WithFields(log.Fields{"tid": txnID}).Infof("%s called successfully for %s.", apiURL, user.Email)
 
 	//storing LastReceivedDataTime timestamp value to file
-	err = storeLastReceivedDataTime(user, apiURL, resp.Data, resp.Type, txnID)
+	err = storeLastReceivedDataTime(user, apiURL, resp.Data, resp.Type, apiType, txnID)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID}).Error(err)
 	}
@@ -339,7 +339,7 @@ func writeFile(fileName string, data []byte) error {
 //Writes the last received metric's event time to a file so that next time that time stamp will be used as start_time for api calls.
 //Creates file for each user and each APIs.
 //returns error if writing to or reading from the response directory fails.
-func storeLastReceivedDataTime(user *User, apiURL string, data string, respType string, txnID int) error {
+func storeLastReceivedDataTime(user *User, apiURL string, data string, respType string, apiType string, txnID int) error {
 	var pmData interface{}
 	err := json.Unmarshal([]byte(data), &pmData)
 	if err != nil {
@@ -372,6 +372,9 @@ func storeLastReceivedDataTime(user *User, apiURL string, data string, respType 
 	sort.Slice(eventTimes, func(i, j int) bool { return eventTimes[i].Before(eventTimes[j]) })
 
 	fileName := lastReceivedDataTime + "_" + user.Email + "_" + path.Base(apiURL)
+	if apiType != "" {
+		fileName = fileName + "_" + apiType
+	}
 	log.WithFields(log.Fields{"tid": txnID}).Debug("Writing to ", fileName)
 	err = writeFile(fileName, []byte(truncateSeconds(eventTimes[len(eventTimes)-1]).Format(time.RFC3339)))
 	if err != nil {
@@ -398,7 +401,7 @@ func truncateSeconds(t time.Time) time.Time {
 
 //getTimeInterval: returns the start_time and end_time for API calls.
 //It reads start_time from file where last received data's event time is stored, if file is not present or
-func getTimeInterval(user *User, apiURL string, interval int) (string, string) {
+func getTimeInterval(user *User, apiURL string, apiType string, interval int) (string, string) {
 	currentTime := currentTime()
 	//calculating 15 minutes time frame
 	diff := currentTime.Minute() - (currentTime.Minute() / interval * interval) + interval
@@ -406,8 +409,11 @@ func getTimeInterval(user *User, apiURL string, interval int) (string, string) {
 	endTime := begTime.Add(time.Duration(interval) * time.Minute)
 
 	//Reading start time value from file
-	apiLastReceivedFile := lastReceivedDataTime + "_" + user.Email + "_" + path.Base(apiURL)
-	data, err := ioutil.ReadFile(apiLastReceivedFile)
+	fileName := lastReceivedDataTime + "_" + user.Email + "_" + path.Base(apiURL)
+	if apiType != "" {
+		fileName = fileName + "_" + apiType
+	}
+	data, err := ioutil.ReadFile(fileName)
 	if err != nil || len(data) == 0 {
 		return truncateSeconds(begTime).Format(time.RFC3339), truncateSeconds(endTime).Format(time.RFC3339)
 	}

@@ -1,0 +1,13 @@
+sudo: required
+dist: xenial
+
+language: go
+go:
+  - 1.12.10
+
+services: docker
+
+script:
+  - cd OSSMediator && make all
+  - cd OpenNMSPlugin && make all
+

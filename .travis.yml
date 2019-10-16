@@ -11,6 +11,6 @@ install:
  - go env
 
 script:
-  - cd OSSMediator && make all
+  - cd OSSMediatorCollector && make all
   - cd OpenNMSPlugin && make all
 

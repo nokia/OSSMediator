@@ -8,9 +8,10 @@ go:
 services: docker
 
 install:
- - go env
+ - go get -u golang.org/x/lint/golint
 
 script:
+  - golint -set_exit_status $(go list ./...)
   - cd OSSMediatorCollector && make all
-  - cd OpenNMSPlugin && make all
+  - cd ../OpenNMSPlugin && make all
 

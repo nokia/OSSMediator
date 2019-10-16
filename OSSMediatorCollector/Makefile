@@ -31,8 +31,6 @@ build_package:
 
 test:
 	@echo "Started :OSSMediatorCollector Tests"
-	@echo Running go metalinter
-	@-cd src/collector && gometalinter.v2 ./... --checkstyle --vendor --deadline=100s > ../../report.xml || echo "Error: Check report.xml for lint errors."
 	@echo Running Tests
 	@cd src/collector && go test ./... -coverprofile=../../coverage.out -v | go-junit-report > ../../unittest-result.xml
 	@echo Running go coverage

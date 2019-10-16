@@ -31,8 +31,6 @@ build_package:
 
 test:
 	@echo "Started :OpenNMSPlugin Tests"
-	@echo Running go metalinter
-	@-cd src/opennmsplugin && gometalinter.v2 ./... --vendor --checkstyle --deadline=100s > ../../report.xml || echo "Error: Check report.xml for lint errors."
 	@echo Running Tests
 	@cd src/opennmsplugin && go test ./... -v -coverprofile=../../coverage.out | go-junit-report > ../../unittest-result.xml
 	@echo Running go coverage

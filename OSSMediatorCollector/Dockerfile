@@ -17,9 +17,6 @@ WORKDIR /OSSMediatorCollector/
 #Install dep
 RUN go get github.com/golang/dep/cmd/dep
 
-# Install gometalinter
-RUN go get gopkg.in/alecthomas/gometalinter.v2 && gometalinter.v2 --install
-
 # Install plugins for unit tests
 RUN go get github.com/jstemmer/go-junit-report && \
         go get github.com/axw/gocov/gocov

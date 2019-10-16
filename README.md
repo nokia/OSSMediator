@@ -1,5 +1,9 @@
 # OSSMediator
 
+[![Build Status](https://travis-ci.org/nokia/OSSMediator.svg?branch=master)](https://travis-ci.org/nokia/OSSMediator)
+
+### Overview
+
 OSSMediator is used to obtain Performance Management (PM) and Fault Management (FM) data from Nokia DAC and to offer the data for OpenNMS.  
 It has following two components:
 - OSSMediatorCollector

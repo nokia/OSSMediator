@@ -12,8 +12,8 @@ install:
 
 script:
   - golint -set_exit_status $(go list ./...) > mediator_lint_result.txt
-  - cd OSSMediatorCollector && make all
-  - cd ../OpenNMSPlugin && make all
+  - cd OSSMediatorCollector && make all && cd ..
+  - cd OpenNMSPlugin && make all && cd ..
 
 after_failure:
   - '[ -s mediator_lint_result.txt ] && echo "Lint Errors:" && cat mediator_lint_result.txt'

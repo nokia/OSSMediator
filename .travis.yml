@@ -16,5 +16,4 @@ script:
   - cd ../OpenNMSPlugin && make all
 
 after_failure:
-  - [ -s mediator_lint_result.txt ] && echo "Lint Errors:" && cat mediator_lint_result.txt
-
+  - '[ -s mediator_lint_result.txt ] && echo "Lint Errors:" && cat mediator_lint_result.txt'

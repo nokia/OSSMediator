@@ -1,6 +1,6 @@
 # OSSMediator
 
-[![Build Status](https://travis-ci.org/nokia/OSSMediator.svg?branch=master)](https://travis-ci.org/nokia/OSSMediator)
+[![Build Status](https://travis-ci.org/nokia/OSSMediator.svg?branch=travis_ci_setup)](https://travis-ci.org/nokia/OSSMediator)
 
 ### Overview
 

@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 VERSION = $(shell cat ../VERSION)
 
-all: clean docker_build build_package
+all: clean docker_build
 
 docker_build:
 	@echo "---------------------------------------------------------------------------------"

@@ -11,7 +11,10 @@ install:
  - go get -u golang.org/x/lint/golint
 
 script:
-  - golint -set_exit_status $(go list ./...)
+  - golint -set_exit_status $(go list ./...) > mediator_lint_result.txt
   - cd OSSMediatorCollector && make all
   - cd ../OpenNMSPlugin && make all
+
+after_failure:
+  - [ -s mediator_lint_result.txt ] && echo "Lint Errors:" && cat mediator_lint_result.txt
 

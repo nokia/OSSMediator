@@ -8,12 +8,18 @@ go:
 services: docker
 
 install:
- - go get -u golang.org/x/lint/golint
+  - go get -u golang.org/x/lint/golint
 
 script:
   - golint -set_exit_status $(go list ./...) > mediator_lint_result.txt
   - cd OSSMediatorCollector && make all && cd ..
   - cd OpenNMSPlugin && make all && cd ..
+
+after_script:
+  - 'echo "OSSMediatorCollector test results:" && cat OSSMediatorCollector-unittest-result.txt'
+  - 'echo -e "\nOpenNMSPlugin test results:" && cat OpenNMSPlugin-unittest-result.txt'
+  - 'grep -e "FAIL:" OSSMediatorCollector-unittest-result.txt && { echo "OpenNMSPlugin unit tests failed"; exit 1; }'
+  - 'grep -e "FAIL:" OpenNMSPlugin-unittest-result.txt && { echo "OpenNMSPlugin unit tests failed"; exit 1; }'
 
 after_failure:
   - '[ -s mediator_lint_result.txt ] && echo "Lint Errors:" && cat mediator_lint_result.txt'

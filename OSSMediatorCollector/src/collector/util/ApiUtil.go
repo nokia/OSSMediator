@@ -112,6 +112,7 @@ type sessionToken struct {
 
 var currentTime = time.Now
 
+//StartDataCollection starts the tickers for PM/FM APIs.
 func StartDataCollection() {
 	interval := 15
 	currentTime := currentTime()

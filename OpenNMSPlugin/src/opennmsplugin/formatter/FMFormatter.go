@@ -47,10 +47,12 @@ type fmdata struct {
 	Events  Events   `xml:"events"`
 }
 
+//Events stores the alarms raised
 type Events struct {
 	Event []Event `xml:"event"`
 }
 
+//Event stores a particular alarm data
 type Event struct {
 	UEI      string `xml:"uei"`
 	Source   string `xml:"source"`
@@ -62,45 +64,47 @@ type Event struct {
 	Params   Params `xml:"parms"`
 }
 
+//Params keeps track of additional parameters to be send for a particular alarm
 type Params struct {
 	Param []Param `xml:"parm"`
 }
 
+//Param keeps track of each parameters
 type Param struct {
 	Name  string     `xml:"parmName"`
 	Value ParamValue `xml:"value"`
 }
 
+//ParamValue store additional parameter's details
 type ParamValue struct {
 	Value    string `xml:",chardata"`
 	Type     string `xml:"type,attr"`
 	Encoding string `xml:"encoding,attr"`
 }
 
+//ReceivedFMData stores received FM response from Nokia DAC
 type ReceivedFMData struct {
-	Source Source `json:"_source"`
-}
-
-type Source struct {
-	EventType             string      `json:"EventType"`
-	AlarmState            int         `json:"AlarmState"`
-	SpecificProblem       string      `json:"SpecificProblem"`
-	LastUpdatedTime       string      `json:"LastUpdatedTime"`
-	EdgeID                string      `json:"edge_id"`
-	Severity              string      `json:"Severity"`
-	NESerialNo            string      `json:"neserialno"`
-	NEName                string      `json:"nename"`
-	AdditionalText        string      `json:"AdditionalText"`
-	EdgeHostname          string      `json:"edge_hostname"`
-	ManagedObjectInstance string      `json:"ManagedObjectInstance"`
-	ProbableCause         string      `json:"ProbableCause"`
-	AlarmText             string      `json:"AlarmText"`
-	EventTime             string      `json:"EventTime"`
-	NotificationType      string      `json:"NotificationType"`
-	AlarmID               interface{} `json:"AlarmIdentifier"`
-	EdgeName              string      `json:"edgename"`
-	NeHwID                string      `json:"ne_hw_id"`
-	Dn                    string      `json:"Dn"`
+	Source struct {
+		EventType             string      `json:"EventType"`
+		AlarmState            int         `json:"AlarmState"`
+		SpecificProblem       string      `json:"SpecificProblem"`
+		LastUpdatedTime       string      `json:"LastUpdatedTime"`
+		EdgeID                string      `json:"edge_id"`
+		Severity              string      `json:"Severity"`
+		NESerialNo            string      `json:"neserialno"`
+		NEName                string      `json:"nename"`
+		AdditionalText        string      `json:"AdditionalText"`
+		EdgeHostname          string      `json:"edge_hostname"`
+		ManagedObjectInstance string      `json:"ManagedObjectInstance"`
+		ProbableCause         string      `json:"ProbableCause"`
+		AlarmText             string      `json:"AlarmText"`
+		EventTime             string      `json:"EventTime"`
+		NotificationType      string      `json:"NotificationType"`
+		AlarmID               interface{} `json:"AlarmIdentifier"`
+		EdgeName              string      `json:"edgename"`
+		NeHwID                string      `json:"ne_hw_id"`
+		Dn                    string      `json:"Dn"`
+	} `json:"_source"`
 }
 
 //FormatFMData reads csv file containing fm data and converts it to xml and pushes the generated xml file to NMS.

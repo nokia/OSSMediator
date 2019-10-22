@@ -40,7 +40,9 @@ var testFMData = `[
           "EventTime":"2018-09-23T21:33:35+05:30",
           "NotificationType":"NewAlarm",
           "AlarmIdentifier":"11191",
-          "EdgeName":""
+          "EdgeName":"",
+          "nhgid":"123456",
+		  "nhgname":"test_nhg"
        }
     },
     {
@@ -62,7 +64,9 @@ var testFMData = `[
           "EventTime":"2018-09-24T16:28:01+05:30",
           "NotificationType":"ClearedAlarm",
           "AlarmIdentifier":"11191",
-          "EdgeName":""
+          "EdgeName":"",
+          "nhgid":"65477",
+		  "nhgname":"test_nhg"
        }
     }
  ]`

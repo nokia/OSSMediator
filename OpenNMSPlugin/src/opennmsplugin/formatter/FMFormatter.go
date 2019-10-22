@@ -104,6 +104,8 @@ type ReceivedFMData struct {
 		EdgeName              string      `json:"edgename"`
 		NeHwID                string      `json:"ne_hw_id"`
 		Dn                    string      `json:"Dn"`
+		NHGID                 string      `json:"nhgid"`
+		NHGName               string      `json:"nhgname"`
 	} `json:"_source"`
 }
 
@@ -143,10 +145,12 @@ func FormatFMData(filePath string, fmConfig config.FMConfig, openNMSAddress stri
 		params = append(params, createParam("AlarmIdentifier", fmt.Sprintf("%v", data.Source.AlarmID)))
 		params = append(params, createParam("ne_hw_id", data.Source.NeHwID))
 		params = append(params, createParam("Dn", data.Source.Dn))
+		params = append(params, createParam("nhgid", data.Source.NHGID))
+		params = append(params, createParam("nhgname", data.Source.NHGName))
 
 		alarmTime := formatTime(data.Source.LastUpdatedTime)
 		var severity string
-		if data.Source.NotificationType == clearedAlarmType {
+		if data.Source.AlarmState == 0 || data.Source.NotificationType == clearedAlarmType {
 			severity = clearedSeverity
 		} else {
 			severity = data.Source.Severity

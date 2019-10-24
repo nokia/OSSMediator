@@ -17,12 +17,8 @@ WORKDIR /OSSMediatorCollector/
 #Install dep
 RUN go get github.com/golang/dep/cmd/dep
 
-# Install gometalinter
-RUN go get gopkg.in/alecthomas/gometalinter.v2 && gometalinter.v2 --install
-
 # Install plugins for unit tests
-RUN go get github.com/jstemmer/go-junit-report && \
-        go get github.com/axw/gocov/gocov
+RUN go get github.com/axw/gocov/gocov
 
 # download vendor dependencies; if Gopkg.* files is not modified, it will use docker Cache
 COPY ./src/collector/Gopkg.* ./src/collector/

@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 VERSION = $(shell cat ../VERSION)
 
-all: clean docker_build build_package
+all: clean docker_build
 
 docker_build:
 	@echo "---------------------------------------------------------------------------------"
@@ -12,6 +12,9 @@ docker_build:
 	@echo "..............."
 	@cp ../VERSION .
 	@docker build -t opennmsplugin:1 . --network host
+	@docker create --name opennmsplugin opennmsplugin:1
+	@docker cp opennmsplugin:/OpenNMSPlugin/OpenNMSPlugin-unittest-result.txt .
+	@docker rm opennmsplugin
 	@echo "docker build completed."
 
 build:
@@ -31,10 +34,8 @@ build_package:
 
 test:
 	@echo "Started :OpenNMSPlugin Tests"
-	@echo Running go metalinter
-	@-cd src/opennmsplugin && gometalinter.v2 ./... --vendor --checkstyle --deadline=100s > ../../report.xml || echo "Error: Check report.xml for lint errors."
 	@echo Running Tests
-	@cd src/opennmsplugin && go test ./... -v -coverprofile=../../coverage.out | go-junit-report > ../../unittest-result.xml
+	@cd src/opennmsplugin && go test ./... -v -coverprofile=../../coverage.out > ../../OpenNMSPlugin-unittest-result.txt || echo "OpenNMSPlugin unit tests failed."
 	@echo Running go coverage
 	@go tool cover -func=coverage.out
 	@gocov convert coverage.out

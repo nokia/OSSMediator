@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 VERSION = $(shell cat ../VERSION)
 
-all: clean docker_build build_package
+all: clean docker_build
 
 docker_build:
 	@echo "---------------------------------------------------------------------------------"
@@ -12,6 +12,9 @@ docker_build:
 	@echo "..............."
 	@cp ../VERSION .
 	@docker build -t ossmediatorcollector:1 . --network host
+	@docker create --name ossmediatorcollector ossmediatorcollector:1
+	@docker cp ossmediatorcollector:/OSSMediatorCollector/OSSMediatorCollector-unittest-result.txt .
+	@docker rm ossmediatorcollector
 	@echo "docker build completed."
 
 build:
@@ -31,10 +34,8 @@ build_package:
 
 test:
 	@echo "Started :OSSMediatorCollector Tests"
-	@echo Running go metalinter
-	@-cd src/collector && gometalinter.v2 ./... --checkstyle --vendor --deadline=100s > ../../report.xml || echo "Error: Check report.xml for lint errors."
 	@echo Running Tests
-	@cd src/collector && go test ./... -coverprofile=../../coverage.out -v | go-junit-report > ../../unittest-result.xml
+	@cd src/collector && go test ./... -coverprofile=../../coverage.out -v > ../../OSSMediatorCollector-unittest-result.txt || echo "OSSMediatorCollector unit tests failed."
 	@echo Running go coverage
 	@go tool cover -func=coverage.out
 	@echo Generating coverage report

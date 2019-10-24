@@ -25,7 +25,7 @@ func CleanUp(cleanupDuration int, path string) {
 	}()
 }
 
-//removes old files from directory.
+//RemoveFiles removes old files from directory.
 func RemoveFiles(cleanupDuration int, path string) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {

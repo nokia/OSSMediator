@@ -13,23 +13,27 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+//Config read from resources/conf.json file
 type Config struct {
 	UsersConf       []UserConf `json:"users_conf"`
 	OpenNMSAddress  string     `json:"opennms_address"`
 	CleanupDuration int        `json:"cleanup_duration"`
 }
 
+//UserConf keeps PM/FM config for every users.
 type UserConf struct {
 	SourceDir string   `json:"source_dir"`
 	PMConfig  PMConfig `json:"pm_config"`
 	FMConfig  FMConfig `json:"fm_config"`
 }
 
+//PMConfig keeps foreign ID and response directory configuration for OpenNMS
 type PMConfig struct {
 	ForeignID      string `json:"foreign_id"`
 	DestinationDir string `json:"destination_dir"`
 }
 
+//FMConfig keeps configuration needed to push alarm data to OpenNMS
 type FMConfig struct {
 	Source         string `json:"source"`
 	NodeID         string `json:"node_id"`

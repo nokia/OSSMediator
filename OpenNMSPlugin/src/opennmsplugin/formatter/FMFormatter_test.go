@@ -40,7 +40,9 @@ var testFMData = `[
           "EventTime":"2018-09-23T21:33:35+05:30",
           "NotificationType":"NewAlarm",
           "AlarmIdentifier":"11191",
-          "EdgeName":""
+          "EdgeName":"",
+          "nhgid":"123456",
+		  "nhgname":"test_nhg"
        }
     },
     {
@@ -62,7 +64,9 @@ var testFMData = `[
           "EventTime":"2018-09-24T16:28:01+05:30",
           "NotificationType":"ClearedAlarm",
           "AlarmIdentifier":"11191",
-          "EdgeName":""
+          "EdgeName":"",
+          "nhgid":"65477",
+		  "nhgname":"test_nhg"
        }
     }
  ]`
@@ -100,10 +104,12 @@ func TestFormatFMData(t *testing.T) {
 		t.Error(err)
 	}
 
-	tcpAddress := "localhost:3000"
+	tcpAddress := "localhost:8888"
 	l, err := net.Listen("tcp", tcpAddress)
 	if err != nil {
 		t.Error(err)
+	} else {
+		defer l.Close()
 	}
 	var buf bytes.Buffer
 	log.SetOutput(&buf)
@@ -111,7 +117,6 @@ func TestFormatFMData(t *testing.T) {
 		log.SetOutput(os.Stderr)
 	}()
 	FormatFMData(fileName, fmConfig, tcpAddress)
-	l.Close()
 
 	defer os.RemoveAll(fmConfig.DestinationDir)
 	generatedFile := "./tmp/fm_data"
@@ -144,7 +149,7 @@ func TestFormatFMDataWithInvalidFile(t *testing.T) {
 }
 
 func TestRetrypushToOpenNMSWithFailedFilesPush(t *testing.T) {
-	nmsAddress := "localhost:3000"
+	nmsAddress := "localhost:8888"
 	fileName := "./fm_data.json"
 	err := createTestData(fileName, testFMData)
 	if err != nil {
@@ -156,8 +161,9 @@ func TestRetrypushToOpenNMSWithFailedFilesPush(t *testing.T) {
 	l, err := net.Listen("tcp", nmsAddress)
 	if err != nil {
 		t.Error(err)
+	} else {
+		defer l.Close()
 	}
-	defer l.Close()
 	var buf bytes.Buffer
 	log.SetOutput(&buf)
 	defer func() {
@@ -192,7 +198,7 @@ func TestFormatFMDataWithoutNMSServer(t *testing.T) {
 		t.Error(err)
 	}
 
-	FormatFMData(fileName, fmConfig, "localhost:3000")
+	FormatFMData(fileName, fmConfig, "localhost:8888")
 	defer os.RemoveAll(fmConfig.DestinationDir)
 	if len(failedFmFiles) == 0 || failedFmFiles[0] != "./tmp/fm_data" {
 		t.Fail()

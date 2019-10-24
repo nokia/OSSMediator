@@ -112,6 +112,7 @@ type sessionToken struct {
 
 var currentTime = time.Now
 
+//StartDataCollection starts the tickers for PM/FM APIs.
 func StartDataCollection() {
 	interval := 15
 	currentTime := currentTime()
@@ -369,14 +370,22 @@ func storeLastReceivedDataTime(user *User, apiURL string, data string, respType 
 		}
 		eventTimes = append(eventTimes, eventTime)
 	}
+	lastReceivedTime := getLastReceivedDataTime(user, apiURL, apiType)
+	if lastReceivedTime != "" {
+		t, err := time.Parse(lastReceivedTime, time.RFC3339)
+		if err == nil {
+			eventTimes = append(eventTimes, t)
+		}
+	}
 	sort.Slice(eventTimes, func(i, j int) bool { return eventTimes[i].Before(eventTimes[j]) })
+	latestTime := truncateSeconds(eventTimes[len(eventTimes)-1]).Format(time.RFC3339)
 
 	fileName := lastReceivedDataTime + "_" + user.Email + "_" + path.Base(apiURL)
 	if apiType != "" {
 		fileName = fileName + "_" + apiType
 	}
 	log.WithFields(log.Fields{"tid": txnID}).Debug("Writing to ", fileName)
-	err = writeFile(fileName, []byte(truncateSeconds(eventTimes[len(eventTimes)-1]).Format(time.RFC3339)))
+	err = writeFile(fileName, []byte(latestTime))
 	if err != nil {
 		return fmt.Errorf("Unable to write last received data time, error: %v", err)
 	}
@@ -407,7 +416,15 @@ func getTimeInterval(user *User, apiURL string, apiType string, interval int) (s
 	diff := currentTime.Minute() - (currentTime.Minute() / interval * interval) + interval
 	begTime := currentTime.Add(time.Duration(-1*diff) * time.Minute)
 	endTime := begTime.Add(time.Duration(interval) * time.Minute)
+	lastReceivedTime := getLastReceivedDataTime(user, apiURL, apiType)
+	if lastReceivedTime == "" {
+		return truncateSeconds(begTime).Format(time.RFC3339), truncateSeconds(endTime).Format(time.RFC3339)
+	}
+	return lastReceivedTime, truncateSeconds(endTime).Format(time.RFC3339)
 
+}
+
+func getLastReceivedDataTime(user *User, apiURL string, apiType string) string {
 	//Reading start time value from file
 	fileName := lastReceivedDataTime + "_" + user.Email + "_" + path.Base(apiURL)
 	if apiType != "" {
@@ -415,7 +432,7 @@ func getTimeInterval(user *User, apiURL string, apiType string, interval int) (s
 	}
 	data, err := ioutil.ReadFile(fileName)
 	if err != nil || len(data) == 0 {
-		return truncateSeconds(begTime).Format(time.RFC3339), truncateSeconds(endTime).Format(time.RFC3339)
+		return ""
 	}
-	return strings.TrimSpace(string(data)), truncateSeconds(endTime).Format(time.RFC3339)
+	return strings.TrimSpace(string(data))
 }

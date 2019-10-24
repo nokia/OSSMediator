@@ -3,8 +3,8 @@
 * Licensed under BSD 3-Clause Clear License,
 * see LICENSE file for details.
  */
- 
- package util
+
+package util
 
 import (
 	"bytes"

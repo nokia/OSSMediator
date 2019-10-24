@@ -370,10 +370,10 @@ func storeLastReceivedDataTime(user *User, apiURL string, data string, respType 
 		}
 		eventTimes = append(eventTimes, eventTime)
 	}
-	lastReceivedTime := getLastReceivedDataTime(user,apiURL,apiType)
+	lastReceivedTime := getLastReceivedDataTime(user, apiURL, apiType)
 	if lastReceivedTime != "" {
-		t, err := time.Parse(lastReceivedTime,time.RFC3339)
-		if err == nil{
+		t, err := time.Parse(lastReceivedTime, time.RFC3339)
+		if err == nil {
 			eventTimes = append(eventTimes, t)
 		}
 	}
@@ -416,7 +416,7 @@ func getTimeInterval(user *User, apiURL string, apiType string, interval int) (s
 	diff := currentTime.Minute() - (currentTime.Minute() / interval * interval) + interval
 	begTime := currentTime.Add(time.Duration(-1*diff) * time.Minute)
 	endTime := begTime.Add(time.Duration(interval) * time.Minute)
-	lastReceivedTime := getLastReceivedDataTime(user,apiURL,apiType)
+	lastReceivedTime := getLastReceivedDataTime(user, apiURL, apiType)
 	if lastReceivedTime == "" {
 		return truncateSeconds(begTime).Format(time.RFC3339), truncateSeconds(endTime).Format(time.RFC3339)
 	}

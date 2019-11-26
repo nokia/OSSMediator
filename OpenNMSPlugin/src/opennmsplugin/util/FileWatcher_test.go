@@ -172,7 +172,8 @@ func TestProcessExistingFiles(t *testing.T) {
        "_index":"test_index",
        "_type":"",
        "_id":"12345",
-       "_source":{  
+       "_source":{
+		  "Dn": "NE-MRBTS-1/NE-LNBTS-1/LNCEL-12/MCC-244/MNC-09",
           "EventType":"Processing Error Alarm",
           "AlarmState":0,
           "SpecificProblem":"Time synchronization failed",
@@ -195,7 +196,8 @@ func TestProcessExistingFiles(t *testing.T) {
        "_index":"test_index",
        "_type":"",
        "_id":"12345",
-       "_source":{  
+       "_source":{
+          "Dn": "NE-MRBTS-1/NE-LNBTS-1/LNCEL-12/MCC-244/MNC-09",
           "EventType":"Processing Error Alarm",
           "AlarmState":0,
           "SpecificProblem":"Time synchronization failed",
@@ -221,6 +223,7 @@ func TestProcessExistingFiles(t *testing.T) {
 	  "_index": "test_index",
 	  "_id": "12345",
 	  "_source": {
+		"Dn": "NE-MRBTS-1/NE-LNBTS-1/LNCEL-12/MCC-244/MNC-09",
 		"edgename": "test edge",
 		"SIG_SctpCongestionDuration": 0,
 		"neserialno": "4355",
@@ -235,6 +238,7 @@ func TestProcessExistingFiles(t *testing.T) {
 	  "_index": "test_index",
 	  "_id": "124576",
 	  "_source": {
+		"Dn": "NE-MRBTS-1/NE-LNBTS-1/LNCEL-12/MCC-244/MNC-09",
 		"edgename": "test edge 2",
 		"EQPT_MaxMeLoad": 0.5,
 		"neserialno": "3456",

@@ -168,7 +168,7 @@ func TestWriteResponseForFM(t *testing.T) {
 
 //Unit test for callAPI and doRequest
 func TestCallAPIForInvalidCase(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -202,7 +202,7 @@ func TestCallAPIForInvalidCase(t *testing.T) {
 }
 
 func TestCallAPIForInvalidURL(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -225,7 +225,7 @@ func TestCallAPIForInvalidURL(t *testing.T) {
 
 // //Unit test for callAPI and doRequest
 func TestCallAPI(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -245,7 +245,7 @@ func TestCallAPI(t *testing.T) {
 }
 
 func TestCallAPIWithInvalidResponse(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -270,7 +270,7 @@ func TestCallAPIWithInvalidResponse(t *testing.T) {
 }
 
 func TestCallAPIWIthLastReceivedFile(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -303,7 +303,7 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 }
 
 func TestCallAPIWithSkipCert(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -325,7 +325,7 @@ func TestCallAPIWithSkipCert(t *testing.T) {
 func TestCallAPIWithCert(t *testing.T) {
 	tmpfile := createTmpFile(".", "crt", []byte(``))
 	CreateHTTPClient(tmpfile, false)
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -345,7 +345,7 @@ func TestCallAPIWithCert(t *testing.T) {
 }
 
 func TestCallAPIWithErrorStatusCode(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -451,7 +451,7 @@ func TestStartDataCollectionWithInvalidURL(t *testing.T) {
 	Conf.Users = []*User{
 		{
 			Email:        "testuser@nokia.com",
-			password:     "1234",
+			Password:     "MTIzNA==",
 			ResponseDest: "./tmp",
 			sessionToken: &sessionToken{
 				accessToken:  "",
@@ -496,7 +496,7 @@ func TestStartDataCollection(t *testing.T) {
 	Conf.Users = []*User{
 		{
 			Email:        "testuser@nokia.com",
-			password:     "1234",
+			Password:     "MTIzNA==",
 			ResponseDest: "./tmp",
 			sessionToken: &sessionToken{
 				accessToken:  "",

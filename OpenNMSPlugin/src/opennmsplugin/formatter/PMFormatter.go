@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"regexp"
 	"strconv"
 	"time"
 
@@ -28,16 +29,22 @@ const (
 	timeFormat               = "1504"
 	filePrefix               = "A"
 
+	//regex for extracting LNBTS_ID and LNCEL_ID from Dn
+	dnRegex      = `^.*(?:.*LNBTS-(?P<LNBTS_ID>\d+))(\/)?(?:LNCEL-(?P<LNCEL_ID>\d+))?.*$`
+	lncelField   = "LNCEL"
+	neLnbtsField = "LNBTS"
+
 	//field name to extract data from PM response file
 	sourceField    = "_source"
 	eventTimeField = "timestamp"
+	dnField        = "Dn"
 )
 
 type response struct {
 	Data interface{} `json:"data"`
 }
 
-//FormatPMData formats PM Data from A2 to A3 format
+//FormatPMData formats PM Data
 func FormatPMData(filePath string, pmConfig config.PMConfig) {
 	log.Infof("Formatting PM file %s", filePath)
 	f, err := os.Open(filePath)
@@ -62,7 +69,17 @@ func FormatPMData(filePath string, pmConfig config.PMConfig) {
 	}
 
 	for _, value := range pmData.([]interface{}) {
-		metricTime := value.(map[string]interface{})[sourceField].(map[string]interface{})[eventTimeField].(string)
+		source := value.(map[string]interface{})[sourceField].(map[string]interface{})
+		metricTime := source[eventTimeField].(string)
+		dn := source[dnField].(string)
+		lnbts, lncel := extractLNBTSAndLNCELFromDn(dn)
+		if lnbts != "" {
+			source[neLnbtsField] = lnbts
+		}
+		if lncel != "" {
+			source[lncelField] = lncel
+		}
+
 		resp := &response{
 			Data: value,
 		}
@@ -152,4 +169,23 @@ func fileExists(path string) bool {
 		return true
 	}
 	return false
+}
+
+func extractLNBTSAndLNCELFromDn(dn string) (string, string) {
+	log.Info("Extracting LNBTS and LNCEL from: ", dn)
+	if dn == "" {
+		return "", ""
+	}
+	myExp := regexp.MustCompile(dnRegex)
+	match := myExp.FindStringSubmatch(dn)
+	if match == nil {
+		return "", ""
+	}
+	result := make(map[string]string)
+	for i, name := range myExp.SubexpNames() {
+		if i != 0 && name != "" {
+			result[name] = match[i]
+		}
+	}
+	return result["LNBTS_ID"], result["LNCEL_ID"]
 }

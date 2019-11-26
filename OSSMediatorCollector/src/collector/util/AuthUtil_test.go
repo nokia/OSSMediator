@@ -162,7 +162,7 @@ func TestGetRefreshDuration(t *testing.T) {
 }
 
 func TestLoginWithWrongUrl(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	Conf = Config{
 		BaseURL: "https://localhost:8080/login",
 	}
@@ -174,7 +174,7 @@ func TestLoginWithWrongUrl(t *testing.T) {
 }
 
 func TestLoginWithEmptyUrl(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	Conf = Config{
 		BaseURL: "",
 	}
@@ -186,7 +186,7 @@ func TestLoginWithEmptyUrl(t *testing.T) {
 }
 
 func TestLoginWithInvalidUrl(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	Conf = Config{
 		BaseURL: ":",
 	}
@@ -225,7 +225,7 @@ func TestInvalidLogin(t *testing.T) {
 		},
 	}
 	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	err := Login(&user)
 	if err == nil {
 		t.Fail()
@@ -268,7 +268,7 @@ func TestLogin(t *testing.T) {
 		},
 	}
 	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	err := Login(&user)
 	if err != nil {
 		t.Error(err)
@@ -289,7 +289,7 @@ func TestLoginWIthInvalidResponse(t *testing.T) {
 		},
 	}
 	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	err := Login(&user)
 	if err == nil || !strings.Contains(err.Error(), "Unable to decode response") {
 		t.Fail()
@@ -310,7 +310,7 @@ func TestSetToken(t *testing.T) {
 		},
 	}
 
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	setToken(&response, &user)
 	if user.sessionToken.expiryTime.String() != "2018-03-08 05:10:16 +0000 UTC" {
 		t.Fail()
@@ -353,7 +353,7 @@ func TestRefreshToken(t *testing.T) {
 		},
 	}
 	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "",
 		refreshToken: "",
@@ -373,7 +373,7 @@ func TestLogoutWithWrongUrl(t *testing.T) {
 			Logout: "/logout",
 		},
 	}
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -401,7 +401,7 @@ func TestLogoutWithInvalidResponse(t *testing.T) {
 		},
 	}
 	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "",
 		refreshToken: "",
@@ -417,7 +417,7 @@ func TestLogoutWithEmptyUrl(t *testing.T) {
 	Conf = Config{
 		BaseURL: "",
 	}
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -434,7 +434,7 @@ func TestLogoutWithInvalidUrl(t *testing.T) {
 	Conf = Config{
 		BaseURL: ":",
 	}
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -470,7 +470,7 @@ func TestInvalidLogout(t *testing.T) {
 		},
 	}
 	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "",
 		refreshToken: "",
@@ -504,7 +504,7 @@ func TestLogout(t *testing.T) {
 			Logout:  "/logout",
 		},
 	}
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -518,7 +518,7 @@ func TestLogout(t *testing.T) {
 }
 
 func TestRetryLogin(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", password: "1234"}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	CreateHTTPClient("", true)
 	var buf bytes.Buffer
 	log.SetOutput(&buf)

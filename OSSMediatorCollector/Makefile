@@ -44,5 +44,5 @@ test:
 
 clean:
 	@echo "Started :OSSMediatorCollector CleanUp"
-	@rm -rf pkg package bin/collector VERSION
+	@rm -rf pkg package bin/collector VERSION OSSMediatorCollector-unittest-result.txt
 	@echo "Completed :OSSMediatorCollector CleanUp"

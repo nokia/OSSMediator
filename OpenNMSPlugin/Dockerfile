@@ -1,12 +1,10 @@
 # Staging: for building go app (OpenNMSPlugin)
-FROM golang:latest as builder
+FROM golang:1.11 as builder
 
 # set environment variable
 ENV GOPATH="/OpenNMSPlugin"
 ENV GOBIN="/OpenNMSPlugin/bin"
 ENV PATH=$PATH:$GOBIN
-
-RUN apt-get update && apt-get -y install zip curl && apt-get clean
 
 # create required directory for go microservice (OpenNMSPlugin)
 RUN mkdir /OpenNMSPlugin && mkdir -p /OpenNMSPlugin/src/opennmsplugin/

@@ -7,10 +7,10 @@
 package util
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	log "github.com/sirupsen/logrus"
-	"golang.org/x/crypto/ssh/terminal"
 	"io/ioutil"
 	"sync"
 )
@@ -26,8 +26,8 @@ type Config struct {
 
 //User keeps Login configurations
 type User struct {
-	Email        string        `json:"email_id"` //User's email read from console
-	password     string        //User's password read from console
+	Email        string        `json:"email_id"`      //User's email ID
+	Password     string        `json:"password"`      //User's password read from configuration file
 	ResponseDest string        `json:"response_dest"` //Base directory where sub-directories will be created for each APIs to store its response.
 	sessionToken *sessionToken //SessionToken variable keeps track of access_token, refresh_token and expiry_time of the token. It is used for authenticating the API calls.
 	wg           sync.WaitGroup
@@ -57,26 +57,13 @@ func ReadConfig(confFile string) error {
 	if err != nil {
 		return fmt.Errorf("Invalid conf file: %v", err)
 	}
+	for _, user := range Conf.Users {
+		decodedPwd, err := base64.StdEncoding.DecodeString(user.Password)
+		if err != nil {
+			return fmt.Errorf("Unable to decode password for %v, Error: %v", user.Email, err)
+		}
+		user.Password = string(decodedPwd)
+	}
 	log.Info("Config read successfully.")
 	return nil
-}
-
-var readPassword = terminal.ReadPassword
-
-//ReadCredentials reads password of each user from console
-func ReadCredentials() {
-	for _, user := range Conf.Users {
-		var password string
-		fmt.Printf("Enter password for %s: ", user.Email)
-		bytePassword, err := readPassword(0)
-		if err != nil {
-			log.Fatal("Error in reading the password: ", err)
-		}
-		password = string(bytePassword)
-		if password == "" {
-			log.Fatal("Password cannot be empty")
-		}
-		user.password = password
-		fmt.Println()
-	}
 }

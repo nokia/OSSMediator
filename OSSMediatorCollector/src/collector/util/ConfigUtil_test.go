@@ -29,11 +29,13 @@ func TestReadConfig(t *testing.T) {
 		"users":
 		[
 			{
-				"email_id" : "user1@nokia.com",
+				"email_id": "user1@nokia.com",
+				"password": "dGVzdDE=",
 				"response_dest": "/statistics/reports/user1"
 			},
 			{
-				"email_id" : "user2@nokia.com",
+				"email_id": "user2@nokia.com",
+				"password": "dGVzdDI=",
 				"response_dest": "/statistics/reports/user2"
 			}
 		],
@@ -64,20 +66,13 @@ func TestReadConfig(t *testing.T) {
 	}`)
 	tmpfile := createTmpFile(".", "conf", content)
 	defer os.Remove(tmpfile)
-	oldReadPassword := readPassword
-	defer func() { readPassword = oldReadPassword }()
 
-	myReadPassword := func(int) ([]byte, error) {
-		return []byte("password"), nil
-	}
-	readPassword = myReadPassword
 	err := ReadConfig(tmpfile)
 	if err != nil {
 		t.Log(err)
 		t.Fail()
 	}
-	t.Log(Conf)
-	if Conf.BaseURL != "https://localhost:8080/api/v2" || len(Conf.Users) != 2 || Conf.Users[0].Email != "user1@nokia.com" {
+	if Conf.BaseURL != "https://localhost:8080/api/v2" || len(Conf.Users) != 2 || Conf.Users[0].Email != "user1@nokia.com" || Conf.Users[0].Password != "test1" {
 		t.Fail()
 	}
 }
@@ -89,19 +84,4 @@ func TestReadConfigWithNonExistingFile(t *testing.T) {
 		t.Fail()
 	}
 
-}
-
-func TestReadCredentials(t *testing.T) {
-	oldReadPassword := readPassword
-	defer func() { readPassword = oldReadPassword }()
-
-	myReadPassword := func(int) ([]byte, error) {
-		return []byte("password"), nil
-	}
-	readPassword = myReadPassword
-	Conf.Users = []*User{&User{Email: "user@nokia.com"}}
-	ReadCredentials()
-	if Conf.Users[0].Email != "user@nokia.com" && Conf.Users[0].password != "password" {
-		t.Fail()
-	}
 }

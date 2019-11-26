@@ -128,6 +128,7 @@ func FormatFMData(filePath string, fmConfig config.FMConfig, openNMSAddress stri
 
 	fmData := new(fmdata)
 	for _, data := range receivedFMData {
+		lnbts, lncel := extractLNBTSAndLNCELFromDn(data.Source.Dn)
 		params := make([]Param, 0)
 		params = append(params, createParam("EventType", data.Source.EventType))
 		params = append(params, createParam("AlarmState", strconv.Itoa(data.Source.AlarmState)))
@@ -147,6 +148,12 @@ func FormatFMData(filePath string, fmConfig config.FMConfig, openNMSAddress stri
 		params = append(params, createParam("Dn", data.Source.Dn))
 		params = append(params, createParam("nhgid", data.Source.NHGID))
 		params = append(params, createParam("nhgname", data.Source.NHGName))
+		if lnbts != "" {
+			params = append(params, createParam(neLnbtsField, lnbts))
+		}
+		if lncel != "" {
+			params = append(params, createParam(lncelField, lncel))
+		}
 
 		alarmTime := formatTime(data.Source.LastUpdatedTime)
 		var severity string

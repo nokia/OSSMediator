@@ -1,12 +1,10 @@
 # Staging: for building go app (OSSMediatorCollector)
-FROM golang:latest as builder
+FROM golang:1.11 as builder
 
 # set environment variable
 ENV GOPATH="/OSSMediatorCollector"
 ENV GOBIN="/OSSMediatorCollector/bin"
 ENV PATH=$PATH:$GOBIN
-
-RUN apt-get update && apt-get -y install zip curl && apt-get clean
 
 # create required directory for go microservice (OSSMediatorCollector)
 RUN mkdir /OSSMediatorCollector && mkdir -p /OSSMediatorCollector/src/collector/

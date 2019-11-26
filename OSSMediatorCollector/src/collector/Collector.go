@@ -48,7 +48,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	util.ReadCredentials()
 
 	//Create HTTP client for all the GET/POST API calls
 	util.CreateHTTPClient(certFile, skipTLS)
@@ -57,7 +56,7 @@ func main() {
 	for _, user := range util.Conf.Users {
 		err = util.Login(user)
 		if err != nil {
-			fmt.Printf("\nLogin Failed for %s...Please restart the collector with correct credentials and server certificate...", user.Email)
+			fmt.Printf("\nLogin Failed for %s...\nError: %v", user.Email, err)
 			log.WithFields(log.Fields{"error": err}).Fatalf("Login Failed for %s", user.Email)
 		}
 	}

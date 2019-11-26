@@ -47,7 +47,7 @@ func Login(user *User) error {
 	//{"email_id": "string", "password": "string"}
 	reqBody := LoginRequestBody{
 		EmailID:  user.Email,
-		Password: user.password,
+		Password: user.Password,
 	}
 	body, _ := json.Marshal(reqBody)
 	request, err := http.NewRequest("POST", Conf.BaseURL+Conf.UMAPIs.Login, bytes.NewBuffer(body))

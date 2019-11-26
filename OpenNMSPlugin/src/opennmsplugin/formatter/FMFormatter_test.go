@@ -24,7 +24,8 @@ var testFMData = `[
        "_index":"test_index",
        "_type":"",
        "_id":"12345",
-       "_source":{  
+       "_source": {
+          "Dn": "NE-MRBTS-1/NE-LNBTS-1/LNCEL-12/MCC-244/MNC-09",
           "EventType":"Processing Error Alarm",
           "AlarmState":0,
           "SpecificProblem":"Time synchronization failed",
@@ -49,7 +50,8 @@ var testFMData = `[
        "_index":"test_index",
        "_type":"",
        "_id":"12345",
-       "_source":{  
+       "_source": {
+	      "Dn": "NE-MRBTS-1/NE-LNBTS-1/MCC-244/MNC-09",
           "EventType":"Processing Error Alarm",
           "AlarmState":0,
           "SpecificProblem":"Time synchronization failed",

@@ -43,5 +43,5 @@ test:
 
 clean:
 	@echo "Started :OpenNMSPlugin CleanUp"
-	@rm -rf package bin/opennmsplugin VERSION
+	@rm -rf package bin/opennmsplugin VERSION OpenNMSPlugin-unittest-result.txt
 	@echo "Completed :OpenNMSPlugin CleanUp"

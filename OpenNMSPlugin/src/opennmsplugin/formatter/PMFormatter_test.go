@@ -62,19 +62,8 @@ func TestRenameFile(t *testing.T) {
 		DestinationDir: "./tmp",
 		ForeignID:      "12345",
 	}
-	fileName, err := renameFile("2018-11-01T15:00:00Z", pmConfig)
+	fileName, err := renameFile(pmConfig)
 	if fileName == "" && err != nil {
-		t.Fail()
-	}
-}
-
-func TestRenameFileWithWrongFormat(t *testing.T) {
-	pmConfig := config.PMConfig{
-		DestinationDir: "./tmp",
-		ForeignID:      "12345",
-	}
-	fileName, _ := renameFile("2018-09-23", pmConfig)
-	if fileName != "" {
 		t.Fail()
 	}
 }

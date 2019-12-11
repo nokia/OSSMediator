@@ -23,8 +23,6 @@ import (
 )
 
 const (
-	eventTimeFormatBaiCell   = "2006-01-02T15:04:05Z07:00"
-	eventTimeFormatNokiaCell = "2006-01-02T15:04:05Z07:00:00"
 	dateFormat               = "20060102"
 	timeFormat               = "1504"
 	filePrefix               = "A"
@@ -88,7 +86,7 @@ func FormatPMData(filePath string, pmConfig config.PMConfig) {
 			log.WithFields(log.Fields{"error": err}).Errorf("Unable to marshal received json response in %s for %s time", filePath, metricTime)
 			continue
 		}
-		fileName, err := renameFile(metricTime, pmConfig)
+		fileName, err := renameFile(pmConfig)
 		if err != nil {
 			log.WithFields(log.Fields{"error": err}).Errorf("Error while formatting pm data %s for %s time", filePath, metricTime)
 			continue
@@ -126,24 +124,9 @@ func writeFile(fileName string, data []byte) error {
 }
 
 //Rename the file to OpenNMS format
-func renameFile(metricTime string, pmConfig config.PMConfig) (string, error) {
-	t, err := time.Parse(eventTimeFormatBaiCell, metricTime)
-	if err != nil {
-		t, err = time.Parse(eventTimeFormatNokiaCell, metricTime)
-		if err != nil {
-			return "", err
-		}
-	}
-	_, offSet := t.Zone()
-	var offset string
-	if offSet < 0 {
-		offset = fmt.Sprintf("%02d", (-1*offSet)/3600)
-	} else {
-		offset = fmt.Sprintf("%02d", offSet/3600)
-	}
-	offset += fmt.Sprintf("%02d", (offSet%3600)/60)
-
-	currentTime := time.Now().In(t.Location())
+func renameFile(pmConfig config.PMConfig) (string, error) {
+	offset := "0000"
+	currentTime := time.Now().UTC()
 	//calculating 15 minutes time frame
 	diff := currentTime.Minute() - (currentTime.Minute() / 15 * 15)
 	begTime := currentTime.Add(time.Duration(-1*diff) * time.Minute)

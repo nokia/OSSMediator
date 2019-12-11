@@ -123,5 +123,5 @@ func shutdownHook() {
 	signal.Notify(osSignal, syscall.SIGINT, syscall.SIGTERM)
 	<-osSignal
 	log.Info("Terminating OpenNMSPlugin...")
-	os.Exit(1)
+	os.Exit(0)
 }

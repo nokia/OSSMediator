@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 2.3
+
+IMPROVEMENTS:
+
+* OpenNMSPlugin: Changes for renaming Ffrmatted PM file to use UTC time instead of system local time zone.
+
 # 2.2
 
 IMPROVEMENTS:

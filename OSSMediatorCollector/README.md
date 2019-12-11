@@ -72,10 +72,12 @@ PM / FM data collection by collector is performed using REST interface at regula
     "users": [
         {
             "email_id": "<USER EMAIL>",
+            "password": "<USER PASSWORD>",
             "response_dest": "<DIRECTORY PATH>"
         },
         {
             "email_id": "<USER EMAIL>",
+            "password": "<USER PASSWORD>",
             "response_dest": "<DIRECTORY PATH>"
         }
     ],
@@ -109,6 +111,7 @@ PM / FM data collection by collector is performed using REST interface at regula
 | base_url       | string      | APIGW base URL.                                                                                                                                                               |
 | users          | [user_conf] | Users details.                                                                                                                                                                |
 | email_id       | string      | User's email ID.                                                                                                                                                              |
+| password       | string      | User's password encoded as base64 string.                                                                                                                                                              |
 | response_dest  | string      | Base directory to store the response from the REST APIs. Subdirectories will be created inside the base directory for storing each APIs response in their respective location |
 | um_api         | object      | User management APIs.                                                                                                                                                         |
 | um_api.login   | string      | Customer portal login API.                                                                                                                                                    |

@@ -144,5 +144,5 @@ func shutdownHook() {
 		}
 	}
 	log.Info("Terminating DA OSS Collector...")
-	os.Exit(1)
+	os.Exit(0)
 }

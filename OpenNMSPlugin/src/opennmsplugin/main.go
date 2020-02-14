@@ -9,9 +9,11 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"opennmsplugin/validator"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"syscall"
 
 	log "github.com/sirupsen/logrus"
@@ -62,6 +64,19 @@ func main() {
 		for _, user := range conf.UsersConf {
 			util.CleanUp(conf.CleanupDuration, user.PMConfig.DestinationDir)
 			util.CleanUp(conf.CleanupDuration, user.FMConfig.DestinationDir)
+
+			//cleanup of files collected by collector
+			files, err := ioutil.ReadDir(user.SourceDir)
+			if err != nil {
+				log.WithFields(log.Fields{"error": err}).Errorf("Error while reading source directory %s", user.SourceDir)
+			}
+
+			for _, f := range files {
+				if f.IsDir() {
+					dirPath := filepath.Join(user.SourceDir, f.Name())
+					util.CleanUp(conf.CleanupDuration, dirPath)
+				}
+			}
 		}
 	}
 
@@ -104,9 +119,9 @@ func initLogger(logDir string, logLevel int) {
 	if err == nil {
 		lumberjackLogrotate := &lumberjack.Logger{
 			Filename:   logFile,
-			MaxSize:    2,  // Max megabytes before log is rotated
-			MaxBackups: 10, // Max number of old log files to keep
-			MaxAge:     20, // Max number of days to retain log files
+			MaxSize:    100, // Max megabytes before log is rotated
+			MaxBackups: 10,  // Max number of old log files to keep
+			MaxAge:     20,  // Max number of days to retain log files
 			Compress:   true,
 		}
 		log.SetOutput(lumberjackLogrotate)

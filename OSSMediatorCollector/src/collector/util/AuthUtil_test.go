@@ -16,7 +16,7 @@ import (
 	"testing"
 	"time"
 
-	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/dgrijalva/jwt-go"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -48,10 +48,10 @@ func TestRefresh(t *testing.T) {
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI(testServer.URL, &user)
+	time.Sleep(10 * time.Millisecond)
 	if err != nil {
 		t.Error(err)
 	}
-	time.Sleep(1 * time.Second)
 }
 
 func TestRefreshWithInvalidResponse(t *testing.T) {

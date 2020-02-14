@@ -51,7 +51,7 @@ func AddWatcher(conf config.Config) error {
 				if err != nil {
 					return fmt.Errorf("Error while adding watcher to %s, error: %v", dirPath, err)
 				}
-				processExistingFiles(dirPath, conf)
+				go processExistingFiles(dirPath, conf)
 			}
 		}
 	}
@@ -103,7 +103,7 @@ func getUserInfoForEvent(conf config.Config, eventName string) config.UserConf {
 //Process all the existing collected file from PM/FM APIs using collector.
 func processExistingFiles(directory string, conf config.Config) {
 	//cleanup files from the directory which were written 60 mins ago
-	RemoveFiles(60, directory)
+	RemoveFiles(conf.CleanupDuration, directory)
 	files, err := ioutil.ReadDir(directory)
 	if err != nil {
 		log.Error(err)

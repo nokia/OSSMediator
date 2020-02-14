@@ -15,6 +15,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"path"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -22,7 +23,8 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-var response = `{
+var (
+	response = `{
 		"data": "[{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"Equipment Alarm\",\"LastUpdatedTime\":\"2018-12-12T03:31:46Z\",\"Severity\":\"Minor\",\"EventTime\":\"2018-12-11T23:15:13+05:30:00\",\"NotificationType\":\"NewAlarm\"}},{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"communications\",\"LastUpdatedTime\":\"2018-12-12T08:57:43+05:30\",\"Severity\":\"major\",\"EventTime\":\"2018-12-11T12:52:34+05:30\",\"NotificationType\":\"alarmNew\"}}]",
 		"next_record": 0,
 		"num_of_records": 2,
@@ -36,6 +38,37 @@ var response = `{
 		"total_num_records": 2,
 		"type": "fmdata"
 	  }`
+
+	response1 = `{
+		"data": "[{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"Equipment Alarm\",\"LastUpdatedTime\":\"2018-12-12T03:31:46Z\",\"Severity\":\"Minor\",\"EventTime\":\"2018-12-11T23:15:13+05:30:00\",\"NotificationType\":\"NewAlarm\"}},{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"communications\",\"LastUpdatedTime\":\"2018-12-12T08:57:43+05:30\",\"Severity\":\"major\",\"EventTime\":\"2018-12-11T12:52:34+05:30\",\"NotificationType\":\"alarmNew\"}}]",
+		"next_record": 2,
+		"num_of_records": 2,
+		"status": {
+		  "status_code": "SUCCESS",
+		  "status_description": {
+			"description": "Records transferred successfully",
+			"description_code": "NOT_SPECIFIED"
+		  }
+		},
+		"total_num_records": 4,
+		"type": "fmdata"
+	  }`
+
+	response2 = `{
+		"data": "[{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"Equipment Alarm\",\"LastUpdatedTime\":\"2018-12-12T03:31:46Z\",\"Severity\":\"Minor\",\"EventTime\":\"2018-12-11T23:15:13+05:30:00\",\"NotificationType\":\"NewAlarm\"}},{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"communications\",\"LastUpdatedTime\":\"2018-12-12T08:57:43+05:30\",\"Severity\":\"major\",\"EventTime\":\"2018-12-11T12:52:34+05:30\",\"NotificationType\":\"alarmNew\"}}]",
+		"next_record": 0,
+		"num_of_records": 2,
+		"status": {
+		  "status_code": "SUCCESS",
+		  "status_description": {
+			"description": "Records transferred successfully",
+			"description_code": "NOT_SPECIFIED"
+		  }
+		},
+		"total_num_records": 4,
+		"type": "fmdata"
+	  }`
+)
 
 func TestCreateHTTPClientForSkipTLS(t *testing.T) {
 	//capturing the logs in buffer for assertion
@@ -133,8 +166,7 @@ func TestWriteResponseForPM(t *testing.T) {
 	defer os.RemoveAll(user.ResponseDest)
 	files, err := ioutil.ReadDir(user.ResponseDest + "/pm")
 	if err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 	data, err := ioutil.ReadFile(user.ResponseDest + "/pm/" + files[0].Name())
 	if err != nil || len(data) == 0 {
@@ -157,8 +189,7 @@ func TestWriteResponseForFM(t *testing.T) {
 	defer os.RemoveAll(user.ResponseDest)
 	files, err := ioutil.ReadDir(user.ResponseDest + "/fm")
 	if err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 	data, err := ioutil.ReadFile(user.ResponseDest + "/fm/" + files[0].Name())
 	if err != nil || len(data) == 0 {
@@ -168,7 +199,7 @@ func TestWriteResponseForFM(t *testing.T) {
 
 //Unit test for callAPI and doRequest
 func TestCallAPIForInvalidCase(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -187,45 +218,34 @@ func TestCallAPIForInvalidCase(t *testing.T) {
 		}`)
 	}))
 	defer testServer.Close()
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
 
 	CreateHTTPClient("", true)
 	startTime, endTime := getTimeInterval(&user, "", "", 15)
-	response := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
-	if response != nil || !strings.Contains(buf.String(), "Invalid status code received") {
+	response, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	if err == nil || response != nil || !strings.Contains(err.Error(), "Error while validating response status") {
 		t.Fail()
 	}
 }
 
 func TestCallAPIForInvalidURL(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
 		expiryTime:   currentTime(),
 	}
-	CreateHTTPClient("", true)
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
 
 	CreateHTTPClient("", true)
 	startTime, endTime := getTimeInterval(&user, "", "", 15)
-	response := callAPI(":", &user, startTime, endTime, 0, 100, "", 123)
-	if response != nil || !strings.Contains(buf.String(), "missing protocol scheme") {
+	response, err := callAPI(":", &user, startTime, endTime, 0, 100, "", 123)
+	if err == nil || response != nil || !strings.Contains(err.Error(), "missing protocol scheme") {
 		t.Fail()
 	}
 }
 
 // //Unit test for callAPI and doRequest
 func TestCallAPI(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -238,14 +258,14 @@ func TestCallAPI(t *testing.T) {
 	defer testServer.Close()
 	CreateHTTPClient("", false)
 	startTime, endTime := getTimeInterval(&user, "", "", 15)
-	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
-	if resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
+	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
 	}
 }
 
 func TestCallAPIWithInvalidResponse(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -256,21 +276,16 @@ func TestCallAPIWithInvalidResponse(t *testing.T) {
 		fmt.Fprintln(w, ``)
 	}))
 	defer testServer.Close()
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
 	CreateHTTPClient("", false)
 	startTime, endTime := getTimeInterval(&user, "", "", 15)
-	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
-	if resp != nil && strings.Contains(buf.String(), "Unable to decode response") {
+	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	if resp != nil && strings.Contains(err.Error(), "Unable to decode response") {
 		t.Fail()
 	}
 }
 
 func TestCallAPIWIthLastReceivedFile(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -296,14 +311,14 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 	defer os.Remove(tmpFile)
 	CreateHTTPClient("", false)
 	startTime, endTime := getTimeInterval(&user, "", "", 15)
-	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
-	if resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
+	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
 	}
 }
 
 func TestCallAPIWithSkipCert(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -316,8 +331,8 @@ func TestCallAPIWithSkipCert(t *testing.T) {
 	defer testServer.Close()
 	CreateHTTPClient("", true)
 	startTime, endTime := getTimeInterval(&user, "", "", 15)
-	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
-	if resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
+	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
 	}
 }
@@ -325,7 +340,7 @@ func TestCallAPIWithSkipCert(t *testing.T) {
 func TestCallAPIWithCert(t *testing.T) {
 	tmpfile := createTmpFile(".", "crt", []byte(``))
 	CreateHTTPClient(tmpfile, false)
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -338,14 +353,14 @@ func TestCallAPIWithCert(t *testing.T) {
 	defer testServer.Close()
 	defer os.Remove(tmpfile)
 	startTime, endTime := getTimeInterval(&user, "", "", 15)
-	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
-	if resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
+	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
 	}
 }
 
 func TestCallAPIWithErrorStatusCode(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -359,8 +374,21 @@ func TestCallAPIWithErrorStatusCode(t *testing.T) {
 	defer testServer.Close()
 	CreateHTTPClient("", false)
 	startTime, endTime := getTimeInterval(&user, "", "", 15)
-	resp := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
-	if resp != nil {
+	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	if err == nil || resp != nil {
+		t.Fail()
+	}
+}
+
+func TestCallAPIWithInactiveSession(t *testing.T) {
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: false}
+	call("http://localhost:8080/v1", APIConf{API: "/pmdata"}, &user, 123)
+	if !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
 		t.Fail()
 	}
 }
@@ -369,7 +397,7 @@ func TestStoreLastReceivedDataTime(t *testing.T) {
 	resp := new(GetAPIResponse)
 	err := json.NewDecoder(bytes.NewReader([]byte(response))).Decode(resp)
 
-	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp"}
+	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp", isSessionAlive: true}
 	err = storeLastReceivedDataTime(user, "/fm", resp.Data, fmResponseType, "ACTIVE", 123)
 	if err != nil {
 		t.Fail()
@@ -389,7 +417,7 @@ func TestStoreLastReceivedDataTimeWithoutData(t *testing.T) {
 		os.MkdirAll(responseDir, os.ModePerm)
 	}
 	defer os.RemoveAll(responseDir)
-	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp"}
+	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp", isSessionAlive: true}
 	err := storeLastReceivedDataTime(user, "", "", fmResponseType, "ACTIVE", 123)
 	t.Log(err)
 	if err == nil || !strings.Contains(err.Error(), "Unable to write last received data time, error: unexpected end of JSON input") {
@@ -398,7 +426,7 @@ func TestStoreLastReceivedDataTimeWithoutData(t *testing.T) {
 }
 
 func TestStoreLastReceivedFileTimeWithWrongDirectory(t *testing.T) {
-	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp"}
+	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp", isSessionAlive: true}
 	err := storeLastReceivedDataTime(user, "", "", fmResponseType, "ACTIVE", 123)
 	t.Log(err)
 	if err == nil {
@@ -450,9 +478,10 @@ func TestStartDataCollectionWithInvalidURL(t *testing.T) {
 	Conf.BaseURL = "http://localhost:8080"
 	Conf.Users = []*User{
 		{
-			Email:        "testuser@nokia.com",
-			Password:     "MTIzNA==",
-			ResponseDest: "./tmp",
+			Email:          "testuser@nokia.com",
+			Password:       "MTIzNA==",
+			isSessionAlive: true,
+			ResponseDest:   "./tmp",
 			sessionToken: &sessionToken{
 				accessToken:  "",
 				refreshToken: "",
@@ -465,6 +494,7 @@ func TestStartDataCollectionWithInvalidURL(t *testing.T) {
 	CreateHTTPClient("", true)
 
 	StartDataCollection()
+	time.Sleep(2 * time.Millisecond)
 	if !strings.Contains(buf.String(), "Triggered http://localhost:8080/fmdata") || !strings.Contains(buf.String(), "Triggered http://localhost:8080/pmdata") {
 		t.Fail()
 	}
@@ -495,9 +525,10 @@ func TestStartDataCollection(t *testing.T) {
 	Conf.BaseURL = testServer.URL
 	Conf.Users = []*User{
 		{
-			Email:        "testuser@nokia.com",
-			Password:     "MTIzNA==",
-			ResponseDest: "./tmp",
+			Email:          "testuser@nokia.com",
+			Password:       "MTIzNA==",
+			ResponseDest:   "./tmp",
+			isSessionAlive: true,
 			sessionToken: &sessionToken{
 				accessToken:  "",
 				refreshToken: "",
@@ -510,10 +541,124 @@ func TestStartDataCollection(t *testing.T) {
 	CreateHTTPClient("", true)
 
 	StartDataCollection()
+	time.Sleep(2 * time.Millisecond)
 	if !strings.Contains(buf.String(), "Triggered "+testServer.URL) {
 		t.Fail()
 	}
 	if !strings.Contains(buf.String(), "Writing response") {
 		t.Fail()
+	}
+}
+
+func TestAPICallWithPagination(t *testing.T) {
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		query := r.URL.Query()
+		index, _ := strconv.Atoi(query.Get(indexQueryParam))
+		w.Header().Set("Content-Type", "application/json")
+		if index == 0 {
+			fmt.Fprintln(w, response1)
+		} else {
+			fmt.Fprintln(w, response2)
+		}
+	}))
+	defer testServer.Close()
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
+	user.sessionToken = &sessionToken{
+		accessToken:  "accessToken",
+		refreshToken: "refreshToken",
+		expiryTime:   time.Now(),
+	}
+	CreateHTTPClient("", true)
+
+	call(testServer.URL, APIConf{API: "/fmdata", Interval: 15}, &user, 1000)
+	if !strings.Contains(buf.String(), "\"Received response details\" received_no_of_records=4 tid=1000 total_no_of_records=4") {
+		t.Error(buf.String())
+	}
+}
+
+func TestRetryAPICall(t *testing.T) {
+	count := 0
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		query := r.URL.Query()
+		index, _ := strconv.Atoi(query.Get(indexQueryParam))
+		w.Header().Set("Content-Type", "application/json")
+		if index == 0 {
+			fmt.Fprintln(w, response1)
+		} else if count == 2 {
+			fmt.Fprintln(w, response2)
+		} else {
+			count++
+			fmt.Fprintln(w, `{
+			"status": {
+				"status_code": "FAILURE",
+				"status_description": {
+					"description_code": "INVALID_ARGUMENT",
+					"description": "Token sent is empty. Invalid Token"
+				}
+			}
+		}`)
+		}
+	}))
+	defer testServer.Close()
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
+	user.sessionToken = &sessionToken{
+		accessToken:  "accessToken",
+		refreshToken: "refreshToken",
+		expiryTime:   time.Now(),
+	}
+	CreateHTTPClient("", true)
+
+	call(testServer.URL, APIConf{API: "/fmdata", Interval: 15}, &user, 1000)
+	if !strings.Contains(buf.String(), "\"Received response details\" received_no_of_records=4 tid=1000 total_no_of_records=4") {
+		t.Error(buf.String())
+	}
+}
+
+func TestRetryAPICallFromStarting(t *testing.T) {
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		query := r.URL.Query()
+		index, _ := strconv.Atoi(query.Get(indexQueryParam))
+		w.Header().Set("Content-Type", "application/json")
+		if index == 0 {
+			fmt.Fprintln(w, response1)
+		} else {
+			fmt.Fprintln(w, `{
+			"status": {
+				"status_code": "FAILURE",
+				"status_description": {
+					"description_code": "INVALID_ARGUMENT",
+					"description": "Token sent is empty. Invalid Token"
+				}
+			}
+		}`)
+		}
+	}))
+	defer testServer.Close()
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
+	user.sessionToken = &sessionToken{
+		accessToken:  "accessToken",
+		refreshToken: "refreshToken",
+		expiryTime:   time.Now(),
+	}
+	CreateHTTPClient("", true)
+
+	call(testServer.URL, APIConf{API: "/fmdata", Interval: 15}, &user, 1000)
+	if !strings.Contains(buf.String(), "API call failed, data will be skipped for the duration") {
+		t.Error(buf.String())
 	}
 }

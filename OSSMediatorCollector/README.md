@@ -102,7 +102,8 @@ PM / FM data collection by collector is performed using REST interface at regula
             "interval": 15
         }
     ],
-    "limit": 100
+    "limit": 100,
+    "delay": 10
 }
 ````
 
@@ -121,7 +122,8 @@ PM / FM data collection by collector is performed using REST interface at regula
 | api            | string      | API URL of get PM/FM data.                                                                                                                                                    |
 | interval       | integer     | Interval at which API should be called to collect data.                                                                                                                       |
 | type           | string      | Type of FM request ("ACTIVE" or "HISTORY")                                                                                                                                    |
-| limit          | integer     | Number of records to be fetched from the API.
+| limit          | integer     | Number of records to be fetched from the API, should be within 1-500.
+| delay          | integer     | Time duration in minutes, for adding delay in API calls.
 
 * To start collector, go to the installed path of the collector bin directory and start by calling the following command:
 

@@ -23,9 +23,9 @@ import (
 )
 
 const (
-	dateFormat               = "20060102"
-	timeFormat               = "1504"
-	filePrefix               = "A"
+	dateFormat = "20060102"
+	timeFormat = "1504"
+	filePrefix = "A"
 
 	//regex for extracting LNBTS_ID and LNCEL_ID from Dn
 	dnRegex      = `^.*(?:.*LNBTS-(?P<LNBTS_ID>\d+))(\/)?(?:LNCEL-(?P<LNCEL_ID>\d+))?.*$`
@@ -56,8 +56,6 @@ func FormatPMData(filePath string, pmConfig config.PMConfig) {
 		log.Error(err)
 		return
 	}
-	//removing source file
-	defer os.Remove(filePath)
 
 	var pmData interface{}
 	err = json.Unmarshal(content, &pmData)
@@ -71,12 +69,8 @@ func FormatPMData(filePath string, pmConfig config.PMConfig) {
 		metricTime := source[eventTimeField].(string)
 		dn := source[dnField].(string)
 		lnbts, lncel := extractLNBTSAndLNCELFromDn(dn)
-		if lnbts != "" {
-			source[neLnbtsField] = lnbts
-		}
-		if lncel != "" {
-			source[lncelField] = lncel
-		}
+		source[neLnbtsField] = lnbts
+		source[lncelField] = lncel
 
 		resp := &response{
 			Data: value,
@@ -155,7 +149,7 @@ func fileExists(path string) bool {
 }
 
 func extractLNBTSAndLNCELFromDn(dn string) (string, string) {
-	log.Info("Extracting LNBTS and LNCEL from: ", dn)
+	log.Debugf("Extracting LNBTS and LNCEL from: %s", dn)
 	if dn == "" {
 		return "", ""
 	}

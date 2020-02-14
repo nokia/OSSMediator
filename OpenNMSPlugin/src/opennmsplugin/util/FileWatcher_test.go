@@ -124,7 +124,8 @@ func TestWatchEvents(t *testing.T) {
 		},
 	}
 	conf := config.Config{
-		UsersConf: users,
+		UsersConf:       users,
+		CleanupDuration: 60,
 	}
 	if _, err := os.Stat(tmpDir); os.IsNotExist(err) {
 		os.MkdirAll(tmpDir+"/pm", os.ModePerm)
@@ -270,12 +271,10 @@ func TestProcessExistingFiles(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	defer os.Remove("./fmdata/fm_data.json")
 	err = createTestData("./pmdata/pm_data.json", testPMData)
 	if err != nil {
 		t.Error(err)
 	}
-	defer os.Remove("./pmdata/pm_data.json")
 
 	var buf bytes.Buffer
 	log.SetOutput(&buf)
@@ -284,12 +283,12 @@ func TestProcessExistingFiles(t *testing.T) {
 		log.SetOutput(os.Stderr)
 	}()
 
-	processExistingFiles(pmDirPath, config.Config{})
+	processExistingFiles(pmDirPath, config.Config{CleanupDuration: 60})
 	if !strings.Contains(buf.String(), "Formatted PM data written") {
 		t.Fail()
 	}
 
-	processExistingFiles(fmDirPath, config.Config{})
+	processExistingFiles(fmDirPath, config.Config{CleanupDuration: 60})
 	if !strings.Contains(buf.String(), "Formatted FM data written") {
 		t.Fail()
 	}

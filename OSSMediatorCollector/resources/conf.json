@@ -25,12 +25,14 @@
 		{
 			"api": "/metrics/radios/fmdata",
 			"type": "ACTIVE",
-			"interval": 60
+			"interval": 60,
+			"sync_duration": 15
 		},
 		{
 			"api": "/metrics/radios/fmdata",
 			"type": "HISTORY",
-			"interval": 15
+			"interval": 15,
+			"sync_duration": 15
 		}
 	],
 	"limit": 100,

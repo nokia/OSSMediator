@@ -64,8 +64,8 @@ func ValidateConf(conf util.Config) error {
 		return fmt.Errorf("API delay limit should be within 1-15, delay: %d", conf.Delay)
 	}
 
-	if conf.Limit == 0 || conf.Limit > 200 {
-		return fmt.Errorf("API response limit should be within 1-500, limit: %d", conf.Limit)
+	if conf.Limit == 0 || conf.Limit > 10000 {
+		return fmt.Errorf("API response limit should be within 1-10000, limit: %d", conf.Limit)
 	}
 
 	return nil

@@ -14,12 +14,15 @@ script:
   - golint -set_exit_status $(go list ./...) > mediator_lint_result.txt
   - cd OSSMediatorCollector && make all && cd ..
   - cd OpenNMSPlugin && make all && cd ..
+  - cd ElasticsearchPlugin && make all && cd ..
 
 after_script:
   - 'echo "OSSMediatorCollector test results:" && cat OSSMediatorCollector/OSSMediatorCollector-unittest-result.txt'
   - 'echo "OpenNMSPlugin test results:" && cat OpenNMSPlugin/OpenNMSPlugin-unittest-result.txt'
-  - 'grep -e "FAIL:" OSSMediatorCollector/OSSMediatorCollector-unittest-result.txt && { echo "OpenNMSPlugin unit tests failed"; exit 1; }'
+  - 'echo "ElasticsearchPlugin test results:" && cat ElasticsearchPlugin/elasticsearchplugin-unittest-result.txt'
+  - 'grep -e "FAIL:" OSSMediatorCollector/OSSMediatorCollector-unittest-result.txt && { echo "OSSMediatorCollector unit tests failed"; exit 1; }'
   - 'grep -e "FAIL:" OpenNMSPlugin/OpenNMSPlugin-unittest-result.txt && { echo "OpenNMSPlugin unit tests failed"; exit 1; }'
+  - 'grep -e "FAIL:" ElasticsearchPlugin/elasticsearchplugin-unittest-result.txt && { echo "ElasticsearchPlugin unit tests failed"; exit 1; }'
 
 after_failure:
   - '[ -s mediator_lint_result.txt ] && echo "Lint Errors:" && cat mediator_lint_result.txt'

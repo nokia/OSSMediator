@@ -220,7 +220,7 @@ func TestCallAPIForInvalidCase(t *testing.T) {
 	defer testServer.Close()
 
 	CreateHTTPClient("", true)
-	startTime, endTime := getTimeInterval(&user, "", "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
 	response, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if err == nil || response != nil || !strings.Contains(err.Error(), "Error while validating response status") {
 		t.Fail()
@@ -236,7 +236,7 @@ func TestCallAPIForInvalidURL(t *testing.T) {
 	}
 
 	CreateHTTPClient("", true)
-	startTime, endTime := getTimeInterval(&user, "", "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
 	response, err := callAPI(":", &user, startTime, endTime, 0, 100, "", 123)
 	if err == nil || response != nil || !strings.Contains(err.Error(), "missing protocol scheme") {
 		t.Fail()
@@ -257,7 +257,7 @@ func TestCallAPI(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", false)
-	startTime, endTime := getTimeInterval(&user, "", "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
 	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
@@ -277,7 +277,7 @@ func TestCallAPIWithInvalidResponse(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", false)
-	startTime, endTime := getTimeInterval(&user, "", "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
 	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if resp != nil && strings.Contains(err.Error(), "Unable to decode response") {
 		t.Fail()
@@ -310,7 +310,7 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 	defer testServer.Close()
 	defer os.Remove(tmpFile)
 	CreateHTTPClient("", false)
-	startTime, endTime := getTimeInterval(&user, "", "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
 	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
@@ -330,7 +330,7 @@ func TestCallAPIWithSkipCert(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", true)
-	startTime, endTime := getTimeInterval(&user, "", "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
 	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
@@ -352,7 +352,7 @@ func TestCallAPIWithCert(t *testing.T) {
 	}))
 	defer testServer.Close()
 	defer os.Remove(tmpfile)
-	startTime, endTime := getTimeInterval(&user, "", "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
 	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
@@ -373,7 +373,7 @@ func TestCallAPIWithErrorStatusCode(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", false)
-	startTime, endTime := getTimeInterval(&user, "", "", 15)
+	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
 	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
 	if err == nil || resp != nil {
 		t.Fail()

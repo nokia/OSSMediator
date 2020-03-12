@@ -113,10 +113,10 @@ func TestValidateConfWithInvalidDelay(t *testing.T) {
 
 func TestValidateConfWithInvalidLimit(t *testing.T) {
 	tmp := conf.Limit
-	conf.Limit = 1000
+	conf.Limit = 20000
 	defer func() { conf.Limit = tmp }()
 	err := ValidateConf(conf)
-	if err == nil || !strings.Contains(err.Error(), "API response limit should be within 1-500") {
+	if err == nil || !strings.Contains(err.Error(), "API response limit should be within 1-10000") {
 		t.Error(err)
 	}
 }

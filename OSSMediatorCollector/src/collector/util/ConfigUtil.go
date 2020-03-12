@@ -45,9 +45,10 @@ type UMConf struct {
 
 //APIConf keeps API configs
 type APIConf struct {
-	API      string `json:"api"`      //API URL
-	Type     string `json:"type"`     //For getting HISTORY or ACTIVE alarm from FM API.
-	Interval int    `json:"interval"` //Interval at which the API will be triggered periodically.
+	API          string `json:"api"`           //API URL
+	Type         string `json:"type"`          //For getting HISTORY or ACTIVE alarm from FM API.
+	Interval     int    `json:"interval"`      //Interval at which the API will be triggered periodically.
+	SyncDuration int    `json:"sync_duration"` //Interval in minutes for which duration FM will be re-synced.
 }
 
 //ReadConfig reads the configurations from resources/conf.json file and sets the Config object.

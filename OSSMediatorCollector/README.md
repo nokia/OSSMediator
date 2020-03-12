@@ -18,7 +18,7 @@ MediatorCollector is compatible with only Unix/Linux system.
 
 ### Installation steps
 
-OSSMediatorCollector's binary should be built by running `make all` command.  
+OSSMediatorCollector's binary should be built by running `make all` command followed by `make build_package` command.  
 It will create binary named as `collector` inside `bin` directory and package containing the binary and resource file, named as `OSSMediatorCollector.zip` inside `package` directory.  
   
 Please follow below procedure to install OSSMediatorCollector.zip in your home directory:
@@ -94,12 +94,14 @@ PM / FM data collection by collector is performed using REST interface at regula
         {
             "api": "/metrics/radios/fmdata",
             "type": "ACTIVE",
-            "interval": 60
+            "interval": 1,
+            "sync_duration": 15
         },
         {
             "api": "/metrics/radios/fmdata",
             "type": "HISTORY",
-            "interval": 15
+            "interval": 1,
+            "sync_duration": 15
         }
     ],
     "limit": 100,
@@ -121,7 +123,8 @@ PM / FM data collection by collector is performed using REST interface at regula
 | apis           | [api_conf]  | Get PM/FM APIs.                                                                                                                                                               |
 | api            | string      | API URL of get PM/FM data.                                                                                                                                                    |
 | interval       | integer     | Interval at which API should be called to collect data.                                                                                                                       |
-| type           | string      | Type of FM request ("ACTIVE" or "HISTORY")                                                                                                                                    |
+| type           | string      | Type of FM request ("ACTIVE" or "HISTORY").                                                                                                                                    |
+| sync_duration  | integer     | Time duration in minutes, for syncing FM for the given duration.                                                                                                                                    |
 | limit          | integer     | Number of records to be fetched from the API, should be within 1-500.
 | delay          | integer     | Time duration in minutes, for adding delay in API calls.
 

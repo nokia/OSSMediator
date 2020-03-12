@@ -8,10 +8,12 @@ package util
 
 import (
 	"bytes"
+	"compress/gzip"
 	"crypto/tls"
 	"crypto/x509"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -153,7 +155,7 @@ func call(baseURL string, api APIConf, user *User, txnID uint64) {
 		return
 	}
 	log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, currentTime())
-	startTime, endTime := getTimeInterval(user, apiURL, api.Type, api.Interval)
+	startTime, endTime := getTimeInterval(user, apiURL, api.Type, api.Interval, api.SyncDuration)
 	response, err := callAPI(apiURL, user, startTime, endTime, 0, Conf.Limit, api.Type, txnID)
 	if err != nil || response == nil {
 		return
@@ -182,7 +184,7 @@ func call(baseURL string, api APIConf, user *User, txnID uint64) {
 	}
 
 	log.WithFields(log.Fields{"tid": txnID, "total_no_of_records": totalNoOfRecords, "received_no_of_records": receivedNoOfRecords}).Infof("Received response details")
-	if totalNoOfRecords < receivedNoOfRecords {
+	if totalNoOfRecords > receivedNoOfRecords {
 		log.WithFields(log.Fields{"tid": txnID, "total_no_of_records": totalNoOfRecords, "received_no_of_records": receivedNoOfRecords}).Warnf("Received no. of records less than total no. of records, API call will be retried from starting...")
 		retryCompleteCallFlag = true
 	}
@@ -191,13 +193,16 @@ func call(baseURL string, api APIConf, user *User, txnID uint64) {
 	var retryResponse *GetAPIResponse
 	if retryCompleteCallFlag {
 		retryResponse, err = callAPI(apiURL, user, startTime, endTime, 0, Conf.Limit, api.Type, txnID)
-		nextRecord = retryResponse.NextRecord
-		for nextRecord > 0 {
-			retryResponse, err = callAPI(apiURL, user, startTime, endTime, nextRecord, Conf.Limit, api.Type, txnID)
-			if err != nil {
-				log.WithFields(log.Fields{"txn_id": txnID, "api_url": apiURL, "start_time": startTime, "end_time": endTime, "index": nextRecord}).Warnf("API call failed, data will be skipped for the duration")
-				break
-			} else {
+		if err != nil {
+			log.WithFields(log.Fields{"txn_id": txnID, "api_url": apiURL, "start_time": startTime, "end_time": endTime, "index": nextRecord}).Warnf("API call failed, data will be skipped for the duration")
+		} else {
+			nextRecord = retryResponse.NextRecord
+			for nextRecord > 0 {
+				retryResponse, err = callAPI(apiURL, user, startTime, endTime, nextRecord, Conf.Limit, api.Type, txnID)
+				if err != nil {
+					log.WithFields(log.Fields{"txn_id": txnID, "api_url": apiURL, "start_time": startTime, "end_time": endTime, "index": nextRecord}).Warnf("API call failed, data will be skipped for the duration")
+					break
+				}
 				nextRecord = retryResponse.NextRecord
 			}
 		}
@@ -276,6 +281,9 @@ func callAPI(apiURL string, user *User, startTime string, endTime string, indx i
 	request.Header.Set(authorizationHeader, user.sessionToken.accessToken)
 	user.sessionToken.access.Unlock()
 
+	//requesting compressed response
+	request.Header.Add("Accept-Encoding", "gzip")
+
 	//Adding query params
 	query := request.URL.Query()
 	query.Add(startTimeQueryParam, startTime)
@@ -335,7 +343,20 @@ func doRequest(request *http.Request) ([]byte, error) {
 	if 200 != response.StatusCode {
 		return nil, fmt.Errorf("%d: %s", response.StatusCode, response.Status)
 	}
-	body, err := ioutil.ReadAll(response.Body)
+
+	var reader io.ReadCloser
+	switch response.Header.Get("Content-Encoding") {
+	case "gzip":
+		reader, err = gzip.NewReader(response.Body)
+		if err != nil {
+			return nil, err
+		}
+		defer reader.Close()
+	default:
+		reader = response.Body
+	}
+
+	body, err := ioutil.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -433,7 +454,7 @@ func storeLastReceivedDataTime(user *User, apiURL string, data string, respType 
 	}
 	lastReceivedTime := getLastReceivedDataTime(user, apiURL, apiType)
 	if lastReceivedTime != "" {
-		t, err := time.Parse(lastReceivedTime, time.RFC3339)
+		t, err := time.Parse(time.RFC3339, lastReceivedTime)
 		if err == nil {
 			eventTimes = append(eventTimes, t)
 		}
@@ -471,17 +492,26 @@ func truncateSeconds(t time.Time) time.Time {
 
 //getTimeInterval: returns the start_time and end_time for API calls.
 //It reads start_time from file where last received data's event time is stored, if file is not present or
-func getTimeInterval(user *User, apiURL string, apiType string, interval int) (string, string) {
+func getTimeInterval(user *User, apiURL string, apiType string, interval int, syncDuration int) (string, string) {
 	currentTime := truncateSeconds(currentTime())
 	//calculating 15 minutes time frame
 	diff := currentTime.Minute() - (currentTime.Minute() / interval * interval) + interval
 	begTime := currentTime.Add(time.Duration(-1*diff) * time.Minute)
 	endTime := begTime.Add(time.Duration(interval) * time.Minute)
-	lastReceivedTime := getLastReceivedDataTime(user, apiURL, apiType)
-	if lastReceivedTime == "" {
-		return truncateSeconds(begTime).Format(time.RFC3339), truncateSeconds(endTime).Format(time.RFC3339)
+	startTime := getLastReceivedDataTime(user, apiURL, apiType)
+	if startTime == "" {
+		startTime = truncateSeconds(begTime).Format(time.RFC3339)
 	}
-	return lastReceivedTime, truncateSeconds(endTime).Format(time.RFC3339)
+	if syncDuration > 0 {
+		stTime, _ := time.Parse(time.RFC3339, startTime)
+		gap := endTime.Sub(stTime)
+		if gap < (time.Duration(syncDuration) * time.Minute) {
+			stTime = endTime.Add(time.Duration(-1*syncDuration) * time.Minute)
+			startTime = truncateSeconds(stTime).Format(time.RFC3339)
+		}
+	}
+
+	return startTime, truncateSeconds(endTime).Format(time.RFC3339)
 
 }
 

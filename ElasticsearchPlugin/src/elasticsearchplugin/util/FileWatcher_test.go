@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	"opennmsplugin/config"
+	"elasticsearchplugin/config"
 
 	"github.com/fsnotify/fsnotify"
 	log "github.com/sirupsen/logrus"
@@ -22,16 +22,9 @@ import (
 func TestAddWatcher(t *testing.T) {
 	tmpdir1 := "./tmp1"
 	tmpdir2 := "./tmp2"
-	users := []config.UserConf{
-		{
-			SourceDir: tmpdir1,
-		},
-		{
-			SourceDir: tmpdir2,
-		},
-	}
 	conf := config.Config{
-		UsersConf: users,
+		SourceDirs:      []string{tmpdir1, tmpdir2},
+		CleanupDuration: 60,
 	}
 	if _, err := os.Stat(tmpdir1); os.IsNotExist(err) {
 		os.MkdirAll(tmpdir1+"/pm", os.ModePerm)
@@ -56,13 +49,9 @@ func TestAddWatcher(t *testing.T) {
 }
 
 func TestAddWatcherWithEmptySourceDir(t *testing.T) {
-	users := []config.UserConf{
-		{
-			SourceDir: "",
-		},
-	}
 	conf := config.Config{
-		UsersConf: users,
+		SourceDirs:      []string{""},
+		CleanupDuration: 60,
 	}
 	err := AddWatcher(conf)
 	if err == nil && strings.Contains(err.Error(), "Source directory path can't be empty") {
@@ -72,13 +61,9 @@ func TestAddWatcherWithEmptySourceDir(t *testing.T) {
 
 func TestAddWatcherWithClosedWatcherInstance(t *testing.T) {
 	tmpdir := "./tmp"
-	users := []config.UserConf{
-		{
-			SourceDir: tmpdir,
-		},
-	}
 	conf := config.Config{
-		UsersConf: users,
+		SourceDirs:      []string{tmpdir},
+		CleanupDuration: 60,
 	}
 	if _, err := os.Stat(tmpdir); os.IsNotExist(err) {
 		os.MkdirAll(tmpdir+"/pm", os.ModePerm)
@@ -98,16 +83,9 @@ func TestAddWatcherWithClosedWatcherInstance(t *testing.T) {
 func TestAddWatcherWithNonExistingDir(t *testing.T) {
 	tmpdir1 := "./tmp1"
 	tmpdir2 := "./tmp2"
-	users := []config.UserConf{
-		{
-			SourceDir: tmpdir1,
-		},
-		{
-			SourceDir: tmpdir2,
-		},
-	}
 	conf := config.Config{
-		UsersConf: users,
+		SourceDirs:      []string{tmpdir1, tmpdir2},
+		CleanupDuration: 60,
 	}
 	err := AddWatcher(conf)
 	if err == nil && strings.Contains(err.Error(), "Source directory ./tmp1 not found") {
@@ -118,13 +96,8 @@ func TestAddWatcherWithNonExistingDir(t *testing.T) {
 func TestWatchEvents(t *testing.T) {
 	dir, _ := os.Getwd()
 	tmpDir := "./tmp"
-	users := []config.UserConf{
-		{
-			SourceDir: dir + "/tmp",
-		},
-	}
 	conf := config.Config{
-		UsersConf:       users,
+		SourceDirs:      []string{dir + "/tmp"},
 		CleanupDuration: 60,
 	}
 	if _, err := os.Stat(tmpDir); os.IsNotExist(err) {
@@ -147,7 +120,7 @@ func TestWatchEvents(t *testing.T) {
 
 	tmpFMfile, _ := os.Create(tmpDir + "/fm/test_file.json")
 	tmpFMfile.Write([]byte("test"))
-	time.Sleep(100 * time.Millisecond)
+	time.Sleep(10 * time.Millisecond)
 	if !strings.Contains(buf.String(), "Received event: "+dir+"/tmp/pm/test_file.json") || !strings.Contains(buf.String(), "Received event: "+dir+"/tmp/fm/test_file.json") {
 		t.Fail()
 	}
@@ -160,7 +133,7 @@ func TestProcessExistingFilesWithNonExistingDir(t *testing.T) {
 	defer func() {
 		log.SetOutput(os.Stderr)
 	}()
-	processExistingFiles("./tmp", config.Config{})
+	processExistingFiles("./tmp", config.Config{CleanupDuration: 60})
 	if !strings.Contains(buf.String(), "./tmp: no such file or directory") {
 		t.Fail()
 	}
@@ -267,14 +240,18 @@ func TestProcessExistingFiles(t *testing.T) {
 	os.MkdirAll(fmDirPath, os.ModePerm)
 	defer os.RemoveAll(fmDirPath)
 
-	err := createTestData("./fmdata/fm_data.json", testFMData)
+	fmFile := "./fmdata/fm_data.json"
+	err := createTestData(fmFile, testFMData)
 	if err != nil {
 		t.Error(err)
 	}
-	err = createTestData("./pmdata/pm_data.json", testPMData)
+	defer os.Remove(fmFile)
+	pmFile := "./pmdata/pm_data.json"
+	err = createTestData(pmFile, testPMData)
 	if err != nil {
 		t.Error(err)
 	}
+	defer os.Remove(pmFile)
 
 	var buf bytes.Buffer
 	log.SetOutput(&buf)
@@ -282,14 +259,18 @@ func TestProcessExistingFiles(t *testing.T) {
 	defer func() {
 		log.SetOutput(os.Stderr)
 	}()
+	conf := config.Config{
+		CleanupDuration:  60,
+		ElasticsearchURL: "http://127.0.0.1:9200",
+	}
 
-	processExistingFiles(pmDirPath, config.Config{CleanupDuration: 60})
-	if !strings.Contains(buf.String(), "Formatted PM data written") {
+	processExistingFiles(pmDirPath, conf)
+	if !strings.Contains(buf.String(), "Data from "+pmFile+" pushed to elasticsearch successfully") {
 		t.Fail()
 	}
 
-	processExistingFiles(fmDirPath, config.Config{CleanupDuration: 60})
-	if !strings.Contains(buf.String(), "Formatted FM data written") {
+	processExistingFiles(fmDirPath, conf)
+	if !strings.Contains(buf.String(), "Data from "+fmFile+" pushed to elasticsearch successfully") {
 		t.Fail()
 	}
 }

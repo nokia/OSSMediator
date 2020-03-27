@@ -18,7 +18,7 @@ OpenNMSPlugin is compatible with only Unix/Linux system.
 
 ### Installation steps
 
-OpenNMSPlugin's binary should be built by running `make all` command.  
+OpenNMSPlugin's binary should be built by running `make all` command followed by `make build_package` command.  
 It will create binary named as `opennmsplugin` inside `bin` directory and package containing the binary and resource file, named as `OpenNMSPlugin.zip` inside `package` directory.  
   
 Please follow below procedure to install OpenNMSPlugin.zip in your home directory:

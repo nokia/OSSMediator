@@ -13,7 +13,7 @@ import (
 	"net/http"
 	"time"
 
-	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/dgrijalva/jwt-go"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -95,6 +95,7 @@ func setToken(response *UMResponse, user *User) {
 		refreshToken: response.RT.RefreshToken,
 		expiryTime:   expTime,
 	}
+	user.isSessionAlive = true
 	log.Debugf("Expiry time: %v for %s", user.sessionToken.expiryTime, user.Email)
 }
 
@@ -113,6 +114,7 @@ func RefreshToken(user *User) {
 			err := Login(user)
 			if err != nil {
 				log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
+				user.isSessionAlive = false
 				go retryLogin(initialBackoff, user)
 			} else {
 				user.wg.Done()
@@ -188,6 +190,7 @@ func retryLogin(backoff time.Duration, user *User) {
 			}
 			timer.Reset(backoff)
 		} else {
+			user.isSessionAlive = true
 			user.wg.Done()
 			return
 		}

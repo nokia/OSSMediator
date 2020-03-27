@@ -16,6 +16,7 @@ import (
 	"syscall"
 
 	"collector/util"
+	"collector/validator"
 
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -45,6 +46,12 @@ func main() {
 	log.Info("Starting DA OSS Collector...")
 	//Reading config from json file
 	err := util.ReadConfig(confFile)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	//validate config
+	err = validator.ValidateConf(util.Conf)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -117,9 +124,9 @@ func initLogger(logDir string, logLevel int) {
 	if err == nil {
 		lumberjackLogrotate := &lumberjack.Logger{
 			Filename:   logFile,
-			MaxSize:    2,  // Max megabytes before log is rotated
-			MaxBackups: 10, // Max number of old log files to keep
-			MaxAge:     20, // Max number of days to retain log files
+			MaxSize:    100, // Max megabytes before log is rotated
+			MaxBackups: 10,  // Max number of old log files to keep
+			MaxAge:     20,  // Max number of days to retain log files
 			Compress:   true,
 		}
 		log.SetOutput(lumberjackLogrotate)

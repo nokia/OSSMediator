@@ -10,16 +10,16 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
-	"opennmsplugin/validator"
 	"os"
 	"os/signal"
 	"path/filepath"
 	"syscall"
 
+	"elasticsearchplugin/config"
+	"elasticsearchplugin/util"
+
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/natefinch/lumberjack.v2"
-	"opennmsplugin/config"
-	"opennmsplugin/util"
 )
 
 var (
@@ -41,14 +41,11 @@ func main() {
 	//initialize logger
 	initLogger(logDir, logLevel)
 
-	log.Info("Starting OpenNMSPlugin...")
+	log.Info("Starting ElasticsearchPlugin...")
 	conf, err := config.ReadConfig(confFile)
 	if err != nil {
 		log.WithFields(log.Fields{"error": err}).Fatal("Error while reading config")
 	}
-
-	//Validating the destination directory
-	validator.CreateDestDir(conf)
 
 	//Add watcher to the PM/FM source directory
 	err = util.AddWatcher(conf)
@@ -59,21 +56,21 @@ func main() {
 	//watch file creation events in the source directory
 	go util.WatchEvents(conf)
 
+	//retry pushing data to elasticsearch that was failed earlier
+	util.PushFailedDataToElasticsearch(conf.ElasticsearchURL)
+
 	//cleanup old response
 	if conf.CleanupDuration > 0 {
-		for _, user := range conf.UsersConf {
-			util.CleanUp(conf.CleanupDuration, user.PMConfig.DestinationDir)
-			util.CleanUp(conf.CleanupDuration, user.FMConfig.DestinationDir)
-
+		for _, sourceDir := range conf.SourceDirs {
 			//cleanup of files collected by collector
-			files, err := ioutil.ReadDir(user.SourceDir)
+			files, err := ioutil.ReadDir(sourceDir)
 			if err != nil {
-				log.WithFields(log.Fields{"error": err}).Errorf("Error while reading source directory %s", user.SourceDir)
+				log.WithFields(log.Fields{"error": err}).Errorf("Error while reading source directory %s", sourceDir)
 			}
 
 			for _, f := range files {
 				if f.IsDir() {
-					dirPath := filepath.Join(user.SourceDir, f.Name())
+					dirPath := filepath.Join(sourceDir, f.Name())
 					util.CleanUp(conf.CleanupDuration, dirPath)
 				}
 			}
@@ -91,18 +88,18 @@ func parseFlags() {
 	flag.IntVar(&logLevel, "log_level", 4, "Log level")
 	flag.BoolVar(&version, "v", false, "Prints OSSMediator's version")
 	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, "Usage: ./opennmsplugin [options]\n")
+		fmt.Fprintf(os.Stderr, "Usage: ./elasticsearchplugin [options]\n")
 		fmt.Fprintf(os.Stderr, "Options:\n")
 		fmt.Fprintf(os.Stderr, "\t-h, --help\n\t\tOutput a usage message and exit.\n")
 		fmt.Fprintf(os.Stderr, "\t-conf_file\n\t\tConfig file path (default \"../resources/conf.json\")\n")
-		fmt.Fprintf(os.Stderr, "\t-log_dir\n\t\tLog Directory (default \"../log\"), logs will be stored in OpenNMSPlugin.log file.\n")
+		fmt.Fprintf(os.Stderr, "\t-log_dir\n\t\tLog Directory (default \"../log\"), logs will be stored in ElasticsearchPlugin.log file.\n")
 		fmt.Fprintf(os.Stderr, "\t-log_level\n\t\tLog Level (default 4), logger level in collector.log file. Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
 		fmt.Fprintf(os.Stderr, "\t-v\n\t\tPrints OSSMediator's version\n")
 	}
 	flag.Parse()
 }
 
-//create log file (OpenNMSPlugin.log) within logDir (in case of failure logs will be written to console)
+//create log file (ElasticsearchPlugin.log) within logDir (in case of failure logs will be written to console)
 func initLogger(logDir string, logLevel int) {
 	var err error
 	err = os.MkdirAll(logDir, os.ModePerm)
@@ -114,7 +111,7 @@ func initLogger(logDir string, logLevel int) {
 		return
 	}
 
-	logFile := logDir + "/OpenNMSPlugin.log"
+	logFile := logDir + "/ElasticsearchPlugin.log"
 	_, err = os.OpenFile(logFile, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0666)
 	if err == nil {
 		lumberjackLogrotate := &lumberjack.Logger{
@@ -137,6 +134,6 @@ func shutdownHook() {
 	osSignal := make(chan os.Signal, 1)
 	signal.Notify(osSignal, syscall.SIGINT, syscall.SIGTERM)
 	<-osSignal
-	log.Info("Terminating OpenNMSPlugin...")
-	os.Exit(0)
+	log.Info("Terminating ElasticsearchPlugin...")
+	os.Exit(1)
 }

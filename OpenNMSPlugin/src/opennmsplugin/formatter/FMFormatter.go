@@ -123,8 +123,6 @@ func FormatFMData(filePath string, fmConfig config.FMConfig, openNMSAddress stri
 		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
 		return
 	}
-	//removing source file
-	defer os.Remove(filePath)
 
 	fmData := new(fmdata)
 	for _, data := range receivedFMData {
@@ -148,12 +146,8 @@ func FormatFMData(filePath string, fmConfig config.FMConfig, openNMSAddress stri
 		params = append(params, createParam("Dn", data.Source.Dn))
 		params = append(params, createParam("nhgid", data.Source.NHGID))
 		params = append(params, createParam("nhgname", data.Source.NHGName))
-		if lnbts != "" {
-			params = append(params, createParam(neLnbtsField, lnbts))
-		}
-		if lncel != "" {
-			params = append(params, createParam(lncelField, lncel))
-		}
+		params = append(params, createParam(neLnbtsField, lnbts))
+		params = append(params, createParam(lncelField, lncel))
 
 		alarmTime := formatTime(data.Source.LastUpdatedTime)
 		var severity string
@@ -285,7 +279,7 @@ func retryPushToOpenNMS(address string) {
 //writes the fm file to OpenNMS
 func pushFile(conn net.Conn, filename string) error {
 	b, _ := ioutil.ReadFile(filename)
-	_, err := conn.Write([]byte(b))
+	_, err := conn.Write(b)
 	if err != nil {
 		return err
 	}

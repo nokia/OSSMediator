@@ -1,0 +1,84 @@
+/*
+* Copyright 2018 Nokia
+* Licensed under BSD 3-Clause Clear License,
+* see LICENSE file for details.
+ */
+
+package validator
+
+import (
+	"collector/util"
+	"fmt"
+	"net/url"
+	"strings"
+)
+
+//ValidateConf validates the parameters from json file
+func ValidateConf(conf util.Config) error {
+	if len(conf.Users) == 0 {
+		return fmt.Errorf("number of users can't be zero")
+	}
+
+	if len(conf.APIs) == 0 {
+		return fmt.Errorf("number of APIs can't be zero")
+	}
+
+	if !isURLValid(conf.BaseURL) {
+		return fmt.Errorf("invalid url: %s", conf.BaseURL)
+	}
+
+	for _, api := range conf.APIs {
+		if api.API == "" {
+			return fmt.Errorf("API URL can't be empty")
+		}
+		if api.Interval == 0 {
+			return fmt.Errorf("API call interval can't be zero")
+		}
+		if strings.Contains(api.API, "pm") && api.Type != "" {
+			return fmt.Errorf("API type for pmdata should be empty")
+		}
+		if strings.Contains(api.API, "fm") && api.Type == "" && !(api.Type == "HISTORY" || api.Type == "ACTIVE") {
+			return fmt.Errorf("API type for fmdata should be HISTORY/ACTIVE")
+		}
+	}
+
+	if conf.UMAPIs.Login == "" {
+		return fmt.Errorf("UM's login URL can't be empty")
+	}
+
+	if conf.UMAPIs.Logout == "" {
+		return fmt.Errorf("UM's logout URL can't be empty")
+	}
+
+	if conf.UMAPIs.Refresh == "" {
+		return fmt.Errorf("UM's refresh URL can't be empty")
+	}
+
+	for _, user := range conf.Users {
+		if !isEmailValid(user.Email) {
+			return fmt.Errorf("invalid user's email id %s", user.Email)
+		}
+	}
+
+	if conf.Delay < 1 || conf.Delay > 15 {
+		return fmt.Errorf("API delay limit should be within 1-15, delay: %d", conf.Delay)
+	}
+
+	if conf.Limit == 0 || conf.Limit > 10000 {
+		return fmt.Errorf("API response limit should be within 1-10000, limit: %d", conf.Limit)
+	}
+
+	return nil
+}
+
+func isEmailValid(emailID string) bool {
+	return true
+}
+
+func isURLValid(baseURL string) bool {
+	_, err := url.ParseRequestURI(baseURL)
+	if err != nil {
+		return false
+	}
+	return true
+}

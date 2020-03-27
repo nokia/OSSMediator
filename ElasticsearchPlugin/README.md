@@ -68,7 +68,7 @@ ElasticsearchPlugin reads all the collected PM/FM from OSSMediatorCollector and 
       "<SOURCE DIRECTORY PATH>",
       "<SOURCE DIRECTORY PATH>"
    ],
-   "elasticsearch_url":"http://127.0.0.1:9200",
+   "elasticsearch_url":"http://localhost:9200",
    "cleanup_duration":60
 }
 ````

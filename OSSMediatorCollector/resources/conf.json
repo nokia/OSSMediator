@@ -17,6 +17,10 @@
 		"refresh": "/sessions/refresh",
 		"logout": "/sessions/logout"
 	},
+	"list_nhg_api": {
+		"api": "/accounts/network-groups",
+		"interval": 60
+	},
 	"apis": [
 		{
 			"api": "/metrics/radios/pmdata",
@@ -25,16 +29,16 @@
 		{
 			"api": "/metrics/radios/fmdata",
 			"type": "ACTIVE",
-			"interval": 60,
+			"interval": 1,
 			"sync_duration": 15
 		},
 		{
 			"api": "/metrics/radios/fmdata",
 			"type": "HISTORY",
-			"interval": 15,
+			"interval": 1,
 			"sync_duration": 15
 		}
 	],
-	"limit": 100,
+	"limit": 10000,
 	"delay": 10
 }

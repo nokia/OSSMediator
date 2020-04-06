@@ -17,7 +17,6 @@ func TestReadConfigWithEmptyFile(t *testing.T) {
 	defer os.Remove(tmpfile)
 	err := ReadConfig(tmpfile)
 	if err == nil {
-		t.Error()
 		t.Fail()
 	}
 }
@@ -69,8 +68,7 @@ func TestReadConfig(t *testing.T) {
 
 	err := ReadConfig(tmpfile)
 	if err != nil {
-		t.Log(err)
-		t.Fail()
+		t.Error(err)
 	}
 	if Conf.BaseURL != "https://localhost:8080/api/v2" || len(Conf.Users) != 2 || Conf.Users[0].Email != "user1@nokia.com" || Conf.Users[0].Password != "test1" {
 		t.Fail()

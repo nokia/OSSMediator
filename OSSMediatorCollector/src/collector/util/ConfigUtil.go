@@ -18,12 +18,13 @@ import (
 
 //Config keeps the config from json
 type Config struct {
-	BaseURL string    `json:"base_url"` //Base URL of the API
-	UMAPIs  UMConf    `json:"um_api"`   //User management Configuration
-	APIs    []APIConf `json:"apis"`     //Array of API config
-	Users   []*User   `json:"users"`    //Keep track of all the user's details
-	Limit   int       `json:"limit"`
-	Delay   int       `json:"delay"`
+	BaseURL    string     `json:"base_url"` //Base URL of the API
+	UMAPIs     UMConf     `json:"um_api"`   //User management Configuration
+	ListNhGAPI *APIConf   `json:"list_nhg_api"`
+	APIs       []*APIConf `json:"apis"`  //Array of API config
+	Users      []*User    `json:"users"` //Keep track of all the user's details
+	Limit      int        `json:"limit"`
+	Delay      int        `json:"delay"`
 }
 
 //User keeps Login configurations
@@ -34,6 +35,7 @@ type User struct {
 	sessionToken   *sessionToken //SessionToken variable keeps track of access_token, refresh_token and expiry_time of the token. It is used for authenticating the API calls.
 	wg             sync.WaitGroup
 	isSessionAlive bool
+	nhgIDs         []string
 }
 
 //UMConf keeps user management APIs

@@ -48,6 +48,7 @@ const (
 	limitQueryParam     = "limit"
 	indexQueryParam     = "index"
 	alarmTypeQueryParam = "alarm_type"
+	nhgIDQueryParam     = "nhg_id"
 
 	//Headers
 	authorizationHeader = "Authorization"
@@ -98,6 +99,18 @@ type GetAPIResponse struct {
 	Status          Status `json:"status"` // Status of the response
 }
 
+//NhgDetailsResponse struct for listNhgData API
+type NhgDetailsResponse struct {
+	Status     Status      `json:"status"` // Status of the response
+	NhgDetails []NhgDetail `json:"nhg_info"`
+}
+
+//NhgDetail stores nhg details
+type NhgDetail struct {
+	NhgID    string `json:"nhg_id"`
+	NwStatus string `json:"nhg_config_status"`
+}
+
 //Status keeps track of status from response
 type Status struct {
 	StatusCode        string            `json:"status_code"`
@@ -119,6 +132,8 @@ type sessionToken struct {
 	expiryTime   time.Time
 }
 
+type fn func(string, *APIConf, *User, uint64)
+
 var currentTime = time.Now
 
 //StartDataCollection starts the tickers for PM/FM APIs.
@@ -129,8 +144,11 @@ func StartDataCollection() {
 	if currentTime.After(begTime) {
 		begTime = begTime.Add(time.Duration(interval) * time.Minute)
 		for _, user := range Conf.Users {
+			if Conf.ListNhGAPI != nil {
+				getNhgDetails(Conf.BaseURL, Conf.ListNhGAPI, user, atomic.AddUint64(&txnID, 1))
+			}
 			for _, api := range Conf.APIs {
-				go call(Conf.BaseURL, api, user, atomic.AddUint64(&txnID, 1))
+				go fetchMetricsData(Conf.BaseURL, api, user, atomic.AddUint64(&txnID, 1))
 			}
 		}
 	}
@@ -139,26 +157,51 @@ func StartDataCollection() {
 	<-timer.C
 	//For each APIs creates ticker to trigger the API periodically at specified interval.
 	for _, user := range Conf.Users {
+		if Conf.ListNhGAPI != nil {
+			getNhgDetails(Conf.BaseURL, Conf.ListNhGAPI, user, atomic.AddUint64(&txnID, 1))
+			ticker := time.NewTicker(time.Duration(Conf.ListNhGAPI.Interval) * time.Minute)
+			go trigger(ticker, Conf.BaseURL, Conf.ListNhGAPI, user, getNhgDetails)
+		}
 		for _, api := range Conf.APIs {
-			go call(Conf.BaseURL, api, user, atomic.AddUint64(&txnID, 1))
+			go fetchMetricsData(Conf.BaseURL, api, user, atomic.AddUint64(&txnID, 1))
 			ticker := time.NewTicker(time.Duration(api.Interval) * time.Minute)
-			go trigger(ticker, Conf.BaseURL, api, user)
+			go trigger(ticker, Conf.BaseURL, api, user, fetchMetricsData)
+		}
+	}
+}
+
+func fetchMetricsData(baseURL string, api *APIConf, user *User, txnID uint64) {
+	if len(user.nhgIDs) == 0 {
+		startTime, endTime := getTimeInterval(user, api, "", txnID)
+		call(baseURL, api, user, "", startTime, endTime, txnID)
+	} else {
+		for _, nhgID := range user.nhgIDs {
+			startTime, endTime := getTimeInterval(user, api, nhgID, txnID)
+			call(baseURL, api, user, nhgID, startTime, endTime, txnID)
 		}
 	}
 }
 
 //calls the API and handles pagination requests
-func call(baseURL string, api APIConf, user *User, txnID uint64) {
+func call(baseURL string, api *APIConf, user *User, nhgID string, startTime string, endTime string, txnID uint64) {
 	apiURL := baseURL + api.API
 	if !user.isSessionAlive {
-		log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, currentTime())
+		log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL, "nhg_id": nhgID}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, currentTime())
 		return
 	}
-	log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, currentTime())
-	startTime, endTime := getTimeInterval(user, apiURL, api.Type, api.Interval, api.SyncDuration)
-	response, err := callAPI(apiURL, user, startTime, endTime, 0, Conf.Limit, api.Type, txnID)
-	if err != nil || response == nil {
-		return
+
+	log.WithFields(log.Fields{"tid": txnID, "nhg_id": nhgID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, currentTime())
+	response, err := callAPI(apiURL, user, nhgID, startTime, endTime, 0, Conf.Limit, api.Type, txnID)
+	if err != nil {
+		if !strings.Contains(err.Error(), "no records found") {
+			response, err = retryAPICall(apiURL, user, nhgID, startTime, endTime, 0, Conf.Limit, api.Type, txnID)
+			if err != nil {
+				log.WithFields(log.Fields{"tid": txnID, "nhg_id": nhgID, "api_url": apiURL, "start_time": startTime, "end_time": endTime}).Infof("API call failed, data will be skipped...")
+				return
+			}
+		} else {
+			return
+		}
 	}
 	receivedNoOfRecords := response.NumOfRecords
 	totalNoOfRecords := response.TotalNumRecords
@@ -167,11 +210,11 @@ func call(baseURL string, api APIConf, user *User, txnID uint64) {
 
 	//handling pagination
 	for err == nil && nextRecord > 0 {
-		response, err = callAPI(apiURL, user, startTime, endTime, nextRecord, Conf.Limit, api.Type, txnID)
+		response, err = callAPI(apiURL, user, nhgID, startTime, endTime, nextRecord, Conf.Limit, api.Type, txnID)
 		if err != nil {
-			response, err = retryAPICall(apiURL, user, startTime, endTime, nextRecord, Conf.Limit, api.Type, txnID)
+			response, err = retryAPICall(apiURL, user, nhgID, startTime, endTime, nextRecord, Conf.Limit, api.Type, txnID)
 			if err != nil {
-				log.WithFields(log.Fields{"tid": txnID}).Infof("API call failed, will be retried from starting...")
+				log.WithFields(log.Fields{"tid": txnID, "nhg_id": nhgID, "api_url": apiURL, "start_time": startTime, "end_time": endTime}).Infof("API call failed, will be retried from starting...")
 				retryCompleteCallFlag = true
 			} else {
 				receivedNoOfRecords += response.NumOfRecords
@@ -183,24 +226,24 @@ func call(baseURL string, api APIConf, user *User, txnID uint64) {
 		}
 	}
 
-	log.WithFields(log.Fields{"tid": txnID, "total_no_of_records": totalNoOfRecords, "received_no_of_records": receivedNoOfRecords}).Infof("Received response details")
+	log.WithFields(log.Fields{"tid": txnID, "nhg_id": nhgID, "total_no_of_records": totalNoOfRecords, "received_no_of_records": receivedNoOfRecords}).Infof("Received response details")
 	if totalNoOfRecords > receivedNoOfRecords {
-		log.WithFields(log.Fields{"tid": txnID, "total_no_of_records": totalNoOfRecords, "received_no_of_records": receivedNoOfRecords}).Warnf("Received no. of records less than total no. of records, API call will be retried from starting...")
+		log.WithFields(log.Fields{"tid": txnID, "nhg_id": nhgID, "total_no_of_records": totalNoOfRecords, "received_no_of_records": receivedNoOfRecords}).Warnf("Received no. of records less than total no. of records, API call will be retried from starting...")
 		retryCompleteCallFlag = true
 	}
 
 	//retrying API call from beginning
 	var retryResponse *GetAPIResponse
 	if retryCompleteCallFlag {
-		retryResponse, err = callAPI(apiURL, user, startTime, endTime, 0, Conf.Limit, api.Type, txnID)
+		retryResponse, err = callAPI(apiURL, user, nhgID, startTime, endTime, 0, Conf.Limit, api.Type, txnID)
 		if err != nil {
-			log.WithFields(log.Fields{"txn_id": txnID, "api_url": apiURL, "start_time": startTime, "end_time": endTime, "index": nextRecord}).Warnf("API call failed, data will be skipped for the duration")
+			log.WithFields(log.Fields{"txn_id": txnID, "api_url": apiURL, "start_time": startTime, "end_time": endTime, "index": nextRecord, "nhg_id": nhgID}).Warnf("API call failed, data will be skipped for the duration")
 		} else {
 			nextRecord = retryResponse.NextRecord
 			for nextRecord > 0 {
-				retryResponse, err = callAPI(apiURL, user, startTime, endTime, nextRecord, Conf.Limit, api.Type, txnID)
+				retryResponse, err = callAPI(apiURL, user, nhgID, startTime, endTime, nextRecord, Conf.Limit, api.Type, txnID)
 				if err != nil {
-					log.WithFields(log.Fields{"txn_id": txnID, "api_url": apiURL, "start_time": startTime, "end_time": endTime, "index": nextRecord}).Warnf("API call failed, data will be skipped for the duration")
+					log.WithFields(log.Fields{"txn_id": txnID, "api_url": apiURL, "start_time": startTime, "end_time": endTime, "index": nextRecord, "nhg_id": nhgID}).Warnf("API call failed, data will be skipped for the duration")
 					break
 				}
 				nextRecord = retryResponse.NextRecord
@@ -210,12 +253,12 @@ func call(baseURL string, api APIConf, user *User, txnID uint64) {
 }
 
 //retry failed API call 3 times
-func retryAPICall(apiURL string, user *User, startTime string, endTime string, indx int, limit int, apiType string, txnID uint64) (*GetAPIResponse, error) {
+func retryAPICall(apiURL string, user *User, nhgID string, startTime string, endTime string, indx int, limit int, apiType string, txnID uint64) (*GetAPIResponse, error) {
 	var err error
 	var response *GetAPIResponse
 	for i := 0; i < maxAttempts; i++ {
-		log.WithFields(log.Fields{"txn_id": txnID, "api_url": apiURL, "start_time": startTime, "end_time": endTime, "limit": limit, "index": indx}).Info("retrying api call")
-		response, err = callAPI(apiURL, user, startTime, endTime, indx, limit, apiType, txnID)
+		log.WithFields(log.Fields{"txn_id": txnID, "nhg_id": nhgID, "api_url": apiURL, "start_time": startTime, "end_time": endTime, "limit": limit, "index": indx}).Info("retrying api call")
+		response, err = callAPI(apiURL, user, nhgID, startTime, endTime, indx, limit, apiType, txnID)
 		if err == nil {
 			return response, nil
 		}
@@ -223,11 +266,11 @@ func retryAPICall(apiURL string, user *User, startTime string, endTime string, i
 	return nil, err
 }
 
-//Trigger the APIs periodically at specified interval and writes response to responseDest directory.
-func trigger(ticker *time.Ticker, baseURL string, api APIConf, user *User) {
+//Trigger the method periodically at specified interval.
+func trigger(ticker *time.Ticker, baseURL string, api *APIConf, user *User, method fn) {
 	for {
 		<-ticker.C
-		call(baseURL, api, user, atomic.AddUint64(&txnID, 1))
+		method(baseURL, api, user, atomic.AddUint64(&txnID, 1))
 	}
 }
 
@@ -270,7 +313,7 @@ func CreateHTTPClient(certFile string, skipTLS bool) {
 
 //CallAPI calls the API, adds authorization, query params and returns response.
 //If successful it returns response as array of byte, if there is any error it return nil.
-func callAPI(apiURL string, user *User, startTime string, endTime string, indx int, limit int, apiType string, txnID uint64) (*GetAPIResponse, error) {
+func callAPI(apiURL string, user *User, nhgID string, startTime string, endTime string, indx int, limit int, apiType string, txnID uint64) (*GetAPIResponse, error) {
 	request, err := http.NewRequest("GET", apiURL, nil)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
@@ -278,8 +321,8 @@ func callAPI(apiURL string, user *User, startTime string, endTime string, indx i
 	}
 	//Lock the SessionToken object before calling API
 	user.sessionToken.access.Lock()
+	defer user.sessionToken.access.Unlock()
 	request.Header.Set(authorizationHeader, user.sessionToken.accessToken)
-	user.sessionToken.access.Unlock()
 
 	//requesting compressed response
 	request.Header.Add("Accept-Encoding", "gzip")
@@ -293,6 +336,9 @@ func callAPI(apiURL string, user *User, startTime string, endTime string, indx i
 	if apiType != "" {
 		query.Add(alarmTypeQueryParam, apiType)
 	}
+	if nhgID != "" {
+		query.Add(nhgIDQueryParam, nhgID)
+	}
 	request.URL.RawQuery = query.Encode()
 	log.WithFields(log.Fields{"tid": txnID}).Info(startTimeQueryParam, ": ", query[startTimeQueryParam])
 	log.WithFields(log.Fields{"tid": txnID}).Info(endTimeQueryParam, ": ", query[endTimeQueryParam])
@@ -300,7 +346,7 @@ func callAPI(apiURL string, user *User, startTime string, endTime string, indx i
 
 	response, err := doRequest(request)
 	if err != nil {
-		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
+		log.WithFields(log.Fields{"tid": txnID, "error": err, "nhg_id": nhgID, "api_url": apiURL, "start_time": startTime, "end_time": endTime}).Errorf("Error while calling %s for %s", apiURL, user.Email)
 		return nil, err
 	}
 
@@ -308,21 +354,21 @@ func callAPI(apiURL string, user *User, startTime string, endTime string, indx i
 	resp := new(GetAPIResponse)
 	err = json.NewDecoder(bytes.NewReader(response)).Decode(resp)
 	if err != nil {
-		log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to decode response")
+		log.WithFields(log.Fields{"tid": txnID, "error": err, "nhg_id": nhgID, "api_url": apiURL, "start_time": startTime, "end_time": endTime}).Error("Unable to decode response")
 		return nil, err
 	}
 
 	//check response for status code
 	err = checkStatusCode(resp.Status)
 	if err != nil {
-		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
+		log.WithFields(log.Fields{"tid": txnID, "error": err, "nhg_id": nhgID, "api_url": apiURL, "start_time": startTime, "end_time": endTime}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
 		return nil, err
 	}
-	log.WithFields(log.Fields{"tid": txnID, "total_no_of_records": resp.TotalNumRecords, "no_of_records_received": resp.NumOfRecords, "next_record_index": resp.NextRecord}).Infof("%s called successfully for %s.", apiURL, user.Email)
+	log.WithFields(log.Fields{"tid": txnID, "nhg_id": nhgID, "api_url": apiURL, "start_time": startTime, "end_time": endTime, "total_no_of_records": resp.TotalNumRecords, "no_of_records_received": resp.NumOfRecords, "next_record_index": resp.NextRecord}).Infof("%s called successfully for %s.", apiURL, user.Email)
 	log.WithFields(log.Fields{"tid": txnID}).Debugf("response: %v", resp)
 
 	//storing LastReceivedDataTime timestamp value to file
-	err = storeLastReceivedDataTime(user, apiURL, resp.Data, resp.Type, apiType, txnID)
+	err = storeLastReceivedDataTime(user, apiURL, resp.Data, resp.Type, apiType, nhgID, txnID)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID}).Error(err)
 	}
@@ -388,9 +434,13 @@ func writeResponse(response *GetAPIResponse, user *User, apiURL string, txnID ui
 	}
 	fileName = name + fileExtension
 	var out bytes.Buffer
-	json.Indent(&out, []byte(response.Data), "", "  ")
+	err := json.Indent(&out, []byte(response.Data), "", "  ")
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Unable to indent received data, error: %v", err)
+	}
+
 	log.WithFields(log.Fields{"tid": txnID}).Infof("Writing response to file %s for %s", fileName, user.Email)
-	err := writeFile(fileName, out.Bytes())
+	err = writeFile(fileName, out.Bytes())
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Writing response to file %s for %s failed", fileName, user.Email)
 	}
@@ -421,7 +471,7 @@ func writeFile(fileName string, data []byte) error {
 //Writes the last received metric's event time to a file so that next time that time stamp will be used as start_time for api calls.
 //Creates file for each user and each APIs.
 //returns error if writing to or reading from the response directory fails.
-func storeLastReceivedDataTime(user *User, apiURL string, data string, respType string, apiType string, txnID uint64) error {
+func storeLastReceivedDataTime(user *User, apiURL string, data string, respType string, apiType string, nhgID string, txnID uint64) error {
 	var metricData interface{}
 	err := json.Unmarshal([]byte(data), &metricData)
 	if err != nil {
@@ -452,7 +502,7 @@ func storeLastReceivedDataTime(user *User, apiURL string, data string, respType 
 		}
 		eventTimes = append(eventTimes, eventTime)
 	}
-	lastReceivedTime := getLastReceivedDataTime(user, apiURL, apiType)
+	lastReceivedTime := getLastReceivedDataTime(user, apiURL, apiType, nhgID, txnID)
 	if lastReceivedTime != "" {
 		t, err := time.Parse(time.RFC3339, lastReceivedTime)
 		if err == nil {
@@ -462,9 +512,13 @@ func storeLastReceivedDataTime(user *User, apiURL string, data string, respType 
 	sort.Slice(eventTimes, func(i, j int) bool { return eventTimes[i].Before(eventTimes[j]) })
 	latestTime := truncateSeconds(eventTimes[len(eventTimes)-1]).Format(time.RFC3339)
 
-	fileName := lastReceivedDataTime + "_" + user.Email + "_" + path.Base(apiURL)
+	fileName := path.Base(apiURL)
 	if apiType != "" {
 		fileName = fileName + "_" + apiType
+	}
+	fileName = fileName + "_" + user.Email
+	if nhgID != "" {
+		fileName = fileName + "_" + nhgID
 	}
 	log.WithFields(log.Fields{"tid": txnID}).Debug("Writing to ", fileName)
 	err = writeFile(fileName, []byte(latestTime))
@@ -492,21 +546,21 @@ func truncateSeconds(t time.Time) time.Time {
 
 //getTimeInterval: returns the start_time and end_time for API calls.
 //It reads start_time from file where last received data's event time is stored, if file is not present or
-func getTimeInterval(user *User, apiURL string, apiType string, interval int, syncDuration int) (string, string) {
+func getTimeInterval(user *User, api *APIConf, nhgID string, txnID uint64) (string, string) {
 	currentTime := truncateSeconds(currentTime())
 	//calculating 15 minutes time frame
 	diff := currentTime.Minute() - (currentTime.Minute() / interval * interval) + interval
 	begTime := currentTime.Add(time.Duration(-1*diff) * time.Minute)
 	endTime := begTime.Add(time.Duration(interval) * time.Minute)
-	startTime := getLastReceivedDataTime(user, apiURL, apiType)
+	startTime := getLastReceivedDataTime(user, api.API, api.Type, nhgID, txnID)
 	if startTime == "" {
 		startTime = truncateSeconds(begTime).Format(time.RFC3339)
 	}
-	if syncDuration > 0 {
+	if api.SyncDuration > 0 {
 		stTime, _ := time.Parse(time.RFC3339, startTime)
 		gap := endTime.Sub(stTime)
-		if gap < (time.Duration(syncDuration) * time.Minute) {
-			stTime = endTime.Add(time.Duration(-1*syncDuration) * time.Minute)
+		if gap < (time.Duration(api.SyncDuration) * time.Minute) {
+			stTime = endTime.Add(time.Duration(-1*api.SyncDuration) * time.Minute)
 			startTime = truncateSeconds(stTime).Format(time.RFC3339)
 		}
 	}
@@ -516,15 +570,69 @@ func getTimeInterval(user *User, apiURL string, apiType string, interval int, sy
 }
 
 //retrieves the last received metric time from file for per API
-func getLastReceivedDataTime(user *User, apiURL string, apiType string) string {
+func getLastReceivedDataTime(user *User, apiURL string, apiType string, nhgID string, txnID uint64) string {
 	//Reading start time value from file
-	fileName := lastReceivedDataTime + "_" + user.Email + "_" + path.Base(apiURL)
+	//fileName := lastReceivedDataTime + "_" + user.Email + "_" + path.Base(apiURL)
+	fileName := path.Base(apiURL)
 	if apiType != "" {
 		fileName = fileName + "_" + apiType
+	}
+	fileName = fileName + "_" + user.Email
+	if nhgID != "" {
+		fileName = fileName + "_" + nhgID
 	}
 	data, err := ioutil.ReadFile(fileName)
 	if err != nil || len(data) == 0 {
 		return ""
 	}
 	return strings.TrimSpace(string(data))
+}
+
+//get nhg details for the customer
+func getNhgDetails(baseURL string, api *APIConf, user *User, txnID uint64) {
+	apiURL := baseURL + api.API
+	if !user.isSessionAlive {
+		log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, currentTime())
+		return
+	}
+	log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, currentTime())
+	request, err := http.NewRequest("GET", apiURL, nil)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
+		return
+	}
+	//Lock the SessionToken object before calling API
+	user.sessionToken.access.Lock()
+	request.Header.Set(authorizationHeader, user.sessionToken.accessToken)
+	user.sessionToken.access.Unlock()
+
+	response, err := doRequest(request)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
+		return
+	}
+
+	//Map the received response to NhgDetailsResponse struct
+	resp := new(NhgDetailsResponse)
+	err = json.NewDecoder(bytes.NewReader(response)).Decode(resp)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to decode response")
+		return
+	}
+	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "nhg_ids": resp.NhgDetails}).Info("Response")
+
+	//check response for status code
+	err = checkStatusCode(resp.Status)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
+		return
+	}
+
+	user.nhgIDs = []string{}
+	for _, nhgInfo := range resp.NhgDetails {
+		if nhgInfo.NwStatus == "ACTIVE" {
+			user.nhgIDs = append(user.nhgIDs, nhgInfo.NhgID)
+		}
+	}
+	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "nhg_ids": user.nhgIDs}).Info("user nhgs")
 }

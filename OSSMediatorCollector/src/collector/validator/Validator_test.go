@@ -20,7 +20,7 @@ var (
 			Refresh: "/refresh",
 			Logout:  "/logout",
 		},
-		APIs: []util.APIConf{
+		APIs: []*util.APIConf{
 			{API: "/pmdata", Interval: 15},
 			{API: "/fmdata", Interval: 60, Type: "ACTIVE"},
 			{API: "/fmdata", Interval: 15, Type: "HISTORY"},
@@ -53,7 +53,7 @@ func TestValidateConfWithInvalidBaseURL(t *testing.T) {
 
 func TestValidateConfWithZeroAPI(t *testing.T) {
 	tmp := conf.APIs
-	conf.APIs = []util.APIConf{}
+	conf.APIs = []*util.APIConf{}
 	defer func() { conf.APIs = tmp }()
 	err := ValidateConf(conf)
 	if err == nil || !strings.Contains(err.Error(), "number of APIs can't be zero") {

@@ -68,6 +68,39 @@ var (
 		"total_num_records": 4,
 		"type": "fmdata"
 	  }`
+
+	listNhgResp = `
+	{
+  		"status": {
+    		"status_code": "SUCCESS",
+    		"status_description": {
+      			"description_code": "NOT_SPECIFIED",
+      			"description": "Fetch Successful for the requested user"
+    		}
+  		},
+  		"nhg_info": [
+    		{
+      			"nhg_id": "test_nhg_1",
+      			"nhg_config_status": "NW_CFG_UNAVAILABLE"
+    		},
+    		{
+      			"nhg_id": "test_nhg_2",
+      			"nhg_config_status": "ACTIVE"
+			},
+    		{
+      			"nhg_id": "test_nhg_3",
+				"nhg_config_status": "CONFIG_SUCCESS"
+			},
+    		{
+      			"nhg_id": "test_nhg_4",
+      			"nhg_config_status": "CONFIG_READY"
+    		},
+    		{
+      			"nhg_id": "test_nhg_5",
+      			"nhg_config_status": "NW_CFG_UNAVAILABLE"
+    		}
+  		]
+	}`
 )
 
 func TestCreateHTTPClientForSkipTLS(t *testing.T) {
@@ -220,8 +253,8 @@ func TestCallAPIForInvalidCase(t *testing.T) {
 	defer testServer.Close()
 
 	CreateHTTPClient("", true)
-	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
-	response, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
+	response, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
 	if err == nil || response != nil || !strings.Contains(err.Error(), "Error while validating response status") {
 		t.Fail()
 	}
@@ -236,8 +269,8 @@ func TestCallAPIForInvalidURL(t *testing.T) {
 	}
 
 	CreateHTTPClient("", true)
-	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
-	response, err := callAPI(":", &user, startTime, endTime, 0, 100, "", 123)
+	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
+	response, err := callAPI(":", &user, "", startTime, endTime, 0, 100, "", 123)
 	if err == nil || response != nil || !strings.Contains(err.Error(), "missing protocol scheme") {
 		t.Fail()
 	}
@@ -257,8 +290,8 @@ func TestCallAPI(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", false)
-	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
-	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
+	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
 	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
 	}
@@ -277,8 +310,8 @@ func TestCallAPIWithInvalidResponse(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", false)
-	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
-	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
+	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
 	if resp != nil && strings.Contains(err.Error(), "Unable to decode response") {
 		t.Fail()
 	}
@@ -310,8 +343,8 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 	defer testServer.Close()
 	defer os.Remove(tmpFile)
 	CreateHTTPClient("", false)
-	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
-	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
+	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
 	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
 	}
@@ -330,8 +363,8 @@ func TestCallAPIWithSkipCert(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", true)
-	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
-	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
+	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
 	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
 	}
@@ -352,8 +385,8 @@ func TestCallAPIWithCert(t *testing.T) {
 	}))
 	defer testServer.Close()
 	defer os.Remove(tmpfile)
-	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
-	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
+	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
 	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
 		t.Fail()
 	}
@@ -373,8 +406,8 @@ func TestCallAPIWithErrorStatusCode(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", false)
-	startTime, endTime := getTimeInterval(&user, "", "", 15, 0)
-	resp, err := callAPI(testServer.URL, &user, startTime, endTime, 0, 100, "", 123)
+	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
+	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
 	if err == nil || resp != nil {
 		t.Fail()
 	}
@@ -387,7 +420,8 @@ func TestCallAPIWithInactiveSession(t *testing.T) {
 		log.SetOutput(os.Stderr)
 	}()
 	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: false}
-	call("http://localhost:8080/v1", APIConf{API: "/pmdata"}, &user, 123)
+	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
+	call("http://localhost:8080/v1", &APIConf{API: "/pmdata"}, &user, "", startTime, endTime, 123)
 	if !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
 		t.Fail()
 	}
@@ -398,12 +432,12 @@ func TestStoreLastReceivedDataTime(t *testing.T) {
 	err := json.NewDecoder(bytes.NewReader([]byte(response))).Decode(resp)
 
 	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp", isSessionAlive: true}
-	err = storeLastReceivedDataTime(user, "/fm", resp.Data, fmResponseType, "ACTIVE", 123)
+	err = storeLastReceivedDataTime(user, "/fm", resp.Data, fmResponseType, "ACTIVE", "", 123)
 	if err != nil {
 		t.Fail()
 	}
 	//Reading LastReceivedFile value from file
-	fileName := lastReceivedDataTime + "_" + user.Email + "_" + "fm" + "_" + "ACTIVE"
+	fileName := "fm" + "_" + "ACTIVE" + "_" + user.Email
 	data, err := ioutil.ReadFile(fileName)
 	defer os.Remove(fileName)
 	if err != nil && len(data) == 0 {
@@ -418,7 +452,7 @@ func TestStoreLastReceivedDataTimeWithoutData(t *testing.T) {
 	}
 	defer os.RemoveAll(responseDir)
 	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp", isSessionAlive: true}
-	err := storeLastReceivedDataTime(user, "", "", fmResponseType, "ACTIVE", 123)
+	err := storeLastReceivedDataTime(user, "", "", fmResponseType, "ACTIVE", "test_nhg", 123)
 	t.Log(err)
 	if err == nil || !strings.Contains(err.Error(), "Unable to write last received data time, error: unexpected end of JSON input") {
 		t.Fail()
@@ -427,7 +461,7 @@ func TestStoreLastReceivedDataTimeWithoutData(t *testing.T) {
 
 func TestStoreLastReceivedFileTimeWithWrongDirectory(t *testing.T) {
 	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp", isSessionAlive: true}
-	err := storeLastReceivedDataTime(user, "", "", fmResponseType, "ACTIVE", 123)
+	err := storeLastReceivedDataTime(user, "", "", fmResponseType, "ACTIVE", "test_nhg", 123)
 	t.Log(err)
 	if err == nil {
 		t.Fail()
@@ -489,7 +523,7 @@ func TestStartDataCollectionWithInvalidURL(t *testing.T) {
 			},
 		},
 	}
-	Conf.APIs = []APIConf{{API: "/pmdata", Interval: 15}, {API: "/fmdata", Interval: 15, Type: "HISTORY"}}
+	Conf.APIs = []*APIConf{{API: "/pmdata", Interval: 15}, {API: "/fmdata", Interval: 15, Type: "HISTORY"}}
 	Conf.Limit = 10
 	CreateHTTPClient("", true)
 
@@ -536,7 +570,7 @@ func TestStartDataCollection(t *testing.T) {
 			},
 		},
 	}
-	Conf.APIs = []APIConf{{API: "/pmdata", Interval: 15}, {API: "/fmdata", Interval: 15, Type: "HISTORY"}}
+	Conf.APIs = []*APIConf{{API: "/pmdata", Interval: 15}, {API: "/fmdata", Interval: 15, Type: "HISTORY"}}
 	Conf.Limit = 10
 	CreateHTTPClient("", true)
 
@@ -575,8 +609,9 @@ func TestAPICallWithPagination(t *testing.T) {
 	}
 	CreateHTTPClient("", true)
 
-	call(testServer.URL, APIConf{API: "/fmdata", Interval: 15}, &user, 1000)
-	if !strings.Contains(buf.String(), "\"Received response details\" received_no_of_records=4 tid=1000 total_no_of_records=4") {
+	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 1000)
+	call(testServer.URL, &APIConf{API: "/fmdata", Interval: 15}, &user, "", startTime, endTime, 1000)
+	if !strings.Contains(buf.String(), "\"Received response details\" nhg_id= received_no_of_records=4 tid=1000 total_no_of_records=4") {
 		t.Error(buf.String())
 	}
 }
@@ -618,8 +653,9 @@ func TestRetryAPICall(t *testing.T) {
 	}
 	CreateHTTPClient("", true)
 
-	call(testServer.URL, APIConf{API: "/fmdata", Interval: 15}, &user, 1000)
-	if !strings.Contains(buf.String(), "\"Received response details\" received_no_of_records=4 tid=1000 total_no_of_records=4") {
+	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
+	call(testServer.URL, &APIConf{API: "/fmdata", Interval: 15}, &user, "", startTime, endTime, 1000)
+	if !strings.Contains(buf.String(), "\"Received response details\" nhg_id= received_no_of_records=4 tid=1000 total_no_of_records=4") {
 		t.Error(buf.String())
 	}
 }
@@ -657,8 +693,115 @@ func TestRetryAPICallFromStarting(t *testing.T) {
 	}
 	CreateHTTPClient("", true)
 
-	call(testServer.URL, APIConf{API: "/fmdata", Interval: 15}, &user, 1000)
+	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 1000)
+	call(testServer.URL, &APIConf{API: "/fmdata", Interval: 15}, &user, "", startTime, endTime, 1000)
 	if !strings.Contains(buf.String(), "API call failed, data will be skipped for the duration") {
 		t.Error(buf.String())
 	}
 }
+
+func TestGetNhgDetails(t *testing.T) {
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
+	user.sessionToken = &sessionToken{
+		accessToken:  "accessToken",
+		refreshToken: "refreshToken",
+		expiryTime:   currentTime(),
+	}
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintln(w, listNhgResp)
+	}))
+	defer testServer.Close()
+	CreateHTTPClient("", false)
+	getNhgDetails(testServer.URL, &APIConf{API: "/getNhgDetail", Interval: 15}, &user, 1234)
+	if user.nhgIDs[0] != "test_nhg_2" {
+		t.Fail()
+	}
+}
+
+func TestGetNhgDetailsWithInactiveSession(t *testing.T) {
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: false}
+	getNhgDetails("http://localhost:8080/v1", &APIConf{API: "/getNhgDetail", Interval: 15}, &user, 1234)
+	if !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
+		t.Fail()
+	}
+}
+
+func TestGetNhgDetailsForInvalidCase(t *testing.T) {
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
+	user.sessionToken = &sessionToken{
+		accessToken:  "accessToken",
+		refreshToken: "refreshToken",
+		expiryTime:   currentTime(),
+	}
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintln(w, `{
+			"status": {
+				"status_code": "FAILURE",
+				"status_description": {
+					"description_code": "INVALID_ARGUMENT",
+					"description": "Token sent is empty. Invalid Token"
+				}
+			}
+		}`)
+	}))
+	defer testServer.Close()
+
+	CreateHTTPClient("", true)
+	getNhgDetails(testServer.URL, &APIConf{API: "/getNhgDetail", Interval: 15}, &user, 1234)
+	if len(user.nhgIDs) != 0 {
+		t.Fail()
+	}
+}
+
+func TestGetNhgDetailsForInvalidURL(t *testing.T) {
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
+	user.sessionToken = &sessionToken{
+		accessToken:  "accessToken",
+		refreshToken: "refreshToken",
+		expiryTime:   currentTime(),
+	}
+
+	CreateHTTPClient("", true)
+	getNhgDetails(":", &APIConf{API: "/getNhgDetail", Interval: 15}, &user, 1234)
+	if !strings.Contains(buf.String(), "missing protocol scheme") {
+		t.Fail()
+	}
+}
+
+func TestGetNhgDetailsWithInvalidResponse(t *testing.T) {
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
+	user.sessionToken = &sessionToken{
+		accessToken:  "accessToken",
+		refreshToken: "refreshToken",
+		expiryTime:   currentTime(),
+	}
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintln(w, ``)
+	}))
+	defer testServer.Close()
+	CreateHTTPClient("", true)
+	getNhgDetails(testServer.URL, &APIConf{API: "/getNhgDetail", Interval: 15}, &user, 1234)
+	if !strings.Contains(buf.String(), "Unable to decode response") {
+		t.Fail()
+	}
+}
+
+

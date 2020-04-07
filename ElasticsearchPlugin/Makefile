@@ -14,7 +14,6 @@ docker_build:
 	@docker build -t elasticsearchplugin:1 . --network host
 	@docker create --name elasticsearchplugin elasticsearchplugin:1
 	@docker cp elasticsearchplugin:/ElasticsearchPlugin/elasticsearchplugin-unittest-result.txt .
-	@docker cp elasticsearchplugin:/ElasticsearchPlugin/coverage.html .
 	@docker rm elasticsearchplugin
 	@echo "docker build completed."
 
@@ -42,7 +41,6 @@ test:
 	@echo Running go coverage
 	@go tool cover -func=coverage.out
 	@gocov convert coverage.out
-	@go tool cover -html=coverage.out -o coverage.html
 	@echo "Completed :ElasticsearchPlugin Tests"
 
 clean:

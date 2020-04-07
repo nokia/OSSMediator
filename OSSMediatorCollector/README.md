@@ -86,6 +86,10 @@ PM / FM data collection by collector is performed using REST interface at regula
         "refresh": "/sessions/refresh",
         "logout": "/sessions/logout"
     },
+    "list_nhg_api": {
+        "api": "/accounts/network-groups",
+        "interval": 60
+    },
     "apis": [
         {
             "api": "/metrics/radios/pmdata",
@@ -109,24 +113,26 @@ PM / FM data collection by collector is performed using REST interface at regula
 }
 ````
 
-| Field          | Type        | Description                                                                                                                                                                   |
-|----------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| base_url       | string      | APIGW base URL.                                                                                                                                                               |
-| users          | [user_conf] | Users details.                                                                                                                                                                |
-| email_id       | string      | User's email ID.                                                                                                                                                              |
-| password       | string      | User's password encoded as base64 string.                                                                                                                                                              |
-| response_dest  | string      | Base directory to store the response from the REST APIs. Subdirectories will be created inside the base directory for storing each APIs response in their respective location |
-| um_api         | object      | User management APIs.                                                                                                                                                         |
-| um_api.login   | string      | Customer portal login API.                                                                                                                                                    |
-| um_api.refresh | string      | Customer portal refresh session API.                                                                                                                                          |
-| um_api.logout  | string      | Customer portal logout API.                                                                                                                                                   |
-| apis           | [api_conf]  | Get PM/FM APIs.                                                                                                                                                               |
-| api            | string      | API URL of get PM/FM data.                                                                                                                                                    |
-| interval       | integer     | Interval at which API should be called to collect data.                                                                                                                       |
-| type           | string      | Type of FM request ("ACTIVE" or "HISTORY").                                                                                                                                    |
-| sync_duration  | integer     | Time duration in minutes, for syncing FM for the given duration.                                                                                                                                    |
-| limit          | integer     | Number of records to be fetched from the API, should be within 1-500.
-| delay          | integer     | Time duration in minutes, for adding delay in API calls.
+| Field                 | Type        | Description                                                                                                                                                                   |
+|-----------------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| base_url              | string      | APIGW base URL.                                                                                                                                                               |
+| users                 | [user_conf] | Users details.                                                                                                                                                                |
+| email_id              | string      | User's email ID.                                                                                                                                                              |
+| password              | string      | User's password encoded as base64 string.                                                                                                                                                              |
+| response_dest         | string      | Base directory to store the response from the REST APIs. Subdirectories will be created inside the base directory for storing each APIs response in their respective location |
+| um_api                | object      | User management APIs.                                                                                                                                                         |
+| um_api.login          | string      | Customer portal login API.                                                                                                                                                    |
+| um_api.refresh        | string      | Customer portal refresh session API.                                                                                                                                          |
+| um_api.logout         | string      | Customer portal logout API.                                                                                                                                                   |
+| list_nhg_api.api      | string      | API URl for getting user's network details. Collector uses the list of NHGs for each FM/PM data collection.                                                                                                                                                  |
+| list_nhg_api.interval | integer     | Interval at which list_nhg_api will be called..                                                                                                                                                   |
+| apis                  | [api_conf]  | Get PM/FM APIs.                                                                                                                                                               |
+| api                   | string      | API URL of get PM/FM data.                                                                                                                                                    |
+| interval              | integer     | Interval at which API should be called to collect data.                                                                                                                       |
+| type                  | string      | Type of FM request ("ACTIVE" or "HISTORY").                                                                                                                                    |
+| sync_duration         | integer     | Time duration in minutes, for syncing FM for the given duration.                                                                                                                                    |
+| limit                 | integer     | Number of records to be fetched from the API, should be within 1-10000.
+| delay                 | integer     | Time duration in minutes, for adding delay in API calls.
 
 * To start collector, go to the installed path of the collector bin directory and start by calling the following command:
 

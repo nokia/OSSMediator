@@ -547,11 +547,11 @@ func truncateSeconds(t time.Time) time.Time {
 //getTimeInterval: returns the start_time and end_time for API calls.
 //It reads start_time from file where last received data's event time is stored, if file is not present or
 func getTimeInterval(user *User, api *APIConf, nhgID string, txnID uint64) (string, string) {
-	currentTime := truncateSeconds(currentTime())
+	currentTime := currentTime().Add(time.Duration(-10) * time.Second)
 	//calculating 15 minutes time frame
-	diff := currentTime.Minute() - (currentTime.Minute() / interval * interval) + interval
+	diff := currentTime.Minute() - (currentTime.Minute() / api.Interval * api.Interval) + api.Interval
 	begTime := currentTime.Add(time.Duration(-1*diff) * time.Minute)
-	endTime := begTime.Add(time.Duration(interval) * time.Minute)
+	endTime := begTime.Add(time.Duration(api.Interval) * time.Minute)
 	startTime := getLastReceivedDataTime(user, api.API, api.Type, nhgID, txnID)
 	if startTime == "" {
 		startTime = truncateSeconds(begTime).Format(time.RFC3339)
@@ -565,14 +565,13 @@ func getTimeInterval(user *User, api *APIConf, nhgID string, txnID uint64) (stri
 		}
 	}
 
-	return startTime, truncateSeconds(endTime).Format(time.RFC3339)
+	return startTime, endTime.Format(time.RFC3339)
 
 }
 
 //retrieves the last received metric time from file for per API
 func getLastReceivedDataTime(user *User, apiURL string, apiType string, nhgID string, txnID uint64) string {
 	//Reading start time value from file
-	//fileName := lastReceivedDataTime + "_" + user.Email + "_" + path.Base(apiURL)
 	fileName := path.Base(apiURL)
 	if apiType != "" {
 		fileName = fileName + "_" + apiType

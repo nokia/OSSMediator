@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 2.5
+
+BUG FIXES:
+
+* OSSMediatorCollector: API call incorrect end time fix.
+
 # 2.4
 
 NEW FEATURES:

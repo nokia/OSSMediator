@@ -21,7 +21,6 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-	"sync"
 	"sync/atomic"
 	"time"
 
@@ -126,7 +125,6 @@ type StatusDescription struct {
 //sessionToken struct tracks the access_token, refresh_token and expiry_time of the token
 //As the session token will be shared by multiple APIs.
 type sessionToken struct {
-	access       sync.Mutex
 	accessToken  string
 	refreshToken string
 	expiryTime   time.Time
@@ -319,11 +317,11 @@ func callAPI(apiURL string, user *User, nhgID string, startTime string, endTime 
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
 		return nil, err
 	}
-	//Lock the SessionToken object before calling API
-	user.sessionToken.access.Lock()
-	defer user.sessionToken.access.Unlock()
-	request.Header.Set(authorizationHeader, user.sessionToken.accessToken)
 
+	//wait if refresh token api is running
+	user.wg.Wait()
+
+	request.Header.Set(authorizationHeader, user.sessionToken.accessToken)
 	//requesting compressed response
 	request.Header.Add("Accept-Encoding", "gzip")
 
@@ -594,17 +592,18 @@ func getNhgDetails(baseURL string, api *APIConf, user *User, txnID uint64) {
 		log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, currentTime())
 		return
 	}
+
+	//wait if refresh token api is running
+	user.wg.Wait()
+
 	log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, currentTime())
 	request, err := http.NewRequest("GET", apiURL, nil)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
 		return
 	}
-	//Lock the SessionToken object before calling API
-	user.sessionToken.access.Lock()
-	request.Header.Set(authorizationHeader, user.sessionToken.accessToken)
-	user.sessionToken.access.Unlock()
 
+	request.Header.Set(authorizationHeader, user.sessionToken.accessToken)
 	response, err := doRequest(request)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)

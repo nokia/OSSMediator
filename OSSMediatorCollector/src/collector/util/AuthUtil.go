@@ -140,7 +140,6 @@ func getRefreshDuration(user *User) time.Duration {
 //calls the refresh API, return nil when successful.
 func callRefreshAPI(apiURL string, user *User) error {
 	log.Infof("Refreshing token for %s", user.Email)
-	user.sessionToken.access.Lock()
 	//forming body for refresh session API
 	reqBody := RefreshAndLogoutRequestBody{
 		RefreshToken: user.sessionToken.refreshToken,
@@ -148,13 +147,11 @@ func callRefreshAPI(apiURL string, user *User) error {
 	body, _ := json.Marshal(reqBody)
 	request, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(body))
 	if err != nil {
-		user.sessionToken.access.Unlock()
 		return err
 	}
 
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set(authorizationHeader, user.sessionToken.accessToken)
-	user.sessionToken.access.Unlock()
 	response, err := doRequest(request)
 	if err != nil {
 		return err

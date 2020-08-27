@@ -803,5 +803,3 @@ func TestGetNhgDetailsWithInvalidResponse(t *testing.T) {
 		t.Fail()
 	}
 }
-
-

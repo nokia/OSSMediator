@@ -59,6 +59,11 @@ func main() {
 	//retry pushing data to elasticsearch that was failed earlier
 	util.PushFailedDataToElasticsearch(conf.ElasticsearchURL)
 
+	//remove old data from elasticsearch
+	if conf.ELKDataRetentionDuration > 0 {
+		go util.DeleteDataFormElasticsearch(conf.ElasticsearchURL, conf.ELKDataRetentionDuration)
+	}
+
 	//cleanup old response
 	if conf.CleanupDuration > 0 {
 		for _, sourceDir := range conf.SourceDirs {
@@ -135,5 +140,5 @@ func shutdownHook() {
 	signal.Notify(osSignal, syscall.SIGINT, syscall.SIGTERM)
 	<-osSignal
 	log.Info("Terminating ElasticsearchPlugin...")
-	os.Exit(1)
+	os.Exit(0)
 }

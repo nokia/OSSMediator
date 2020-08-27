@@ -11,6 +11,7 @@ MediatorCollector is compatible with only Unix/Linux system.
     .  
     ├── resources               # Resource files  
         └── resource.conf  
+        └── alarm_notifier.yaml  
     ├── src                     # Source files  
     ├── Makefile  
     ├── Dockerfile  
@@ -64,7 +65,7 @@ Options:
 
 PM / FM data collection by collector is performed using REST interface at regular intervals based on configuration.  
 
-* To collect PM / FM data, it is required to modify conf.json configuration file in "resource" directory as shown in the example.
+* To collect PM / FM data, it is required to modify `conf.json` configuration file in `resource` directory as shown in the example.
 
 ````json
 {
@@ -140,3 +141,31 @@ NOTE: For login details (email ID and password) contact Nokia DAC support/operat
 Once the login is successful for all users, the collector will periodically start collecting the data by calling the configured APIs for the customer’s managed network.
 
 Collector logs can be checked in $cd $collector_basepath/log/collector.log file.
+
+### Active alarm notification
+
+User can enable alarm notification feature to receive details of specific alarm raised from the network.  
+This feature is optional and disabled by default. 
+* To enable alarm notification, it is required to add `alarm_notifier.yaml` file in `resource` directory as shown in the example.  
+
+```yaml
+  ms_teams_webhook: <MS TEAMS WEBHOOK URL>
+  filters:
+    - specific_problem: <ALARM SPECIFIC PROBLEM>
+    - specific_problem: <ALARM SPECIFIC PROBLEM>
+      fault_ids:
+        - <FAULT ID>
+        - <FAULT ID>
+    - specific_problem: <ALARM SPECIFIC PROBLEM>
+      fault_ids:
+        - <FAULT ID>
+        - <FAULT ID>
+  alarm_sync_duration: 60
+```
+
+| Field                 | Type        | Description                                                                                                                                                                   |
+|-----------------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ms_teams_webhook      | string      | MS teams webhook url.                                                                                                                                                         |
+| specific_problem      | integer     | Specific problem of the alarm of radio module for which notification should be sent.                                                                                          |
+| fault_ids             | integer     | Fault id of the alarm (can be found in Alarm text' second part).                                                                                                              |
+| alarm_sync_duration   | integer     | Duration in minutes after which notification for the already notified active alarms wil be sent again.                                                                        |

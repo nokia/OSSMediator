@@ -8,6 +8,8 @@ package util
 
 import (
 	"bytes"
+	"io/ioutil"
+	"net/http"
 	"os"
 	"strings"
 	"testing"
@@ -182,6 +184,44 @@ func TestPushFailedDataToElasticsearch(t *testing.T) {
 	PushFailedDataToElasticsearch(elasticsearchURL)
 	time.Sleep(1 * time.Second)
 	if !strings.Contains(buf.String(), "Data from "+fileName+" pushed to elasticsearch successfully") {
+		t.Fail()
+	}
+}
+
+func TestDeleteDataFormElasticsearch(t *testing.T) {
+	currTime := currentTime()
+	oldCurrentTime := currentTime
+	defer func() { currentTime = oldCurrentTime }()
+
+	myCurrentTime := func() time.Time {
+		return time.Date(currTime.Year(), currTime.Month(), currTime.Day()+1, 0, 59, 59, 0, time.Local)
+	}
+	currentTime = myCurrentTime
+	go DeleteDataFormElasticsearch(elasticsearchURL, 0)
+	time.Sleep(5 * time.Second)
+
+	searchURL := elasticsearchURL + "/" + strings.Join(indexList, ",") + "/_search"
+	request, err := http.NewRequest("GET", searchURL, nil)
+	if err != nil {
+		t.Error(err)
+	}
+
+	response, err := newNetClient().Do(request)
+	if err != nil {
+		t.Error(err)
+	}
+	defer response.Body.Close()
+	if response.StatusCode != http.StatusOK {
+		t.Errorf("Received response' status code: %d, status: %s", response.StatusCode, response.Status)
+	}
+
+	bodyBytes, _ := ioutil.ReadAll(response.Body)
+	if err != nil {
+		t.Error(err)
+	}
+	bodyString := string(bodyBytes)
+	t.Log(bodyString)
+	if !strings.Contains(string(bodyBytes), "\"hits\":{\"total\":{\"value\":0,\"relation\":\"eq\"}") {
 		t.Fail()
 	}
 }

@@ -24,6 +24,8 @@ import (
 	"sync/atomic"
 	"time"
 
+	"collector/notifier"
+
 	log "github.com/sirupsen/logrus"
 )
 
@@ -373,6 +375,9 @@ func callAPI(apiURL string, user *User, nhgID string, startTime string, endTime 
 
 	//write response
 	writeResponse(resp, user, apiURL, txnID)
+	if apiType == "ACTIVE" {
+		go notifier.RaiseAlarmNotification(txnID, resp.Data)
+	}
 	return resp, nil
 }
 

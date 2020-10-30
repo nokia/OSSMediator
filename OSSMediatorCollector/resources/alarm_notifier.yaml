@@ -1,0 +1,13 @@
+---
+  ms_teams_webhook: <MS TEAMS WEBHOOK URL>
+  filters:
+    - specific_problem: <ALARM SPECIFIC PROBLEM>
+    - specific_problem: <ALARM SPECIFIC PROBLEM>
+      fault_ids:
+        - <FAULT ID>
+        - <FAULT ID>
+    - specific_problem: <ALARM SPECIFIC PROBLEM>
+      fault_ids:
+        - <FAULT ID>
+        - <FAULT ID>
+  alarm_sync_duration: 60

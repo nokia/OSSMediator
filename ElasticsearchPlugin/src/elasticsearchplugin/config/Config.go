@@ -18,9 +18,10 @@ import (
 
 //Config read from resources/conf.json file
 type Config struct {
-	SourceDirs       []string `json:"source_dirs"`
-	ElasticsearchURL string   `json:"elasticsearch_url"`
-	CleanupDuration  int      `json:"cleanup_duration"`
+	SourceDirs               []string `json:"source_dirs"`
+	ElasticsearchURL         string   `json:"elasticsearch_url"`
+	ELKDataRetentionDuration int      `json:"elasticsearch_data_retention_duration"`
+	CleanupDuration          int      `json:"cleanup_duration"`
 }
 
 //ReadConfig reads the configurations from conf.json file

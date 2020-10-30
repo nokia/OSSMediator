@@ -27,3 +27,8 @@ OSSMediator is compatible with only Unix/Linux system.
     ├── OpenNMSPlugin               # Source files
     ├── ElasticsearchPlugin         # Source files
     └── README.md  
+
+
+## License
+
+This project is licensed under the BSD-3-Clause license - see the [LICENSE](https://github.com/nokia/OSSMediator/blob/master/LICENSE).

@@ -1,11 +1,32 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 2.5
+
+BUG FIXES:
+
+* OSSMediatorCollector: API call incorrect end time fix.
+
+# 2.4
+
+NEW FEATURES:
+
+* ElastisearchPlugin: Module for pushing the data collected by OSSMediatorCollector to Elasticsearch.
+
+IMPROVEMENTS:
+
+* OSSMediatorCollector:  
+    * Improvements for calling PM/FM APIs network wise.
+    * Changes for retrying API call when pagination fails or received number of records is not equal to total number of records.  
+    * Added `delay` parameter(in minutes) in config for calling APIs after delay interval.
+    * Added `sync_duration` parameter(in minutes) in config, for syncing FM data for the given duration.    
+* OpenNMSPlugin: Changes for deleting data collected by collector based on `cleanup_duration`.
+
 # 2.3
 
 IMPROVEMENTS:
 
-* OpenNMSPlugin: Changes for renaming Ffrmatted PM file to use UTC time instead of system local time zone.
+* OpenNMSPlugin: Changes for renaming Formatted PM file to use UTC time instead of system local time zone.
 
 # 2.2
 

@@ -1,6 +1,7 @@
 # ElasticsearchPlugin
 
-The ElasticsearchPlugin is a command line application that monitors the PM/FM directories where the mediator collector stores response and pushes the collected data to elasticsearch.
+The ElasticsearchPlugin is a command line application that monitors the local filesystem, where the PM and FM metrics data is collected by the OSS mediator collector.
+Then read PM and FM data is then pushed to elasticsearch data source.
 
 ### Prerequisites
 
@@ -76,7 +77,7 @@ ElasticsearchPlugin reads all the collected PM/FM from OSSMediatorCollector and 
 
 | Field                                 | Type        | Description                                                               |
 |---------------------------------------|-------------|---------------------------------------------------------------------------|
-| source_dirs                           | [string]    | Base directory path of the respective user where PM/FM data is pushed by the collector. This path has to be same as the path mentioned in response_dest directory in mediator collector configuration.  |
+| source_dirs                           | [string]    | Base directory path of the respective user where PM/FM data is pushed by the collector. This path has to be same as the path mentioned in response_dest directory of respective user in mediator collector configuration.  |
 | elasticsearch_url                     | string      | The url to connect to elasticSearch data source. Default: "http://localhost:9200".  |
 | elasticsearch_data_retention_duration | integer     | Duration in days, after which ElasticsearchPlugin will cleanup the metrics from Elasticsearch data source.  |
 | cleanup_duration                      | integer     | Duration in minutes, after which ElasticsearchPlugin will cleanup the collected files on the local file system.  |

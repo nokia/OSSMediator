@@ -22,8 +22,10 @@ var (
 		},
 		APIs: []*util.APIConf{
 			{API: "/pmdata", Interval: 15},
-			{API: "/fmdata", Interval: 60, Type: "ACTIVE"},
-			{API: "/fmdata", Interval: 15, Type: "HISTORY"},
+			{API: "/fmdata", Interval: 60, Type: "ACTIVE", MetricType: "RADIO"},
+			{API: "/fmdata", Interval: 15, Type: "HISTORY", MetricType: "RADIO"},
+			{API: "/fmdata", Interval: 60, Type: "ACTIVE", MetricType: "DAC"},
+			{API: "/fmdata", Interval: 15, Type: "HISTORY", MetricType: "DAC"},
 		},
 		Users: []*util.User{
 			{Email: "user1@nokia.com", Password: "dGVzdDE=", ResponseDest: "/statistics/reports/user1"},
@@ -146,7 +148,7 @@ func TestValidateConfWithInvalidAPITypeForPM(t *testing.T) {
 	conf.APIs[0].Type = "ACTIVE"
 	defer func() { conf.APIs[0].Type = tmp }()
 	err := ValidateConf(conf)
-	if err == nil || !strings.Contains(err.Error(), "API type for pmdata should be empty") {
+	if err == nil || !strings.Contains(err.Error(), "API type and metric type for pmdata should be empty") {
 		t.Error(err)
 	}
 }
@@ -157,6 +159,16 @@ func TestValidateConfWithInvalidAPITypeForFM(t *testing.T) {
 	defer func() { conf.APIs[1].Type = tmp }()
 	err := ValidateConf(conf)
 	if err == nil || !strings.Contains(err.Error(), "API type for fmdata should be HISTORY/ACTIVE") {
+		t.Error(err)
+	}
+}
+
+func TestValidateConfWithInvalidAPIMetricTypeForFM(t *testing.T) {
+	tmp := conf.APIs[1].MetricType
+	conf.APIs[1].MetricType = ""
+	defer func() { conf.APIs[1].MetricType = tmp }()
+	err := ValidateConf(conf)
+	if err == nil || !strings.Contains(err.Error(), "API metric type for fmdata should be RADIO/DAC") {
 		t.Error(err)
 	}
 }

@@ -35,7 +35,7 @@ build_package:
 test:
 	@echo "Started :ElasticsearchPlugin Tests"
 	@echo "---> Starting ElasticSearch"
-	@runuser -l elasticsearch -c 'cd /elasticsearch/elasticsearch-7.0.1/bin && nohup bash -c "./elasticsearch &" && sleep 20'
+	@runuser -l elasticsearch -c 'cd /elasticsearch/elasticsearch-7.0.1/bin && nohup bash -c "./elasticsearch -E http.port=9299 -E transport.tcp.port=9399 &" && sleep 20'
 	@echo Running Tests
 	@cd src/elasticsearchplugin && go test -coverpkg=.,./config,./util ./... -v -coverprofile=../../coverage.out > ../../elasticsearchplugin-unittest-result.txt || echo "ElasticsearchPlugin unit tests failed."
 	@echo Running go coverage

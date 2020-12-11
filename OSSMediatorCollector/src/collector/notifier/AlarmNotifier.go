@@ -15,6 +15,7 @@ import (
 	yaml "gopkg.in/yaml.v2"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strings"
 	"sync"
 	"time"
@@ -22,8 +23,8 @@ import (
 
 const (
 	//Timeout duration for HTTP calls
-	timeout     = 60 * time.Second
-	alarmConfig = "../resources/alarm_notifier.yaml"
+	timeout             = 60 * time.Second
+	alarmConfigFIlePath = "../resources/alarm_notifier.yaml"
 )
 
 type AlarmNotifier struct {
@@ -37,21 +38,21 @@ type AlarmFilters struct {
 	FaultIds        []string `yaml:"fault_ids"`
 }
 
-type FMResponse []struct {
-	Source FMSource `json:"_source"`
-}
-
 type FMSource struct {
-	AlarmIdentifier string `json:"AlarmIdentifier"`
-	AdditionalText  string `json:"AdditionalText"`
-	AlarmText       string `json:"AlarmText"`
-	Dn              string `json:"Dn"`
-	EventTime       string `json:"EventTime"`
-	LastUpdatedTime string `json:"LastUpdatedTime"`
-	Severity        string `json:"Severity"`
-	SpecificProblem string `json:"SpecificProblem"`
-	NhgName         string `json:"nhgname"`
-	NeHwID          string `json:"ne_hw_id"`
+	FmData struct {
+		AdditionalText  string `json:"additional_text"`
+		AlarmIdentifier string `json:"alarm_identifier"`
+		AlarmText       string `json:"alarm_text"`
+		EventTime       string `json:"event_time"`
+		LastUpdatedTime string `json:"last_updated_time"`
+		Severity        string `json:"severity"`
+		SpecificProblem string `json:"specific_problem"`
+	} `json:"fm_data"`
+	FmDataSource struct {
+		Dn       string `json:"dn"`
+		HwID     string `json:"hw_id"`
+		NhgAlias string `json:"nhg_alias"`
+	} `json:"fm_data_source"`
 }
 
 type RaisedNotification struct {
@@ -71,22 +72,33 @@ var (
 	notifiedAlarms = make(map[string]RaisedNotification)
 )
 
-func readAlarmNotifierConfig(txnID uint64) {
-	content, err := ioutil.ReadFile(alarmConfig)
+func readAlarmNotifierConfig(txnID uint64) error {
+	content, err := ioutil.ReadFile(alarmConfigFIlePath)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error reading YAML file")
-		return
+		return err
 	}
 
 	err = yaml.Unmarshal(content, &alarmNotifier)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error parsing YAML file")
+		return err
 	}
+	return nil
 }
 
-func RaiseAlarmNotification(txnID uint64, fmData string) {
-	readAlarmNotifierConfig(txnID)
-	alarmToNotify := getAlarmDetails(txnID, fmData, alarmNotifier.Filters)
+func RaiseAlarmNotification(txnID uint64, fmData interface{}) {
+	if _, err := os.Stat(alarmConfigFIlePath); os.IsNotExist(err) {
+		log.WithFields(log.Fields{"tid": txnID}).Debugf("Alarm notifier config not present, skipping alarm notification")
+		return
+	}
+	err := readAlarmNotifierConfig(txnID)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Unable to read alarm notifier config")
+		return
+	}
+	data, _ := json.Marshal(fmData)
+	alarmToNotify := getAlarmDetails(txnID, string(data), alarmNotifier.Filters)
 	if len(alarmToNotify) == 0 {
 		log.WithFields(log.Fields{"tid": txnID}).Debugf("Found no alarms to notify")
 		return
@@ -119,7 +131,7 @@ func RaiseAlarmNotification(txnID uint64, fmData string) {
 }
 
 func getAlarmDetails(txnID uint64, fmData string, filters []AlarmFilters) []FMSource {
-	var data FMResponse
+	var data []FMSource
 	var alarmToNotify []FMSource
 	err := json.Unmarshal([]byte(fmData), &data)
 	if err != nil {
@@ -129,16 +141,16 @@ func getAlarmDetails(txnID uint64, fmData string, filters []AlarmFilters) []FMSo
 
 	removeOldRaisedAlarms()
 	for _, v := range data {
-		isValid := checkAlarmFilter(v.Source.SpecificProblem, v.Source.AdditionalText, filters)
+		isValid := checkAlarmFilter(v.FmData.SpecificProblem, v.FmData.AdditionalText, filters)
 		if isValid {
-			alarmID := getAlarmUniqueID(v.Source)
+			alarmID := getAlarmUniqueID(v)
 			_, ok := notifiedAlarms[alarmID]
 			if !ok {
 				notifiedAlarms[alarmID] = RaisedNotification{
-					alarm:            v.Source,
+					alarm:            v,
 					notificationTime: time.Now(),
 				}
-				alarmToNotify = append(alarmToNotify, v.Source)
+				alarmToNotify = append(alarmToNotify, v)
 			}
 		}
 	}
@@ -167,6 +179,9 @@ func checkAlarmFilter(specificProblem string, additionalText string, filters []A
 		return true
 	}
 
+	if additionalText == "" {
+		return false
+	}
 	alarmFault := strings.Split(additionalText, ";")[1]
 	if alarmFault == "" {
 		return false
@@ -190,22 +205,22 @@ func checkSpecificProblem(specificProblem string, alarmSpecificProblems []string
 
 func formMessage(alarmToNotify []FMSource) string {
 	var msg string
-	msg += fmt.Sprintf("#**Alarm alert for %s network**  \nFollowing alarms have been raised:\n\n---", alarmToNotify[0].NhgName)
+	msg += fmt.Sprintf("#**Alarm alert for %s network**  \nFollowing alarms have been raised:\n\n---", alarmToNotify[0].FmDataSource.NhgAlias)
 	for _, v := range alarmToNotify {
-		msg += fmt.Sprintf("\n\n*AlarmID:* **%s**\n\n", v.AlarmIdentifier)
-		msg += fmt.Sprintf("*AlarmText:* **%s**\n\n", v.AlarmText)
-		msg += fmt.Sprintf("*Dn:* **%s**\n\n", v.Dn)
-		msg += fmt.Sprintf("*LastUpdatedTime:* **%s**\n\n", v.LastUpdatedTime)
-		msg += fmt.Sprintf("*Severity:* **%s**\n\n", v.Severity)
-		msg += fmt.Sprintf("*SpecificProblem:* **%s**\n\n", v.SpecificProblem)
-		msg += fmt.Sprintf("*NhgName:* **%s**\n\n", v.NhgName)
-		msg += fmt.Sprintf("*AdditionalText:* **%s**\n\n---", v.AdditionalText)
+		msg += fmt.Sprintf("\n\n*AlarmID:* **%s**\n\n", v.FmData.AlarmIdentifier)
+		msg += fmt.Sprintf("*AlarmText:* **%s**\n\n", v.FmData.AlarmText)
+		msg += fmt.Sprintf("*Dn:* **%s**\n\n", v.FmDataSource.Dn)
+		msg += fmt.Sprintf("*LastUpdatedTime:* **%s**\n\n", v.FmData.LastUpdatedTime)
+		msg += fmt.Sprintf("*Severity:* **%s**\n\n", v.FmData.Severity)
+		msg += fmt.Sprintf("*SpecificProblem:* **%s**\n\n", v.FmData.SpecificProblem)
+		msg += fmt.Sprintf("*NhgName:* **%s**\n\n", v.FmDataSource.NhgAlias)
+		msg += fmt.Sprintf("*AdditionalText:* **%s**\n\n---", v.FmData.AdditionalText)
 	}
 	return msg
 }
 
 func getAlarmUniqueID(alarm FMSource) string {
-	id := alarm.NeHwID + "_" + alarm.Dn + "_" + alarm.AlarmIdentifier + "_" + alarm.SpecificProblem + "_" + alarm.EventTime
+	id := alarm.FmDataSource.HwID + "_" + alarm.FmDataSource.Dn + "_" + alarm.FmData.AlarmIdentifier + "_" + alarm.FmData.SpecificProblem + "_" + alarm.FmData.EventTime
 	return id
 }
 

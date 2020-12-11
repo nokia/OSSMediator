@@ -19,98 +19,94 @@ import (
 )
 
 var (
-	elasticsearchURL = "http://127.0.0.1:9200"
+	elasticsearchURL = "http://127.0.0.1:9299"
 	testPMData       = `[
-	{
-	  "_index": "test_index",
-	  "_id": "12345",
-	  "_source": {
-		"Dn": "NE-MRBTS-1/NE-LNBTS-1/LNCEL-12/MCC-244/MNC-09",
-		"edgename": "test edge",
-		"SIG_SctpCongestionDuration": 0,
-		"neserialno": "4355",
-		"nename": "test",
-		"edge_id": "edge_id",
-		"SIG_SctpUnavailableDuration": 0,
-		"edge_hostname": "localhost",
-		"timestamp": "2018-11-22T16:15:00+05:30"
-	  }
-	},
-	{
-	  "_index": "test_index",
-	  "_id": "124576",
-	  "_source": {
-		"Dn": "NE-MRBTS-1/NE-LNBTS-1/LNCEL-12/MCC-244/MNC-09",
-		"edgename": "test edge 2",
-		"EQPT_MaxMeLoad": 0.5,
-		"neserialno": "3456",
-		"EQPT_MeanCpuUsage_0": 5,
-		"EQPT_MeanCpuUsage_1": 5,
-		"EQPT_MaxCpuUsage_1": 99,
-		"edge_id": "edge_id2",
-		"EQPT_MeanMeLoad": 0.4,
-		"edge_hostname": "localhost",
-		"ObjectType": "ManagedElement",
-		"UserLabel": "temp",
-		"nename": "476486",
-		"EQPT_MaxCpuUsage_0": 100,
-		"EQPT_MaxMemUsage": 59,
-		"EQPT_MeanMemUsage": 59,
-		"timestamp": "2018-11-22T16:15:00+05:30"
-	  }
-	}
-  ]`
-
-	testFMData = `[  
     {
-       "_index":"test_index",
-       "_type":"",
-       "_id":"12345",
-       "_source":{
-		  "Dn": "NE-MRBTS-1/NE-LNBTS-1/LNCEL-12/MCC-244/MNC-09",
-          "EventType":"Processing Error Alarm",
-          "AlarmState":0,
-          "SpecificProblem":"Time synchronization failed",
-          "LastUpdatedTime":"2018-09-23T16:04:06Z",
-          "edge_id":"edge_id",
-          "Severity":"Minor",
-          "NESerialNo":"98675",
-          "NeName":"",
-          "AdditionalText":"Unspecified",
-          "edge_hostname":"localhost",
-          "ProbableCause":"Time synchronization failed",
-          "AlarmText":"Time synchronization failed",
-          "EventTime":"2018-09-23T21:33:35+05:30",
-          "NotificationType":"NewAlarm",
-          "AlarmIdentifier":"11191",
-          "EdgeName":""
-       }
+      "pm_data": {
+        "Cat_M_Accessibility_M8100C0": 0,
+        "Cat_M_Accessibility_M8100C10": 0,
+        "Cat_M_Accessibility_M8100C11": 0
+      },
+      "pm_data_source": {
+        "edge_id": "test_edge",
+        "hw_id": "EB34567",
+        "hw_alias": "EB34567",
+        "serial_no": "34567",
+        "nhg_id": "test_nhg_1",
+        "nhg_alias": "test nhg",
+        "dn": "NE-MRBTS-111/NE-LNBTS-222/LNCEL-0",
+        "timestamp": "2020-11-10T18:30:00Z",
+        "technology": "4G"
+      }
     },
     {
-       "_index":"test_index",
-       "_type":"",
-       "_id":"12345",
-       "_source":{
-          "Dn": "NE-MRBTS-1/NE-LNBTS-1/LNCEL-12/MCC-244/MNC-09",
-          "EventType":"Processing Error Alarm",
-          "AlarmState":0,
-          "SpecificProblem":"Time synchronization failed",
-          "LastUpdatedTime":"2018-09-24T10:58:06Z",
-          "edge_id":"edge_id",
-          "Severity":"Minor",
-          "NESerialNo":"564357",
-          "NeName":"",
-          "AdditionalText":"Unspecified",
-          "edge_hostname":"localhost",
-          "ProbableCause":"Time synchronization failed",
-          "AlarmText":"Time synchronization failed",
-          "EventTime":"2018-09-24T16:28:01+05:30",
-          "NotificationType":"ClearedAlarm",
-          "AlarmIdentifier":"11191",
-          "EdgeName":""
-       }
+      "pm_data": {
+        "Cat_M_Accessibility_M8100C0": 0,
+        "Cat_M_Accessibility_M8100C10": 0,
+        "Cat_M_Accessibility_M8100C11": 0
+      },
+      "pm_data_source": {
+        "edge_id": "test_edge2",
+        "hw_id": "EB12345",
+        "hw_alias": "EB12345",
+        "serial_no": "12345",
+        "nhg_id": "test_nhg_2",
+        "nhg_alias": "test nhg2",
+        "dn": "MRBTS-222/NE-LNBTS-4444/LNCEL-0",
+        "timestamp": "2020-11-10T18:30:00Z",
+        "technology": "4G"
+      }
     }
- ]`
+  ]`
+
+	testFMData = `[
+    {
+      "fm_data": {
+        "alarm_identifier": "11111",
+        "severity": "minor",
+        "specific_problem": "2222",
+        "alarm_text": "Failure in connection",
+        "additional_text": "TraceConnectionFaultyAl",
+        "alarm_state": "CLEARED",
+        "event_type": "equipment",
+        "event_time": "2020-11-02T06:14:09Z",
+        "last_updated_time": "2020-11-02T06:14:10Z",
+        "notification_type": "alarmNew"
+      },
+      "fm_data_source": {
+        "edge_id": "98765",
+        "hw_id": "EB09856",
+        "hw_alias": "eNB7777",
+        "serial_no": "45678",
+        "nhg_id": "test_nhg_2",
+        "nhg_alias": "test nhg2",
+        "dn": "MRBTS-456/LNBTS-765",
+        "technology": "4G"
+      }
+    },
+    {
+      "fm_data": {
+        "alarm_identifier": "3333",
+        "severity": "minor",
+        "specific_problem": "4444",
+        "alarm_state": "CLEARED",
+        "event_type": "equipment",
+        "event_time": "2020-11-02T06:14:10Z",
+        "last_updated_time": "2020-11-02T06:14:10Z",
+        "notification_type": "alarmClear"
+      },
+      "fm_data_source": {
+        "edge_id": "test_edge",
+        "hw_id": "EB1111111",
+        "hw_alias": "test eNB",
+        "serial_no": "123456",
+        "nhg_id": "test_nhg_1",
+        "nhg_alias": "test nhg",
+        "dn": "MRBTS-123/LNBTS-321",
+        "technology": "4G"
+      }
+    }
+  ]`
 )
 
 func TestPushPMDataToElasticsearch(t *testing.T) {
@@ -120,14 +116,14 @@ func TestPushPMDataToElasticsearch(t *testing.T) {
 		log.SetOutput(os.Stderr)
 	}()
 
-	fileName := "./pm_data.json"
+	fileName := "./pmdata_data.json"
 	err := createTestData(fileName, testPMData)
 	if err != nil {
 		t.Error(err)
 	}
 	defer os.Remove(fileName)
 
-	pushDataToElasticsearch("./pm_data.json", elasticsearchURL)
+	pushDataToElasticsearch("./pmdata_data.json", elasticsearchURL)
 	if !strings.Contains(buf.String(), "Data from "+fileName+" pushed to elasticsearch successfully") {
 		t.Fail()
 	}
@@ -139,14 +135,14 @@ func TestPushFMDataToElasticsearch(t *testing.T) {
 	defer func() {
 		log.SetOutput(os.Stderr)
 	}()
-	fileName := "./fm_data.json"
+	fileName := "./fmdata_RADIO_HISTORY_data.json"
 	err := createTestData(fileName, testFMData)
 	if err != nil {
 		t.Error(err)
 	}
 	defer os.Remove(fileName)
 
-	pushDataToElasticsearch("./fm_data.json", elasticsearchURL)
+	pushDataToElasticsearch("./fmdata_RADIO_HISTORY_data.json", elasticsearchURL)
 	if !strings.Contains(buf.String(), "Data from "+fileName+" pushed to elasticsearch successfully") {
 		t.Fail()
 	}
@@ -158,16 +154,16 @@ func TestPushFMDataToInvalidElasticsearch(t *testing.T) {
 	log.SetOutput(&buf)
 	defer func() {
 		log.SetOutput(os.Stderr)
-		elasticsearchURL = "http://127.0.0.1:9200"
+		elasticsearchURL = "http://127.0.0.1:9299"
 	}()
-	fileName := "./fm_data.json"
+	fileName := "./fmdata_RADIO_HISTORY_data.json"
 	err := createTestData(fileName, testFMData)
 	if err != nil {
 		t.Error(err)
 	}
 	defer os.Remove(fileName)
 
-	pushDataToElasticsearch("./fm_data.json", elasticsearchURL)
+	pushDataToElasticsearch("./fmdata_RADIO_HISTORY_data.json", elasticsearchURL)
 	if !strings.Contains(buf.String(), "Unable to push data to elasticsearch, will be retried later") {
 		t.Fail()
 	}
@@ -179,7 +175,7 @@ func TestPushFailedDataToElasticsearch(t *testing.T) {
 	defer func() {
 		log.SetOutput(os.Stderr)
 	}()
-	fileName := "./fm_data.json"
+	fileName := "./fmdata_RADIO_HISTORY_data.json"
 	retryTicker = time.NewTicker(2 * time.Millisecond)
 	PushFailedDataToElasticsearch(elasticsearchURL)
 	time.Sleep(1 * time.Second)

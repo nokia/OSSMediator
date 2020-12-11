@@ -52,13 +52,9 @@ func TestReadConfig(t *testing.T) {
 			},
 			{
 				"api": "/nms/fmdata",
-				"type": "active",
+				"type": "ACTIVE",
+				"metric_type": "RADIO",
 				"interval": 15
-			},
-			{
-				"api": "/nms/fmdata",
-				"type": "history",
-				"interval": 60
 			}
 		],
 		"limit": 100

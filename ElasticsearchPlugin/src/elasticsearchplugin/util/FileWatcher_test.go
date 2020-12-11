@@ -149,13 +149,13 @@ func TestProcessExistingFiles(t *testing.T) {
 	os.MkdirAll(fmDirPath, os.ModePerm)
 	defer os.RemoveAll(fmDirPath)
 
-	fmFile := "./fmdata/fm_data.json"
+	fmFile := "./fmdata/fmdata_RADIO_ACTIVE_data.json"
 	err := createTestData(fmFile, testFMData)
 	if err != nil {
 		t.Error(err)
 	}
 	defer os.Remove(fmFile)
-	pmFile := "./pmdata/pm_data.json"
+	pmFile := "./pmdata/pmdata_data.json"
 	err = createTestData(pmFile, testPMData)
 	if err != nil {
 		t.Error(err)
@@ -170,7 +170,7 @@ func TestProcessExistingFiles(t *testing.T) {
 	}()
 	conf := config.Config{
 		CleanupDuration:  60,
-		ElasticsearchURL: "http://127.0.0.1:9200",
+		ElasticsearchURL: "http://127.0.0.1:9299",
 	}
 
 	processExistingFiles(pmDirPath, conf)

@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 2.6
+
+NEW FEATURES:
+
+* OSSMediatorCollector: Added alarm notifier feature to send notification for configured alarms to MS webhook.
+* ElastisearchPlugin: Changes for deleting data collected from elasticsearch based on `elasticsearch_data_retention_duration` field.
+
 # 2.5
 
 BUG FIXES:

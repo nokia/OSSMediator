@@ -27,17 +27,20 @@ const (
 	alarmConfigFIlePath = "../resources/alarm_notifier.yaml"
 )
 
+//AlarmNotifier keeps alarm notification config.
 type AlarmNotifier struct {
 	MsTeamsWebhook    string         `yaml:"ms_teams_webhook"`
 	Filters           []AlarmFilters `yaml:"filters"`
 	AlarmSyncDuration int            `yaml:"alarm_sync_duration"`
 }
 
+//AlarmFilters stores filters to be applied on alarms before notifying.
 type AlarmFilters struct {
 	SpecificProblem string   `yaml:"specific_problem"`
 	FaultIds        []string `yaml:"fault_ids"`
 }
 
+//FMSource struct keeps fm data.
 type FMSource struct {
 	FmData struct {
 		AdditionalText  string `json:"additional_text"`
@@ -55,11 +58,13 @@ type FMSource struct {
 	} `json:"fm_data_source"`
 }
 
+//RaisedNotification struct to keep track of all the notified alarms.
 type RaisedNotification struct {
 	alarm            FMSource
 	notificationTime time.Time
 }
 
+//TeamsMessage forms the body of message to be sent over MS teams.
 type TeamsMessage struct {
 	Text       string `json:"text"`
 	TextFormat string `json:"textFormat"`

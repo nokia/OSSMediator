@@ -18,11 +18,11 @@ import (
 
 //Config keeps the config from json
 type Config struct {
-	BaseURL    string     `json:"base_url"` //Base URL of the API
-	UMAPIs     UMConf     `json:"um_api"`   //User management Configuration
-	ListNhGAPI *APIConf   `json:"list_nhg_api"`
-	APIs       []*APIConf `json:"apis"`  //Array of API config
-	Users      []*User    `json:"users"` //Keep track of all the user's details
+	BaseURL    string     `json:"base_url"`     //Base URL of the API
+	UMAPIs     UMConf     `json:"um_api"`       //User management Configuration
+	ListNhGAPI *APIConf   `json:"list_nhg_api"` //list NHG API to keep track of all ACTIVE NHG of the user.
+	APIs       []*APIConf `json:"apis"`         //Array of API config
+	Users      []*User    `json:"users"`        //Keep track of all the user's details
 	Limit      int        `json:"limit"`
 	Delay      int        `json:"delay"`
 }
@@ -48,7 +48,8 @@ type UMConf struct {
 //APIConf keeps API configs
 type APIConf struct {
 	API          string `json:"api"`           //API URL
-	Type         string `json:"type"`          //For getting HISTORY or ACTIVE alarm from FM API.
+	Type         string `json:"type"`          //API type, HISTORY or ACTIVE from FM API.
+	MetricType   string `json:"metric_type"`   //Metrics type for the API, RADIO and DAC from FM API.
 	Interval     int    `json:"interval"`      //Interval at which the API will be triggered periodically.
 	SyncDuration int    `json:"sync_duration"` //Interval in minutes for which duration FM will be re-synced.
 }
@@ -73,6 +74,7 @@ func ReadConfig(confFile string) error {
 	for _, api := range Conf.APIs {
 		api.API = strings.TrimSpace(api.API)
 		api.Type = strings.TrimSpace(api.Type)
+		api.MetricType = strings.TrimSpace(api.MetricType)
 	}
 
 	for _, user := range Conf.Users {

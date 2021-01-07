@@ -1,0 +1,15 @@
+[Unit]
+Description=OSSMediator Plugin for formatting and pushing data to ELASTIC
+After=network.target
+ConditionPathExists=PLUGIN_PATH/bin/elasticsearchplugin
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+WorkingDirectory=PLUGIN_PATH/bin
+ExecStart=PLUGIN_PATH/bin/elasticsearchplugin
+
+[Install]
+WantedBy=multi-user.target

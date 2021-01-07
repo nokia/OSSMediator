@@ -1,0 +1,16 @@
+[Unit]
+Description=OSSMediator Collector for collecting data from Nokia-DAC
+Wants=network-online.target
+After=network.target network-online.target
+ConditionPathExists=COLLECTOR_PATH/bin/collector
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+WorkingDirectory=COLLECTOR_PATH/bin
+ExecStart=COLLECTOR_PATH/bin/collector
+
+[Install]
+WantedBy=multi-user.target

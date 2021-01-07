@@ -25,7 +25,7 @@ import (
 
 var (
 	response = `{
-		"data": "[{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"Equipment Alarm\",\"LastUpdatedTime\":\"2018-12-12T03:31:46Z\",\"Severity\":\"Minor\",\"EventTime\":\"2018-12-11T23:15:13+05:30:00\",\"NotificationType\":\"NewAlarm\"}},{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"communications\",\"LastUpdatedTime\":\"2018-12-12T08:57:43+05:30\",\"Severity\":\"major\",\"EventTime\":\"2018-12-11T12:52:34+05:30\",\"NotificationType\":\"alarmNew\"}}]",
+		"data": [{"fm_data":{"alarm_identifier":"2","severity":"major","specific_problem":"111","alarm_text":"Synchronizationlost","additional_text":"Synchronizationlost","alarm_state":"ACTIVE","event_type":"communications","event_time":"2020-10-30T13:29:27Z","last_updated_time":"2020-11-05T08:10:36Z","notification_type":"alarmNew"},"fm_data_source":{"hw_alias":"testhw","serial_no":"12345","nhg_id":"test_nhg_1","nhg_alias":"testnhg"}},{"fm_data":{"alarm_identifier":"3","severity":"minor","specific_problem":"2222","alarm_text":"SSHenabled","additional_text":"SSHenabled","alarm_state":"ACTIVE","event_type":"communications","event_time":"2020-10-30T13:29:27Z","last_updated_time":"2020-11-05T08:10:36Z","notification_type":"alarmNew"},"fm_data_source":{"hw_alias":"testhw","serial_no":"12345","nhg_id":"test_nhg_1","nhg_alias":"testnhg"}}],
 		"next_record": 0,
 		"num_of_records": 2,
 		"status": {
@@ -40,7 +40,7 @@ var (
 	  }`
 
 	response1 = `{
-		"data": "[{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"Equipment Alarm\",\"LastUpdatedTime\":\"2018-12-12T03:31:46Z\",\"Severity\":\"Minor\",\"EventTime\":\"2018-12-11T23:15:13+05:30:00\",\"NotificationType\":\"NewAlarm\"}},{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"communications\",\"LastUpdatedTime\":\"2018-12-12T08:57:43+05:30\",\"Severity\":\"major\",\"EventTime\":\"2018-12-11T12:52:34+05:30\",\"NotificationType\":\"alarmNew\"}}]",
+		"data": [{"fm_data":{"alarm_identifier":"2","severity":"major","specific_problem":"111","alarm_text":"Synchronizationlost","additional_text":"Synchronizationlost","alarm_state":"ACTIVE","event_type":"communications","event_time":"2020-10-30T13:29:27Z","last_updated_time":"2020-11-05T08:10:36Z","notification_type":"alarmNew"},"fm_data_source":{"hw_alias":"testhw","serial_no":"12345","nhg_id":"test_nhg_1","nhg_alias":"testnhg"}},{"fm_data":{"alarm_identifier":"3","severity":"minor","specific_problem":"2222","alarm_text":"SSHenabled","additional_text":"SSHenabled","alarm_state":"ACTIVE","event_type":"communications","event_time":"2020-10-30T13:29:27Z","last_updated_time":"2020-11-05T08:10:36Z","notification_type":"alarmNew"},"fm_data_source":{"hw_alias":"testhw","serial_no":"12345","nhg_id":"test_nhg_1","nhg_alias":"testnhg"}}],
 		"next_record": 2,
 		"num_of_records": 2,
 		"status": {
@@ -55,7 +55,7 @@ var (
 	  }`
 
 	response2 = `{
-		"data": "[{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"Equipment Alarm\",\"LastUpdatedTime\":\"2018-12-12T03:31:46Z\",\"Severity\":\"Minor\",\"EventTime\":\"2018-12-11T23:15:13+05:30:00\",\"NotificationType\":\"NewAlarm\"}},{\"_index\":\"test-index\",\"_id\":\"12345\",\"_source\":{\"EventType\":\"communications\",\"LastUpdatedTime\":\"2018-12-12T08:57:43+05:30\",\"Severity\":\"major\",\"EventTime\":\"2018-12-11T12:52:34+05:30\",\"NotificationType\":\"alarmNew\"}}]",
+		"data": [{"fm_data":{"alarm_identifier":"2","severity":"major","specific_problem":"111","alarm_text":"Synchronizationlost","additional_text":"Synchronizationlost","alarm_state":"ACTIVE","event_type":"communications","event_time":"2020-10-30T13:29:27Z","last_updated_time":"2020-11-05T08:10:36Z","notification_type":"alarmNew"},"fm_data_source":{"hw_alias":"testhw","serial_no":"12345","nhg_id":"test_nhg_1","nhg_alias":"testnhg"}},{"fm_data":{"alarm_identifier":"3","severity":"minor","specific_problem":"2222","alarm_text":"SSHenabled","additional_text":"SSHenabled","alarm_state":"ACTIVE","event_type":"communications","event_time":"2020-10-30T13:29:27Z","last_updated_time":"2020-11-05T08:10:36Z","notification_type":"alarmNew"},"fm_data_source":{"hw_alias":"testhw","serial_no":"12345","nhg_id":"test_nhg_1","nhg_alias":"testnhg"}}],
 		"next_record": 0,
 		"num_of_records": 2,
 		"status": {
@@ -78,7 +78,7 @@ var (
       			"description": "Fetch Successful for the requested user"
     		}
   		},
-  		"nhg_info": [
+  		"network_info": [
     		{
       			"nhg_id": "test_nhg_1",
       			"nhg_config_status": "NW_CFG_UNAVAILABLE"
@@ -165,7 +165,7 @@ func TestCreateHTTPClientWithCRTFile(t *testing.T) {
 
 func TestWriteResponseWithWrongDir(t *testing.T) {
 	response := &GetAPIResponse{
-		Data:            "test data",
+		Data:            response,
 		NextRecord:      0,
 		NumOfRecords:    10,
 		Type:            pmResponseType,
@@ -178,7 +178,7 @@ func TestWriteResponseWithWrongDir(t *testing.T) {
 		log.SetOutput(os.Stderr)
 	}()
 
-	writeResponse(response, user, "", 123)
+	writeResponse(response, user, &APIConf{API: "/fmdata", Type: "ACTIVE", MetricType: "RADIO"}, 123)
 	if !strings.Contains(buf.String(), "File creation failed") {
 		t.Fail()
 	}
@@ -186,7 +186,7 @@ func TestWriteResponseWithWrongDir(t *testing.T) {
 
 func TestWriteResponseForPM(t *testing.T) {
 	response := &GetAPIResponse{
-		Data:            `{"data":"test data"}`,
+		Data:            response,
 		NextRecord:      0,
 		NumOfRecords:    10,
 		Type:            pmResponseType,
@@ -195,7 +195,7 @@ func TestWriteResponseForPM(t *testing.T) {
 
 	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp"}
 	CreateResponseDirectory(user.ResponseDest, "/pm")
-	writeResponse(response, user, "/pm", 123)
+	writeResponse(response, user, &APIConf{API: "/pm"}, 123)
 	defer os.RemoveAll(user.ResponseDest)
 	files, err := ioutil.ReadDir(user.ResponseDest + "/pm")
 	if err != nil {
@@ -218,7 +218,7 @@ func TestWriteResponseForFM(t *testing.T) {
 
 	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp"}
 	CreateResponseDirectory(user.ResponseDest, "/fm")
-	writeResponse(response, user, "/fm", 123)
+	writeResponse(response, user, &APIConf{API: "/fm", Type: "ACTIVE", MetricType: "RADIO"}, 123)
 	defer os.RemoveAll(user.ResponseDest)
 	files, err := ioutil.ReadDir(user.ResponseDest + "/fm")
 	if err != nil {
@@ -254,7 +254,7 @@ func TestCallAPIForInvalidCase(t *testing.T) {
 
 	CreateHTTPClient("", true)
 	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
-	response, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
+	response, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, &APIConf{API: "/fmdata", Interval: 15}, 123)
 	if err == nil || response != nil || !strings.Contains(err.Error(), "Error while validating response status") {
 		t.Fail()
 	}
@@ -270,7 +270,7 @@ func TestCallAPIForInvalidURL(t *testing.T) {
 
 	CreateHTTPClient("", true)
 	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
-	response, err := callAPI(":", &user, "", startTime, endTime, 0, 100, "", 123)
+	response, err := callAPI(":", &user, "", startTime, endTime, 0, 100, &APIConf{API: "/fmdata", Interval: 15}, 123)
 	if err == nil || response != nil || !strings.Contains(err.Error(), "missing protocol scheme") {
 		t.Fail()
 	}
@@ -291,8 +291,8 @@ func TestCallAPI(t *testing.T) {
 	defer testServer.Close()
 	CreateHTTPClient("", false)
 	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
-	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
-	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
+	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, &APIConf{API: "/fmdata", Interval: 15}, 123)
+	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 {
 		t.Fail()
 	}
 }
@@ -311,7 +311,7 @@ func TestCallAPIWithInvalidResponse(t *testing.T) {
 	defer testServer.Close()
 	CreateHTTPClient("", false)
 	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
-	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
+	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, &APIConf{API: "/fmdata", Interval: 15}, 123)
 	if resp != nil && strings.Contains(err.Error(), "Unable to decode response") {
 		t.Fail()
 	}
@@ -344,8 +344,8 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 	defer os.Remove(tmpFile)
 	CreateHTTPClient("", false)
 	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
-	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
-	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
+	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, &APIConf{API: "/fmdata", Interval: 15}, 123)
+	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 {
 		t.Fail()
 	}
 }
@@ -364,8 +364,8 @@ func TestCallAPIWithSkipCert(t *testing.T) {
 	defer testServer.Close()
 	CreateHTTPClient("", true)
 	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
-	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
-	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
+	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, &APIConf{API: "/fmdata", Interval: 15}, 123)
+	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 {
 		t.Fail()
 	}
 }
@@ -386,8 +386,8 @@ func TestCallAPIWithCert(t *testing.T) {
 	defer testServer.Close()
 	defer os.Remove(tmpfile)
 	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
-	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
-	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 || len(resp.Data) == 0 {
+	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, &APIConf{API: "/fmdata", Interval: 15}, 123)
+	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 {
 		t.Fail()
 	}
 }
@@ -407,7 +407,7 @@ func TestCallAPIWithErrorStatusCode(t *testing.T) {
 	defer testServer.Close()
 	CreateHTTPClient("", false)
 	startTime, endTime := getTimeInterval(&user, &APIConf{API: "/fmdata", Interval: 15}, "", 123)
-	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, "", 123)
+	resp, err := callAPI(testServer.URL, &user, "", startTime, endTime, 0, 100, &APIConf{API: "/fmdata", Interval: 15}, 123)
 	if err == nil || resp != nil {
 		t.Fail()
 	}
@@ -429,41 +429,18 @@ func TestCallAPIWithInactiveSession(t *testing.T) {
 
 func TestStoreLastReceivedDataTime(t *testing.T) {
 	resp := new(GetAPIResponse)
-	err := json.NewDecoder(bytes.NewReader([]byte(response))).Decode(resp)
+	json.NewDecoder(bytes.NewReader([]byte(response))).Decode(resp)
 
 	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp", isSessionAlive: true}
-	err = storeLastReceivedDataTime(user, "/fm", resp.Data, fmResponseType, "ACTIVE", "", 123)
+	err := storeLastReceivedDataTime(user, resp.Data, &APIConf{API: "/fmdata", Interval: 15, Type: "ACTIVE"}, "", 123)
 	if err != nil {
 		t.Fail()
 	}
 	//Reading LastReceivedFile value from file
-	fileName := "fm" + "_" + "ACTIVE" + "_" + user.Email
+	fileName := "fmdata" + "_" + "ACTIVE" + "_" + user.Email
 	data, err := ioutil.ReadFile(fileName)
 	defer os.Remove(fileName)
 	if err != nil && len(data) == 0 {
-		t.Fail()
-	}
-}
-
-func TestStoreLastReceivedDataTimeWithoutData(t *testing.T) {
-	responseDir := "./tmp"
-	if _, err := os.Stat(responseDir); os.IsNotExist(err) {
-		os.MkdirAll(responseDir, os.ModePerm)
-	}
-	defer os.RemoveAll(responseDir)
-	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp", isSessionAlive: true}
-	err := storeLastReceivedDataTime(user, "", "", fmResponseType, "ACTIVE", "test_nhg", 123)
-	t.Log(err)
-	if err == nil || !strings.Contains(err.Error(), "Unable to write last received data time, error: unexpected end of JSON input") {
-		t.Fail()
-	}
-}
-
-func TestStoreLastReceivedFileTimeWithWrongDirectory(t *testing.T) {
-	user := &User{Email: "testuser@nokia.com", ResponseDest: "./tmp", isSessionAlive: true}
-	err := storeLastReceivedDataTime(user, "", "", fmResponseType, "ACTIVE", "test_nhg", 123)
-	t.Log(err)
-	if err == nil {
 		t.Fail()
 	}
 }
@@ -539,8 +516,13 @@ func TestStartDataCollectionWithInvalidURL(t *testing.T) {
 
 func TestStartDataCollection(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		url := r.URL.String()
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, response)
+		if strings.Contains(url, "network-hardware-groups") {
+			fmt.Fprintln(w, listNhgResp)
+		} else {
+			fmt.Fprintln(w, response)
+		}
 	}))
 	defer testServer.Close()
 	var buf bytes.Buffer
@@ -570,12 +552,13 @@ func TestStartDataCollection(t *testing.T) {
 			},
 		},
 	}
-	Conf.APIs = []*APIConf{{API: "/pmdata", Interval: 15}, {API: "/fmdata", Interval: 15, Type: "HISTORY"}}
+	Conf.APIs = []*APIConf{{API: "/{nhg_id}/fmdata", Interval: 15, Type: "HISTORY", MetricType: "RADIO"}}
 	Conf.Limit = 10
+	Conf.ListNhGAPI = &APIConf{API: "/network-hardware-groups", Interval: 60}
 	CreateHTTPClient("", true)
 
 	StartDataCollection()
-	time.Sleep(2 * time.Millisecond)
+	time.Sleep(20 * time.Millisecond)
 	if !strings.Contains(buf.String(), "Triggered "+testServer.URL) {
 		t.Fail()
 	}

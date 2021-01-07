@@ -9,12 +9,15 @@ It has following three components:
 - OSSMediatorCollector
 - OpenNMSPlugin
 - ElasticsearchPlugin
+- MediatorSetup
 
-The OSSMediatorCollector module will call the Nokia NDAC APIs periodically as per the configuration to get the metrics data for the customer’s managed network only.  
+The OSSMediatorCollector module will call the Nokia DAC APIs periodically as per the configuration to get the metrics data for the customer’s managed network only.  
 
 The OpenNMSPlugin is a module that will take the data that Mediator collector has collected and convert it into the format needed by the third party Network Management System like OpenNMS in this case.
 
-The ElasticsearchPlugin reads data collected by Mediator collector and pushes it to elasticseach.
+The ElasticsearchPlugin reads data collected by Mediator collector and pushes it to elasticsearch.
+
+MediatorSetup includes shell script and Grafana dashboards used for installation and creation of Grafana dashboards for the PM/FM data collected using OSSMediatorCollector and ElasticsearchPlugin.  
 
 ### Prerequisites
 
@@ -26,6 +29,7 @@ OSSMediator is compatible with only Unix/Linux system.
     ├── OSSMediatorCollector        # Source files  
     ├── OpenNMSPlugin               # Source files
     ├── ElasticsearchPlugin         # Source files
+    ├── MediatorSetup              # Source files
     └── README.md  
 
 

@@ -1,0 +1,46 @@
+apiVersion: 1
+
+datasources:
+  - name: radio-4g-pm
+    type: elasticsearch
+    access: proxy
+    database: "4g-pm*"
+    url: http://localhost:9200
+    jsonData:
+      timeInterval: 15m
+      timeField: "pm_data_source.timestamp"
+      esVersion: 70
+      tlsSkipVerify: true
+      
+  - name: radio-5g-pm
+    type: elasticsearch
+    access: proxy
+    database: "5g-pm*"
+    url: http://localhost:9200
+    jsonData:
+      timeInterval: 15m
+      timeField: "pm_data_source.timestamp"
+      esVersion: 70
+      tlsSkipVerify: true
+    
+  - name: radio-fm
+    type: elasticsearch
+    access: proxy
+    database: "radio-fm*"
+    url: http://localhost:9200
+    jsonData:
+      timeInterval: 15m
+      timeField: "fm_data.event_time"
+      esVersion: 70
+      tlsSkipVerify: true
+    
+  - name: dac-fm
+    type: elasticsearch
+    access: proxy
+    database: "dac-fm*"
+    url: http://localhost:9200
+    jsonData:
+      timeInterval: 15m
+      timeField: "fm_data.event_time"
+      esVersion: 70
+      tlsSkipVerify: true

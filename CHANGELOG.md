@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 3.0
+
+NEW FEATURES:
+
+* OSSMediatorCollector: Added support for getting DAC alarms.
+* MediatorSetup: Includes setup script and Grafana dashboards used for installation and creation of Grafana dashboards for the PM/FM data collected using OSSMediatorCollector and ElasticsearchPlugin.
+
+IMPROVEMENTS:
+
+* Added Nokia DAC `v2` API support.
+
+REMOVED:
+
+* Removed Nokia DAC `v1` API support.
+
 # 2.6
 
 NEW FEATURES:

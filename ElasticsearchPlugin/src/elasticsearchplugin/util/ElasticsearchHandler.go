@@ -14,6 +14,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"path"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -27,12 +29,12 @@ var (
 	failedData  []failedResponse
 	retryTicker *time.Ticker
 
-	indexList   = []string{"edge-fm*", "edge-pm-*", "edge-ne3s-pm-*", "edge-ne3s-5g-pm*"}
+	indexList   = []string{"radio-fm*", "dac-fm*", "4g-pm*", "5g-pm*"}
 	deleteQuery = `
 {
   "query": {
     "range" : {
-        "@timestamp": {
+        "timestamp": {
             "lte": "TIMESTAMP"
           }
     }
@@ -57,10 +59,16 @@ const (
 	timestampFormat = "2006-01-02T15:04:05"
 )
 
-type response []struct {
-	Index  string      `json:"_index"`
-	ID     string      `json:"_id"`
-	Source interface{} `json:"_source"`
+type pmResponse []struct {
+	PMData       map[string]interface{} `json:"pm_data"`
+	PMDataSource map[string]interface{} `json:"pm_data_source"`
+	Timestamp    time.Time              `json:"timestamp"`
+}
+
+type fmResponse []struct {
+	FMData       map[string]interface{} `json:"fm_data"`
+	FMDataSource map[string]interface{} `json:"fm_data_source"`
+	Timestamp    time.Time              `json:"timestamp"`
 }
 
 type failedResponse struct {
@@ -84,36 +92,12 @@ func newNetClient() *http.Client {
 }
 
 func pushDataToElasticsearch(filePath string, URL string) {
-	elkURL := URL + elkBulkAPI
-	log.Infof("Pushing data from %s to elasticsearch", filePath)
-	f, err := os.Open(filePath)
-	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
-		return
-	}
-	defer f.Close()
-	data, err := ioutil.ReadAll(f)
-	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
-		return
-	}
-
-	var resp response
-	err = json.Unmarshal(data, &resp)
-	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
-		return
-	}
-
-	var postData string
-	for i, d := range resp {
-		source, _ := json.Marshal(d.Source)
-		postData += `{"index": {"_index": "` + d.Index + `", "_id": "` + d.ID + `"}}` + "\n"
-		postData += string(source) + "\n"
-		if i != 0 && i%elkNoOfRecordsPerAPI == 0 || i == len(resp)-1 {
-			pushData(elkURL, postData, filePath)
-			postData = ""
-		}
+	fileName := path.Base(filePath)
+	apiType := strings.Split(fileName, "_")[0]
+	if apiType == "fmdata" {
+		pushFMDataToElasticsearch(filePath, URL)
+	} else if apiType == "pmdata" {
+		pushPMDataToElasticsearch(filePath, URL)
 	}
 }
 
@@ -228,5 +212,113 @@ func deleteData(elkURL string, duration int) {
 		log.WithFields(log.Fields{"Error": err, "url": elkURL, "delete_from_time": deletionTime}).Error("Unable to delete data from elasticsearch")
 	} else {
 		log.WithFields(log.Fields{"url": elkURL, "delete_from_time": deletionTime}).Info("Data deleted from elasticsearch successfully.")
+	}
+}
+
+func pushFMDataToElasticsearch(filePath string, URL string) {
+	elkURL := URL + elkBulkAPI
+	log.Infof("Pushing data from %s to elasticsearch", filePath)
+	f, err := os.Open(filePath)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
+		return
+	}
+	defer f.Close()
+	data, err := ioutil.ReadAll(f)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
+		return
+	}
+
+	fileName := path.Base(filePath)
+	metricType := strings.Split(fileName, "_")[1]
+	metricType = strings.ToLower(metricType)
+
+	var resp fmResponse
+	err = json.Unmarshal(data, &resp)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
+		return
+	}
+
+	var postData string
+	index := strings.Join([]string{metricType, "fm"}, "-")
+	for i, d := range resp {
+		dn := d.FMDataSource["dn"].(string)
+		eventTime := d.FMData["event_time"].(string)
+		hwID := d.FMDataSource["hw_id"].(string)
+
+		var id string
+		if metricType == "radio" {
+			id = strings.Join([]string{hwID, eventTime, dn}, "_")
+		} else if metricType == "dac" {
+			alarmID := d.FMData["alarm_identifier"].(string)
+			faultID := d.FMData["fault_id"].(string)
+			keys := []string{metricType, hwID, dn, alarmID}
+			if faultID != "" {
+				keys = append(keys, faultID)
+			}
+			keys = append(keys, eventTime)
+			id = strings.Join(keys, "_")
+		}
+		d.Timestamp = time.Now()
+
+		source, _ := json.Marshal(d)
+		postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
+		postData += string(source) + "\n"
+		if i != 0 && i%elkNoOfRecordsPerAPI == 0 || i == len(resp)-1 {
+			pushData(elkURL, postData, filePath)
+			postData = ""
+		}
+	}
+}
+
+func pushPMDataToElasticsearch(filePath string, URL string) {
+	elkURL := URL + elkBulkAPI
+	log.Infof("Pushing data from %s to elasticsearch", filePath)
+	f, err := os.Open(filePath)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
+		return
+	}
+	defer f.Close()
+	data, err := ioutil.ReadAll(f)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
+		return
+	}
+
+	var resp pmResponse
+	err = json.Unmarshal(data, &resp)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
+		return
+	}
+
+	var postData string
+	currTime := time.Now().UTC()
+	for i, d := range resp {
+		hwID := d.PMDataSource["hw_id"].(string)
+		dn := d.PMDataSource["dn"].(string)
+		eventTime := d.PMDataSource["timestamp"].(string)
+		technology := d.PMDataSource["technology"].(string)
+		var objectType string
+		for k, _ := range d.PMData {
+			objectType = k
+			break
+		}
+		objectType = strings.ToLower(objectType[:strings.LastIndex(objectType, "_")])
+
+		index := strings.Join([]string{strings.ToLower(technology), "pm", objectType, fmt.Sprintf("%02d", currTime.Month()), strconv.Itoa(currTime.Year())}, "-")
+		id := strings.Join([]string{hwID, eventTime, dn}, "_")
+
+		d.Timestamp = time.Now()
+		source, _ := json.Marshal(d)
+		postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
+		postData += string(source) + "\n"
+		if i != 0 && i%elkNoOfRecordsPerAPI == 0 || i == len(resp)-1 {
+			pushData(elkURL, postData, filePath)
+			postData = ""
+		}
 	}
 }

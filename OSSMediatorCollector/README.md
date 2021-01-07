@@ -69,49 +69,66 @@ PM / FM data collection by collector is performed using REST interface at regula
 
 ````json
 {
-    "base_url": "https://api.dac.nokia.com/api/v1",
-    "users": [
-        {
-            "email_id": "<USER EMAIL>",
-            "password": "<USER PASSWORD>",
-            "response_dest": "<DIRECTORY PATH>"
-        },
-        {
-            "email_id": "<USER EMAIL>",
-            "password": "<USER PASSWORD>",
-            "response_dest": "<DIRECTORY PATH>"
-        }
-    ],
-    "um_api": {
-        "login": "/sessions/login",
-        "refresh": "/sessions/refresh",
-        "logout": "/sessions/logout"
-    },
-    "list_nhg_api": {
-        "api": "/accounts/network-groups",
-        "interval": 60
-    },
-    "apis": [
-        {
-            "api": "/metrics/radios/pmdata",
-            "interval": 15
-        },
-        {
-            "api": "/metrics/radios/fmdata",
-            "type": "ACTIVE",
-            "interval": 1,
-            "sync_duration": 15
-        },
-        {
-            "api": "/metrics/radios/fmdata",
-            "type": "HISTORY",
-            "interval": 1,
-            "sync_duration": 15
-        }
-    ],
-    "limit": 100,
-    "delay": 10
+	"base_url": "https://api.dac.nokia.com/api/v1/api/ndac/v2",
+	"users": [
+		{
+			"email_id": "<USER EMAIL>",
+			"password": "<USER PASSWORD>",
+			"response_dest": "<DIRECTORY PATH>"
+		},
+		{
+			"email_id": "<USER EMAIL>",
+			"password": "<USER PASSWORD>",
+			"response_dest": "<DIRECTORY PATH>"
+		}
+	],
+	"um_api": {
+		"login": "/login-session",
+		"refresh": "/refresh-session",
+		"logout": "/logout-session"
+	},
+	"list_nhg_api": {
+		"api": "/network-hardware-groups",
+		"interval": 60
+	},
+	"apis": [
+		{
+			"api": "/network-hardware-groups/{nhg_id}/pmdata",
+			"interval": 15
+		},
+		{
+			"api": "/network-hardware-groups/{nhg_id}/fmdata",
+			"type": "ACTIVE",
+			"metric_type": "RADIO",
+			"interval": 1,
+			"sync_duration": 15
+		},
+		{
+			"api": "/network-hardware-groups/{nhg_id}/fmdata",
+			"type": "HISTORY",
+			"metric_type": "RADIO",
+			"interval": 1,
+			"sync_duration": 15
+		},
+		{
+			"api": "/network-hardware-groups/{nhg_id}/fmdata",
+			"type": "ACTIVE",
+			"metric_type": "DAC",
+			"interval": 1,
+			"sync_duration": 15
+		},
+		{
+			"api": "/network-hardware-groups/{nhg_id}/fmdata",
+			"type": "HISTORY",
+			"metric_type": "DAC",
+			"interval": 1,
+			"sync_duration": 15
+		}
+	],
+	"limit": 10000,
+	"delay": 10
 }
+
 ````
 
 | Field                 | Type        | Description                                                                                                                                                                   |
@@ -131,6 +148,7 @@ PM / FM data collection by collector is performed using REST interface at regula
 | api                   | string      | API URL of get PM/FM data.                                                                                                                                                    |
 | interval              | integer     | Interval at which API should be called to collect data.                                                                                                                       |
 | type                  | string      | Type of FM request ("ACTIVE" or "HISTORY").                                                                                                                                    |
+| metric_type           | string      | Type of FM alarm ("DAC" or "RADIO").                                                                                                                                    |
 | sync_duration         | integer     | Time duration in minutes, for syncing FM for the given duration.                                                                                                                                    |
 | limit                 | integer     | Number of records to be fetched from the API, should be within 1-10000.
 | delay                 | integer     | Time duration in minutes, for adding delay in API calls.

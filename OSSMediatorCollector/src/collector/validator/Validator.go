@@ -34,11 +34,14 @@ func ValidateConf(conf util.Config) error {
 		if api.Interval == 0 {
 			return fmt.Errorf("API call interval can't be zero")
 		}
-		if strings.Contains(api.API, "pm") && api.Type != "" {
-			return fmt.Errorf("API type for pmdata should be empty")
+		if strings.Contains(api.API, "pm") && (api.MetricType != "" || api.Type != "") {
+			return fmt.Errorf("API type and metric type for pmdata should be empty")
 		}
 		if strings.Contains(api.API, "fm") && api.Type == "" && !(api.Type == "HISTORY" || api.Type == "ACTIVE") {
 			return fmt.Errorf("API type for fmdata should be HISTORY/ACTIVE")
+		}
+		if strings.Contains(api.API, "fm") && api.MetricType == "" && !(api.MetricType == "RADIO" || api.MetricType == "DAC") {
+			return fmt.Errorf("API metric type for fmdata should be RADIO/DAC")
 		}
 	}
 

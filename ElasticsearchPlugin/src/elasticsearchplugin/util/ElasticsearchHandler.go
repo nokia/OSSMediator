@@ -303,7 +303,7 @@ func pushPMDataToElasticsearch(filePath string, URL string) {
 		eventTime := d.PMDataSource["timestamp"].(string)
 		technology := d.PMDataSource["technology"].(string)
 		var objectType string
-		for k, _ := range d.PMData {
+		for k := range d.PMData {
 			objectType = k
 			break
 		}

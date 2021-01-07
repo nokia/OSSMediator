@@ -92,7 +92,7 @@ var (
 	txnID uint64 = 1000
 )
 
-//GetAPIResponse keeps track of response received from PM/FM API
+//GetAPIResponse keeps track of response received from PM/FM API.
 type GetAPIResponse struct {
 	Type            string      `json:"type"`
 	TotalNumRecords int         `json:"total_num_records"`
@@ -102,30 +102,31 @@ type GetAPIResponse struct {
 	Status          Status      `json:"status"` // Status of the response
 }
 
-//NhgDetailsResponse struct for listNhgData API
+//NhgDetailsResponse struct for listNhgData API.
 type NhgDetailsResponse struct {
 	Status     Status      `json:"status"` // Status of the response
 	NhgDetails []NhgDetail `json:"network_info"`
 }
 
-//NhgDetail stores nhg details
+//NhgDetail stores nhg details.
 type NhgDetail struct {
 	NhgID    string `json:"nhg_id"`
 	NwStatus string `json:"nhg_config_status"`
 }
 
-//Status keeps track of status from response
+//Status keeps track of status from response.
 type Status struct {
 	StatusCode        string            `json:"status_code"`
 	StatusDescription StatusDescription `json:"status_description"`
 }
 
-//StatusDescription keeps track of status description from response
+//StatusDescription keeps track of status description from response.
 type StatusDescription struct {
 	DescriptionCode string `json:"description_code"`
 	Description     string `json:"description"`
 }
 
+//ErrorResponse sturct for parsing error response from APIs.
 type ErrorResponse struct {
 	Type   string `json:"type"`
 	Title  string `json:"title"`

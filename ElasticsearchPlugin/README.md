@@ -10,7 +10,7 @@ ElasticsearchPlugin is compatible with only Unix/Linux system.
 ### Project Structure
     .  
     ├── resources               # Resource files  
-        └── resource.conf  
+        └── conf.json  
     ├── src                     # Source files  
     ├── Makefile  
     ├── Dockerfile  
@@ -20,7 +20,7 @@ ElasticsearchPlugin is compatible with only Unix/Linux system.
 
 ElasticsearchPlugin's binary should be built by running `make all` command followed by `make build_package` command.  
 It will create binary named as `elasticsearchplugin` inside `bin` directory and package containing the binary and resource file, named as `ElasticsearchPlugin-<VERSION>.zip` inside `package` directory.  
-  
+
 Please follow below procedure to install ElasticsearchPlugin-<VERSION>.zip in your home directory:
 
 ````
@@ -40,7 +40,7 @@ ElasticsearchPlugin directory structure after installation will be as shown belo
     ├── log
         └── ElasticsearchPlugin.log
     └── resources
-        └── resource.conf
+        └── conf.json
 ````
 
 ## Usage
@@ -64,8 +64,8 @@ ElasticsearchPlugin reads all the collected PM/FM from OSSMediatorCollector and 
 * To insert PM/FM metrics in elasticsearch, modify conf.json configuration file under the "resources" directory as shown in the example:
 
 ````json
-{ 
-   "source_dirs":[ 
+{
+   "source_dirs":[
       "<SOURCE DIRECTORY PATH>",
       "<SOURCE DIRECTORY PATH>"
    ],

@@ -10,7 +10,7 @@ MediatorCollector is compatible with only Unix/Linux system.
 
     .  
     ├── resources               # Resource files  
-        └── resource.conf  
+        └── conf.json
         └── alarm_notifier.yaml  
     ├── src                     # Source files  
     ├── Makefile  
@@ -21,7 +21,7 @@ MediatorCollector is compatible with only Unix/Linux system.
 
 OSSMediatorCollector's binary should be built by running `make all` command followed by `make build_package` command.  
 It will create binary named as `collector` inside `bin` directory and package containing the binary and resource file, named as `OSSMediatorCollector.zip` inside `package` directory.  
-  
+
 Please follow below procedure to install OSSMediatorCollector.zip in your home directory:
 
 ````
@@ -41,7 +41,7 @@ MediatorCollector directory structure after installation will be as shown below:
     ├── log
         └── collector.log
     └── resources
-        └── resource.conf
+        └── conf.json
 ````
 
 ## Usage
@@ -169,7 +169,7 @@ Collector logs can be checked in $cd $collector_basepath/log/collector.log file.
 ### Active alarm notification
 
 User can enable alarm notification feature to receive details of specific alarm raised from the network.  
-This feature is optional and disabled by default. 
+This feature is optional and disabled by default.
 * To enable alarm notification, it is required to add `alarm_notifier.yaml` file in `resource` directory as shown in the example.  
 
 ```yaml

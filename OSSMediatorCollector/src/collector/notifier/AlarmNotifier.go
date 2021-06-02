@@ -92,6 +92,7 @@ func readAlarmNotifierConfig(txnID uint64) error {
 	return nil
 }
 
+//RaiseAlarmNotification alerts about specific alarms configured in resources/alarm_notifier.yaml to MS teams.
 func RaiseAlarmNotification(txnID uint64, fmData interface{}) {
 	if _, err := os.Stat(alarmConfigFIlePath); os.IsNotExist(err) {
 		log.WithFields(log.Fields{"tid": txnID}).Debugf("Alarm notifier config not present, skipping alarm notification")

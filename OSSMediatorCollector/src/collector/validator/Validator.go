@@ -19,7 +19,7 @@ func ValidateConf(conf util.Config) error {
 		return fmt.Errorf("number of users can't be zero")
 	}
 
-	if len(conf.APIs) == 0 {
+	if len(conf.MetricAPIs) == 0 {
 		return fmt.Errorf("number of APIs can't be zero")
 	}
 
@@ -27,7 +27,7 @@ func ValidateConf(conf util.Config) error {
 		return fmt.Errorf("invalid url: %s", conf.BaseURL)
 	}
 
-	for _, api := range conf.APIs {
+	for _, api := range conf.MetricAPIs {
 		if api.API == "" {
 			return fmt.Errorf("API URL can't be empty")
 		}
@@ -40,7 +40,7 @@ func ValidateConf(conf util.Config) error {
 		if strings.Contains(api.API, "fm") && api.Type == "" && !(api.Type == "HISTORY" || api.Type == "ACTIVE") {
 			return fmt.Errorf("API type for fmdata should be HISTORY/ACTIVE")
 		}
-		if strings.Contains(api.API, "fm") && api.MetricType == "" && !(api.MetricType == "RADIO" || api.MetricType == "DAC") {
+		if strings.Contains(api.API, "fm") && api.MetricType == "" && !(api.MetricType == "RADIO" || api.MetricType == "DAC" || api.MetricType == "CORE") {
 			return fmt.Errorf("API metric type for fmdata should be RADIO/DAC")
 		}
 	}

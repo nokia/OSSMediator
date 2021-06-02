@@ -210,23 +210,11 @@ func Logout(user *User) error {
 
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set(authorizationHeader, user.sessionToken.accessToken)
-	response, err := doRequest(request)
+	_, err = doRequest(request)
 	if err != nil {
 		return err
 	}
 
-	//Map the received response to umResponse struct
-	resp := new(UMResponse)
-	err = json.NewDecoder(bytes.NewReader(response)).Decode(resp)
-	if err != nil {
-		return fmt.Errorf("Unable to decode response received from logout API for %s, error:%v", user.Email, err)
-	}
-
-	//check response for status code
-	err = checkStatusCode(resp.Status)
-	if err != nil {
-		return err
-	}
 	log.Infof("%s Logged out", user.Email)
 	return nil
 }

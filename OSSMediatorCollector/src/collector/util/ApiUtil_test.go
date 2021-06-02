@@ -500,7 +500,7 @@ func TestStartDataCollectionWithInvalidURL(t *testing.T) {
 			},
 		},
 	}
-	Conf.APIs = []*APIConf{{API: "/pmdata", Interval: 15}, {API: "/fmdata", Interval: 15, Type: "HISTORY"}}
+	Conf.MetricAPIs = []*APIConf{{API: "/pmdata", Interval: 15}, {API: "/fmdata", Interval: 15, Type: "HISTORY"}}
 	Conf.Limit = 10
 	CreateHTTPClient("", true)
 
@@ -552,7 +552,7 @@ func TestStartDataCollection(t *testing.T) {
 			},
 		},
 	}
-	Conf.APIs = []*APIConf{{API: "/{nhg_id}/fmdata", Interval: 15, Type: "HISTORY", MetricType: "RADIO"}}
+	Conf.MetricAPIs = []*APIConf{{API: "/{nhg_id}/fmdata", Interval: 15, Type: "HISTORY", MetricType: "RADIO"}}
 	Conf.Limit = 10
 	Conf.ListNhGAPI = &APIConf{API: "/network-hardware-groups", Interval: 60}
 	CreateHTTPClient("", true)
@@ -684,7 +684,7 @@ func TestRetryAPICallFromStarting(t *testing.T) {
 }
 
 func TestGetNhgDetails(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true}
+	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true, ResponseDest: "./tmp"}
 	user.sessionToken = &sessionToken{
 		accessToken:  "accessToken",
 		refreshToken: "refreshToken",
@@ -696,6 +696,7 @@ func TestGetNhgDetails(t *testing.T) {
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", false)
+	CreateResponseDirectory(user.ResponseDest, "/getNhgDetail")
 	getNhgDetails(testServer.URL, &APIConf{API: "/getNhgDetail", Interval: 15}, &user, 1234)
 	if user.nhgIDs[0] != "test_nhg_2" {
 		t.Fail()

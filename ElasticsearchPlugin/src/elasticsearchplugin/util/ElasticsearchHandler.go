@@ -50,6 +50,7 @@ const (
 
 	elkBulkAPI           = "/_bulk"
 	elkDeleteAPI         = "/_delete_by_query"
+	elkCatIndicesAPI     = "/_cat/indices/"
 	elkWaitQueryParam    = "wait_for_completion"
 	elkNoOfRecordsPerAPI = 200
 
@@ -57,6 +58,12 @@ const (
 
 	deletionHour    = 1 //Hour of the day, when deletion of old data will be done from elasticsearch
 	timestampFormat = "2006-01-02T15:04:05"
+
+	//Data types
+	fmData   = "fmdata"
+	pmData   = "pmdata"
+	nhgData  = "network-hardware-groups"
+	simsData = "sims"
 )
 
 type pmResponse []struct {
@@ -74,6 +81,11 @@ type fmResponse []struct {
 type failedResponse struct {
 	filePath string
 	data     string
+}
+
+type genericData struct {
+	Data      string
+	Timestamp time.Time `json:"timestamp"`
 }
 
 func newNetClient() *http.Client {
@@ -94,10 +106,14 @@ func newNetClient() *http.Client {
 func pushDataToElasticsearch(filePath string, URL string) {
 	fileName := path.Base(filePath)
 	apiType := strings.Split(fileName, "_")[0]
-	if apiType == "fmdata" {
+	if apiType == fmData {
 		pushFMDataToElasticsearch(filePath, URL)
-	} else if apiType == "pmdata" {
+	} else if apiType == pmData {
 		pushPMDataToElasticsearch(filePath, URL)
+	} else if apiType == nhgData {
+		pushNHGDataToElasticsearch(filePath, URL)
+	} else if apiType == simsData {
+		pushSimsDataToElasticsearch(filePath, URL)
 	}
 }
 
@@ -260,6 +276,12 @@ func pushFMDataToElasticsearch(filePath string, URL string) {
 			}
 			keys = append(keys, eventTime)
 			id = strings.Join(keys, "_")
+		} else if metricType == "core" {
+			alarmID := d.FMData["alarm_identifier"].(string)
+			nhgID := d.FMDataSource["nhg_id"].(string)
+			edgeID := d.FMDataSource["edge_id"].(string)
+			keys := []string{metricType, alarmID, nhgID, edgeID, eventTime}
+			id = strings.Join(keys, "_")
 		}
 		d.Timestamp = time.Now()
 
@@ -321,4 +343,86 @@ func pushPMDataToElasticsearch(filePath string, URL string) {
 			postData = ""
 		}
 	}
+}
+
+func pushNHGDataToElasticsearch(filePath string, URL string) {
+	elkURL := URL + elkBulkAPI
+	log.Infof("Pushing data from %s to elasticsearch", filePath)
+	f, err := os.Open(filePath)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
+		return
+	}
+	defer f.Close()
+	data, err := ioutil.ReadAll(f)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
+		return
+	}
+
+	fileName := path.Base(filePath)
+	keys := strings.Split(fileName, "_")
+	metric := strings.ToLower(keys[0])
+	user := strings.ToLower(keys[1])
+
+	d := struct {
+		Data      interface{} `json:"network_info"`
+		Timestamp time.Time   `json:"timestamp"`
+	}{
+		Timestamp: time.Now(),
+	}
+	err = json.Unmarshal(data, &d.Data)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
+		return
+	}
+	source, _ := json.Marshal(d)
+
+	var postData string
+	index := "nhg-details"
+	id := strings.Join([]string{metric, user}, "_")
+	postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
+	postData += string(source) + "\n"
+	pushData(elkURL, postData, filePath)
+}
+
+func pushSimsDataToElasticsearch(filePath string, URL string) {
+	elkURL := URL + elkBulkAPI
+	log.Infof("Pushing data from %s to elasticsearch", filePath)
+	f, err := os.Open(filePath)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
+		return
+	}
+	defer f.Close()
+	data, err := ioutil.ReadAll(f)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
+		return
+	}
+
+	fileName := path.Base(filePath)
+	keys := strings.Split(fileName, "_")
+	metric := strings.ToLower(keys[0])
+	nhgID := strings.ToLower(keys[1])
+
+	d := struct {
+		Data      interface{} `json:"sim_data"`
+		Timestamp time.Time   `json:"timestamp"`
+	}{
+		Timestamp: time.Now(),
+	}
+	err = json.Unmarshal(data, &d.Data)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
+		return
+	}
+	source, _ := json.Marshal(d)
+
+	var postData string
+	index := "sims-data"
+	id := strings.Join([]string{metric, nhgID}, "_")
+	postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
+	postData += string(source) + "\n"
+	pushData(elkURL, postData, filePath)
 }

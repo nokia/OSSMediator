@@ -44,7 +44,7 @@ func TestReadConfig(t *testing.T) {
 			"refresh": "/refresh",
 			"logout": "/logout"
 		},
-		"apis":
+		"metric_apis":
 		[
 			{
 				"api": "/nms/pmdata",

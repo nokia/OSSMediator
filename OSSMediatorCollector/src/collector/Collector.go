@@ -30,6 +30,7 @@ var (
 	logLevel   int
 	version    bool
 	appVersion string
+	enableConsoleLog bool
 )
 
 func main() {
@@ -72,7 +73,11 @@ func main() {
 	for _, user := range util.Conf.Users {
 		go util.RefreshToken(user)
 		//Create the sub response directory for the API under the user's base response directory.
-		for _, api := range util.Conf.APIs {
+		util.CreateResponseDirectory(user.ResponseDest, util.Conf.ListNhGAPI.API)
+		for _, api := range util.Conf.MetricAPIs {
+			util.CreateResponseDirectory(user.ResponseDest, api.API)
+		}
+		for _, api := range util.Conf.SimAPIs {
 			util.CreateResponseDirectory(user.ResponseDest, api.API)
 		}
 	}
@@ -92,6 +97,7 @@ func parseFlags() {
 	flag.BoolVar(&skipTLS, "skip_tls", false, "skip TLS authentication")
 	flag.StringVar(&logDir, "log_dir", "../log", "Log directory")
 	flag.IntVar(&logLevel, "log_level", 4, "Log level")
+	flag.BoolVar(&enableConsoleLog, "enable_console_log", false, "Enable console logging, if true logs won't be written to file")
 	flag.BoolVar(&version, "v", false, "Prints OSSMediator's version")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: ./collector [options]\n")
@@ -100,15 +106,23 @@ func parseFlags() {
 		fmt.Fprintf(os.Stderr, "\t-conf_file string\n\t\tConfig file path (default \"../resources/conf.json\")\n")
 		fmt.Fprintf(os.Stderr, "\t-cert_file string\n\t\tCertificate file path (if cert_file is not passed then it will establish TLS auth using root certificates.)\n")
 		fmt.Fprintf(os.Stderr, "\t-log_dir string\n\t\tLog Directory (default \"../log\"), logs will be stored in collector.log file.\n")
-		fmt.Fprintf(os.Stderr, "\t-log_level int\n\t\tLog Level (default 4), logger level in collector.log file. Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
+		fmt.Fprintf(os.Stderr, "\t-log_level int\n\t\tLog Level (default 4). Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
 		fmt.Fprintf(os.Stderr, "\t-skip_tls\n\t\tSkip TLS Authentication\n")
+		fmt.Fprintf(os.Stderr, "\t-enable_console_log\n\t\tEnable console logging, if true logs won't be written to file\n")
 		fmt.Fprintf(os.Stderr, "\t-v\n\t\tPrints OSSMediator's version\n")
 	}
 	flag.Parse()
 }
 
 //create log file (collector.log) within logDir (in case of failure logs will be written to console)
+//if console logs is enabled then logs are written to stdout instead of file.
 func initLogger(logDir string, logLevel int) {
+	if enableConsoleLog {
+		log.SetOutput(os.Stdout)
+		log.SetFormatter(&log.TextFormatter{})
+		log.SetLevel(log.Level(logLevel))
+		return
+	}
 	var err error
 	err = os.MkdirAll(logDir, os.ModePerm)
 	if err != nil {
@@ -116,6 +130,7 @@ func initLogger(logDir string, logLevel int) {
 		log.Info("Failed to log to file, using default stderr")
 		log.SetOutput(os.Stdout)
 		log.SetFormatter(&log.TextFormatter{})
+		log.SetLevel(log.Level(logLevel))
 		return
 	}
 

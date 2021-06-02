@@ -21,7 +21,8 @@ type Config struct {
 	BaseURL    string     `json:"base_url"`     //Base URL of the API
 	UMAPIs     UMConf     `json:"um_api"`       //User management Configuration
 	ListNhGAPI *APIConf   `json:"list_nhg_api"` //list NHG API to keep track of all ACTIVE NHG of the user.
-	APIs       []*APIConf `json:"apis"`         //Array of API config
+	MetricAPIs []*APIConf `json:"metric_apis"`  //Array of API config
+	SimAPIs    []*APIConf `json:"sim_apis"`     //Array of API config
 	Users      []*User    `json:"users"`        //Keep track of all the user's details
 	Limit      int        `json:"limit"`
 	Delay      int        `json:"delay"`
@@ -71,7 +72,13 @@ func ReadConfig(confFile string) error {
 	Conf.UMAPIs.Logout = strings.TrimSpace(Conf.UMAPIs.Logout)
 	Conf.UMAPIs.Refresh = strings.TrimSpace(Conf.UMAPIs.Refresh)
 
-	for _, api := range Conf.APIs {
+	for _, api := range Conf.MetricAPIs {
+		api.API = strings.TrimSpace(api.API)
+		api.Type = strings.TrimSpace(api.Type)
+		api.MetricType = strings.TrimSpace(api.MetricType)
+	}
+
+	for _, api := range Conf.SimAPIs {
 		api.API = strings.TrimSpace(api.API)
 		api.Type = strings.TrimSpace(api.Type)
 		api.MetricType = strings.TrimSpace(api.MetricType)

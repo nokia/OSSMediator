@@ -14,12 +14,15 @@ docker_build:
 	@docker build -t elasticsearchplugin:1 . --network host
 	@docker create --name elasticsearchplugin elasticsearchplugin:1
 	@docker cp elasticsearchplugin:/ElasticsearchPlugin/elasticsearchplugin-unittest-result.txt .
+	@docker cp elasticsearchplugin:/ElasticsearchPlugin/elasticsearchplugin-lint-result.txt .
 	@docker rm elasticsearchplugin
 	@echo "docker build completed."
 
 build:
 	@echo Building ElasticsearchPlugin
 	@cd src/elasticsearchplugin &&  go install -ldflags "-X main.appVersion=$(VERSION)" || (echo "ElasticsearchPlugin build failed"; exit 1)
+	@echo Running go lint
+	@cd src/collector && go vet ./... > ../../elasticsearchplugin-lint-result.txt
 	@echo Build Successful.
 
 build_package:

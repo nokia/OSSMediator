@@ -105,14 +105,15 @@ type GetAPIResponse struct {
 //NhgDetailsResponse struct for listNhgData API.
 type NhgDetailsResponse struct {
 	Status     Status      `json:"status"` // Status of the response
-	NhgDetails []NhgDetail `json:"network_info"`
+	//NhgDetails []NhgDetail `json:"network_info"`
+	NhgDetails interface{} `json:"network_info"`
 }
 
-//NhgDetail stores nhg details.
-type NhgDetail struct {
-	NhgID    string `json:"nhg_id"`
-	NwStatus string `json:"nhg_config_status"`
-}
+////NhgDetail stores nhg details.
+//type NhgDetail struct {
+//	NhgID    string `json:"nhg_id"`
+//	NwStatus string `json:"nhg_config_status"`
+//}
 
 //Status keeps track of status from response.
 type Status struct {
@@ -126,7 +127,7 @@ type StatusDescription struct {
 	Description     string `json:"description"`
 }
 
-//ErrorResponse sturct for parsing error response from APIs.
+//ErrorResponse struct for parsing error response from APIs.
 type ErrorResponse struct {
 	Type   string `json:"type"`
 	Title  string `json:"title"`
@@ -139,6 +140,15 @@ type sessionToken struct {
 	accessToken  string
 	refreshToken string
 	expiryTime   time.Time
+}
+
+type GenericAPIResponse struct {
+	Type            string      `json:"type"`
+	TotalNumRecords int         `json:"total_num_records"`
+	NumOfRecords    int         `json:"num_of_records"`
+	NextRecord      int         `json:"next_record"`
+	Data            interface{} `json:"data"`
+	Status          Status      `json:"status"` // Status of the response
 }
 
 type fn func(string, *APIConf, *User, uint64)
@@ -156,8 +166,11 @@ func StartDataCollection() {
 			if Conf.ListNhGAPI != nil {
 				getNhgDetails(Conf.BaseURL, Conf.ListNhGAPI, user, atomic.AddUint64(&txnID, 1))
 			}
-			for _, api := range Conf.APIs {
+			for _, api := range Conf.MetricAPIs {
 				go fetchMetricsData(Conf.BaseURL, api, user, atomic.AddUint64(&txnID, 1))
+			}
+			for _, api := range Conf.SimAPIs {
+				go fetchSimData(Conf.BaseURL, api, user, atomic.AddUint64(&txnID, 1))
 			}
 		}
 	}
@@ -171,10 +184,15 @@ func StartDataCollection() {
 			ticker := time.NewTicker(time.Duration(Conf.ListNhGAPI.Interval) * time.Minute)
 			go trigger(ticker, Conf.BaseURL, Conf.ListNhGAPI, user, getNhgDetails)
 		}
-		for _, api := range Conf.APIs {
+		for _, api := range Conf.MetricAPIs {
 			go fetchMetricsData(Conf.BaseURL, api, user, atomic.AddUint64(&txnID, 1))
 			ticker := time.NewTicker(time.Duration(api.Interval) * time.Minute)
 			go trigger(ticker, Conf.BaseURL, api, user, fetchMetricsData)
+		}
+		for _, api := range Conf.SimAPIs {
+			go fetchSimData(Conf.BaseURL, api, user, atomic.AddUint64(&txnID, 1))
+			ticker := time.NewTicker(time.Duration(api.Interval) * time.Minute)
+			go trigger(ticker, Conf.BaseURL, api, user, fetchSimData)
 		}
 	}
 }
@@ -390,8 +408,8 @@ func callAPI(apiURL string, user *User, nhgID string, startTime string, endTime 
 
 	//write response
 	writeResponse(resp, user, api, txnID)
-	if api.Type == "ACTIVE" {
-		go notifier.RaiseAlarmNotification(txnID, resp.Data)
+	if path.Base(api.API) == fmResponseType {
+		go notifier.RaiseAlarmNotification(txnID, resp.Data, api.MetricType, api.Type)
 	}
 	return resp, nil
 }
@@ -664,10 +682,16 @@ func getNhgDetails(baseURL string, api *APIConf, user *User, txnID uint64) {
 		return
 	}
 
+	err = writeGenericAPIData(user, api, resp.NhgDetails, "", txnID)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
+	}
+
 	user.nhgIDs = []string{}
-	for _, nhgInfo := range resp.NhgDetails {
-		if nhgInfo.NwStatus == "ACTIVE" {
-			user.nhgIDs = append(user.nhgIDs, nhgInfo.NhgID)
+	for _, nhgInfo := range resp.NhgDetails.([]interface{}) {
+		nhgDetails := nhgInfo.(map[string]interface{})
+		if nhgDetails["nhg_config_status"].(string) == "ACTIVE" {
+			user.nhgIDs = append(user.nhgIDs, nhgDetails["nhg_id"].(string))
 		}
 	}
 
@@ -678,4 +702,38 @@ func getNhgDetails(baseURL string, api *APIConf, user *User, txnID uint64) {
 		user.isSessionAlive = true
 		log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "nhg_ids": user.nhgIDs}).Info("user nhgs")
 	}
+}
+
+//writes response of list_nhg_api and sim_apis
+func writeGenericAPIData(user *User, api *APIConf, data interface{}, nhgID string, txnID uint64) error {
+	fileName := path.Base(api.API)
+	if nhgID != "" {
+		fileName += "_" + nhgID
+	} else {
+		fileName += "_" + user.Email
+	}
+	fileName += "_response_" + strconv.Itoa(int(currentTime().Unix()))
+	responseDest := user.ResponseDest + "/" + path.Base(api.API)
+	fileName = responseDest + "/" + fileName
+	counter := 1
+	name := fileName
+	for fileExists(name + fileExtension) {
+		name = fileName + "_" + strconv.Itoa(counter)
+		counter++
+	}
+	fileName = name + fileExtension
+
+	formattedData, err := json.MarshalIndent(data, "", "  ")
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Unable to indent received data, error: %v", err)
+		return err
+	}
+
+	log.WithFields(log.Fields{"tid": txnID}).Infof("Writing response to file %s for %s", fileName, user.Email)
+	err = writeFile(fileName, formattedData)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Writing response to file %s for %s failed", fileName, user.Email)
+		return err
+	}
+	return nil
 }

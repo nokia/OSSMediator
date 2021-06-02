@@ -20,6 +20,8 @@ import (
 type Config struct {
 	SourceDirs               []string `json:"source_dirs"`
 	ElasticsearchURL         string   `json:"elasticsearch_url"`
+	ElasticsearchUser string   `json:"elasticsearch_user"`
+	ElasticsearchPasssword string   `json:"elasticsearch_passsword"`
 	ELKDataRetentionDuration int      `json:"elasticsearch_data_retention_duration"`
 	CleanupDuration          int      `json:"cleanup_duration"`
 }

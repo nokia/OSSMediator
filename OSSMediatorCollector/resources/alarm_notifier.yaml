@@ -1,6 +1,6 @@
 ---
-  ms_teams_webhook: <MS TEAMS WEBHOOK URL>
-  filters:
+  webhook_url: <WEBHOOK URL>
+  radio_alarm_filters:
     - specific_problem: <ALARM SPECIFIC PROBLEM>
     - specific_problem: <ALARM SPECIFIC PROBLEM>
       fault_ids:
@@ -10,4 +10,13 @@
       fault_ids:
         - <FAULT ID>
         - <FAULT ID>
+  dac_alarm_filters:
+    - alarm_id: <ALARM ID>
+    - alarm_id: <ALARM ID>
+  core_alarm_filters:
+    - alarm_id: <ALARM ID>
+    - alarm_id: <ALARM ID>
   alarm_sync_duration: 60
+  group_events: <true/false>
+  notify_clear_event: <true/false>
+  message_format: <ms_teams/json>

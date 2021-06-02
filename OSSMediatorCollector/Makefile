@@ -14,12 +14,15 @@ docker_build:
 	@docker build -t ossmediatorcollector:1 . --network host
 	@docker create --name ossmediatorcollector ossmediatorcollector:1
 	@docker cp ossmediatorcollector:/OSSMediatorCollector/OSSMediatorCollector-unittest-result.txt .
+	@docker cp ossmediatorcollector:/OSSMediatorCollector/OSSMediatorCollector-lint-result.txt .
 	@docker rm ossmediatorcollector
 	@echo "docker build completed."
 
 build:
 	@echo Building OSSMediatorCollector
 	@cd src/collector && go install -ldflags "-X main.appVersion=$(VERSION)" || (echo "OSSMediatorCollector build failed"; exit 1)
+	@echo Running go lint
+	@cd src/collector && go vet ./... > ../../OSSMediatorCollector-lint-result.txt
 	@echo Build Successful.
 
 build_package:

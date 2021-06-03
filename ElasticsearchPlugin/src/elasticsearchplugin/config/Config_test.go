@@ -40,7 +40,11 @@ func TestReadConfig(t *testing.T) {
 		"source_dirs": [
 			"/statistics/report/brlsyveview1   ", "/statistics/report/brlsyveview2  "
 		],
-		"elasticsearch_url": "http://127.0.0.1:9200  "
+		"elasticsearch": {
+			"url": "http://127.0.0.1:9200  ",
+			"user": "user",
+			"password": "dGVzdDE="
+		}
 	}`)
 	tmpfile, err := ioutil.TempFile(".", "conf")
 	if err != nil {
@@ -56,7 +60,7 @@ func TestReadConfig(t *testing.T) {
 	}
 
 	conf, err := ReadConfig(tmpfile.Name())
-	if err != nil || conf.ElasticsearchURL != "http://127.0.0.1:9200" {
+	if err != nil || conf.ElasticsearchConf.URL != "http://127.0.0.1:9200" || conf.ElasticsearchConf.Password != "test1" {
 		t.Fail()
 	}
 }

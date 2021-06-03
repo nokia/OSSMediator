@@ -169,8 +169,10 @@ func TestProcessExistingFiles(t *testing.T) {
 		log.SetOutput(os.Stderr)
 	}()
 	conf := config.Config{
-		CleanupDuration:  60,
-		ElasticsearchURL: "http://127.0.0.1:9299",
+		CleanupDuration: 60,
+		ElasticsearchConf: config.ElasticsearchConf{
+			URL: "http://127.0.0.1:9299",
+		},
 	}
 
 	processExistingFiles(pmDirPath, conf)

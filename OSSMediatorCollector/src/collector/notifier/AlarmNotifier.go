@@ -36,8 +36,8 @@ const (
 type AlarmNotifier struct {
 	WebhookURL        string              `yaml:"webhook_url"`
 	RadioAlarmFilters []RadioAlarmFilters `yaml:"radio_alarm_filters"`
-	DACAlarmFilters   []AlarmIDFilters   `yaml:"dac_alarm_filters"`
-	COREAlarmFilters   []AlarmIDFilters   `yaml:"core_alarm_filters"`
+	DACAlarmFilters   []AlarmIDFilters    `yaml:"dac_alarm_filters"`
+	COREAlarmFilters  []AlarmIDFilters    `yaml:"core_alarm_filters"`
 	AlarmSyncDuration int                 `yaml:"alarm_sync_duration"`
 	GroupEvents       bool                `yaml:"group_events"`
 	NotifyClearEvents bool                `yaml:"notify_clear_event"`

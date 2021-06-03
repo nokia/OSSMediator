@@ -30,11 +30,11 @@ type PageDetails struct {
 }
 
 type SimData struct {
-	EmailID       string       `json:"email_id,omitempty"`
-	TotalSims     int          `json:"total_sims,omitempty"`
-	InUseSims     int          `json:"in_use_sims,omitempty"`
-	Subsc         interface{}  `json:"subsc"`
-	RequestedSims int          `json:"requested_sims,omitempty"`
+	EmailID       string      `json:"email_id,omitempty"`
+	TotalSims     int         `json:"total_sims,omitempty"`
+	InUseSims     int         `json:"in_use_sims,omitempty"`
+	Subsc         interface{} `json:"subsc"`
+	RequestedSims int         `json:"requested_sims,omitempty"`
 }
 
 const (

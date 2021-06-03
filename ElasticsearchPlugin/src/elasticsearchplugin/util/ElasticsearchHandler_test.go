@@ -8,6 +8,7 @@ package util
 
 import (
 	"bytes"
+	"elasticsearchplugin/config"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -122,8 +123,11 @@ func TestPushPMDataToElasticsearch(t *testing.T) {
 		t.Error(err)
 	}
 	defer os.Remove(fileName)
+	esConf := config.ElasticsearchConf{
+		URL: elasticsearchURL,
+	}
 
-	pushDataToElasticsearch("./pmdata_data.json", elasticsearchURL)
+	pushDataToElasticsearch("./pmdata_data.json", esConf)
 	if !strings.Contains(buf.String(), "Data from "+fileName+" pushed to elasticsearch successfully") {
 		t.Fail()
 	}
@@ -141,8 +145,11 @@ func TestPushFMDataToElasticsearch(t *testing.T) {
 		t.Error(err)
 	}
 	defer os.Remove(fileName)
+	esConf := config.ElasticsearchConf{
+		URL: elasticsearchURL,
+	}
 
-	pushDataToElasticsearch("./fmdata_RADIO_HISTORY_data.json", elasticsearchURL)
+	pushDataToElasticsearch("./fmdata_RADIO_HISTORY_data.json", esConf)
 	if !strings.Contains(buf.String(), "Data from "+fileName+" pushed to elasticsearch successfully") {
 		t.Fail()
 	}
@@ -162,8 +169,11 @@ func TestPushFMDataToInvalidElasticsearch(t *testing.T) {
 		t.Error(err)
 	}
 	defer os.Remove(fileName)
+	esConf := config.ElasticsearchConf{
+		URL: elasticsearchURL,
+	}
 
-	pushDataToElasticsearch("./fmdata_RADIO_HISTORY_data.json", elasticsearchURL)
+	pushDataToElasticsearch("./fmdata_RADIO_HISTORY_data.json", esConf)
 	if !strings.Contains(buf.String(), "Unable to push data to elasticsearch, will be retried later") {
 		t.Fail()
 	}
@@ -177,7 +187,10 @@ func TestPushFailedDataToElasticsearch(t *testing.T) {
 	}()
 	fileName := "./fmdata_RADIO_HISTORY_data.json"
 	retryTicker = time.NewTicker(2 * time.Millisecond)
-	PushFailedDataToElasticsearch(elasticsearchURL)
+	esConf := config.ElasticsearchConf{
+		URL: elasticsearchURL,
+	}
+	PushFailedDataToElasticsearch(esConf)
 	time.Sleep(1 * time.Second)
 	if !strings.Contains(buf.String(), "Data from "+fileName+" pushed to elasticsearch successfully") {
 		t.Fail()
@@ -193,7 +206,11 @@ func TestDeleteDataFormElasticsearch(t *testing.T) {
 		return time.Date(currTime.Year(), currTime.Month(), currTime.Day()+1, 0, 59, 59, 0, time.Local)
 	}
 	currentTime = myCurrentTime
-	go DeleteDataFormElasticsearch(elasticsearchURL, 0)
+	esConf := config.ElasticsearchConf{
+		URL:                   elasticsearchURL,
+		DataRetentionDuration: 0,
+	}
+	go DeleteDataFormElasticsearch(esConf)
 	time.Sleep(5 * time.Second)
 
 	searchURL := elasticsearchURL + "/" + strings.Join(indexList, ",") + "/_search"

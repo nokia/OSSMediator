@@ -23,13 +23,13 @@ import (
 )
 
 var (
-	confFile   string
-	certFile   string
-	skipTLS    bool
-	logDir     string
-	logLevel   int
-	version    bool
-	appVersion string
+	confFile         string
+	certFile         string
+	skipTLS          bool
+	logDir           string
+	logLevel         int
+	version          bool
+	appVersion       string
 	enableConsoleLog bool
 )
 

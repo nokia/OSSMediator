@@ -57,11 +57,11 @@ func main() {
 	go util.WatchEvents(conf)
 
 	//retry pushing data to elasticsearch that was failed earlier
-	util.PushFailedDataToElasticsearch(conf.ElasticsearchURL)
+	util.PushFailedDataToElasticsearch(conf.ElasticsearchConf)
 
 	//remove old data from elasticsearch
-	if conf.ELKDataRetentionDuration > 0 {
-		go util.DeleteDataFormElasticsearch(conf.ElasticsearchURL, conf.ELKDataRetentionDuration)
+	if conf.ElasticsearchConf.DataRetentionDuration > 0 {
+		go util.DeleteDataFormElasticsearch(conf.ElasticsearchConf)
 	}
 
 	//cleanup old response

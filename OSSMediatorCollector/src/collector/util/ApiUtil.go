@@ -104,7 +104,7 @@ type GetAPIResponse struct {
 
 //NhgDetailsResponse struct for listNhgData API.
 type NhgDetailsResponse struct {
-	Status     Status      `json:"status"` // Status of the response
+	Status Status `json:"status"` // Status of the response
 	//NhgDetails []NhgDetail `json:"network_info"`
 	NhgDetails interface{} `json:"network_info"`
 }

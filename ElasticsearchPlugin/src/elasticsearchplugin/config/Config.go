@@ -7,6 +7,7 @@
 package config
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -18,12 +19,16 @@ import (
 
 //Config read from resources/conf.json file
 type Config struct {
-	SourceDirs               []string `json:"source_dirs"`
-	ElasticsearchURL         string   `json:"elasticsearch_url"`
-	ElasticsearchUser string   `json:"elasticsearch_user"`
-	ElasticsearchPasssword string   `json:"elasticsearch_passsword"`
-	ELKDataRetentionDuration int      `json:"elasticsearch_data_retention_duration"`
-	CleanupDuration          int      `json:"cleanup_duration"`
+	SourceDirs        []string          `json:"source_dirs"`
+	CleanupDuration   int               `json:"cleanup_duration"`
+	ElasticsearchConf ElasticsearchConf `json:"elasticsearch"`
+}
+
+type ElasticsearchConf struct {
+	URL                   string `json:"url"`
+	User                  string `json:"user"`
+	Password              string `json:"password"`
+	DataRetentionDuration int    `json:"data_retention_duration"`
 }
 
 //ReadConfig reads the configurations from conf.json file
@@ -40,13 +45,22 @@ func ReadConfig(confFile string) (Config, error) {
 	}
 
 	//trimming whitespaces
-	config.ElasticsearchURL = strings.TrimSpace(config.ElasticsearchURL)
+	config.ElasticsearchConf.URL = strings.TrimSpace(config.ElasticsearchConf.URL)
+	config.ElasticsearchConf.User = strings.TrimSpace(config.ElasticsearchConf.User)
+	config.ElasticsearchConf.Password = strings.TrimSpace(config.ElasticsearchConf.Password)
 	for i, dir := range config.SourceDirs {
 		config.SourceDirs[i] = strings.TrimSpace(dir)
 	}
 
-	if !isURLValid(config.ElasticsearchURL) {
-		return config, fmt.Errorf("invalid url: %s", config.ElasticsearchURL)
+	if !isURLValid(config.ElasticsearchConf.URL) {
+		return config, fmt.Errorf("invalid url: %s", config.ElasticsearchConf.URL)
+	}
+	if config.ElasticsearchConf.Password != "" {
+		decodedPwd, err := base64.StdEncoding.DecodeString(config.ElasticsearchConf.Password)
+		if err != nil {
+			return config, fmt.Errorf("Unable to decode password for %v, Error: %v", config.ElasticsearchConf.Password, err)
+		}
+		config.ElasticsearchConf.Password = string(decodedPwd)
 	}
 
 	log.Info("Config read successfully.")

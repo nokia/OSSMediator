@@ -9,6 +9,7 @@ package util
 import (
 	"bytes"
 	"elasticsearchplugin/config"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -108,6 +109,74 @@ var (
       }
     }
   ]`
+
+	testNhgData = `[
+    {
+      "nhg_id": "123456",
+      "nhg_alias": "test_nhg",
+      "deployment_type": "SMALL",
+      "deploy_readiness_status": 1,
+      "clusters": [
+        {
+          "cluster_id": "1",
+          "cluster_alias": "cluster1",
+          "hw_set": [
+            {
+              "hw_id": "AA-BB-CC-DD-EE-FF::UpBoard::UpBoard-1",
+              "hw_type": "EdgeCloud",
+              "serial_no": "AA-BB-CC-DD-EE-FF"
+            }
+          ],
+          "cluster_status": "ACTIVE",
+          "latitude": 45,
+          "longitude": 45,
+          "nw_config_status": "ACTIVE",
+          "edge_connection_status": "EDGE_CONN_STATUS_UNAVAILABLE",
+          "cluster_slice_status_modify_time": "2021-02-20T07:36:07.976Z",
+          "slice_id": "1222-13"
+        }
+      ],
+      "nhg_config_status": "NW_CFG_UNAVAILABLE",
+      "nhg_slice_status_modify_time": "2021-02-20T07:36:07.976Z",
+      "network_type": "NETWORK_TYPE_4G",
+      "usb_install_status": "USB_STATUS_UNAVAILABLE",
+      "sla": "SLA_BASIC"
+    }
+  ]`
+
+	testSimData = `{
+  "email_id": "testuser@nokia.com",
+  "subsc": [
+    {
+      "imsi": "12345",
+      "imsi_alias": "imsi",
+      "icc_id": "12345",
+      "imei": "12345",
+      "apn_id": "DEFAULTAPN",
+      "apn_name": "internet",
+      "qos_group_id": "DEFAULTQOS",
+      "qos_profile_name": "internet_DEFAULT",
+      "private_network_details": [
+        {
+          "nhg_id": "123456",
+          "status": "ACTIVE",
+          "status_description": "string",
+          "ue_status": "UE_CONNECTED",
+          "ue_report_timestamp": "2021-02-25T10:48:34.859Z",
+          "nhg_alias": "Network1",
+          "feature_status": {
+            "imsi": "1111111111",
+            "static_ip_status": "IN_SYNC",
+            "qos_status": "IN_SYNC",
+            "imei_status": "IN_SYNC",
+            "multiple_apn_status": "IN_SYNC"
+          }
+        }
+      ]
+    }
+  ],
+  "requested_sims": 1
+}`
 )
 
 func TestPushPMDataToElasticsearch(t *testing.T) {
@@ -127,7 +196,7 @@ func TestPushPMDataToElasticsearch(t *testing.T) {
 		URL: elasticsearchURL,
 	}
 
-	pushDataToElasticsearch("./pmdata_data.json", esConf)
+	pushDataToElasticsearch(fileName, esConf)
 	if !strings.Contains(buf.String(), "Data from "+fileName+" pushed to elasticsearch successfully") {
 		t.Fail()
 	}
@@ -149,32 +218,8 @@ func TestPushFMDataToElasticsearch(t *testing.T) {
 		URL: elasticsearchURL,
 	}
 
-	pushDataToElasticsearch("./fmdata_RADIO_HISTORY_data.json", esConf)
+	pushDataToElasticsearch(fileName, esConf)
 	if !strings.Contains(buf.String(), "Data from "+fileName+" pushed to elasticsearch successfully") {
-		t.Fail()
-	}
-}
-
-func TestPushFMDataToInvalidElasticsearch(t *testing.T) {
-	elasticsearchURL = "http://localhost:12345"
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-		elasticsearchURL = "http://127.0.0.1:9299"
-	}()
-	fileName := "./fmdata_RADIO_HISTORY_data.json"
-	err := createTestData(fileName, testFMData)
-	if err != nil {
-		t.Error(err)
-	}
-	defer os.Remove(fileName)
-	esConf := config.ElasticsearchConf{
-		URL: elasticsearchURL,
-	}
-
-	pushDataToElasticsearch("./fmdata_RADIO_HISTORY_data.json", esConf)
-	if !strings.Contains(buf.String(), "Unable to push data to elasticsearch, will be retried later") {
 		t.Fail()
 	}
 }
@@ -186,13 +231,93 @@ func TestPushFailedDataToElasticsearch(t *testing.T) {
 		log.SetOutput(os.Stderr)
 	}()
 	fileName := "./fmdata_RADIO_HISTORY_data.json"
-	retryTicker = time.NewTicker(2 * time.Millisecond)
-	esConf := config.ElasticsearchConf{
-		URL: elasticsearchURL,
+	err := createTestData(fileName, testFMData)
+	if err != nil {
+		t.Error(err)
 	}
+	defer os.Remove(fileName)
+	esConf := config.ElasticsearchConf{
+		URL: "http://localhost:12345",
+	}
+
+	pushDataToElasticsearch(fileName, esConf)
+	if !strings.Contains(buf.String(), "Unable to push data to elasticsearch, will be retried later") {
+		t.Fail()
+	}
+
+	retryTicker = time.NewTicker(2 * time.Millisecond)
+	esConf.URL = "http://127.0.0.1:9299"
 	PushFailedDataToElasticsearch(esConf)
 	time.Sleep(1 * time.Second)
 	if !strings.Contains(buf.String(), "Data from "+fileName+" pushed to elasticsearch successfully") {
+		t.Fail()
+	}
+}
+
+func searchOnElastic(indices []string) (string, error) {
+	searchURL := elasticsearchURL + "/" + strings.Join(indices, ",") + "/_search"
+	request, err := http.NewRequest("GET", searchURL, nil)
+	if err != nil {
+		return "", err
+	}
+
+	response, err := newNetClient().Do(request)
+	if err != nil {
+		return "", err
+	}
+	defer response.Body.Close()
+	if response.StatusCode != http.StatusOK {
+		return "", fmt.Errorf("Received response' status code: %d, status: %s", response.StatusCode, response.Status)
+	}
+
+	bodyBytes, _ := ioutil.ReadAll(response.Body)
+	if err != nil {
+		return "", err
+	}
+	searchResult := string(bodyBytes)
+	return searchResult, nil
+}
+
+func TestPushSimsDataToElasticsearch(t *testing.T) {
+	fileName := "./sims_12345_data.json"
+	err := createTestData(fileName, testSimData)
+	if err != nil {
+		t.Error(err)
+	}
+	defer os.Remove(fileName)
+	esConf := config.ElasticsearchConf{
+		URL: elasticsearchURL,
+	}
+
+	pushDataToElasticsearch(fileName, esConf)
+	time.Sleep(2 * time.Second)
+	searchResult, err := searchOnElastic([]string{"sims-data"})
+	if err != nil {
+		t.Error(err)
+	}
+	if !strings.Contains(searchResult, "\"hits\":{\"total\":{\"value\":1,\"relation\":\"eq\"}") {
+		t.Fail()
+	}
+}
+
+func TestPushNhgDataToElasticsearch(t *testing.T) {
+	fileName := "./network-hardware-groups_testuser@nokia.com_data.json"
+	err := createTestData(fileName, testNhgData)
+	if err != nil {
+		t.Error(err)
+	}
+	defer os.Remove(fileName)
+	esConf := config.ElasticsearchConf{
+		URL: elasticsearchURL,
+	}
+
+	pushDataToElasticsearch(fileName, esConf)
+	time.Sleep(2 * time.Second)
+	searchResult, err := searchOnElastic([]string{"nhg-details"})
+	if err != nil {
+		t.Error(err)
+	}
+	if !strings.Contains(searchResult, "\"hits\":{\"total\":{\"value\":1,\"relation\":\"eq\"}") {
 		t.Fail()
 	}
 }
@@ -213,28 +338,11 @@ func TestDeleteDataFormElasticsearch(t *testing.T) {
 	go DeleteDataFormElasticsearch(esConf)
 	time.Sleep(5 * time.Second)
 
-	searchURL := elasticsearchURL + "/" + strings.Join(indexList, ",") + "/_search"
-	request, err := http.NewRequest("GET", searchURL, nil)
+	searchResult, err := searchOnElastic(indexList)
 	if err != nil {
 		t.Error(err)
 	}
-
-	response, err := newNetClient().Do(request)
-	if err != nil {
-		t.Error(err)
-	}
-	defer response.Body.Close()
-	if response.StatusCode != http.StatusOK {
-		t.Errorf("Received response' status code: %d, status: %s", response.StatusCode, response.Status)
-	}
-
-	bodyBytes, _ := ioutil.ReadAll(response.Body)
-	if err != nil {
-		t.Error(err)
-	}
-	bodyString := string(bodyBytes)
-	t.Log(bodyString)
-	if !strings.Contains(string(bodyBytes), "\"hits\":{\"total\":{\"value\":0,\"relation\":\"eq\"}") {
+	if !strings.Contains(searchResult, "\"hits\":{\"total\":{\"value\":0,\"relation\":\"eq\"}") {
 		t.Fail()
 	}
 }

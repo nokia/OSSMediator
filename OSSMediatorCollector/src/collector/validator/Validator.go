@@ -41,7 +41,7 @@ func ValidateConf(conf util.Config) error {
 			return fmt.Errorf("API type for fmdata should be HISTORY/ACTIVE")
 		}
 		if strings.Contains(api.API, "fm") && api.MetricType == "" && !(api.MetricType == "RADIO" || api.MetricType == "DAC" || api.MetricType == "CORE") {
-			return fmt.Errorf("API metric type for fmdata should be RADIO/DAC")
+			return fmt.Errorf("API metric type for fmdata should be RADIO/DAC/CORE")
 		}
 	}
 

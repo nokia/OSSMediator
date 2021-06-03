@@ -29,8 +29,9 @@ var (
 	netClient   *http.Client
 	failedData  []failedResponse
 	retryTicker *time.Ticker
+    mutex = &sync.Mutex{}
 
-	indexList   = []string{"radio-fm*", "dac-fm*", "4g-pm*", "5g-pm*"}
+	indexList   = []string{"radio-fm*", "dac-fm*", "core-fm*", "4g-pm*", "5g-pm*"}
 	deleteQuery = `
 {
   "query": {
@@ -136,7 +137,6 @@ func doPost(elkURL, elkUser, elkPassword string, data string, queryParams map[st
 	if elkUser != "" && elkPassword != "" {
 		request.SetBasicAuth(elkUser, elkPassword)
 	}
-	log.Infof("User: %s, password: %s", elkUser, elkPassword)
 	request.Header.Set("Content-Type", "application/json")
 
 	if len(queryParams) > 0 {
@@ -287,7 +287,6 @@ func pushFMDataToElasticsearch(filePath string, esConf config.ElasticsearchConf)
 		source, _ := json.Marshal(d)
 		postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
 		postData += string(source) + "\n"
-		log.WithFields(log.Fields{"data": postData}).Infof("data of %s", filePath)
 		if i != 0 && i%elkNoOfRecordsPerAPI == 0 || i == len(resp)-1 {
 			pushData(elkURL, esConf.User, esConf.Password, postData, filePath)
 			postData = ""

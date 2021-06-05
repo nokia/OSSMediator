@@ -5,6 +5,8 @@
   ],
   "elasticsearch": {
     "url":"http://localhost:9200",
+    "user": "<USERNAME>",
+    "password": "<PASSWORD>",
     "data_retention_duration": 90
   },
   "cleanup_duration": 1440

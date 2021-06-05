@@ -12,6 +12,7 @@ import (
 	"os"
 
 	"elasticsearchplugin/config"
+	"elasticsearchplugin/util/elasticsearch"
 
 	"github.com/fsnotify/fsnotify"
 	log "github.com/sirupsen/logrus"
@@ -75,7 +76,7 @@ func WatchEvents(conf config.Config) {
 		case event := <-watcher.Events:
 			if event.Op&fsnotify.Write == fsnotify.Write {
 				log.Infof("Received event: %s", event.Name)
-				pushDataToElasticsearch(event.Name, conf.ElasticsearchConf)
+				elasticsearch.PushDataToElasticsearch(event.Name, conf.ElasticsearchConf)
 			}
 		case err := <-watcher.Errors:
 			log.Error(err)
@@ -100,6 +101,6 @@ func processExistingFiles(directory string, conf config.Config) {
 			continue
 		}
 		//push data to elk
-		pushDataToElasticsearch(directory+"/"+file.Name(), conf.ElasticsearchConf)
+		elasticsearch.PushDataToElasticsearch(directory+"/"+file.Name(), conf.ElasticsearchConf)
 	}
 }

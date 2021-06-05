@@ -4,13 +4,11 @@
 * see LICENSE file for details.
  */
 
-package util
+package elasticsearch
 
 import (
 	"bytes"
 	"elasticsearchplugin/config"
-	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"strings"
@@ -73,7 +71,8 @@ var (
         "event_type": "equipment",
         "event_time": "2020-11-02T06:14:09Z",
         "last_updated_time": "2020-11-02T06:14:10Z",
-        "notification_type": "alarmNew"
+        "notification_type": "alarmNew",
+		"fault_id": "1"
       },
       "fm_data_source": {
         "edge_id": "98765",
@@ -95,7 +94,8 @@ var (
         "event_type": "equipment",
         "event_time": "2020-11-02T06:14:10Z",
         "last_updated_time": "2020-11-02T06:14:10Z",
-        "notification_type": "alarmClear"
+        "notification_type": "alarmClear",
+		"fault_id": ""
       },
       "fm_data_source": {
         "edge_id": "test_edge",
@@ -180,12 +180,6 @@ var (
 )
 
 func TestPushPMDataToElasticsearch(t *testing.T) {
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
-
 	fileName := "./pmdata_data.json"
 	err := createTestData(fileName, testPMData)
 	if err != nil {
@@ -196,18 +190,18 @@ func TestPushPMDataToElasticsearch(t *testing.T) {
 		URL: elasticsearchURL,
 	}
 
-	pushDataToElasticsearch(fileName, esConf)
-	if !strings.Contains(buf.String(), "Data from "+fileName+" pushed to elasticsearch successfully") {
+	PushDataToElasticsearch(fileName, esConf)
+	time.Sleep(2 * time.Second)
+	searchResult, err := searchOnElastic([]string{"4g-pm*"})
+	if err != nil {
+		t.Error(err)
+	}
+	if !strings.Contains(searchResult, "\"hits\":{\"total\":{\"value\":2,\"relation\":\"eq\"}") {
 		t.Fail()
 	}
 }
 
-func TestPushFMDataToElasticsearch(t *testing.T) {
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
+func TestPushRadioFMDataToElasticsearch(t *testing.T) {
 	fileName := "./fmdata_RADIO_HISTORY_data.json"
 	err := createTestData(fileName, testFMData)
 	if err != nil {
@@ -218,8 +212,57 @@ func TestPushFMDataToElasticsearch(t *testing.T) {
 		URL: elasticsearchURL,
 	}
 
-	pushDataToElasticsearch(fileName, esConf)
-	if !strings.Contains(buf.String(), "Data from "+fileName+" pushed to elasticsearch successfully") {
+	PushDataToElasticsearch(fileName, esConf)
+	time.Sleep(2 * time.Second)
+	searchResult, err := searchOnElastic([]string{"radio-fm*"})
+	if err != nil {
+		t.Error(err)
+	}
+	if !strings.Contains(searchResult, "\"hits\":{\"total\":{\"value\":2,\"relation\":\"eq\"}") {
+		t.Fail()
+	}
+}
+
+func TestPushDACFMDataToElasticsearch(t *testing.T) {
+	fileName := "./fmdata_DAC_HISTORY_data.json"
+	err := createTestData(fileName, testFMData)
+	if err != nil {
+		t.Error(err)
+	}
+	defer os.Remove(fileName)
+	esConf := config.ElasticsearchConf{
+		URL: elasticsearchURL,
+	}
+
+	PushDataToElasticsearch(fileName, esConf)
+	time.Sleep(2 * time.Second)
+	searchResult, err := searchOnElastic([]string{"dac-fm*"})
+	if err != nil {
+		t.Error(err)
+	}
+	if !strings.Contains(searchResult, "\"hits\":{\"total\":{\"value\":2,\"relation\":\"eq\"}") {
+		t.Fail()
+	}
+}
+
+func TestPushCoreFMDataToElasticsearch(t *testing.T) {
+	fileName := "./fmdata_CORE_HISTORY_data.json"
+	err := createTestData(fileName, testFMData)
+	if err != nil {
+		t.Error(err)
+	}
+	defer os.Remove(fileName)
+	esConf := config.ElasticsearchConf{
+		URL: elasticsearchURL,
+	}
+
+	PushDataToElasticsearch(fileName, esConf)
+	time.Sleep(2 * time.Second)
+	searchResult, err := searchOnElastic([]string{"core-fm*"})
+	if err != nil {
+		t.Error(err)
+	}
+	if !strings.Contains(searchResult, "\"hits\":{\"total\":{\"value\":2,\"relation\":\"eq\"}") {
 		t.Fail()
 	}
 }
@@ -240,7 +283,7 @@ func TestPushFailedDataToElasticsearch(t *testing.T) {
 		URL: "http://localhost:12345",
 	}
 
-	pushDataToElasticsearch(fileName, esConf)
+	PushDataToElasticsearch(fileName, esConf)
 	if !strings.Contains(buf.String(), "Unable to push data to elasticsearch, will be retried later") {
 		t.Fail()
 	}
@@ -256,26 +299,25 @@ func TestPushFailedDataToElasticsearch(t *testing.T) {
 
 func searchOnElastic(indices []string) (string, error) {
 	searchURL := elasticsearchURL + "/" + strings.Join(indices, ",") + "/_search"
-	request, err := http.NewRequest("GET", searchURL, nil)
+	resp, err := httpCall(http.MethodGet, searchURL, "", "", "", nil)
 	if err != nil {
 		return "", err
 	}
-
-	response, err := newNetClient().Do(request)
-	if err != nil {
-		return "", err
-	}
-	defer response.Body.Close()
-	if response.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("Received response' status code: %d, status: %s", response.StatusCode, response.Status)
-	}
-
-	bodyBytes, _ := ioutil.ReadAll(response.Body)
-	if err != nil {
-		return "", err
-	}
-	searchResult := string(bodyBytes)
+	searchResult := string(resp)
 	return searchResult, nil
+}
+
+func createTestData(filename, content string) error {
+	f, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	_, err = f.Write([]byte(content))
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func TestPushSimsDataToElasticsearch(t *testing.T) {
@@ -289,7 +331,7 @@ func TestPushSimsDataToElasticsearch(t *testing.T) {
 		URL: elasticsearchURL,
 	}
 
-	pushDataToElasticsearch(fileName, esConf)
+	PushDataToElasticsearch(fileName, esConf)
 	time.Sleep(2 * time.Second)
 	searchResult, err := searchOnElastic([]string{"sims-data"})
 	if err != nil {
@@ -311,7 +353,7 @@ func TestPushNhgDataToElasticsearch(t *testing.T) {
 		URL: elasticsearchURL,
 	}
 
-	pushDataToElasticsearch(fileName, esConf)
+	PushDataToElasticsearch(fileName, esConf)
 	time.Sleep(2 * time.Second)
 	searchResult, err := searchOnElastic([]string{"nhg-details"})
 	if err != nil {
@@ -321,6 +363,7 @@ func TestPushNhgDataToElasticsearch(t *testing.T) {
 		t.Fail()
 	}
 }
+
 
 func TestDeleteDataFormElasticsearch(t *testing.T) {
 	currTime := currentTime()
@@ -335,14 +378,54 @@ func TestDeleteDataFormElasticsearch(t *testing.T) {
 		URL:                   elasticsearchURL,
 		DataRetentionDuration: 0,
 	}
-	go DeleteDataFormElasticsearch(esConf)
-	time.Sleep(5 * time.Second)
+	deleteData(esConf)
+	time.Sleep(2 * time.Second)
 
 	searchResult, err := searchOnElastic(indexList)
 	if err != nil {
 		t.Error(err)
 	}
 	if !strings.Contains(searchResult, "\"hits\":{\"total\":{\"value\":0,\"relation\":\"eq\"}") {
+		t.Fail()
+	}
+}
+
+func TestDeleteOldIndicesFormElasticsearch(t *testing.T) {
+	currTime := currentTime()
+	oldCurrentTime := currentTime
+	defer func() { currentTime = oldCurrentTime }()
+
+	myCurrentTime := func() time.Time {
+		return time.Date(currTime.Year(), currTime.Month(), currTime.Day()+1, 0, 59, 59, 0, time.Local)
+	}
+	currentTime = myCurrentTime
+	esConf := config.ElasticsearchConf{
+		URL:                   elasticsearchURL,
+		DataRetentionDuration: 0,
+	}
+	deleteIndices(esConf)
+	time.Sleep(2 * time.Second)
+
+	searchResult, err := searchOnElastic([]string{"4g-pm*", "5g-pm*"})
+	if err != nil {
+		t.Error(err)
+	}
+	if !strings.Contains(searchResult, "\"hits\":{\"total\":{\"value\":0,\"relation\":\"eq\"}") {
+		t.Fail()
+	}
+}
+
+func TestGetNextTickDuration(t *testing.T) {
+	currTime := currentTime()
+	oldCurrentTime := currentTime
+	defer func() { currentTime = oldCurrentTime }()
+
+	myCurrentTime := func() time.Time {
+		return time.Date(currTime.Year(), currTime.Month(), currTime.Day()+1, 0, 0, 0, 0, time.Local)
+	}
+	currentTime = myCurrentTime
+	nextTick := getNextTickDuration()
+	if nextTick != time.Hour {
 		t.Fail()
 	}
 }

@@ -44,14 +44,21 @@ func TestReadConfig(t *testing.T) {
 			"refresh": "/refresh",
 			"logout": "/logout"
 		},
+		"sim_apis":
+		[
+			{
+				"api": "/ndac/sims",
+				"interval": 15
+			}
+		],
 		"metric_apis":
 		[
 			{
-				"api": "/nms/pmdata",
+				"api": "/ndac/pmdata",
 				"interval": 15
 			},
 			{
-				"api": "/nms/fmdata",
+				"api": "/ndac/fmdata",
 				"type": "ACTIVE",
 				"metric_type": "RADIO",
 				"interval": 15

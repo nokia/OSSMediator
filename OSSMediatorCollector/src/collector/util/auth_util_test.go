@@ -76,21 +76,8 @@ func TestRefreshWithInvalidResponse(t *testing.T) {
 func TestRefreshForEmptyRefreshToken(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, `{
-			"status": {
-				"status_code": "FAILURE",
-				"status_description": {
-					"description_code": "INVALID_ARGUMENT",
-					"description": "Refresh token sent is empty. Invalid Token"
-				}
-			},
-			"uat": {
-				"access_token": "Undefined"
-			},
-			"rt": {
-				"refresh_token": "Undefined"
-			}
-		}`)
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, ``)
 	}))
 	defer testServer.Close()
 	var user User
@@ -200,21 +187,8 @@ func TestLoginWithInvalidUrl(t *testing.T) {
 func TestInvalidLogin(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, `{
-			"status": {
-				"status_code": "FAILURE",
-				"status_description": {
-					"description_code": "INVALID_ARGUMENT",
-					"description": "Invalid Username"
-				}
-			},
-			"uat": {
-				"access_token": "Undefined"
-			},
-			"rt": {
-				"refresh_token": "Undefined"
-			}
-		}`)
+		w.WriteHeader(http.StatusUnauthorized)
+		fmt.Fprintln(w, ``)
 	}))
 	defer testServer.Close()
 	Conf = Config{
@@ -386,33 +360,6 @@ func TestLogoutWithWrongUrl(t *testing.T) {
 	}
 }
 
-func TestLogoutWithInvalidResponse(t *testing.T) {
-	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, ``)
-	}))
-	defer testServer.Close()
-	Conf = Config{
-		BaseURL: testServer.URL,
-		UMAPIs: UMConf{
-			Login:   "/login",
-			Refresh: "/login/refreshSession",
-			Logout:  "/logout",
-		},
-	}
-	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
-	user.sessionToken = &sessionToken{
-		accessToken:  "",
-		refreshToken: "",
-		expiryTime:   time.Now().Add(35 * time.Second),
-	}
-	err := Logout(&user)
-	if err == nil || !strings.Contains(err.Error(), "Unable to decode response") {
-		t.Fail()
-	}
-}
-
 func TestLogoutWithEmptyUrl(t *testing.T) {
 	Conf = Config{
 		BaseURL: "",
@@ -450,15 +397,8 @@ func TestLogoutWithInvalidUrl(t *testing.T) {
 func TestInvalidLogout(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, `{
-			"status": {
-				"status_code": "FAILURE",
-				"status_description": {
-					"description_code": "INVALID_ARGUMENT",
-					"description": "Refresh token sent is empty. Invalid Token"
-				}
-			}
-		}`)
+		w.WriteHeader(http.StatusForbidden)
+		fmt.Fprintln(w, ``)
 	}))
 	defer testServer.Close()
 	Conf = Config{

@@ -501,12 +501,16 @@ func TestStartDataCollectionWithInvalidURL(t *testing.T) {
 		},
 	}
 	Conf.MetricAPIs = []*APIConf{{API: "/pmdata", Interval: 15}, {API: "/fmdata", Interval: 15, Type: "HISTORY"}}
+	Conf.SimAPIs = []*APIConf{{API: "/sims", Interval: 15}}
 	Conf.Limit = 10
 	CreateHTTPClient("", true)
 
 	StartDataCollection()
 	time.Sleep(2 * time.Millisecond)
 	if !strings.Contains(buf.String(), "Triggered http://localhost:8080/fmdata") || !strings.Contains(buf.String(), "Triggered http://localhost:8080/pmdata") {
+		t.Fail()
+	}
+	if !strings.Contains(buf.String(), "Triggered http://localhost:8080/sims") {
 		t.Fail()
 	}
 	if strings.Contains(buf.String(), "Writting response") {

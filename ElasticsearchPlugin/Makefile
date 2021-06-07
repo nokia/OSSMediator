@@ -50,5 +50,5 @@ test:
 
 clean:
 	@echo "Started :ElasticsearchPlugin CleanUp"
-	@rm -rf package bin/elasticsearchplugin VERSION elasticsearchplugin-unittest-result.txt
+	@rm -rf package bin/elasticsearchplugin VERSION elasticsearchplugin-unittest-result.txt elasticsearchplugin-lint-result.txt
 	@echo "Completed :ElasticsearchPlugin CleanUp"

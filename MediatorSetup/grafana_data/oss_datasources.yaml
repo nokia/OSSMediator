@@ -44,3 +44,14 @@ datasources:
       timeField: "fm_data.event_time"
       esVersion: 70
       tlsSkipVerify: true
+
+  - name: core-fm
+    type: elasticsearch
+    access: proxy
+    database: "core-fm*"
+    url: http://localhost:9200
+    jsonData:
+      timeInterval: 15m
+      timeField: "fm_data.event_time"
+      esVersion: 70
+      tlsSkipVerify: true

@@ -101,7 +101,6 @@ func getOldIndices(esConf config.ElasticsearchConf) []string {
 		indexCreationMonth, _ := strconv.Atoi(splits[len(splits)-2])
 		indexCreationYear, _ := strconv.Atoi(splits[len(splits)-1])
 		if indexCreationYear < delYear || (indexCreationYear == delYear && indexCreationMonth <= delMonth) {
-			indicesToDelete = append(indicesToDelete, index)
 			idPattern := "*" + strconv.Itoa(indexCreationMonth) + "-" + strconv.Itoa(indexCreationYear)
 			indicesPatternToDelete[idPattern] = struct{}{}
 		}

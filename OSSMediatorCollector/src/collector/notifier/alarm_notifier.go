@@ -313,31 +313,31 @@ func formJSONMessage(txnID uint64, alarmToNotify []FMSource) []byte {
 func formMSTeamsMessage(txnID uint64, alarmToNotify []FMSource) []byte {
 	var msg string
 	if alarmToNotify[0].FmDataSource.NhgAlias != "" {
-		msg += fmt.Sprintf("#**Alarm alert for %s network**  \nFollowing alarms have been raised:\n\n---", alarmToNotify[0].FmDataSource.NhgAlias)
+		msg += fmt.Sprintf("#**Alarm alert for %s network**  \nFollowing alarms have been raised:\n\n---", strings.TrimSpace(alarmToNotify[0].FmDataSource.NhgAlias))
 	} else {
-		msg += fmt.Sprintf("#**Alarm alert for %s network**  \nFollowing alarms have been raised:\n\n---", alarmToNotify[0].FmDataSource.NhgID)
+		msg += fmt.Sprintf("#**Alarm alert for %s network**  \nFollowing alarms have been raised:\n\n---", strings.TrimSpace(alarmToNotify[0].FmDataSource.NhgID))
 	}
 
 	for _, v := range alarmToNotify {
-		msg += fmt.Sprintf("\n\n*AlarmID:* **%s**\n\n", v.FmData.AlarmIdentifier)
-		msg += fmt.Sprintf("*AlarmText:* **%s**\n\n", v.FmData.AlarmText)
+		msg += fmt.Sprintf("\n\n*AlarmID:* **%s**\n\n", strings.TrimSpace(v.FmData.AlarmIdentifier))
+		msg += fmt.Sprintf("*AlarmText:* **%s**\n\n", strings.TrimSpace(v.FmData.AlarmText))
 		if v.FmDataSource.Dn != "" {
-			msg += fmt.Sprintf("*Dn:* **%s**\n\n", v.FmDataSource.Dn)
+			msg += fmt.Sprintf("*Dn:* **%s**\n\n", strings.TrimSpace(v.FmDataSource.Dn))
 		}
-		msg += fmt.Sprintf("*AlarmState:* **%s**\n\n", v.FmData.AlarmState)
-		msg += fmt.Sprintf("*LastUpdatedTime:* **%s**\n\n", v.FmData.LastUpdatedTime)
-		msg += fmt.Sprintf("*Severity:* **%s**\n\n", v.FmData.Severity)
+		msg += fmt.Sprintf("*AlarmState:* **%s**\n\n", strings.TrimSpace(v.FmData.AlarmState))
+		msg += fmt.Sprintf("*LastUpdatedTime:* **%s**\n\n", strings.TrimSpace(v.FmData.LastUpdatedTime))
+		msg += fmt.Sprintf("*Severity:* **%s**\n\n", strings.TrimSpace(v.FmData.Severity))
 		if v.FmData.SpecificProblem != "" {
-			msg += fmt.Sprintf("*SpecificProblem:* **%s**\n\n", v.FmData.SpecificProblem)
+			msg += fmt.Sprintf("*SpecificProblem:* **%s**\n\n", strings.TrimSpace(v.FmData.SpecificProblem))
 		}
 		if v.FmDataSource.NhgAlias != "" {
-			msg += fmt.Sprintf("*NhgName:* **%s**\n\n", v.FmDataSource.NhgAlias)
+			msg += fmt.Sprintf("*NhgName:* **%s**\n\n", strings.TrimSpace(v.FmDataSource.NhgAlias))
 		} else {
-			msg += fmt.Sprintf("*NhgID:* **%s**\n\n", v.FmDataSource.NhgID)
+			msg += fmt.Sprintf("*NhgID:* **%s**\n\n", strings.TrimSpace(v.FmDataSource.NhgID))
 		}
 
 		if v.FmData.AdditionalText != "" {
-			msg += fmt.Sprintf("*AdditionalText:* **%s**\n\n", v.FmData.AdditionalText)
+			msg += fmt.Sprintf("*AdditionalText:* **%s**\n\n", strings.TrimSpace(v.FmData.AdditionalText))
 		}
 		msg += fmt.Sprintf("---")
 	}

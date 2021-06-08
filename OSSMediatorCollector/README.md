@@ -20,15 +20,15 @@ MediatorCollector is compatible with only Unix/Linux system.
 ### Installation steps
 
 OSSMediatorCollector's binary should be built by running `make all` command followed by `make build_package` command.  
-It will create binary named as `collector` inside `bin` directory and package containing the binary and resource file, named as `OSSMediatorCollector.zip` inside `package` directory.  
+It will create binary named as `collector` inside `bin` directory and package containing the binary and resource file, named as `OSSMediatorCollector-<VERSION>.zip` inside `package` directory.  
 
-Please follow below procedure to install OSSMediatorCollector.zip in your home directory:
+Please follow below procedure to install OSSMediatorCollector-<VERSION>.zip in your home directory:
 
 ````
 $ mkdir collector
-$ cp OSSMediatorCollector.zip collector/
+$ cp OSSMediatorCollector-<VERSION>.zip collector/
 $ cd collector/
-$ unzip OSSMediatorCollector.zip
+$ unzip OSSMediatorCollector-<VERSION>.zip
 ````
 
 MediatorCollector directory structure after installation will be as shown below:

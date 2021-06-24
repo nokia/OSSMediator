@@ -44,11 +44,12 @@ type AlarmNotifier struct {
 	MessageFormat     string              `yaml:"message_format"`
 }
 
+//AlarmIDFilters stores alarm_id to be applied on dac/core alarms before notifying.
 type AlarmIDFilters struct {
 	AlarmID string `yaml:"alarm_id"`
 }
 
-//AlarmFilters stores filters to be applied on alarms before notifying.
+//RadioAlarmFilters stores filters to be applied on radio alarms before notifying.
 type RadioAlarmFilters struct {
 	SpecificProblem string   `yaml:"specific_problem"`
 	FaultIds        []string `yaml:"fault_ids"`

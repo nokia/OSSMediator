@@ -15,11 +15,13 @@ import (
 	"os/signal"
 	"syscall"
 
-	"collector/util"
+	"collector/config"
+	"collector/ndacapis"
+	"collector/utils"
 	"collector/validator"
 
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/natefinch/lumberjack.v2"
+	lumberjack "gopkg.in/natefinch/lumberjack.v2"
 )
 
 var (
@@ -46,23 +48,23 @@ func main() {
 
 	log.Info("Starting DA OSS Collector...")
 	//Reading config from json file
-	err := util.ReadConfig(confFile)
+	err := config.ReadConfig(confFile)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	//validate config
-	err = validator.ValidateConf(util.Conf)
+	err = validator.ValidateConf(config.Conf)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	//Create HTTP client for all the GET/POST API calls
-	util.CreateHTTPClient(certFile, skipTLS)
+	ndacapis.CreateHTTPClient(certFile, skipTLS)
 
 	// Authenticating the users
-	for _, user := range util.Conf.Users {
-		err = util.Login(user)
+	for _, user := range config.Conf.Users {
+		err = ndacapis.Login(user)
 		if err != nil {
 			fmt.Printf("\nLogin Failed for %s...\nError: %v", user.Email, err)
 			log.WithFields(log.Fields{"error": err}).Fatalf("Login Failed for %s", user.Email)
@@ -70,20 +72,20 @@ func main() {
 	}
 
 	//refreshing access token before expiry
-	for _, user := range util.Conf.Users {
-		go util.RefreshToken(user)
+	for _, user := range config.Conf.Users {
+		go ndacapis.RefreshToken(user)
 		//Create the sub response directory for the API under the user's base response directory.
-		util.CreateResponseDirectory(user.ResponseDest, util.Conf.ListNhGAPI.API)
-		for _, api := range util.Conf.MetricAPIs {
-			util.CreateResponseDirectory(user.ResponseDest, api.API)
+		utils.CreateResponseDirectory(user.ResponseDest, config.Conf.ListNhGAPI.API)
+		for _, api := range config.Conf.MetricAPIs {
+			utils.CreateResponseDirectory(user.ResponseDest, api.API)
 		}
-		for _, api := range util.Conf.SimAPIs {
-			util.CreateResponseDirectory(user.ResponseDest, api.API)
+		for _, api := range config.Conf.SimAPIs {
+			utils.CreateResponseDirectory(user.ResponseDest, api.API)
 		}
 	}
 
-	//start data collection from PM/FM APIs
-	util.StartDataCollection()
+	//start data collection from configured APIs
+	ndacapis.StartDataCollection()
 
 	//Perform logout when program terminates using os.Interrupt(ctrl+c)
 	shutdownHook()
@@ -159,8 +161,8 @@ func shutdownHook() {
 	signal.Notify(osSignal, syscall.SIGINT, syscall.SIGTERM)
 	<-osSignal
 	log.Info("Received shutdown signal...Logging out...")
-	for _, user := range util.Conf.Users {
-		err := util.Logout(user)
+	for _, user := range config.Conf.Users {
+		err := ndacapis.Logout(user)
 		if err != nil {
 			log.WithFields(log.Fields{"error": err}).Errorf("Logout failed for %s", user.Email)
 		}

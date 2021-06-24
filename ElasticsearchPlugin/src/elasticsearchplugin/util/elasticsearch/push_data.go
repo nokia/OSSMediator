@@ -388,7 +388,7 @@ func pushSimsDataToElasticsearch(filePath string, esConf config.ElasticsearchCon
 	source, _ := json.Marshal(d)
 
 	var postData string
-	index := "sims-data"
+	index := metric + "-data"
 	id := strings.Join([]string{metric, nhgID}, "_")
 	postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
 	postData += string(source) + "\n"

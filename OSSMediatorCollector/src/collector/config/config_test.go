@@ -4,18 +4,22 @@
 * see LICENSE file for details.
  */
 
-package util
+package config
 
 import (
+	"io/ioutil"
 	"os"
 	"testing"
 )
 
 //Reading config from invalid json file
 func TestReadConfigWithEmptyFile(t *testing.T) {
-	tmpfile := createTmpFile(".", "conf", []byte(``))
+	tmpfile, err := createTmpFile(".", "conf", []byte(``))
+	if err != nil {
+		t.Error(err)
+	}
 	defer os.Remove(tmpfile)
-	err := ReadConfig(tmpfile)
+	err = ReadConfig(tmpfile)
 	if err == nil {
 		t.Fail()
 	}
@@ -66,10 +70,13 @@ func TestReadConfig(t *testing.T) {
 		],
 		"limit": 100
 	}`)
-	tmpfile := createTmpFile(".", "conf", content)
+	tmpfile, err := createTmpFile(".", "conf", content)
+	if err != nil {
+		t.Error(err)
+	}
 	defer os.Remove(tmpfile)
 
-	err := ReadConfig(tmpfile)
+	err = ReadConfig(tmpfile)
 	if err != nil {
 		t.Error(err)
 	}
@@ -84,5 +91,18 @@ func TestReadConfigWithNonExistingFile(t *testing.T) {
 	if err == nil {
 		t.Fail()
 	}
+}
 
+func createTmpFile(dir string, prefix string, content []byte) (string, error) {
+	tmpfile, err := ioutil.TempFile(dir, prefix)
+	if err != nil {
+		return "", err
+	}
+	if _, err = tmpfile.Write(content); err != nil {
+		return "", err
+	}
+	if err = tmpfile.Close(); err != nil {
+		return "", err
+	}
+	return tmpfile.Name(), nil
 }

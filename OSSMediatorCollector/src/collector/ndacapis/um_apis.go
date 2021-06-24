@@ -4,20 +4,30 @@
 * see LICENSE file for details.
  */
 
-package util
+package ndacapis
 
 import (
 	"bytes"
+	"collector/utils"
 	"encoding/json"
 	"fmt"
 	"net/http"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	"collector/config"
+
+	jwt "github.com/dgrijalva/jwt-go"
 	log "github.com/sirupsen/logrus"
 )
 
-//UMResponse keeps track of response received from UM APIs
+const (
+	//Backoff duration for retrying refresh token.
+	initialBackoff = 5 * time.Second
+	maxBackoff     = 120 * time.Second
+	multiplier     = 2
+)
+
+//UMResponse keeps track of response received from UM APIs.
 type UMResponse struct {
 	UAT struct {
 		AccessToken string `json:"access_token"` //access token
@@ -42,7 +52,7 @@ type RefreshAndLogoutRequestBody struct {
 //Login authenticates the BaseURL with email ID and password,
 // store the session token to SessionToken.
 //If successful it returns nil, if there is any error it return error.
-func Login(user *User) error {
+func Login(user *config.User) error {
 	//forming the request body in following format
 	//{"email_id": "string", "password": "string"}
 	reqBody := LoginRequestBody{
@@ -50,7 +60,8 @@ func Login(user *User) error {
 		Password: user.Password,
 	}
 	body, _ := json.Marshal(reqBody)
-	request, err := http.NewRequest("POST", Conf.BaseURL+Conf.UMAPIs.Login, bytes.NewBuffer(body))
+	apiURL := config.Conf.BaseURL + config.Conf.UMAPIs.Login
+	request, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(body))
 	if err != nil {
 		return err
 	}
@@ -65,7 +76,7 @@ func Login(user *User) error {
 	resp := new(UMResponse)
 	err = json.NewDecoder(bytes.NewReader(response)).Decode(resp)
 	if err != nil {
-		return fmt.Errorf("Unable to decode response received from login API for %s, error:%v", user.Email, err)
+		return fmt.Errorf("unable to decode response received from login API for %s, error:%v", user.Email, err)
 	}
 
 	//check response for status code
@@ -83,46 +94,46 @@ func Login(user *User) error {
 }
 
 //Extracts the expiry time from access_token and set it to SessionToken.
-func setToken(response *UMResponse, user *User) {
+func setToken(response *UMResponse, user *config.User) {
 	//getting expiry time using jwt
 	token, _ := jwt.Parse(response.UAT.AccessToken, nil)
 	claims := token.Claims.(jwt.MapClaims)
 	exp := int64(claims["exp"].(float64))
 	expTime := time.Unix(exp, 0)
 
-	user.sessionToken = &sessionToken{
-		accessToken:  response.UAT.AccessToken,
-		refreshToken: response.RT.RefreshToken,
-		expiryTime:   expTime,
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  response.UAT.AccessToken,
+		RefreshToken: response.RT.RefreshToken,
+		ExpiryTime:   expTime,
 	}
-	user.isSessionAlive = true
-	log.Debugf("Expiry time: %v for %s", user.sessionToken.expiryTime, user.Email)
+	user.IsSessionAlive = true
+	log.Debugf("Expiry time: %v for %s", user.SessionToken.ExpiryTime, user.Email)
 }
 
 //RefreshToken refreshes the session token before expiry_time.
 //Input parameter apiUrl is the API URL for refreshing session.
-func RefreshToken(user *User) {
-	apiURL := Conf.BaseURL + Conf.UMAPIs.Refresh
+func RefreshToken(user *config.User) {
+	apiURL := config.Conf.BaseURL + config.Conf.UMAPIs.Refresh
 	duration := getRefreshDuration(user)
 	refreshTimer := time.NewTimer(duration)
 	for {
 		<-refreshTimer.C
-		user.wg.Add(1)
+		user.Wg.Add(1)
 		err := callRefreshAPI(apiURL, user)
 		if err != nil {
 			log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to login", user.Email)
 			err := Login(user)
 			if err != nil {
 				log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
-				user.isSessionAlive = false
+				user.IsSessionAlive = false
 				go retryLogin(initialBackoff, user)
 			} else {
-				user.wg.Done()
+				user.Wg.Done()
 			}
 		} else {
-			user.wg.Done()
+			user.Wg.Done()
 		}
-		user.wg.Wait()
+		user.Wg.Wait()
 		log.Infof("Token refreshed for %s.", user.Email)
 		duration = getRefreshDuration(user)
 		refreshTimer.Reset(duration)
@@ -130,19 +141,19 @@ func RefreshToken(user *User) {
 }
 
 //Return the expiry duration.
-func getRefreshDuration(user *User) time.Duration {
-	duration := user.sessionToken.expiryTime.Sub(currentTime())
+func getRefreshDuration(user *config.User) time.Duration {
+	duration := user.SessionToken.ExpiryTime.Sub(utils.CurrentTime())
 	duration -= 30 * time.Second
 	log.Debugf("Refresh duration for %s: %v", user.Email, duration)
 	return duration
 }
 
 //calls the refresh API, return nil when successful.
-func callRefreshAPI(apiURL string, user *User) error {
+func callRefreshAPI(apiURL string, user *config.User) error {
 	log.Infof("Refreshing token for %s", user.Email)
 	//forming body for refresh session API
 	reqBody := RefreshAndLogoutRequestBody{
-		RefreshToken: user.sessionToken.refreshToken,
+		RefreshToken: user.SessionToken.RefreshToken,
 	}
 	body, _ := json.Marshal(reqBody)
 	request, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(body))
@@ -151,7 +162,7 @@ func callRefreshAPI(apiURL string, user *User) error {
 	}
 
 	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set(authorizationHeader, user.sessionToken.accessToken)
+	request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
 	response, err := doRequest(request)
 	if err != nil {
 		return err
@@ -161,7 +172,7 @@ func callRefreshAPI(apiURL string, user *User) error {
 	resp := new(UMResponse)
 	err = json.NewDecoder(bytes.NewReader(response)).Decode(resp)
 	if err != nil {
-		return fmt.Errorf("Unable to decode response received from refresh API for %s, error:%v", user.Email, err)
+		return fmt.Errorf("unable to decode response received from refresh API for %s, error:%v", user.Email, err)
 	}
 
 	//check response for status code
@@ -173,7 +184,7 @@ func callRefreshAPI(apiURL string, user *User) error {
 	return nil
 }
 
-func retryLogin(backoff time.Duration, user *User) {
+func retryLogin(backoff time.Duration, user *config.User) {
 	timer := time.NewTimer(backoff)
 	for {
 		<-timer.C
@@ -187,8 +198,8 @@ func retryLogin(backoff time.Duration, user *User) {
 			}
 			timer.Reset(backoff)
 		} else {
-			user.isSessionAlive = true
-			user.wg.Done()
+			user.IsSessionAlive = true
+			user.Wg.Done()
 			return
 		}
 	}
@@ -196,20 +207,21 @@ func retryLogin(backoff time.Duration, user *User) {
 
 //Logout to close the session.
 //If successful it returns nil, if there is any error it return error.
-func Logout(user *User) error {
-	log.Infof("Logging out from %s for user %s.", Conf.BaseURL, user.Email)
+func Logout(user *config.User) error {
+	log.Infof("Logging out from %s for user %s.", config.Conf.BaseURL, user.Email)
 	//forming body for logout API
 	reqBody := RefreshAndLogoutRequestBody{
-		RefreshToken: user.sessionToken.refreshToken,
+		RefreshToken: user.SessionToken.RefreshToken,
 	}
 	body, _ := json.Marshal(reqBody)
-	request, err := http.NewRequest("POST", Conf.BaseURL+Conf.UMAPIs.Logout, bytes.NewBuffer(body))
+	apiURL := config.Conf.BaseURL + config.Conf.UMAPIs.Logout
+	request, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(body))
 	if err != nil {
 		return err
 	}
 
 	request.Header.Set("Content-Type", "application/json")
-	request.Header.Set(authorizationHeader, user.sessionToken.accessToken)
+	request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
 	_, err = doRequest(request)
 	if err != nil {
 		return err

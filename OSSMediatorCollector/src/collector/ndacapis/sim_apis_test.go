@@ -1,14 +1,23 @@
-package util
+/*
+* Copyright 2018 Nokia
+* Licensed under BSD 3-Clause Clear License,
+* see LICENSE file for details.
+ */
+
+package ndacapis
 
 import (
 	"bytes"
+	"collector/config"
+	"collector/utils"
 	"fmt"
+	log "github.com/sirupsen/logrus"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"strconv"
+	"strings"
 	"testing"
 	"time"
 )
@@ -64,9 +73,9 @@ var (
 )
 
 func TestCallSimAPI(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true, ResponseDest: "./tmp"}
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
+	user.SessionToken = &config.SessionToken{
+		AccessToken: "accessToken",
 	}
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
@@ -74,24 +83,27 @@ func TestCallSimAPI(t *testing.T) {
 	}))
 	defer testServer.Close()
 
-	apiConf := APIConf{API: "/sims", Interval: 15}
-	CreateResponseDirectory(user.ResponseDest, apiConf.API)
+	config.Conf = config.Config{
+		BaseURL: testServer.URL,
+	}
+	apiConf := config.APIConf{API: "/sims", Interval: 15}
+	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
+	defer os.RemoveAll(user.ResponseDest)
 	CreateHTTPClient("", true)
 
-	oldCurrentTime := currentTime
-	defer func() { currentTime = oldCurrentTime }()
+	oldCurrentTime := utils.CurrentTime
+	defer func() { utils.CurrentTime = oldCurrentTime }()
 
 	myCurrentTime := func() time.Time {
 		return time.Date(2018, 12, 17, 20, 9, 58, 0, time.UTC)
 	}
-	currentTime = myCurrentTime
-	fetchSimData(testServer.URL, &apiConf, &user, 123)
+	utils.CurrentTime = myCurrentTime
+	fetchSimData(&apiConf, &user, 123)
 
-	fileName := "./tmp/sims/sims_testuser@nokia.com_response_"+ strconv.Itoa(int(currentTime().Unix())) +".json"
+	fileName := "./tmp/sims/sims_testuser@nokia.com_response_" + strconv.Itoa(int(utils.CurrentTime().Unix())) + ".json"
 	if _, err := os.Stat(fileName); os.IsNotExist(err) {
 		t.Error("File not found,  ", err)
 	}
-	defer os.Remove(fileName)
 	data, err := ioutil.ReadFile(fileName)
 	if err != nil {
 		t.Error(err)
@@ -102,33 +114,42 @@ func TestCallSimAPI(t *testing.T) {
 }
 
 func TestCallSimAPIWithWrongURL(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA==", isSessionAlive: true, ResponseDest: "./tmp"}
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
+	user.SessionToken = &config.SessionToken{
+		AccessToken: "accessToken",
 	}
-	user.nhgIDs = []string{"test_nhg1"}
+	user.NhgIDs = []string{"test_nhg1"}
 
-	apiConf := APIConf{API: "/sims/{nhg_id}", Interval: 15}
-	CreateResponseDirectory(user.ResponseDest, apiConf.API)
+	config.Conf = config.Config{
+		BaseURL: "http://localhost",
+	}
+	apiConf := config.APIConf{API: "/sims/{nhg_id}", Interval: 15}
+	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
 	CreateHTTPClient("", true)
 
-	oldCurrentTime := currentTime
-	defer func() { currentTime = oldCurrentTime }()
+	oldCurrentTime := utils.CurrentTime
+	defer func() { utils.CurrentTime = oldCurrentTime }()
 
 	myCurrentTime := func() time.Time {
 		return time.Date(2018, 12, 17, 20, 9, 58, 0, time.UTC)
 	}
-	currentTime = myCurrentTime
+	utils.CurrentTime = myCurrentTime
+	fetchSimData(&apiConf, &user, 123)
+	fileName := "./tmp/sims/sims_testuser@nokia.com_response_" + strconv.Itoa(int(utils.CurrentTime().Unix())) + ".json"
+	if _, err := os.Stat(fileName); !os.IsNotExist(err) {
+		t.Fail()
+	}
+}
+
+func TestGetSimsDataWithInactiveSession(t *testing.T) {
 	var buf bytes.Buffer
 	log.SetOutput(&buf)
 	defer func() {
 		log.SetOutput(os.Stderr)
 	}()
-
-	fetchSimData("http://localhost", &apiConf, &user, 123)
-	t.Log(buf.String())
-	fileName := "./tmp/sims/sims_testuser@nokia.com_response_"+ strconv.Itoa(int(currentTime().Unix())) +".json"
-	if _, err := os.Stat(fileName); !os.IsNotExist(err) {
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: false}
+	fetchSimData(&config.APIConf{API: "/getNhgDetail", Interval: 15}, &user, 1234)
+	if !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
 		t.Fail()
 	}
 }

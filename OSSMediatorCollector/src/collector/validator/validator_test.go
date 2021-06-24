@@ -7,27 +7,27 @@
 package validator
 
 import (
-	"collector/util"
+	"collector/config"
 	"strings"
 	"testing"
 )
 
 var (
-	conf = util.Config{
+	conf = config.Config{
 		BaseURL: "https://localhost:8080/api/v2",
-		UMAPIs: util.UMConf{
+		UMAPIs: config.UMConf{
 			Login:   "/session",
 			Refresh: "/refresh",
 			Logout:  "/logout",
 		},
-		MetricAPIs: []*util.APIConf{
+		MetricAPIs: []*config.APIConf{
 			{API: "/pmdata", Interval: 15},
 			{API: "/fmdata", Interval: 60, Type: "ACTIVE", MetricType: "RADIO"},
 			{API: "/fmdata", Interval: 15, Type: "HISTORY", MetricType: "RADIO"},
 			{API: "/fmdata", Interval: 60, Type: "ACTIVE", MetricType: "DAC"},
 			{API: "/fmdata", Interval: 15, Type: "HISTORY", MetricType: "DAC"},
 		},
-		Users: []*util.User{
+		Users: []*config.User{
 			{Email: "user1@nokia.com", Password: "dGVzdDE=", ResponseDest: "/statistics/reports/user1"},
 			{Email: "user2@nokia.com", Password: "dGVzdDI=", ResponseDest: "/statistics/reports/user2"},
 		},
@@ -55,7 +55,7 @@ func TestValidateConfWithInvalidBaseURL(t *testing.T) {
 
 func TestValidateConfWithZeroAPI(t *testing.T) {
 	tmp := conf.MetricAPIs
-	conf.MetricAPIs = []*util.APIConf{}
+	conf.MetricAPIs = []*config.APIConf{}
 	defer func() { conf.MetricAPIs = tmp }()
 	err := ValidateConf(conf)
 	if err == nil || !strings.Contains(err.Error(), "number of APIs can't be zero") {
@@ -65,7 +65,7 @@ func TestValidateConfWithZeroAPI(t *testing.T) {
 
 func TestValidateConfWithZeroUsers(t *testing.T) {
 	tmp := conf.Users
-	conf.Users = []*util.User{}
+	conf.Users = []*config.User{}
 	defer func() { conf.Users = tmp }()
 	err := ValidateConf(conf)
 	if err == nil || !strings.Contains(err.Error(), "number of users can't be zero") {

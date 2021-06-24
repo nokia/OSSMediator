@@ -1,7 +1,15 @@
-package util
+/*
+* Copyright 2018 Nokia
+* Licensed under BSD 3-Clause Clear License,
+* see LICENSE file for details.
+ */
+
+package ndacapis
 
 import (
 	"bytes"
+	"collector/config"
+	"collector/utils"
 	"encoding/json"
 	log "github.com/sirupsen/logrus"
 	"net/http"
@@ -9,6 +17,7 @@ import (
 	"strings"
 )
 
+//SimAPIResponse struct for sims api response.
 type SimAPIResponse struct {
 	Status        Status       `json:"status"`
 	EmailID       string       `json:"email_id"`
@@ -19,16 +28,19 @@ type SimAPIResponse struct {
 	RequestedSims int          `json:"requested_sims"`
 }
 
+//PageResponse struct is used to get pagination information of sims api.
 type PageResponse struct {
 	PageDetails PageDetails `json:"page_details"`
 	TotalPages  int         `json:"total_pages"`
 }
 
+//PageDetails keeps individual page details for pagination.
 type PageDetails struct {
 	PageNumber int `json:"page_number"`
 	PageSize   int `json:"page_size"`
 }
 
+//SimData struct for storing received response from sims api.
 type SimData struct {
 	EmailID       string      `json:"email_id,omitempty"`
 	TotalSims     int         `json:"total_sims,omitempty"`
@@ -42,35 +54,35 @@ const (
 	pageNoQueryParam = "page.page_number"
 )
 
-func fetchSimData(baseURL string, api *APIConf, user *User, txnID uint64) {
+func fetchSimData(api *config.APIConf, user *config.User, txnID uint64) {
+	if !user.IsSessionAlive {
+		log.WithFields(log.Fields{"tid": txnID, "api": api.API}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
+		return
+	}
 	if strings.Contains(api.API, nhgPathParam) {
-		for _, nhgID := range user.nhgIDs {
-			callSimAPI(baseURL, api, user, nhgID, 1, txnID)
+		for _, nhgID := range user.NhgIDs {
+			callSimAPI(api, user, nhgID, 1, txnID)
 		}
 	} else {
-		callSimAPI(baseURL, api, user, "", 1, txnID)
+		callSimAPI(api, user, "", 1, txnID)
 	}
 }
 
-func callSimAPI(baseURL string, api *APIConf, user *User, nhgID string, pageNo int, txnID uint64) {
-	apiURL := baseURL + api.API
+func callSimAPI(api *config.APIConf, user *config.User, nhgID string, pageNo int, txnID uint64) {
+	apiURL := config.Conf.BaseURL + api.API
 	apiURL = strings.Replace(apiURL, "{nhg_id}", nhgID, -1)
-	if !user.isSessionAlive {
-		log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, currentTime())
-		return
-	}
 
 	//wait if refresh token api is running
-	user.wg.Wait()
+	user.Wg.Wait()
 
-	log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, currentTime())
+	log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
 	request, err := http.NewRequest("GET", apiURL, nil)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
 		return
 	}
 
-	request.Header.Set(authorizationHeader, user.sessionToken.accessToken)
+	request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
 	//Adding query params
 	query := request.URL.Query()
 	query.Add(pageNoQueryParam, strconv.Itoa(pageNo))
@@ -103,7 +115,7 @@ func callSimAPI(baseURL string, api *APIConf, user *User, nhgID string, pageNo i
 		Subsc:         resp.Subsc,
 		RequestedSims: resp.RequestedSims,
 	}
-	err = writeGenericAPIData(user, api, simData, nhgID, txnID)
+	err = utils.WriteResponse(user, api, simData, nhgID, txnID)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 		return
@@ -112,6 +124,6 @@ func callSimAPI(baseURL string, api *APIConf, user *User, nhgID string, pageNo i
 	if resp.PageResponse.TotalPages == resp.PageResponse.PageDetails.PageNumber {
 		return
 	} else {
-		callSimAPI(baseURL, api, user, nhgID, pageNo+1, txnID)
+		callSimAPI(api, user, nhgID, pageNo+1, txnID)
 	}
 }

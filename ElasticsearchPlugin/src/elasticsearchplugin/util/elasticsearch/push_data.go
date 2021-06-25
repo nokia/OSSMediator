@@ -61,10 +61,11 @@ const (
 	timestampFormat = "2006-01-02T15:04:05"
 
 	//Data types
-	fmData   = "fmdata"
-	pmData   = "pmdata"
-	nhgData  = "network-hardware-groups"
-	simsData = "sims"
+	fmData          = "fmdata"
+	pmData          = "pmdata"
+	nhgData         = "network-hardware-groups"
+	simsData        = "sims"
+	accountSimsData = "account-sims"
 )
 
 type pmResponse []struct {
@@ -108,7 +109,7 @@ func PushDataToElasticsearch(filePath string, esConf config.ElasticsearchConf) {
 		pushPMDataToElasticsearch(filePath, esConf)
 	} else if apiType == nhgData {
 		pushNHGDataToElasticsearch(filePath, esConf)
-	} else if apiType == simsData {
+	} else if apiType == simsData || apiType == accountSimsData {
 		pushSimsDataToElasticsearch(filePath, esConf)
 	}
 }

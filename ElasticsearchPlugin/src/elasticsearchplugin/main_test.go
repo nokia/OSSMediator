@@ -23,7 +23,9 @@ func TestPlugin(t *testing.T) {
 		"source_dirs": [
 			"./statistics/reports/nmsviews1", "./statistics/reports/nmsviews2"
 		],
-		"elasticsearch_url": "http://127.0.0.1:9200",
+		"elasticsearch": {
+			"url": "http://127.0.0.1:9200"
+		},
 		"cleanup_duration": 60
 	}`)
 	tmpfile, err := ioutil.TempFile(".", "conf")

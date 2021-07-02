@@ -3,7 +3,11 @@
     "<SOURCE DIRECTORY PATH>",
     "<SOURCE DIRECTORY PATH>"
   ],
-  "elasticsearch_url":"http://localhost:9200",
-  "elasticsearch_data_retention_duration": 90,
+  "elasticsearch": {
+    "url":"http://localhost:9200",
+    "user": "<USERNAME>",
+    "password": "<PASSWORD>",
+    "data_retention_duration": 90
+  },
   "cleanup_duration": 1440
 }

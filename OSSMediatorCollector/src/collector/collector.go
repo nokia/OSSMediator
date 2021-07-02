@@ -15,21 +15,24 @@ import (
 	"os/signal"
 	"syscall"
 
-	"collector/util"
+	"collector/config"
+	"collector/ndacapis"
+	"collector/utils"
 	"collector/validator"
 
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/natefinch/lumberjack.v2"
+	lumberjack "gopkg.in/natefinch/lumberjack.v2"
 )
 
 var (
-	confFile   string
-	certFile   string
-	skipTLS    bool
-	logDir     string
-	logLevel   int
-	version    bool
-	appVersion string
+	confFile         string
+	certFile         string
+	skipTLS          bool
+	logDir           string
+	logLevel         int
+	version          bool
+	appVersion       string
+	enableConsoleLog bool
 )
 
 func main() {
@@ -45,23 +48,23 @@ func main() {
 
 	log.Info("Starting DA OSS Collector...")
 	//Reading config from json file
-	err := util.ReadConfig(confFile)
+	err := config.ReadConfig(confFile)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	//validate config
-	err = validator.ValidateConf(util.Conf)
+	err = validator.ValidateConf(config.Conf)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	//Create HTTP client for all the GET/POST API calls
-	util.CreateHTTPClient(certFile, skipTLS)
+	ndacapis.CreateHTTPClient(certFile, skipTLS)
 
 	// Authenticating the users
-	for _, user := range util.Conf.Users {
-		err = util.Login(user)
+	for _, user := range config.Conf.Users {
+		err = ndacapis.Login(user)
 		if err != nil {
 			fmt.Printf("\nLogin Failed for %s...\nError: %v", user.Email, err)
 			log.WithFields(log.Fields{"error": err}).Fatalf("Login Failed for %s", user.Email)
@@ -69,16 +72,20 @@ func main() {
 	}
 
 	//refreshing access token before expiry
-	for _, user := range util.Conf.Users {
-		go util.RefreshToken(user)
+	for _, user := range config.Conf.Users {
+		go ndacapis.RefreshToken(user)
 		//Create the sub response directory for the API under the user's base response directory.
-		for _, api := range util.Conf.APIs {
-			util.CreateResponseDirectory(user.ResponseDest, api.API)
+		utils.CreateResponseDirectory(user.ResponseDest, config.Conf.ListNhGAPI.API)
+		for _, api := range config.Conf.MetricAPIs {
+			utils.CreateResponseDirectory(user.ResponseDest, api.API)
+		}
+		for _, api := range config.Conf.SimAPIs {
+			utils.CreateResponseDirectory(user.ResponseDest, api.API)
 		}
 	}
 
-	//start data collection from PM/FM APIs
-	util.StartDataCollection()
+	//start data collection from configured APIs
+	ndacapis.StartDataCollection()
 
 	//Perform logout when program terminates using os.Interrupt(ctrl+c)
 	shutdownHook()
@@ -92,6 +99,7 @@ func parseFlags() {
 	flag.BoolVar(&skipTLS, "skip_tls", false, "skip TLS authentication")
 	flag.StringVar(&logDir, "log_dir", "../log", "Log directory")
 	flag.IntVar(&logLevel, "log_level", 4, "Log level")
+	flag.BoolVar(&enableConsoleLog, "enable_console_log", false, "Enable console logging, if true logs won't be written to file")
 	flag.BoolVar(&version, "v", false, "Prints OSSMediator's version")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: ./collector [options]\n")
@@ -100,15 +108,23 @@ func parseFlags() {
 		fmt.Fprintf(os.Stderr, "\t-conf_file string\n\t\tConfig file path (default \"../resources/conf.json\")\n")
 		fmt.Fprintf(os.Stderr, "\t-cert_file string\n\t\tCertificate file path (if cert_file is not passed then it will establish TLS auth using root certificates.)\n")
 		fmt.Fprintf(os.Stderr, "\t-log_dir string\n\t\tLog Directory (default \"../log\"), logs will be stored in collector.log file.\n")
-		fmt.Fprintf(os.Stderr, "\t-log_level int\n\t\tLog Level (default 4), logger level in collector.log file. Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
+		fmt.Fprintf(os.Stderr, "\t-log_level int\n\t\tLog Level (default 4). Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
 		fmt.Fprintf(os.Stderr, "\t-skip_tls\n\t\tSkip TLS Authentication\n")
+		fmt.Fprintf(os.Stderr, "\t-enable_console_log\n\t\tEnable console logging, if true logs won't be written to file\n")
 		fmt.Fprintf(os.Stderr, "\t-v\n\t\tPrints OSSMediator's version\n")
 	}
 	flag.Parse()
 }
 
 //create log file (collector.log) within logDir (in case of failure logs will be written to console)
+//if console logs is enabled then logs are written to stdout instead of file.
 func initLogger(logDir string, logLevel int) {
+	if enableConsoleLog {
+		log.SetOutput(os.Stdout)
+		log.SetFormatter(&log.TextFormatter{})
+		log.SetLevel(log.Level(logLevel))
+		return
+	}
 	var err error
 	err = os.MkdirAll(logDir, os.ModePerm)
 	if err != nil {
@@ -116,6 +132,7 @@ func initLogger(logDir string, logLevel int) {
 		log.Info("Failed to log to file, using default stderr")
 		log.SetOutput(os.Stdout)
 		log.SetFormatter(&log.TextFormatter{})
+		log.SetLevel(log.Level(logLevel))
 		return
 	}
 
@@ -144,8 +161,8 @@ func shutdownHook() {
 	signal.Notify(osSignal, syscall.SIGINT, syscall.SIGTERM)
 	<-osSignal
 	log.Info("Received shutdown signal...Logging out...")
-	for _, user := range util.Conf.Users {
-		err := util.Logout(user)
+	for _, user := range config.Conf.Users {
+		err := ndacapis.Logout(user)
 		if err != nil {
 			log.WithFields(log.Fields{"error": err}).Errorf("Logout failed for %s", user.Email)
 		}

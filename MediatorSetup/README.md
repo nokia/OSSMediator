@@ -1,5 +1,5 @@
-Readme:
--------
+Installation Steps:
+-------------------
 
 Please take the latest OSSMediatorCollector, ElasticsearchPlugin and mediator_startup package files from Info Center - OSS Software Package. 
 Contact Support team if packages are not available.
@@ -23,5 +23,5 @@ Following steps will setup OSSMediator packages with Elasticsearch data source a
 6. 	The script will run to do the setup and bringup the dashboards. If there are any errors, please correct them and re-run the script.
 
 The setup should be ready and you can access the PM and FM dashboards from your browser at
-http://<your_Ip_address>:3000/dashboards
+`http://<your_Ip_address>:3000/dashboards`.
 

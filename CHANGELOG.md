@@ -1,6 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 3.1
+
+NEW FEATURES:
+
+* OSSMediatorCollector: 
+    * Added support for getting CORE alarms.
+    * Alarm notification now support DAC and CORE alarms also.
+    * Added support to call SIM APIs.
+* MediatorSetup: Added dashboards to view ACTIVE/HISTORY CORE alarms.
+
+IMPROVEMENTS:
+
+* OSSMediatorCollector: Changes to write NHG and SIMs data to file.
+* ElasticsearchPlugin:
+    * Added elasticsearch authentication and old indices deletion feature.
+    * Changes for pushing NHG and SIM data elasticsearch.
+
 # 3.0
 
 NEW FEATURES:

@@ -4,11 +4,12 @@
 * see LICENSE file for details.
  */
 
-package util
+package elasticsearch
 
 import (
 	"bytes"
 	"crypto/tls"
+	"elasticsearchplugin/config"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -29,7 +30,7 @@ var (
 	failedData  []failedResponse
 	retryTicker *time.Ticker
 
-	indexList   = []string{"radio-fm*", "dac-fm*", "4g-pm*", "5g-pm*"}
+	indexList   = []string{"radio-fm*", "dac-fm*", "core-fm*", "4g-pm*", "5g-pm*"}
 	deleteQuery = `
 {
   "query": {
@@ -50,6 +51,7 @@ const (
 
 	elkBulkAPI           = "/_bulk"
 	elkDeleteAPI         = "/_delete_by_query"
+	elkCatIndicesAPI     = "/_cat/indices/"
 	elkWaitQueryParam    = "wait_for_completion"
 	elkNoOfRecordsPerAPI = 200
 
@@ -57,6 +59,13 @@ const (
 
 	deletionHour    = 1 //Hour of the day, when deletion of old data will be done from elasticsearch
 	timestampFormat = "2006-01-02T15:04:05"
+
+	//Data types
+	fmData          = "fmdata"
+	pmData          = "pmdata"
+	nhgData         = "network-hardware-groups"
+	simsData        = "sims"
+	accountSimsData = "account-sims"
 )
 
 type pmResponse []struct {
@@ -91,21 +100,25 @@ func newNetClient() *http.Client {
 	return netClient
 }
 
-func pushDataToElasticsearch(filePath string, URL string) {
+func PushDataToElasticsearch(filePath string, esConf config.ElasticsearchConf) {
 	fileName := path.Base(filePath)
 	apiType := strings.Split(fileName, "_")[0]
-	if apiType == "fmdata" {
-		pushFMDataToElasticsearch(filePath, URL)
-	} else if apiType == "pmdata" {
-		pushPMDataToElasticsearch(filePath, URL)
+	if apiType == fmData {
+		pushFMDataToElasticsearch(filePath, esConf)
+	} else if apiType == pmData {
+		pushPMDataToElasticsearch(filePath, esConf)
+	} else if apiType == nhgData {
+		pushNHGDataToElasticsearch(filePath, esConf)
+	} else if apiType == simsData || apiType == accountSimsData {
+		pushSimsDataToElasticsearch(filePath, esConf)
 	}
 }
 
-func pushData(elkURL string, data string, filePath string) {
-	err := doPost(elkURL, data, nil)
+func pushData(elkURL, elkUser, elkPassword string, data string, filePath string) {
+	_, err := httpCall(http.MethodPost, elkURL, elkUser, elkPassword, data, nil)
 	if err != nil {
 		log.WithFields(log.Fields{"Error": err, "url": elkURL, "file": filePath}).Error("Unable to push data to elasticsearch, push to elasticsearch will be retried")
-		err = retryPushData(elkURL, data)
+		err = retryPushData(elkURL, elkUser, elkPassword, data)
 		if err != nil {
 			failedData = append(failedData, failedResponse{filePath: filePath, data: data})
 			log.WithFields(log.Fields{"Error": err, "url": elkURL, "file": filePath}).Error("Unable to push data to elasticsearch, will be retried later...")
@@ -115,12 +128,15 @@ func pushData(elkURL string, data string, filePath string) {
 	log.Infof("Data from %s pushed to elasticsearch successfully", filePath)
 }
 
-func doPost(elkURL string, data string, queryParams map[string]string) error {
-	request, err := http.NewRequest("POST", elkURL, bytes.NewBuffer([]byte(data)))
+func httpCall(httpMethod, elkURL, elkUser, elkPassword string, data string, queryParams map[string]string) ([]byte, error) {
+	request, err := http.NewRequest(httpMethod, elkURL, bytes.NewBuffer([]byte(data)))
 	if err != nil {
-		return err
+		return nil, err
 	}
 	request.Close = true
+	if elkUser != "" && elkPassword != "" {
+		request.SetBasicAuth(elkUser, elkPassword)
+	}
 	request.Header.Set("Content-Type", "application/json")
 
 	if len(queryParams) > 0 {
@@ -133,21 +149,25 @@ func doPost(elkURL string, data string, queryParams map[string]string) error {
 
 	response, err := newNetClient().Do(request)
 	if err != nil {
-		return err
+		return nil, err
 	}
+	defer response.Body.Close()
 	if response.StatusCode != http.StatusOK {
-		return fmt.Errorf("Received response' status code: %d, status: %s", response.StatusCode, response.Status)
+		return nil, fmt.Errorf("Received response' status code: %d, status: %s", response.StatusCode, response.Status)
 	}
 
-	response.Body.Close()
-	return nil
+	resp, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
 }
 
-func retryPushData(elkURL string, data string) error {
+func retryPushData(elkURL, elkUser, elkPassword string, data string) error {
 	var err error
 	for i := 0; i < maxRetryAttempts; i++ {
 		log.WithFields(log.Fields{"url": elkURL}).Error("retrying push data to elasticsearch")
-		err = doPost(elkURL, data, nil)
+		_, err = httpCall(http.MethodPost, elkURL, elkUser, elkPassword, data, nil)
 		if err == nil {
 			return nil
 		}
@@ -156,8 +176,8 @@ func retryPushData(elkURL string, data string) error {
 }
 
 //PushFailedDataToElasticsearch pushes previously failed files from failedData map to elasticsearch every 5 min.
-func PushFailedDataToElasticsearch(elkURL string) {
-	elkURL = elkURL + elkBulkAPI
+func PushFailedDataToElasticsearch(esConf config.ElasticsearchConf) {
+	elkURL := esConf.URL + elkBulkAPI
 	if retryTicker == nil {
 		retryTicker = time.NewTicker(retryDuration)
 	}
@@ -169,7 +189,7 @@ func PushFailedDataToElasticsearch(elkURL string) {
 				filePath := failedData[i].filePath
 				data := failedData[i].data
 				log.Infof("Retrying to push failed data from %s to elasticsearch", filePath)
-				err := doPost(elkURL, data, nil)
+				_, err := httpCall(http.MethodPost, elkURL, esConf.User, esConf.Password, data, nil)
 				if err == nil {
 					failedData = append(failedData[:i], failedData[i+1:]...)
 					log.Infof("Data from %s pushed to elasticsearch successfully", filePath)
@@ -181,42 +201,8 @@ func PushFailedDataToElasticsearch(elkURL string) {
 	}()
 }
 
-//DeleteDataFormElasticsearch deletes older data from elasticsearch every day at 1 o'clock.
-func DeleteDataFormElasticsearch(elkURL string, duration int) {
-	timer := time.NewTimer(getNextTickDuration())
-	for {
-		<-timer.C
-		log.Info("Triggered data cleanup of elasticsearch")
-		deleteData(elkURL, duration)
-		timer.Reset(getNextTickDuration())
-	}
-}
-
-func getNextTickDuration() time.Duration {
-	currTime := currentTime()
-	nextTick := time.Date(currTime.Year(), currTime.Month(), currTime.Day(), deletionHour, 0, 0, 0, time.Local)
-	if nextTick.Before(currTime) {
-		nextTick = nextTick.AddDate(0, 0, 1)
-	}
-	return nextTick.Sub(currentTime())
-}
-
-func deleteData(elkURL string, duration int) {
-	elkURL = elkURL + "/" + strings.Join(indexList, ",") + elkDeleteAPI
-	deletionTime := currentTime().AddDate(0, 0, -1*duration).UTC().Format(timestampFormat)
-	query := strings.Replace(deleteQuery, "TIMESTAMP", deletionTime, -1)
-	queryParams := make(map[string]string)
-	queryParams[elkWaitQueryParam] = "false"
-	err := doPost(elkURL, query, queryParams)
-	if err != nil {
-		log.WithFields(log.Fields{"Error": err, "url": elkURL, "delete_from_time": deletionTime}).Error("Unable to delete data from elasticsearch")
-	} else {
-		log.WithFields(log.Fields{"url": elkURL, "delete_from_time": deletionTime}).Info("Data deleted from elasticsearch successfully.")
-	}
-}
-
-func pushFMDataToElasticsearch(filePath string, URL string) {
-	elkURL := URL + elkBulkAPI
+func pushFMDataToElasticsearch(filePath string, esConf config.ElasticsearchConf) {
+	elkURL := esConf.URL + elkBulkAPI
 	log.Infof("Pushing data from %s to elasticsearch", filePath)
 	f, err := os.Open(filePath)
 	if err != nil {
@@ -260,21 +246,26 @@ func pushFMDataToElasticsearch(filePath string, URL string) {
 			}
 			keys = append(keys, eventTime)
 			id = strings.Join(keys, "_")
+		} else if metricType == "core" {
+			alarmID := d.FMData["alarm_identifier"].(string)
+			nhgID := d.FMDataSource["nhg_id"].(string)
+			edgeID := d.FMDataSource["edge_id"].(string)
+			keys := []string{metricType, alarmID, nhgID, edgeID, eventTime}
+			id = strings.Join(keys, "_")
 		}
 		d.Timestamp = time.Now()
-
 		source, _ := json.Marshal(d)
 		postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
 		postData += string(source) + "\n"
 		if i != 0 && i%elkNoOfRecordsPerAPI == 0 || i == len(resp)-1 {
-			pushData(elkURL, postData, filePath)
+			pushData(elkURL, esConf.User, esConf.Password, postData, filePath)
 			postData = ""
 		}
 	}
 }
 
-func pushPMDataToElasticsearch(filePath string, URL string) {
-	elkURL := URL + elkBulkAPI
+func pushPMDataToElasticsearch(filePath string, esConf config.ElasticsearchConf) {
+	elkURL := esConf.URL + elkBulkAPI
 	log.Infof("Pushing data from %s to elasticsearch", filePath)
 	f, err := os.Open(filePath)
 	if err != nil {
@@ -317,8 +308,90 @@ func pushPMDataToElasticsearch(filePath string, URL string) {
 		postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
 		postData += string(source) + "\n"
 		if i != 0 && i%elkNoOfRecordsPerAPI == 0 || i == len(resp)-1 {
-			pushData(elkURL, postData, filePath)
+			pushData(elkURL, esConf.User, esConf.Password, postData, filePath)
 			postData = ""
 		}
 	}
+}
+
+func pushNHGDataToElasticsearch(filePath string, esConf config.ElasticsearchConf) {
+	elkURL := esConf.URL + elkBulkAPI
+	log.Infof("Pushing data from %s to elasticsearch", filePath)
+	f, err := os.Open(filePath)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
+		return
+	}
+	defer f.Close()
+	data, err := ioutil.ReadAll(f)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
+		return
+	}
+
+	fileName := path.Base(filePath)
+	keys := strings.Split(fileName, "_")
+	metric := strings.ToLower(keys[0])
+	user := strings.ToLower(keys[1])
+
+	d := struct {
+		Data      interface{} `json:"network_info"`
+		Timestamp time.Time   `json:"timestamp"`
+	}{
+		Timestamp: time.Now(),
+	}
+	err = json.Unmarshal(data, &d.Data)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
+		return
+	}
+	source, _ := json.Marshal(d)
+
+	var postData string
+	index := "nhg-details"
+	id := strings.Join([]string{metric, user}, "_")
+	postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
+	postData += string(source) + "\n"
+	pushData(elkURL, esConf.User, esConf.Password, postData, filePath)
+}
+
+func pushSimsDataToElasticsearch(filePath string, esConf config.ElasticsearchConf) {
+	elkURL := esConf.URL + elkBulkAPI
+	log.Infof("Pushing data from %s to elasticsearch", filePath)
+	f, err := os.Open(filePath)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
+		return
+	}
+	defer f.Close()
+	data, err := ioutil.ReadAll(f)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
+		return
+	}
+
+	fileName := path.Base(filePath)
+	keys := strings.Split(fileName, "_")
+	metric := strings.ToLower(keys[0])
+	nhgID := strings.ToLower(keys[1])
+
+	d := struct {
+		Data      interface{} `json:"sim_data"`
+		Timestamp time.Time   `json:"timestamp"`
+	}{
+		Timestamp: time.Now(),
+	}
+	err = json.Unmarshal(data, &d.Data)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
+		return
+	}
+	source, _ := json.Marshal(d)
+
+	var postData string
+	index := metric + "-data"
+	id := strings.Join([]string{metric, nhgID}, "_")
+	postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
+	postData += string(source) + "\n"
+	pushData(elkURL, esConf.User, esConf.Password, postData, filePath)
 }

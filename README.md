@@ -7,7 +7,7 @@
 OSSMediator is used to obtain Performance Management (PM) and Fault Management (FM) data from Nokia DAC and to offer the data for any 3rd party NMS system like OpenNMS or any external datasource like Elasticsearch.  
 It has following three components:
 - OSSMediatorCollector
-- OpenNMSPlugin
+- OpenNMSPlugin (**deprecated**)
 - ElasticsearchPlugin
 - MediatorSetup
 

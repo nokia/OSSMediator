@@ -4,10 +4,11 @@
 * see LICENSE file for details.
  */
 
-package util
+package ndacapis
 
 import (
 	"bytes"
+	"collector/config"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
@@ -16,7 +17,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	jwt "github.com/dgrijalva/jwt-go"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -40,11 +41,11 @@ func TestRefresh(t *testing.T) {
 		}`)
 	}))
 	defer testServer.Close()
-	var user User
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
-		refreshToken: "refreshToken",
-		expiryTime:   time.Now().Add(61 * time.Second),
+	var user config.User
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   time.Now().Add(61 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI(testServer.URL, &user)
@@ -60,15 +61,15 @@ func TestRefreshWithInvalidResponse(t *testing.T) {
 		fmt.Fprintln(w, ``)
 	}))
 	defer testServer.Close()
-	var user User
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
-		refreshToken: "refreshToken",
-		expiryTime:   time.Now().Add(61 * time.Second),
+	var user config.User
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   time.Now().Add(61 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI(testServer.URL, &user)
-	if err == nil || !strings.Contains(err.Error(), "Unable to decode response") {
+	if err == nil || !strings.Contains(err.Error(), "unable to decode response") {
 		t.Fail()
 	}
 }
@@ -76,28 +77,15 @@ func TestRefreshWithInvalidResponse(t *testing.T) {
 func TestRefreshForEmptyRefreshToken(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, `{
-			"status": {
-				"status_code": "FAILURE",
-				"status_description": {
-					"description_code": "INVALID_ARGUMENT",
-					"description": "Refresh token sent is empty. Invalid Token"
-				}
-			},
-			"uat": {
-				"access_token": "Undefined"
-			},
-			"rt": {
-				"refresh_token": "Undefined"
-			}
-		}`)
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, ``)
 	}))
 	defer testServer.Close()
-	var user User
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
-		refreshToken: "",
-		expiryTime:   time.Now().Add(65 * time.Second),
+	var user config.User
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "",
+		ExpiryTime:   time.Now().Add(65 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI(testServer.URL, &user)
@@ -107,11 +95,11 @@ func TestRefreshForEmptyRefreshToken(t *testing.T) {
 }
 
 func TestRefreshForWrongURL(t *testing.T) {
-	var user User
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
-		refreshToken: "",
-		expiryTime:   time.Now().Add(65 * time.Second),
+	var user config.User
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "",
+		ExpiryTime:   time.Now().Add(65 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI("http://localhost:8080", &user)
@@ -121,11 +109,11 @@ func TestRefreshForWrongURL(t *testing.T) {
 }
 
 func TestRefreshForEmptyURL(t *testing.T) {
-	var user User
-	user.sessionToken = &sessionToken{
-		accessToken:  "",
-		refreshToken: "",
-		expiryTime:   time.Now().Add(65 * time.Second),
+	var user config.User
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "",
+		RefreshToken: "",
+		ExpiryTime:   time.Now().Add(65 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI("", &user)
@@ -135,11 +123,11 @@ func TestRefreshForEmptyURL(t *testing.T) {
 }
 
 func TestRefreshForInvalidURL(t *testing.T) {
-	var user User
-	user.sessionToken = &sessionToken{
-		accessToken:  "",
-		refreshToken: "",
-		expiryTime:   time.Now().Add(65 * time.Second),
+	var user config.User
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "",
+		RefreshToken: "",
+		ExpiryTime:   time.Now().Add(65 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := callRefreshAPI(":", &user)
@@ -149,11 +137,11 @@ func TestRefreshForInvalidURL(t *testing.T) {
 }
 
 func TestGetRefreshDuration(t *testing.T) {
-	var user User
-	user.sessionToken = &sessionToken{
-		accessToken:  "",
-		refreshToken: "",
-		expiryTime:   time.Now().Add(65 * time.Second),
+	var user config.User
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "",
+		RefreshToken: "",
+		ExpiryTime:   time.Now().Add(65 * time.Second),
 	}
 	duration := getRefreshDuration(&user)
 	if duration < 0 {
@@ -162,8 +150,8 @@ func TestGetRefreshDuration(t *testing.T) {
 }
 
 func TestLoginWithWrongUrl(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
-	Conf = Config{
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	config.Conf = config.Config{
 		BaseURL: "https://localhost:8080/login",
 	}
 	CreateHTTPClient("", true)
@@ -174,8 +162,8 @@ func TestLoginWithWrongUrl(t *testing.T) {
 }
 
 func TestLoginWithEmptyUrl(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
-	Conf = Config{
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	config.Conf = config.Config{
 		BaseURL: "",
 	}
 	CreateHTTPClient("", true)
@@ -186,8 +174,8 @@ func TestLoginWithEmptyUrl(t *testing.T) {
 }
 
 func TestLoginWithInvalidUrl(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
-	Conf = Config{
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	config.Conf = config.Config{
 		BaseURL: ":",
 	}
 	CreateHTTPClient("", true)
@@ -200,32 +188,19 @@ func TestLoginWithInvalidUrl(t *testing.T) {
 func TestInvalidLogin(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, `{
-			"status": {
-				"status_code": "FAILURE",
-				"status_description": {
-					"description_code": "INVALID_ARGUMENT",
-					"description": "Invalid Username"
-				}
-			},
-			"uat": {
-				"access_token": "Undefined"
-			},
-			"rt": {
-				"refresh_token": "Undefined"
-			}
-		}`)
+		w.WriteHeader(http.StatusUnauthorized)
+		fmt.Fprintln(w, ``)
 	}))
 	defer testServer.Close()
-	Conf = Config{
+	config.Conf = config.Config{
 		BaseURL: testServer.URL,
-		UMAPIs: UMConf{
+		UMAPIs: config.UMConf{
 			Login:   "/login",
 			Refresh: "/login/refreshSession",
 		},
 	}
 	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	err := Login(&user)
 	if err == nil {
 		t.Fail()
@@ -260,15 +235,15 @@ func TestLogin(t *testing.T) {
 		}`)
 	}))
 	defer testServer.Close()
-	Conf = Config{
+	config.Conf = config.Config{
 		BaseURL: testServer.URL,
-		UMAPIs: UMConf{
+		UMAPIs: config.UMConf{
 			Login:   "",
 			Refresh: "/login/refreshSession",
 		},
 	}
 	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	err := Login(&user)
 	if err != nil {
 		t.Error(err)
@@ -281,17 +256,17 @@ func TestLoginWIthInvalidResponse(t *testing.T) {
 		fmt.Fprintln(w, ``)
 	}))
 	defer testServer.Close()
-	Conf = Config{
+	config.Conf = config.Config{
 		BaseURL: testServer.URL,
-		UMAPIs: UMConf{
+		UMAPIs: config.UMConf{
 			Login:   "",
 			Refresh: "/login/refreshSession",
 		},
 	}
 	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	err := Login(&user)
-	if err == nil || !strings.Contains(err.Error(), "Unable to decode response") {
+	if err == nil || !strings.Contains(err.Error(), "unable to decode response") {
 		t.Fail()
 	}
 }
@@ -310,9 +285,9 @@ func TestSetToken(t *testing.T) {
 		},
 	}
 
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	setToken(&response, &user)
-	if user.sessionToken.expiryTime.String() != "2018-03-08 05:10:16 +0000 UTC" {
+	if user.SessionToken.ExpiryTime.String() != "2018-03-08 05:10:16 +0000 UTC" {
 		t.Fail()
 	}
 }
@@ -345,39 +320,39 @@ func TestRefreshToken(t *testing.T) {
 		}`)
 	}))
 	defer testServer.Close()
-	Conf = Config{
+	config.Conf = config.Config{
 		BaseURL: testServer.URL,
-		UMAPIs: UMConf{
+		UMAPIs: config.UMConf{
 			Login:   "/login",
 			Refresh: "",
 		},
 	}
 	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
-	user.sessionToken = &sessionToken{
-		accessToken:  "",
-		refreshToken: "",
-		expiryTime:   time.Now().Add(30100 * time.Millisecond),
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "",
+		RefreshToken: "",
+		ExpiryTime:   time.Now().Add(30100 * time.Millisecond),
 	}
 	go RefreshToken(&user)
 	time.Sleep(200 * time.Millisecond)
-	if user.sessionToken.accessToken != tokenString && user.sessionToken.refreshToken != tokenString {
+	if user.SessionToken.AccessToken != tokenString && user.SessionToken.RefreshToken != tokenString {
 		t.Fail()
 	}
 }
 
 func TestLogoutWithWrongUrl(t *testing.T) {
-	Conf = Config{
+	config.Conf = config.Config{
 		BaseURL: "https://localhost:8080",
-		UMAPIs: UMConf{
+		UMAPIs: config.UMConf{
 			Logout: "/logout",
 		},
 	}
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
-		refreshToken: "refreshToken",
-		expiryTime:   time.Now().Add(35 * time.Second),
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   time.Now().Add(35 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := Logout(&user)
@@ -386,42 +361,15 @@ func TestLogoutWithWrongUrl(t *testing.T) {
 	}
 }
 
-func TestLogoutWithInvalidResponse(t *testing.T) {
-	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, ``)
-	}))
-	defer testServer.Close()
-	Conf = Config{
-		BaseURL: testServer.URL,
-		UMAPIs: UMConf{
-			Login:   "/login",
-			Refresh: "/login/refreshSession",
-			Logout:  "/logout",
-		},
-	}
-	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
-	user.sessionToken = &sessionToken{
-		accessToken:  "",
-		refreshToken: "",
-		expiryTime:   time.Now().Add(35 * time.Second),
-	}
-	err := Logout(&user)
-	if err == nil || !strings.Contains(err.Error(), "Unable to decode response") {
-		t.Fail()
-	}
-}
-
 func TestLogoutWithEmptyUrl(t *testing.T) {
-	Conf = Config{
+	config.Conf = config.Config{
 		BaseURL: "",
 	}
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
-		refreshToken: "refreshToken",
-		expiryTime:   time.Now().Add(35 * time.Second),
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   time.Now().Add(35 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := Logout(&user)
@@ -431,14 +379,14 @@ func TestLogoutWithEmptyUrl(t *testing.T) {
 }
 
 func TestLogoutWithInvalidUrl(t *testing.T) {
-	Conf = Config{
+	config.Conf = config.Config{
 		BaseURL: ":",
 	}
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
-		refreshToken: "refreshToken",
-		expiryTime:   time.Now().Add(35 * time.Second),
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   time.Now().Add(35 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := Logout(&user)
@@ -450,31 +398,24 @@ func TestLogoutWithInvalidUrl(t *testing.T) {
 func TestInvalidLogout(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, `{
-			"status": {
-				"status_code": "FAILURE",
-				"status_description": {
-					"description_code": "INVALID_ARGUMENT",
-					"description": "Refresh token sent is empty. Invalid Token"
-				}
-			}
-		}`)
+		w.WriteHeader(http.StatusForbidden)
+		fmt.Fprintln(w, ``)
 	}))
 	defer testServer.Close()
-	Conf = Config{
+	config.Conf = config.Config{
 		BaseURL: testServer.URL,
-		UMAPIs: UMConf{
+		UMAPIs: config.UMConf{
 			Login:   "/login",
 			Refresh: "/login/refreshSession",
 			Logout:  "/logout",
 		},
 	}
 	CreateHTTPClient("", true)
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
-	user.sessionToken = &sessionToken{
-		accessToken:  "",
-		refreshToken: "",
-		expiryTime:   time.Now().Add(35 * time.Second),
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "",
+		RefreshToken: "",
+		ExpiryTime:   time.Now().Add(35 * time.Second),
 	}
 	err := Logout(&user)
 	if err == nil {
@@ -496,19 +437,19 @@ func TestLogout(t *testing.T) {
 		}`)
 	}))
 	defer testServer.Close()
-	Conf = Config{
+	config.Conf = config.Config{
 		BaseURL: testServer.URL,
-		UMAPIs: UMConf{
+		UMAPIs: config.UMConf{
 			Login:   "/login",
 			Refresh: "/login/refreshSession",
 			Logout:  "/logout",
 		},
 	}
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
-	user.sessionToken = &sessionToken{
-		accessToken:  "accessToken",
-		refreshToken: "refreshToken",
-		expiryTime:   time.Now().Add(35 * time.Second),
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   time.Now().Add(35 * time.Second),
 	}
 	CreateHTTPClient("", true)
 	err := Logout(&user)
@@ -518,7 +459,7 @@ func TestLogout(t *testing.T) {
 }
 
 func TestRetryLogin(t *testing.T) {
-	user := User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
+	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	CreateHTTPClient("", true)
 	var buf bytes.Buffer
 	log.SetOutput(&buf)

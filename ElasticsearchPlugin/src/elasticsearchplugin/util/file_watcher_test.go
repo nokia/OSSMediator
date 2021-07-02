@@ -19,6 +19,96 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+var (
+	testPMData       = `[
+    {
+      "pm_data": {
+        "Cat_M_Accessibility_M8100C0": 0,
+        "Cat_M_Accessibility_M8100C10": 0,
+        "Cat_M_Accessibility_M8100C11": 0
+      },
+      "pm_data_source": {
+        "edge_id": "test_edge",
+        "hw_id": "EB34567",
+        "hw_alias": "EB34567",
+        "serial_no": "34567",
+        "nhg_id": "test_nhg_1",
+        "nhg_alias": "test nhg",
+        "dn": "NE-MRBTS-111/NE-LNBTS-222/LNCEL-0",
+        "timestamp": "2020-11-10T18:30:00Z",
+        "technology": "4G"
+      }
+    },
+    {
+      "pm_data": {
+        "Cat_M_Accessibility_M8100C0": 0,
+        "Cat_M_Accessibility_M8100C10": 0,
+        "Cat_M_Accessibility_M8100C11": 0
+      },
+      "pm_data_source": {
+        "edge_id": "test_edge2",
+        "hw_id": "EB12345",
+        "hw_alias": "EB12345",
+        "serial_no": "12345",
+        "nhg_id": "test_nhg_2",
+        "nhg_alias": "test nhg2",
+        "dn": "MRBTS-222/NE-LNBTS-4444/LNCEL-0",
+        "timestamp": "2020-11-10T18:30:00Z",
+        "technology": "4G"
+      }
+    }
+  ]`
+
+	testFMData = `[
+    {
+      "fm_data": {
+        "alarm_identifier": "11111",
+        "severity": "minor",
+        "specific_problem": "2222",
+        "alarm_text": "Failure in connection",
+        "additional_text": "TraceConnectionFaultyAl",
+        "alarm_state": "CLEARED",
+        "event_type": "equipment",
+        "event_time": "2020-11-02T06:14:09Z",
+        "last_updated_time": "2020-11-02T06:14:10Z",
+        "notification_type": "alarmNew"
+      },
+      "fm_data_source": {
+        "edge_id": "98765",
+        "hw_id": "EB09856",
+        "hw_alias": "eNB7777",
+        "serial_no": "45678",
+        "nhg_id": "test_nhg_2",
+        "nhg_alias": "test nhg2",
+        "dn": "MRBTS-456/LNBTS-765",
+        "technology": "4G"
+      }
+    },
+    {
+      "fm_data": {
+        "alarm_identifier": "3333",
+        "severity": "minor",
+        "specific_problem": "4444",
+        "alarm_state": "CLEARED",
+        "event_type": "equipment",
+        "event_time": "2020-11-02T06:14:10Z",
+        "last_updated_time": "2020-11-02T06:14:10Z",
+        "notification_type": "alarmClear"
+      },
+      "fm_data_source": {
+        "edge_id": "test_edge",
+        "hw_id": "EB1111111",
+        "hw_alias": "test eNB",
+        "serial_no": "123456",
+        "nhg_id": "test_nhg_1",
+        "nhg_alias": "test nhg",
+        "dn": "MRBTS-123/LNBTS-321",
+        "technology": "4G"
+      }
+    }
+  ]`
+)
+
 func TestAddWatcher(t *testing.T) {
 	tmpdir1 := "./tmp1"
 	tmpdir2 := "./tmp2"
@@ -169,8 +259,10 @@ func TestProcessExistingFiles(t *testing.T) {
 		log.SetOutput(os.Stderr)
 	}()
 	conf := config.Config{
-		CleanupDuration:  60,
-		ElasticsearchURL: "http://127.0.0.1:9299",
+		CleanupDuration: 60,
+		ElasticsearchConf: config.ElasticsearchConf{
+			URL: "http://127.0.0.1:9299",
+		},
 	}
 
 	processExistingFiles(pmDirPath, conf)

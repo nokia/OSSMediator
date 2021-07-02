@@ -7,22 +7,18 @@ go:
 
 services: docker
 
-install:
-  - go get -u golang.org/x/lint/golint
-
 script:
-  - golint -set_exit_status $(go list ./...) > mediator_lint_result.txt
   - cd OSSMediatorCollector && make all && cd ..
-  - cd OpenNMSPlugin && make all && cd ..
   - cd ElasticsearchPlugin && make all && cd ..
 
 after_script:
-  - 'echo "OSSMediatorCollector test results:" && cat OSSMediatorCollector/OSSMediatorCollector-unittest-result.txt'
-  - 'echo "OpenNMSPlugin test results:" && cat OpenNMSPlugin/OpenNMSPlugin-unittest-result.txt'
+  - '[ -s collector-lint-result.txt ] && { echo "OSSMediatorCollector has lint errors"; exit 1; }'
+  - '[ -s elasticsearchplugin-lint-result.txt ] && { echo "ElasticsearchPlugin has lint errors"; exit 1; }'
+  - 'echo "OSSMediatorCollector test results:" && cat OSSMediatorCollector/collector-unittest-result.txt'
   - 'echo "ElasticsearchPlugin test results:" && cat ElasticsearchPlugin/elasticsearchplugin-unittest-result.txt'
-  - 'grep -e "FAIL:" OSSMediatorCollector/OSSMediatorCollector-unittest-result.txt && { echo "OSSMediatorCollector unit tests failed"; exit 1; }'
-  - 'grep -e "FAIL:" OpenNMSPlugin/OpenNMSPlugin-unittest-result.txt && { echo "OpenNMSPlugin unit tests failed"; exit 1; }'
+  - 'grep -e "FAIL:" OSSMediatorCollector/collector-unittest-result.txt && { echo "OSSMediatorCollector unit tests failed"; exit 1; }'
   - 'grep -e "FAIL:" ElasticsearchPlugin/elasticsearchplugin-unittest-result.txt && { echo "ElasticsearchPlugin unit tests failed"; exit 1; }'
 
 after_failure:
-  - '[ -s mediator_lint_result.txt ] && echo "Lint Errors:" && cat mediator_lint_result.txt'
+  - '[ -s collector-lint-result.txt ] && echo "OSSMediatorCollector lint errors:" && cat collector-lint-result.txt'
+  - '[ -s elasticsearchplugin-lint-result.txt ] && echo "ElasticsearchPlugin lint errors:" && cat elasticsearchplugin-lint-result.txt'

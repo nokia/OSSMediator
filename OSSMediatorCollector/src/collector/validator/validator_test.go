@@ -7,27 +7,27 @@
 package validator
 
 import (
-	"collector/util"
+	"collector/config"
 	"strings"
 	"testing"
 )
 
 var (
-	conf = util.Config{
+	conf = config.Config{
 		BaseURL: "https://localhost:8080/api/v2",
-		UMAPIs: util.UMConf{
+		UMAPIs: config.UMConf{
 			Login:   "/session",
 			Refresh: "/refresh",
 			Logout:  "/logout",
 		},
-		APIs: []*util.APIConf{
+		MetricAPIs: []*config.APIConf{
 			{API: "/pmdata", Interval: 15},
 			{API: "/fmdata", Interval: 60, Type: "ACTIVE", MetricType: "RADIO"},
 			{API: "/fmdata", Interval: 15, Type: "HISTORY", MetricType: "RADIO"},
 			{API: "/fmdata", Interval: 60, Type: "ACTIVE", MetricType: "DAC"},
 			{API: "/fmdata", Interval: 15, Type: "HISTORY", MetricType: "DAC"},
 		},
-		Users: []*util.User{
+		Users: []*config.User{
 			{Email: "user1@nokia.com", Password: "dGVzdDE=", ResponseDest: "/statistics/reports/user1"},
 			{Email: "user2@nokia.com", Password: "dGVzdDI=", ResponseDest: "/statistics/reports/user2"},
 		},
@@ -54,9 +54,9 @@ func TestValidateConfWithInvalidBaseURL(t *testing.T) {
 }
 
 func TestValidateConfWithZeroAPI(t *testing.T) {
-	tmp := conf.APIs
-	conf.APIs = []*util.APIConf{}
-	defer func() { conf.APIs = tmp }()
+	tmp := conf.MetricAPIs
+	conf.MetricAPIs = []*config.APIConf{}
+	defer func() { conf.MetricAPIs = tmp }()
 	err := ValidateConf(conf)
 	if err == nil || !strings.Contains(err.Error(), "number of APIs can't be zero") {
 		t.Error(err)
@@ -65,7 +65,7 @@ func TestValidateConfWithZeroAPI(t *testing.T) {
 
 func TestValidateConfWithZeroUsers(t *testing.T) {
 	tmp := conf.Users
-	conf.Users = []*util.User{}
+	conf.Users = []*config.User{}
 	defer func() { conf.Users = tmp }()
 	err := ValidateConf(conf)
 	if err == nil || !strings.Contains(err.Error(), "number of users can't be zero") {
@@ -124,9 +124,9 @@ func TestValidateConfWithInvalidLimit(t *testing.T) {
 }
 
 func TestValidateConfWithInvalidAPI(t *testing.T) {
-	tmp := conf.APIs[0].API
-	conf.APIs[0].API = ""
-	defer func() { conf.APIs[0].API = tmp }()
+	tmp := conf.MetricAPIs[0].API
+	conf.MetricAPIs[0].API = ""
+	defer func() { conf.MetricAPIs[0].API = tmp }()
 	err := ValidateConf(conf)
 	if err == nil || !strings.Contains(err.Error(), "API URL can't be empty") {
 		t.Error(err)
@@ -134,9 +134,9 @@ func TestValidateConfWithInvalidAPI(t *testing.T) {
 }
 
 func TestValidateConfWithInvalidAPIInterval(t *testing.T) {
-	tmp := conf.APIs[0].Interval
-	conf.APIs[0].Interval = 0
-	defer func() { conf.APIs[0].Interval = tmp }()
+	tmp := conf.MetricAPIs[0].Interval
+	conf.MetricAPIs[0].Interval = 0
+	defer func() { conf.MetricAPIs[0].Interval = tmp }()
 	err := ValidateConf(conf)
 	if err == nil || !strings.Contains(err.Error(), "API call interval can't be zero") {
 		t.Error(err)
@@ -144,9 +144,9 @@ func TestValidateConfWithInvalidAPIInterval(t *testing.T) {
 }
 
 func TestValidateConfWithInvalidAPITypeForPM(t *testing.T) {
-	tmp := conf.APIs[0].Type
-	conf.APIs[0].Type = "ACTIVE"
-	defer func() { conf.APIs[0].Type = tmp }()
+	tmp := conf.MetricAPIs[0].Type
+	conf.MetricAPIs[0].Type = "ACTIVE"
+	defer func() { conf.MetricAPIs[0].Type = tmp }()
 	err := ValidateConf(conf)
 	if err == nil || !strings.Contains(err.Error(), "API type and metric type for pmdata should be empty") {
 		t.Error(err)
@@ -154,9 +154,9 @@ func TestValidateConfWithInvalidAPITypeForPM(t *testing.T) {
 }
 
 func TestValidateConfWithInvalidAPITypeForFM(t *testing.T) {
-	tmp := conf.APIs[1].Type
-	conf.APIs[1].Type = ""
-	defer func() { conf.APIs[1].Type = tmp }()
+	tmp := conf.MetricAPIs[1].Type
+	conf.MetricAPIs[1].Type = ""
+	defer func() { conf.MetricAPIs[1].Type = tmp }()
 	err := ValidateConf(conf)
 	if err == nil || !strings.Contains(err.Error(), "API type for fmdata should be HISTORY/ACTIVE") {
 		t.Error(err)
@@ -164,9 +164,9 @@ func TestValidateConfWithInvalidAPITypeForFM(t *testing.T) {
 }
 
 func TestValidateConfWithInvalidAPIMetricTypeForFM(t *testing.T) {
-	tmp := conf.APIs[1].MetricType
-	conf.APIs[1].MetricType = ""
-	defer func() { conf.APIs[1].MetricType = tmp }()
+	tmp := conf.MetricAPIs[1].MetricType
+	conf.MetricAPIs[1].MetricType = ""
+	defer func() { conf.MetricAPIs[1].MetricType = tmp }()
 	err := ValidateConf(conf)
 	if err == nil || !strings.Contains(err.Error(), "API metric type for fmdata should be RADIO/DAC") {
 		t.Error(err)

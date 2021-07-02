@@ -18,6 +18,9 @@ import (
 
 //DeleteDataFormElasticsearch deletes older data from elasticsearch every day at 1 o'clock.
 func DeleteDataFormElasticsearch(esConf config.ElasticsearchConf) {
+	log.Info("Triggered data cleanup of elasticsearch")
+	deleteData(esConf)
+	deleteIndices(esConf)
 	timer := time.NewTimer(getNextTickDuration())
 	for {
 		<-timer.C

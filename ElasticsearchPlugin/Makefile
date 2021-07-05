@@ -21,9 +21,9 @@ docker_build:
 
 build:
 	@echo Building ElasticsearchPlugin
-	@cd src/elasticsearchplugin &&  go install -ldflags "-X main.appVersion=$(VERSION)" || (echo "ElasticsearchPlugin build failed"; exit 1)
+	@go mod download && go build -ldflags "-X main.appVersion=$(VERSION)" -o bin/elasticsearchplugin cmd/main.go || (echo "ElasticsearchPlugin build failed"; exit 1)
 	@echo Running go lint
-	@cd src/elasticsearchplugin && go vet ./... > ../../elasticsearchplugin-lint-result.txt
+	@go vet ./... > elasticsearchplugin-lint-result.txt
 	@echo Build Successful.
 
 build_package:
@@ -41,10 +41,9 @@ test:
 	@echo "---> Starting ElasticSearch"
 	@runuser -l elasticsearch -c 'cd /elasticsearch/elasticsearch-7.0.1/bin && nohup bash -c "./elasticsearch -E http.port=9299 -E transport.tcp.port=9399 &" && sleep 20'
 	@echo Running Tests
-	@cd src/elasticsearchplugin && go test -coverpkg=.,./config,./util/... ./... -v -coverprofile=../../coverage.out > ../../elasticsearchplugin-unittest-result.txt || echo "ElasticsearchPlugin unit tests failed."
+	@go test ./... -v -coverprofile=coverage.out > elasticsearchplugin-unittest-result.txt || echo "ElasticsearchPlugin unit tests failed."
 	@echo Running go coverage
 	@go tool cover -func=coverage.out
-	@gocov convert coverage.out
 	@go tool cover -html=coverage.out -o coverage.html
 	@echo "Completed :ElasticsearchPlugin Tests"
 

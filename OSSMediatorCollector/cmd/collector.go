@@ -15,10 +15,10 @@ import (
 	"os/signal"
 	"syscall"
 
-	"collector/config"
-	"collector/ndacapis"
-	"collector/utils"
-	"collector/validator"
+	"collector/pkg/config"
+	"collector/pkg/ndacapis"
+	"collector/pkg/utils"
+	"collector/pkg/validator"
 
 	log "github.com/sirupsen/logrus"
 	lumberjack "gopkg.in/natefinch/lumberjack.v2"

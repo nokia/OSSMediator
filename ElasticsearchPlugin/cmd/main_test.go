@@ -8,14 +8,10 @@ package main
 
 import (
 	"io/ioutil"
-	"strings"
-	"time"
-
-	//"io/ioutil"
 	"os"
-	//"strings"
+	"strings"
 	"testing"
-	//"time"
+	"time"
 )
 
 func TestPlugin(t *testing.T) {

@@ -15,9 +15,9 @@ import (
 	"path/filepath"
 	"syscall"
 
-	"elasticsearchplugin/config"
-	"elasticsearchplugin/util"
-	"elasticsearchplugin/util/elasticsearch"
+	"elasticsearchplugin/pkg/config"
+	"elasticsearchplugin/pkg/util"
+	"elasticsearchplugin/pkg/util/elasticsearch"
 
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/natefinch/lumberjack.v2"

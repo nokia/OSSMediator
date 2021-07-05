@@ -1,9 +1,7 @@
 # Staging: for building go app (ElasticsearchPlugin)
-FROM golang:1.11 as builder
+FROM golang:1.16 as builder
 
 # set environment variable
-ENV GOPATH="/ElasticsearchPlugin"
-ENV GOBIN="/ElasticsearchPlugin/bin"
 ENV JAVA_BIN="/usr/local/jre1.8.0_171/bin/"
 ENV PATH=$PATH:$GOBIN:$JAVA_BIN
 
@@ -17,27 +15,15 @@ RUN mkdir /elasticsearch/ && cd /elasticsearch && \
         wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.0.1-linux-x86_64.tar.gz && \
         tar -xzf elasticsearch-7.0.1-linux-x86_64.tar.gz
 
-# create required directory for go microservice (ElasticsearchPlugin)
-RUN mkdir -p /ElasticsearchPlugin/src/elasticsearchplugin/ /elasticsearch/elasticsearch-7.0.1/data/
+# create required directory for ElasticsearchPlugin
+RUN mkdir -p /ElasticsearchPlugin/ /elasticsearch/elasticsearch-7.0.1/data/
+
+# copy project directory to be built
+COPY . /ElasticsearchPlugin/.
+COPY ./VERSION ../.
 
 # set the working directory
 WORKDIR /ElasticsearchPlugin/
-
-#Install dep
-RUN go get github.com/golang/dep/cmd/dep
-
-# Install plugins for unit tests
-RUN go get github.com/axw/gocov/gocov
-
-# download vendor dependencies; if Gopkg.* files is not modified, it will use docker Cache
-COPY ./src/elasticsearchplugin/Gopkg.* ./src/elasticsearchplugin/
-RUN cd ./src/elasticsearchplugin/ && dep ensure -vendor-only
-
-# copy project directory to be built
-COPY ./Makefile .
-COPY ./VERSION ../.
-COPY ./src/elasticsearchplugin ./src/elasticsearchplugin/
-COPY ./resources ./resources/
 
 #Creating user to run elastic search
 RUN groupadd -f -g 1000 elasticsearch && useradd -m -u 1000 -g 1000 -s /bin/bash elasticsearch

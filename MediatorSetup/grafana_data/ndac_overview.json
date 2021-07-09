@@ -1,0 +1,1770 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 161,
+  "iteration": 1613734975567,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "panels": [],
+      "title": "Performance",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$pm_dataSource",
+      "description": "This is the average download seen per cell of the LTE network",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "hiddenSeries": false,
+      "id": 22,
+      "interval": "15m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Average",
+          "color": "#FF9830"
+        },
+        {
+          "alias": "Maximum",
+          "color": "#F2495C"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Average",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "pm_data.LTE_Cell_Throughput_M8012C26",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$pm_nhgname AND pm_data_source.dn:$pm_apId AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C25:*",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "Maximum",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "pm_data.LTE_Cell_Throughput_M8012C25",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$pm_nhgname AND pm_data_source.dn:$pm_apId AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C25:*",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Download Throughput",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "Kbits",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$pm_dataSource",
+      "description": "This is the average upload seen per cell of the LTE network",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "hiddenSeries": false,
+      "id": 16,
+      "interval": "15m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Average",
+          "color": "#73BF69"
+        },
+        {
+          "alias": "Maximum",
+          "color": "#5794F2"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Average",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "pm_data.LTE_Cell_Throughput_M8012C23",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$pm_nhgname AND pm_data_source.dn:$pm_apId AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C25:*",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "Maximum",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "pm_data.LTE_Cell_Throughput_M8012C22",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$pm_nhgname AND pm_data_source.dn:$pm_apId AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C25:*",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Upload Throughput",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "Kbits",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$pm_dataSource",
+      "description": "This shows the uptime of LTE cells. If this is not showing at 100% there might be an issue with one of the cells and performance will be degraded.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 14,
+      "interval": "15m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/.*/",
+          "color": "#FADE2A"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Percentage of cells available",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "pm_data.LTE_Cell_Avail_M8020C3",
+              "hide": true,
+              "id": "3",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.LTE_Cell_Avail_M8020C6",
+              "hide": true,
+              "id": "4",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.LTE_Cell_Avail_M8020C3",
+              "hide": true,
+              "id": "5",
+              "meta": {},
+              "settings": {},
+              "type": "avg"
+            },
+            {
+              "field": "select field",
+              "id": "6",
+              "meta": {},
+              "pipelineVariables": [
+                {
+                  "name": "M8020C3",
+                  "pipelineAgg": "3"
+                },
+                {
+                  "name": "M8020C6",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "avc3",
+                  "pipelineAgg": "5"
+                }
+              ],
+              "settings": {
+                "script": "if (params.avc3 == null) { return null }  else if (params.M8020C6 == 0) { return 0 } else { return 100*(params.M8020C3/params.M8020C6) }"
+              },
+              "type": "bucket_script"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$pm_nhgname AND pm_data_source.dn:$pm_apId AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Avail_M8020C3:*",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Cell Availability",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$pm_dataSource",
+      "decimals": null,
+      "description": "This is the amount of connected LTE CPE devices such as Industrial CPE's, Tablets, ...",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 17,
+      "interval": "15m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/.*/",
+          "color": "#A352CC"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Amount of UEs",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "pm_data.LTE_UE_Quantity_M8051C58",
+              "id": "3",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$pm_nhgname AND pm_data_source.dn:$pm_apId AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C58:*",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Active UEs",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 5,
+      "panels": [],
+      "title": "Alarms",
+      "type": "row"
+    },
+    {
+      "datasource": "$radio_fm_dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 18
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.3",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "fm_data.severity.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "missing": "0",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$radio_fm_nhgname AND fm_data.severity:critical",
+          "refId": "A",
+          "timeField": "fm_data.event_time"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Radio Active Critical",
+      "type": "stat"
+    },
+    {
+      "datasource": "$ndac_fm_dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 18
+      },
+      "id": 23,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.3",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "fm_data.severity.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "missing": "0",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$ndac_fm_nhgname AND fm_data.severity:critical",
+          "refId": "A",
+          "timeField": "fm_data.event_time"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "NDAC Active Critical",
+      "type": "stat"
+    },
+    {
+      "datasource": "$radio_fm_dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 18
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.3",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "fm_data.severity.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "missing": "0",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$radio_fm_nhgname AND fm_data.severity:major",
+          "refId": "A",
+          "timeField": "fm_data.event_time"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Radio Active Major",
+      "type": "stat"
+    },
+    {
+      "datasource": "$ndac_fm_dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 9,
+        "y": 18
+      },
+      "id": 24,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.3",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "fm_data.severity.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "missing": "0",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$ndac_fm_nhgname AND fm_data.severity:major",
+          "refId": "A",
+          "timeField": "fm_data.event_time"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "NDAC Active Major",
+      "type": "stat"
+    },
+    {
+      "datasource": "$radio_fm_dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "yellow",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 12,
+        "y": 18
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.3",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "fm_data.severity.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "missing": "0",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$radio_fm_nhgname AND fm_data.severity:minor",
+          "refId": "A",
+          "timeField": "fm_data.event_time"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Radio Active Minor",
+      "type": "stat"
+    },
+    {
+      "datasource": "$ndac_fm_dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "yellow",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 15,
+        "y": 18
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.3",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "fm_data.severity.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "missing": "0",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$ndac_fm_nhgname AND fm_data.severity:minor",
+          "refId": "A",
+          "timeField": "fm_data.event_time"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "NDAC Active Minor",
+      "type": "stat"
+    },
+    {
+      "datasource": "$radio_fm_dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(255, 255, 255)",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 18,
+        "y": 18
+      },
+      "id": 20,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.3",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "fm_data.severity.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "missing": "0",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$radio_fm_nhgname AND fm_data.severity:warning",
+          "refId": "A",
+          "timeField": "fm_data.event_time"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Radio Active Warning",
+      "type": "stat"
+    },
+    {
+      "datasource": "$ndac_fm_dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(255, 255, 255)",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 21,
+        "y": 18
+      },
+      "id": 26,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.3",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "fm_data.severity.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "missing": "0",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$ndac_fm_nhgname AND fm_data.severity:warning",
+          "refId": "A",
+          "timeField": "fm_data.event_time"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "NDAC Active Warning",
+      "type": "stat"
+    },
+    {
+      "datasource": "$radio_fm_dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "displayMode": "auto"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Alarm state"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 122
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 230
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Severity"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 81
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Source"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 113
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Problem ID"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "id": 3,
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Alarm state"
+          }
+        ]
+      },
+      "pluginVersion": "7.1.3",
+      "targets": [
+        {
+          "bucketAggs": [],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "meta": {},
+              "settings": {
+                "size": 5000
+              },
+              "type": "raw_data"
+            }
+          ],
+          "query": "fm_data_source.nhg_alias.keyword:$radio_fm_nhgname AND NOT fm_data.severity:cleared",
+          "refId": "A",
+          "timeField": "fm_data.event_time"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Radio History Overview",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "timestamp",
+                "fm_data_source.hw_alias",
+                "fm_data.specific_problem",
+                "fm_data.severity",
+                "fm_data.alarm_state",
+                "fm_data.alarm_text"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {
+              "fm_data.alarm_state": 1,
+              "fm_data.alarm_text": 5,
+              "fm_data.severity": 2,
+              "fm_data.specific_problem": 4,
+              "fm_data_source.hw_alias": 3,
+              "timestamp": 0
+            },
+            "renameByName": {
+              "AdditionalText": "Extra Info",
+              "AlarmState": "Alarm Status",
+              "AlarmText": "Alarm",
+              "EventTime": "Time",
+              "ProbableCause": "Probable Cause",
+              "Severity": "",
+              "fm_data.alarm_state": "Alarm state",
+              "fm_data.alarm_text": "Info",
+              "fm_data.event_time": "Time",
+              "fm_data.severity": "Severity",
+              "fm_data.specific_problem": "Problem ID",
+              "fm_data_source.hw_alias": "Source",
+              "nename": "eNB ID",
+              "timestamp": "Time"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": "$ndac_fm_dataSource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "displayMode": "auto"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 188
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Alarm State"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 94
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Severity"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Edge ID"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 71
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "eNB ID"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 76
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "id": 21,
+      "options": {
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "7.1.3",
+      "targets": [
+        {
+          "bucketAggs": [],
+          "metrics": [
+            {
+              "field": "select field",
+              "id": "1",
+              "meta": {},
+              "settings": {
+                "size": 5000
+              },
+              "type": "raw_data"
+            }
+          ],
+          "query": "fm_data_source.nhg_alias.keyword:$ndac_fm_nhgname",
+          "refId": "A",
+          "timeField": "fm_data.event_time"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "NDAC History Overview",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "fm_data_source.slice_id",
+                "fm_data.event_time",
+                "fm_data.alarm_state",
+                "fm_data.alarm_text",
+                "fm_data_source.ap_id",
+                "fm_data.severity"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {
+              "fm_data.alarm_state": 1,
+              "fm_data.alarm_text": 5,
+              "fm_data.event_time": 0,
+              "fm_data.severity": 2,
+              "fm_data_source.ap_id": 4,
+              "fm_data_source.slice_id": 3
+            },
+            "renameByName": {
+              "fm_data.alarm_state": "Alarm State",
+              "fm_data.alarm_text": "Info",
+              "fm_data.event_time": "Time",
+              "fm_data.severity": "Severity",
+              "fm_data_source.ap_id": "eNB ID",
+              "fm_data_source.slice_id": "Edge ID"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "5m",
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "CHANGE_THIS",
+          "value": "CHANGE_THIS"
+        },
+        "hide": 2,
+        "label": "Identifier for network regex",
+        "name": "networkIdentifier",
+        "options": [
+          {
+            "selected": true,
+            "text": "CHANGE_THIS",
+            "value": "CHANGE_THIS"
+          }
+        ],
+        "query": "CHANGE_THIS",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "radio-fm",
+          "value": "radio-fm"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "radio_fm_dataSource",
+        "options": [],
+        "query": "elasticsearch",
+        "refresh": 1,
+        "regex": "/.*radio-fm.*/",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "isNone": true,
+          "selected": false,
+          "text": "None",
+          "value": ""
+        },
+        "datasource": "$radio_fm_dataSource",
+        "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "radio_fm_nhgname",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
+        "refresh": 2,
+        "regex": "/.*$networkIdentifier.*/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "radio-4g-pm",
+          "value": "radio-4g-pm"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "pm_dataSource",
+        "options": [],
+        "query": "elasticsearch",
+        "refresh": 1,
+        "regex": "/.*4g-pm.*/",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "isNone": true,
+          "selected": false,
+          "text": "None",
+          "value": ""
+        },
+        "datasource": "$pm_dataSource",
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "pm_nhgname",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "refresh": 2,
+        "regex": "/.*$networkIdentifier.*/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "$pm_dataSource",
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$pm_nhgname\"}",
+        "hide": 2,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "pm_apId",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$pm_nhgname\"}",
+        "refresh": 2,
+        "regex": ".*BTS-(\\d+).*",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "dac-fm",
+          "value": "dac-fm"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "ndac_fm_dataSource",
+        "options": [],
+        "query": "elasticsearch",
+        "refresh": 1,
+        "regex": "dac-fm",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "isNone": true,
+          "selected": false,
+          "text": "None",
+          "value": ""
+        },
+        "datasource": "$ndac_fm_dataSource",
+        "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "ndac_fm_nhgname",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
+        "refresh": 2,
+        "regex": "/.*$networkIdentifier.*/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now-30m"
+  },
+  "timepicker": {
+    "nowDelay": "30m",
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "NDAC Overview",
+  "uid": "AMOyDEIGz",
+  "version": 36
+}

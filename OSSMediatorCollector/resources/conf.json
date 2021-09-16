@@ -24,7 +24,15 @@
 	"sim_apis": [
 		{
 			"api": "/network-hardware-groups/{nhg_id}/sims",
-			"interval": 1
+			"interval": 60
+		},
+		{
+			"api": "/account-sims",
+			"interval": 60
+		},
+		{
+			"api": "/access-point-sims",
+			"interval": 60
 		}
 	],
 	"metric_apis": [

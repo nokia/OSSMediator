@@ -39,6 +39,7 @@ type User struct {
 	Wg             sync.WaitGroup
 	IsSessionAlive bool
 	NhgIDs         []string
+	HwIDs          []string
 }
 
 //SessionToken struct tracks the access_token, refresh_token and expiry_time of the token

@@ -70,6 +70,35 @@ var (
   ],
   "requested_sims": 1
 }`
+
+	apSimsAPIResponse = `{
+  "status": {
+    "status_code": "SUCCESS",
+    "status_description": {
+      "description_code": "NOT_SPECIFIED",
+      "description": "Successful fetch of subscriptions"
+    }
+  },
+  "access_point_imsi_details": [
+    {
+      "access_point_hw_id": "test-hw1",
+      "imsi_details": [
+        {
+          "imsi": "111111",
+          "icc_id": "12345",
+          "ue_report_timestamp": "2020-02-25T10:48:34.859Z",
+          "imsi_alias": "test1"
+        },
+        {
+          "imsi": "222222",
+          "icc_id": "987654",
+          "ue_report_timestamp": "2020-02-25T11:48:34.859Z",
+          "imsi_alias": "test2"
+        }
+      ]
+    }
+  ]
+}`
 )
 
 func TestCallSimAPI(t *testing.T) {
@@ -148,8 +177,91 @@ func TestGetSimsDataWithInactiveSession(t *testing.T) {
 		log.SetOutput(os.Stderr)
 	}()
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: false}
-	fetchSimData(&config.APIConf{API: "/getNhgDetail", Interval: 15}, &user, 1234)
+	fetchSimData(&config.APIConf{API: "/sims/{nhg_id}", Interval: 15}, &user, 1234)
 	if !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
 		t.Fail()
+	}
+}
+
+func TestCallAPSimAPIWithWrongURL(t *testing.T) {
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
+	user.SessionToken = &config.SessionToken{
+		AccessToken: "accessToken",
+	}
+	user.NhgIDs = []string{"test_nhg1"}
+
+	config.Conf = config.Config{
+		BaseURL: "http://localhost",
+	}
+	apiConf := config.APIConf{API: "/access-point-sims", Interval: 15}
+	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
+	CreateHTTPClient("", true)
+
+	oldCurrentTime := utils.CurrentTime
+	defer func() { utils.CurrentTime = oldCurrentTime }()
+
+	myCurrentTime := func() time.Time {
+		return time.Date(2018, 12, 17, 20, 9, 58, 0, time.UTC)
+	}
+	utils.CurrentTime = myCurrentTime
+	fetchSimData(&apiConf, &user, 123)
+	fileName := "./tmp/access-point-sims/access-point-sims_testuser@nokia.com_response_" + strconv.Itoa(int(utils.CurrentTime().Unix())) + ".json"
+	if _, err := os.Stat(fileName); !os.IsNotExist(err) {
+		t.Fail()
+	}
+}
+
+func TestGetAPSimsDataWithInactiveSession(t *testing.T) {
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: false}
+	fetchSimData(&config.APIConf{API: "/access-point-sims", Interval: 15}, &user, 1234)
+	if !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
+		t.Fail()
+	}
+}
+
+func TestCallAPSimAPI(t *testing.T) {
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
+	user.SessionToken = &config.SessionToken{
+		AccessToken: "accessToken",
+	}
+	user.HwIDs = []string{"test-hw1"}
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintln(w, apSimsAPIResponse)
+	}))
+	defer testServer.Close()
+
+	config.Conf = config.Config{
+		BaseURL: testServer.URL,
+	}
+	apiConf := config.APIConf{API: "/access-point-sims", Interval: 15}
+	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
+	defer os.RemoveAll(user.ResponseDest)
+	CreateHTTPClient("", true)
+
+	oldCurrentTime := utils.CurrentTime
+	defer func() { utils.CurrentTime = oldCurrentTime }()
+
+	myCurrentTime := func() time.Time {
+		return time.Date(2018, 12, 17, 20, 9, 58, 0, time.UTC)
+	}
+	utils.CurrentTime = myCurrentTime
+	fetchSimData(&apiConf, &user, 123)
+
+	fileName := "./tmp/access-point-sims/access-point-sims_testuser@nokia.com_response_" + strconv.Itoa(int(utils.CurrentTime().Unix())) + ".json"
+	if _, err := os.Stat(fileName); os.IsNotExist(err) {
+		t.Error("File not found,  ", err)
+	}
+	data, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		t.Error(err)
+	}
+	if len(data) == 0 {
+		t.Error("Found empty file")
 	}
 }

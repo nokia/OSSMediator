@@ -12,7 +12,7 @@ import (
 	"os"
 
 	"elasticsearchplugin/pkg/config"
-	"elasticsearchplugin/pkg/util/elasticsearch"
+	"elasticsearchplugin/pkg/elasticsearch"
 
 	"github.com/fsnotify/fsnotify"
 	log "github.com/sirupsen/logrus"
@@ -28,20 +28,20 @@ func AddWatcher(conf config.Config) error {
 	if watcher == nil {
 		watcher, err = fsnotify.NewWatcher()
 		if err != nil {
-			return fmt.Errorf("Error while creating new watcher, error: %v", err)
+			return fmt.Errorf("error while creating new watcher, error: %v", err)
 		}
 	}
 
 	for _, sourceDir := range conf.SourceDirs {
 		if sourceDir == "" {
-			return fmt.Errorf("Source directory path can't be empty")
+			return fmt.Errorf("source directory path can't be empty")
 		}
 		if _, err := os.Stat(sourceDir); os.IsNotExist(err) {
-			return fmt.Errorf("Source directory %s not found, error: %v", sourceDir, err)
+			return fmt.Errorf("source directory %s not found, error: %v", sourceDir, err)
 		}
 		files, err := ioutil.ReadDir(sourceDir)
 		if err != nil {
-			return fmt.Errorf("Error while reading source directory %s, error: %v", sourceDir, err)
+			return fmt.Errorf("error while reading source directory %s, error: %v", sourceDir, err)
 		}
 
 		for _, f := range files {
@@ -50,9 +50,9 @@ func AddWatcher(conf config.Config) error {
 				log.Infof("Adding watcher to %s", dirPath)
 				err = add(dirPath)
 				if err != nil {
-					return fmt.Errorf("Error while adding watcher to %s, error: %v", dirPath, err)
+					return fmt.Errorf("error while adding watcher to %s, error: %v", dirPath, err)
 				}
-				go processExistingFiles(dirPath, conf)
+				processExistingFiles(dirPath, conf)
 			}
 		}
 	}
@@ -63,7 +63,7 @@ func AddWatcher(conf config.Config) error {
 func add(sourceDir string) error {
 	err := watcher.Add(sourceDir)
 	if err != nil {
-		return fmt.Errorf("Unable to add watcher to %s, error %v", sourceDir, err)
+		return fmt.Errorf("unable to add watcher to %s, error %v", sourceDir, err)
 	}
 	log.Infof("Added watcher to %s", sourceDir)
 	return nil
@@ -76,7 +76,7 @@ func WatchEvents(conf config.Config) {
 		case event := <-watcher.Events:
 			if event.Op&fsnotify.Write == fsnotify.Write {
 				log.Infof("Received event: %s", event.Name)
-				elasticsearch.PushDataToElasticsearch(event.Name, conf.ElasticsearchConf)
+				elasticsearch.PushData(event.Name, conf.ElasticsearchConf)
 			}
 		case err := <-watcher.Errors:
 			log.Error(err)
@@ -101,6 +101,6 @@ func processExistingFiles(directory string, conf config.Config) {
 			continue
 		}
 		//push data to elk
-		elasticsearch.PushDataToElasticsearch(directory+"/"+file.Name(), conf.ElasticsearchConf)
+		go elasticsearch.PushData(directory+"/"+file.Name(), conf.ElasticsearchConf)
 	}
 }

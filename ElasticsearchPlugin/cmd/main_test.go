@@ -20,7 +20,7 @@ func TestPlugin(t *testing.T) {
 			"./statistics/reports/nmsviews1", "./statistics/reports/nmsviews2"
 		],
 		"elasticsearch": {
-			"url": "http://127.0.0.1:9200"
+			"url": "http://127.0.0.1:9299"
 		},
 		"cleanup_duration": 60
 	}`)
@@ -51,7 +51,7 @@ func TestPlugin(t *testing.T) {
 	}
 
 	go main()
-	time.Sleep(10 * time.Millisecond)
+	time.Sleep(2 * time.Second)
 
 	if logDir != "./log" || confFile != tmpfile.Name() {
 		t.Fail()
@@ -64,6 +64,7 @@ func TestPlugin(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+	t.Log(string(logs))
 
 	if !strings.Contains(string(logs), "Added watcher to ./statistics/reports/nmsviews2/pm") || !strings.Contains(string(logs), "Added watcher to ./statistics/reports/nmsviews2/fm") || !strings.Contains(string(logs), "Added watcher to ./statistics/reports/nmsviews1/pm") || !strings.Contains(string(logs), "Added watcher to ./statistics/reports/nmsviews1/fm") {
 		t.Fail()

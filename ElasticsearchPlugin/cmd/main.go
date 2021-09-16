@@ -16,8 +16,8 @@ import (
 	"syscall"
 
 	"elasticsearchplugin/pkg/config"
+	"elasticsearchplugin/pkg/elasticsearch"
 	"elasticsearchplugin/pkg/util"
-	"elasticsearchplugin/pkg/util/elasticsearch"
 
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -58,11 +58,11 @@ func main() {
 	go util.WatchEvents(conf)
 
 	//retry pushing data to elasticsearch that was failed earlier
-	elasticsearch.PushFailedDataToElasticsearch(conf.ElasticsearchConf)
+	elasticsearch.PushFailedData(conf.ElasticsearchConf)
 
-	//remove old data from elasticsearch
+	//remove old data and indices from elasticsearch
 	if conf.ElasticsearchConf.DataRetentionDuration > 0 {
-		go elasticsearch.DeleteDataFormElasticsearch(conf.ElasticsearchConf)
+		go elasticsearch.CleanUp(conf.ElasticsearchConf)
 	}
 
 	//cleanup old response

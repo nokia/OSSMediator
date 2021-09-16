@@ -20,7 +20,7 @@ import (
 )
 
 var (
-	testPMData       = `[
+	testPMData = `[
     {
       "pm_data": {
         "Cat_M_Accessibility_M8100C0": 0,
@@ -144,7 +144,7 @@ func TestAddWatcherWithEmptySourceDir(t *testing.T) {
 		CleanupDuration: 60,
 	}
 	err := AddWatcher(conf)
-	if err == nil && strings.Contains(err.Error(), "Source directory path can't be empty") {
+	if err == nil && strings.Contains(err.Error(), "source directory path can't be empty") {
 		t.Fail()
 	}
 }
@@ -178,7 +178,7 @@ func TestAddWatcherWithNonExistingDir(t *testing.T) {
 		CleanupDuration: 60,
 	}
 	err := AddWatcher(conf)
-	if err == nil && strings.Contains(err.Error(), "Source directory ./tmp1 not found") {
+	if err == nil && strings.Contains(err.Error(), "source directory ./tmp1 not found") {
 		t.Fail()
 	}
 }
@@ -233,24 +233,20 @@ func TestProcessExistingFilesWithNonExistingDir(t *testing.T) {
 func TestProcessExistingFiles(t *testing.T) {
 	pmDirPath := "./pmdata"
 	os.MkdirAll(pmDirPath, os.ModePerm)
-	defer os.RemoveAll(pmDirPath)
 
 	fmDirPath := "./fmdata"
 	os.MkdirAll(fmDirPath, os.ModePerm)
-	defer os.RemoveAll(fmDirPath)
 
 	fmFile := "./fmdata/fmdata_RADIO_ACTIVE_data.json"
 	err := createTestData(fmFile, testFMData)
 	if err != nil {
 		t.Error(err)
 	}
-	defer os.Remove(fmFile)
 	pmFile := "./pmdata/pmdata_data.json"
 	err = createTestData(pmFile, testPMData)
 	if err != nil {
 		t.Error(err)
 	}
-	defer os.Remove(pmFile)
 
 	var buf bytes.Buffer
 	log.SetOutput(&buf)
@@ -266,11 +262,15 @@ func TestProcessExistingFiles(t *testing.T) {
 	}
 
 	processExistingFiles(pmDirPath, conf)
+	processExistingFiles(fmDirPath, conf)
+	time.Sleep(200 * time.Millisecond)
+	os.RemoveAll(fmDirPath)
+	os.RemoveAll(pmDirPath)
+
 	if !strings.Contains(buf.String(), "Data from "+pmFile+" pushed to elasticsearch successfully") {
 		t.Fail()
 	}
 
-	processExistingFiles(fmDirPath, conf)
 	if !strings.Contains(buf.String(), "Data from "+fmFile+" pushed to elasticsearch successfully") {
 		t.Fail()
 	}

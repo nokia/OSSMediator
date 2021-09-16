@@ -21,7 +21,21 @@
     "api": "/network-hardware-groups",
     "interval": 60
   },
-  "apis": [
+  "sim_apis": [
+    {
+      "api": "/network-hardware-groups/{nhg_id}/sims",
+      "interval": 60
+    },
+    {
+      "api": "/account-sims",
+      "interval": 60
+    },
+    {
+      "api": "/access-point-sims",
+      "interval": 60
+    }
+  ],
+  "metric_apis": [
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
       "interval": 15
@@ -53,8 +67,22 @@
       "metric_type": "DAC",
       "interval": 1,
       "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "ACTIVE",
+      "metric_type": "CORE",
+      "interval": 1,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "HISTORY",
+      "metric_type": "CORE",
+      "interval": 1,
+      "sync_duration": 15
     }
   ],
   "limit": 10000,
-  "delay": 10
+  "delay": 5
 }

@@ -81,7 +81,7 @@ func CreateResponseDirectory(basePath string, api string) {
 }
 
 //WriteResponse writes the data in json format to responseDest directory.
-func WriteResponse(user *config.User, api *config.APIConf, data interface{}, nhgID string, txnID uint64) error {
+func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id string, txnID uint64) error {
 	fileName := path.Base(api.API)
 	if fileName == fmdataResponseType {
 		if api.MetricType != "" {
@@ -93,8 +93,8 @@ func WriteResponse(user *config.User, api *config.APIConf, data interface{}, nhg
 	} else if fileName == nhgResponseType {
 		fileName += "_" + user.Email
 	} else if strings.Contains(fileName, simsResponseType) {
-		if nhgID != "" {
-			fileName += "_" + nhgID
+		if id != "" {
+			fileName += "_" + id
 		} else {
 			fileName += "_" + user.Email
 		}

@@ -50,8 +50,10 @@ type SimData struct {
 }
 
 const (
-	nhgPathParam     = "{nhg_id}"
-	pageNoQueryParam = "page.page_number"
+	nhgPathParam       = "{nhg_id}"
+	pageNoQueryParam   = "page.page_number"
+	accessPointSimsAPI = "access-point-sims"
+	hwIDQueryParam     = "access_point_hw_id"
 )
 
 func fetchSimData(api *config.APIConf, user *config.User, txnID uint64) {
@@ -59,7 +61,14 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64) {
 		log.WithFields(log.Fields{"tid": txnID, "api": api.API}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
 		return
 	}
-	if strings.Contains(api.API, nhgPathParam) {
+
+	if strings.Contains(api.API, accessPointSimsAPI) {
+		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("starting ap_sims api")
+		for _, hwID := range user.HwIDs {
+			callAccessPointsSimAPI(api, user, hwID, txnID)
+		}
+		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("finished ap_sims api")
+	} else if strings.Contains(api.API, nhgPathParam) {
 		for _, nhgID := range user.NhgIDs {
 			callSimAPI(api, user, nhgID, 1, txnID)
 		}
@@ -125,5 +134,56 @@ func callSimAPI(api *config.APIConf, user *config.User, nhgID string, pageNo int
 		return
 	} else {
 		callSimAPI(api, user, nhgID, pageNo+1, txnID)
+	}
+}
+
+func callAccessPointsSimAPI(api *config.APIConf, user *config.User, hwID string, txnID uint64) {
+	apiURL := config.Conf.BaseURL + api.API
+	//wait if refresh token api is running
+	user.Wg.Wait()
+
+	log.WithFields(log.Fields{"tid": txnID, "hw_id": hwID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
+	request, err := http.NewRequest("GET", apiURL, nil)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err, "hw_id": hwID}).Errorf("Error while calling %s for %s", apiURL, user.Email)
+		return
+	}
+
+	request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
+	//Adding query params
+	query := request.URL.Query()
+	query.Add(hwIDQueryParam, hwID)
+	request.URL.RawQuery = query.Encode()
+
+	response, err := doRequest(request)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err, "hw_id": hwID}).Errorf("Error while calling %s for %s", apiURL, user.Email)
+		return
+	}
+
+	var resp struct {
+		Status             Status      `json:"status"`
+		AccessPointDetails interface{} `json:"access_point_imsi_details"`
+	}
+	err = json.NewDecoder(bytes.NewReader(response)).Decode(&resp)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err, "hw_id": hwID, "api_url": apiURL}).Error("Unable to decode access point sim api response")
+		return
+	}
+
+	//check response for status code
+	err = checkStatusCode(resp.Status)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err, "hw_id": hwID, "api_url": apiURL}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
+		return
+	}
+
+	if len(resp.AccessPointDetails.([]interface{})) == 0 {
+		log.WithFields(log.Fields{"tid": txnID, "hw_id": hwID}).Errorf("no access point sims found for %s", user.Email)
+		return
+	}
+	err = utils.WriteResponse(user, api, resp.AccessPointDetails, "", txnID)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err, "hw_id": hwID}).Errorf("unable to write response for %s", user.Email)
 	}
 }

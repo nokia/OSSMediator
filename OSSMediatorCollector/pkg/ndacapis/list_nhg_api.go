@@ -11,21 +11,25 @@ import (
 	"collector/pkg/config"
 	"collector/pkg/utils"
 	"encoding/json"
-	"net/http"
-
 	log "github.com/sirupsen/logrus"
+	"net/http"
 )
 
-//NhgDetailsResponse struct for listNhgData API.
-type NhgDetailsResponse struct {
-	Status     Status      `json:"status"` // Status of the response
-	NhgDetails interface{} `json:"network_info"`
+type nhgAPIResponse struct {
+	NetworkInfo []NetworkInfo `json:"network_info"`
+}
+
+type NetworkInfo struct {
+	Clusters []struct {
+		HwSet []struct {
+			HwID string `json:"hw_id"`
+		} `json:"hw_set"`
+	} `json:"clusters"`
+	NhgID           string `json:"nhg_id"`
+	NhgConfigStatus string `json:"nhg_config_status"`
 }
 
 const (
-	nhgStatusField = "nhg_config_status"
-	nhgIDField     = "nhg_id"
-
 	activeNhgStatus = "ACTIVE"
 )
 
@@ -56,15 +60,17 @@ func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
 		return
 	}
 
-	//Map the received response to NhgDetailsResponse struct
-	resp := new(NhgDetailsResponse)
-	err = json.NewDecoder(bytes.NewReader(response)).Decode(resp)
+	//Map the received response to struct
+	var resp struct {
+		Status     Status      `json:"status"` // Status of the response
+		NhgDetails interface{} `json:"network_info"`
+	}
+	err = json.NewDecoder(bytes.NewReader(response)).Decode(&resp)
 	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to decode response")
 		return
 	}
-	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "nhg_ids": resp.NhgDetails}).Info("Response")
 
 	//check response for status code
 	err = checkStatusCode(resp.Status)
@@ -79,11 +85,22 @@ func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 	}
 
+	nhgData := new(nhgAPIResponse)
+	err = json.NewDecoder(bytes.NewReader(response)).Decode(nhgData)
+	if err != nil {
+		user.IsSessionAlive = false
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to extract data from response")
+		return
+	}
+	storeUserNhg(nhgData.NetworkInfo, user, txnID)
+	storeUserHwID(nhgData.NetworkInfo, user, txnID)
+}
+
+func storeUserNhg(nhgData []NetworkInfo, user *config.User, txnID uint64) {
 	user.NhgIDs = []string{}
-	for _, nhgInfo := range resp.NhgDetails.([]interface{}) {
-		nhgDetails := nhgInfo.(map[string]interface{})
-		if nhgDetails[nhgStatusField].(string) == activeNhgStatus {
-			user.NhgIDs = append(user.NhgIDs, nhgDetails[nhgIDField].(string))
+	for _, nhgInfo := range nhgData {
+		if nhgInfo.NhgConfigStatus == activeNhgStatus {
+			user.NhgIDs = append(user.NhgIDs, nhgInfo.NhgID)
 		}
 	}
 
@@ -94,4 +111,25 @@ func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
 		user.IsSessionAlive = true
 		log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "nhg_ids": user.NhgIDs}).Info("user nhgs")
 	}
+}
+
+func storeUserHwID(nhgData []NetworkInfo, user *config.User, txnID uint64) {
+	user.HwIDs = []string{}
+	hwIDs := make(map[string]struct{})
+	for _, nhgInfo := range nhgData {
+		if nhgInfo.NhgConfigStatus != activeNhgStatus {
+			continue
+		}
+		for _, cluster := range nhgInfo.Clusters {
+			for _, hwSet := range cluster.HwSet {
+				hwIDs[hwSet.HwID] = struct{}{}
+
+			}
+		}
+	}
+
+	for hwID := range hwIDs {
+		user.HwIDs = append(user.HwIDs, hwID)
+	}
+	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDs}).Info("user's access point hardware")
 }

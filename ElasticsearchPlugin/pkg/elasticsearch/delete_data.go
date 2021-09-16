@@ -16,19 +16,24 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-//DeleteDataFormElasticsearch deletes older data from elasticsearch every day at 1 o'clock.
-func DeleteDataFormElasticsearch(esConf config.ElasticsearchConf) {
-	log.Info("Triggered data cleanup of elasticsearch")
-	deleteData(esConf)
-	deleteIndices(esConf)
+//CleanUp deletes older data and indices from elasticsearch every day at 1 o'clock.
+func CleanUp(esConf config.ElasticsearchConf) {
+	cleanup(esConf)
 	timer := time.NewTimer(getNextTickDuration())
 	for {
 		<-timer.C
 		log.Info("Triggered data cleanup of elasticsearch")
-		deleteData(esConf)
-		deleteIndices(esConf)
+		cleanup(esConf)
 		timer.Reset(getNextTickDuration())
 	}
+}
+
+func cleanup(esConf config.ElasticsearchConf) {
+	log.Info("Triggered data cleanup of elasticsearch")
+	deletionTime := currentTime().AddDate(0, 0, -1*esConf.DataRetentionDuration).UTC().Format(timestampFormat)
+	deleteData(indexList, deletionTime, esConf)
+	indicesToDelete := getOldIndices(esConf)
+	deleteIndices(indicesToDelete, esConf)
 }
 
 func getNextTickDuration() time.Duration {
@@ -40,12 +45,12 @@ func getNextTickDuration() time.Duration {
 	return nextTick.Sub(currentTime())
 }
 
-func deleteData(esConf config.ElasticsearchConf) {
-	elkURL := esConf.URL + "/" + strings.Join(indexList, ",") + elkDeleteAPI
-	deletionTime := currentTime().AddDate(0, 0, -1*esConf.DataRetentionDuration).UTC().Format(timestampFormat)
+func deleteData(indices []string, deletionTime string, esConf config.ElasticsearchConf) {
+	elkURL := esConf.URL + "/" + strings.Join(indices, ",") + elkDeleteAPI
 	query := strings.Replace(deleteQuery, "TIMESTAMP", deletionTime, -1)
 	queryParams := make(map[string]string)
 	queryParams[elkWaitQueryParam] = "false"
+	queryParams[elkIgnoreUnavailable] = "true"
 	_, err := httpCall(http.MethodPost, elkURL, esConf.User, esConf.Password, query, queryParams)
 	if err != nil {
 		log.WithFields(log.Fields{"Error": err, "url": elkURL, "delete_from_time": deletionTime}).Error("Unable to delete data from elasticsearch")
@@ -54,25 +59,26 @@ func deleteData(esConf config.ElasticsearchConf) {
 	}
 }
 
-func deleteIndices(esConf config.ElasticsearchConf) {
-	indicesToDelete := getOldIndices(esConf)
-	if len(indicesToDelete) == 0 {
+func deleteIndices(indices []string, esConf config.ElasticsearchConf) {
+	if len(indices) == 0 {
 		return
 	}
-	log.Infof("Index patterns to delete %v", indicesToDelete)
-	elkURL := esConf.URL + "/" + strings.Join(indicesToDelete, ",")
+	log.Infof("Index patterns to delete %v", indices)
+	elkURL := esConf.URL + "/" + strings.Join(indices, ",")
+	queryParams := make(map[string]string)
+	queryParams[elkIgnoreUnavailable] = "true"
 
 	//closing the indices
-	_, err := httpCall(http.MethodPost, elkURL + "/" + "_close", esConf.User, esConf.Password, "", nil)
+	_, err := httpCall(http.MethodPost, elkURL+"/"+"_close", esConf.User, esConf.Password, "", queryParams)
 	if err != nil {
-		log.Error(err)
+		log.WithFields(log.Fields{"Error": err, "url": elkURL}).Error("unable to close indices")
 		return
 	}
 
 	//deleting the indices
-	_, err = httpCall(http.MethodDelete, elkURL, esConf.User, esConf.Password, "", nil)
+	_, err = httpCall(http.MethodDelete, elkURL, esConf.User, esConf.Password, "", queryParams)
 	if err != nil {
-		log.Error(err)
+		log.WithFields(log.Fields{"Error": err, "url": elkURL}).Error("unable to delete indices")
 		return
 	}
 	log.Infof("Old indices deleted")
@@ -89,14 +95,13 @@ func getOldIndices(esConf config.ElasticsearchConf) []string {
 		return indicesPattern
 	}
 
-	log.Infof(string(respBody))
 	indices := strings.Split(string(respBody), "\n")
-	delTime := time.Now().AddDate(0, 0, -1 * esConf.DataRetentionDuration)
-	delMonth:= int(delTime.Month())
-	delYear:= delTime.Year()
+	delTime := time.Now().AddDate(0, 0, -1*esConf.DataRetentionDuration)
+	delMonth := int(delTime.Month())
+	delYear := delTime.Year()
 
 	indicesPatternToDelete := make(map[string]struct{})
-	for _, index := range indices  {
+	for _, index := range indices {
 		if index == "" {
 			continue
 		}

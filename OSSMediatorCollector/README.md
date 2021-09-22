@@ -196,7 +196,7 @@ Once the login is successful for all users, the collector will periodically star
 
 Collector logs can be checked in $cd $collector_basepath/log/collector.log file.
 
-### Active alarm notification
+### Alarm notification
 
 User can enable alarm notification feature to receive details of specific alarm raised from the network.  
 This feature is optional and disabled by default.

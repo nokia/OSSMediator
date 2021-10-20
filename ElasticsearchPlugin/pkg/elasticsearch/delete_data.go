@@ -86,13 +86,17 @@ func deleteIndices(indices []string, esConf config.ElasticsearchConf) {
 
 func getOldIndices(esConf config.ElasticsearchConf) []string {
 	var indicesToDelete []string
+	if esConf.DataRetentionDuration < 30 {
+		return indicesToDelete
+	}
+
 	indicesPattern := []string{"4g-pm*", "5g-pm*"}
 	elkURL := esConf.URL + elkCatIndicesAPI + strings.Join(indicesPattern, ",") + "?h=index"
 	//fetch the indices
 	respBody, err := httpCall(http.MethodGet, elkURL, esConf.User, esConf.Password, "", nil)
 	if err != nil {
 		log.WithFields(log.Fields{"Error": err, "url": elkURL}).Error("Unable to fetch indices, exiting delete old indices process")
-		return indicesPattern
+		return indicesToDelete
 	}
 
 	indices := strings.Split(string(respBody), "\n")

@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 3.2
+
+NEW FEATURES:
+
+* OSSMediatorCollector:
+  * Added support for access point SIM API.
+* ElasticsearchPlugin:
+  * Changes for pushing access point SIM data to elasticsearch.
+
+IMPROVEMENTS:
+
+* MediatorSetup: Grafana dashboard updated.
+
 # 3.1
 
 NEW FEATURES:
@@ -16,7 +29,7 @@ IMPROVEMENTS:
 * OSSMediatorCollector: Changes to write NHG and SIMs data to file.
 * ElasticsearchPlugin:
     * Added elasticsearch authentication and old indices deletion feature.
-    * Changes for pushing NHG and SIM data elasticsearch.
+    * Changes for pushing NHG and SIM data to elasticsearch.
 
 # 3.0
 

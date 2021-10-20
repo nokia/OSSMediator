@@ -6591,7 +6591,7 @@
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "hide": 0,
         "includeAll": true,
-        "label": "AP ID",
+        "label": "Access Point ID",
         "multi": true,
         "name": "ap_id",
         "options": [],
@@ -6731,6 +6731,6 @@
     ]
   },
   "timezone": "",
-  "title": "NDAC 4G PM KPI - Reporting",
+  "title": "NDAC 4G PM KPI Report Generation Dashboard",
   "version": 1
 }

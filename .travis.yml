@@ -3,22 +3,21 @@ dist: xenial
 
 language: go
 go:
-  - 1.11
+  - 1.16
 
 services: docker
 
 script:
-  - cd OSSMediatorCollector && make all && cd ..
-  - cd ElasticsearchPlugin && make all && cd ..
+  - make all
 
 after_script:
-  - '[ -s collector-lint-result.txt ] && { echo "OSSMediatorCollector has lint errors"; exit 1; }'
-  - '[ -s elasticsearchplugin-lint-result.txt ] && { echo "ElasticsearchPlugin has lint errors"; exit 1; }'
+  - '[ -s OSSMediatorCollector/collector-lint-result.txt ] && { echo "OSSMediatorCollector has lint errors"; exit 1; }'
+  - '[ -s ElasticsearchPlugin/elasticsearchplugin-lint-result.txt ] && { echo "ElasticsearchPlugin has lint errors"; exit 1; }'
   - 'echo "OSSMediatorCollector test results:" && cat OSSMediatorCollector/collector-unittest-result.txt'
   - 'echo "ElasticsearchPlugin test results:" && cat ElasticsearchPlugin/elasticsearchplugin-unittest-result.txt'
   - 'grep -e "FAIL:" OSSMediatorCollector/collector-unittest-result.txt && { echo "OSSMediatorCollector unit tests failed"; exit 1; }'
   - 'grep -e "FAIL:" ElasticsearchPlugin/elasticsearchplugin-unittest-result.txt && { echo "ElasticsearchPlugin unit tests failed"; exit 1; }'
 
 after_failure:
-  - '[ -s collector-lint-result.txt ] && echo "OSSMediatorCollector lint errors:" && cat collector-lint-result.txt'
-  - '[ -s elasticsearchplugin-lint-result.txt ] && echo "ElasticsearchPlugin lint errors:" && cat elasticsearchplugin-lint-result.txt'
+  - '[ -s OSSMediatorCollector/collector-lint-result.txt ] && echo "OSSMediatorCollector lint errors:" && cat collector-lint-result.txt'
+  - '[ -s ElasticsearchPlugin/elasticsearchplugin-lint-result.txt ] && echo "ElasticsearchPlugin lint errors:" && cat elasticsearchplugin-lint-result.txt'

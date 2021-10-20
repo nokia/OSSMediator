@@ -69,84 +69,92 @@ PM / FM data collection by collector is performed using REST interface at regula
 
 ````json
 {
-	"base_url": "https://api.dac.nokia.com/api/ndac/v2",
-	"users": [
-		{
-			"email_id": "<USER EMAIL>",
-			"password": "<USER PASSWORD>",
-			"response_dest": "<DIRECTORY PATH>"
-		},
-		{
-			"email_id": "<USER EMAIL>",
-			"password": "<USER PASSWORD>",
-			"response_dest": "<DIRECTORY PATH>"
-		}
-	],
-	"um_api": {
-		"login": "/login-session",
-		"refresh": "/refresh-session",
-		"logout": "/logout-session"
-	},
-	"list_nhg_api": {
-		"api": "/network-hardware-groups",
-		"interval": 60
-	},
-	"sim_apis": [
-		{
-			"api": "/network-hardware-groups/{nhg_id}/sims",
-			"interval": 1
-		}
-	],
-	"metric_apis": [
-		{
-			"api": "/network-hardware-groups/{nhg_id}/pmdata",
-			"interval": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "ACTIVE",
-			"metric_type": "RADIO",
-			"interval": 1,
-			"sync_duration": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "HISTORY",
-			"metric_type": "RADIO",
-			"interval": 1,
-			"sync_duration": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "ACTIVE",
-			"metric_type": "DAC",
-			"interval": 1,
-			"sync_duration": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "HISTORY",
-			"metric_type": "DAC",
-			"interval": 1,
-			"sync_duration": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "ACTIVE",
-			"metric_type": "CORE",
-			"interval": 1,
-			"sync_duration": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "HISTORY",
-			"metric_type": "CORE",
-			"interval": 1,
-			"sync_duration": 15
-		}
-	],
-	"limit": 10000,
-	"delay": 5
+  "base_url": "https://api.dac.nokia.com/api/ndac/v2",
+  "users": [
+    {
+      "email_id": "<USER EMAIL>",
+      "password": "<USER PASSWORD>",
+      "response_dest": "<DIRECTORY PATH>"
+    },
+    {
+      "email_id": "<USER EMAIL>",
+      "password": "<USER PASSWORD>",
+      "response_dest": "<DIRECTORY PATH>"
+    }
+  ],
+  "um_api": {
+    "login": "/login-session",
+    "refresh": "/refresh-session",
+    "logout": "/logout-session"
+  },
+  "list_nhg_api": {
+    "api": "/network-hardware-groups",
+    "interval": 60
+  },
+  "sim_apis": [
+    {
+      "api": "/network-hardware-groups/{nhg_id}/sims",
+      "interval": 60
+    },
+    {
+      "api": "/account-sims",
+      "interval": 60
+    },
+    {
+      "api": "/access-point-sims",
+      "interval": 60
+    }
+  ],
+  "metric_apis": [
+    {
+      "api": "/network-hardware-groups/{nhg_id}/pmdata",
+      "interval": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "ACTIVE",
+      "metric_type": "RADIO",
+      "interval": 1,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "HISTORY",
+      "metric_type": "RADIO",
+      "interval": 1,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "ACTIVE",
+      "metric_type": "DAC",
+      "interval": 1,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "HISTORY",
+      "metric_type": "DAC",
+      "interval": 1,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "ACTIVE",
+      "metric_type": "CORE",
+      "interval": 1,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "HISTORY",
+      "metric_type": "CORE",
+      "interval": 1,
+      "sync_duration": 15
+    }
+  ],
+  "limit": 10000,
+  "delay": 5
 }
 ````
 
@@ -188,7 +196,7 @@ Once the login is successful for all users, the collector will periodically star
 
 Collector logs can be checked in $cd $collector_basepath/log/collector.log file.
 
-### Active alarm notification
+### Alarm notification
 
 User can enable alarm notification feature to receive details of specific alarm raised from the network.  
 This feature is optional and disabled by default.

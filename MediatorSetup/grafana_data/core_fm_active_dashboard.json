@@ -16,8 +16,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
-  "iteration": 1623135443115,
+  "id": 6,
+  "iteration": 1632991865898,
   "links": [
     {
       "icon": "external link",
@@ -163,7 +163,7 @@
               "type": "count"
             }
           ],
-          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_id.keyword:$nhg_id AND fm_data.severity:CRITICAL",
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:CRITICAL",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -251,7 +251,7 @@
               "type": "count"
             }
           ],
-          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_id.keyword:$nhg_id AND fm_data.severity:MAJOR",
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:MAJOR",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -339,7 +339,7 @@
               "type": "count"
             }
           ],
-          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_id.keyword:$nhg_id AND fm_data.severity:MINOR",
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:MINOR",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -427,7 +427,7 @@
               "type": "count"
             }
           ],
-          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_id.keyword:$nhg_id AND fm_data.severity:WARNING",
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:WARNING",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -666,7 +666,7 @@
               "type": "raw_document"
             }
           ],
-          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_id.keyword:$nhg_id AND fm_data.severity:CRITICAL",
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:CRITICAL",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -906,7 +906,7 @@
               "type": "raw_document"
             }
           ],
-          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_id.keyword:$nhg_id AND fm_data.severity:MAJOR",
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:MAJOR",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -1146,7 +1146,7 @@
               "type": "raw_document"
             }
           ],
-          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_id.keyword:$nhg_id AND fm_data.severity:MINOR",
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:MINOR",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -1386,7 +1386,7 @@
               "type": "raw_document"
             }
           ],
-          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_id.keyword:$nhg_id AND fm_data.severity:WARNING",
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:WARNING",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -1409,7 +1409,6 @@
     "list": [
       {
         "current": {
-          "selected": true,
           "text": "core-fm",
           "value": "core-fm"
         },
@@ -1434,14 +1433,14 @@
           ]
         },
         "datasource": "$datasource",
-        "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_id.keyword\"}",
+        "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": true,
-        "label": "NHG ID",
+        "label": "Network Hw Group Name",
         "multi": true,
-        "name": "nhg_id",
+        "name": "nhgname",
         "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_id.keyword\"}",
+        "query": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,

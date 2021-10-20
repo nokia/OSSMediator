@@ -56,7 +56,8 @@ fi
 echo "Installing Elasticsearch"
 docker pull docker.elastic.co/elasticsearch/elasticsearch:7.4.2
 mkdir -p es_data
-chmod 775 ./es_data
+chmod g+rwx es_data
+chgrp 0 es_data
 
 echo "Installing OSSMediator"
 mkdir -p collector plugin

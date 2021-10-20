@@ -21,9 +21,9 @@ docker_build:
 
 build:
 	@echo Building OSSMediatorCollector
-	@cd src/collector && go install -ldflags "-X main.appVersion=$(VERSION)" || (echo "OSSMediatorCollector build failed"; exit 1)
+	@go mod download && go build -ldflags "-X main.appVersion=$(VERSION)" -o bin/collector cmd/collector.go || (echo "OSSMediatorCollector build failed"; exit 1)
 	@echo Running go lint
-	@cd src/collector && go vet ./... > ../../collector-lint-result.txt
+	@go vet ./... > collector-lint-result.txt
 	@echo Build Successful.
 
 build_package:
@@ -39,15 +39,13 @@ build_package:
 test:
 	@echo "Started :OSSMediatorCollector Tests"
 	@echo Running Tests
-	@cd src/collector && go test ./... -coverprofile=../../coverage.out -v > ../../collector-unittest-result.txt || echo "OSSMediatorCollector unit tests failed."
+	@go test ./... -coverprofile=coverage.out -v > collector-unittest-result.txt || echo "OSSMediatorCollector unit tests failed."
 	@echo Running go coverage
 	@go tool cover -func=coverage.out
-	@echo Generating coverage report
-	@gocov convert coverage.out
 	@go tool cover -html=coverage.out -o coverage.html
 	@echo "Completed :OSSMediatorCollector Tests"
 
 clean:
 	@echo "Started :OSSMediatorCollector CleanUp"
-	@rm -rf pkg package bin/collector VERSION collector-unittest-result.txt collector-lint-result.txt
+	@rm -rf package bin/collector VERSION collector-unittest-result.txt collector-lint-result.txt
 	@echo "Completed :OSSMediatorCollector CleanUp"

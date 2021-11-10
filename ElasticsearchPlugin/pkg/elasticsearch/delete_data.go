@@ -86,7 +86,7 @@ func deleteIndices(indices []string, esConf config.ElasticsearchConf) {
 
 func getOldIndices(esConf config.ElasticsearchConf) []string {
 	var indicesToDelete []string
-	if esConf.DataRetentionDuration < 30 {
+	if esConf.DataRetentionDuration <= 31 {
 		return indicesToDelete
 	}
 

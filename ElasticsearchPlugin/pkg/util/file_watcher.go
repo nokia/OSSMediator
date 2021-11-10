@@ -101,6 +101,6 @@ func processExistingFiles(directory string, conf config.Config) {
 			continue
 		}
 		//push data to elk
-		go elasticsearch.PushData(directory+"/"+file.Name(), conf.ElasticsearchConf)
+		elasticsearch.PushData(directory+"/"+file.Name(), conf.ElasticsearchConf)
 	}
 }

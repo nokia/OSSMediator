@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 3.3
+
+BUG FIXES:
+
+* ElasticsearchPlugin: Memory leak bug fix.
+
 # 3.2
 
 NEW FEATURES:

@@ -11,6 +11,7 @@ import (
 	"elasticsearchplugin/pkg/config"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -436,18 +437,22 @@ func TestDeleteDataFormElasticsearch(t *testing.T) {
 }
 
 func TestDeleteOldIndicesFormElasticsearch(t *testing.T) {
-	currTime := currentTime()
-	oldCurrentTime := currentTime
-	defer func() { currentTime = oldCurrentTime }()
-
-	myCurrentTime := func() time.Time {
-		return time.Date(currTime.Year(), currTime.Month(), currTime.Day()+1, 0, 59, 59, 0, time.Local)
-	}
-	currentTime = myCurrentTime
 	esConf := config.ElasticsearchConf{
 		URL:                   elasticsearchURL,
-		DataRetentionDuration: 0,
+		DataRetentionDuration: 60,
 	}
+
+	delTime := time.Now().AddDate(0, 0, -1*esConf.DataRetentionDuration)
+	indexSuffix := strconv.Itoa(int(delTime.Month())) +"-"+ strconv.Itoa(delTime.Year())
+	testIndices := []string{"4g-pm-"+indexSuffix, "5g-pm-"+indexSuffix}
+	for _, index := range testIndices {
+		indexCreateURL := elasticsearchURL + "/" + index
+		_, err := httpCall(http.MethodPut, indexCreateURL, "", "", "", nil)
+		if err != nil {
+			t.Error(err)
+		}
+	}
+
 	indices := getOldIndices(esConf)
 	if len(indices) == 0 {
 		t.Error("found no indices")
@@ -455,7 +460,7 @@ func TestDeleteOldIndicesFormElasticsearch(t *testing.T) {
 	deleteIndices(indices, esConf)
 	time.Sleep(2 * time.Second)
 
-	searchResult, err := searchOnElastic([]string{"4g-pm*", "5g-pm*"})
+	searchResult, err := searchOnElastic(indices)
 	if err != nil {
 		t.Error(err)
 	}

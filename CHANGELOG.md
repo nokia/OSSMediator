@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 # 3.3
 
+NEW FEATURES:
+
+* Added PM multifire eNB dashboards.
+
 BUG FIXES:
 
 * ElasticsearchPlugin: Memory leak bug fix.

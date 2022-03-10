@@ -95,7 +95,7 @@ systemctl enable elasticsearchplugin.service
 
 echo "Starting Elasticsearch"
 name='ndac_oss_elasticsearch'
-[[ $(docker ps -f "name=$name" --format '{{.Names}}') == $name ]] || docker run --name "$name" -t -d -p 9200:9200 -p 9300:9300 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size" -v $(pwd)/es_data:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+[[ $(docker ps -f "name=$name" --format '{{.Names}}') == $name ]] || docker run --name "$name" -t -d -p 9200:9200 -p 9300:9300 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size -Dlog4j2.formatMsgNoLookups=true" -v $(pwd)/es_data:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:7.4.2
 
 echo "Checking Elasticsearch status"
 Status=`docker inspect --format "{{.State.Running}}" $name` || true

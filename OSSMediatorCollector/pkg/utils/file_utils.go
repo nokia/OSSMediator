@@ -163,8 +163,11 @@ func StoreLastReceivedDataTime(user *config.User, data interface{}, api *config.
 
 	receivedData := make(map[string]struct{})
 	for _, value := range data.([]interface{}) {
-		metricTime := value.(map[string]interface{})[source].(map[string]interface{})[fieldName].(string)
-		receivedData[metricTime] = struct{}{}
+		eventTime := value.(map[string]interface{})[source].(map[string]interface{})[fieldName]
+		if eventTime != nil {
+			metricTime := eventTime.(string)
+			receivedData[metricTime] = struct{}{}
+		}
 	}
 	var eventTimes []time.Time
 	for key := range receivedData {

@@ -19,19 +19,21 @@
   "iteration": 1632986182753,
   "links": [
     {
+      "asDropdown": true,
       "icon": "external link",
       "tags": [
-        "PMKPIDashboard"
+        "Radio5G"
       ],
+      "title": "5G Dashboards",
       "type": "dashboards"
     },
     {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
-        "Radio5G"
+        "Radio4G"
       ],
-      "title": "5G Dashboard",
+      "title": "4G Dashboards",
       "type": "dashboards"
     },
     {
@@ -58,7 +60,7 @@
       "tags": [
         "COREAlarms"
       ],
-      "targetBlank": true,
+      "targetBlank": false,
       "title": "CORE Alarms",
       "type": "dashboards"
     }

@@ -52,7 +52,9 @@ func AddWatcher(conf config.Config) error {
 				if err != nil {
 					return fmt.Errorf("error while adding watcher to %s, error: %v", dirPath, err)
 				}
-				processExistingFiles(dirPath, conf)
+				if f.Name() == "fmdata" || f.Name() == "pmdata" {
+					processExistingFiles(dirPath, conf)
+				}
 			}
 		}
 	}

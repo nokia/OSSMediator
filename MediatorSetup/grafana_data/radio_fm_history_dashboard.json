@@ -29,10 +29,12 @@
       "type": "dashboards"
     },
     {
+      "asDropdown": true,
       "icon": "external link",
       "tags": [
-        "PMKPIDashboard"
+        "Radio4G"
       ],
+      "title": "4G Dashboards",
       "type": "dashboards"
     },
     {
@@ -41,7 +43,7 @@
       "tags": [
         "Radio5G"
       ],
-      "title": "5G Dashboard",
+      "title": "5G Dashboards",
       "type": "dashboards"
     },
     {
@@ -59,7 +61,7 @@
       "tags": [
         "COREAlarms"
       ],
-      "targetBlank": true,
+      "targetBlank": false,
       "title": "CORE Alarms",
       "type": "dashboards"
     }

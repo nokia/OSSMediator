@@ -51,6 +51,9 @@ func pushFMData(filePath string, esConf config.ElasticsearchConf) {
 	var postData string
 	index := strings.Join([]string{metricType, "fm"}, "-")
 	for i, d := range resp {
+		if d.FMData["event_time"] == nil {
+			continue
+		}
 		dn := d.FMDataSource["dn"].(string)
 		eventTime := d.FMData["event_time"].(string)
 		hwID := d.FMDataSource["hw_id"].(string)

@@ -30,18 +30,10 @@
       "asDropdown": true,
       "icon": "external link",
       "tags": [
-        "RadioAlarms"
+        "Radio4G"
       ],
-      "targetBlank": true,
-      "title": "Radio Alarms",
-      "type": "dashboards"
-    },
-    {
-      "icon": "external link",
-      "tags": [
-        "PMKPIDashboard"
-      ],
-      "targetBlank": true,
+      "targetBlank": false,
+      "title": "4G Dashboards",
       "type": "dashboards"
     },
     {
@@ -50,7 +42,17 @@
       "tags": [
         "Radio5G"
       ],
-      "title": "5G Dashboard",
+      "title": "5G Dashboards",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "RadioAlarms"
+      ],
+      "targetBlank": false,
+      "title": "Radio Alarms",
       "type": "dashboards"
     },
     {
@@ -59,7 +61,7 @@
       "tags": [
         "COREAlarms"
       ],
-      "targetBlank": true,
+      "targetBlank": false,
       "title": "CORE Alarms",
       "type": "dashboards"
     }

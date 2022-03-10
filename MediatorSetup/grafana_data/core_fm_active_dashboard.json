@@ -30,9 +30,28 @@
       "asDropdown": true,
       "icon": "external link",
       "tags": [
+        "Radio4G"
+      ],
+      "targetBlank": false,
+      "title": "4G Dashboards",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "Radio5G"
+      ],
+      "title": "5G Dashboards",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
         "RadioAlarms"
       ],
-      "targetBlank": true,
+      "targetBlank": false,
       "title": "Radio Alarms",
       "type": "dashboards"
     },
@@ -42,25 +61,8 @@
       "tags": [
         "DACAlarms"
       ],
-      "targetBlank": true,
+      "targetBlank": false,
       "title": "DAC Alarms",
-      "type": "dashboards"
-    },
-    {
-      "icon": "external link",
-      "tags": [
-        "PMKPIDashboard"
-      ],
-      "targetBlank": true,
-      "type": "dashboards"
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "tags": [
-        "Radio5G"
-      ],
-      "title": "5G Dashboard",
       "type": "dashboards"
     }
   ],

@@ -21,7 +21,7 @@ var (
 			Logout:  "/logout",
 		},
 		MetricAPIs: []*config.APIConf{
-			{API: "/pmdata", Interval: 15},
+			{API: "/pmdata", Interval: 15, MetricType: "RADIO"},
 			{API: "/fmdata", Interval: 60, Type: "ACTIVE", MetricType: "RADIO"},
 			{API: "/fmdata", Interval: 15, Type: "HISTORY", MetricType: "RADIO"},
 			{API: "/fmdata", Interval: 60, Type: "ACTIVE", MetricType: "DAC"},
@@ -148,7 +148,7 @@ func TestValidateConfWithInvalidAPITypeForPM(t *testing.T) {
 	conf.MetricAPIs[0].Type = "ACTIVE"
 	defer func() { conf.MetricAPIs[0].Type = tmp }()
 	err := ValidateConf(conf)
-	if err == nil || !strings.Contains(err.Error(), "API type and metric type for pmdata should be empty") {
+	if err == nil || !strings.Contains(err.Error(), "API type for pmdata should be empty") {
 		t.Error(err)
 	}
 }

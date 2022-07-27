@@ -83,7 +83,7 @@ func CreateResponseDirectory(basePath string, api string) {
 //WriteResponse writes the data in json format to responseDest directory.
 func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id string, txnID uint64) error {
 	fileName := path.Base(api.API)
-	if fileName == fmdataResponseType {
+	if fileName == fmdataResponseType || fileName == pmdataResponseType {
 		if api.MetricType != "" {
 			fileName += "_" + api.MetricType
 		}

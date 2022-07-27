@@ -27,6 +27,7 @@ type GetAPIResponse struct {
 	NextRecord      int         `json:"next_record"`
 	Data            interface{} `json:"data"`
 	Status          Status      `json:"status"` // Status of the response
+	SearchAfterKey  string      `json:"search_after_key"`
 }
 
 //Status keeps track of status from response.
@@ -49,14 +50,15 @@ type ErrorResponse struct {
 }
 
 type apiCallRequest struct {
-	url       string
-	api       *config.APIConf
-	user      *config.User
-	nhgID     string
-	startTime string
-	endTime   string
-	index     int
-	limit     int
+	url            string
+	api            *config.APIConf
+	user           *config.User
+	nhgID          string
+	startTime      string
+	endTime        string
+	index          int
+	limit          int
+	searchAfterKey string
 }
 
 const (
@@ -102,7 +104,8 @@ func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64) string {
 	log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("Triggered %s for %s at %v", apiURL, req.user.Email, utils.CurrentTime())
 	response, err := callAPI(req, txnID)
 	if err != nil {
-		if !strings.Contains(err.Error(), "no records found") {
+		//retry api when 500 status code is returned
+		if strings.Contains(err.Error(), "500") {
 			response, err = retryAPICall(req, retryAttempts, txnID)
 			if err != nil {
 				log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": apiURL, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("API call failed, data will be skipped...")
@@ -112,16 +115,17 @@ func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64) string {
 			return ""
 		}
 	}
-	log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "total_no_of_records": response.TotalNumRecords, "received_no_of_records": response.NumOfRecords}).Infof("Received response details")
-
-	if response.NumOfRecords == 10000 && response.TotalNumRecords > 10000 {
-		return retryNextMsg
+	if response == nil {
+		log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("found nil response, resp: %v, err: %v", response, err)
+		return ""
 	}
+	log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "total_no_of_records": response.TotalNumRecords, "received_no_of_records": response.NumOfRecords}).Infof("Received response details")
 
 	receivedNoOfRecords := response.NumOfRecords
 	var noOfRecords int
 	if response.NextRecord > 0 {
 		req.index = response.NextRecord
+		req.searchAfterKey = response.SearchAfterKey
 		noOfRecords, err = handlePagination(req, retryAttempts, txnID)
 		if err != nil {
 			return retryCurrentMsg
@@ -137,17 +141,30 @@ func handlePagination(req apiCallRequest, retryAttempts int, txnID uint64) (int,
 	var receivedNoOfRecords int
 	for req.index > 0 {
 		response, err := callAPI(req, txnID)
+		if response == nil {
+			log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("found nil response, resp: %v, err: %v", response, err)
+		}
 		if err != nil {
 			response, err = retryAPICall(req, retryAttempts, txnID)
 			if err != nil {
 				log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("API call failed, will be retried from starting...")
 				return 0, err
 			} else {
+				if response == nil {
+					log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("found nil response, resp: %v, err: %v", response, err)
+					return 0, nil
+				}
 				req.index = response.NextRecord
+				req.searchAfterKey = response.SearchAfterKey
 				receivedNoOfRecords += response.NumOfRecords
 			}
 		} else {
+			if response == nil {
+				log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("found nil response, resp: %v, err: %v", response, err)
+				return 0, nil
+			}
 			req.index = response.NextRecord
+			req.searchAfterKey = response.SearchAfterKey
 			receivedNoOfRecords += response.NumOfRecords
 		}
 	}
@@ -161,6 +178,9 @@ func retryAPICall(req apiCallRequest, retryAttempts int, txnID uint64) (*GetAPIR
 	for i := 0; i < retryAttempts; i++ {
 		log.WithFields(log.Fields{"txn_id": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "limit": req.limit, "index": req.index, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Info("retrying api call")
 		response, err = callAPI(req, txnID)
+		if response == nil {
+			log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("err: %v, resp: %v", err, response)
+		}
 		if err == nil {
 			return response, nil
 		}
@@ -196,6 +216,9 @@ func callAPI(req apiCallRequest, txnID uint64) (*GetAPIResponse, error) {
 	if req.api.MetricType != "" {
 		query.Add(metricTypeQueryParam, req.api.MetricType)
 	}
+	if req.searchAfterKey != "" {
+		query.Add(searchAfterKeyQueryParam, req.searchAfterKey)
+	}
 
 	request.URL.RawQuery = query.Encode()
 	log.WithFields(log.Fields{"tid": txnID}).Info(startTimeQueryParam, ": ", query[startTimeQueryParam])
@@ -224,7 +247,6 @@ func callAPI(req apiCallRequest, txnID uint64) (*GetAPIResponse, error) {
 		return nil, err
 	}
 	log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType, "total_no_of_records": resp.TotalNumRecords, "no_of_records_received": resp.NumOfRecords, "next_record_index": resp.NextRecord}).Infof("%s called successfully for %s.", req.url, req.user.Email)
-	log.WithFields(log.Fields{"tid": txnID}).Debugf("response: %v", resp)
 
 	//storing LastReceivedDataTime timestamp value to file
 	err = utils.StoreLastReceivedDataTime(req.user, resp.Data, req.api, req.nhgID, txnID)

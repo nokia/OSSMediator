@@ -64,6 +64,11 @@ func main() {
 
 	// Authenticating the users
 	for _, user := range config.Conf.Users {
+		user.Password, err = utils.ReadPassword(user.Email)
+		if err != nil {
+			fmt.Printf("\nUnable to read password for: %s\nError: %v", user.Email, err)
+			log.WithFields(log.Fields{"error": err}).Fatalf("Login Failed for %s", user.Email)
+		}
 		err = ndacapis.Login(user)
 		if err != nil {
 			fmt.Printf("\nLogin Failed for %s...\nError: %v", user.Email, err)

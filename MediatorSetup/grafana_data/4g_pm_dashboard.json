@@ -3,20 +3,28 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 7,
-  "iteration": 1632985935356,
+  "iteration": 1658907630369,
   "links": [
     {
       "asDropdown": true,
@@ -24,7 +32,7 @@
       "tags": [
         "Radio4G"
       ],
-      "title": "4G Dashboards",
+      "title": "Radio 4G Dashboards",
       "type": "dashboards"
     },
     {
@@ -33,8 +41,36 @@
       "tags": [
         "Radio5G"
       ],
-      "title": "5G Dashboards",
+      "title": "Radio 5G Dashboards",
       "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "EdgePM"
+      ],
+      "targetBlank": false,
+      "title": "Edge PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "CorePM"
+      ],
+      "targetBlank": false,
+      "title": "CORE PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
     },
     {
       "asDropdown": true,
@@ -64,12 +100,61 @@
       "targetBlank": false,
       "title": "CORE Alarms",
       "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "ApplAlarms"
+      ],
+      "targetBlank": false,
+      "title": "Application Alarms",
+      "type": "dashboards"
     }
   ],
+  "liveNow": false,
   "panels": [
     {
-      "cacheTimeout": null,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 50
+              },
+              {
+                "color": "dark-green",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 6,
         "w": 3,
@@ -80,58 +165,23 @@
       "interval": "15m",
       "links": [],
       "options": {
-        "fieldOptions": {
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [
-              {
-                "id": 0,
-                "op": "=",
-                "text": "N/A",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "max": 100,
-            "min": 0,
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "red",
-                  "value": null
-                },
-                {
-                  "color": "orange",
-                  "value": 50
-                },
-                {
-                  "color": "dark-green",
-                  "value": 90
-                }
-              ]
-            },
-            "unit": "percent"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "orientation": "horizontal",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "bucketAggs": [
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "15m",
@@ -192,18 +242,47 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Avail_M8020C3:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cell Availability",
       "type": "gauge"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "Displays the number of cells up in the selected network",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "0",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 1000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -214,51 +293,24 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "mappings": [
-              {
-                "id": 0,
-                "op": "=",
-                "text": "0",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "max": 1000,
-            "min": 0,
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "none"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "bucketAggs": [
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "15m",
@@ -285,21 +337,26 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND -pm_data.LTE_Cell_Avail_M8020C3:0",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cells UP",
       "type": "stat"
     },
     {
       "aliasColors": {},
       "bars": false,
-      "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -324,10 +381,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "6.5.3",
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -341,7 +398,7 @@
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "4",
               "settings": {
                 "interval": "auto",
@@ -362,13 +419,13 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Maximum PDCP Throughput UL",
           "bucketAggs": [
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "auto",
@@ -389,13 +446,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C22:*",
           "refId": "B",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Average and Max PDCP datarate UL",
       "tooltip": {
         "shared": true,
@@ -404,42 +459,40 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "Kbits",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
       "aliasColors": {},
       "bars": false,
-      "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -464,10 +517,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "6.5.3",
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -481,7 +534,7 @@
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "4",
               "settings": {
                 "interval": "auto",
@@ -502,14 +555,14 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Maximum PDCP Throughput DL",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "auto",
@@ -530,13 +583,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C25:*",
           "refId": "B",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Average and Max PDCP datarate DL",
       "tooltip": {
         "shared": true,
@@ -545,39 +596,47 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "Kbits",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean UL PDCP traffic throughput.",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Kbits"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -588,31 +647,19 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "Kbits"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "alias": "Avg PDCP Throughput UL",
@@ -630,7 +677,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "15m",
@@ -651,17 +698,54 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Total PCDP Datarate UL",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "",
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "0",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 2500,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1000
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 2000
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 6,
         "w": 3,
@@ -672,59 +756,23 @@
       "interval": "15m",
       "links": [],
       "options": {
-        "fieldOptions": {
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [
-              {
-                "id": 0,
-                "op": "=",
-                "text": "0",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "max": 2500,
-            "min": 0,
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "dark-green",
-                  "value": null
-                },
-                {
-                  "color": "orange",
-                  "value": 1000
-                },
-                {
-                  "color": "semi-dark-red",
-                  "value": 2000
-                }
-              ]
-            },
-            "title": "",
-            "unit": "short"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "orientation": "horizontal",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "bucketAggs": [
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "15m",
@@ -773,18 +821,50 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C58:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Active UE quantity",
       "type": "gauge"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "Displays the number of cells down in the selected network",
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 0,
+          "mappings": [
+            {
+              "from": "null",
+              "id": 0,
+              "op": "=",
+              "text": "0",
+              "to": "null",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -795,54 +875,24 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "decimals": 0,
-            "mappings": [
-              {
-                "from": "null",
-                "id": 0,
-                "op": "=",
-                "text": "0",
-                "to": "null",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "max": 100,
-            "min": 0,
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 1
-                }
-              ]
-            },
-            "unit": "short"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "bucketAggs": [
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "15m",
@@ -869,18 +919,37 @@
           ],
           "query": "(pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*) AND (pm_data.LTE_Cell_Avail_M8020C3:0 OR pm_data.LTE_Cell_Avail_M8020C6:0)",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cells DOWN",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean DL PDCP traffic throughput.",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 10240
+              }
+            ]
+          },
+          "unit": "Kbits"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
@@ -891,35 +960,19 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 10240
-                }
-              ]
-            },
-            "unit": "Kbits"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "alias": "Avg PDCP Throughput DL",
@@ -937,7 +990,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "15m",
@@ -958,11 +1011,9 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Total PCDP Datarate DL",
       "type": "stat"
     },
@@ -971,8 +1022,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This KPI shows the ratio of services in a cell being available for end users.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1000,9 +1059,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -1027,7 +1087,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "15m",
@@ -1043,7 +1103,6 @@
               "field": "pm_data.LTE_Cell_Avail_M8020C3",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -1060,7 +1119,6 @@
               "field": "pm_data.LTE_Cell_Avail_M8020C3",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -1091,48 +1149,37 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Avail_M8020C3:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_5750a E-UTRAN Cell Availability Ratio",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 1,
         "value_type": "individual"
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -1140,8 +1187,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "E-UTRAN LTE_UE_Quantity_M8051C58\n",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1168,13 +1223,13 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
-      "repeat": null,
       "repeatDirection": "h",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -1196,7 +1251,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "15m",
@@ -1245,48 +1300,37 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C58:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "M8051C58 - E-UTRAN LTE_UE_Quantity",
       "tooltip": {
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "individual"
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -1294,8 +1338,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "The KPI shows the number of attempts for the elementary procedure \"RRC connection establishment\" used to set up a radio connection from UE to eNB (involves SRB1 establishment).",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1323,9 +1375,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -1349,7 +1402,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "15m",
@@ -1365,11 +1418,8 @@
               "field": "pm_data.LTE_UE_State_M8013C17",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
-              "settings": {
-                "missing": null
-              },
+              "settings": {},
               "type": "sum"
             },
             {
@@ -1486,13 +1536,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_State_M8013C17:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_6160b Total E-UTRAN RRC Connection Setup Attempts",
       "tooltip": {
         "shared": true,
@@ -1501,33 +1549,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -1535,8 +1574,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "The KPI indicates the number of E-RAB setup attempts.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1564,9 +1611,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -1590,7 +1638,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "15m",
@@ -1606,7 +1654,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C0",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -1641,13 +1688,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C0:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_5118a E-UTRAN E-RAB Setup Attempts",
       "tooltip": {
         "shared": true,
@@ -1656,33 +1701,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -1690,8 +1726,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "The KPI shows the setup success ratio for the RRC connection re-establishment procedure. The procedure is used in case of a failure situation (such as a radio or handover failure) to keep the UE in an LTE RRC_CONNECTED state and continue the RRC connection without going to an RRC_IDLE state.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1719,9 +1763,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -1745,7 +1790,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "15m",
@@ -1761,7 +1806,6 @@
               "field": "pm_data.LTE_RRC_M8008C5",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -1808,13 +1852,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_RRC_M8008C5:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_5143a Total E-UTRAN RRC Connection Re-establishment Success Ratio",
       "tooltip": {
         "shared": true,
@@ -1823,33 +1865,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -1857,8 +1890,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "The KPI shows the Data Radio Bearer Setup Attempts.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1886,9 +1927,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -1912,7 +1954,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "15m",
@@ -1928,7 +1970,6 @@
               "field": "pm_data.LTE_Radio_Bearer_M8007C0",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -1963,13 +2004,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Radio_Bearer_M8007C0:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_5116a E-UTRAN Data Radio Bearer Attempts",
       "tooltip": {
         "shared": true,
@@ -1978,33 +2017,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -2012,8 +2042,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This KPI shows the average number of UEs having one SRB during the measurement period.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2041,9 +2079,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -2068,7 +2107,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "15m",
@@ -2084,7 +2123,6 @@
               "field": "pm_data.LTE_UE_Quantity_M8051C60",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -2101,7 +2139,6 @@
               "field": "pm_data.LTE_UE_Quantity_M8051C60",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -2132,13 +2169,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C61:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE 5242b E-Utran Average RRC Connected UEs",
       "tooltip": {
         "shared": true,
@@ -2147,33 +2182,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -2181,8 +2207,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This KPI shows the PDCP SDU volume on an eUu interface per cell in a downlink direction.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2210,9 +2244,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -2237,7 +2272,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "15m",
@@ -2262,7 +2297,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -2289,14 +2323,14 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C20:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Total volume",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "7",
               "settings": {
                 "interval": "auto",
@@ -2321,7 +2355,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -2348,13 +2381,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C20:*",
           "refId": "B",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE 5212a E-Utran PDCP SDU Volume DL ",
       "tooltip": {
         "shared": true,
@@ -2363,33 +2394,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "decmbytes",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "decmbytes",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -2397,8 +2419,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This KPI shows the PDCP SDU volume on an eUu interface per cell in an uplink direction.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2426,9 +2456,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -2454,7 +2485,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "15m",
@@ -2478,7 +2509,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C19",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -2505,14 +2535,14 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C19:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Total volume",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "7",
               "settings": {
                 "interval": "15m",
@@ -2536,7 +2566,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C19",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -2563,13 +2592,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C19:*",
           "refId": "B",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE 5213a E-Utran PDCP SDU Volume UL",
       "tooltip": {
         "shared": true,
@@ -2578,33 +2605,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "decmbytes",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -2612,8 +2630,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean UL PDCP traffic throughput.\nThis counter is updated when a PDCP SDU is received from UE.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2641,9 +2667,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -2668,7 +2695,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "15m",
@@ -2690,14 +2717,14 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Total Avg PDCP Datarate UL",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "15m",
@@ -2719,13 +2746,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
           "refId": "B",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Average PDCP Layer Throughput UL",
       "tooltip": {
         "shared": true,
@@ -2734,33 +2759,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "Kbits",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "Kbits",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -2768,8 +2784,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean DL PDCP traffic throughput.\nThis counter is updated when a PDCP SDU is transmitted towards the UE.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2797,9 +2821,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -2824,7 +2849,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "15m",
@@ -2846,14 +2871,14 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Total Avg PDCP Datarate DL",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "15m",
@@ -2875,13 +2900,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
           "refId": "B",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Average PDCP Layer Throughput DL",
       "tooltip": {
         "shared": true,
@@ -2890,33 +2913,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "Kbits",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "Kbits",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -2924,8 +2938,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This KPI describes the total number of RA preambles.\nBoth contention based and dedicated preambles are considered within the KPI.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2953,9 +2975,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -2980,7 +3003,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "15m",
@@ -2996,7 +3019,6 @@
               "field": "pm_data.LTE_Cell_Load_M8001C6",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -3071,13 +3093,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Load_M8001C6:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE 6159a E-Utran RACH Setup Attempts",
       "tooltip": {
         "shared": true,
@@ -3086,33 +3106,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -3120,8 +3131,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "The KPI shows the setup success ratio for the elementary procedure \"RRC connection establishment\" used to set up a radio connection from UE to eNB (involves SRB1 establishment) .",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -3149,9 +3168,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -3176,7 +3196,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "15m",
@@ -3192,7 +3212,6 @@
               "field": "pm_data.LTE_UE_State_M8013C5",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -3201,7 +3220,6 @@
               "field": "pm_data.LTE_UE_State_M8013C17",
               "hide": true,
               "id": "4",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -3324,13 +3342,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_State_M8013C5:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE 5218g Total E-UTRAN RRC Connection Setup Success Ratio",
       "tooltip": {
         "shared": true,
@@ -3339,33 +3355,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -3373,8 +3380,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This KPI describes the ratio of abnormally released (dropped) E-RABs from RAN point of view.\nEach bearer of the Bearer to be Released List IE is counted. RAN point of view means that as abnormal E-RAB drops only those ones initiated by eNB are counted.E-RAB releases due to pre-emption initiated by eNB are counted as normal releases as they are not real drops resulted from any radio quality problems. In denominator of the formula normal E-RAB releases due to successful HO to eHRPD are not counted.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -3402,9 +3417,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -3429,7 +3445,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "15m",
@@ -3445,7 +3461,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C261",
               "hide": true,
               "id": "4",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -3454,7 +3469,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C254",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -3463,7 +3477,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C255",
               "hide": true,
               "id": "10",
-              "inlineScript": null,
               "meta": {},
               "pipelineVariables": [
                 {
@@ -3768,13 +3781,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C261:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_5025i E-UTRAN E-RAB Drop Ratio, RAN View",
       "tooltip": {
         "shared": true,
@@ -3783,33 +3794,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -3817,8 +3819,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "The KPI indicates the setup success ratio of the elementary E-RAB setup procedure, used to set up the E-RAB between MME and UE.\nIt shows the E-UTRAN's contribution to network accessibility for the end user, not the whole end-to-end service accessibility.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -3846,9 +3856,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -3873,7 +3884,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "15m",
@@ -3889,7 +3900,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C0",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -3936,13 +3946,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C0:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_5017a\tE-UTRAN E-RAB Setup Success Ratio",
       "tooltip": {
         "shared": true,
@@ -3951,33 +3959,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -3985,8 +3984,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "The KPI shows the RRC Connection Re-establishment Attempts per type, e.g. total, due to \"HandoverFailure\", due to \"otherFailure\" or due to \"reconfigFailure\".",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -4014,9 +4021,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -4041,7 +4049,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "15m",
@@ -4057,7 +4065,6 @@
               "field": "pm_data.LTE_RRC_M8008C4",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -4092,13 +4099,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_RRC_M8008C4:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_6161a\tRRC Connection Re-establishment Attempts per type total attempts",
       "tooltip": {
         "shared": true,
@@ -4107,33 +4112,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -4141,8 +4137,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This KPI shows the average value of the physical resource block (PRB) utilization per TTI in a downlink direction. The utilization is defined by the ratio of used to available PRBs per TTI.\nThe monitoring also includes almost blank subframes (ABSs) for the cells that are configured as macro ones in the eICIC partnership.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -4170,9 +4174,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.2",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -4197,7 +4202,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "15m",
@@ -4213,7 +4218,6 @@
               "field": "pm_data.LTE_Cell_Resource_M8011C37",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -4248,13 +4252,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Resource_M8011C37:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_5276b\tE-UTRAN average PRB usage per TTI DL / E-UTRAN Avg PRB usage per TTI DL",
       "tooltip": {
         "shared": true,
@@ -4263,33 +4265,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -4297,7 +4290,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This KPI shows the average value of the physical resource block (PRB) utilization per TTI in an uplink direction. The utilization is defined by the ratio of used to available PRBs per TTI.",
       "fill": 1,
       "fillGradient": 0,
@@ -4353,7 +4348,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "15m",
@@ -4369,7 +4364,6 @@
               "field": "pm_data.LTE_Cell_Resource_M8011C24",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -4404,13 +4398,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Resource_M8011C24:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_5273b\tE-UTRAN Average PRB usage per TTI UL",
       "tooltip": {
         "shared": true,
@@ -4419,33 +4411,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -4453,7 +4436,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This KPI shows the average UE reported Channel\nQuality Indicator (CQI) value.",
       "fill": 1,
       "fillGradient": 0,
@@ -4509,7 +4494,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "15m",
@@ -4929,13 +4914,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_DL_M8010C36:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_5427b\tE-UTRAN Average CQI",
       "tooltip": {
         "shared": true,
@@ -4944,33 +4927,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -4978,7 +4952,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This KPI indicates the success ratio for the inter-frequency HO when the source eNB receives information that the UE is successfully connected to the target cell within the target eNB. The KPI is defined independently of network topology (intra-eNB HO/inter-eNB HO) and of the usage of measurement gaps.",
       "fill": 1,
       "fillGradient": 0,
@@ -5034,7 +5010,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "15m",
@@ -5050,7 +5026,6 @@
               "field": "pm_data.LTE_Handover_M8021C2",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -5111,13 +5086,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Handover_M8021C2:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_5114a\tE-UTRAN Inter-Frequency HO Success Ratio",
       "tooltip": {
         "shared": true,
@@ -5126,33 +5099,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -5160,7 +5124,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This KPI indicates attempts at an intra-frequency HO when the source eNB receives information that the UE is successfully connected to the target cell. The KPI is defined independently of  network topology (intra-eNB HO/inter-eNB HO).",
       "fill": 1,
       "fillGradient": 0,
@@ -5216,7 +5182,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "15m",
@@ -5232,7 +5198,6 @@
               "field": "pm_data.LTE_Intra_eNB_HO_M8009C7",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -5367,13 +5332,11 @@
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND (pm_data.LTE_Intra_eNB_HO_M8009C7:* OR pm_data.LTE_Inter_eNB_HO_M8014C7:* OR pm_data.LTE_Handover_M8021C2:*)",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "LTE_5568a\tE-UTRAN Intra-Frequency HO Success Ratio",
       "tooltip": {
         "shared": true,
@@ -5382,46 +5345,38 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "percent",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     }
   ],
   "refresh": "15m",
-  "schemaVersion": 22,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
-    "PMKPIDashboard"
+    "Radio4G"
   ],
   "templating": {
     "list": [
       {
         "current": {
+          "selected": false,
           "text": "radio-4g-pm",
           "value": "radio-4g-pm"
         },
@@ -5438,14 +5393,15 @@
         "type": "datasource"
       },
       {
-        "allValue": null,
         "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
+          "selected": true,
+          "text": "Altoona Spare 24-109",
+          "value": "Altoona Spare 24-109"
         },
-        "datasource": "$dataSource",
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "$dataSource"
+        },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
@@ -5459,40 +5415,42 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
         },
-        "datasource": "$dataSource",
-        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "$dataSource"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
         "hide": 0,
         "includeAll": true,
         "label": "Access Point ID",
         "multi": true,
         "name": "ap_id",
         "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
         "refresh": 2,
         "regex": ".*BTS-(\\d+).*",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": "Cell",
@@ -5516,6 +5474,7 @@
           }
         ],
         "query": "pm_data_source.hw_id.keyword,pm_data_source.dn.keyword",
+        "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
       }
@@ -5523,11 +5482,11 @@
   },
   "time": {
     "from": "now-24h",
-    "to": "now-30m"
+    "to": "now-15m"
   },
   "timepicker": {
     "hidden": false,
-    "nowDelay": "30m",
+    "nowDelay": "15m",
     "refresh_intervals": [
       "5s",
       "10s",
@@ -5553,6 +5512,7 @@
     ]
   },
   "timezone": "",
-  "title": "NDAC 4G PM KPI - Dashboard",
-  "version": 1
+  "title": "NDAC Radio 4G PM KPI - Dashboard",
+  "version": 12,
+  "weekStart": ""
 }

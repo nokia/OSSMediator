@@ -1,0 +1,795 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "iteration": 1658908311074,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "Radio5G"
+      ],
+      "title": "Radio 5G Dashboards",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "Radio4G"
+      ],
+      "title": "Radio 4G Dashboards",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "EdgePM"
+      ],
+      "targetBlank": false,
+      "title": "Edge PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "CorePM"
+      ],
+      "targetBlank": false,
+      "title": "CORE PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "RadioAlarms"
+      ],
+      "title": "Radio Alarms",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "DACAlarms"
+      ],
+      "title": "DAC Alarms",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "COREAlarms"
+      ],
+      "targetBlank": false,
+      "title": "CORE Alarms",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "ApplAlarms"
+      ],
+      "targetBlank": false,
+      "title": "Application Alarms",
+      "type": "dashboards"
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": {
+            "uid": "$dataSource"
+          },
+          "description": "This KPI shows the success ratio of intra-frequency intra-gNB intra-DU handover for the given slice and PLMN.",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 1
+          },
+          "hiddenSeries": false,
+          "id": 2,
+          "interval": "15m",
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "8.5.2",
+          "pointradius": 2,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "$groupby",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.end_timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "15m",
+                    "min_doc_count": 1,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "pm_data.NSL_M55149C00005",
+                  "hide": true,
+                  "id": "3",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00005",
+                  "hide": true,
+                  "id": "4",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00004",
+                  "hide": true,
+                  "id": "5",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "select field",
+                  "id": "6",
+                  "meta": {},
+                  "pipelineVariables": [
+                    {
+                      "name": "am55149c00005",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "m55149c00005",
+                      "pipelineAgg": "4"
+                    },
+                    {
+                      "name": "m55149c00004",
+                      "pipelineAgg": "5"
+                    }
+                  ],
+                  "settings": {
+                    "script": "  if (params.am55149c00005 == null) {return null} else if(params.m55149c00004 == 0) {return 0} else {return (params.m55149c00005 * 100)/params.m55149c00004}"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "refId": "A",
+              "timeField": "pm_data_source.end_timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeRegions": [],
+          "title": "NR_5210a 5G SA Intra-frequency intra-gNB intra-DU handover success ratio per PLMN, per slice / intraf intraDU HO exe SR PLMN slice [%]",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false
+          }
+        }
+      ],
+      "title": "SA Intra-frequency intra-gNB intra-DU HO per slice",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 8,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": {
+            "uid": "$dataSource"
+          },
+          "description": "This KPI shows the success ratio of intra-frequency inter-gNB intra-DU handover for the given slice and PLMN.",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 2
+          },
+          "hiddenSeries": false,
+          "id": 10,
+          "interval": "15m",
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "8.5.2",
+          "pointradius": 2,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "$groupby",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.end_timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "15m",
+                    "min_doc_count": 1,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "pm_data.NSL_M55149C00007",
+                  "hide": true,
+                  "id": "3",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00007",
+                  "hide": true,
+                  "id": "4",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00006",
+                  "hide": true,
+                  "id": "5",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "select field",
+                  "id": "6",
+                  "meta": {},
+                  "pipelineVariables": [
+                    {
+                      "name": "am55149c00007",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "m55149c00007",
+                      "pipelineAgg": "4"
+                    },
+                    {
+                      "name": "m55149c00006",
+                      "pipelineAgg": "5"
+                    }
+                  ],
+                  "settings": {
+                    "script": "if (params.am55149c00007 == null) {return null} else if(params.m55149c00006 == 0) {return 0} else {return (params.m55149c00007 * 100)/params.m55149c00006}"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "refId": "A",
+              "timeField": "pm_data_source.end_timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeRegions": [],
+          "title": "NR_5212a 5G SA Intra-frequency intra-gNB inter-DU handover execution success ratio per PLMN, per slice / intraf inagNB interDU HO exe SR PLMN slice [%]",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false
+          }
+        }
+      ],
+      "title": "SA Intra-frequency intra-gNB inter-DU HO per slice",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 7,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": {
+            "uid": "$dataSource"
+          },
+          "description": "This KPI shows the success ratio of the intra-frequency inter-gNB outgoing handover for the given slice and PLMN.",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 3
+          },
+          "hiddenSeries": false,
+          "id": 12,
+          "interval": "15m",
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "8.5.2",
+          "pointradius": 2,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "$groupby",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.end_timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "15m",
+                    "min_doc_count": 1,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "pm_data.NSL_M55149C00009",
+                  "hide": true,
+                  "id": "3",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00009",
+                  "hide": true,
+                  "id": "4",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00008",
+                  "hide": true,
+                  "id": "5",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "select field",
+                  "id": "6",
+                  "meta": {},
+                  "pipelineVariables": [
+                    {
+                      "name": "am55149c00009",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "m55149c00009",
+                      "pipelineAgg": "4"
+                    },
+                    {
+                      "name": "m55149c00008",
+                      "pipelineAgg": "5"
+                    }
+                  ],
+                  "settings": {
+                    "script": "if (params.m55149c00009 == null) {return null} else if(params.m55149c00008 == 0) {return 0} else {return (params.m55149c00009 * 100)/params.m55149c00008}"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "refId": "A",
+              "timeField": "pm_data_source.end_timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeRegions": [],
+          "title": "NR_5214a 5G SA Intra-frequency inter-gNB outgoing handover execution success ratio per PLMN, per slice / intraf interNB out HO exe SR PLMN slice [%]",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false
+          }
+        }
+      ],
+      "title": "SA Intra-frequency inter-gNB outgoing HO per slice",
+      "type": "row"
+    }
+  ],
+  "refresh": "15m",
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [
+    "Radio5G"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "radio-5g-pm",
+          "value": "radio-5g-pm"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Data Source",
+        "multi": false,
+        "name": "dataSource",
+        "options": [],
+        "query": "elasticsearch",
+        "refresh": 1,
+        "regex": "radio-5g-pm",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "isNone": true,
+          "selected": false,
+          "text": "None",
+          "value": ""
+        },
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "$dataSource"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Network Hw Group Name",
+        "multi": false,
+        "name": "nhgname",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "$dataSource"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Access Point ID",
+        "multi": true,
+        "name": "ap_id",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "refresh": 2,
+        "regex": ".*BTS-(\\d+).*",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "Cell",
+          "value": "pm_data_source.dn.keyword"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Object Level",
+        "multi": false,
+        "name": "groupby",
+        "options": [
+          {
+            "selected": false,
+            "text": "eNB",
+            "value": "pm_data_source.hw_id.keyword"
+          },
+          {
+            "selected": true,
+            "text": "Cell",
+            "value": "pm_data_source.dn.keyword"
+          }
+        ],
+        "query": "pm_data_source.hw_id.keyword,pm_data_source.dn.keyword",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now-15m"
+  },
+  "timepicker": {
+    "nowDelay": "15m",
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "NDAC Radio 5G PM KPI - Slice Performance 5G035",
+  "version": 1,
+  "weekStart": ""
+}

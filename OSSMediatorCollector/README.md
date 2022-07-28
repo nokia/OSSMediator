@@ -108,7 +108,18 @@ PM / FM data collection by collector is performed using REST interface at regula
   "metric_apis": [
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
+      "metric_type": "RADIO",
       "interval": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/pmdata",
+      "metric_type": "EDGE",
+      "interval": 5
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/pmdata",
+      "metric_type": "CORE",
+      "interval": 5
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
@@ -163,25 +174,24 @@ PM / FM data collection by collector is performed using REST interface at regula
 | base_url                      | string                | APIGW base URL.                                                                                                                                                               |
 | users                         | [object]              | Users details.                                                                                                                                                                |
 | users.email_id                | string                | User's email ID.                                                                                                                                                              |
-| users.password                | string                | User's password encoded as base64 string.                                                                                                                                                              |
 | users.response_dest           | string                | Base directory to store the response from the REST APIs. Subdirectories will be created inside the base directory for storing each APIs response in their respective location |
 | um_api                        | object                | User management APIs.                                                                                                                                                         |
 | um_api.login                  | string                | Customer portal login API.                                                                                                                                                    |
 | um_api.refresh                | string                | Customer portal refresh session API.                                                                                                                                          |
 | um_api.logout                 | string                | Customer portal logout API.                                                                                                                                                   |
-| list_nhg_api.api              | string                | API URl for getting user's network details. Collector uses the list of NHGs for each FM/PM data collection.                                                                                                                                                  |
-| list_nhg_api.interval         | integer               | Interval at which list_nhg_api will be called..                                                                                                                                                   |
-| sim_apis                      | [object] (Optional)   | Get SIM APIs.                                                                                                                                                               |
-| sim_apis.api                  | string                | API URL for fetching SIM data.                                                                                                                                                    |
-| sim_apis.interval             | integer               | Interval at which SIM API should be called to collect data.                                                                                                                       |
+| list_nhg_api.api              | string                | API URl for getting user's network details. Collector uses the list of NHGs for each FM/PM data collection.                                                                   |
+| list_nhg_api.interval         | integer               | Interval at which list_nhg_api will be called..                                                                                                                               |
+| sim_apis                      | [object] (Optional)   | Get SIM APIs.                                                                                                                                                                 |
+| sim_apis.api                  | string                | API URL for fetching SIM data.                                                                                                                                                |
+| sim_apis.interval             | integer               | Interval at which SIM API should be called to collect data.                                                                                                                   |
 | metric_apis                   | [object]              | Get PM/FM APIs.                                                                                                                                                               |
 | metric_apis.api               | string                | API URL of get PM/FM data.                                                                                                                                                    |
 | metric_apis.interval          | integer               | Interval at which API should be called to collect data.                                                                                                                       |
-| metric_apis.type              | string                | Type of FM request ("ACTIVE" or "HISTORY").                                                                                                                                    |
-| metric_apis.metric_type       | string                | Type of FM alarm ("DAC" or "RADIO" or "CORE").                                                                                                                                    |
-| metric_apis.sync_duration     | integer               | Time duration in minutes, for syncing FM for the given duration.                                                                                                                                    |
-| limit                         | integer               | Number of records to be fetched from the API, should be within 1-10000.
-| delay                         | integer               | Time duration in minutes, for adding delay in API calls.
+| metric_apis.type              | string                | Type of FM request ("ACTIVE" or "HISTORY").                                                                                                                                   |
+| metric_apis.metric_type       | string                | Type of FM alarm ("DAC" or "RADIO" or "CORE").                                                                                                                                |
+| metric_apis.sync_duration     | integer               | Time duration in minutes, for syncing FM for the given duration.                                                                                                              |
+| limit                         | integer               | Number of records to be fetched from the API, should be within 1-10000.                                                                                                       |
+| delay                         | integer               | Time duration in minutes, for adding delay in API calls.                                                                                                                      |
 
 * To start collector, go to the installed path of the collector bin directory and start by calling the following command:
 
@@ -226,14 +236,14 @@ This feature is optional and disabled by default.
   message_format: <ms_teams/json>
 ```
 
-| Field                                 | Type        | Description                                                                                                                                                                   |
-|---------------------------------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| webhook_url                           | string      | Webhook url.                                                                                                                                                         |
-| radio_alarm_filters.specific_problem  | integer     | Specific problem of the alarm of radio module for which notification should be sent.                                                                                          |
-| radio_alarm_filters.fault_ids         | integer     | Fault id of the radio alarm (can be found in Alarm text' second part).                                                                                                              |
-| dac_alarm_filters.alarm_id            | integer     | Alarm ID of the DAC alarm for which notification should be sent.                                                                                          |
-| core_alarm_filters.alarm_id           | integer     | Alarm ID of the CORE alarm for which notification should be sent.                                                                                                              |
-| alarm_sync_duration                   | integer     | Duration in minutes after which notification for the already notified active alarms wil be sent again.                                                                        |
-| group_events                          | boolean     | To group notification events based on Network Hardware level. Default: False                                                                                         |
-| notify_clear_event                    | boolean     | To enable clear alarm notifications. Default: False                                                                                                              |
-| message_format                        | string      | Message format (ms_teams or json)                                                                     |
+| Field                                 | Type        | Description                                                                                            |
+|---------------------------------------|-------------|--------------------------------------------------------------------------------------------------------|
+| webhook_url                           | string      | Webhook url.                                                                                           |
+| radio_alarm_filters.specific_problem  | integer     | Specific problem of the alarm of radio module for which notification should be sent.                   |
+| radio_alarm_filters.fault_ids         | integer     | Fault id of the radio alarm (can be found in Alarm text' second part).                                 |
+| dac_alarm_filters.alarm_id            | integer     | Alarm ID of the DAC alarm for which notification should be sent.                                       |
+| core_alarm_filters.alarm_id           | integer     | Alarm ID of the CORE alarm for which notification should be sent.                                      |
+| alarm_sync_duration                   | integer     | Duration in minutes after which notification for the already notified active alarms wil be sent again. |
+| group_events                          | boolean     | To group notification events based on Network Hardware level. Default: False                           |
+| notify_clear_event                    | boolean     | To enable clear alarm notifications. Default: False                                                    |
+| message_format                        | string      | Message format (ms_teams or json)                                                                      |

@@ -201,7 +201,7 @@ var (
 )
 
 func TestPushPMDataToElasticsearch(t *testing.T) {
-	fileName := "./pmdata_data.json"
+	fileName := "./pmdata_radio_data.json"
 	err := createTestData(fileName, testPMData)
 	if err != nil {
 		t.Error(err)
@@ -443,8 +443,8 @@ func TestDeleteOldIndicesFormElasticsearch(t *testing.T) {
 	}
 
 	delTime := time.Now().AddDate(0, 0, -1*esConf.DataRetentionDuration)
-	indexSuffix := strconv.Itoa(int(delTime.Month())) +"-"+ strconv.Itoa(delTime.Year())
-	testIndices := []string{"4g-pm-"+indexSuffix, "5g-pm-"+indexSuffix}
+	indexSuffix := strconv.Itoa(int(delTime.Month())) + "-" + strconv.Itoa(delTime.Year())
+	testIndices := []string{"4g-pm-" + indexSuffix, "5g-pm-" + indexSuffix}
 	for _, index := range testIndices {
 		indexCreateURL := elasticsearchURL + "/" + index
 		_, err := httpCall(http.MethodPut, indexCreateURL, "", "", "", nil)

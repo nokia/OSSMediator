@@ -8,7 +8,7 @@ datasources:
     url: http://localhost:9200
     jsonData:
       timeInterval: 15m
-      timeField: "pm_data_source.timestamp"
+      timeField: "pm_data_source.end_timestamp"
       esVersion: 70
       tlsSkipVerify: true
       
@@ -19,7 +19,7 @@ datasources:
     url: http://localhost:9200
     jsonData:
       timeInterval: 15m
-      timeField: "pm_data_source.timestamp"
+      timeField: "pm_data_source.end_timestamp"
       esVersion: 70
       tlsSkipVerify: true
     
@@ -53,5 +53,38 @@ datasources:
     jsonData:
       timeInterval: 15m
       timeField: "fm_data.event_time"
+      esVersion: 70
+      tlsSkipVerify: true
+
+  - name: application-fm
+    type: elasticsearch
+    access: proxy
+    database: "application-fm*"
+    url: http://localhost:9200
+    jsonData:
+      timeInterval: 15m
+      timeField: "fm_data.event_time"
+      esVersion: 70
+      tlsSkipVerify: true
+
+  - name: core-pm
+    type: elasticsearch
+    access: proxy
+    database: "core-pm*"
+    url: http://localhost:9200
+    jsonData:
+      timeInterval: 15m
+      timeField: "pm_data_source.timestamp"
+      esVersion: 70
+      tlsSkipVerify: true
+
+  - name: edge-pm
+    type: elasticsearch
+    access: proxy
+    database: "edge-pm*"
+    url: http://localhost:9200
+    jsonData:
+      timeInterval: 15m
+      timeField: "pm_data_source.timestamp"
       esVersion: 70
       tlsSkipVerify: true

@@ -22,7 +22,6 @@ function version_gt() {
   test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1";
 }
 
-heap_size=${heap_size:-2g}
 while [ $# -gt 0 ]; do
 
    if [[ $1 == *"--"* ]]; then
@@ -32,11 +31,6 @@ while [ $# -gt 0 ]; do
 
   shift
 done
-
-if ! [ -x "$(command -v docker)" ]; then
-  echo "Docker not installed, please install docker and re-run the script."
-	exit 1
-fi
 
 if ! [ -x "$(command -v grafana-server)" ]; then
   echo "Installing Grafana..."
@@ -54,12 +48,6 @@ else
     echo "Grafana version is $(grafana-server -v)."
   fi
 fi
-
-echo "Installing Elasticsearch"
-docker pull docker.elastic.co/elasticsearch/elasticsearch:7.4.2
-mkdir -p es_data
-chmod g+rwx es_data
-chgrp 0 es_data
 
 echo "Installing OSSMediator"
 mkdir -p collector plugin
@@ -95,23 +83,6 @@ systemctl daemon-reload
 systemctl enable collector.service
 systemctl enable elasticsearchplugin.service
 systemctl enable grafana-server.service
-
-echo "Starting Elasticsearch"
-name='ndac_oss_elasticsearch'
-if [[ $(docker ps -f "name=$name" --format '{{.Names}}') == $name ]]; then
-  docker update --restart=always $name
-else
-  docker run --name "$name" --restart=always -t -d -p 9200:9200 -p 9300:9300 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size -Dlog4j2.formatMsgNoLookups=true" -v $(pwd)/es_data:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:7.4.2
-fi
-
-echo "Checking Elasticsearch status"
-Status=`docker inspect --format "{{.State.Running}}" $name` || true
-if [ "$Status" == "true" ]; then
-    echo "Elasticsearch service started successfully"
-else
-	echo 'Elasticsearch failed See docker ps -a --filter "name=ndac_oss_elasticsearch" and docker logs ndac_oss_elasticsearch for details.'
-  exit 1
-fi
 
 echo "Restarting Grafana "
 systemctl restart --quiet grafana-server

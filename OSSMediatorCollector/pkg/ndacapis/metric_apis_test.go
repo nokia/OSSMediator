@@ -69,7 +69,7 @@ var (
 
 	largeResponse = `{
 		"data": [{"fm_data":{"alarm_identifier":"2","severity":"major","specific_problem":"111","alarm_text":"Synchronizationlost","additional_text":"Synchronizationlost","alarm_state":"ACTIVE","event_type":"communications","event_time":"2020-10-30T13:29:27Z","last_updated_time":"2020-11-05T08:10:36Z","notification_type":"alarmNew"},"fm_data_source":{"hw_alias":"testhw","serial_no":"12345","nhg_id":"test_nhg_1","nhg_alias":"testnhg"}},{"fm_data":{"alarm_identifier":"3","severity":"minor","specific_problem":"2222","alarm_text":"SSHenabled","additional_text":"SSHenabled","alarm_state":"ACTIVE","event_type":"communications","event_time":"2020-10-30T13:29:27Z","last_updated_time":"2020-11-05T08:10:36Z","notification_type":"alarmNew"},"fm_data_source":{"hw_alias":"testhw","serial_no":"12345","nhg_id":"test_nhg_1","nhg_alias":"testnhg"}}],
-		"next_record": 0,
+		"next_record": 10000,
 		"num_of_records": 10000,
 		"status": {
 		  "status_code": "SUCCESS",
@@ -438,9 +438,15 @@ func TestCallMetricAPIForLargeResponse(t *testing.T) {
 		RefreshToken: "refreshToken",
 		ExpiryTime:   utils.CurrentTime(),
 	}
+	count := 0
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, largeResponse)
+		if count == 0 {
+			fmt.Fprintln(w, largeResponse)
+		} else if count == 1 {
+			fmt.Fprintln(w, fmResponse)
+		}
+		count++
 	}))
 	defer testServer.Close()
 	CreateHTTPClient("", false)
@@ -464,7 +470,7 @@ func TestCallMetricAPIForLargeResponse(t *testing.T) {
 	config.Conf.BaseURL = testServer.URL
 
 	status := callMetricAPI(apiReq, 1, 123)
-	if status != retryNextMsg {
+	if status != "" {
 		t.Fail()
 	}
 }

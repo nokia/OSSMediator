@@ -1,6 +1,33 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 3.4
+
+NEW FEATURES:
+
+* OSSMediatorCollector:
+  * Added support for getting `EDGE` and `CORE` pm data.
+  * Added support for getting `APPLICATION` alarms.
+
+* ElasticsearchPlugin:
+  * Changes for pushing `EDGE`, `CORE` pm data and `APPLICATION` alarms to elasticsearch.
+
+* MediatorSetup:
+  * Added dashboards to view ACTIVE/HISTORY `APPLICATION` alarms.
+  * Added dashboards to view `EDGE` and `CORE` pm KPIs.
+  * Added `storesecret.sh` script to take user's password as input and store secretly for API access.
+  * Added `startup_without_elasticsearch.sh` script to start OSSMediator setup with pre-installed elasticsearch.
+
+IMPROVEMENTS:
+
+* OSSMediatorCollector: Reading user's password from secret file.
+* ElasticsearchPlugin: Document updates.
+* MediatorSetup: Document updates for installation with pre-installed elasticsearch.
+
+REMOVED:
+
+* OSSMediatorCollector: Removed reading base64 encoded password from config file.
+
 # 3.3
 
 NEW FEATURES:

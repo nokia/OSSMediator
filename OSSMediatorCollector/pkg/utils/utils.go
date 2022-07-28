@@ -8,7 +8,16 @@ package utils
 
 import (
 	"collector/pkg/config"
+	"encoding/base64"
+	"errors"
+	"io/ioutil"
 	"time"
+)
+
+var (
+	errorPasswordRead         = errors.New("unable to read password file")
+	errorPasswordDecoding     = errors.New("unable to decode password")
+	errorPasswordFileNotFound = errors.New("secret file not found")
 )
 
 //truncates seconds from time
@@ -38,4 +47,25 @@ func GetTimeInterval(user *config.User, api *config.APIConf, nhgID string) (stri
 	}
 	endTime = endTime.Add(-1 * time.Minute)
 	return startTime, endTime.Format(time.RFC3339)
+}
+
+func ReadPassword(email string) (string, error) {
+	passwordFile := ".secret/." + email
+	var bytePassword []byte
+	if fileExists(passwordFile) {
+		data, err := ioutil.ReadFile(passwordFile)
+		if err != nil {
+			return "", err
+		}
+		if len(data) == 0 {
+			return "", errorPasswordRead
+		}
+		bytePassword, err = base64.StdEncoding.DecodeString(string(data))
+		if err != nil {
+			return "", errorPasswordDecoding
+		}
+	} else {
+		return "", errorPasswordFileNotFound
+	}
+	return string(bytePassword), nil
 }

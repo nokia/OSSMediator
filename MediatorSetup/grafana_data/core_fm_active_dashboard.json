@@ -3,21 +3,29 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "description": "NDAC CORE FM Active alarms dashboard",
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
-  "iteration": 1632991865898,
+  "iteration": 1658907266680,
   "links": [
     {
       "icon": "external link",
@@ -33,7 +41,7 @@
         "Radio4G"
       ],
       "targetBlank": false,
-      "title": "4G Dashboards",
+      "title": "Radio 4G Dashboards",
       "type": "dashboards"
     },
     {
@@ -42,8 +50,36 @@
       "tags": [
         "Radio5G"
       ],
-      "title": "5G Dashboards",
+      "title": "Radio 5G Dashboards",
       "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "EdgePM"
+      ],
+      "targetBlank": false,
+      "title": "Edge PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "CorePM"
+      ],
+      "targetBlank": false,
+      "title": "CORE PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
     },
     {
       "asDropdown": true,
@@ -64,12 +100,25 @@
       "targetBlank": false,
       "title": "DAC Alarms",
       "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "ApplAlarms"
+      ],
+      "targetBlank": false,
+      "title": "Application Alarms",
+      "type": "dashboards"
     }
   ],
+  "liveNow": false,
   "panels": [
     {
-      "content": "",
-      "datasource": null,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 2,
         "w": 24,
@@ -78,17 +127,52 @@
       },
       "id": 5,
       "links": [],
-      "mode": "markdown",
-      "options": {},
-      "repeat": null,
+      "options": {
+        "content": "",
+        "mode": "markdown"
+      },
+      "pluginVersion": "8.5.2",
       "title": "NDAC CORE FM ACTIVE ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$datasource",
+      "datasource": {
+        "uid": "$datasource"
+      },
       "description": "Provides the count of critical alarms",
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 5,
         "w": 6,
@@ -99,46 +183,19 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "links": [],
-            "mappings": [
-              {
-                "from": "",
-                "id": 1,
-                "operator": "",
-                "text": "0",
-                "to": "",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "super-light-red",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "none"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "alias": "Critical",
@@ -170,15 +227,46 @@
           "timeField": "fm_data.event_time"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Critical Alarms",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$datasource",
+      "datasource": {
+        "uid": "$datasource"
+      },
       "description": "Provides the count of major alarms",
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-orange",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 5,
         "w": 6,
@@ -189,46 +277,19 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "defaults": {
-            "links": [],
-            "mappings": [
-              {
-                "from": "",
-                "id": 1,
-                "operator": "",
-                "text": "0",
-                "to": "",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "super-light-orange",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "none"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "alias": "Critical",
@@ -238,7 +299,6 @@
               "id": "2",
               "settings": {
                 "min_doc_count": 1,
-                "missing": null,
                 "order": "desc",
                 "orderBy": "_term",
                 "size": "0"
@@ -258,15 +318,46 @@
           "timeField": "fm_data.event_time"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Major Alarms",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$datasource",
+      "datasource": {
+        "uid": "$datasource"
+      },
       "description": "Provides the count of minor alarms",
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-yellow",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 5,
         "w": 6,
@@ -277,46 +368,19 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "defaults": {
-            "links": [],
-            "mappings": [
-              {
-                "from": "",
-                "id": 1,
-                "operator": "",
-                "text": "0",
-                "to": "",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "super-light-yellow",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "none"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "alias": "Critical",
@@ -326,7 +390,6 @@
               "id": "2",
               "settings": {
                 "min_doc_count": 1,
-                "missing": null,
                 "order": "desc",
                 "orderBy": "_term",
                 "size": "0"
@@ -346,15 +409,46 @@
           "timeField": "fm_data.event_time"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Minor Alarms",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$datasource",
+      "datasource": {
+        "uid": "$datasource"
+      },
       "description": "Provides the count of warning alarms",
+      "fieldConfig": {
+        "defaults": {
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 5,
         "w": 6,
@@ -365,46 +459,19 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "defaults": {
-            "links": [],
-            "mappings": [
-              {
-                "from": "",
-                "id": 1,
-                "operator": "",
-                "text": "0",
-                "to": "",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "blue",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "none"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.6.2",
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "alias": "Critical",
@@ -414,7 +481,6 @@
               "id": "2",
               "settings": {
                 "min_doc_count": 1,
-                "missing": null,
                 "order": "desc",
                 "orderBy": "_term",
                 "size": "0"
@@ -434,51 +500,61 @@
           "timeField": "fm_data.event_time"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Warning Alarms",
       "type": "stat"
     },
     {
       "columns": [
         {
+          "$$hashKey": "object:2601",
           "text": "fm_data.event_time",
           "value": "fm_data.event_time"
         },
         {
+          "$$hashKey": "object:2602",
           "text": "fm_data.last_updated_time",
           "value": "fm_data.last_updated_time"
         },
         {
-          "text": "fm_data_source.hw_alias",
-          "value": "fm_data_source.hw_alias"
-        },
-        {
+          "$$hashKey": "object:2604",
           "text": "fm_data.alarm_identifier",
           "value": "fm_data.alarm_identifier"
         },
         {
+          "$$hashKey": "object:2605",
           "text": "fm_data.severity",
           "value": "fm_data.severity"
         },
         {
+          "$$hashKey": "object:2606",
           "text": "fm_data.alarm_text",
           "value": "fm_data.alarm_text"
         },
         {
+          "$$hashKey": "object:2607",
           "text": "fm_data_source.edge_hostname",
           "value": "fm_data_source.edge_hostname"
         },
         {
+          "$$hashKey": "object:2608",
           "text": "fm_data_source.edge_id",
           "value": "fm_data_source.edge_id"
         },
         {
+          "$$hashKey": "object:2609",
           "text": "fm_data_source.nhg_id",
           "value": "fm_data_source.nhg_id"
+        },
+        {
+          "$$hashKey": "object:2867",
+          "text": "fm_data_source.dn",
+          "value": "fm_data_source.dn"
         }
       ],
-      "datasource": "$datasource",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "$datasource"
+      },
       "description": "This table will show all active alarms that are critical across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
       "gridPos": {
@@ -491,19 +567,17 @@
       "id": 19,
       "interval": "",
       "links": [],
-      "options": {},
       "pageSize": 10,
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": null,
         "desc": false
       },
       "styles": [
         {
+          "$$hashKey": "object:2619",
           "alias": "EventTime",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -518,9 +592,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2620",
           "alias": "LastUpdatedTime",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -535,9 +609,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2621",
           "alias": "EdgeHostName",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -552,9 +626,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2622",
           "alias": "DN",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -563,15 +637,15 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data_source.hw_alias",
+          "pattern": "fm_data_source.dn",
           "thresholds": [],
           "type": "string",
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2623",
           "alias": "AlarmID",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -586,9 +660,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2624",
           "alias": "Severity",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -603,9 +677,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2625",
           "alias": "AlarmText",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -620,9 +694,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2626",
           "alias": "EdgeID",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -637,9 +711,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2627",
           "alias": "NHGID",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -657,6 +731,10 @@
       "targets": [
         {
           "bucketAggs": [],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "000000005"
+          },
           "metrics": [
             {
               "field": "select field",
@@ -673,52 +751,61 @@
           "timeField": "fm_data.event_time"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": " Critical Active Alarms",
       "transform": "json",
-      "type": "table"
+      "type": "table-old"
     },
     {
       "columns": [
         {
+          "$$hashKey": "object:1569",
           "text": "fm_data.event_time",
           "value": "fm_data.event_time"
         },
         {
+          "$$hashKey": "object:1570",
           "text": "fm_data.last_updated_time",
           "value": "fm_data.last_updated_time"
         },
         {
-          "text": "fm_data_source.hw_alias",
-          "value": "fm_data_source.hw_alias"
-        },
-        {
+          "$$hashKey": "object:1572",
           "text": "fm_data.alarm_identifier",
           "value": "fm_data.alarm_identifier"
         },
         {
+          "$$hashKey": "object:1573",
           "text": "fm_data.severity",
           "value": "fm_data.severity"
         },
         {
+          "$$hashKey": "object:1574",
           "text": "fm_data.alarm_text",
           "value": "fm_data.alarm_text"
         },
         {
+          "$$hashKey": "object:1575",
           "text": "fm_data_source.edge_hostname",
           "value": "fm_data_source.edge_hostname"
         },
         {
+          "$$hashKey": "object:1576",
           "text": "fm_data_source.edge_id",
           "value": "fm_data_source.edge_id"
         },
         {
+          "$$hashKey": "object:1577",
           "text": "fm_data_source.nhg_id",
           "value": "fm_data_source.nhg_id"
+        },
+        {
+          "$$hashKey": "object:1835",
+          "text": "fm_data_source.dn",
+          "value": "fm_data_source.dn"
         }
       ],
-      "datasource": "$datasource",
+      "datasource": {
+        "uid": "$datasource"
+      },
       "description": "This table will show all active alarms that are major across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
       "gridPos": {
@@ -731,19 +818,17 @@
       "id": 20,
       "interval": "",
       "links": [],
-      "options": {},
       "pageSize": 10,
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": null,
         "desc": false
       },
       "styles": [
         {
+          "$$hashKey": "object:1587",
           "alias": "EventTime",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -758,9 +843,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1588",
           "alias": "LastUpdatedTime",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -775,9 +860,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1589",
           "alias": "EdgeHostName",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -792,9 +877,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1590",
           "alias": "DN",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -803,15 +888,15 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data_source.hw_alias",
+          "pattern": "fm_data_source.dn",
           "thresholds": [],
           "type": "string",
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1591",
           "alias": "AlarmID",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -826,9 +911,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1592",
           "alias": "Severity",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -843,9 +928,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1593",
           "alias": "AlarmText",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -860,9 +945,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1594",
           "alias": "EdgeID",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -877,9 +962,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1595",
           "alias": "NHGID",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -913,52 +998,62 @@
           "timeField": "fm_data.event_time"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Major Active Alarms",
       "transform": "json",
-      "type": "table"
+      "type": "table-old"
     },
     {
       "columns": [
         {
+          "$$hashKey": "object:2266",
           "text": "fm_data.event_time",
           "value": "fm_data.event_time"
         },
         {
+          "$$hashKey": "object:2267",
           "text": "fm_data.last_updated_time",
           "value": "fm_data.last_updated_time"
         },
         {
-          "text": "fm_data_source.hw_alias",
-          "value": "fm_data_source.hw_alias"
-        },
-        {
+          "$$hashKey": "object:2269",
           "text": "fm_data.alarm_identifier",
           "value": "fm_data.alarm_identifier"
         },
         {
+          "$$hashKey": "object:2270",
           "text": "fm_data.severity",
           "value": "fm_data.severity"
         },
         {
+          "$$hashKey": "object:2271",
           "text": "fm_data.alarm_text",
           "value": "fm_data.alarm_text"
         },
         {
+          "$$hashKey": "object:2272",
           "text": "fm_data_source.edge_hostname",
           "value": "fm_data_source.edge_hostname"
         },
         {
+          "$$hashKey": "object:2273",
           "text": "fm_data_source.edge_id",
           "value": "fm_data_source.edge_id"
         },
         {
+          "$$hashKey": "object:2274",
           "text": "fm_data_source.nhg_id",
           "value": "fm_data_source.nhg_id"
+        },
+        {
+          "$$hashKey": "object:2532",
+          "text": "fm_data_source.dn",
+          "value": "fm_data_source.dn"
         }
       ],
-      "datasource": "$datasource",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "$datasource"
+      },
       "description": "This table will show all active alarms that are minor across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
       "gridPos": {
@@ -971,19 +1066,17 @@
       "id": 21,
       "interval": "",
       "links": [],
-      "options": {},
       "pageSize": 10,
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": null,
         "desc": false
       },
       "styles": [
         {
+          "$$hashKey": "object:2284",
           "alias": "EventTime",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -998,9 +1091,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2285",
           "alias": "LastUpdatedTime",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1015,9 +1108,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2286",
           "alias": "EdgeHostName",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1032,9 +1125,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2287",
           "alias": "DN",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1043,15 +1136,15 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data_source.hw_alias",
+          "pattern": "fm_data_source.dn",
           "thresholds": [],
           "type": "string",
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2288",
           "alias": "AlarmID",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1066,9 +1159,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2289",
           "alias": "Severity",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1083,9 +1176,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2290",
           "alias": "AlarmText",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1100,9 +1193,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2291",
           "alias": "EdgeID",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1117,9 +1210,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:2292",
           "alias": "NHGID",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1137,6 +1230,10 @@
       "targets": [
         {
           "bucketAggs": [],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "000000005"
+          },
           "metrics": [
             {
               "field": "select field",
@@ -1153,52 +1250,62 @@
           "timeField": "fm_data.event_time"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": " Minor Active Alarms",
       "transform": "json",
-      "type": "table"
+      "type": "table-old"
     },
     {
       "columns": [
         {
+          "$$hashKey": "object:1958",
           "text": "fm_data.event_time",
           "value": "fm_data.event_time"
         },
         {
+          "$$hashKey": "object:1959",
           "text": "fm_data.last_updated_time",
           "value": "fm_data.last_updated_time"
         },
         {
-          "text": "fm_data_source.hw_alias",
-          "value": "fm_data_source.hw_alias"
-        },
-        {
+          "$$hashKey": "object:1961",
           "text": "fm_data.alarm_identifier",
           "value": "fm_data.alarm_identifier"
         },
         {
+          "$$hashKey": "object:1962",
           "text": "fm_data.severity",
           "value": "fm_data.severity"
         },
         {
+          "$$hashKey": "object:1963",
           "text": "fm_data.alarm_text",
           "value": "fm_data.alarm_text"
         },
         {
+          "$$hashKey": "object:1964",
           "text": "fm_data_source.edge_hostname",
           "value": "fm_data_source.edge_hostname"
         },
         {
+          "$$hashKey": "object:1965",
           "text": "fm_data_source.edge_id",
           "value": "fm_data_source.edge_id"
         },
         {
+          "$$hashKey": "object:1966",
           "text": "fm_data_source.nhg_id",
           "value": "fm_data_source.nhg_id"
+        },
+        {
+          "$$hashKey": "object:2197",
+          "text": "fm_data_source.dn",
+          "value": "fm_data_source.dn"
         }
       ],
-      "datasource": "$datasource",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "$datasource"
+      },
       "description": "This table will show all active alarms that are warning across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
       "gridPos": {
@@ -1211,19 +1318,17 @@
       "id": 22,
       "interval": "",
       "links": [],
-      "options": {},
       "pageSize": 10,
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": null,
         "desc": false
       },
       "styles": [
         {
+          "$$hashKey": "object:1976",
           "alias": "EventTime",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1238,9 +1343,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1977",
           "alias": "LastUpdatedTime",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1255,9 +1360,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1978",
           "alias": "EdgeHostName",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1272,9 +1377,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1979",
           "alias": "DN",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1283,15 +1388,15 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data_source.hw_alias",
+          "pattern": "fm_data_source.dn",
           "thresholds": [],
           "type": "string",
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1980",
           "alias": "AlarmID",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1306,9 +1411,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1981",
           "alias": "Severity",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1323,9 +1428,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1982",
           "alias": "AlarmText",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1340,9 +1445,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1983",
           "alias": "EdgeID",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1357,9 +1462,9 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:1984",
           "alias": "NHGID",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -1377,6 +1482,10 @@
       "targets": [
         {
           "bucketAggs": [],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "000000005"
+          },
           "metrics": [
             {
               "field": "select field",
@@ -1393,15 +1502,13 @@
           "timeField": "fm_data.event_time"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Warning Active Alarms",
       "transform": "json",
-      "type": "table"
+      "type": "table-old"
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 22,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
     "COREAlarms",
@@ -1411,6 +1518,7 @@
     "list": [
       {
         "current": {
+          "selected": false,
           "text": "core-fm",
           "value": "core-fm"
         },
@@ -1427,14 +1535,19 @@
         "type": "datasource"
       },
       {
-        "allValue": null,
         "current": {
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
         },
-        "datasource": "$datasource",
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "$datasource"
+        },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": true,
@@ -1448,7 +1561,6 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -1456,7 +1568,7 @@
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -1486,5 +1598,6 @@
   },
   "timezone": "browser",
   "title": "NDAC CORE FM Alarms Active Dashboard",
-  "version": 1
+  "version": 2,
+  "weekStart": ""
 }

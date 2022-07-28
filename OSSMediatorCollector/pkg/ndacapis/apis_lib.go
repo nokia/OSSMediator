@@ -34,12 +34,13 @@ const (
 	interval = 15
 
 	//Query Params for GET APIS
-	startTimeQueryParam  = "start_timestamp"
-	endTimeQueryParam    = "end_timestamp"
-	limitQueryParam      = "limit"
-	indexQueryParam      = "index"
-	alarmTypeQueryParam  = "alarm_type"
-	metricTypeQueryParam = "metric_type"
+	startTimeQueryParam      = "start_timestamp"
+	endTimeQueryParam        = "end_timestamp"
+	limitQueryParam          = "limit"
+	indexQueryParam          = "index"
+	alarmTypeQueryParam      = "alarm_type"
+	metricTypeQueryParam     = "metric_type"
+	searchAfterKeyQueryParam = "search_after_key"
 
 	//Headers
 	authorizationHeader = "Authorization"

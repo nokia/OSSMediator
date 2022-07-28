@@ -3,29 +3,79 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 12,
-  "iteration": 1609848765314,
+  "iteration": 1658907630404,
   "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "Radio4G"
+      ],
+      "targetBlank": false,
+      "title": "Radio 4G Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
     {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
         "Radio5G"
       ],
-      "title": "5G Dashboard",
+      "title": "Radio 5G Dashboard",
       "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "EdgePM"
+      ],
+      "targetBlank": false,
+      "title": "Edge PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "CorePM"
+      ],
+      "targetBlank": false,
+      "title": "CORE PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
     },
     {
       "asDropdown": true,
@@ -49,20 +99,85 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "COREAlarms"
       ],
-      "targetBlank": true,
+      "targetBlank": false,
       "title": "CORE Alarms",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "ApplAlarms"
+      ],
+      "targetBlank": false,
+      "title": "Application Alarms",
       "type": "dashboards"
     }
   ],
+  "liveNow": false,
   "panels": [
     {
-      "columns": [],
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This will provide the KPI report for the selected KPIs for the selected duration, aggregated at per day.",
-      "fontSize": "100%",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "right",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "decimals": 2,
+          "displayName": "",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Time"
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
         "h": 9,
         "w": 24,
@@ -71,37 +186,17 @@
       },
       "id": 1,
       "links": [],
-      "options": {},
-      "pageSize": null,
-      "showHeader": true,
-      "sort": {
-        "col": 1,
-        "desc": true
-      },
-      "styles": [
-        {
-          "alias": "Time",
-          "align": "auto",
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "date"
-        },
-        {
-          "alias": "",
-          "align": "right",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
           ],
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "none"
-        }
-      ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "alias": "LTE_5750a E-UTRAN Cell Availability Ratio",
@@ -120,7 +215,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -136,7 +231,6 @@
               "field": "pm_data.LTE_Cell_Avail_M8020C3",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -153,7 +247,6 @@
               "field": "pm_data.LTE_Cell_Avail_M8020C3",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -184,7 +277,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Avail_M8020C3:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "M8051C58 - E-UTRAN LTE_UE_Quantity",
@@ -202,7 +295,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -251,7 +344,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C58:*",
           "refId": "B",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_6160b Total E-UTRAN RRC Connection Setup Attempts",
@@ -269,7 +362,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -285,11 +378,8 @@
               "field": "pm_data.LTE_UE_State_M8013C17",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
-              "settings": {
-                "missing": null
-              },
+              "settings": {},
               "type": "sum"
             },
             {
@@ -406,7 +496,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_State_M8013C17:*",
           "refId": "C",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_5118a E-UTRAN E-RAB Setup Attempts",
@@ -424,7 +514,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -440,7 +530,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C0",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -475,7 +564,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C0:*",
           "refId": "D",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_5143a Total E-UTRAN RRC Connection Re-establishment Success Ratio",
@@ -493,7 +582,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -509,7 +598,6 @@
               "field": "pm_data.LTE_RRC_M8008C5",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -556,7 +644,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_RRC_M8008C5:*",
           "refId": "E",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_5116a E-UTRAN Data Radio Bearer Attempts",
@@ -574,7 +662,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -590,7 +678,6 @@
               "field": "pm_data.LTE_Radio_Bearer_M8007C0",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -625,7 +712,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Radio_Bearer_M8007C0:*",
           "refId": "F",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE 5242b E-Utran Average RRC Connected UEs",
@@ -644,7 +731,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -660,7 +747,6 @@
               "field": "pm_data.LTE_UE_Quantity_M8051C60",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -677,7 +763,6 @@
               "field": "pm_data.LTE_UE_Quantity_M8051C60",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -708,7 +793,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C61:*",
           "refId": "G",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE 5212a E-Utran PDCP SDU Volume DL",
@@ -727,7 +812,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -752,7 +837,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -779,14 +863,14 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C20:*",
           "refId": "H",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Total volume LTE 5212a E-Utran PDCP SDU Volume DL",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "7",
               "settings": {
                 "interval": "$agg",
@@ -811,7 +895,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -838,7 +921,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C20:*",
           "refId": "I",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE 5213a E-Utran PDCP SDU Volume UL",
@@ -858,7 +941,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -882,7 +965,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C19",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -909,14 +991,14 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C19:*",
           "refId": "J",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Total volume LTE 5213a E-Utran PDCP SDU Volume UL",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "7",
               "settings": {
                 "interval": "$agg",
@@ -940,7 +1022,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C19",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -967,7 +1048,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C19:*",
           "refId": "K",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Average PDCP Layer Throughput UL",
@@ -986,7 +1067,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -1008,14 +1089,14 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
           "refId": "L",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Total Avg PDCP Datarate UL",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -1037,7 +1118,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
           "refId": "M",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Average PDCP Layer Throughput DL",
@@ -1056,7 +1137,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -1078,14 +1159,14 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
           "refId": "N",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Total Avg PDCP Datarate DL",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -1107,7 +1188,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
           "refId": "O",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE 6159a E-Utran RACH Setup Attempts",
@@ -1126,7 +1207,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -1142,7 +1223,6 @@
               "field": "pm_data.LTE_Cell_Load_M8001C6",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -1217,7 +1297,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Load_M8001C6:*",
           "refId": "P",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE 5218g Total E-UTRAN RRC Connection Setup Success Ratio",
@@ -1236,7 +1316,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -1252,7 +1332,6 @@
               "field": "pm_data.LTE_UE_State_M8013C5",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -1261,7 +1340,6 @@
               "field": "pm_data.LTE_UE_State_M8013C17",
               "hide": true,
               "id": "4",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -1384,7 +1462,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_State_M8013C5:*",
           "refId": "Q",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_5025i E-UTRAN E-RAB Drop Ratio, RAN View",
@@ -1403,7 +1481,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -1419,7 +1497,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C261",
               "hide": true,
               "id": "4",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -1428,7 +1505,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C254",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -1437,7 +1513,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C255",
               "hide": true,
               "id": "10",
-              "inlineScript": null,
               "meta": {},
               "pipelineVariables": [
                 {
@@ -1742,7 +1817,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C261:*",
           "refId": "R",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_5017a\\tE-UTRAN E-RAB Setup Success Ratio",
@@ -1761,7 +1836,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -1777,7 +1852,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C0",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -1824,7 +1898,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C0:*",
           "refId": "S",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_6161a\\tRRC Connection Re-establishment Attempts per type total attempts",
@@ -1843,7 +1917,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -1859,7 +1933,6 @@
               "field": "pm_data.LTE_RRC_M8008C4",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -1894,7 +1967,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_RRC_M8008C4:*",
           "refId": "T",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_5276b\\tE-UTRAN average PRB usage per TTI DL / E-UTRAN Avg PRB usage per TTI DL",
@@ -1913,7 +1986,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -1929,7 +2002,6 @@
               "field": "pm_data.LTE_Cell_Resource_M8011C37",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -1964,7 +2036,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Resource_M8011C37:*",
           "refId": "U",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_5273b\\tE-UTRAN Average PRB usage per TTI UL",
@@ -1983,7 +2055,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -1999,7 +2071,6 @@
               "field": "pm_data.LTE_Cell_Resource_M8011C24",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -2034,7 +2105,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Resource_M8011C24:*",
           "refId": "V",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_1492b\\tEstimated DL averaged UE throughput",
@@ -2053,7 +2124,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -2069,7 +2140,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -2116,7 +2186,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C20:*",
           "refId": "W",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_1493b\\tEstimated UL averaged UE throughput",
@@ -2135,7 +2205,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -2151,7 +2221,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C19",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -2198,7 +2267,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C19:*",
           "refId": "X",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_5427b\\tE-UTRAN Average CQI",
@@ -2217,7 +2286,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -2637,7 +2706,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_DL_M8010C36:*",
           "refId": "Y",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_493b\\t% of UL PUSCH Bad Received Signal Strength Indicator Level",
@@ -2656,7 +2725,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -3020,7 +3089,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_UL_M8005C29:*",
           "refId": "Z",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "bucketAggs": [
@@ -3038,7 +3107,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -3054,7 +3123,6 @@
               "field": "pm_data.LTE_Handover_M8021C2",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -3115,7 +3183,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Handover_M8021C2:*",
           "refId": "AA",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "LTE_5568a\\tE-UTRAN Intra-Frequency HO Success Ratio",
@@ -3134,7 +3202,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -3150,7 +3218,6 @@
               "field": "pm_data.LTE_Intra_eNB_HO_M8009C7",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -3285,20 +3352,75 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND (pm_data.LTE_Intra_eNB_HO_M8009C7:* OR pm_data.LTE_Inter_eNB_HO_M8014C7:* OR pm_data.LTE_Handover_M8021C2:*)",
           "refId": "AB",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "LTE KPI Report - Name",
-      "transform": "timeseries_to_columns",
+      "transformations": [
+        {
+          "id": "seriesToColumns",
+          "options": {
+            "reducers": []
+          }
+        }
+      ],
       "type": "table"
     },
     {
-      "columns": [],
-      "datasource": "$dataSource",
+      "datasource": {
+        "uid": "$dataSource"
+      },
       "description": "This will provide the KPI report for the selected KPIs for the selected duration, aggregated at per day.",
-      "fontSize": "100%",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "left",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "decimals": 2,
+          "displayName": "",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Time"
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
         "h": 10,
         "w": 24,
@@ -3307,37 +3429,17 @@
       },
       "id": 2,
       "links": [],
-      "options": {},
-      "pageSize": null,
-      "showHeader": true,
-      "sort": {
-        "col": 14,
-        "desc": false
-      },
-      "styles": [
-        {
-          "alias": "Time",
-          "align": "auto",
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "date"
-        },
-        {
-          "alias": "",
-          "align": "left",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
           ],
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "none"
-        }
-      ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "alias": "",
@@ -3356,7 +3458,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -3372,7 +3474,6 @@
               "field": "pm_data.LTE_Cell_Avail_M8020C3",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -3389,7 +3490,6 @@
               "field": "pm_data.LTE_Cell_Avail_M8020C3",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -3420,7 +3520,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Avail_M8020C3:*",
           "refId": "A",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -3438,7 +3538,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -3487,7 +3587,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C58:*",
           "refId": "B",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -3505,7 +3605,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -3521,11 +3621,8 @@
               "field": "pm_data.LTE_UE_State_M8013C17",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
-              "settings": {
-                "missing": null
-              },
+              "settings": {},
               "type": "sum"
             },
             {
@@ -3642,7 +3739,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_State_M8013C17:*",
           "refId": "C",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -3660,7 +3757,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -3676,7 +3773,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C0",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -3711,7 +3807,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C0:*",
           "refId": "D",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -3729,7 +3825,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -3745,7 +3841,6 @@
               "field": "pm_data.LTE_RRC_M8008C5",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -3792,7 +3887,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_RRC_M8008C5:*",
           "refId": "E",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -3810,7 +3905,7 @@
               "type": "terms"
             },
             {
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -3826,7 +3921,6 @@
               "field": "pm_data.LTE_Radio_Bearer_M8007C0",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -3861,7 +3955,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Radio_Bearer_M8007C0:*",
           "refId": "F",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -3880,7 +3974,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -3896,7 +3990,6 @@
               "field": "pm_data.LTE_UE_Quantity_M8051C60",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -3913,7 +4006,6 @@
               "field": "pm_data.LTE_UE_Quantity_M8051C60",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -3944,7 +4036,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C61:*",
           "refId": "G",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -3963,7 +4055,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -3988,7 +4080,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -4015,14 +4106,14 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C20:*",
           "refId": "H",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Total Volume DL",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "7",
               "settings": {
                 "interval": "$agg",
@@ -4047,7 +4138,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -4074,7 +4164,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C20:*",
           "refId": "I",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -4094,7 +4184,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -4118,7 +4208,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C19",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -4145,14 +4234,14 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C19:*",
           "refId": "J",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "Total Volume UL",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "7",
               "settings": {
                 "interval": "$agg",
@@ -4176,7 +4265,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C19",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -4203,7 +4291,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C19:*",
           "refId": "K",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -4222,7 +4310,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -4244,14 +4332,14 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
           "refId": "L",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -4273,7 +4361,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
           "refId": "M",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -4292,7 +4380,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -4314,14 +4402,14 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
           "refId": "N",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
           "bucketAggs": [
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -4343,7 +4431,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
           "refId": "O",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -4362,7 +4450,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -4378,7 +4466,6 @@
               "field": "pm_data.LTE_Cell_Load_M8001C6",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -4453,7 +4540,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Load_M8001C6:*",
           "refId": "P",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -4472,7 +4559,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -4488,7 +4575,6 @@
               "field": "pm_data.LTE_UE_State_M8013C5",
               "hide": true,
               "id": "1",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -4497,7 +4583,6 @@
               "field": "pm_data.LTE_UE_State_M8013C17",
               "hide": true,
               "id": "4",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -4620,7 +4705,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_State_M8013C5:*",
           "refId": "Q",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -4639,7 +4724,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
                 "interval": "$agg",
@@ -4655,7 +4740,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C261",
               "hide": true,
               "id": "4",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -4664,7 +4748,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C254",
               "hide": true,
               "id": "8",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -4673,7 +4756,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C255",
               "hide": true,
               "id": "10",
-              "inlineScript": null,
               "meta": {},
               "pipelineVariables": [
                 {
@@ -4978,7 +5060,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C261:*",
           "refId": "R",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -4997,7 +5079,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -5013,7 +5095,6 @@
               "field": "pm_data.LTE_EPS_Bearer_M8006C0",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -5060,7 +5141,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C0:*",
           "refId": "S",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -5079,7 +5160,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -5095,7 +5176,6 @@
               "field": "pm_data.LTE_RRC_M8008C4",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -5130,7 +5210,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_RRC_M8008C4:*",
           "refId": "T",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -5149,7 +5229,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -5165,7 +5245,6 @@
               "field": "pm_data.LTE_Cell_Resource_M8011C37",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -5200,7 +5279,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Resource_M8011C37:*",
           "refId": "U",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -5219,7 +5298,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -5235,7 +5314,6 @@
               "field": "pm_data.LTE_Cell_Resource_M8011C24",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -5270,7 +5348,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Resource_M8011C24:*",
           "refId": "V",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -5289,7 +5367,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -5305,7 +5383,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -5352,7 +5429,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C20:*",
           "refId": "W",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -5371,7 +5448,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -5387,7 +5464,6 @@
               "field": "pm_data.LTE_Cell_Throughput_M8012C19",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -5434,7 +5510,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C19:*",
           "refId": "X",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -5453,7 +5529,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -5873,7 +5949,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_DL_M8010C36:*",
           "refId": "Y",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -5892,7 +5968,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -6256,7 +6332,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_UL_M8005C29:*",
           "refId": "Z",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "bucketAggs": [
@@ -6274,7 +6350,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -6290,7 +6366,6 @@
               "field": "pm_data.LTE_Handover_M8021C2",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "avg"
@@ -6351,7 +6426,7 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Handover_M8021C2:*",
           "refId": "AA",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         },
         {
           "alias": "",
@@ -6370,7 +6445,7 @@
             },
             {
               "fake": true,
-              "field": "pm_data_source.timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
                 "interval": "$agg",
@@ -6386,7 +6461,6 @@
               "field": "pm_data.LTE_Intra_eNB_HO_M8009C7",
               "hide": true,
               "id": "14",
-              "inlineScript": null,
               "meta": {},
               "settings": {},
               "type": "sum"
@@ -6521,24 +6595,32 @@
           ],
           "query": "pm_data_source.nhg_alias:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND (pm_data.LTE_Intra_eNB_HO_M8009C7:* OR pm_data.LTE_Inter_eNB_HO_M8014C7:* OR pm_data.LTE_Handover_M8021C2:*)",
           "refId": "AB",
-          "timeField": "pm_data_source.timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "LTE KPI Report - ID",
-      "transform": "timeseries_to_columns",
+      "transformations": [
+        {
+          "id": "seriesToColumns",
+          "options": {
+            "reducers": []
+          }
+        }
+      ],
       "type": "table"
     }
   ],
   "refresh": "15m",
-  "schemaVersion": 22,
+  "schemaVersion": 36,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "Radio4G"
+  ],
   "templating": {
     "list": [
       {
         "current": {
+          "selected": false,
           "text": "radio-4g-pm",
           "value": "radio-4g-pm"
         },
@@ -6555,12 +6637,15 @@
         "type": "datasource"
       },
       {
-        "allValue": null,
         "current": {
-          "text": "Burnet 24-15",
-          "value": "Burnet 24-15"
+          "selected": true,
+          "text": "Altoona Spare 24-109",
+          "value": "Altoona Spare 24-109"
         },
-        "datasource": "$dataSource",
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "$dataSource"
+        },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
@@ -6574,40 +6659,42 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
-          "text": "41532",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
-            "41532"
+            "$__all"
           ]
         },
-        "datasource": "$dataSource",
-        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "$dataSource"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
         "hide": 0,
         "includeAll": true,
-        "label": "Access Point ID",
+        "label": "AP ID",
         "multi": true,
         "name": "ap_id",
         "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
         "refresh": 2,
         "regex": ".*BTS-(\\d+).*",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": "Cell",
@@ -6635,11 +6722,10 @@
         "type": "custom"
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
-          "text": "15m",
-          "value": "15m"
+          "text": "1d",
+          "value": "1d"
         },
         "hide": 0,
         "includeAll": false,
@@ -6658,7 +6744,7 @@
             "value": "1h"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "1d",
             "value": "1d"
           },
@@ -6678,7 +6764,7 @@
             "value": "1w"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "1M",
             "value": "1M"
           },
@@ -6694,14 +6780,15 @@
           }
         ],
         "query": "15m,1h,1d,7d,15d,1w,1M,2M,3M",
+        "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-90d",
-    "to": "now-30m"
+    "from": "now-30d",
+    "to": "now"
   },
   "timepicker": {
     "hidden": false,
@@ -6731,6 +6818,7 @@
     ]
   },
   "timezone": "",
-  "title": "NDAC 4G PM KPI Report Generation Dashboard",
-  "version": 1
+  "title": "NDAC Radio 4G PM KPI - Reporting",
+  "version": 3,
+  "weekStart": ""
 }

@@ -1,0 +1,1026 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "iteration": 1658908493345,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "Radio4G"
+      ],
+      "title": "Radio 4G Dashboards",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "Radio5G"
+      ],
+      "title": "Radio 5G Dashboards",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "CorePM"
+      ],
+      "targetBlank": false,
+      "title": "CORE PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "RadioAlarms"
+      ],
+      "targetBlank": false,
+      "title": "Radio Alarms",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "DACAlarms"
+      ],
+      "title": "DAC Alarms",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "COREAlarms"
+      ],
+      "targetBlank": false,
+      "title": "CORE Alarms",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "ApplAlarms"
+      ],
+      "targetBlank": false,
+      "title": "Application Alarms",
+      "type": "dashboards"
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "${dataSource}"
+      },
+      "description": "This KPI provides the usage of the CPU of the edge node is percentage. ",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 80
+              },
+              {
+                "color": "dark-red",
+                "value": 97
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "alias": "CPU Usage",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P32143C160F6D41EC"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_edge_cpu_usage_percentage",
+              "id": "1",
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.edge_alias.keyword:$edgealias",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "NDAC Edge CPU Usage",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "${dataSource}"
+      },
+      "description": "This KPI provides the temperature of the hard disk on the edge node in degree celsius .",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-orange",
+                "value": 70
+              },
+              {
+                "color": "dark-red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 9,
+        "x": 5,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {
+          "titleSize": 8
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.dn.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m",
+                "min_doc_count": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P32143C160F6D41EC"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_edge_disk_temp_celsius",
+              "id": "1",
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.edge_alias.keyword:$edgealias AND pm_data.ndac_rr_edge_disk_temp_celsius\n:* ",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "NDAC Edge disk temperature",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": ".*//(.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "${dataSource}"
+      },
+      "description": "This KPI provides the usage of the RAM memory usage of the edge node in percentage.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 80
+              },
+              {
+                "color": "dark-red",
+                "value": 95
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 14,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "alias": "Ram Usage",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P32143C160F6D41EC"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_edge_ram_usage_percentage",
+              "id": "1",
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.edge_alias.keyword:$edgealias",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "NDAC Edge RAM usage ",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "${dataSource}"
+      },
+      "description": "This KPI provides the usage of hard disk of the edge node in percentage.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-orange",
+                "value": 80
+              },
+              {
+                "color": "dark-red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 19,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "alias": "Memory Usage",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.dn.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P32143C160F6D41EC"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_edge_disk_usage_percentage",
+              "id": "1",
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.edge_alias.keyword:$edgealias AND pm_data.ndac_rr_edge_disk_usage_percentage:*",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "NDAC Edge disk usage",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "${dataSource}"
+      },
+      "description": "This KPI provides the usage of the CPU of the edge node is percentage. ",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "alias": "CPU Usage",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P32143C160F6D41EC"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_edge_cpu_usage_percentage",
+              "id": "1",
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.edge_alias.keyword:$edgealias",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "NDAC Edge CPU Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "${dataSource}"
+      },
+      "description": "This KPI provides the temperature of the hard disk on the edge node in degree celsius .",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.dn.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m",
+                "min_doc_count": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P32143C160F6D41EC"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_edge_disk_temp_celsius",
+              "id": "1",
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.edge_alias.keyword:$edgealias AND pm_data.ndac_rr_edge_disk_temp_celsius\n:* ",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "NDAC Edge disk temperature",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": ".*//(.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "${dataSource}"
+      },
+      "description": "This KPI provides the usage of the RAM memory usage of the edge node in percentage.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "alias": "Ram Usage",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P32143C160F6D41EC"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_edge_ram_usage_percentage",
+              "id": "1",
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.edge_alias.keyword:$edgealias",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "NDAC Edge RAM usage ",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "${dataSource}"
+      },
+      "description": "This KPI provides the usage of hard disk of the edge node in percentage.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "id": 10,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "alias": "Memory Usage",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.dn.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "P32143C160F6D41EC"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_edge_disk_usage_percentage",
+              "id": "1",
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.edge_alias.keyword:$edgealias AND pm_data.ndac_rr_edge_disk_usage_percentage:*",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "NDAC Edge disk usage",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "15m",
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [
+    "EdgePM"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "edge-pm",
+          "value": "edge-pm"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Data Source",
+        "multi": false,
+        "name": "dataSource",
+        "options": [],
+        "query": "elasticsearch",
+        "refresh": 1,
+        "regex": "edge-pm",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "18-303-n-1",
+          "value": "18-303-n-1"
+        },
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "${dataSource}"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\"}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Edge Alias",
+        "multi": false,
+        "name": "edgealias",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\"}",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "9878676a-ed0d-405c-46c3-78baf90fcc90",
+          "value": "9878676a-ed0d-405c-46c3-78baf90fcc90"
+        },
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "${dataSource}"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\", \"query\":\"pm_data_source.edge_alias.keyword:$edgealias\"}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "NHG Id",
+        "multi": false,
+        "name": "nhgid",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\", \"query\":\"pm_data_source.edge_alias.keyword:$edgealias\"}",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now-15m"
+  },
+  "timepicker": {
+    "nowDelay": "15m"
+  },
+  "timezone": "",
+  "title": "NDAC EDGE PM KPI",
+  "version": 4,
+  "weekStart": ""
+}

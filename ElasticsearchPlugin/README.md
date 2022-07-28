@@ -79,14 +79,14 @@ ElasticsearchPlugin reads all the collected PM/FM from OSSMediatorCollector and 
 }
 ````
 
-| Field                                 | Type              | Description                                                               |
-|---------------------------------------|-------------------|---------------------------------------------------------------------------|
-| source_dirs                           | [string]          | Base directory path of the respective user where PM/FM data is pushed by the collector. This path has to be same as the path mentioned in response_dest directory of respective user in mediator collector configuration.  |
-| elasticsearch.url                     | string            | The url to connect to elasticSearch data source. Default: "http://localhost:9200".  |
-| elasticsearch.user                    | string (Optional) | Elasticsearch user name.  |
-| elasticsearch.password                | string (Optional) | Elasticsearch user's password encoded as base64 string.  |
-| elasticsearch.data_retention_duration | integer           | Duration in days, for which ElasticsearchPlugin will cleanup the metrics from Elasticsearch data source.  |
-| cleanup_duration                      | integer           | Duration in minutes, after which ElasticsearchPlugin will cleanup the collected files on the local file system.  |
+| Field                                 | Type              | Description                                                                                                                                                                                                               |
+|---------------------------------------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| source_dirs                           | [string]          | Base directory path of the respective user where PM/FM data is pushed by the collector. This path has to be same as the path mentioned in response_dest directory of respective user in mediator collector configuration. |
+| elasticsearch.url                     | string            | The url to connect to elasticSearch data source. Default: "http://localhost:9200".                                                                                                                                        |
+| elasticsearch.user                    | string (Optional) | Elasticsearch user name.                                                                                                                                                                                                  |
+| elasticsearch.password                | string (Optional) | Elasticsearch user's password encoded as base64 string.                                                                                                                                                                   |
+| elasticsearch.data_retention_duration | integer           | Duration in days, for which ElasticsearchPlugin will cleanup the metrics from Elasticsearch data source.                                                                                                                  |
+| cleanup_duration                      | integer           | Duration in minutes, after which ElasticsearchPlugin will cleanup the collected files on the local file system.                                                                                                           |
 
 ````
 NOTE: If the data collection directories are modified, then the source_dir should be matched with the directory as given in OSSMediatorCollector configuration information. The source_dir should be same as the
@@ -100,3 +100,30 @@ NOTE: If the data collection directories are modified, then the source_dir shoul
 ````
 
 * ElasticsearchPlugin logs can be checked in ElasticsearchPlugin_HOME/log/ElasticsearchPlugin.log file.
+
+
+* ElasticsearchPlugin writes data to following indices:
+
+| API                            | Index Pattern                   |
+|--------------------------------|---------------------------------|
+| network-hardware-groups        | nhg-data                        |
+| sims                           | sims-data                       |
+| account-sims                   | account-sims-data               |
+| access-point-sims              | ap-sims-data                    |
+| pmdata (RADIO) (4G)            | 4g-pm-<METRIC_TYPE>-<MM>-<YYYY> |
+| pmdata (RADIO) (5G)            | 5g-pm-<METRIC_TYPE>-<MM>-<YYYY> |
+| pmdata (EDGE)                  | edge-pm                         |
+| pmdata (CORE)                  | core-pm                         |
+| fmdata (RADIO) (ACTIVE)        | radio-fm                        |
+| fmdata (RADIO) (HISTORY)       | radio-fm                        |
+| fmdata (CORE) (ACTIVE)         | core-fm                         |
+| fmdata (CORE) (HISTORY)        | core-fm                         |
+| fmdata (DAC) (ACTIVE)          | dac-fm                          |
+| fmdata (DAC) (HISTORY)         | dac-fm                          |
+| fmdata (APPLICATION) (ACTIVE)  | application-fm                  |
+| fmdata (APPLICATION) (HISTORY) | application-fm                  |
+
+````
+NOTE: Elasticsearchplugin deletes data from the above mentioned indices as per the configuration provided.
+      Please be careful when using the plugin with pre-installed elasticsearch instance, as it will delete other data if index pattern is similar.
+````

@@ -7,15 +7,13 @@
 package config
 
 import (
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"strings"
 	"sync"
 	"time"
-
-	log "github.com/sirupsen/logrus"
 )
 
 //Config keeps the config from json
@@ -102,13 +100,7 @@ func ReadConfig(confFile string) error {
 
 	for _, user := range Conf.Users {
 		user.Email = strings.TrimSpace(user.Email)
-		user.Password = strings.TrimSpace(user.Password)
 		user.ResponseDest = strings.TrimSpace(user.ResponseDest)
-		decodedPwd, err := base64.StdEncoding.DecodeString(user.Password)
-		if err != nil {
-			return fmt.Errorf("unable to decode password for %v, Error: %v", user.Email, err)
-		}
-		user.Password = string(decodedPwd)
 	}
 	log.Info("Config read successfully.")
 	return nil

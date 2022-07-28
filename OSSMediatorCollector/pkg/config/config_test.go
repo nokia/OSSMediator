@@ -33,12 +33,10 @@ func TestReadConfig(t *testing.T) {
 		[
 			{
 				"email_id": "user1@nokia.com",
-				"password": "dGVzdDE=",
 				"response_dest": "/statistics/reports/user1"
 			},
 			{
 				"email_id": "user2@nokia.com",
-				"password": "dGVzdDI=",
 				"response_dest": "/statistics/reports/user2"
 			}
 		],
@@ -80,7 +78,7 @@ func TestReadConfig(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	if Conf.BaseURL != "https://localhost:8080/api/v2" || len(Conf.Users) != 2 || Conf.Users[0].Email != "user1@nokia.com" || Conf.Users[0].Password != "test1" {
+	if Conf.BaseURL != "https://localhost:8080/api/v2" || len(Conf.Users) != 2 || Conf.Users[0].Email != "user1@nokia.com" {
 		t.Fail()
 	}
 }

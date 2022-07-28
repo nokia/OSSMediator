@@ -61,7 +61,7 @@ func pushFMData(filePath string, esConf config.ElasticsearchConf) {
 		var id string
 		if metricType == "radio" {
 			id = strings.Join([]string{hwID, eventTime, dn}, "_")
-		} else if metricType == "dac" {
+		} else {
 			alarmID := d.FMData["alarm_identifier"].(string)
 			faultID := d.FMData["fault_id"].(string)
 			keys := []string{metricType, hwID, dn, alarmID}
@@ -69,12 +69,6 @@ func pushFMData(filePath string, esConf config.ElasticsearchConf) {
 				keys = append(keys, faultID)
 			}
 			keys = append(keys, eventTime)
-			id = strings.Join(keys, "_")
-		} else if metricType == "core" {
-			alarmID := d.FMData["alarm_identifier"].(string)
-			nhgID := d.FMDataSource["nhg_id"].(string)
-			edgeID := d.FMDataSource["edge_id"].(string)
-			keys := []string{metricType, alarmID, nhgID, edgeID, eventTime}
 			id = strings.Join(keys, "_")
 		}
 		d.Timestamp = time.Now()
@@ -103,6 +97,10 @@ func pushPMData(filePath string, esConf config.ElasticsearchConf) {
 		return
 	}
 
+	fileName := path.Base(filePath)
+	metricType := strings.Split(fileName, "_")[1]
+	metricType = strings.ToLower(metricType)
+
 	var postData string
 	currTime := time.Now().UTC()
 	for i, d := range resp {
@@ -115,10 +113,16 @@ func pushPMData(filePath string, esConf config.ElasticsearchConf) {
 			objectType = k
 			break
 		}
-		objectType = strings.ToLower(objectType[:strings.LastIndex(objectType, "_")])
 
-		index := strings.Join([]string{strings.ToLower(technology), "pm", objectType, fmt.Sprintf("%02d", currTime.Month()), strconv.Itoa(currTime.Year())}, "-")
-		id := strings.Join([]string{hwID, eventTime, dn}, "_")
+		var index, id string
+		if metricType == "radio" {
+			objectType = strings.ToLower(objectType[:strings.LastIndex(objectType, "_")])
+			index = strings.Join([]string{strings.ToLower(technology), "pm", objectType, fmt.Sprintf("%02d", currTime.Month()), strconv.Itoa(currTime.Year())}, "-")
+			id = strings.Join([]string{hwID, eventTime, dn}, "_")
+		} else {
+			index = strings.Join([]string{metricType, "pm"}, "-")
+			id = strings.Join([]string{objectType, dn, eventTime}, "_")
+		}
 
 		d.Timestamp = time.Now()
 		source, _ := json.Marshal(d)

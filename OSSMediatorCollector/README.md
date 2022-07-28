@@ -73,12 +73,10 @@ PM / FM data collection by collector is performed using REST interface at regula
   "users": [
     {
       "email_id": "<USER EMAIL>",
-      "password": "<USER PASSWORD>",
       "response_dest": "<DIRECTORY PATH>"
     },
     {
       "email_id": "<USER EMAIL>",
-      "password": "<USER PASSWORD>",
       "response_dest": "<DIRECTORY PATH>"
     }
   ],
@@ -162,6 +160,20 @@ PM / FM data collection by collector is performed using REST interface at regula
       "metric_type": "CORE",
       "interval": 1,
       "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "ACTIVE",
+      "metric_type": "APPLICATION",
+      "interval": 5,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "HISTORY",
+      "metric_type": "APPLICATION",
+      "interval": 5,
+      "sync_duration": 15
     }
   ],
   "limit": 10000,
@@ -188,7 +200,7 @@ PM / FM data collection by collector is performed using REST interface at regula
 | metric_apis.api               | string                | API URL of get PM/FM data.                                                                                                                                                    |
 | metric_apis.interval          | integer               | Interval at which API should be called to collect data.                                                                                                                       |
 | metric_apis.type              | string                | Type of FM request ("ACTIVE" or "HISTORY").                                                                                                                                   |
-| metric_apis.metric_type       | string                | Type of FM alarm ("DAC" or "RADIO" or "CORE").                                                                                                                                |
+| metric_apis.metric_type       | string                | Type of metric for PM("RADIO" or "CORE" or "EDGE") or FM("DAC" or "RADIO" or "CORE" or "APPLICATION").                                                                        |
 | metric_apis.sync_duration     | integer               | Time duration in minutes, for syncing FM for the given duration.                                                                                                              |
 | limit                         | integer               | Number of records to be fetched from the API, should be within 1-10000.                                                                                                       |
 | delay                         | integer               | Time duration in minutes, for adding delay in API calls.                                                                                                                      |

@@ -25,7 +25,7 @@ If you want to collect SIM, APPLICATION metrics as well, then first copy "collec
 4. Update plugin_conf.json template file for the field `<SOURCE DIRECTORY PATH>` with the same directory path as set in above step.
 You can refer to the document "Nokia DAC OSS ElasticSearchPlugin Configuration" under section "User configuration" for clarification. 
 5. Configure the passwords for the users configured in collector_conf.json file for API access by executing `storesecret.sh` script.  
-Check if execute permissions are there for the `storesecret.sh` script, if not set it as `chmod 777 startup.sh`, then execute `sudo ./storesecret.sh` command to store the user passwords. (If scripts fails with jq command not found, please install `jq` using `apt-get install jq` command.)
+Check if execute permissions are there for the `storesecret.sh` script, if not set it as `chmod 777 storesecret.sh`, then execute `sudo ./storesecret.sh` command to store the user passwords. (If scripts fails with jq command not found, please install `jq` using `apt-get install jq` command.)
 6. Check if execute permissions are there for the script startup.sh, if not set it as `chmod 777 startup.sh`, then execute `sudo ./startup.sh` command.
 7. The script will run to do the setup and bring up the dashboards. If there are any errors, please correct them and re-run the script.
 

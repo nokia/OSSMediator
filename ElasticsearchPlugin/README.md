@@ -89,8 +89,8 @@ ElasticsearchPlugin reads all the collected PM/FM from OSSMediatorCollector and 
 | cleanup_duration                      | integer           | Duration in minutes, after which ElasticsearchPlugin will cleanup the collected files on the local file system.                                                                                                           |
 
 ````
-NOTE: If the data collection directories are modified, then the source_dir should be matched with the directory as given in OSSMediatorCollector configuration information. The source_dir should be same as the
-      response_dest directory in OSSMediatorCollector configuration.
+NOTE: If the data collection directories are modified, then the source_dir should be matched with the directory as given in OSSMediatorCollector configuration information.
+      The source_dir should be same as the response_dest directory in OSSMediatorCollector configuration.
 ````
 
 * To start ElasticsearchPlugin, go to the installed path of the mediator bin directory and start by calling the following command:
@@ -104,26 +104,28 @@ NOTE: If the data collection directories are modified, then the source_dir shoul
 
 * ElasticsearchPlugin writes data to following indices:
 
-| API                            | Index Pattern                   |
-|--------------------------------|---------------------------------|
-| network-hardware-groups        | nhg-data                        |
-| sims                           | sims-data                       |
-| account-sims                   | account-sims-data               |
-| access-point-sims              | ap-sims-data                    |
-| pmdata (RADIO) (4G)            | 4g-pm-<METRIC_TYPE>-<MM>-<YYYY> |
-| pmdata (RADIO) (5G)            | 5g-pm-<METRIC_TYPE>-<MM>-<YYYY> |
-| pmdata (EDGE)                  | edge-pm                         |
-| pmdata (CORE)                  | core-pm                         |
-| fmdata (RADIO) (ACTIVE)        | radio-fm                        |
-| fmdata (RADIO) (HISTORY)       | radio-fm                        |
-| fmdata (CORE) (ACTIVE)         | core-fm                         |
-| fmdata (CORE) (HISTORY)        | core-fm                         |
-| fmdata (DAC) (ACTIVE)          | dac-fm                          |
-| fmdata (DAC) (HISTORY)         | dac-fm                          |
-| fmdata (APPLICATION) (ACTIVE)  | application-fm                  |
-| fmdata (APPLICATION) (HISTORY) | application-fm                  |
+| API                            | Index Pattern               |
+|--------------------------------|-----------------------------|
+| network-hardware-groups        | nhg-data                    |
+| sims                           | sims-data                   |
+| account-sims                   | account-sims-data           |
+| access-point-sims              | ap-sims-data                |
+| pmdata (RADIO) (4G)            | 4g-pm-<METRIC_NAME>-MM-YYYY |
+| pmdata (RADIO) (5G)            | 5g-pm-<METRIC_NAME>-MM-YYYY |
+| pmdata (EDGE)                  | edge-pm                     |
+| pmdata (CORE)                  | core-pm                     |
+| fmdata (RADIO) (ACTIVE)        | radio-fm                    |
+| fmdata (RADIO) (HISTORY)       | radio-fm                    |
+| fmdata (CORE) (ACTIVE)         | core-fm                     |
+| fmdata (CORE) (HISTORY)        | core-fm                     |
+| fmdata (DAC) (ACTIVE)          | dac-fm                      |
+| fmdata (DAC) (HISTORY)         | dac-fm                      |
+| fmdata (APPLICATION) (ACTIVE)  | application-fm              |
+| fmdata (APPLICATION) (HISTORY) | application-fm              |
+
+`MM-YYYY` denotes month and years of the collected metric time.
 
 ````
-NOTE: Elasticsearchplugin deletes data from the above mentioned indices as per the configuration provided.
+NOTE: Elasticsearchplugin deletes data from the above mentioned indices as per the configuration provided.  
       Please be careful when using the plugin with pre-installed elasticsearch instance, as it will delete other data if index pattern is similar.
 ````

@@ -17,6 +17,7 @@ NEW FEATURES:
   * Added dashboards to view `EDGE` and `CORE` pm KPIs.
   * Added `storesecret.sh` script to take user's password as input and store secretly for API access.
   * Added `startup_without_elasticsearch.sh` script to start OSSMediator setup with pre-installed elasticsearch.
+  * Updated required grafana version to `8.5.9`.
 
 IMPROVEMENTS:
 

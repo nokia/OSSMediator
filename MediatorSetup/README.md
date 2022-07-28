@@ -32,6 +32,8 @@ Check if execute permissions are there for the `storesecret.sh` script, if not s
 The setup should be ready, and you can access the PM and FM dashboards from your browser at `http://<your_Ip_address>:3000/dashboards`.
 The Grafana dashboards will appear with login prompt and default credentials are `admin` with password `admin`.
 
+* In case the user’s password is updated, execute `sudo ./storesecret.sh` and input the updated password, then execute `sudo ./startup.sh` to restart the modules again.
+
 # Installation steps with pre-installed elasticsearch:
 
 1. Follow step 1- 5 from the above installation steps.

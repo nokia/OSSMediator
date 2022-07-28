@@ -109,18 +109,23 @@ func pushAPSimsData(filePath string, esConf config.ElasticsearchConf) {
 	index := indexMetaData[metric]
 	currTime := time.Now().UTC()
 	for _, apInfo := range apSims {
-		data := apSimsDetails{
+		apSimData := apSimsDetails{
 			AccessPointHwID: apInfo.AccessPointHwID,
 			Timestamp:       currTime,
 		}
 		for _, imsiInfo := range apInfo.ImsiDetails {
-			data.ImsiDetails = imsiInfo
-			id := strings.Join([]string{metric, accID, data.AccessPointHwID, data.ImsiDetails.Imsi}, "_")
-			source, _ := json.Marshal(data)
+			apSimData.ImsiDetails = imsiInfo
+			id := strings.Join([]string{metric, accID, apSimData.AccessPointHwID, apSimData.ImsiDetails.Imsi}, "_")
+			source, _ := json.Marshal(apSimData)
 			postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
 			postData += string(source) + "\n"
 		}
 	}
+	if postData == "" {
+		log.WithFields(log.Fields{"file": filePath}).Debug("Found no sims data")
+		return
+	}
+
 	pushData(elkURL, esConf.User, esConf.Password, postData, filePath)
 }
 
@@ -152,7 +157,7 @@ func pushSimsData(filePath string, esConf config.ElasticsearchConf) {
 	index := indexMetaData[metric]
 	currTime := time.Now().UTC()
 	for _, subsc := range sims.Subsc {
-		data := simsDetails{
+		simData := simsDetails{
 			ApnID:                subsc.ApnID,
 			ApnName:              subsc.ApnName,
 			IccID:                subsc.IccID,
@@ -166,16 +171,29 @@ func pushSimsData(filePath string, esConf config.ElasticsearchConf) {
 			StaticIP:             subsc.StaticIP,
 			Timestamp:            currTime,
 		}
+
+		if len(subsc.PrivateNetworkDetails) == 0 {
+			id := strings.Join([]string{metric, accID, simData.Imsi}, "_")
+			source, _ := json.Marshal(simData)
+			postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
+			postData += string(source) + "\n"
+		}
+
 		for _, networkDetails := range subsc.PrivateNetworkDetails {
 			if networkDetails.NhgID == "" {
 				continue
 			}
-			data.PrivateNetworkDetails = networkDetails
-			id := strings.Join([]string{metric, accID, data.Imsi, data.PrivateNetworkDetails.NhgID}, "_")
-			source, _ := json.Marshal(data)
+			simData.PrivateNetworkDetails = networkDetails
+			id := strings.Join([]string{metric, accID, simData.Imsi, simData.PrivateNetworkDetails.NhgID}, "_")
+			source, _ := json.Marshal(simData)
 			postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
 			postData += string(source) + "\n"
 		}
 	}
+	if postData == "" {
+		log.WithFields(log.Fields{"file": filePath}).Debug("Found no sims data")
+		return
+	}
+
 	pushData(elkURL, esConf.User, esConf.Password, postData, filePath)
 }

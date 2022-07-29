@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1658908311074,
+  "iteration": 1659089700337,
   "links": [
     {
       "asDropdown": true,
@@ -328,7 +328,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 2
+            "y": 9
           },
           "hiddenSeries": false,
           "id": 10,
@@ -682,10 +682,9 @@
       },
       {
         "current": {
-          "isNone": true,
           "selected": false,
-          "text": "None",
-          "value": ""
+          "text": "TALOS_HPE_151_5G_SA",
+          "value": "TALOS_HPE_151_5G_SA"
         },
         "datasource": {
           "type": "elasticsearch",
@@ -722,16 +721,16 @@
           "type": "elasticsearch",
           "uid": "$dataSource"
         },
-        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
         "hide": 0,
         "includeAll": true,
         "label": "Access Point ID",
         "multi": true,
         "name": "ap_id",
         "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
         "refresh": 2,
-        "regex": ".*BTS-(\\d+).*",
+        "regex": ".*MRBTS-(\\d+).*",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
@@ -790,6 +789,6 @@
   },
   "timezone": "",
   "title": "NDAC Radio 5G PM KPI - Slice Performance 5G035",
-  "version": 1,
+  "version": 5,
   "weekStart": ""
 }

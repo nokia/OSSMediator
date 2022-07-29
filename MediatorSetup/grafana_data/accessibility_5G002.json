@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1658908313479,
+  "iteration": 1659089696139,
   "links": [
     {
       "asDropdown": true,
@@ -134,7 +134,7 @@
           "dashes": false,
           "datasource": {
             "type": "elasticsearch",
-            "uid": "$dataSource"
+            "uid": "${dataSource}"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
           "fieldConfig": {
@@ -208,7 +208,7 @@
               ],
               "datasource": {
                 "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "uid": "P4AEC1CBCC76E5242"
               },
               "metrics": [
                 {
@@ -38757,10 +38757,9 @@
       },
       {
         "current": {
-          "isNone": true,
-          "selected": true,
-          "text": "None",
-          "value": ""
+          "selected": false,
+          "text": "TALOS_HPE_151_5G_SA",
+          "value": "TALOS_HPE_151_5G_SA"
         },
         "datasource": {
           "type": "elasticsearch",
@@ -38797,16 +38796,16 @@
           "type": "elasticsearch",
           "uid": "$dataSource"
         },
-        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*NRCELL*)\"}",
         "hide": 0,
         "includeAll": true,
         "label": "Access Point ID",
         "multi": true,
         "name": "ap_id",
         "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*NRCELL*)\"}",
         "refresh": 2,
-        "regex": ".*BTS-(\\d+).*",
+        "regex": ".*MRBTS-(\\d+).*",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
@@ -38864,6 +38863,6 @@
   },
   "timezone": "",
   "title": "NDAC Radio 5G PM KPI - Accessibility 5G002",
-  "version": 1,
+  "version": 5,
   "weekStart": ""
 }

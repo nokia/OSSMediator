@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-secretDir=.secret
+secretDir=bin/.secret
 mkdir -p $secretDir
 chmod 600 $secretDir
-for user in $(jq -r '.users[]|"\(.email_id)"' collector_conf.json); do
+for user in $(jq -r '.users[]|"\(.email_id)"' resources/conf.json); do
     read -r -s -p "Enter password for $user:" password
     secretFile="$secretDir/.$user"
     echo -n $password | base64 > $secretFile

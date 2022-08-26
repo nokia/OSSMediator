@@ -123,7 +123,6 @@ func storeUserHwID(nhgData []NetworkInfo, user *config.User, txnID uint64) {
 		for _, cluster := range nhgInfo.Clusters {
 			for _, hwSet := range cluster.HwSet {
 				hwIDs[hwSet.HwID] = struct{}{}
-
 			}
 		}
 	}

@@ -72,6 +72,22 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64) {
 		log.WithFields(log.Fields{"tid": txnID, "api": api.API, "api_type": api.Type, "metric_type": api.MetricType}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
 		return
 	}
+
+	apiKey := user.Email + "_" + path.Base(api.API) + "_" + api.MetricType
+	if api.Type != "" {
+		apiKey += "_" + api.Type
+	}
+	mux.RLock()
+	_, ok := activeAPIs[apiKey]
+	mux.RUnlock()
+	if ok {
+		log.WithFields(log.Fields{"tid": txnID, "api": api.API, "api_type": api.Type, "metric_type": api.MetricType}).Debugf("Previous API call for %s at %v is  still active", user.Email, utils.CurrentTime())
+		return
+	}
+	mux.Lock()
+	activeAPIs[apiKey] = struct{}{}
+	mux.Unlock()
+
 	for _, nhgID := range user.NhgIDs {
 		startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
 		apiReq := apiCallRequest{
@@ -94,6 +110,9 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64) {
 			msg = callMetricAPI(apiReq, maxRetryAttempts, txnID)
 		}
 	}
+	mux.Lock()
+	delete(activeAPIs, apiKey)
+	mux.Unlock()
 }
 
 func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64) string {

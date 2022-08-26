@@ -24,6 +24,7 @@ import (
 var (
 	//CurrentTime
 	CurrentTime = time.Now
+	//mux         sync.Mutex
 )
 
 const (
@@ -82,6 +83,8 @@ func CreateResponseDirectory(basePath string, api string) {
 
 //WriteResponse writes the data in json format to responseDest directory.
 func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id string, txnID uint64) error {
+	//mux.Lock()
+	//defer mux.Unlock()
 	fileName := path.Base(api.API)
 	if fileName == fmdataResponseType || fileName == pmdataResponseType {
 		if api.MetricType != "" {
@@ -89,6 +92,9 @@ func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id 
 		}
 		if api.Type != "" {
 			fileName += "_" + api.Type
+		}
+		if id != "" {
+			fileName += "_" + id
 		}
 	} else if fileName == nhgResponseType {
 		fileName += "_" + user.Email

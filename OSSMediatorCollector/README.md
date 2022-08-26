@@ -205,14 +205,22 @@ PM / FM data collection by collector is performed using REST interface at regula
 | limit                         | integer               | Number of records to be fetched from the API, should be within 1-10000.                                                                                                       |
 | delay                         | integer               | Time duration in minutes, for adding delay in API calls.                                                                                                                      |
 
-* To start collector, go to the installed path of the collector bin directory and start by calling the following command:
+## Starting OSSMediatorCollector  
+
+Configure the passwords for the users configured in resources/conf.json file for API access by executing `storesecret.sh`.  
+Check if execute permissions are there for the `storesecret.sh` script, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret.sh` command to store the user passwords.
+Enter the password for each customer having the right permission.  
+
+NOTE:
+* For login details (email ID and password) contact Nokia DAC support/operations team.  
+* If scripts fails with jq command not found, please install `jq` using `apt-get install jq` command.  
+* In case the user’s password is updated, execute `sudo ./storesecret.sh` and input the updated password, then restart the OSSMediatorCollector module.  
+
+To start collector, go to the installed path of the collector bin directory and start by calling the following command:
 
 ````
 ./collector
 ````
-
-Enter the password for each customer having the right permission.  
-NOTE: For login details (email ID and password) contact Nokia DAC support/operations team.  
 
 Once the login is successful for all users, the collector will periodically start collecting the data by calling the configured APIs for the customer’s managed network.
 

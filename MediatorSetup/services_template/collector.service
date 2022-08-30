@@ -8,7 +8,7 @@ StartLimitIntervalSec=0
 [Service]
 Type=simple
 Restart=always
-RestartSec=10
+RestartSec=300
 WorkingDirectory=COLLECTOR_PATH/bin
 ExecStart=COLLECTOR_PATH/bin/collector
 

@@ -12,4 +12,4 @@ COPY ./VERSION ../.
 WORKDIR /OSSMediatorCollector/
 
 # build the go app (OSSMediatorCollector)
-RUN make build test
+RUN make build test build_storesecret

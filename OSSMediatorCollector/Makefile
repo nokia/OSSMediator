@@ -26,14 +26,20 @@ build:
 	@go vet ./... > collector-lint-result.txt
 	@echo Build Successful.
 
+build_storesecret:
+	@echo Building storesecret
+	@go mod download && go build -o bin/storesecret storesecret/storesecret.go || (echo "storesecret build failed"; exit 1)
+	@echo storesecret build successful.
+
 build_package:
 	@echo Creating OSSMediatorCollector package
 	@mkdir -p bin
 	@docker create --name ossmediatorcollector ossmediatorcollector:1
 	@docker cp ossmediatorcollector:/OSSMediatorCollector/bin/collector ./bin/
+	@docker cp ossmediatorcollector:/OSSMediatorCollector/bin/storesecret ./bin/
 	@docker rm ossmediatorcollector
-	@mkdir -p package && mkdir -p package/bin && cp -R resources package && cp bin/collector package/bin && chmod 777 package/bin/collector && cp storesecret.sh package && chmod +x package/storesecret.sh
-	@cd package && zip -r OSSMediatorCollector-$(VERSION).zip storesecret.sh bin resources && rm -rf bin resources storesecret.sh
+	@mkdir -p package && mkdir -p package/bin && cp -R resources package && cp bin/* package/bin/ && chmod 777 package/bin/*
+	@cd package && zip -r OSSMediatorCollector-$(VERSION).zip bin resources && rm -rf bin resources
 	@echo Package created at package/OSSMediatorCollector-$(VERSION).zip
 
 test:
@@ -47,5 +53,5 @@ test:
 
 clean:
 	@echo "Started :OSSMediatorCollector CleanUp"
-	@rm -rf package bin/collector VERSION collector-unittest-result.txt collector-lint-result.txt
+	@rm -rf package bin/collector bin/storesecret coverage.html VERSION collector-unittest-result.txt collector-lint-result.txt
 	@echo "Completed :OSSMediatorCollector CleanUp"

@@ -20,7 +20,7 @@ MediatorCollector is compatible with only Unix/Linux system.
 ### Installation steps
 
 OSSMediatorCollector's binary should be built by running `make all` command followed by `make build_package` command.  
-It will create binary named as `collector` inside `bin` directory and package containing the binary and resource file, named as `OSSMediatorCollector-<VERSION>.zip` inside `package` directory.  
+It will create binary named as `collector` inside `bin` directory and package containing the binary and resource file, named as `OSSMediatorCollector-<VERSION>.zip` inside `package` directory.
 
 Please follow below procedure to install OSSMediatorCollector-<VERSION>.zip in your home directory:
 
@@ -207,14 +207,14 @@ PM / FM data collection by collector is performed using REST interface at regula
 
 ## Starting OSSMediatorCollector  
 
-Configure the passwords for the users configured in resources/conf.json file for API access by executing `storesecret.sh`.  
-Check if execute permissions are there for the `storesecret.sh` script, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret.sh` command to store the user passwords.
+Configure the passwords for the users configured in resources/conf.json file for API access by executing `storesecret` inside `bin` directory..
+
+Check if execute permissions are there for the `storesecret` binary, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret` command to store the user passwords.
 Enter the password for each customer having the right permission.  
 
 NOTE:
-* For login details (email ID and password) contact Nokia DAC support/operations team.  
-* If scripts fails with jq command not found, please install `jq` using `apt-get install jq` command.  
-* In case the user’s password is updated, execute `sudo ./storesecret.sh` and input the updated password, then restart the OSSMediatorCollector module.  
+* For login details (email ID and password) contact Nokia DAC support/operations team.
+* In case the user’s password is updated, execute `sudo ./storesecret` and input the updated password, then restart the OSSMediatorCollector module.  
 
 To start collector, go to the installed path of the collector bin directory and start by calling the following command:
 

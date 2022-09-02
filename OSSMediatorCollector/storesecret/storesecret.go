@@ -25,12 +25,12 @@ var (
 
 func main() {
 	//read command line arguments
-	flag.StringVar(&confFile, "conf_file", "../resources/conf.json", "config file path")
+	flag.StringVar(&confFile, "c", "../resources/conf.json", "config file path")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: ./storesecret [options]\n")
 		fmt.Fprintf(os.Stderr, "Options:\n")
 		fmt.Fprintf(os.Stderr, "\t-h, --help\n\t\tOutput a usage message.\n")
-		fmt.Fprintf(os.Stderr, "\t-conf_file string\n\t\tConfig file path (default \"../resources/conf.json\")\n")
+		fmt.Fprintf(os.Stderr, "\t-c string\n\t\tConfig file path (default \"../resources/conf.json\")\n")
 	}
 	flag.Parse()
 

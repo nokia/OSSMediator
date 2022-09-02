@@ -45,21 +45,26 @@ MediatorCollector directory structure after installation will be as shown below:
 ````
 
 ## Usage
-
-Usage: ./collector [options]  
-Options:  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-h, --help  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Output a usage message and exit.  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-conf_file string  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Config file path (default "../resources/conf.json")  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-cert_file string  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Certificate file path (if cert_file is not passed then it will establish TLS auth using root certificates.)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-log_dir string  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log Directory (default "../log"), logs will be stored in collector.log file.  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-log_level int  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log Level (default 4), logger level in collector.log file. Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-v  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prints OSSMediator's version  
+```
+Usage: ./collector [options]
+Options:
+        -h, --help
+                Output a usage message and exit.
+        -conf_file string
+                Config file path (default "../resources/conf.json")
+        -cert_file string
+                Certificate file path (if cert_file is not passed then it will establish TLS auth using root certificates.)
+        -log_dir string
+                Log Directory (default "../log"), logs will be stored in collector.log file.
+        -log_level int
+                Log Level (default 4). Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)
+        -skip_tls
+                Skip TLS Authentication
+        -enable_console_log
+                Enable console logging, if true logs won't be written to file
+        -v
+                Prints OSSMediator's version
+```
 
 ## Configuration
 
@@ -207,7 +212,18 @@ PM / FM data collection by collector is performed using REST interface at regula
 
 ## Starting OSSMediatorCollector  
 
-Configure the passwords for the users configured in resources/conf.json file for API access by executing `storesecret` inside `bin` directory..
+Configure the passwords for the users configured in `resources/conf.json` file for API access by executing `storesecret` inside `bin` directory.  
+
+#### storesecret Usage
+
+```
+Usage: ./storesecret [options]
+Options:
+        -h, --help
+                Output a usage message.
+        -c string
+                Config file path (default "../resources/conf.json")
+```
 
 Check if execute permissions are there for the `storesecret` binary, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret` command to store the user passwords.
 Enter the password for each customer having the right permission.  

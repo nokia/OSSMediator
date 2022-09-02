@@ -17,6 +17,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"sync"
 	"sync/atomic"
 	"time"
 
@@ -58,6 +59,9 @@ var (
 
 	//used for logging
 	txnID uint64 = 1000
+
+	activeAPIs = map[string]struct{}{}
+	mux        = sync.RWMutex{}
 )
 
 type fn func(*config.APIConf, *config.User, uint64)
@@ -70,9 +74,7 @@ func StartDataCollection() {
 	if currentTime.After(begTime) {
 		begTime = begTime.Add(time.Duration(interval) * time.Minute)
 		for _, user := range config.Conf.Users {
-			if config.Conf.ListNhGAPI != nil {
-				getNhgDetails(config.Conf.ListNhGAPI, user, atomic.AddUint64(&txnID, 1))
-			}
+			getNhgDetails(config.Conf.ListNhGAPI, user, atomic.AddUint64(&txnID, 1))
 			for _, api := range config.Conf.MetricAPIs {
 				go fetchMetricsData(api, user, atomic.AddUint64(&txnID, 1))
 			}

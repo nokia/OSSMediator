@@ -19,7 +19,7 @@ install_grafana() {
 }
 
 function version_gt() {
-  test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1";
+  test "$(printf '%s\n' "$@" | sort -V | head -n1)" = "$1";
 }
 
 heap_size=${heap_size:-2g}
@@ -46,7 +46,7 @@ else
   grafana_version=$(grafana-server -v | cut -d' ' -f 2)
   min_grafana_version=8.5.9
 
-  if version_gt $grafana_version $min_grafana_version; then
+  if version_gt $min_grafana_version $grafana_version; then
     echo "Grafana version is $grafana_version."
   else
     echo "Grafana version $grafana_version is less than recommended version $min_grafana_version, updating grafana..."

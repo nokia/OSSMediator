@@ -57,12 +57,12 @@ func pushFMData(filePath string, esConf config.ElasticsearchConf) {
 		dn := d.FMDataSource["dn"].(string)
 		eventTime := d.FMData["event_time"].(string)
 		hwID := d.FMDataSource["hw_id"].(string)
-
+		alarmID := d.FMData["alarm_identifier"].(string)
 		var id string
 		if metricType == "radio" {
-			id = strings.Join([]string{hwID, eventTime, dn}, "_")
+			specificProb := d.FMData["specific_problem"].(string)
+			id = strings.Join([]string{hwID, dn, alarmID, specificProb, eventTime}, "_")
 		} else {
-			alarmID := d.FMData["alarm_identifier"].(string)
 			faultID := d.FMData["fault_id"].(string)
 			keys := []string{metricType, hwID, dn, alarmID}
 			if faultID != "" {

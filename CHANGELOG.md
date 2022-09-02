@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 3.5
+
+IMPROVEMENTS:
+
+* OSSMediatorCollector: Updated `storesecret` module.
+
+BUG FIXES:
+
+* ElasticsearchPlugin: Fix to clear `RADIO` alarms.
+* OSSMediatorCollector: Fix for data loss when APIs were called by multiple users.
+
 # 3.4
 
 NEW FEATURES:

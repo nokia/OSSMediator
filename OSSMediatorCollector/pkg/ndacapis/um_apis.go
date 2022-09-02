@@ -21,8 +21,8 @@ import (
 
 const (
 	//Backoff duration for retrying refresh token.
-	initialBackoff = 5 * time.Second
-	maxBackoff     = 120 * time.Second
+	initialBackoff = 60 * time.Second
+	maxBackoff     = 16 * time.Minute
 	multiplier     = 2
 )
 

@@ -20,7 +20,7 @@ MediatorCollector is compatible with only Unix/Linux system.
 ### Installation steps
 
 OSSMediatorCollector's binary should be built by running `make all` command followed by `make build_package` command.  
-It will create binary named as `collector` inside `bin` directory and package containing the binary and resource file, named as `OSSMediatorCollector-<VERSION>.zip` inside `package` directory.  
+It will create binary named as `collector` inside `bin` directory and package containing the binary and resource file, named as `OSSMediatorCollector-<VERSION>.zip` inside `package` directory.
 
 Please follow below procedure to install OSSMediatorCollector-<VERSION>.zip in your home directory:
 
@@ -45,21 +45,26 @@ MediatorCollector directory structure after installation will be as shown below:
 ````
 
 ## Usage
-
-Usage: ./collector [options]  
-Options:  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-h, --help  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Output a usage message and exit.  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-conf_file string  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Config file path (default "../resources/conf.json")  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-cert_file string  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Certificate file path (if cert_file is not passed then it will establish TLS auth using root certificates.)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-log_dir string  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log Directory (default "../log"), logs will be stored in collector.log file.  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-log_level int  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log Level (default 4), logger level in collector.log file. Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-v  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prints OSSMediator's version  
+```
+Usage: ./collector [options]
+Options:
+        -h, --help
+                Output a usage message and exit.
+        -conf_file string
+                Config file path (default "../resources/conf.json")
+        -cert_file string
+                Certificate file path (if cert_file is not passed then it will establish TLS auth using root certificates.)
+        -log_dir string
+                Log Directory (default "../log"), logs will be stored in collector.log file.
+        -log_level int
+                Log Level (default 4). Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)
+        -skip_tls
+                Skip TLS Authentication
+        -enable_console_log
+                Enable console logging, if true logs won't be written to file
+        -v
+                Prints OSSMediator's version
+```
 
 ## Configuration
 
@@ -205,14 +210,33 @@ PM / FM data collection by collector is performed using REST interface at regula
 | limit                         | integer               | Number of records to be fetched from the API, should be within 1-10000.                                                                                                       |
 | delay                         | integer               | Time duration in minutes, for adding delay in API calls.                                                                                                                      |
 
-* To start collector, go to the installed path of the collector bin directory and start by calling the following command:
+## Starting OSSMediatorCollector  
+
+Configure the passwords for the users configured in `resources/conf.json` file for API access by executing `storesecret` inside `bin` directory.  
+
+#### storesecret Usage
+
+```
+Usage: ./storesecret [options]
+Options:
+        -h, --help
+                Output a usage message.
+        -c string
+                Config file path (default "../resources/conf.json")
+```
+
+Check if execute permissions are there for the `storesecret` binary, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret` command to store the user passwords.
+Enter the password for each customer having the right permission.  
+
+NOTE:
+* For login details (email ID and password) contact Nokia DAC support/operations team.
+* In case the user’s password is updated, execute `sudo ./storesecret` and input the updated password, then restart the OSSMediatorCollector module.  
+
+To start collector, go to the installed path of the collector bin directory and start by calling the following command:
 
 ````
 ./collector
 ````
-
-Enter the password for each customer having the right permission.  
-NOTE: For login details (email ID and password) contact Nokia DAC support/operations team.  
 
 Once the login is successful for all users, the collector will periodically start collecting the data by calling the configured APIs for the customer’s managed network.
 

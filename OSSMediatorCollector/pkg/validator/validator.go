@@ -27,6 +27,18 @@ func ValidateConf(conf config.Config) error {
 		return fmt.Errorf("invalid url: %s", conf.BaseURL)
 	}
 
+	if conf.ListNhGAPI == nil {
+		return fmt.Errorf("list_nhg_api can't be empty")
+	}
+
+	if conf.ListNhGAPI.API == "" {
+		return fmt.Errorf("list_nhg_api API URL can't be empty")
+	}
+
+	if conf.ListNhGAPI.Interval == 0 {
+		return fmt.Errorf("list_nhg_api API call interval can't be zero")
+	}
+
 	for _, api := range conf.MetricAPIs {
 		if api.API == "" {
 			return fmt.Errorf("API URL can't be empty")

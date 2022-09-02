@@ -31,6 +31,10 @@ var (
 			{Email: "user1@nokia.com", Password: "dGVzdDE=", ResponseDest: "/statistics/reports/user1"},
 			{Email: "user2@nokia.com", Password: "dGVzdDI=", ResponseDest: "/statistics/reports/user2"},
 		},
+		ListNhGAPI: &config.APIConf{
+			API:      "/network-hardware-groups",
+			Interval: 60,
+		},
 		Limit: 200,
 		Delay: 7,
 	}
@@ -169,6 +173,26 @@ func TestValidateConfWithInvalidAPIMetricTypeForFM(t *testing.T) {
 	defer func() { conf.MetricAPIs[1].MetricType = tmp }()
 	err := ValidateConf(conf)
 	if err == nil || !strings.Contains(err.Error(), "API metric type for fmdata should be RADIO/DAC") {
+		t.Error(err)
+	}
+}
+
+func TestValidateConfWithInvalidListNhgAPIInterval(t *testing.T) {
+	tmp := conf.MetricAPIs
+	conf.ListNhGAPI.Interval = 0
+	defer func() { conf.MetricAPIs = tmp }()
+	err := ValidateConf(conf)
+	if err == nil || !strings.Contains(err.Error(), "list_nhg_api API call interval can't be zero") {
+		t.Error(err)
+	}
+}
+
+func TestValidateConfWithInvalidListNhgAPI(t *testing.T) {
+	tmp := conf.MetricAPIs
+	conf.ListNhGAPI = &config.APIConf{}
+	defer func() { conf.MetricAPIs = tmp }()
+	err := ValidateConf(conf)
+	if err == nil || !strings.Contains(err.Error(), "list_nhg_api API URL can't be empty") {
 		t.Error(err)
 	}
 }

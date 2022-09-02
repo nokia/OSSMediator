@@ -25,14 +25,14 @@ If you want to collect SIM, APPLICATION metrics as well, then first copy "collec
 4. Update plugin_conf.json template file for the field `<SOURCE DIRECTORY PATH>` with the same directory path as set in above step.
 You can refer to the document "Nokia DAC OSS ElasticSearchPlugin Configuration" under section "User configuration" for clarification. 
 5. Configure the passwords for the users configured in collector_conf.json file for API access by executing `storesecret`.  
-Check if execute permissions are there for the `storesecret` binary, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret` command to store the user passwords. (If scripts fails with jq command not found, please install `jq` using `apt-get install jq` command.)
+Check if execute permissions are there for the `storesecret` binary, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret -c collector_conf.json` command to store the user passwords.  
 6. Check if execute permissions are there for the `startup.sh` script, if not set it as `chmod 777 startup.sh`, then execute `sudo ./startup.sh` command.
 7. The script will run to do the setup and bring up the dashboards. If there are any errors, please correct them and re-run the script.
 
 The setup should be ready, and you can access the PM and FM dashboards from your browser at `http://<your_Ip_address>:3000/dashboards`.
 The Grafana dashboards will appear with login prompt and default credentials are `admin` with password `admin`.
 
-* In case the user’s password is updated, execute `sudo ./storesecret` and input the updated password, then execute `sudo ./startup.sh` to restart the modules again.
+* In case the user’s password is updated, execute `sudo ./storesecret -c collector_conf.json` and input the updated password, then execute `sudo ./startup.sh` to restart the modules again.
 
 * By default, elasticsearch will be started with 2GB heap memory.  
   To increase the heap memory execute `sudo ./startup.sh --heap_size <HEAP_SIZE>`.  

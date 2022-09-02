@@ -99,7 +99,7 @@ func parseFlags() {
 		fmt.Fprintf(os.Stderr, "\t-h, --help\n\t\tOutput a usage message and exit.\n")
 		fmt.Fprintf(os.Stderr, "\t-conf_file\n\t\tConfig file path (default \"../resources/conf.json\")\n")
 		fmt.Fprintf(os.Stderr, "\t-log_dir\n\t\tLog Directory (default \"../log\"), logs will be stored in ElasticsearchPlugin.log file.\n")
-		fmt.Fprintf(os.Stderr, "\t-log_level\n\t\tLog Level (default 4), logger level in collector.log file. Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
+		fmt.Fprintf(os.Stderr, "\t-log_level\n\t\tLog Level (default 4). Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
 		fmt.Fprintf(os.Stderr, "\t-v\n\t\tPrints OSSMediator's version\n")
 	}
 	flag.Parse()

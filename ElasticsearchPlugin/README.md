@@ -54,7 +54,7 @@ Options:
         -log_dir
                 Log Directory (default "../log"), logs will be stored in ElasticsearchPlugin.log file.
         -log_level
-                Log Level (default 4), logger level in collector.log file. Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)
+                Log Level (default 4). Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)
         -v
                 Prints OSSMediator's version
 ```

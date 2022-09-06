@@ -1,7 +1,7 @@
 apiVersion: 1
 
 datasources:
-  - name: radio-4g-pm
+  - name: dac-radio-4g-pm
     type: elasticsearch
     access: proxy
     database: "4g-pm*"
@@ -12,7 +12,7 @@ datasources:
       esVersion: 70
       tlsSkipVerify: true
       
-  - name: radio-5g-pm
+  - name: dac-radio-5g-pm
     type: elasticsearch
     access: proxy
     database: "5g-pm*"
@@ -23,7 +23,7 @@ datasources:
       esVersion: 70
       tlsSkipVerify: true
     
-  - name: radio-fm
+  - name: dac-radio-fm
     type: elasticsearch
     access: proxy
     database: "radio-fm*"
@@ -45,7 +45,7 @@ datasources:
       esVersion: 70
       tlsSkipVerify: true
 
-  - name: core-fm
+  - name: dac-core-fm
     type: elasticsearch
     access: proxy
     database: "core-fm*"
@@ -56,7 +56,7 @@ datasources:
       esVersion: 70
       tlsSkipVerify: true
 
-  - name: application-fm
+  - name: dac-application-fm
     type: elasticsearch
     access: proxy
     database: "application-fm*"
@@ -67,7 +67,7 @@ datasources:
       esVersion: 70
       tlsSkipVerify: true
 
-  - name: core-pm
+  - name: dac-core-pm
     type: elasticsearch
     access: proxy
     database: "core-pm*"
@@ -78,7 +78,7 @@ datasources:
       esVersion: 70
       tlsSkipVerify: true
 
-  - name: edge-pm
+  - name: dac-edge-pm
     type: elasticsearch
     access: proxy
     database: "edge-pm*"

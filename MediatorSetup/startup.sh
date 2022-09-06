@@ -84,8 +84,8 @@ fi
 
 echo "Setting up Grafana"
 mkdir -p /var/lib/grafana/dashboards /etc/grafana/provisioning/datasources /etc/grafana/provisioning/dashboards
-cp ./grafana_data/oss_dashboards.yaml /etc/grafana/provisioning/dashboards/.
-cp ./grafana_data/oss_datasources.yaml /etc/grafana/provisioning/datasources/.
+cp ./grafana_data/dac_oss_dashboards.yaml /etc/grafana/provisioning/dashboards/.
+cp ./grafana_data/dac_oss_datasources.yaml /etc/grafana/provisioning/datasources/.
 cp ./grafana_data/*.json /var/lib/grafana/dashboards/.
 chmod 775 /etc/grafana/provisioning/datasources/*
 chmod 775 /etc/grafana/provisioning/dashboards/*

@@ -1059,8 +1059,8 @@
       {
         "current": {
           "selected": false,
-          "text": "radio-fm",
-          "value": "radio-fm"
+          "text": "dac-radio-fm",
+          "value": "dac-radio-fm"
         },
         "hide": 2,
         "includeAll": false,
@@ -1070,7 +1070,7 @@
         "options": [],
         "query": "elasticsearch",
         "refresh": 1,
-        "regex": "radio-fm",
+        "regex": "dac-radio-fm",
         "skipUrlSync": false,
         "type": "datasource"
       },

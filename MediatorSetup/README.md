@@ -26,11 +26,13 @@ If you want to collect SIM, APPLICATION metrics as well, then first copy "collec
 You can refer to the document "Nokia DAC OSS ElasticSearchPlugin Configuration" under section "User configuration" for clarification. 
 5. Configure the passwords for the users configured in collector_conf.json file for API access by executing `storesecret`.  
 Check if execute permissions are there for the `storesecret` binary, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret -c collector_conf.json` command to store the user passwords.  
-6. Check if execute permissions are there for the `startup.sh` script, if not set it as `chmod 777 startup.sh`, then execute `sudo ./startup.sh` command.
-7. The script will run to do the setup and bring up the dashboards. If there are any errors, please correct them and re-run the script.
+6. Use `grafana_cleanup.sh` script to clean grafana, check if execute permissions are there for the `grafana_cleanup.sh` script, if not set it as `chmod 777 grafana_cleanup.sh`.  
+   `sudo ./grafana_cleanup.sh`.
+7. Check if execute permissions are there for the `startup.sh` script, if not set it as `chmod 777 startup.sh`, then execute `sudo ./startup.sh` command.
+8. The script will run to do the setup and bring up the dashboards. If there are any errors, please correct them and re-run the script.
 
-The setup should be ready, and you can access the PM and FM dashboards from your browser at `http://<your_Ip_address>:3000/dashboards`.
-The Grafana dashboards will appear with login prompt and default credentials are `admin` with password `admin`.
+The setup should be ready, and you can access the PM and FM dashboards from your browser at `http://<your_Ip_address>:3000/dashboards`, all the NDAC dashboards will be created inside `Nokia-DAC` directory.  
+The Grafana dashboards will appear with login prompt and default credentials are `admin` with password `admin`.  
 
 * In case the user’s password is updated, execute `sudo ./storesecret -c collector_conf.json` and input the updated password, then execute `sudo ./startup.sh` to restart the modules again.
 
@@ -45,4 +47,12 @@ The Grafana dashboards will appear with login prompt and default credentials are
 
 ````
 NOTE: Refer "Nokia DAC OSS ElasticSearchPlugin Configuration" document to know more details on indices used for storing data.
+````
+
+# Steps to modify NDAC dashboards:
+1. Make a copy of dashboard and save the dashboard title with prefix other than `NDAC`.
+2. Update the new dashboard as per the requirement.
+
+````
+NOTE: Please don't update NDAC dashboards, any modifications will be lost after package update.
 ````

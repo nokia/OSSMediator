@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 IMPROVEMENTS:
 
 * OSSMediatorCollector: Updated `storesecret` module.
+* MediatorSetup:
+  * Added `grafana_cleanup.sh` script to remove NDAC dashboards from grafana.
+  * Update to create the grafana dashboards inside `Nokia-DAC` directory instead of `General` directory.
 
 BUG FIXES:
 

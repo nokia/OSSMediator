@@ -107,7 +107,7 @@ func pushNHGData(filePath string, esConf config.ElasticsearchConf) {
 	index := indexMetaData[nhgData]
 	currTime := time.Now().UTC()
 	for _, nhg := range nhgs {
-		data := nhgDetails{
+		nhgDetail := nhgDetails{
 			NhgID:                    nhg.NhgID,
 			NhgAlias:                 nhg.NhgAlias,
 			DeploymentType:           nhg.DeploymentType,
@@ -120,7 +120,7 @@ func pushNHGData(filePath string, esConf config.ElasticsearchConf) {
 			Timestamp:                currTime,
 		}
 		for _, cluster := range nhg.Clusters {
-			data.Cluster = Cluster{
+			nhgDetail.Cluster = Cluster{
 				ClusterID:                    cluster.ClusterID,
 				ClusterAlias:                 cluster.ClusterAlias,
 				ClusterStatus:                cluster.ClusterStatus,
@@ -136,9 +136,9 @@ func pushNHGData(filePath string, esConf config.ElasticsearchConf) {
 				SliceID:                      cluster.SliceID,
 			}
 			for _, hwSet := range cluster.HwSet {
-				data.Cluster.HwSet = hwSet
-				id := strings.Join([]string{metric, user, data.NhgID, data.Cluster.ClusterID, data.Cluster.HwSet.HwID}, "_")
-				source, _ := json.Marshal(data)
+				nhgDetail.Cluster.HwSet = hwSet
+				id := strings.Join([]string{metric, user, nhgDetail.NhgID, nhgDetail.Cluster.ClusterID, nhgDetail.Cluster.HwSet.HwID}, "_")
+				source, _ := json.Marshal(nhgDetail)
 				postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
 				postData += string(source) + "\n"
 			}

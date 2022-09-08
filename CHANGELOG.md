@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 3.6
+
+BUG FIXES:
+
+* ElasticsearchPlugin: Fix for ignoring pm indices without month and year suffix.
+
 # 3.5
 
 IMPROVEMENTS:

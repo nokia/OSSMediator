@@ -11,12 +11,16 @@ docker_build:
 	@echo "Docker Build..."
 	@echo "..............."
 	@cp ../VERSION .
-	@docker build -t ossmediatorcollector:1 . --network host
-	@docker create --name ossmediatorcollector ossmediatorcollector:1
-	@docker cp ossmediatorcollector:/OSSMediatorCollector/collector-unittest-result.txt .
-	@docker cp ossmediatorcollector:/OSSMediatorCollector/collector-lint-result.txt .
-	@docker cp ossmediatorcollector:/OSSMediatorCollector/coverage.html .
-	@docker rm ossmediatorcollector
+	@docker build -t ossmediatorcollector:$(VERSION) . --network host
+	@docker build --target builder -t collector-builder:1 . --network host
+	@docker create --name collector-builder collector-builder:1
+	@docker cp collector-builder:/OSSMediatorCollector/collector-unittest-result.txt .
+	@docker cp collector-builder:/OSSMediatorCollector/collector-lint-result.txt .
+	@docker cp collector-builder:/OSSMediatorCollector/coverage.html .
+	@mkdir -p bin
+	@docker cp collector-builder:/OSSMediatorCollector/bin/collector ./bin/
+	@docker cp collector-builder:/OSSMediatorCollector/bin/storesecret ./bin/
+	@docker rm collector-builder
 	@echo "docker build completed."
 
 build:
@@ -33,11 +37,6 @@ build_storesecret:
 
 build_package:
 	@echo Creating OSSMediatorCollector package
-	@mkdir -p bin
-	@docker create --name ossmediatorcollector ossmediatorcollector:1
-	@docker cp ossmediatorcollector:/OSSMediatorCollector/bin/collector ./bin/
-	@docker cp ossmediatorcollector:/OSSMediatorCollector/bin/storesecret ./bin/
-	@docker rm ossmediatorcollector
 	@mkdir -p package && mkdir -p package/bin && cp -R resources package && cp bin/* package/bin/ && chmod 777 package/bin/*
 	@cd package && zip -r OSSMediatorCollector-$(VERSION).zip bin resources && rm -rf bin resources
 	@echo Package created at package/OSSMediatorCollector-$(VERSION).zip

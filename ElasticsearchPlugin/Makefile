@@ -11,12 +11,15 @@ docker_build:
 	@echo "Docker Build..."
 	@echo "..............."
 	@cp ../VERSION .
-	@docker build -t elasticsearchplugin:1 . --network host
-	@docker create --name elasticsearchplugin elasticsearchplugin:1
-	@docker cp elasticsearchplugin:/ElasticsearchPlugin/elasticsearchplugin-unittest-result.txt .
-	@docker cp elasticsearchplugin:/ElasticsearchPlugin/elasticsearchplugin-lint-result.txt .
-	@docker cp elasticsearchplugin:/ElasticsearchPlugin/coverage.html .
-	@docker rm elasticsearchplugin
+	@docker build -t elasticsearchplugin:$(VERSION) . --network host
+	@docker build --target builder -t plugin-builder:1 . --network host
+	@docker create --name plugin-builder plugin-builder:1
+	@docker cp plugin-builder:/ElasticsearchPlugin/elasticsearchplugin-unittest-result.txt .
+	@docker cp plugin-builder:/ElasticsearchPlugin/elasticsearchplugin-lint-result.txt .
+	@docker cp plugin-builder:/ElasticsearchPlugin/coverage.html .
+	@mkdir -p bin
+	@docker cp plugin-builder:/ElasticsearchPlugin/bin/elasticsearchplugin ./bin/
+	@docker rm plugin-builder
 	@echo "docker build completed."
 
 build:
@@ -28,10 +31,6 @@ build:
 
 build_package:
 	@echo Creating ElasticsearchPlugin package
-	@mkdir -p bin
-	@docker create --name elasticsearchplugin elasticsearchplugin:1
-	@docker cp elasticsearchplugin:/ElasticsearchPlugin/bin/elasticsearchplugin ./bin/
-	@docker rm elasticsearchplugin
 	@mkdir -p package && mkdir -p package/bin && cp -R resources package && cp bin/elasticsearchplugin package/bin && chmod 777 package/bin/elasticsearchplugin
 	@cd package && zip -r ElasticsearchPlugin-$(VERSION).zip bin resources && rm -rf bin resources
 	@echo Package created at package/ElasticsearchPlugin-$(VERSION).zip

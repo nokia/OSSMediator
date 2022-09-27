@@ -8,6 +8,7 @@ package utils
 
 import (
 	"collector/pkg/config"
+	"encoding/base64"
 	"os"
 	"testing"
 	"time"
@@ -67,6 +68,7 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 		t.Error(err)
 	}
 	defer file.Close()
+	defer os.Remove(tmpFile)
 	_, err = file.Write([]byte(lastDataTime))
 	if err != nil {
 		t.Error(err)
@@ -76,5 +78,100 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 	if startTime != lastDataTime {
 		t.Fail()
 	}
-	t.Log(os.Remove(tmpFile))
+}
+
+func TestReadPassword(t *testing.T) {
+	secretDir := ".secret"
+	err := os.Mkdir(secretDir, os.ModePerm)
+	if err != nil {
+		t.Error(err)
+	}
+
+	emailID := "testuser@nokia.com"
+	tmpFile := secretDir + "/." + emailID
+	file, err := os.Create(tmpFile)
+	if err != nil {
+		t.Error(err)
+	}
+	defer file.Close()
+	defer os.RemoveAll(secretDir)
+
+	encodedPassword := base64.StdEncoding.EncodeToString([]byte("test"))
+	_, err = file.Write([]byte(encodedPassword))
+	if err != nil {
+		t.Error(err)
+	}
+
+	password, err := ReadPassword(emailID)
+	if password != "test" {
+		t.Fail()
+	}
+	if err != nil {
+		t.Fail()
+	}
+}
+
+func TestReadPasswordWithInvalidFile(t *testing.T) {
+	password, err := ReadPassword("testuser@nokia.com")
+	if password != "" {
+		t.Fail()
+	}
+	if err != errorPasswordFileNotFound {
+		t.Fail()
+	}
+}
+
+func TestReadPasswordWithEmptyFile(t *testing.T) {
+	secretDir := ".secret"
+	err := os.Mkdir(secretDir, os.ModePerm)
+	if err != nil {
+		t.Error(err)
+	}
+
+	emailID := "testuser@nokia.com"
+	tmpFile := secretDir + "/." + emailID
+	file, err := os.Create(tmpFile)
+	if err != nil {
+		t.Error(err)
+	}
+	defer file.Close()
+	defer os.RemoveAll(secretDir)
+
+	password, err := ReadPassword(emailID)
+	if password != "" {
+		t.Fail()
+	}
+	if err != errorPasswordRead {
+		t.Fail()
+	}
+}
+
+func TestReadPasswordWithInvalidEncoding(t *testing.T) {
+	secretDir := ".secret"
+	err := os.Mkdir(secretDir, os.ModePerm)
+	if err != nil {
+		t.Error(err)
+	}
+
+	emailID := "testuser@nokia.com"
+	tmpFile := secretDir + "/." + emailID
+	file, err := os.Create(tmpFile)
+	if err != nil {
+		t.Error(err)
+	}
+	defer file.Close()
+	defer os.RemoveAll(secretDir)
+
+	_, err = file.Write([]byte("???"))
+	if err != nil {
+		t.Error(err)
+	}
+
+	password, err := ReadPassword(emailID)
+	if password != "" {
+		t.Fail()
+	}
+	if err != errorPasswordDecoding {
+		t.Fail()
+	}
 }

@@ -34,3 +34,17 @@ RUN chown -R elasticsearch /elasticsearch/elasticsearch-7.0.1/bin/elasticsearch 
 
 # build the go app (ElasticsearchPlugin)
 RUN make build test
+
+# staging: base package for app deployment
+FROM alpine:latest
+
+RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
+
+RUN mkdir -p /plugin/bin
+
+# copy compiled binary from the builder stage
+COPY --from=builder /ElasticsearchPlugin/bin/elasticsearchplugin /plugin/bin/
+
+WORKDIR /plugin/bin
+
+ENTRYPOINT ["./elasticsearchplugin"]

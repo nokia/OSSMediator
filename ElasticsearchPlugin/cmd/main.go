@@ -24,11 +24,12 @@ import (
 )
 
 var (
-	confFile   string
-	logDir     string
-	logLevel   int
-	version    bool
-	appVersion string
+	confFile         string
+	logDir           string
+	logLevel         int
+	version          bool
+	appVersion       string
+	enableConsoleLog bool
 )
 
 func main() {
@@ -92,6 +93,7 @@ func parseFlags() {
 	flag.StringVar(&confFile, "conf_file", "../resources/conf.json", "config file path")
 	flag.StringVar(&logDir, "log_dir", "../log", "Log directory")
 	flag.IntVar(&logLevel, "log_level", 4, "Log level")
+	flag.BoolVar(&enableConsoleLog, "enable_console_log", false, "Enable console logging, if true logs won't be written to file")
 	flag.BoolVar(&version, "v", false, "Prints OSSMediator's version")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: ./elasticsearchplugin [options]\n")
@@ -100,6 +102,7 @@ func parseFlags() {
 		fmt.Fprintf(os.Stderr, "\t-conf_file\n\t\tConfig file path (default \"../resources/conf.json\")\n")
 		fmt.Fprintf(os.Stderr, "\t-log_dir\n\t\tLog Directory (default \"../log\"), logs will be stored in ElasticsearchPlugin.log file.\n")
 		fmt.Fprintf(os.Stderr, "\t-log_level\n\t\tLog Level (default 4). Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
+		fmt.Fprintf(os.Stderr, "\t-enable_console_log\n\t\tEnable console logging, if true logs won't be written to file\n")
 		fmt.Fprintf(os.Stderr, "\t-v\n\t\tPrints OSSMediator's version\n")
 	}
 	flag.Parse()
@@ -107,6 +110,12 @@ func parseFlags() {
 
 //create log file (ElasticsearchPlugin.log) within logDir (in case of failure logs will be written to console)
 func initLogger(logDir string, logLevel int) {
+	if enableConsoleLog {
+		log.SetOutput(os.Stdout)
+		log.SetFormatter(&log.TextFormatter{})
+		log.SetLevel(log.Level(logLevel))
+		return
+	}
 	var err error
 	err = os.MkdirAll(logDir, os.ModePerm)
 	if err != nil {

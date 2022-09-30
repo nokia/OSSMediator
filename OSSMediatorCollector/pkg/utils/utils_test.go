@@ -62,7 +62,7 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 	nhgID := "test_nhg_1"
 	lastDataTime := "2018-03-14T13:55:00+05:30"
 
-	tmpFile := "fmdata" + "_" + user.Email + "_" + nhgID
+	tmpFile := "checkpoints/fmdata" + "_" + user.Email + "_" + nhgID
 	file, err := os.Create(tmpFile)
 	if err != nil {
 		t.Error(err)

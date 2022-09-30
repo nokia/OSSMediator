@@ -1,12 +1,14 @@
 # Staging: for building go app (OSSMediatorCollector)
 FROM golang:1.16 as builder
 
+# download dependencies for build
+RUN go get github.com/jstemmer/go-junit-report
+
 # create required directory for OSSMediatorCollector
 RUN mkdir /OSSMediatorCollector
 
 # copy project directory to be built
 COPY . /OSSMediatorCollector/.
-COPY ./VERSION ../.
 
 # set the working directory
 WORKDIR /OSSMediatorCollector/

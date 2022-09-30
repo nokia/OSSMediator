@@ -30,18 +30,12 @@ var (
 	skipTLS          bool
 	logDir           string
 	logLevel         int
-	version          bool
-	appVersion       string
 	enableConsoleLog bool
 )
 
 func main() {
 	//Read command line options
 	parseFlags()
-	if version {
-		fmt.Println(appVersion)
-		os.Exit(0)
-	}
 
 	//initialize logger
 	initLogger(logDir, logLevel)
@@ -76,6 +70,12 @@ func main() {
 		}
 	}
 
+	log.Info("Creating checkpoints directory")
+	err = os.Mkdir("checkpoints", os.ModePerm)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Fatal("Unable to create checkpoints folder")
+	}
+
 	//refreshing access token before expiry
 	for _, user := range config.Conf.Users {
 		go ndacapis.RefreshToken(user)
@@ -105,7 +105,6 @@ func parseFlags() {
 	flag.StringVar(&logDir, "log_dir", "../log", "Log directory")
 	flag.IntVar(&logLevel, "log_level", 4, "Log level")
 	flag.BoolVar(&enableConsoleLog, "enable_console_log", false, "Enable console logging, if true logs won't be written to file")
-	flag.BoolVar(&version, "v", false, "Prints OSSMediator's version")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: ./collector [options]\n")
 		fmt.Fprintf(os.Stderr, "Options:\n")
@@ -116,7 +115,6 @@ func parseFlags() {
 		fmt.Fprintf(os.Stderr, "\t-log_level int\n\t\tLog Level (default 4). Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
 		fmt.Fprintf(os.Stderr, "\t-skip_tls\n\t\tSkip TLS Authentication\n")
 		fmt.Fprintf(os.Stderr, "\t-enable_console_log\n\t\tEnable console logging, if true logs won't be written to file\n")
-		fmt.Fprintf(os.Stderr, "\t-v\n\t\tPrints OSSMediator's version\n")
 	}
 	flag.Parse()
 }

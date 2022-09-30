@@ -74,12 +74,17 @@ func TestStoreLastReceivedDataTimeForFM(t *testing.T) {
 	user := &config.User{Email: "testuser@nokia.com"}
 	api := &config.APIConf{API: "/fmdata", Type: "ACTIVE", MetricType: "DAC"}
 	nhgID := "test_nhg_1"
+	err = os.Mkdir("checkpoints", os.ModePerm)
+	if err != nil {
+		t.Error(err)
+	}
+
 	err = StoreLastReceivedDataTime(user, data, api, nhgID, 123)
 	if err != nil {
 		t.Error(err)
 	}
 	//Reading LastReceivedFile value from file
-	fileName := "fmdata" + "_" + api.MetricType + "_" + api.Type + "_" + user.Email + "_" + nhgID
+	fileName := "checkpoints/fmdata" + "_" + api.MetricType + "_" + api.Type + "_" + user.Email + "_" + nhgID
 	content, err := ioutil.ReadFile(fileName)
 	defer os.Remove(fileName)
 	if err != nil && len(content) == 0 && string(content) != "2020-10-30T13:39:00Z" {
@@ -107,7 +112,7 @@ func TestStoreLastReceivedDataTimeForPM(t *testing.T) {
 		t.Error(err)
 	}
 	//Reading LastReceivedFile value from file
-	fileName := "pmdata" + "_" + user.Email + "_" + nhgID
+	fileName := "checkpoints/pmdata" + "_" + user.Email + "_" + nhgID
 	content, err := ioutil.ReadFile(fileName)
 	defer os.Remove(fileName)
 	if err != nil && len(content) == 0 && string(content) != "2020-10-30T13:39:00Z" {

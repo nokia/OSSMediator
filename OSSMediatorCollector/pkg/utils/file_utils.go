@@ -31,7 +31,6 @@ const (
 	//File extension for writing response
 	fileExtension = ".json"
 
-	//
 	fmdataResponseType = "fmdata"
 	pmdataResponseType = "pmdata"
 	nhgResponseType    = "network-hardware-groups"
@@ -73,11 +72,11 @@ func writeFile(fileName string, data []byte) error {
 //CreateResponseDirectory creates directory named path, along with any necessary parents.
 // If the directory creation fails it will terminate the program.
 func CreateResponseDirectory(basePath string, api string) {
-	path := basePath + "/" + path.Base(api)
-	log.Infof("Creating %s directory", path)
-	err := os.MkdirAll(path, os.ModePerm)
+	dirPath := basePath + "/" + path.Base(api)
+	log.Infof("Creating %s directory", dirPath)
+	err := os.MkdirAll(dirPath, os.ModePerm)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Fatalf("Error while creating %s", path)
+		log.WithFields(log.Fields{"error": err}).Fatalf("Error while creating %s", dirPath)
 	}
 }
 
@@ -135,7 +134,7 @@ func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id 
 //retrieves the last received metric time from file per API
 func getLastReceivedDataTime(user *config.User, api *config.APIConf, nhgID string) string {
 	//Reading start time value from file
-	fileName := path.Base(api.API)
+	fileName := "checkpoints/" + path.Base(api.API)
 	if api.MetricType != "" {
 		fileName = fileName + "_" + api.MetricType
 	}
@@ -197,7 +196,7 @@ func StoreLastReceivedDataTime(user *config.User, data interface{}, api *config.
 	sort.Slice(eventTimes, func(i, j int) bool { return eventTimes[i].Before(eventTimes[j]) })
 	latestTime := truncateSeconds(eventTimes[len(eventTimes)-1]).Format(time.RFC3339)
 
-	fileName := path.Base(api.API)
+	fileName := "checkpoints/" + path.Base(api.API)
 	if api.MetricType != "" {
 		fileName = fileName + "_" + api.MetricType
 	}

@@ -18,9 +18,11 @@ RUN mkdir /elasticsearch/ && cd /elasticsearch && \
 # create required directory for ElasticsearchPlugin
 RUN mkdir -p /ElasticsearchPlugin/ /elasticsearch/elasticsearch-7.0.1/data/
 
+# download dependencies for build
+RUN go get github.com/jstemmer/go-junit-report
+
 # copy project directory to be built
 COPY . /ElasticsearchPlugin/.
-COPY ./VERSION ../.
 
 # set the working directory
 WORKDIR /ElasticsearchPlugin/

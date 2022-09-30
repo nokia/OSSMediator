@@ -1,5 +1,4 @@
 SHELL := /bin/bash
-VERSION = $(shell cat ../VERSION)
 
 all: clean docker_build
 
@@ -10,13 +9,9 @@ docker_build:
 	@echo ""
 	@echo "Docker Build..."
 	@echo "..............."
-	@cp ../VERSION .
-	@docker build -t elasticsearchplugin:$(VERSION) . --network host
+	@docker build -t elasticsearchplugin:$(shell cat ../VERSION) . --network host
 	@docker build --target builder -t plugin-builder:1 . --network host
 	@docker create --name plugin-builder plugin-builder:1
-	@docker cp plugin-builder:/ElasticsearchPlugin/elasticsearchplugin-unittest-result.txt .
-	@docker cp plugin-builder:/ElasticsearchPlugin/elasticsearchplugin-lint-result.txt .
-	@docker cp plugin-builder:/ElasticsearchPlugin/coverage.html .
 	@mkdir -p bin
 	@docker cp plugin-builder:/ElasticsearchPlugin/bin/elasticsearchplugin ./bin/
 	@docker rm plugin-builder
@@ -24,29 +19,28 @@ docker_build:
 
 build:
 	@echo Building ElasticsearchPlugin
-	@go mod download && go build -ldflags "-X main.appVersion=$(VERSION)" -o bin/elasticsearchplugin cmd/main.go || (echo "ElasticsearchPlugin build failed"; exit 1)
+	@go mod download && go build -o bin/elasticsearchplugin cmd/main.go || (echo "ElasticsearchPlugin build failed"; exit 1)
 	@echo Running go lint
-	@go vet ./... > elasticsearchplugin-lint-result.txt
+	@go vet ./... > lint-report.xml
 	@echo Build Successful.
 
 build_package:
 	@echo Creating ElasticsearchPlugin package
 	@mkdir -p package && mkdir -p package/bin && cp -R resources package && cp bin/elasticsearchplugin package/bin && chmod 777 package/bin/elasticsearchplugin
-	@cd package && zip -r ElasticsearchPlugin-$(VERSION).zip bin resources && rm -rf bin resources
-	@echo Package created at package/ElasticsearchPlugin-$(VERSION).zip
+	@cd package && zip -r ElasticsearchPlugin-$(shell cat ../VERSION).zip bin resources && rm -rf bin resources
+	@echo Package created at package/ElasticsearchPlugin-$(shell cat ../VERSION).zip
 
 test:
 	@echo "Started :ElasticsearchPlugin Tests"
 	@echo "---> Starting ElasticSearch"
 	@runuser -l elasticsearch -c 'cd /elasticsearch/elasticsearch-7.0.1/bin && nohup bash -c "./elasticsearch -E http.port=9299 -E transport.tcp.port=9399 &" && sleep 20'
 	@echo Running Tests
-	@go test ./... -v -coverprofile=coverage.out > elasticsearchplugin-unittest-result.txt || echo "ElasticsearchPlugin unit tests failed."
+	@go test ./... -v -coverprofile=coverage.out | tee plugin_test.log | go-junit-report > unittest-result.xml || echo "ElasticsearchPlugin unit tests failed."
 	@echo Running go coverage
 	@go tool cover -func=coverage.out
-	@go tool cover -html=coverage.out -o coverage.html
 	@echo "Completed :ElasticsearchPlugin Tests"
 
 clean:
 	@echo "Started :ElasticsearchPlugin CleanUp"
-	@rm -rf package bin/elasticsearchplugin VERSION elasticsearchplugin-unittest-result.txt elasticsearchplugin-lint-result.txt
+	@rm -rf bin package VERSION
 	@echo "Completed :ElasticsearchPlugin CleanUp"

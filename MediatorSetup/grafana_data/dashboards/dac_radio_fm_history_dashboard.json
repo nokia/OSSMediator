@@ -21,17 +21,19 @@
       }
     ]
   },
-  "description": "NDAC CORE FM History alarms dashboard",
+  "description": "NDAC Radio FM History alarms dashboard",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1658907267089,
+  "iteration": 1658907584879,
   "links": [
     {
       "icon": "external link",
+      "keepTime": false,
       "tags": [
-        "COREActiveAlarms"
+        "ActiveAlarmDashboard"
       ],
+      "targetBlank": false,
       "type": "dashboards"
     },
     {
@@ -83,22 +85,20 @@
     {
       "asDropdown": true,
       "icon": "external link",
-      "keepTime": false,
       "tags": [
-        "RadioAlarms"
+        "DACAlarms"
       ],
-      "targetBlank": false,
-      "title": "Radio Alarms",
+      "title": "DAC Alarms",
       "type": "dashboards"
     },
     {
       "asDropdown": true,
       "icon": "external link",
       "tags": [
-        "DACAlarms"
+        "COREAlarms"
       ],
       "targetBlank": false,
-      "title": "DAC Alarms",
+      "title": "CORE Alarms",
       "type": "dashboards"
     },
     {
@@ -132,7 +132,7 @@
         "mode": "markdown"
       },
       "pluginVersion": "8.5.2",
-      "title": "NDAC CORE FM HISTORY ALARMS DASHBOARD",
+      "title": "NDAC FM HISTORY ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
     },
@@ -216,7 +216,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "000000005"
+            "uid": "000000003"
           },
           "metrics": [
             {
@@ -227,7 +227,7 @@
               "type": "count"
             }
           ],
-          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:CRITICAL AND fm_data.alarm_state:$alarmstate",
+          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:critical AND fm_data.alarm_state:$alarmstate",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -314,7 +314,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "000000005"
+            "uid": "000000003"
           },
           "metrics": [
             {
@@ -323,7 +323,7 @@
               "type": "count"
             }
           ],
-          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:MAJOR AND fm_data.alarm_state:$alarmstate",
+          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:major AND fm_data.alarm_state:$alarmstate",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -410,7 +410,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "000000005"
+            "uid": "000000003"
           },
           "metrics": [
             {
@@ -419,7 +419,7 @@
               "type": "count"
             }
           ],
-          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:MINOR AND fm_data.alarm_state:$alarmstate",
+          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:minor AND fm_data.alarm_state:$alarmstate",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -506,7 +506,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "000000005"
+            "uid": "000000003"
           },
           "metrics": [
             {
@@ -515,7 +515,7 @@
               "type": "count"
             }
           ],
-          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:WARNING AND fm_data.alarm_state:$alarmstate",
+          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:warning AND fm_data.alarm_state:$alarmstate",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -525,7 +525,6 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
         "uid": "$datasource"
       },
       "description": "Provides the count of cleared alarms",
@@ -563,11 +562,11 @@
         "x": 16,
         "y": 2
       },
-      "id": 15,
+      "id": 11,
       "links": [],
       "options": {
         "colorMode": "value",
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
@@ -595,10 +594,6 @@
               "type": "terms"
             }
           ],
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
-          },
           "metrics": [
             {
               "field": "select field",
@@ -606,7 +601,7 @@
               "type": "count"
             }
           ],
-          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.alarm_state:CLEARED",
+          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.alarm_state:CLEARED  or fm_data.severity:cleared",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -654,11 +649,11 @@
         "x": 20,
         "y": 2
       },
-      "id": 11,
+      "id": 15,
       "links": [],
       "options": {
         "colorMode": "value",
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
@@ -688,7 +683,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "000000005"
+            "uid": "000000003"
           },
           "metrics": [
             {
@@ -697,7 +692,7 @@
               "type": "count"
             }
           ],
-          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.alarm_state:ACTIVE",
+          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.alarm_state:ACTIVE",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -708,54 +703,69 @@
     {
       "columns": [
         {
-          "$$hashKey": "object:849",
+          "$$hashKey": "object:146",
           "text": "fm_data.event_time",
           "value": "fm_data.event_time"
         },
         {
-          "$$hashKey": "object:850",
+          "$$hashKey": "object:147",
           "text": "fm_data.last_updated_time",
           "value": "fm_data.last_updated_time"
         },
         {
-          "$$hashKey": "object:852",
+          "$$hashKey": "object:148",
+          "text": "fm_data_source.serial_no",
+          "value": "fm_data_source.serial_no"
+        },
+        {
+          "$$hashKey": "object:149",
+          "text": "fm_data_source.hw_alias",
+          "value": "fm_data_source.hw_alias"
+        },
+        {
+          "$$hashKey": "object:150",
           "text": "fm_data.alarm_identifier",
           "value": "fm_data.alarm_identifier"
         },
         {
-          "$$hashKey": "object:853",
+          "$$hashKey": "object:151",
           "text": "fm_data.severity",
           "value": "fm_data.severity"
         },
         {
-          "$$hashKey": "object:854",
+          "$$hashKey": "object:152",
+          "text": "fm_data.specific_problem",
+          "value": "fm_data.specific_problem"
+        },
+        {
+          "$$hashKey": "object:153",
           "text": "fm_data.alarm_text",
           "value": "fm_data.alarm_text"
         },
         {
-          "$$hashKey": "object:855",
+          "$$hashKey": "object:154",
+          "text": "fm_data.probable_cause",
+          "value": "fm_data.probable_cause"
+        },
+        {
+          "$$hashKey": "object:155",
+          "text": "fm_data_source.dn",
+          "value": "fm_data_source.dn"
+        },
+        {
+          "$$hashKey": "object:156",
+          "text": "fm_data_source.nhg_alias",
+          "value": "fm_data_source.nhg_alias"
+        },
+        {
+          "$$hashKey": "object:157",
           "text": "fm_data.alarm_state",
           "value": "fm_data.alarm_state"
         },
         {
-          "$$hashKey": "object:856",
-          "text": "fm_data_source.nhg_id",
-          "value": "fm_data_source.nhg_id"
-        },
-        {
-          "$$hashKey": "object:857",
-          "text": "fm_data_source.edge_hostname",
-          "value": "fm_data_source.edge_hostname"
-        },
-        {
-          "$$hashKey": "object:858",
-          "text": "fm_data_source.edge_id",
-          "value": "fm_data_source.edge_id"
-        },
-        {
-          "$$hashKey": "object:1149",
-          "text": "fm_data_source.dn",
-          "value": "fm_data_source.dn"
+          "$$hashKey": "object:158",
+          "text": "fm_data.additional_text",
+          "value": "fm_data.additional_text"
         }
       ],
       "datasource": {
@@ -783,7 +793,7 @@
       },
       "styles": [
         {
-          "$$hashKey": "object:869",
+          "$$hashKey": "object:172",
           "alias": "EventTime",
           "align": "",
           "colors": [
@@ -800,7 +810,7 @@
           "unit": "short"
         },
         {
-          "$$hashKey": "object:870",
+          "$$hashKey": "object:173",
           "alias": "LastUpdatedTime",
           "align": "",
           "colors": [
@@ -817,8 +827,8 @@
           "unit": "short"
         },
         {
-          "$$hashKey": "object:871",
-          "alias": "EdgeHostName",
+          "$$hashKey": "object:174",
+          "alias": "SerialNo",
           "align": "",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -828,7 +838,7 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data_source.edge_hostname",
+          "pattern": "fm_data_source.serial_no",
           "preserveFormat": false,
           "sanitize": false,
           "thresholds": [],
@@ -836,8 +846,8 @@
           "unit": "short"
         },
         {
-          "$$hashKey": "object:872",
-          "alias": "DN",
+          "$$hashKey": "object:175",
+          "alias": "HWAlias",
           "align": "",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -847,13 +857,13 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data_source.dn",
+          "pattern": "fm_data_source.hw_alias",
           "thresholds": [],
           "type": "string",
           "unit": "short"
         },
         {
-          "$$hashKey": "object:873",
+          "$$hashKey": "object:176",
           "alias": "AlarmID",
           "align": "",
           "colors": [
@@ -870,7 +880,7 @@
           "unit": "short"
         },
         {
-          "$$hashKey": "object:874",
+          "$$hashKey": "object:177",
           "alias": "Severity",
           "align": "",
           "colors": [
@@ -887,7 +897,25 @@
           "unit": "short"
         },
         {
-          "$$hashKey": "object:875",
+          "$$hashKey": "object:178",
+          "alias": "SpecificProblem",
+          "align": "",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "fm_data.specific_problem",
+          "preserveFormat": false,
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:179",
           "alias": "AlarmText",
           "align": "",
           "colors": [
@@ -904,8 +932,8 @@
           "unit": "short"
         },
         {
-          "$$hashKey": "object:876",
-          "alias": "EdgeID",
+          "$$hashKey": "object:180",
+          "alias": "AdditionalText",
           "align": "",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -915,14 +943,16 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data_source.edge_id",
+          "pattern": "fm_data.additional_text",
+          "preserveFormat": false,
+          "sanitize": false,
           "thresholds": [],
           "type": "string",
           "unit": "short"
         },
         {
-          "$$hashKey": "object:877",
-          "alias": "NHGID",
+          "$$hashKey": "object:181",
+          "alias": "ProbableCause",
           "align": "",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -932,13 +962,47 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data_source.nhg_id",
+          "pattern": "fm_data.probable_cause",
           "thresholds": [],
           "type": "string",
           "unit": "short"
         },
         {
-          "$$hashKey": "object:878",
+          "$$hashKey": "object:182",
+          "alias": "DN",
+          "align": "",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "fm_data_source.dn",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:183",
+          "alias": "NHGName",
+          "align": "",
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "fm_data_source.nhg_alias",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "$$hashKey": "object:184",
           "alias": "AlarmState",
           "align": "auto",
           "colors": [
@@ -960,7 +1024,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "000000005"
+            "uid": "000000003"
           },
           "metrics": [
             {
@@ -973,7 +1037,7 @@
               "type": "raw_document"
             }
           ],
-          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:$severity AND fm_data.alarm_state:$alarmstate",
+          "query": "fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:$severity AND fm_data.alarm_state:$alarmstate",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -987,16 +1051,16 @@
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
-    "COREAlarms",
-    "COREHistoryAlarms"
+    "HistoryAlarmDashboard",
+    "RadioAlarms"
   ],
   "templating": {
     "list": [
       {
         "current": {
           "selected": false,
-          "text": "dac-core-fm",
-          "value": "dac-core-fm"
+          "text": "dac-radio-fm",
+          "value": "dac-radio-fm"
         },
         "hide": 2,
         "includeAll": false,
@@ -1006,7 +1070,7 @@
         "options": [],
         "query": "elasticsearch",
         "refresh": 1,
-        "regex": "dac-core-fm",
+        "regex": "dac-radio-fm",
         "skipUrlSync": false,
         "type": "datasource"
       },
@@ -1036,6 +1100,37 @@
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "$datasource"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.dn.keyword\", \"query\":\"fm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Access Point ID",
+        "multi": true,
+        "name": "apid",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"fm_data_source.dn.keyword\", \"query\":\"fm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "refresh": 2,
+        "regex": ".*BTS-(\\d+).*",
+        "skipUrlSync": false,
+        "sort": 1,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -1132,7 +1227,8 @@
     ]
   },
   "timezone": "browser",
-  "title": "NDAC CORE FM Alarms History Dashboard",
+  "title": "NDAC Radio FM Alarms History Dashboard",
   "version": 1,
+  "uid": "radiofmhist",
   "weekStart": ""
 }

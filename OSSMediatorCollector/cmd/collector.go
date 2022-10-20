@@ -70,8 +70,9 @@ func main() {
 		}
 	}
 
+	checkpointPath := "./checkpoints"
 	log.Info("Creating checkpoints directory")
-	err = os.Mkdir("checkpoints", os.ModePerm)
+	err = os.MkdirAll(checkpointPath, os.ModePerm)
 	if err != nil {
 		log.WithFields(log.Fields{"error": err}).Fatal("Unable to create checkpoints folder")
 	}

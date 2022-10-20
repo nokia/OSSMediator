@@ -21,16 +21,16 @@
       }
     ]
   },
-  "description": "NDAC Application History alarms dashboard",
+  "description": "NDAC CORE FM History alarms dashboard",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1658907256827,
+  "iteration": 1658907267089,
   "links": [
     {
       "icon": "external link",
       "tags": [
-        "ApplActiveAlarms"
+        "COREActiveAlarms"
       ],
       "type": "dashboards"
     },
@@ -104,16 +104,12 @@
     {
       "asDropdown": true,
       "icon": "external link",
-      "includeVars": false,
-      "keepTime": false,
       "tags": [
-        "COREAlarms"
+        "ApplAlarms"
       ],
       "targetBlank": false,
-      "title": "CORE Alarms",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
+      "title": "Application Alarms",
+      "type": "dashboards"
     }
   ],
   "liveNow": false,
@@ -136,7 +132,7 @@
         "mode": "markdown"
       },
       "pluginVersion": "8.5.2",
-      "title": "NDAC APPLICATION HISTORY ALARMS DASHBOARD",
+      "title": "NDAC CORE FM HISTORY ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
     },
@@ -220,7 +216,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "vm51JCX7k"
+            "uid": "000000005"
           },
           "metrics": [
             {
@@ -318,7 +314,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "vm51JCX7k"
+            "uid": "000000005"
           },
           "metrics": [
             {
@@ -414,7 +410,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "vm51JCX7k"
+            "uid": "000000005"
           },
           "metrics": [
             {
@@ -510,7 +506,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "vm51JCX7k"
+            "uid": "000000005"
           },
           "metrics": [
             {
@@ -567,7 +563,7 @@
         "x": 16,
         "y": 2
       },
-      "id": 11,
+      "id": 15,
       "links": [],
       "options": {
         "colorMode": "value",
@@ -601,7 +597,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "vm51JCX7k"
+            "uid": "000000005"
           },
           "metrics": [
             {
@@ -658,7 +654,7 @@
         "x": 20,
         "y": 2
       },
-      "id": 15,
+      "id": 11,
       "links": [],
       "options": {
         "colorMode": "value",
@@ -692,7 +688,7 @@
           ],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "vm51JCX7k"
+            "uid": "000000005"
           },
           "metrics": [
             {
@@ -964,7 +960,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "elasticsearch",
-            "uid": "vm51JCX7k"
+            "uid": "000000005"
           },
           "metrics": [
             {
@@ -991,16 +987,16 @@
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
-    "ApplAlarms",
-    "ApplHistoryAlarms"
+    "COREAlarms",
+    "COREHistoryAlarms"
   ],
   "templating": {
     "list": [
       {
         "current": {
           "selected": false,
-          "text": "dac-application-fm",
-          "value": "dac-application-fm"
+          "text": "dac-core-fm",
+          "value": "dac-core-fm"
         },
         "hide": 2,
         "includeAll": false,
@@ -1010,7 +1006,7 @@
         "options": [],
         "query": "elasticsearch",
         "refresh": 1,
-        "regex": "dac-application-fm",
+        "regex": "dac-core-fm",
         "skipUrlSync": false,
         "type": "datasource"
       },
@@ -1136,7 +1132,8 @@
     ]
   },
   "timezone": "browser",
-  "title": "NDAC Application Alarms History Dashboard",
+  "title": "NDAC CORE FM Alarms History Dashboard",
   "version": 1,
+  "uid": "corefmhist",
   "weekStart": ""
 }

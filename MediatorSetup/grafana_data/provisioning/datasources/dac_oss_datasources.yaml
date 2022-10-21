@@ -11,6 +11,7 @@ datasources:
       timeField: "pm_data_source.end_timestamp"
       esVersion: 70
       tlsSkipVerify: true
+    editable: true
       
   - name: dac-radio-5g-pm
     type: elasticsearch
@@ -22,6 +23,7 @@ datasources:
       timeField: "pm_data_source.end_timestamp"
       esVersion: 70
       tlsSkipVerify: true
+    editable: true
     
   - name: dac-radio-fm
     type: elasticsearch
@@ -33,6 +35,7 @@ datasources:
       timeField: "fm_data.event_time"
       esVersion: 70
       tlsSkipVerify: true
+    editable: true
     
   - name: dac-fm
     type: elasticsearch
@@ -44,6 +47,7 @@ datasources:
       timeField: "fm_data.event_time"
       esVersion: 70
       tlsSkipVerify: true
+    editable: true
 
   - name: dac-core-fm
     type: elasticsearch
@@ -55,6 +59,7 @@ datasources:
       timeField: "fm_data.event_time"
       esVersion: 70
       tlsSkipVerify: true
+    editable: true
 
   - name: dac-application-fm
     type: elasticsearch
@@ -66,6 +71,7 @@ datasources:
       timeField: "fm_data.event_time"
       esVersion: 70
       tlsSkipVerify: true
+    editable: true
 
   - name: dac-core-pm
     type: elasticsearch
@@ -77,6 +83,7 @@ datasources:
       timeField: "pm_data_source.timestamp"
       esVersion: 70
       tlsSkipVerify: true
+    editable: true
 
   - name: dac-edge-pm
     type: elasticsearch
@@ -88,3 +95,4 @@ datasources:
       timeField: "pm_data_source.timestamp"
       esVersion: 70
       tlsSkipVerify: true
+    editable: true

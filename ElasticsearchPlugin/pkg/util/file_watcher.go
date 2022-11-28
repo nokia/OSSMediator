@@ -36,7 +36,7 @@ func AddWatcher(conf config.Config) error {
 		if sourceDir == "" {
 			return fmt.Errorf("source directory path can't be empty")
 		}
-		if _, err := os.Stat(sourceDir); os.IsNotExist(err) {
+		if _, err = os.Stat(sourceDir); os.IsNotExist(err) {
 			return fmt.Errorf("source directory %s not found, error: %v", sourceDir, err)
 		}
 		files, err := ioutil.ReadDir(sourceDir)

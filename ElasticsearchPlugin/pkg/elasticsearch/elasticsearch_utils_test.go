@@ -320,7 +320,7 @@ func TestPushFailedDataToElasticsearch(t *testing.T) {
 
 func searchOnElastic(indices []string) (string, error) {
 	searchURL := elasticsearchURL + "/" + strings.Join(indices, ",") + "/_search"
-	resp, err := httpCall(http.MethodGet, searchURL, "", "", "", nil)
+	resp, err := httpCall(http.MethodGet, searchURL, "", "", "", nil, defaultTimeout)
 	if err != nil {
 		return "", err
 	}
@@ -447,7 +447,7 @@ func TestDeleteOldIndicesFormElasticsearch(t *testing.T) {
 	testIndices := []string{"4g-pm-" + indexSuffix, "5g-pm-" + indexSuffix}
 	for _, index := range testIndices {
 		indexCreateURL := elasticsearchURL + "/" + index
-		_, err := httpCall(http.MethodPut, indexCreateURL, "", "", "", nil)
+		_, err := httpCall(http.MethodPut, indexCreateURL, "", "", "", nil, defaultTimeout)
 		if err != nil {
 			t.Error(err)
 		}
@@ -481,5 +481,101 @@ func TestGetNextTickDuration(t *testing.T) {
 	nextTick := getNextTickDuration()
 	if nextTick != time.Hour {
 		t.Fail()
+	}
+}
+
+func TestAddCorePMMappingInvalidAddress(t *testing.T) {
+	esConf := config.ElasticsearchConf{
+		URL: elasticsearchURL,
+	}
+
+	deleteIndices([]string{"core-pm"}, esConf)
+	time.Sleep(1 * time.Second)
+	esConf.URL = "http://localhost:12345"
+
+	AddCorePMMapping(esConf)
+
+	_, err := searchOnElastic([]string{"core-pm"})
+	if err != nil && !strings.Contains(err.Error(), "status: 404 Not Found") {
+		t.Fail()
+	}
+}
+
+func TestAddCorePMMapping(t *testing.T) {
+	esConf := config.ElasticsearchConf{
+		URL: elasticsearchURL,
+	}
+
+	deleteIndices([]string{"core-pm"}, esConf)
+	time.Sleep(1 * time.Second)
+
+	AddCorePMMapping(esConf)
+
+	resp, err := getCorePMMapping("core-pm", "pm_data.*", esConf)
+	if err != nil {
+		t.Error(err)
+	}
+
+	if strings.Contains(string(resp), "long") {
+		t.Fail()
+	}
+
+	//try to add mapping again
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+	AddCorePMMapping(esConf)
+	if !strings.Contains(buf.String(), "Found correct mapping for core-pm") {
+		t.Fail()
+	}
+
+	deleteIndices([]string{"core-pm"}, esConf)
+}
+
+func TestAddCorePMMappingWithInvalidMapping(t *testing.T) {
+	esConf := config.ElasticsearchConf{
+		URL: elasticsearchURL,
+	}
+
+	testData := `{
+		"@timestamp": "2022-11-21T13:12:00",
+		"pm_data": {
+		"ndac_rr_mcn_ue_ul_rate4": 0
+	},
+		"pm_data_source": {
+		"edge_hostname": "",
+			"edge_id": "CZ221005N0::HPE::EL-1000",
+			"timestamp": "2022-11-21T09:54:00Z"
+	}
+	}`
+
+	url := elasticsearchURL + "/core-pm/_doc"
+	_, err := httpCall(http.MethodPost, url, esConf.User, esConf.Password, testData, nil, defaultTimeout)
+	if err != nil {
+		t.Error(err)
+	}
+	time.Sleep(100 * time.Millisecond)
+
+	AddCorePMMapping(esConf)
+
+	url = elasticsearchURL + "/core-pm/_doc"
+	_, err = httpCall(http.MethodPost, url, esConf.User, esConf.Password, testData, nil, defaultTimeout)
+	if err != nil {
+		t.Error(err)
+	}
+	resp, err := getCorePMMapping("core-pm", "pm_data.*", esConf)
+	if err != nil {
+		t.Error(err)
+	}
+
+	if strings.Contains(string(resp), "long") {
+		t.Fail()
+	}
+
+	_, err = searchOnElastic([]string{"core-pm-temp"})
+	if err == nil {
+		t.Error(err)
 	}
 }

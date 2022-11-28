@@ -43,6 +43,9 @@ func main() {
 		log.WithFields(log.Fields{"error": err}).Fatal("Error while reading config")
 	}
 
+	//add elasticsearch mapping for core-pm index
+	elasticsearch.AddCorePMMapping(conf.ElasticsearchConf)
+
 	//Add watcher to the PM/FM source directory
 	err = util.AddWatcher(conf)
 	if err != nil {

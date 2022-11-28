@@ -27,7 +27,7 @@ docker run --name "ndac_oss_elasticsearch" -t -d -p 9200:9200 -p 9300:9300 --uli
 
 mkdir -p grafana_storage
 chown 472:472 grafana_storage/
-docker run -d --name "ndac_grafana" --network host -v $(pwd)/grafana_storage:/var/lib/grafana -v $(pwd)/grafana_data/provisioning/dashboards:/etc/grafana/provisioning/dashboards -v $(pwd)/grafana_data/provisioning/datasources:/etc/grafana/provisioning/datasources -v $(pwd)/grafana_data/dashboards:/var/lib/grafana/dashboards grafana/grafana-oss:8.5.9
+docker run -d --name "ndac_grafana" --network host -v $(pwd)/grafana_storage:/var/lib/grafana -v $(pwd)/grafana_data/provisioning/dashboards:/etc/grafana/provisioning/dashboards -v $(pwd)/grafana_data/provisioning/datasources:/etc/grafana/provisioning/datasources -v $(pwd)/grafana_data/dashboards:/etc/grafana/dashboards grafana/grafana-oss:8.5.9
 
 docker run -d --name "ndac_oss_collector" --network host -v $(pwd)/reports:/reports  -v $(pwd)/collector/log:/collector/log -v $(pwd)/collector/checkpoints:/collector/bin/checkpoints -v $(pwd)/.secret:/collector/bin/.secret -v $(pwd)/collector_conf.json:/collector/resources/conf.json ossmediatorcollector:3.7-SNAPSHOT
 sleep 20

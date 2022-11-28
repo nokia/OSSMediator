@@ -52,8 +52,8 @@ var (
 
 const (
 	//Timeout duration for HTTP calls
-	timeout       = 60 * time.Second
-	retryDuration = 5 * time.Minute
+	defaultTimeout = 60 * time.Second
+	retryDuration  = 5 * time.Minute
 
 	elkBulkAPI           = "/_bulk"
 	elkDeleteAPI         = "/_delete_by_query"
@@ -89,7 +89,6 @@ func newNetClient() *http.Client {
 		}
 		netClient = &http.Client{
 			Transport: netTransport,
-			Timeout:   timeout,
 		}
 	})
 
@@ -113,7 +112,7 @@ func PushData(filePath string, esConf config.ElasticsearchConf) {
 }
 
 func pushData(elkURL, elkUser, elkPassword string, data string, filePath string) {
-	_, err := httpCall(http.MethodPost, elkURL, elkUser, elkPassword, data, nil)
+	_, err := httpCall(http.MethodPost, elkURL, elkUser, elkPassword, data, nil, defaultTimeout)
 	if err != nil {
 		log.WithFields(log.Fields{"Error": err, "url": elkURL, "file": filePath}).Error("Unable to push data to elasticsearch, push to elasticsearch will be retried")
 		err = retryPushData(elkURL, elkUser, elkPassword, data)
@@ -126,7 +125,7 @@ func pushData(elkURL, elkUser, elkPassword string, data string, filePath string)
 	log.Infof("Data from %s pushed to elasticsearch successfully", filePath)
 }
 
-func httpCall(httpMethod, elkURL, elkUser, elkPassword string, data string, queryParams map[string]string) ([]byte, error) {
+func httpCall(httpMethod, elkURL, elkUser, elkPassword string, data string, queryParams map[string]string, timeout time.Duration) ([]byte, error) {
 	request, err := http.NewRequest(httpMethod, elkURL, bytes.NewBuffer([]byte(data)))
 	if err != nil {
 		return nil, err
@@ -145,12 +144,14 @@ func httpCall(httpMethod, elkURL, elkUser, elkPassword string, data string, quer
 		request.URL.RawQuery = query.Encode()
 	}
 
-	response, err := newNetClient().Do(request)
+	client := newNetClient()
+	client.Timeout = timeout
+	response, err := client.Do(request)
 	if err != nil {
 		return nil, err
 	}
 	defer response.Body.Close()
-	if response.StatusCode != http.StatusOK {
+	if !(response.StatusCode >= 200 && response.StatusCode <= 299) {
 		return nil, fmt.Errorf("Received response' status code: %d, status: %s", response.StatusCode, response.Status)
 	}
 
@@ -165,7 +166,7 @@ func retryPushData(elkURL, elkUser, elkPassword string, data string) error {
 	var err error
 	for i := 0; i < maxRetryAttempts; i++ {
 		log.WithFields(log.Fields{"url": elkURL}).Error("retrying push data to elasticsearch")
-		_, err = httpCall(http.MethodPost, elkURL, elkUser, elkPassword, data, nil)
+		_, err = httpCall(http.MethodPost, elkURL, elkUser, elkPassword, data, nil, defaultTimeout)
 		if err == nil {
 			return nil
 		}
@@ -187,7 +188,7 @@ func PushFailedData(esConf config.ElasticsearchConf) {
 				filePath := failedData[i].filePath
 				data := failedData[i].data
 				log.Infof("Retrying to push failed data from %s to elasticsearch", filePath)
-				_, err := httpCall(http.MethodPost, elkURL, esConf.User, esConf.Password, data, nil)
+				_, err := httpCall(http.MethodPost, elkURL, esConf.User, esConf.Password, data, nil, defaultTimeout)
 				if err == nil {
 					failedData = append(failedData[:i], failedData[i+1:]...)
 					log.Infof("Data from %s pushed to elasticsearch successfully", filePath)

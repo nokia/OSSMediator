@@ -25,6 +25,7 @@ chmod g+rwx es_data
 chgrp 0 es_data
 chown 1000:1000 es_data/
 
+#can't access
 #docker run --name "ndac_oss_elasticsearch" -t -d -p 9200:9200 -p 9300:9300 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size -Dlog4j2.formatMsgNoLookups=true" -v $(pwd)/es_data:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:7.4.2
 
 docker run --name "ndac_oss_opensearch" -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms2g -Xmx2g" -v $(pwd)/es_data:/usr/share/opensearch/data opensearchproject/opensearch:2.4.0

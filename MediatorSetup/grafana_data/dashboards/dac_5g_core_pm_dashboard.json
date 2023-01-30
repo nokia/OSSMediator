@@ -115,7 +115,7 @@
   "panels": [
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
       "description": "This KPI describe the mean number of subscribers that are registered to a network slice instance.",
@@ -213,7 +213,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "metrics": [
@@ -241,7 +241,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "hide": false,
@@ -262,7 +262,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
       "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of initial registration procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice and network performance.",
@@ -360,7 +360,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "metrics": [
@@ -387,7 +387,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "hide": false,
@@ -408,7 +408,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
       "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of attempted mobility procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice  and network performance.",
@@ -506,7 +506,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "metrics": [
@@ -533,7 +533,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "hide": false,
@@ -554,7 +554,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
       "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of attempted periodic procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice  and network performance.",
@@ -651,7 +651,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "metrics": [
@@ -678,7 +678,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "hide": false,
@@ -699,7 +699,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
       "description": "This KPI describes the ratio of the number of successful PDU session establishment request to the number of PDU session establishment request attempts for 5G network for the SMF which related to one network slice (S-NSSAI) and is used to evaluate accessibility provided by the end-to-end network slice and network performance.",
@@ -821,7 +821,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "metrics": [
@@ -848,7 +848,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "hide": false,
@@ -869,7 +869,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
       "description": "This KPI describes the upstream throughput of one single network slice  by computing the packet size for each successfully received  UL IP packet through the network slice  during each observing granularity period and is used to evaluate integrity performance of the end-to-end network slice .",
@@ -966,7 +966,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "metrics": [
@@ -993,7 +993,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "hide": false,
@@ -1014,7 +1014,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
       "description": "This KPI describes the downstream throughput of one single network slice instance by computing the packet size for each successfully transmitted DL IP packet through the network slice instance during each observing granularity period and is used to evaluate integrity performance of the end-to-end network slice instance.",
@@ -1111,7 +1111,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "metrics": [
@@ -1138,7 +1138,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "hide": false,
@@ -1159,7 +1159,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
       "description": "This KPI describes the mean number of PDU sessions that are successfully established in a network slice.",
@@ -1256,7 +1256,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "metrics": [
@@ -1283,7 +1283,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "hide": false,
@@ -1304,7 +1304,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
       "description": "This KPI describes the time of successful PDU session establishment which related to one single network slice and is used to evaluate utilization provided by the end-to-end network slice and network performance.",
@@ -1401,7 +1401,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "metrics": [
@@ -1428,7 +1428,7 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "hide": false,
@@ -1468,7 +1468,7 @@
         "multi": false,
         "name": "dataSource",
         "options": [],
-        "query": "elasticsearch",
+        "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-core-pm",
         "skipUrlSync": false,
@@ -1485,7 +1485,7 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "${dataSource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\"}",

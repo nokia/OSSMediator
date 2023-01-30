@@ -133,7 +133,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -207,8 +207,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "P4AEC1CBCC76E5242"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -2245,7 +2245,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the failure ratio of initial context setup request for IMS Emergency calls due to missing radio resources.",
@@ -2319,8 +2319,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -2408,7 +2408,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the failure ratio of initial context setup request for IMS Emergency calls due to missing radio resources.",
@@ -2482,8 +2482,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -3501,7 +3501,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of the PDU session resource setup. The procedure is successful when the gNB-CU responds to 5GC with PDU SESSION RESOURCE SETUP RESPONSE message. ",
@@ -3575,8 +3575,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -4852,7 +4852,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the failure ratio of PDU session modification for IMS Emergency calls due to missing radio resources.",
@@ -4926,8 +4926,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -5029,7 +5029,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of AMF selections failed by gNB for UE coming from idle. ",
@@ -5103,8 +5103,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -5179,7 +5179,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of AMF selections by gNB for UE coming from idle. ",
@@ -5253,8 +5253,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -5338,7 +5338,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of failures of AMF selection by gNB. ",
@@ -5412,8 +5412,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -5487,7 +5487,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of AMF reselections attempted by gNB for connected UE.",
@@ -5561,8 +5561,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -5636,7 +5636,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of AMF reselections by gNBconnected UE.",
@@ -5710,8 +5710,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -5795,7 +5795,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of failures of AMF reselection by gNB. ",
@@ -5869,8 +5869,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -7169,7 +7169,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -7243,8 +7243,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -7331,7 +7331,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: INITIAL CONTEXT SETUP REQUEST messages received at gNB-CU. ",
@@ -7405,8 +7405,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -11998,7 +11998,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the RACH setup success ratio calculated as the number of successful RACH setups divided by the successful setups plus the failures in RACH setup.",
@@ -12072,8 +12072,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -14248,7 +14248,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the total number of RRC connection establishment attempts, calculated as the sum of all different establishment causes. ",
@@ -14322,8 +14322,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -16023,7 +16023,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of RRC connection establishment procedure.\nIt also includes the re-establishment success ratio which is performed using RRC setup fallback. ",
@@ -16097,8 +16097,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -16662,7 +16662,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the RRC conection setup rejection for Mobile Originated Signaling. ",
@@ -16736,8 +16736,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -17045,7 +17045,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the RRC conection setup rejection for Mobile Originated Signaling. ",
@@ -17119,8 +17119,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -23622,7 +23622,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the UE context setup failure ratio due to all other causes. ",
@@ -23696,8 +23696,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -23799,7 +23799,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the UE context setup requests sent from gNB-CU to gNB-DU. ",
@@ -23873,8 +23873,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -23972,7 +23972,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the Non Stand Alone call accessiblity on 5G prespective. The remaining steps ond NSA call setup are on LTE side and are not monitored by this formula. ",
@@ -24046,8 +24046,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -24131,7 +24131,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the Non Stand Alone call accessiblity on 5G prespective. The remaining steps ond NSA call setup are on LTE side and are not monitored by this formula. ",
@@ -24205,8 +24205,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -24290,7 +24290,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the Non Stand Alone call accessiblity on 5G prespective. The remaining steps ond NSA call setup are on LTE side and are not monitored by this formula. ",
@@ -24364,8 +24364,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -25133,7 +25133,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the Non Stand Alone call accessiblity on 5G prespective. The remaining steps ond NSA call setup are on LTE side and are not monitored by this formula. ",
@@ -25207,8 +25207,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -25310,7 +25310,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: INITIAL CONTEXT SETUP REQUEST messages received at gNB-CU. ",
@@ -25384,8 +25384,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -25465,7 +25465,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -25539,8 +25539,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -25628,7 +25628,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -25702,8 +25702,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -25791,7 +25791,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -25865,8 +25865,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -25954,7 +25954,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -26028,8 +26028,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -26117,7 +26117,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -26191,8 +26191,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -26280,7 +26280,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -26354,8 +26354,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -26443,7 +26443,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -26517,8 +26517,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -26606,7 +26606,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -26680,8 +26680,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -26769,7 +26769,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -26843,8 +26843,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -26950,7 +26950,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -27024,8 +27024,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -27100,7 +27100,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -27174,8 +27174,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -27259,7 +27259,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -27333,8 +27333,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -27418,7 +27418,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -27492,8 +27492,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -27585,7 +27585,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -27659,8 +27659,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -27735,7 +27735,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -27809,8 +27809,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -27898,7 +27898,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -27972,8 +27972,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -28061,7 +28061,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
@@ -28135,8 +28135,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -28252,7 +28252,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -28326,8 +28326,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -28401,7 +28401,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -28475,8 +28475,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -28560,7 +28560,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -28634,8 +28634,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -28709,7 +28709,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -28783,8 +28783,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -28918,7 +28918,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -28992,8 +28992,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -29135,7 +29135,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -29209,8 +29209,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -29284,7 +29284,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -29358,8 +29358,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -29461,7 +29461,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -29535,8 +29535,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -29620,7 +29620,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -29694,8 +29694,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -29779,7 +29779,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -29853,8 +29853,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -29956,7 +29956,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -30030,8 +30030,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -30105,7 +30105,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -30179,8 +30179,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -30254,7 +30254,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -30328,8 +30328,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -30403,7 +30403,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -30477,8 +30477,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -30562,7 +30562,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -30636,8 +30636,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -30721,7 +30721,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -30795,8 +30795,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -30881,7 +30881,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -30955,8 +30955,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -31040,7 +31040,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -31114,8 +31114,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -31199,7 +31199,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -31273,8 +31273,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -31376,7 +31376,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -31450,8 +31450,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -31525,7 +31525,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -31599,8 +31599,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -31674,7 +31674,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -31748,8 +31748,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -31823,7 +31823,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -31897,8 +31897,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -31982,7 +31982,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -32056,8 +32056,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -32141,7 +32141,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -32215,8 +32215,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -32300,7 +32300,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -32374,8 +32374,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -32477,7 +32477,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -32551,8 +32551,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -32626,7 +32626,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -32700,8 +32700,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -32803,7 +32803,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -32877,8 +32877,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -32962,7 +32962,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of NGAP: UE CONTEXT MODIFICATION REQUEST messages received at gNB-CU. ",
@@ -33036,8 +33036,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -33111,7 +33111,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of UE context modification. Success scenario is when gNB responds with UE CONTEXT MODIFICATION RESPONSE message to the AMF. ",
@@ -33185,8 +33185,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -33298,7 +33298,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of E1 reset requests initiated by gNB-CU-CP",
@@ -33372,8 +33372,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -33447,7 +33447,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of the E1 reset procedure initiated by the gNB CU-CP.",
@@ -33521,8 +33521,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -33796,7 +33796,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the total number of radio admission requests for Stand Alone users. ",
@@ -33870,8 +33870,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -34273,7 +34273,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the Non-GBR DRB radio admission rejection ratio for Stand Alone users due to lack of RRC user capacity.\n",
@@ -34347,8 +34347,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -34622,7 +34622,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the Non-GBR DRB radio admission rejection ratio for Stand Alone users due to lack of non-GBR capacity. ",
@@ -34696,8 +34696,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -34799,7 +34799,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the Non-GBR DRB radio admission rejection ratio for Stand Alone users due to lack of non-GBR capacity. ",
@@ -34873,8 +34873,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -38076,7 +38076,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of the establishment of GBR DRBs, upon Inter-gNB handover for SA user",
@@ -38150,8 +38150,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -38239,7 +38239,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of the establishment of GBR DRBs, upon Inter-gNB handover for SA user",
@@ -38313,8 +38313,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -38402,7 +38402,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of the establishment of GBR DRBs, upon Inter-gNB handover for SA user",
@@ -38476,8 +38476,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -38566,7 +38566,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the success ratio of the establishment of GBR DRBs, upon Inter-gNB handover for SA user",
@@ -38640,8 +38640,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -38748,7 +38748,7 @@
         "multi": false,
         "name": "dataSource",
         "options": [],
-        "query": "elasticsearch",
+        "query": "grafana-opensearch-datasource",
         "queryValue": "",
         "refresh": 1,
         "regex": "dac-radio-5g-pm",
@@ -38762,7 +38762,7 @@
           "value": "TALOS_HPE_151_5G_SA"
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
@@ -38793,7 +38793,7 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*NRCELL*)\"}",

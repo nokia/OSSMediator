@@ -138,7 +138,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
       "description": "Provides the count of critical alarms",
@@ -215,8 +215,8 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${dataSource}"
           },
           "metrics": [
             {
@@ -237,7 +237,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
       "description": "Provides the count of major alarms",
@@ -313,8 +313,8 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${dataSource}"
           },
           "metrics": [
             {
@@ -333,7 +333,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
       "description": "Provides the count of minor alarms",
@@ -409,8 +409,8 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${dataSource}"
           },
           "metrics": [
             {
@@ -429,7 +429,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
       "description": "Provides the count of warning alarms",
@@ -505,8 +505,8 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${dataSource}"
           },
           "metrics": [
             {
@@ -525,7 +525,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
       "description": "Provides the count of cleared alarms",
@@ -596,8 +596,8 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${dataSource}"
           },
           "metrics": [
             {
@@ -616,7 +616,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
       "description": "Provides the count of active alarms",
@@ -687,8 +687,8 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${dataSource}"
           },
           "metrics": [
             {
@@ -759,7 +759,7 @@
         }
       ],
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
       "description": "This table will show all alarms history across all edges enodeB's",
@@ -959,8 +959,8 @@
         {
           "bucketAggs": [],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${dataSource}"
           },
           "metrics": [
             {
@@ -1004,7 +1004,7 @@
         "multi": false,
         "name": "datasource",
         "options": [],
-        "query": "elasticsearch",
+        "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-core-fm",
         "skipUrlSync": false,
@@ -1021,7 +1021,7 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "$datasource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
@@ -1052,7 +1052,7 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "$datasource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data.severity.keyword\"}",
@@ -1083,7 +1083,7 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data.alarm_state.keyword\"}",

@@ -497,7 +497,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the total number of RRC re-establishment requests. ",
@@ -571,8 +571,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -1238,7 +1238,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows ratio of RRC re-establishment requests that were caused by reconfiguration failure compared to the total numer of RRC re-establishment requests. ",
@@ -1312,8 +1312,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -1855,7 +1855,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the NSA call retainability for SgNB initiated releases. The normal releases are considered those initiated due to user inactivity, while the total number of releases are the SgNB initiated releases and the releases caused X2 Reset. Releases initiated by the LTE MeNB are not considered in this KPI. ",
@@ -1929,7 +1929,7 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
+                "type": "grafana-opensearch-datasource",
                 "uid": "PBDF6307A8506DAC4"
               },
               "metrics": [
@@ -2060,7 +2060,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the NSA call retainability for SgNB initiated releases. The normal releases are considered those initiated due to user inactivity, while the total number of releases are the SgNB initiated releases and the releases caused X2 Reset. Releases initiated by the LTE MeNB are not considered in this KPI. ",
@@ -2134,8 +2134,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -2657,7 +2657,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the number of SgNB triggered abnormal releases per hour of connected time.",
@@ -2725,8 +2725,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -2864,7 +2864,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the ratio of SgNB releases initiated by SgNB due to radio connection with UE lost, among all releases excluding X2 reset.\nRLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
@@ -2932,8 +2932,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -3061,7 +3061,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the ratio of UE releases due to abnormal reasons, among all releases excluding X2 reset. RLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
@@ -3129,8 +3129,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -4256,7 +4256,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the ratio of releases with UE Context Modification Required received due to rl-failure-rlc, among all releases excluding X2 reset. RLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success",
@@ -4324,8 +4324,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -5263,7 +5263,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by UE with cause SRB3 integrity failure, among all releases excluding X2 reset. In denominator, only releases after successful RACH procedure are considered.",
@@ -5331,8 +5331,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PBDF6307A8506DAC4"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -8178,7 +8178,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the NSA call retainability for SgNB initiated releases. The normal releases are considered those initiated due to user inactivity, while the total number of releases are the SgNB initiated releases and the releases caused X2 Reset. Releases initiated by the LTE MeNB are not considered in this KPI. ",
@@ -8252,8 +8252,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -8445,7 +8445,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the total number of releases on 5G side, are the SgNB initiated releases and the releases caused X2 Reset. Releases initiated by the LTE MeNB are not considered in this KPI. ",
@@ -8519,8 +8519,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -8678,7 +8678,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI indicates SgNB initiated abnormal Release Ratio for SCG split bearers. MeNB initiated releases are considered as normal releases. RLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
@@ -8752,8 +8752,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -9041,7 +9041,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "elasticsearch",
+            "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
           "description": "This KPI shows the total number of releases after RACH success. It includes SgNB iniated and MeNB initiated releases, plus the releases caused by X2 reset.\nRLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
@@ -9115,8 +9115,8 @@
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PF29239B96ACC7213"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${dataSource}"
               },
               "metrics": [
                 {
@@ -17441,7 +17441,7 @@
         "multi": false,
         "name": "dataSource",
         "options": [],
-        "query": "elasticsearch",
+        "query": "grafana-opensearch-datasource",
         "queryValue": "",
         "refresh": 1,
         "regex": "dac-radio-5g-pm",
@@ -17455,7 +17455,7 @@
           "value": "HPE_TALOS_154_5gSA"
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
@@ -17486,7 +17486,7 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",

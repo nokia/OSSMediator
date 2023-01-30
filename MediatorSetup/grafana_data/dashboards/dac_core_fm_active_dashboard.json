@@ -552,7 +552,7 @@
         }
       ],
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
       "description": "This table will show all active alarms that are critical across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
@@ -732,8 +732,8 @@
         {
           "bucketAggs": [],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${dataSource}"
           },
           "metrics": [
             {
@@ -1051,7 +1051,7 @@
         }
       ],
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
       "description": "This table will show all active alarms that are minor across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
@@ -1231,8 +1231,8 @@
         {
           "bucketAggs": [],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${dataSource}"
           },
           "metrics": [
             {
@@ -1303,7 +1303,7 @@
         }
       ],
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
       "description": "This table will show all active alarms that are warning across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
@@ -1483,8 +1483,8 @@
         {
           "bucketAggs": [],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${dataSource}"
           },
           "metrics": [
             {
@@ -1528,7 +1528,7 @@
         "multi": false,
         "name": "datasource",
         "options": [],
-        "query": "elasticsearch",
+        "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-core-fm",
         "skipUrlSync": false,
@@ -1545,7 +1545,7 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "$datasource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",

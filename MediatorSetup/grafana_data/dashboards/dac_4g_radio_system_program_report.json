@@ -120,7 +120,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "uid": "$dataSource"
+        "uid": "${dataSource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -298,7 +298,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "uid": "${dataSource}"
           },
           "description": "LTE_5750a\tE-UTRAN Cell Availability Ratio",
           "fieldConfig": {
@@ -468,7 +468,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "uid": "${dataSource}"
           },
           "description": "LTE_5239a\tE-UTRAN Cell Availability, excluding blocked by user state (BLU)",
           "fieldConfig": {
@@ -43142,7 +43142,7 @@
         "multi": false,
         "name": "dataSource",
         "options": [],
-        "query": "elasticsearch",
+        "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-4g-pm",
         "skipUrlSync": false,
@@ -43155,7 +43155,7 @@
           "value": "Altoona Spare 24-109"
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
@@ -43186,8 +43186,8 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
-          "uid": "$dataSource"
+          "type": "grafana-opensearch-datasource",
+          "uid": "${dataSource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
         "hide": 0,

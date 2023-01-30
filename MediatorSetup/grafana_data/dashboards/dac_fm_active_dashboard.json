@@ -323,7 +323,7 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
       "description": "Provides the count of minor alarms",
@@ -399,8 +399,8 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000004"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${dataSource}"
           },
           "metrics": [
             {
@@ -1670,7 +1670,7 @@
         "multi": false,
         "name": "datasource",
         "options": [],
-        "query": "elasticsearch",
+        "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-fm",
         "skipUrlSync": false,
@@ -1687,7 +1687,7 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "$datasource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",

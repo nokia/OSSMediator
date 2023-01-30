@@ -1412,7 +1412,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_UE_State_M8013C17",
@@ -1648,7 +1648,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -1800,7 +1800,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_RRC_M8008C5",
@@ -1964,7 +1964,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Radio_Bearer_M8007C0",
@@ -2117,7 +2117,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_UE_Quantity_M8051C60",
@@ -2282,7 +2282,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "hide": false,
           "metrics": [
             {
@@ -2340,7 +2340,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "hide": false,
           "metrics": [
             {
@@ -2495,7 +2495,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C19",
@@ -2552,7 +2552,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C19",
@@ -2705,7 +2705,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C23",
@@ -2734,7 +2734,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C23",
@@ -2859,7 +2859,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C26",
@@ -2888,7 +2888,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C26",
@@ -3013,7 +3013,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Load_M8001C6",
@@ -3206,7 +3206,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_UE_State_M8013C5",
@@ -3455,7 +3455,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_EPS_Bearer_M8006C261",
@@ -3894,7 +3894,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -4059,7 +4059,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_RRC_M8008C4",
@@ -4212,7 +4212,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Resource_M8011C37",
@@ -4358,7 +4358,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Resource_M8011C24",
@@ -4504,7 +4504,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C36",
@@ -5020,7 +5020,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Handover_M8021C2",
@@ -5192,7 +5192,7 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "elasticsearch",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Intra_eNB_HO_M8009C7",
@@ -5386,7 +5386,7 @@
         "multi": false,
         "name": "dataSource",
         "options": [],
-        "query": "elasticsearch",
+        "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-4g-pm",
         "skipUrlSync": false,
@@ -5399,7 +5399,7 @@
           "value": "Altoona Spare 24-109"
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
@@ -5430,7 +5430,7 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",

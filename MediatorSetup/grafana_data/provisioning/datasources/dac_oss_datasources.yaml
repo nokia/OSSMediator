@@ -2,97 +2,105 @@ apiVersion: 1
 
 datasources:
   - name: dac-radio-4g-pm
-    type: elasticsearch
+    type: grafana-opensearch-datasource
     access: proxy
     database: "4g-pm*"
     url: http://localhost:9200
     jsonData:
       timeInterval: 15m
       timeField: "pm_data_source.end_timestamp"
-      esVersion: 70
+      version: "1.0.0"
+      flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
-      
+
   - name: dac-radio-5g-pm
-    type: elasticsearch
+    type: grafana-opensearch-datasource
     access: proxy
     database: "5g-pm*"
     url: http://localhost:9200
     jsonData:
       timeInterval: 15m
       timeField: "pm_data_source.end_timestamp"
-      esVersion: 70
+      version: "1.0.0"
+      flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
-    
+
   - name: dac-radio-fm
-    type: elasticsearch
+    type: grafana-opensearch-datasource
     access: proxy
     database: "radio-fm*"
     url: http://localhost:9200
     jsonData:
       timeInterval: 15m
       timeField: "fm_data.event_time"
-      esVersion: 70
+      version: "1.0.0"
+      flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
-    
+
   - name: dac-fm
-    type: elasticsearch
+    type: grafana-opensearch-datasource
     access: proxy
     database: "dac-fm*"
     url: http://localhost:9200
     jsonData:
       timeInterval: 15m
       timeField: "fm_data.event_time"
-      esVersion: 70
+      version: "1.0.0"
+      flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
 
   - name: dac-core-fm
-    type: elasticsearch
+    type: grafana-opensearch-datasource
     access: proxy
     database: "core-fm*"
     url: http://localhost:9200
     jsonData:
       timeInterval: 15m
       timeField: "fm_data.event_time"
-      esVersion: 70
+      version: "1.0.0"
+      flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
 
   - name: dac-application-fm
-    type: elasticsearch
+    type: grafana-opensearch-datasource
     access: proxy
     database: "application-fm*"
     url: http://localhost:9200
     jsonData:
       timeInterval: 15m
       timeField: "fm_data.event_time"
-      esVersion: 70
+      version: "1.0.0"
+      flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
 
   - name: dac-core-pm
-    type: elasticsearch
+    type: grafana-opensearch-datasource
     access: proxy
     database: "core-pm*"
     url: http://localhost:9200
     jsonData:
       timeInterval: 15m
       timeField: "pm_data_source.timestamp"
-      esVersion: 70
+      version: "1.0.0"
+      flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
 
   - name: dac-edge-pm
-    type: elasticsearch
+    type: grafana-opensearch-datasource
     access: proxy
     database: "edge-pm*"
     url: http://localhost:9200
     jsonData:
       timeInterval: 15m
       timeField: "pm_data_source.timestamp"
-      esVersion: 70
+      version: "1.0.0"
+      flavor: "opensearch"
       tlsSkipVerify: true
     editable: true

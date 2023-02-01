@@ -118,6 +118,7 @@
         "type": "elasticsearch",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "Bits per second rate in UL on S1u interface",
       "fieldConfig": {
         "defaults": {
@@ -177,6 +178,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_s1u_ul_rate",
@@ -198,6 +200,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "Bits per second rate in DL on S1u interface",
       "fieldConfig": {
         "defaults": {
@@ -257,6 +260,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_s1u_dl_rate",
@@ -278,6 +282,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "UE throughput  on uplink",
       "fieldConfig": {
         "defaults": {
@@ -337,6 +342,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_ue_ul_rate",
@@ -358,6 +364,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "UE throughput  on downlink",
       "fieldConfig": {
         "defaults": {
@@ -417,6 +424,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_ue_dl_rate",
@@ -438,6 +446,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "Current Number of Registered UEs",
       "fieldConfig": {
         "defaults": {
@@ -502,6 +511,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_data_emm_registered_ues",
@@ -523,6 +533,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "Current Number of UEs in EMMREGISTERED+ECMCONNECTED states",
       "fieldConfig": {
         "defaults": {
@@ -583,6 +594,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_data_active_ues",
@@ -614,6 +626,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of DL Bytes sent on S1u interface.",
           "fieldConfig": {
             "defaults": {
@@ -711,6 +724,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_s1u_dl_nbr_bytes",
@@ -738,6 +752,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -759,6 +774,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Bytes received in UL on S1u interface",
           "fieldConfig": {
             "defaults": {
@@ -856,6 +872,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_s1u_ul_nbr_bytes",
@@ -883,6 +900,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -904,6 +922,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Bits per second rate in DL on S1u interface",
           "fieldConfig": {
             "defaults": {
@@ -1001,6 +1020,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_s1u_dl_rate",
@@ -1029,6 +1049,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -1051,6 +1072,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Bits per second rate in UL on S1u interface",
           "fieldConfig": {
             "defaults": {
@@ -1148,6 +1170,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_s1u_ul_rate",
@@ -1176,6 +1199,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -1198,6 +1222,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "UE throughput  on uplink",
           "fieldConfig": {
             "defaults": {
@@ -1295,6 +1320,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_ue_ul_rate",
@@ -1323,6 +1349,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -1345,6 +1372,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "UE throughput  on downlink",
           "fieldConfig": {
             "defaults": {
@@ -1442,6 +1470,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_ue_dl_rate",
@@ -1470,6 +1499,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -1506,6 +1536,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Current Number of Active Bearers",
           "fieldConfig": {
             "defaults": {
@@ -1603,6 +1634,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_active_bearers",
@@ -1631,6 +1663,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -1652,6 +1685,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Current Number of Active PDN Sessions",
           "fieldConfig": {
             "defaults": {
@@ -1749,6 +1783,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_active_pdn_sessions",
@@ -1777,6 +1812,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -1799,6 +1835,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of received Create Session Requests",
           "fieldConfig": {
             "defaults": {
@@ -1896,6 +1933,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_pdn_conn_requests",
@@ -1924,6 +1962,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -1946,6 +1985,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful Create Session procedures",
           "fieldConfig": {
             "defaults": {
@@ -2043,6 +2083,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_pdn_conn_success",
@@ -2071,6 +2112,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -2093,6 +2135,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful PDN Connectivity procedures per second.",
           "fieldConfig": {
             "defaults": {
@@ -2190,6 +2233,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_pdn_conn_success_rate",
@@ -2218,6 +2262,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -2254,6 +2299,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of UE Attach Requests",
           "fieldConfig": {
             "defaults": {
@@ -2352,6 +2398,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_attach_requests",
@@ -2380,6 +2427,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -2402,6 +2450,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful UE Attaches",
           "fieldConfig": {
             "defaults": {
@@ -2500,6 +2549,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_attach_success",
@@ -2528,6 +2578,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -2550,6 +2601,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful UE Attaches per second",
           "fieldConfig": {
             "defaults": {
@@ -2648,6 +2700,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_attach_success_rate",
@@ -2676,6 +2729,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -2698,6 +2752,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Current Number of Registered UEs",
           "fieldConfig": {
             "defaults": {
@@ -2797,6 +2852,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_emm_registered_ues",
@@ -2825,6 +2881,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -2847,6 +2904,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Current Number of UEs in EMMREGISTERED+ECMCONNECTED states",
           "fieldConfig": {
             "defaults": {
@@ -2942,6 +3000,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_active_ues",
@@ -2970,6 +3029,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -2992,6 +3052,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of UE X2 Handover Requests",
           "fieldConfig": {
             "defaults": {
@@ -3090,6 +3151,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_ho_x2_attempts",
@@ -3118,6 +3180,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -3140,6 +3203,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful X2 Handovers",
           "fieldConfig": {
             "defaults": {
@@ -3238,6 +3302,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_ho_x2_success",
@@ -3266,6 +3331,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -3288,6 +3354,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful X2 Handovers per second",
           "fieldConfig": {
             "defaults": {
@@ -3386,6 +3453,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_ho_x2_success_rate",
@@ -3414,6 +3482,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -3436,6 +3505,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of processed S1 Handover Required messages",
           "fieldConfig": {
             "defaults": {
@@ -3534,6 +3604,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_ho_s1_attempts",
@@ -3562,6 +3633,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -3584,6 +3656,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful S1 Handovers",
           "fieldConfig": {
             "defaults": {
@@ -3682,6 +3755,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_ho_s1_success",
@@ -3710,6 +3784,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -3732,6 +3807,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful S1 Handovers per second",
           "fieldConfig": {
             "defaults": {
@@ -3830,6 +3906,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_ho_s1_success_rate",
@@ -3858,6 +3935,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -3880,6 +3958,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of UE Tracking Area Update Requests",
           "fieldConfig": {
             "defaults": {
@@ -3978,6 +4057,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_tau_requests",
@@ -4006,6 +4086,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -4028,6 +4109,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful UE Tracking Area Updates",
           "fieldConfig": {
             "defaults": {
@@ -4126,6 +4208,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_tau_success",
@@ -4154,6 +4237,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -4176,6 +4260,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful UE Tracking Area Updates per second.",
           "fieldConfig": {
             "defaults": {
@@ -4274,6 +4359,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_tau_success_rate",
@@ -4302,6 +4388,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -4324,6 +4411,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of UE Psdomain Paging Requests",
           "fieldConfig": {
             "defaults": {
@@ -4422,6 +4510,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_paging_ps_requests",
@@ -4450,6 +4539,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -4472,6 +4562,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful UE PS-domain Paging Requests",
           "fieldConfig": {
             "defaults": {
@@ -4570,6 +4661,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_paging_ps_success",
@@ -4598,6 +4690,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -4620,6 +4713,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful UE PS-domain Paging Requests per second.",
           "fieldConfig": {
             "defaults": {
@@ -4718,6 +4812,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_paging_ps_success_rate",
@@ -4746,6 +4841,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -4768,6 +4864,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of started Dedicated Bearer Addition procedures",
           "fieldConfig": {
             "defaults": {
@@ -4866,6 +4963,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_bearer_add_attempts",
@@ -4894,6 +4992,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -4916,6 +5015,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful Dedicated Bearer Addition procedures",
           "fieldConfig": {
             "defaults": {
@@ -5014,6 +5114,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_bearer_add_success",
@@ -5042,6 +5143,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -5064,6 +5166,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful Dedicated Bearer Addition procedures per second.",
           "fieldConfig": {
             "defaults": {
@@ -5162,6 +5265,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_bearer_add_success_rate",
@@ -5190,6 +5294,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
@@ -5226,6 +5331,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "This KPI describes the ratio of the number of successfully performed EPS attach procedures to the number of attempted EPS attach procedures for EPC network and is used to evaluate accessibility provided by EPS and network performance.",
           "fieldConfig": {
             "defaults": {
@@ -5324,6 +5430,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_attach_requests",
@@ -5369,6 +5476,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "This KPI describes the ratio of the number of successfully performed dedicated EPS bearer creation procedures by PGW to the number of attempted dedicated EPS bearer creation procedures by PGW and is used to evaluate service availability provided by EPS and network performance.",
           "fieldConfig": {
             "defaults": {
@@ -5467,6 +5575,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_bearer_add_attempts_nw_init",
@@ -5518,6 +5627,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "This KPI describes the ratio of the number of successfully performed tracking area update procedures to the number of attempted tracking area update procedures and is used to evaluate mobility provided by EPS and network performance.\n",
           "fieldConfig": {
             "defaults": {
@@ -5616,6 +5726,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_data_tau_requests",
@@ -5701,6 +5812,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${dataSource}"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\"}",
         "hide": 0,
         "includeAll": true,

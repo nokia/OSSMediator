@@ -118,6 +118,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -252,6 +253,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "Displays the number of cells up in the selected network",
       "fieldConfig": {
         "defaults": {
@@ -351,6 +353,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -487,6 +490,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -620,6 +624,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean UL PDCP traffic throughput.",
       "fieldConfig": {
         "defaults": {
@@ -708,6 +713,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -831,6 +837,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "Displays the number of cells down in the selected network",
       "fieldConfig": {
         "defaults": {
@@ -929,6 +936,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean DL PDCP traffic throughput.",
       "fieldConfig": {
         "defaults": {
@@ -1025,6 +1033,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "This KPI shows the ratio of services in a cell being available for end users.",
       "fieldConfig": {
         "defaults": {
@@ -1190,6 +1199,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "E-UTRAN LTE_UE_Quantity_M8051C58\n",
       "fieldConfig": {
         "defaults": {
@@ -1341,6 +1351,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "The KPI shows the number of attempts for the elementary procedure \"RRC connection establishment\" used to set up a radio connection from UE to eNB (involves SRB1 establishment).",
       "fieldConfig": {
         "defaults": {
@@ -1577,6 +1588,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "The KPI indicates the number of E-RAB setup attempts.",
       "fieldConfig": {
         "defaults": {
@@ -1729,6 +1741,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "The KPI shows the setup success ratio for the RRC connection re-establishment procedure. The procedure is used in case of a failure situation (such as a radio or handover failure) to keep the UE in an LTE RRC_CONNECTED state and continue the RRC connection without going to an RRC_IDLE state.",
       "fieldConfig": {
         "defaults": {
@@ -1893,6 +1906,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "The KPI shows the Data Radio Bearer Setup Attempts.",
       "fieldConfig": {
         "defaults": {
@@ -2045,6 +2059,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "This KPI shows the average number of UEs having one SRB during the measurement period.",
       "fieldConfig": {
         "defaults": {
@@ -2210,6 +2225,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "This KPI shows the PDCP SDU volume on an eUu interface per cell in a downlink direction.",
       "fieldConfig": {
         "defaults": {
@@ -2422,6 +2438,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "This KPI shows the PDCP SDU volume on an eUu interface per cell in an uplink direction.",
       "fieldConfig": {
         "defaults": {
@@ -2633,6 +2650,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean UL PDCP traffic throughput.\nThis counter is updated when a PDCP SDU is received from UE.",
       "fieldConfig": {
         "defaults": {
@@ -2787,6 +2805,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean DL PDCP traffic throughput.\nThis counter is updated when a PDCP SDU is transmitted towards the UE.",
       "fieldConfig": {
         "defaults": {
@@ -2941,6 +2960,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "This KPI describes the total number of RA preambles.\nBoth contention based and dedicated preambles are considered within the KPI.",
       "fieldConfig": {
         "defaults": {
@@ -3134,6 +3154,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "The KPI shows the setup success ratio for the elementary procedure \"RRC connection establishment\" used to set up a radio connection from UE to eNB (involves SRB1 establishment) .",
       "fieldConfig": {
         "defaults": {
@@ -3383,6 +3404,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "This KPI describes the ratio of abnormally released (dropped) E-RABs from RAN point of view.\nEach bearer of the Bearer to be Released List IE is counted. RAN point of view means that as abnormal E-RAB drops only those ones initiated by eNB are counted.E-RAB releases due to pre-emption initiated by eNB are counted as normal releases as they are not real drops resulted from any radio quality problems. In denominator of the formula normal E-RAB releases due to successful HO to eHRPD are not counted.",
       "fieldConfig": {
         "defaults": {
@@ -3822,6 +3844,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "The KPI indicates the setup success ratio of the elementary E-RAB setup procedure, used to set up the E-RAB between MME and UE.\nIt shows the E-UTRAN's contribution to network accessibility for the end user, not the whole end-to-end service accessibility.",
       "fieldConfig": {
         "defaults": {
@@ -3987,6 +4010,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "The KPI shows the RRC Connection Re-establishment Attempts per type, e.g. total, due to \"HandoverFailure\", due to \"otherFailure\" or due to \"reconfigFailure\".",
       "fieldConfig": {
         "defaults": {
@@ -4140,6 +4164,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "This KPI shows the average value of the physical resource block (PRB) utilization per TTI in a downlink direction. The utilization is defined by the ratio of used to available PRBs per TTI.\nThe monitoring also includes almost blank subframes (ABSs) for the cells that are configured as macro ones in the eICIC partnership.",
       "fieldConfig": {
         "defaults": {
@@ -4293,6 +4318,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "This KPI shows the average value of the physical resource block (PRB) utilization per TTI in an uplink direction. The utilization is defined by the ratio of used to available PRBs per TTI.",
       "fill": 1,
       "fillGradient": 0,
@@ -4439,6 +4465,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "This KPI shows the average UE reported Channel\nQuality Indicator (CQI) value.",
       "fill": 1,
       "fillGradient": 0,
@@ -4955,6 +4982,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "This KPI indicates the success ratio for the inter-frequency HO when the source eNB receives information that the UE is successfully connected to the target cell within the target eNB. The KPI is defined independently of network topology (intra-eNB HO/inter-eNB HO) and of the usage of measurement gaps.",
       "fill": 1,
       "fillGradient": 0,
@@ -5127,6 +5155,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "description": "This KPI indicates attempts at an intra-frequency HO when the source eNB receives information that the UE is successfully connected to the target cell. The KPI is defined independently of  network topology (intra-eNB HO/inter-eNB HO).",
       "fill": 1,
       "fillGradient": 0,
@@ -5402,6 +5431,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
+        "queryType":"lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
@@ -5433,6 +5463,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
+        "queryType":"lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
         "hide": 0,
         "includeAll": true,

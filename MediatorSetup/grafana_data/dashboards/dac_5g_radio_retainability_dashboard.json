@@ -116,9 +116,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -284,9 +285,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -500,6 +502,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI shows the total number of RRC re-establishment requests. ",
           "fieldConfig": {
             "defaults": {
@@ -574,6 +577,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRRCC_M55124C00503",
@@ -1241,6 +1245,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI shows ratio of RRC re-establishment requests that were caused by reconfiguration failure compared to the total numer of RRC re-establishment requests. ",
           "fieldConfig": {
             "defaults": {
@@ -1315,6 +1320,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRRCC_M55124C00503",
@@ -1838,9 +1844,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1858,6 +1865,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI shows the NSA call retainability for SgNB initiated releases. The normal releases are considered those initiated due to user inactivity, while the total number of releases are the SgNB initiated releases and the releases caused X2 Reset. Releases initiated by the LTE MeNB are not considered in this KPI. ",
           "fieldConfig": {
             "defaults": {
@@ -1930,8 +1938,9 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "PBDF6307A8506DAC4"
+                "uid": "$dataSource"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NNGCC_M55125C00503",
@@ -2063,6 +2072,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI shows the NSA call retainability for SgNB initiated releases. The normal releases are considered those initiated due to user inactivity, while the total number of releases are the SgNB initiated releases and the releases caused X2 Reset. Releases initiated by the LTE MeNB are not considered in this KPI. ",
           "fieldConfig": {
             "defaults": {
@@ -2137,6 +2147,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRLFC_M55129C00003",
@@ -2256,9 +2267,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2660,6 +2672,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI shows the number of SgNB triggered abnormal releases per hour of connected time.",
           "fill": 1,
           "fillGradient": 0,
@@ -2728,6 +2741,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00502",
@@ -2867,6 +2881,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI shows the ratio of SgNB releases initiated by SgNB due to radio connection with UE lost, among all releases excluding X2 reset.\nRLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
           "fill": 1,
           "fillGradient": 0,
@@ -2935,6 +2950,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00502",
@@ -3064,6 +3080,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI shows the ratio of UE releases due to abnormal reasons, among all releases excluding X2 reset. RLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
           "fill": 1,
           "fillGradient": 0,
@@ -3132,6 +3149,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C01001",
@@ -3259,9 +3277,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3905,9 +3924,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -4259,6 +4279,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI shows the ratio of releases with UE Context Modification Required received due to rl-failure-rlc, among all releases excluding X2 reset. RLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success",
           "fill": 1,
           "fillGradient": 0,
@@ -4327,6 +4348,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CC_M55113C01006",
@@ -5266,6 +5288,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by UE with cause SRB3 integrity failure, among all releases excluding X2 reset. In denominator, only releases after successful RACH procedure are considered.",
           "fill": 1,
           "fillGradient": 0,
@@ -5334,6 +5357,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00011",
@@ -6605,9 +6629,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -7763,9 +7788,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -8161,9 +8187,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -8181,6 +8208,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI shows the NSA call retainability for SgNB initiated releases. The normal releases are considered those initiated due to user inactivity, while the total number of releases are the SgNB initiated releases and the releases caused X2 Reset. Releases initiated by the LTE MeNB are not considered in this KPI. ",
           "fieldConfig": {
             "defaults": {
@@ -8255,6 +8283,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CB_M55110C00028",
@@ -8448,6 +8477,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI shows the total number of releases on 5G side, are the SgNB initiated releases and the releases caused X2 Reset. Releases initiated by the LTE MeNB are not considered in this KPI. ",
           "fieldConfig": {
             "defaults": {
@@ -8522,6 +8552,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CB_M55110C00028",
@@ -8681,6 +8712,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI indicates SgNB initiated abnormal Release Ratio for SCG split bearers. MeNB initiated releases are considered as normal releases. RLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
           "fieldConfig": {
             "defaults": {
@@ -8755,6 +8787,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00007",
@@ -9044,6 +9077,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "This KPI shows the total number of releases after RACH success. It includes SgNB iniated and MeNB initiated releases, plus the releases caused by X2 reset.\nRLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
           "fieldConfig": {
             "defaults": {
@@ -9118,6 +9152,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00007",
@@ -11313,9 +11348,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -11653,9 +11689,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -12193,9 +12230,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -12683,9 +12721,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -14663,9 +14702,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -14865,9 +14905,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -15227,9 +15268,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -15889,9 +15931,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -17083,9 +17126,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -17458,6 +17502,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
+        "queryType":"lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
@@ -17489,6 +17534,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
+        "queryType":"lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
         "hide": 0,
         "includeAll": true,

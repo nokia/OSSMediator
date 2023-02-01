@@ -117,7 +117,8 @@
       "datasource": {
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
-      },
+        },
+      "queryType":"lucene",
       "description": "This KPI describe the mean number of subscribers that are registered to a network slice instance.",
       "fieldConfig": {
         "defaults": {
@@ -216,6 +217,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_amf_mean_reg_nbr",
@@ -244,6 +246,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "hide": false,
           "metrics": [
             {
@@ -265,6 +268,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType":"lucene",
       "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of initial registration procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice and network performance.",
       "fieldConfig": {
         "defaults": {
@@ -363,6 +367,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_rsr_initial_reg",
@@ -390,6 +395,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "hide": false,
           "metrics": [
             {
@@ -411,6 +417,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType":"lucene",
       "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of attempted mobility procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice  and network performance.",
       "fieldConfig": {
         "defaults": {
@@ -509,6 +516,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_rsr_mobility_reg",
@@ -536,6 +544,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "hide": false,
           "metrics": [
             {
@@ -557,6 +566,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType":"lucene",
       "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of attempted periodic procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice  and network performance.",
       "fieldConfig": {
         "defaults": {
@@ -654,6 +664,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_rsr_periodic_reg",
@@ -681,6 +692,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "hide": false,
           "metrics": [
             {
@@ -702,6 +714,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType":"lucene",
       "description": "This KPI describes the ratio of the number of successful PDU session establishment request to the number of PDU session establishment request attempts for 5G network for the SMF which related to one network slice (S-NSSAI) and is used to evaluate accessibility provided by the end-to-end network slice and network performance.",
       "fieldConfig": {
         "defaults": {
@@ -824,6 +837,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_pdu_session_est_sr",
@@ -851,6 +865,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "hide": false,
           "metrics": [
             {
@@ -872,6 +887,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType":"lucene",
       "description": "This KPI describes the upstream throughput of one single network slice  by computing the packet size for each successfully received  UL IP packet through the network slice  during each observing granularity period and is used to evaluate integrity performance of the end-to-end network slice .",
       "fieldConfig": {
         "defaults": {
@@ -969,6 +985,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_utsnsi",
@@ -996,6 +1013,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "hide": false,
           "metrics": [
             {
@@ -1017,6 +1035,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType":"lucene",
       "description": "This KPI describes the downstream throughput of one single network slice instance by computing the packet size for each successfully transmitted DL IP packet through the network slice instance during each observing granularity period and is used to evaluate integrity performance of the end-to-end network slice instance.",
       "fieldConfig": {
         "defaults": {
@@ -1114,6 +1133,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_dtsnsi",
@@ -1141,6 +1161,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "hide": false,
           "metrics": [
             {
@@ -1162,6 +1183,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType":"lucene",
       "description": "This KPI describes the mean number of PDU sessions that are successfully established in a network slice.",
       "fieldConfig": {
         "defaults": {
@@ -1259,6 +1281,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_over_5g_pdu_ses_mean_nbr",
@@ -1286,6 +1309,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "hide": false,
           "metrics": [
             {
@@ -1307,6 +1331,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType":"lucene",
       "description": "This KPI describes the time of successful PDU session establishment which related to one single network slice and is used to evaluate utilization provided by the end-to-end network slice and network performance.",
       "fieldConfig": {
         "defaults": {
@@ -1404,6 +1429,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_pdu_est_time",
@@ -1431,6 +1457,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "hide": false,
           "metrics": [
             {
@@ -1488,6 +1515,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${dataSource}"
         },
+        "queryType":"lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\"}",
         "hide": 0,
         "includeAll": true,

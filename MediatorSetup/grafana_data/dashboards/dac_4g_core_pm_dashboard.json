@@ -115,7 +115,7 @@
   "panels": [
     {
       "datasource": {
-        "type": "elasticsearch",
+        "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
       "queryType": "lucene",

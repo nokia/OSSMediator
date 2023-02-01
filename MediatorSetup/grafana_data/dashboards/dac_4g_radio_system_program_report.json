@@ -43158,6 +43158,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
@@ -43189,6 +43190,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${dataSource}"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
         "hide": 0,
         "includeAll": true,

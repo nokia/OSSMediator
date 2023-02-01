@@ -141,6 +141,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
+      "queryType": "lucene",
       "description": "Provides the count of critical alarms",
       "fieldConfig": {
         "defaults": {
@@ -218,6 +219,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -240,6 +242,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
+      "queryType": "lucene",
       "description": "Provides the count of major alarms",
       "fieldConfig": {
         "defaults": {
@@ -316,6 +319,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -336,6 +340,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
+      "queryType": "lucene",
       "description": "Provides the count of minor alarms",
       "fieldConfig": {
         "defaults": {
@@ -412,6 +417,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -432,6 +438,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
+      "queryType": "lucene",
       "description": "Provides the count of warning alarms",
       "fieldConfig": {
         "defaults": {
@@ -508,6 +515,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -614,6 +622,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
+      "queryType": "lucene",
       "description": "Provides the count of active alarms",
       "fieldConfig": {
         "defaults": {
@@ -685,6 +694,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -772,6 +782,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "$datasource"
       },
+      "queryType": "lucene",
       "description": "This table will show all alarms history across all edges enodeB's",
       "fontSize": "90%",
       "gridPos": {
@@ -1026,6 +1037,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -1088,6 +1100,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$datasource"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": true,
@@ -1119,6 +1132,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$datasource"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.dn.keyword\", \"query\":\"fm_data_source.nhg_alias.keyword:$nhgname\"}",
         "hide": 0,
         "includeAll": true,
@@ -1150,6 +1164,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$datasource"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data.severity.keyword\"}",
         "hide": 0,
         "includeAll": true,
@@ -1181,6 +1196,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data.alarm_state.keyword\"}",
         "hide": 0,
         "includeAll": true,

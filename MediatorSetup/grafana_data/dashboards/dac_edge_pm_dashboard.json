@@ -105,6 +105,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "This KPI provides the usage of the CPU of the edge node is percentage. ",
       "fieldConfig": {
         "defaults": {
@@ -172,6 +173,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_edge_cpu_usage_percentage",
@@ -192,6 +194,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "This KPI provides the temperature of the hard disk on the edge node in degree celsius .",
       "fieldConfig": {
         "defaults": {
@@ -274,6 +277,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_edge_disk_temp_celsius",
@@ -303,6 +307,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "This KPI provides the usage of the RAM memory usage of the edge node in percentage.",
       "fieldConfig": {
         "defaults": {
@@ -372,6 +377,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_edge_ram_usage_percentage",
@@ -392,6 +398,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "This KPI provides the usage of hard disk of the edge node in percentage.",
       "fieldConfig": {
         "defaults": {
@@ -472,6 +479,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_edge_disk_usage_percentage",
@@ -492,6 +500,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "This KPI provides the usage of the CPU of the edge node is percentage. ",
       "fieldConfig": {
         "defaults": {
@@ -576,6 +585,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_edge_cpu_usage_percentage",
@@ -596,6 +606,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "This KPI provides the temperature of the hard disk on the edge node in degree celsius .",
       "fieldConfig": {
         "defaults": {
@@ -692,6 +703,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_edge_disk_temp_celsius",
@@ -721,6 +733,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "This KPI provides the usage of the RAM memory usage of the edge node in percentage.",
       "fieldConfig": {
         "defaults": {
@@ -805,6 +818,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_edge_ram_usage_percentage",
@@ -825,6 +839,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${dataSource}"
       },
+      "queryType": "lucene",
       "description": "This KPI provides the usage of hard disk of the edge node in percentage.",
       "fieldConfig": {
         "defaults": {
@@ -920,6 +935,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_edge_disk_usage_percentage",
@@ -972,6 +988,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${dataSource}"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
@@ -996,6 +1013,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${dataSource}"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\", \"query\":\"pm_data_source.edge_alias.keyword:$edgealias\"}",
         "hide": 0,
         "includeAll": false,

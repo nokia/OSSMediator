@@ -122,6 +122,7 @@
       "datasource": {
         "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -300,6 +301,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5750a\tE-UTRAN Cell Availability Ratio",
           "fill": 1,
           "fillGradient": 0,
@@ -463,6 +465,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5239a\tE-UTRAN Cell Availability, excluding blocked by user state (BLU)",
           "fill": 1,
           "fillGradient": 0,
@@ -655,6 +658,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_6159a E-UTRAN RACH Setup Attempts",
           "fill": 1,
           "fillGradient": 0,
@@ -822,6 +826,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1000,6 +1005,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1208,6 +1214,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1440,6 +1447,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1678,6 +1686,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1895,6 +1904,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2248,6 +2258,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2402,6 +2413,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2544,6 +2556,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2692,6 +2705,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2858,6 +2872,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -3006,6 +3021,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -3160,6 +3176,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -3536,6 +3553,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -3692,6 +3710,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -3860,6 +3879,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -4220,6 +4240,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -4592,6 +4613,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -4964,6 +4986,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -5348,6 +5371,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -5544,6 +5568,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -5717,6 +5742,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -5890,6 +5916,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -6063,6 +6090,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -6236,6 +6264,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -6409,6 +6438,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -6582,6 +6612,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -6755,6 +6786,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -6947,6 +6979,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -7144,6 +7177,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -7336,6 +7370,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -7528,6 +7563,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -7720,6 +7756,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -7912,6 +7949,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -8104,6 +8142,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -8296,6 +8335,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -8800,6 +8840,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5574h E-UTRAN Additional E-RAB Accessibility",
           "fieldConfig": {
             "defaults": {
@@ -9557,6 +9598,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -9803,6 +9845,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5812e\tE-UTRAN E-RAB Drops per PDCP SDU volume, User Perspective",
           "fieldConfig": {
             "defaults": {
@@ -10146,6 +10189,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5575a\tE-UTRAN Total E-RAB Active Time\n",
           "fieldConfig": {
             "defaults": {
@@ -10345,6 +10389,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -10495,6 +10540,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -10645,6 +10691,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -10795,6 +10842,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -10945,6 +10993,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5581b\tE-UTRAN E-RAB Retainability Rate, RAN View, RNL Failure with UE Lost",
           "fieldConfig": {
             "defaults": {
@@ -11204,6 +11253,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -11373,6 +11423,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -11542,6 +11593,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -11711,6 +11763,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -11898,6 +11951,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -12040,6 +12094,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5213a\tE-UTRAN PDCP SDU Volume UL",
           "fill": 1,
           "fillGradient": 0,
@@ -12183,6 +12238,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -12337,6 +12393,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5292d\tE-UTRAN average PDCP Layer Active Cell Throughput DL",
           "fill": 1,
           "fillGradient": 0,
@@ -12492,6 +12549,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -12634,6 +12692,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_288b\tMaximum PDCP Throughput UL",
           "fill": 1,
           "fillGradient": 0,
@@ -12777,6 +12836,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5293c\tE-UTRAN average PDCP Layer Active Cell Throughput DL for QCI1 DRBs",
           "fill": 1,
           "fillGradient": 0,
@@ -12920,6 +12980,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5294c\tE-UTRAN average PDCP Active Layer Cell Throughput UL for QCI1 DRBs",
           "fill": 1,
           "fillGradient": 0,
@@ -13081,6 +13142,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -13235,6 +13297,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5355a\tE-UTRAN Averaged IP scheduled Throughput in DL, QCI6",
           "fill": 1,
           "fillGradient": 0,
@@ -13390,6 +13453,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -13544,6 +13608,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -13698,6 +13763,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -13852,6 +13918,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -14006,6 +14073,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -14160,6 +14228,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -14314,6 +14383,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -14468,6 +14538,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -14622,6 +14693,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -14764,6 +14836,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -14906,6 +14979,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -15048,6 +15122,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -15190,6 +15265,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -15332,6 +15408,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -15474,6 +15551,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -15616,6 +15694,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -15758,6 +15837,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -15900,6 +15980,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -16060,6 +16141,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -16193,6 +16275,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -16341,6 +16424,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -16511,6 +16595,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -16702,6 +16787,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -16864,6 +16950,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -17014,6 +17101,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -17176,6 +17264,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -17326,6 +17415,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -17506,6 +17596,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -17672,6 +17763,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -17814,6 +17906,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -17968,6 +18061,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -18110,6 +18204,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -18276,6 +18371,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -18442,6 +18538,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -18584,6 +18681,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -18738,6 +18836,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -18880,6 +18979,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19064,6 +19164,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19218,6 +19319,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19360,6 +19462,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19514,6 +19617,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19674,6 +19778,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19817,6 +19922,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19971,6 +20077,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -20131,6 +20238,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5198b E-UTRAN Inter RAT Total HO Success Ratio",
           "fieldConfig": {
             "defaults": {
@@ -20326,6 +20434,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5251a E-UTRAN Inter RAT HO Attempts",
           "fieldConfig": {
             "defaults": {
@@ -20509,6 +20618,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5250a E-UTRAN Inter RAT HO Success Ratio",
           "fieldConfig": {
             "defaults": {
@@ -20728,6 +20838,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5190a E-UTRAN Inter RAT HO Preparations",
           "fieldConfig": {
             "defaults": {
@@ -20881,6 +20992,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5191b E-UTRAN Inter RAT HO Preparation Success Ratio",
           "fieldConfig": {
             "defaults": {
@@ -21076,6 +21188,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5179a E-UTRAN NACC Attempts from LTE to GSM",
           "fieldConfig": {
             "defaults": {
@@ -21247,6 +21360,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -21556,6 +21670,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -21698,6 +21813,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -21983,6 +22099,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -22137,6 +22254,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -22279,6 +22397,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -22421,6 +22540,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -22563,6 +22683,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -22854,6 +22975,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -23115,6 +23237,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -23245,6 +23368,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -23375,6 +23499,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -23505,6 +23630,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -23635,6 +23761,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -23765,6 +23892,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -23895,6 +24023,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -24026,6 +24155,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -24467,6 +24597,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -24609,6 +24740,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -24763,6 +24895,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -24923,6 +25056,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "description": "LTE_5766a MIMO Closed Loop 1CW 1 layer usage distribution ratio",
           "fill": 1,
           "fillGradient": 0,
@@ -25132,6 +25266,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -25267,6 +25402,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -25397,6 +25533,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -25539,6 +25676,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -25681,6 +25819,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -25823,6 +25962,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -25965,6 +26105,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -26107,6 +26248,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -26249,6 +26391,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -26391,6 +26534,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -26533,6 +26677,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -26693,6 +26838,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -26854,6 +27000,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -27033,6 +27180,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -27885,6 +28033,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -28215,6 +28364,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -28545,6 +28695,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -28683,6 +28834,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -29085,6 +29237,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -29487,6 +29640,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -29889,6 +30043,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -30291,6 +30446,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -30813,6 +30969,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -31335,6 +31492,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -31821,6 +31979,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -32007,6 +32166,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -32241,6 +32401,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -32415,6 +32576,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -32589,6 +32751,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -32739,6 +32902,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -33261,6 +33425,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -33747,6 +33912,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -34233,6 +34399,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -34814,6 +34981,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -35413,6 +35581,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -35555,6 +35724,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -35697,6 +35867,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -35839,6 +36010,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -35999,6 +36171,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -36161,6 +36334,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -36317,6 +36491,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -36497,6 +36672,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -36674,6 +36850,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -36887,6 +37064,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -37040,6 +37218,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -37193,6 +37372,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -37378,6 +37558,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -37531,6 +37712,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -37684,6 +37866,7 @@
           "datasource": {
             "uid": "$dataSource"
           },
+          "queryType":"lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -37858,6 +38041,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
@@ -37889,6 +38073,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
         "hide": 0,
         "includeAll": true,

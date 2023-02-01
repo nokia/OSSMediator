@@ -1990,6 +1990,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$datasource"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": true,
@@ -2021,6 +2022,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$datasource"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.dn.keyword\", \"query\":\"fm_data_source.nhg_alias.keyword:$nhgname\"}",
         "hide": 0,
         "includeAll": true,

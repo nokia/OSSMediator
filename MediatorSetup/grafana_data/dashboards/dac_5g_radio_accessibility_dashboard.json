@@ -116,9 +116,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -136,6 +137,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType":"lucene",
           "description": "This KPI shows the percentage of success when a user tries to establish a connection in 5G SA mode. ",
           "fieldConfig": {
             "defaults": {
@@ -210,6 +212,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRRCC_M55124C01031",
@@ -784,9 +787,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2322,6 +2326,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NNGCC_M55125C05502",
@@ -2485,6 +2490,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NNGCC_M55125C05503",
@@ -2572,9 +2578,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3186,9 +3193,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3578,6 +3586,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NNGCC_M55125C05506",
@@ -4929,6 +4938,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NNGCC_M55125C05508",
@@ -5012,9 +5022,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -5106,6 +5117,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NGCFB_M55155C00001",
@@ -5256,6 +5268,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NGCFB_M55155C00001",
@@ -5415,6 +5428,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NGCFB_M55155C00002",
@@ -5564,6 +5578,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NGCFB_M55155C00004",
@@ -5713,6 +5728,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NGCFB_M55155C00006",
@@ -5872,6 +5888,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NGCFB_M55155C00005",
@@ -5946,9 +5963,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -6148,9 +6166,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -7152,9 +7171,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -7246,6 +7266,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NNGCB_M55119C00002",
@@ -7408,6 +7429,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NNGCB_M55119C00001",
@@ -7487,9 +7509,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -8339,9 +8362,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -8993,9 +9017,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -12075,6 +12100,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRACH_M55306C06001",
@@ -14022,9 +14048,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -14231,9 +14258,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -14325,6 +14353,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRRCC_M55124C01001",
@@ -16100,6 +16129,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRRCC_M55124C01001",
@@ -16319,9 +16349,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -16645,9 +16676,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -16739,6 +16771,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRRCC_M55124C01001",
@@ -17028,9 +17061,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -17122,6 +17156,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRRCC_M55124C01021",
@@ -19012,9 +19047,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -19830,9 +19866,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -20157,9 +20194,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -20497,9 +20535,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -21009,9 +21048,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -22767,9 +22807,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -23699,6 +23740,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C01002",
@@ -23876,6 +23918,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C01001",
@@ -23955,9 +23998,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -24049,6 +24093,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C01004",
@@ -24208,6 +24253,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C01003",
@@ -24367,6 +24413,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C01005",
@@ -24450,9 +24497,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -25210,6 +25258,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C00002",
@@ -25293,9 +25342,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -25387,6 +25437,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00003",
@@ -25542,6 +25593,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00004",
@@ -25705,6 +25757,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00007",
@@ -25868,6 +25921,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00006",
@@ -26031,6 +26085,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00020",
@@ -26194,6 +26249,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00021",
@@ -26357,6 +26413,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00022",
@@ -26520,6 +26577,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00023",
@@ -26683,6 +26741,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00024",
@@ -26846,6 +26905,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00025",
@@ -26933,9 +26993,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -27027,6 +27088,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00010",
@@ -27177,6 +27239,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00011",
@@ -27336,6 +27399,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00026",
@@ -27495,6 +27559,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00012",
@@ -27568,9 +27633,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -27662,6 +27728,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00029",
@@ -27812,6 +27879,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00030",
@@ -27975,6 +28043,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00031",
@@ -28138,6 +28207,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NXNCB_M55126C00029",
@@ -28235,9 +28305,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -28329,6 +28400,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CB_M55110C00003",
@@ -28478,6 +28550,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CB_M55110C00004",
@@ -28637,6 +28710,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CB_M55110C00005",
@@ -28786,6 +28860,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CB_M55110C00006",
@@ -28995,6 +29070,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CB_M55110C00006",
@@ -29118,9 +29194,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -29212,6 +29289,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C01505",
@@ -29361,6 +29439,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C01506",
@@ -29444,9 +29523,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -29538,6 +29618,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C01508",
@@ -29697,6 +29778,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C01509",
@@ -29856,6 +29938,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C01510",
@@ -29939,9 +30022,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -30033,6 +30117,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00023",
@@ -30182,6 +30267,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00024",
@@ -30331,6 +30417,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00025",
@@ -30480,6 +30567,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00026",
@@ -30639,6 +30727,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00027",
@@ -30798,6 +30887,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00028",
@@ -30958,6 +31048,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00035",
@@ -31117,6 +31208,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00036",
@@ -31276,6 +31368,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00039",
@@ -31359,9 +31452,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -31453,6 +31547,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00040",
@@ -31602,6 +31697,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00041",
@@ -31751,6 +31847,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00042",
@@ -31900,6 +31997,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00043",
@@ -32059,6 +32157,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00044",
@@ -32218,6 +32317,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00045",
@@ -32377,6 +32477,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UU_M55150C00046",
@@ -32460,9 +32561,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -32554,6 +32656,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C03001",
@@ -32703,6 +32806,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C03002",
@@ -32786,9 +32890,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -32880,6 +32985,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NE1CU_M55123C00004",
@@ -33039,6 +33145,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NE1CU_M55123C00003",
@@ -33188,6 +33295,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NE1CU_M55123C00005",
@@ -33281,9 +33389,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -33375,6 +33484,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NE1CU_M55123C00501",
@@ -33524,6 +33634,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.NE1CU_M55123C00502",
@@ -33607,9 +33718,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -33873,6 +33985,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.RSACU_M55138C00001",
@@ -34350,6 +34463,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.RSACU_M55138C00006",
@@ -34699,6 +34813,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.RSADU_M55139C00003",
@@ -34876,6 +34991,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.RSADU_M55139C00007",
@@ -35641,9 +35757,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -36715,9 +36832,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -36905,9 +37023,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "type": "grafana-opensearch-datasource",
+        "uid": "$dataSource"
       },
+      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -38153,6 +38272,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.RSACU_M55138C01013",
@@ -38316,6 +38436,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.RSADU_M55139C00506",
@@ -38479,6 +38600,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.RSADU_M55139C00508",
@@ -38643,6 +38765,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType":"lucene",
               "metrics": [
                 {
                   "field": "pm_data.RSADU_M55139C00507",

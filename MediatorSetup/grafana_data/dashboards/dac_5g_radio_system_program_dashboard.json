@@ -118,6 +118,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "$dataSource"
       },
+      "queryType": "lucene",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -195,6 +196,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.NCAV_M55601C00002",
@@ -2176,6 +2178,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the ratio of time in which services in a cell are available for end users.",
           "fieldConfig": {
             "defaults": {
@@ -2250,6 +2253,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NCAV_M55601C00002",
@@ -6735,6 +6739,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the RACH setup success ratio calculated as the number of successful RACH setups divided by the successful setups plus the failures in RACH setup.",
           "fieldConfig": {
             "defaults": {
@@ -6809,6 +6814,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRACH_M55306C06001",
@@ -8771,6 +8777,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the total number of RRC connection establishment attempts, calculated as the sum of all different establishment causes. ",
           "fieldConfig": {
             "defaults": {
@@ -8845,6 +8852,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRRCC_M55124C01001",
@@ -9032,6 +9040,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the total number of RRC connection establishment attempts, calculated as the sum of all different establishment causes. ",
           "fieldConfig": {
             "defaults": {
@@ -9106,6 +9115,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRRCC_M55124C01001",
@@ -10697,6 +10707,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the success ratio of radio admission for Stand Alone users.",
           "fieldConfig": {
             "defaults": {
@@ -10771,6 +10782,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.RSACU_M55138C00002",
@@ -11028,6 +11040,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the total number of radio admission requests for Stand Alone users.",
           "fieldConfig": {
             "defaults": {
@@ -11102,6 +11115,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.RSACU_M55138C00001",
@@ -11182,6 +11196,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the rejection ratio in admission control due to lack of PUCCH resources, in NSA mode.",
           "fieldConfig": {
             "defaults": {
@@ -11256,6 +11271,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.RACDU_M55115C00005",
@@ -11364,6 +11380,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the ratio of normal releases, due to inactivity and redirection, initiated by gNB compared to all releases, for SA access",
           "fieldConfig": {
             "defaults": {
@@ -11438,6 +11455,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NRRCC_M55124C01501",
@@ -11740,6 +11758,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the ratio of normal releases initiated by SgNB compared to all SgNB initiated releases . The normal releases are considered those initiated due to user inactivity. Releases initiated by the LTE MeNB are not considered in this KPI.\n",
           "fieldConfig": {
             "defaults": {
@@ -11814,6 +11833,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00502",
@@ -12155,6 +12175,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the number of releases required by the SgNB due to user inactivity.",
           "fieldConfig": {
             "defaults": {
@@ -12229,6 +12250,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00007",
@@ -13210,6 +13232,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the ratio of SgNB releases initiated by SgNB due to radio connection with UE lost, among all releases excluding X2 reset.\nRLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success. ",
           "fieldConfig": {
             "defaults": {
@@ -13284,6 +13307,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00007",
@@ -21376,6 +21400,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the failure ratio for the first HARQ transmission for PUSCH.",
           "fieldConfig": {
             "defaults": {
@@ -21450,6 +21475,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NULHQ_M55302C00000",
@@ -23333,6 +23359,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the residual Block Error Ratio (BLER) for PUSCH. Residual BLER is defined as the ratio between the number of failed transmissions after the MAX harq retransmission reached and the number of packets to transmit, that is, the 1st HARQ transmissions.\nIn real-time monitoring, the HARQ feedback might be received in a diferent measurement period than the initial transmission. For that reason, the initial transmissions in the formula are calculated as the successful transmissions plus the unsuccessful transmissions.",
           "fieldConfig": {
             "defaults": {
@@ -23407,6 +23434,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NULHQ_M55302C03000",
@@ -25308,6 +25336,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the residual Block Error Ratio (BLER) for PUSCH. Residual BLER is defined as the ratio between the number of failed transmissions after the MAX harq retransmission reached and the number of packets to transmit, that is, the 1st HARQ transmissions.\nIn real-time monitoring, the HARQ feedback might be received in a diferent measurement period than the initial transmission. For that reason, the initial transmissions in the formula are calculated as the successful transmissions plus the unsuccessful transmissions.",
           "fieldConfig": {
             "defaults": {
@@ -25382,6 +25411,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.PDCP2_M55320C02001",
@@ -26776,6 +26806,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the residual Block Error Ratio (BLER) for PUSCH. Residual BLER is defined as the ratio between the number of failed transmissions after the MAX harq retransmission reached and the number of packets to transmit, that is, the 1st HARQ transmissions.\nIn real-time monitoring, the HARQ feedback might be received in a diferent measurement period than the initial transmission. For that reason, the initial transmissions in the formula are calculated as the successful transmissions plus the unsuccessful transmissions.",
           "fieldConfig": {
             "defaults": {
@@ -26850,6 +26881,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.PDCP2_M55320C08001",
@@ -27639,6 +27671,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the residual Block Error Ratio (BLER) for PUSCH. Residual BLER is defined as the ratio between the number of failed transmissions after the MAX harq retransmission reached and the number of packets to transmit, that is, the 1st HARQ transmissions.\nIn real-time monitoring, the HARQ feedback might be received in a diferent measurement period than the initial transmission. For that reason, the initial transmissions in the formula are calculated as the successful transmissions plus the unsuccessful transmissions.",
           "fieldConfig": {
             "defaults": {
@@ -27713,6 +27746,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2UB_M55313C04001",
@@ -28272,6 +28306,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the residual Block Error Ratio (BLER) for PUSCH. Residual BLER is defined as the ratio between the number of failed transmissions after the MAX harq retransmission reached and the number of packets to transmit, that is, the 1st HARQ transmissions.\nIn real-time monitoring, the HARQ feedback might be received in a diferent measurement period than the initial transmission. For that reason, the initial transmissions in the formula are calculated as the successful transmissions plus the unsuccessful transmissions.",
           "fieldConfig": {
             "defaults": {
@@ -28346,6 +28381,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.PDCP1_M55319C09001",
@@ -29093,6 +29129,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the residual Block Error Ratio (BLER) for PUSCH. Residual BLER is defined as the ratio between the number of failed transmissions after the MAX harq retransmission reached and the number of packets to transmit, that is, the 1st HARQ transmissions.\nIn real-time monitoring, the HARQ feedback might be received in a diferent measurement period than the initial transmission. For that reason, the initial transmissions in the formula are calculated as the successful transmissions plus the unsuccessful transmissions.",
           "fieldConfig": {
             "defaults": {
@@ -29167,6 +29204,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.PDCP1_M55319C10001",
@@ -29932,6 +29970,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the average estimated F1 round trip delay between CU and MAC DU, measured on gNB and per DU. It is the time:\n- Starting when the PDCP PDU packet is sent by CU over F1 (PDCP PDU packet has left CU)\nThen, this PDCP PDU packet is going until MAC PDU (of DU). When the 1st segment is ready to be sent on the air for the first time (excluding repetitions), the MAC PDU sends a DDDS to CU.\n- And ending when the DDDS (sent by the MAC PDU) message is received by CU over F1 to acknowledge the packet (removed from CU buffer).\nNote:\n- We can consider that the time to process the DDDS message is equivalent to a PDU message received on CU over F1 and the PDU was sent by MAC PDU.",
           "fieldConfig": {
             "defaults": {
@@ -30006,6 +30045,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UB_M55323C11001",
@@ -30179,6 +30219,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the average estimated X2 round trip delay between CU and MAC eNB cell, measured on gNB and per X2. It is the time:\n- starting when the PDCP PDU packet is sent by CU over X2 until RLC multiplexed packet in the MAC PDU (of cell of eNB) to be transmitted in the air for the first time\n- and ending when the DDDS (sent by the MAC PDU) message is received by CU over X2 to acknowledge the packet (removed from CU buffer).\nNote: We can consider that the time to process the DDDS message is equivalent to a PDU message received on CU over X2 and the PDU was sent by MAC PDU (of cell of eNB).",
           "fieldConfig": {
             "defaults": {
@@ -30253,6 +30294,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2UB_M55313C22001",
@@ -30445,6 +30487,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the residual Block Error Ratio (BLER) for PUSCH. Residual BLER is defined as the ratio between the number of failed transmissions after the MAX harq retransmission reached and the number of packets to transmit, that is, the 1st HARQ transmissions.\nIn real-time monitoring, the HARQ feedback might be received in a diferent measurement period than the initial transmission. For that reason, the initial transmissions in the formula are calculated as the successful transmissions plus the unsuccessful transmissions.",
           "fieldConfig": {
             "defaults": {
@@ -30519,6 +30562,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NHRLC_M55311C06001",
@@ -31066,6 +31110,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the residual Block Error Ratio (BLER) for PUSCH. Residual BLER is defined as the ratio between the number of failed transmissions after the MAX harq retransmission reached and the number of packets to transmit, that is, the 1st HARQ transmissions.\nIn real-time monitoring, the HARQ feedback might be received in a diferent measurement period than the initial transmission. For that reason, the initial transmissions in the formula are calculated as the successful transmissions plus the unsuccessful transmissions.",
           "fieldConfig": {
             "defaults": {
@@ -31140,6 +31185,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NHRLC_M55311C08001",
@@ -31705,6 +31751,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the retransmission ratio of the RLC Data PDUs in the downlink direction by High RLC.",
           "fieldConfig": {
             "defaults": {
@@ -31779,6 +31826,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NHRLC_M55311C06001",
@@ -32248,6 +32296,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the retransmission ratio of the RLC Data PDUs in the uplink direction requested by High RLC.",
           "fieldConfig": {
             "defaults": {
@@ -32322,6 +32371,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NHRLC_M55311C08001",
@@ -32809,6 +32859,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the average reported Channel Quality Indicator (CQI) value when UE reports wideband CQI related to 64QAM table.",
           "fieldConfig": {
             "defaults": {
@@ -32883,6 +32934,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NDLSQ_M55301C19020",
@@ -36338,6 +36390,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the PDCP SDU data volume transmitted in downlink direction for SA Bearer via gNB. Discarded DL PDCP SDUs are not counted.",
           "fieldConfig": {
             "defaults": {
@@ -36413,6 +36466,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.PDCP1_M55319C02001",
@@ -36684,6 +36738,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the PDCP SDU data volume transmitted in downlink direction for SA Bearer via gNB. Discarded DL PDCP SDUs are not counted.",
           "fieldConfig": {
             "defaults": {
@@ -36759,6 +36814,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.PDCP1_M55319C06001",
@@ -37030,6 +37086,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the PDCP SDU data volume transmitted in downlink direction for SA Bearer via gNB. Discarded DL PDCP SDUs are not counted.",
           "fieldConfig": {
             "defaults": {
@@ -37105,6 +37162,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.PDCP1_M55319C12001",
@@ -37377,6 +37435,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the PDCP SDU data volume received in uplink direction for SA Bearer via gNB. Discarded UL PDCP SDUs are not counted.",
           "fieldConfig": {
             "defaults": {
@@ -37452,6 +37511,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.PDCP1_M55319C16001",
@@ -38930,6 +38990,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the cell throughput on active PUSCH calculated at MAC layer by dividing the MAC PDU data volume transmitted on initial HARQ tx divided by the accumulated time of data slots used for PUSCH.\nThis KPI gives info about RF capability as slots not available for PUSCH (like DL Data slots, SSB slots or PRACH slots) are not considered in denominator.\n",
           "fieldConfig": {
             "defaults": {
@@ -39004,6 +39065,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NMPDU_M55304C03000",
@@ -40011,6 +40073,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the cell throughput on active PUSCH calculated at MAC layer by dividing the MAC PDU data volume transmitted on initial HARQ tx divided by the accumulated time of data slots used for PUSCH.\nThis KPI gives info about RF capability as slots not available for PUSCH (like DL Data slots, SSB slots or PRACH slots) are not considered in denominator.\n",
           "fieldConfig": {
             "defaults": {
@@ -40085,6 +40148,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NMPDU_M55304C03000",
@@ -43716,6 +43780,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the active cell throughput on PUSCH calculated at MAC layer by dividing the MAC PDU data volume transmitted on initial HARQ tx divided by the accumulated time of OFDM symbols used for PUSCH. ",
           "fieldConfig": {
             "defaults": {
@@ -43790,6 +43855,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NMPDU_M55304C03000",
@@ -45022,6 +45088,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the average MAC layer user throughput in uplink. It is calculated as Cell throughput divided by number of users.\nCell user throughput = Volume in Mbits / (Accumulated number of users with buffered data (sampled every 20 slots) * 20 slots * Slot duration) ",
           "fieldConfig": {
             "defaults": {
@@ -45096,6 +45163,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NMSDU_M55309C02001",
@@ -50847,6 +50915,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the average MCS used for downlink data transmissions over PDSCH with 64QAM MCS table. ",
           "fieldConfig": {
             "defaults": {
@@ -50921,6 +50990,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NDLHQ_M55300C00000",
@@ -53678,6 +53748,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the utilization of PRBs for PUSCH. ",
           "fieldConfig": {
             "defaults": {
@@ -53752,6 +53823,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NCELA_M55308C00005",
@@ -53845,6 +53917,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the utilization of PRBs for PUSCH. ",
           "fieldConfig": {
             "defaults": {
@@ -53919,6 +53992,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NCELA_M55308C00006",
@@ -54030,6 +54104,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the utilization of PRBs for PUSCH. ",
           "fieldConfig": {
             "defaults": {
@@ -54104,6 +54179,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NCELA_M55308C00005",
@@ -54197,6 +54273,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the utilization of PRBs for PUSCH. ",
           "fieldConfig": {
             "defaults": {
@@ -54271,6 +54348,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NCELA_M55308C00006",
@@ -54382,6 +54460,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the Spectral efficiency calculated from the initial transmission or retransmission on PDSCH and the PDSCH OFDM symbols time. ",
           "fieldConfig": {
             "defaults": {
@@ -54456,6 +54535,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NCELA_M55308C03005",
@@ -55288,6 +55368,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the Spectral efficiency calculated from the initial transmission or retransmission on PUSCH and the PUSCH OFDM symbols time. ",
           "fieldConfig": {
             "defaults": {
@@ -55362,6 +55443,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NCELA_M55308C03006",
@@ -59080,6 +59162,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the NGAP connection establishment success ratio.\nThe KPI value is expected to be clearly lower than 100% as there is no Init context setup request message after an Initial UE message for pure signaling connection (e.g Registration). ",
           "fieldConfig": {
             "defaults": {
@@ -59154,6 +59237,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NNGCC_M55125C00001",
@@ -59914,6 +59998,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the average MCS used for uplink data transmissions over PUSCH with 64QAM MCS table.",
           "fieldConfig": {
             "defaults": {
@@ -59988,6 +60073,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NULHQ_M55302C00000",
@@ -60627,6 +60713,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the average MCS used for uplink data transmissions over PUSCH with 64QAM MCS table.",
           "fieldConfig": {
             "defaults": {
@@ -60701,6 +60788,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NULHQ_M55302C11000",
@@ -61876,6 +61964,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the scheduled user throughput in downlink calculated as the cell throughput divided by the average number of UEs scheduled per slot.",
           "fieldConfig": {
             "defaults": {
@@ -61950,6 +62039,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NMPDU_M55304C01000",
@@ -63001,6 +63091,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the average ratio of uplink PRBs assigned to NR, in case of activated DSS.",
           "fieldConfig": {
             "defaults": {
@@ -63075,6 +63166,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C01506",
@@ -63164,6 +63256,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the number of RRC connection establishment attempts for Mobile Originated Voice Call.",
           "fieldConfig": {
             "defaults": {
@@ -63238,6 +63331,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1CD_M55117C01505",
@@ -63335,6 +63429,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the cell throughput on active PDSCH calculated at MAC layer by dividing the MAC PDU data volume transmitted on initial HARQ tx divided by the accumulated time of data slots used for PDSCH.\nThis KPI gives info about RF capability as slots available for PDSCH (like UL Data slots or PRACH slots) are not considered in denominator. The SSB slots and TRS slots used for PDSCH are considered in denominator.\n",
           "fieldConfig": {
             "defaults": {
@@ -63409,6 +63504,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UB_M55323C12001",
@@ -63638,6 +63734,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the cell throughput on active PDSCH calculated at MAC layer by dividing the MAC PDU data volume transmitted on initial HARQ tx divided by the accumulated time of data slots used for PDSCH.\nThis KPI gives info about RF capability as slots available for PDSCH (like UL Data slots or PRACH slots) are not considered in denominator. The SSB slots and TRS slots used for PDSCH are considered in denominator.\n",
           "fieldConfig": {
             "defaults": {
@@ -63712,6 +63809,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2UB_M55313C23001",
@@ -63941,6 +64039,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the success ratio of the setup of GBR DRB for SA users.",
           "fieldConfig": {
             "defaults": {
@@ -64015,6 +64114,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UB_M55323C01001",
@@ -64494,6 +64594,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the success ratio of the setup of GBR DRB for SA users.",
           "fieldConfig": {
             "defaults": {
@@ -64568,6 +64669,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NF1UB_M55323C03001",
@@ -65065,6 +65167,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the number of RRC connection establishment attempts for Mobile Originated Voice Call.",
           "fieldConfig": {
             "defaults": {
@@ -65139,6 +65242,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C05501",
@@ -66142,6 +66246,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "$dataSource"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the average holding time of a GBR DRB, from successful AC until AC release.",
           "fieldConfig": {
             "defaults": {
@@ -66216,6 +66321,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${dataSource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.RSACU_M55138C01010",
@@ -66468,6 +66574,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
@@ -66499,6 +66606,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$dataSource"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
         "hide": 0,
         "includeAll": true,

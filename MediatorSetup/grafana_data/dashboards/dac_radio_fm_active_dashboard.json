@@ -119,6 +119,7 @@
         "type": "datasource",
         "uid": "grafana"
       },
+      "queryType": "lucene",
       "gridPos": {
         "h": 2,
         "w": 24,
@@ -140,6 +141,7 @@
       "datasource": {
         "uid": "$datasource"
       },
+      "queryType":"lucene",
       "description": "Provides the count of critical alarms",
       "fieldConfig": {
         "defaults": {
@@ -234,6 +236,7 @@
       "datasource": {
         "uid": "$datasource"
       },
+      "queryType":"lucene",
       "description": "Provides the count of major alarms",
       "fieldConfig": {
         "defaults": {
@@ -325,6 +328,7 @@
       "datasource": {
         "uid": "$datasource"
       },
+      "queryType":"lucene",
       "description": "Provides the count of minor alarms",
       "fieldConfig": {
         "defaults": {
@@ -416,6 +420,7 @@
       "datasource": {
         "uid": "$datasource"
       },
+      "queryType":"lucene",
       "description": "Provides the count of warning alarms",
       "fieldConfig": {
         "defaults": {
@@ -557,6 +562,7 @@
       "datasource": {
         "uid": "$datasource"
       },
+      "queryType":"lucene",
       "description": "This table will show all Service Impacting active alarms that are raised across all edges enodeB's.\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
       "gridPos": {
@@ -846,6 +852,7 @@
       "datasource": {
         "uid": "$datasource"
       },
+      "queryType":"lucene",
       "description": "This table will show all active alarms that are critical across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
       "gridPos": {
@@ -1135,6 +1142,7 @@
       "datasource": {
         "uid": "$datasource"
       },
+      "queryType":"lucene",
       "description": "This table will show all active alarms that are major across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
       "gridPos": {
@@ -1424,6 +1432,7 @@
       "datasource": {
         "uid": "$datasource"
       },
+      "queryType":"lucene",
       "description": "This table will show all active alarms that are minor across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
       "gridPos": {
@@ -1713,6 +1722,7 @@
       "datasource": {
         "uid": "$datasource"
       },
+      "queryType":"lucene",
       "description": "This table will show all active alarms that are warning across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
       "gridPos": {

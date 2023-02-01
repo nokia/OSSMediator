@@ -326,6 +326,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Provides the count of minor alarms",
       "fieldConfig": {
         "defaults": {
@@ -402,6 +403,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${dataSource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -1690,6 +1692,7 @@
           "type": "grafana-opensearch-datasource",
           "uid": "$datasource"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": true,

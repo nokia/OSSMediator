@@ -198,6 +198,7 @@
       "pluginVersion": "8.5.2",
       "targets": [
         {
+          "queryType": "lucene",
           "alias": "Critical",
           "bucketAggs": [
             {

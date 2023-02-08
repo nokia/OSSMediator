@@ -139,7 +139,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "$datasource"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "Provides the count of critical alarms",
@@ -217,7 +217,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -240,7 +240,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "$datasource"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "Provides the count of major alarms",
@@ -317,7 +317,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -338,7 +338,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "$datasource"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "Provides the count of minor alarms",
@@ -415,7 +415,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -436,7 +436,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "$datasource"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "Provides the count of warning alarms",
@@ -513,7 +513,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -534,7 +534,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "$datasource"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "Provides the count of cleared alarms",
@@ -606,7 +606,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -627,7 +627,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "$datasource"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "Provides the count of active alarms",
@@ -699,7 +699,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -772,7 +772,7 @@
       ],
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "$datasource"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "This table will show all alarms history across all edges enodeB's",
@@ -973,7 +973,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -1036,7 +1036,7 @@
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
-          "uid": "$datasource"
+          "uid": "${datasource}"
         },
         "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
@@ -1068,7 +1068,7 @@
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
-          "uid": "$datasource"
+          "uid": "${datasource}"
         },
         "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data.severity.keyword\"}",

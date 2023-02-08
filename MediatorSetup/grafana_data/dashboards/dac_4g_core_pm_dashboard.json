@@ -116,7 +116,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "Bits per second rate in UL on S1u interface",
@@ -176,12 +176,12 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_s1u_ul_rate",
+              "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
               "id": "1",
               "settings": {},
               "type": "sum"
@@ -198,7 +198,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "Bits per second rate in DL on S1u interface",
@@ -258,12 +258,12 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_s1u_dl_rate",
+              "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
               "id": "1",
               "settings": {},
               "type": "sum"
@@ -280,7 +280,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "UE throughput  on uplink",
@@ -340,12 +340,12 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_ue_ul_rate",
+              "field": "pm_data.ndac_rr_mcn_4g_ue_ul_rate",
               "id": "1",
               "settings": {},
               "type": "sum"
@@ -362,7 +362,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "UE throughput  on downlink",
@@ -422,12 +422,12 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_ue_dl_rate",
+              "field": "pm_data.ndac_rr_mcn_4g_ue_dl_rate",
               "id": "1",
               "settings": {},
               "type": "sum"
@@ -444,7 +444,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "Current Number of Registered UEs",
@@ -509,12 +509,12 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_data_emm_registered_ues",
+              "field": "pm_data.ndac_rr_mcn_4g_data_emm_registered_ues",
               "id": "1",
               "settings": {},
               "type": "sum"
@@ -531,7 +531,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "Current Number of UEs in EMMREGISTERED+ECMCONNECTED states",
@@ -592,12 +592,12 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_data_active_ues",
+              "field": "pm_data.ndac_rr_mcn_4g_data_active_ues",
               "id": "1",
               "settings": {},
               "type": "sum"
@@ -624,7 +624,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of DL Bytes sent on S1u interface.",
@@ -666,7 +666,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -722,12 +723,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_s1u_dl_nbr_bytes",
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_bytes",
                   "id": "3",
                   "type": "sum"
                 }
@@ -750,13 +751,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_s1u_dl_nbr_bytes",
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_bytes",
                   "id": "3",
                   "type": "sum"
                 }
@@ -772,7 +773,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Bytes received in UL on S1u interface",
@@ -814,7 +815,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -870,12 +872,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_s1u_ul_nbr_bytes",
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_bytes",
                   "id": "3",
                   "type": "sum"
                 }
@@ -898,13 +900,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_s1u_ul_nbr_bytes",
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_bytes",
                   "id": "3",
                   "type": "sum"
                 }
@@ -920,7 +922,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Bits per second rate in DL on S1u interface",
@@ -962,7 +964,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1018,12 +1021,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_s1u_dl_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1047,13 +1050,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_s1u_dl_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1070,7 +1073,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Bits per second rate in UL on S1u interface",
@@ -1112,7 +1115,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1168,12 +1172,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_s1u_ul_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1197,13 +1201,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_s1u_ul_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1220,7 +1224,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "UE throughput  on uplink",
@@ -1262,7 +1266,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1318,12 +1323,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_ue_ul_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_ue_ul_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1347,13 +1352,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_ue_ul_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_ue_ul_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1370,7 +1375,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "UE throughput  on downlink",
@@ -1412,7 +1417,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1468,12 +1474,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_ue_dl_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_ue_dl_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1497,13 +1503,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_ue_dl_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_ue_dl_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1534,7 +1540,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Current Number of Active Bearers",
@@ -1576,7 +1582,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1632,12 +1639,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_active_bearers",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_active_bearers",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1661,13 +1668,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_active_bearers",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_active_bearers",
                   "id": "1",
                   "type": "sum"
                 }
@@ -1683,7 +1690,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Current Number of Active PDN Sessions",
@@ -1725,7 +1732,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1781,12 +1789,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_active_pdn_sessions",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_active_pdn_sessions",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1810,13 +1818,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_active_pdn_sessions",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_active_pdn_sessions",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1833,7 +1841,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of received Create Session Requests",
@@ -1875,7 +1883,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1931,12 +1940,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_pdn_conn_requests",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_requests",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1960,13 +1969,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_pdn_conn_requests",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_requests",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1983,7 +1992,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful Create Session procedures",
@@ -2025,7 +2034,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2081,12 +2091,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_pdn_conn_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2110,13 +2120,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_pdn_conn_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2133,7 +2143,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful PDN Connectivity procedures per second.",
@@ -2175,7 +2185,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2231,12 +2242,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_pdn_conn_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2260,13 +2271,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_pdn_conn_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2297,7 +2308,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of UE Attach Requests",
@@ -2339,7 +2350,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2355,7 +2367,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 73
+            "y": 7
           },
           "id": 20,
           "options": {
@@ -2396,12 +2408,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_requests",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_attach_requests",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2425,13 +2437,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_requests",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_attach_requests",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2448,7 +2460,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful UE Attaches",
@@ -2490,7 +2502,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2506,7 +2519,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 79
+            "y": 13
           },
           "id": 21,
           "options": {
@@ -2547,12 +2560,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_attach_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2576,13 +2589,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_attach_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2599,7 +2612,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful UE Attaches per second",
@@ -2641,7 +2654,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2657,7 +2671,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 85
+            "y": 19
           },
           "id": 43,
           "options": {
@@ -2698,12 +2712,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_attach_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2727,13 +2741,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_attach_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2750,7 +2764,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Current Number of Registered UEs",
@@ -2793,7 +2807,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2809,7 +2824,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 91
+            "y": 25
           },
           "id": 49,
           "options": {
@@ -2850,12 +2865,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_emm_registered_ues",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_emm_registered_ues",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2879,13 +2894,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_emm_registered_ues",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_emm_registered_ues",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2902,7 +2917,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Current Number of UEs in EMMREGISTERED+ECMCONNECTED states",
@@ -2945,7 +2960,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -2957,7 +2973,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 98
+            "y": 32
           },
           "id": 48,
           "options": {
@@ -2998,12 +3014,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_active_ues",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_active_ues",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3027,13 +3043,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_active_ues",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_active_ues",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3050,7 +3066,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of UE X2 Handover Requests",
@@ -3092,7 +3108,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3108,7 +3125,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 105
+            "y": 39
           },
           "id": 22,
           "options": {
@@ -3149,12 +3166,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_x2_attempts",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_x2_attempts",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3178,13 +3195,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_x2_attempts",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_x2_attempts",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3201,7 +3218,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful X2 Handovers",
@@ -3243,7 +3260,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3259,7 +3277,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 111
+            "y": 45
           },
           "id": 23,
           "options": {
@@ -3300,12 +3318,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_x2_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_x2_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3329,13 +3347,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_x2_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_x2_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3352,7 +3370,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful X2 Handovers per second",
@@ -3394,7 +3412,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3410,7 +3429,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 117
+            "y": 51
           },
           "id": 42,
           "options": {
@@ -3451,12 +3470,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_x2_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_x2_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3480,13 +3499,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_x2_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_x2_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3503,7 +3522,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of processed S1 Handover Required messages",
@@ -3545,7 +3564,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3561,7 +3581,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 123
+            "y": 57
           },
           "id": 24,
           "options": {
@@ -3602,12 +3622,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_s1_attempts",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_s1_attempts",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3631,13 +3651,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_s1_attempts",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_s1_attempts",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3654,7 +3674,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful S1 Handovers",
@@ -3696,7 +3716,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3712,7 +3733,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 129
+            "y": 63
           },
           "id": 25,
           "options": {
@@ -3753,12 +3774,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_s1_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_s1_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3782,13 +3803,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_s1_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_s1_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3805,7 +3826,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful S1 Handovers per second",
@@ -3847,7 +3868,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3863,7 +3885,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 135
+            "y": 69
           },
           "id": 41,
           "options": {
@@ -3904,12 +3926,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_s1_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_s1_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3933,13 +3955,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_s1_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_s1_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3956,7 +3978,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of UE Tracking Area Update Requests",
@@ -3998,7 +4020,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4014,7 +4037,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 141
+            "y": 75
           },
           "id": 26,
           "options": {
@@ -4055,12 +4078,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_requests",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_tau_requests",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4084,13 +4107,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_requests",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_tau_requests",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4107,7 +4130,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful UE Tracking Area Updates",
@@ -4149,7 +4172,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4165,7 +4189,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 147
+            "y": 81
           },
           "id": 27,
           "options": {
@@ -4206,12 +4230,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_tau_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4235,13 +4259,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_tau_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4258,7 +4282,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful UE Tracking Area Updates per second.",
@@ -4300,7 +4324,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4316,7 +4341,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 153
+            "y": 87
           },
           "id": 40,
           "options": {
@@ -4357,12 +4382,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_tau_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4386,13 +4411,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_tau_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4409,7 +4434,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of UE Psdomain Paging Requests",
@@ -4451,7 +4476,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4467,7 +4493,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 159
+            "y": 93
           },
           "id": 28,
           "options": {
@@ -4508,12 +4534,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_paging_ps_requests",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_paging_ps_requests",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4537,13 +4563,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_paging_ps_requests",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_paging_ps_requests",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4560,7 +4586,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful UE PS-domain Paging Requests",
@@ -4602,7 +4628,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4618,7 +4645,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 165
+            "y": 99
           },
           "id": 29,
           "options": {
@@ -4659,12 +4686,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_paging_ps_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_paging_ps_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4688,13 +4715,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_paging_ps_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_paging_ps_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4711,7 +4738,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful UE PS-domain Paging Requests per second.",
@@ -4753,7 +4780,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4769,7 +4797,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 171
+            "y": 105
           },
           "id": 39,
           "options": {
@@ -4810,12 +4838,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_paging_ps_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_paging_ps_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4839,13 +4867,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_paging_ps_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_paging_ps_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4862,7 +4890,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of started Dedicated Bearer Addition procedures",
@@ -4904,7 +4932,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4920,7 +4949,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 177
+            "y": 111
           },
           "id": 30,
           "options": {
@@ -4961,12 +4990,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_bearer_add_attempts",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_bearer_add_attempts",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -4990,13 +5019,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_bearer_add_attempts",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_bearer_add_attempts",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -5013,7 +5042,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful Dedicated Bearer Addition procedures",
@@ -5055,7 +5084,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -5071,7 +5101,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 183
+            "y": 117
           },
           "id": 31,
           "options": {
@@ -5112,12 +5142,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_bearer_add_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_bearer_add_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -5141,13 +5171,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_bearer_add_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_bearer_add_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -5164,7 +5194,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "Number of Successful Dedicated Bearer Addition procedures per second.",
@@ -5206,7 +5236,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -5222,7 +5253,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 189
+            "y": 123
           },
           "id": 38,
           "options": {
@@ -5263,12 +5294,12 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_bearer_add_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_bearer_add_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -5292,13 +5323,13 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_bearer_add_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_bearer_add_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -5329,7 +5360,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "This KPI describes the ratio of the number of successfully performed EPS attach procedures to the number of attempted EPS attach procedures for EPC network and is used to evaluate accessibility provided by EPS and network performance.",
@@ -5371,7 +5402,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -5387,7 +5419,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 196
+            "y": 8
           },
           "id": 34,
           "options": {
@@ -5428,39 +5460,16 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_requests",
-                  "hide": true,
+                  "field": "pm_data.ndac_rr_mcn_4g_eps_attach_success_rate",
+                  "hide": false,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_success",
-                  "hide": true,
-                  "id": "3",
-                  "type": "sum"
-                },
-                {
-                  "id": "4",
-                  "pipelineVariables": [
-                    {
-                      "name": "reqCounter",
-                      "pipelineAgg": "1"
-                    },
-                    {
-                      "name": "successCounter",
-                      "pipelineAgg": "3"
-                    }
-                  ],
-                  "settings": {
-                    "script": "if (params.successCounter == 0) { return 0 } else { return 100*(params.successCounter/params.reqCounter) }"
-                  },
-                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
@@ -5474,7 +5483,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "This KPI describes the ratio of the number of successfully performed dedicated EPS bearer creation procedures by PGW to the number of attempted dedicated EPS bearer creation procedures by PGW and is used to evaluate service availability provided by EPS and network performance.",
@@ -5516,7 +5525,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -5532,7 +5542,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 202
+            "y": 14
           },
           "id": 35,
           "options": {
@@ -5573,45 +5583,16 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_bearer_add_attempts_nw_init",
-                  "hide": true,
+                  "field": "pm_data.ndac_rr_mcn_4g_dedicated_eps_bearer_creation_success_rate",
+                  "hide": false,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_create_bearer_nw_init_bearer_attempts",
-                  "hide": true,
-                  "id": "3",
-                  "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_create_bearer_nw_init_bearer_success",
-                  "hide": true,
-                  "id": "5",
-                  "type": "sum"
-                },
-                {
-                  "id": "6",
-                  "pipelineVariables": [
-                    {
-                      "name": "attemptCounter",
-                      "pipelineAgg": "3"
-                    },
-                    {
-                      "name": "successCounter",
-                      "pipelineAgg": "5"
-                    }
-                  ],
-                  "settings": {
-                    "script": "if (params.successCounter == 0) { return 0 } else { return 100*(params.successCounter/params.attemptCounter) }"
-                  },
-                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
@@ -5625,7 +5606,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "description": "This KPI describes the ratio of the number of successfully performed tracking area update procedures to the number of attempted tracking area update procedures and is used to evaluate mobility provided by EPS and network performance.\n",
@@ -5667,7 +5648,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -5683,7 +5665,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 208
+            "y": 20
           },
           "id": 36,
           "options": {
@@ -5724,39 +5706,16 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${dataSource}"
+                "uid": "${datasource}"
               },
               "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_requests",
-                  "hide": true,
+                  "field": "pm_data.ndac_rr_mcn_4g_tracking_area_update_success_rate",
+                  "hide": false,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_success",
-                  "hide": true,
-                  "id": "3",
-                  "type": "sum"
-                },
-                {
-                  "id": "4",
-                  "pipelineVariables": [
-                    {
-                      "name": "reqCounter",
-                      "pipelineAgg": "1"
-                    },
-                    {
-                      "name": "successCounter",
-                      "pipelineAgg": "3"
-                    }
-                  ],
-                  "settings": {
-                    "script": "if (params.successCounter == 0) { return 0 } else { return 100*(params.successCounter/params.reqCounter) }"
-                  },
-                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
@@ -5772,7 +5731,7 @@
       "type": "row"
     }
   ],
-  "refresh": "",
+  "refresh": "15m",
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
@@ -5790,7 +5749,7 @@
         "includeAll": false,
         "label": "Data Source",
         "multi": false,
-        "name": "dataSource",
+        "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
@@ -5810,7 +5769,7 @@
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
-          "uid": "${dataSource}"
+          "uid": "${datasource}"
         },
         "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\"}",

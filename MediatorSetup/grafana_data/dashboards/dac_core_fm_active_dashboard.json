@@ -138,8 +138,10 @@
     },
     {
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Provides the count of critical alarms",
       "fieldConfig": {
         "defaults": {
@@ -213,6 +215,11 @@
               "type": "terms"
             }
           ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -232,8 +239,10 @@
     },
     {
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Provides the count of major alarms",
       "fieldConfig": {
         "defaults": {
@@ -306,6 +315,11 @@
               "type": "terms"
             }
           ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -323,8 +337,10 @@
     },
     {
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Provides the count of minor alarms",
       "fieldConfig": {
         "defaults": {
@@ -397,6 +413,11 @@
               "type": "terms"
             }
           ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -414,8 +435,10 @@
     },
     {
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Provides the count of warning alarms",
       "fieldConfig": {
         "defaults": {
@@ -488,6 +511,11 @@
               "type": "terms"
             }
           ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -553,7 +581,7 @@
       ],
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "$datasource"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "This table will show all active alarms that are critical across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
@@ -734,7 +762,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "$datasource"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -806,8 +834,10 @@
         }
       ],
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "This table will show all active alarms that are major across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
       "gridPos": {
@@ -995,6 +1025,11 @@
               "type": "raw_document"
             }
           ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "queryType": "lucene",
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:MAJOR",
           "refId": "A",
           "timeField": "fm_data.event_time"
@@ -1054,7 +1089,7 @@
       ],
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "$datasource"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "This table will show all active alarms that are minor across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
@@ -1235,7 +1270,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "$datasource"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -1308,7 +1343,7 @@
       ],
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "$datasource"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "This table will show all active alarms that are warning across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
@@ -1489,7 +1524,7 @@
           "bucketAggs": [],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "$datasource"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -1552,7 +1587,7 @@
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
-          "uid": "$datasource"
+          "uid": "${datasource}"
         },
         "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",

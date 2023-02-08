@@ -103,7 +103,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "This KPI provides the usage of the CPU of the edge node is percentage. ",
@@ -171,7 +171,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -192,7 +192,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "This KPI provides the temperature of the hard disk on the edge node in degree celsius .",
@@ -275,7 +275,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -305,7 +305,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "This KPI provides the usage of the RAM memory usage of the edge node in percentage.",
@@ -375,7 +375,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -396,7 +396,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "This KPI provides the usage of hard disk of the edge node in percentage.",
@@ -477,7 +477,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -498,7 +498,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "This KPI provides the usage of the CPU of the edge node is percentage. ",
@@ -583,7 +583,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -604,7 +604,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "This KPI provides the temperature of the hard disk on the edge node in degree celsius .",
@@ -701,7 +701,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -731,7 +731,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "This KPI provides the usage of the RAM memory usage of the edge node in percentage.",
@@ -816,7 +816,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -837,7 +837,7 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "${dataSource}"
+        "uid": "${datasource}"
       },
       "queryType": "lucene",
       "description": "This KPI provides the usage of hard disk of the edge node in percentage.",
@@ -933,7 +933,7 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
           "queryType": "lucene",
           "metrics": [
@@ -970,7 +970,7 @@
         "includeAll": false,
         "label": "Data Source",
         "multi": false,
-        "name": "dataSource",
+        "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
@@ -986,7 +986,7 @@
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
-          "uid": "${dataSource}"
+          "uid": "${datasource}"
         },
         "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\"}",
@@ -1011,7 +1011,7 @@
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
-          "uid": "${dataSource}"
+          "uid": "${datasource}"
         },
         "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\", \"query\":\"pm_data_source.edge_alias.keyword:$edgealias\"}",

@@ -126,9 +126,9 @@
     {
       "datasource": {
         "type": "grafana-opensearch-datasource",
-        "uid": "$dataSource"
+        "uid": "${datasource}"
       },
-      "queryType":"lucene",
+      "queryType": "lucene",
       "description": "This will provide the KPI report for the selected KPIs for the selected duration, aggregated at per day.",
       "fieldConfig": {
         "defaults": {
@@ -278,9 +278,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -363,9 +363,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.LTE_UE_Quantity_M8051C58",
@@ -435,9 +435,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -592,9 +592,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -665,9 +665,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -750,9 +750,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -824,9 +824,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -910,9 +910,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "hide": false,
           "metrics": [
@@ -973,9 +973,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "hide": false,
           "metrics": [
@@ -1049,9 +1049,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -1111,9 +1111,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -1185,9 +1185,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -1219,9 +1219,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -1265,9 +1265,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -1299,9 +1299,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -1345,9 +1345,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -1459,9 +1459,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -1629,9 +1629,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -1989,9 +1989,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -2075,9 +2075,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -2149,9 +2149,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -2223,9 +2223,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -2297,9 +2297,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -2383,9 +2383,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -2469,9 +2469,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -2913,9 +2913,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -3300,9 +3300,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -3400,9 +3400,9 @@
           ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${dataSource}"
+            "uid": "${datasource}"
           },
-         "queryType":"lucene",
+          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -3574,7 +3574,7 @@
         "includeAll": false,
         "label": "Data Source",
         "multi": false,
-        "name": "dataSource",
+        "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
@@ -3590,9 +3590,9 @@
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
-          "uid": "${dataSource}"
+          "uid": "${datasource}"
         },
-        "queryType":"lucene",
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
@@ -3622,9 +3622,9 @@
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
-          "uid": "${dataSource}"
+          "uid": "${datasource}"
         },
-        "queryType":"lucene",
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
         "hide": 0,
         "includeAll": true,

@@ -120,7 +120,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -135,9 +134,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -207,6 +207,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Cell_Load_M8001C6",
@@ -285,9 +290,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -357,6 +363,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Cell_Load_M8001C7",
@@ -435,9 +446,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -507,6 +519,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Cell_Load_M8001C286",
@@ -585,9 +602,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -657,6 +675,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Cell_Load_M8001C8",
@@ -735,9 +758,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -807,6 +831,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_MAC_M8029C32",
@@ -889,7 +918,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -904,9 +932,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -971,6 +1000,11 @@
               ],
               "hide": false,
               "label": "$index3",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C17",
@@ -1136,9 +1170,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1200,6 +1235,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C83",
@@ -1362,9 +1402,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1426,6 +1467,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C17",
@@ -1504,9 +1550,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1568,6 +1615,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C18",
@@ -1646,9 +1698,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1710,6 +1763,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C19",
@@ -1788,9 +1846,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1852,6 +1911,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C21",
@@ -1930,9 +1994,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1994,6 +2059,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C31",
@@ -2072,9 +2142,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2136,6 +2207,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C34",
@@ -2214,9 +2290,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2278,6 +2355,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C93",
@@ -2356,9 +2438,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2420,6 +2503,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C91",
@@ -2502,7 +2590,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2517,9 +2604,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2581,6 +2669,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C5",
@@ -2755,9 +2848,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "LTE_1735b RRC Connection Setup Success Ratio excluding Overload",
           "fill": 1,
           "fillGradient": 0,
@@ -2820,6 +2914,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C5",
@@ -3054,9 +3153,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -3118,6 +3218,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C5",
@@ -3196,9 +3301,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -3260,6 +3366,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C35",
@@ -3350,9 +3461,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -3414,6 +3526,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C36",
@@ -3528,9 +3645,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -3592,6 +3710,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C37",
@@ -3682,9 +3805,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -3746,6 +3870,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C38",
@@ -3836,9 +3965,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -3900,6 +4030,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C32",
@@ -3990,9 +4125,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -4054,6 +4190,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C26",
@@ -4144,9 +4285,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -4208,6 +4350,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C27",
@@ -4286,9 +4433,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -4350,6 +4498,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C6",
@@ -4524,9 +4677,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -4588,6 +4742,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C6",
@@ -4666,9 +4825,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -4731,6 +4891,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C7",
@@ -4905,9 +5070,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -4969,6 +5135,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C7",
@@ -5047,9 +5218,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -5112,6 +5284,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C65",
@@ -5286,9 +5463,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -5350,6 +5528,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C65",
@@ -5428,9 +5611,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -5493,6 +5677,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C66",
@@ -5667,9 +5856,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -5731,6 +5921,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C66",
@@ -5809,9 +6004,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -5874,6 +6070,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C75",
@@ -6048,9 +6249,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -6112,6 +6314,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C75",
@@ -6190,9 +6397,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -6255,6 +6463,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C67",
@@ -6429,9 +6642,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -6493,6 +6707,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C67",
@@ -6571,9 +6790,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -6636,6 +6856,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C68",
@@ -6810,9 +7035,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -6874,6 +7100,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C68",
@@ -6952,9 +7183,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -7017,6 +7249,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C69",
@@ -7191,9 +7428,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -7255,6 +7493,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C69",
@@ -7333,9 +7576,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -7398,6 +7642,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C122",
@@ -7572,9 +7821,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -7636,6 +7886,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C122",
@@ -7714,9 +7969,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -7779,6 +8035,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C96",
@@ -7965,9 +8226,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -8029,6 +8291,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C99",
@@ -8107,9 +8374,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -8171,6 +8439,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C96",
@@ -8253,7 +8526,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -8268,9 +8540,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -8333,6 +8606,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C17",
@@ -8571,9 +8849,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -8635,6 +8914,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C39",
@@ -8725,9 +9009,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -8789,6 +9074,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C39",
@@ -8867,9 +9157,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -8931,6 +9222,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C40",
@@ -9021,9 +9317,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -9085,6 +9382,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C40",
@@ -9163,9 +9465,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -9227,6 +9530,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C41",
@@ -9317,9 +9625,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -9381,6 +9690,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C41",
@@ -9459,9 +9773,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -9523,6 +9838,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C42",
@@ -9613,9 +9933,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -9677,6 +9998,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C42",
@@ -9755,9 +10081,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -9819,6 +10146,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C33",
@@ -9909,9 +10241,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -9973,6 +10306,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C33",
@@ -10051,9 +10389,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -10123,6 +10462,11 @@
               "displayAliasType": "Warning / Critical",
               "displayType": "Regular",
               "displayValueWithAlias": "Never",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C30",
@@ -10215,9 +10559,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -10279,6 +10624,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C30",
@@ -10361,7 +10711,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -10376,9 +10725,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -10440,6 +10790,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_RRC_M8008C4",
@@ -10542,9 +10897,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -10606,6 +10962,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_RRC_M8008C0",
@@ -10696,9 +11057,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -10760,6 +11122,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "select field",
@@ -10850,9 +11217,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -10914,6 +11282,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_RRC_M8008C4",
@@ -10992,9 +11365,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -11056,6 +11430,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_RRC_M8008C6",
@@ -11134,9 +11513,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -11198,6 +11578,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_RRC_M8008C8",
@@ -11276,9 +11661,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -11345,6 +11731,11 @@
               "displayAliasType": "Warning / Critical",
               "displayType": "Regular",
               "displayValueWithAlias": "Never",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_RRC_M8008C4",
@@ -11449,9 +11840,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -11514,6 +11906,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C17",
@@ -11696,7 +12093,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -11711,9 +12107,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -11775,6 +12172,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_RRC_M8008C17",
@@ -11841,9 +12243,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -11905,6 +12308,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_RRC_M8008C18",
@@ -11987,7 +12395,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -12002,9 +12409,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -12068,6 +12476,11 @@
               ],
               "expression": "$index1+$index2+$index3+$index4+$index5+$index6+$index7+$index8+$index9+$index10+$index11+$index12+$index13+$index14+$index15+$index16",
               "label": "LTE_5219c $edge_$enb",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "select field",
@@ -12219,9 +12632,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -12283,6 +12697,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -12541,9 +12960,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -12605,6 +13025,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C9",
@@ -12683,9 +13108,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -12747,6 +13173,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -13005,9 +13436,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -13069,6 +13501,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C10",
@@ -13147,9 +13584,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -13211,6 +13649,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -13469,9 +13912,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -13533,6 +13977,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C11",
@@ -13611,9 +14060,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -13675,6 +14125,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -13933,9 +14388,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -13997,6 +14453,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C12",
@@ -14075,9 +14536,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -14139,6 +14601,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -14397,9 +14864,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -14461,6 +14929,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -14539,9 +15012,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "n": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -14603,6 +15077,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -14861,9 +15340,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -14925,6 +15405,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C15",
@@ -15003,9 +15488,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -15067,6 +15553,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -15325,9 +15816,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -15389,6 +15881,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C16",
@@ -15467,9 +15964,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -15531,6 +16029,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C28",
@@ -15609,9 +16112,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -15673,6 +16177,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -15931,9 +16440,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -15995,6 +16505,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Inter_Sys_HO_M8016C23",
@@ -16073,9 +16588,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -16137,6 +16653,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -16395,9 +16916,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -16459,6 +16981,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Inter_Sys_HO_M8016C30",
@@ -16537,9 +17064,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -16601,6 +17129,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -16859,9 +17392,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -16923,6 +17457,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Inter_Sys_HO_M8016C34",
@@ -17001,9 +17540,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -17065,6 +17605,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -17323,9 +17868,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -17387,6 +17933,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C77",
@@ -17465,9 +18016,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -17529,6 +18081,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -17787,9 +18344,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -17851,6 +18409,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C78",
@@ -17929,9 +18492,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -17993,6 +18557,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -18251,9 +18820,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -18315,6 +18885,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C79",
@@ -18393,9 +18968,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -18457,6 +19033,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -18715,9 +19296,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -18779,6 +19361,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C80",
@@ -18857,9 +19444,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -18921,6 +19509,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C13",
@@ -19179,9 +19772,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19243,6 +19837,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_UE_State_M8013C81",
@@ -19325,7 +19924,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -19340,9 +19938,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19404,6 +20003,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Radio_Bearer_M8007C1",
@@ -19494,9 +20098,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19558,6 +20163,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Radio_Bearer_M8007C0",
@@ -19636,9 +20246,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19700,6 +20311,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Radio_Bearer_M8007C1",
@@ -19778,9 +20394,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19842,6 +20459,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Radio_Bearer_M8007C2",
@@ -19920,9 +20542,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -19984,6 +20607,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "select field",
@@ -20282,7 +20910,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -20297,9 +20924,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -20369,6 +20997,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C1",
@@ -20459,9 +21092,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -20534,6 +21168,11 @@
               ],
               "hide": false,
               "label": "LTE_5118a $edge_$enb",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -20615,9 +21254,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -20687,6 +21327,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C188",
@@ -20969,9 +21614,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -21042,6 +21688,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C197",
@@ -21336,9 +21987,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -21408,6 +22060,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C188",
@@ -21510,9 +22167,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -21585,6 +22243,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C189",
@@ -21683,9 +22346,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -21758,6 +22422,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C190",
@@ -21856,9 +22525,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -21931,6 +22601,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C191",
@@ -22029,9 +22704,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -22101,6 +22777,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C192",
@@ -22191,9 +22872,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -22263,6 +22945,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C193",
@@ -22353,9 +23040,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -22421,6 +23109,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C194",
@@ -22511,9 +23204,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -22586,6 +23280,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C195",
@@ -22684,9 +23383,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -22759,6 +23459,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C196",
@@ -22857,9 +23562,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -22929,6 +23635,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C192",
@@ -23115,9 +23826,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -23187,6 +23899,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C188",
@@ -23325,9 +24042,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -23400,6 +24118,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C207",
@@ -23517,9 +24240,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -23592,6 +24316,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C208",
@@ -23714,9 +24443,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -23789,6 +24519,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C209",
@@ -23906,9 +24641,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -23981,6 +24717,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C210",
@@ -24098,9 +24839,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -24173,6 +24915,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C211",
@@ -24290,9 +25037,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -24365,6 +25113,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C212",
@@ -24482,9 +25235,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -24557,6 +25311,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C213",
@@ -24674,9 +25433,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -24749,6 +25509,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C214",
@@ -24866,9 +25631,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -24938,6 +25704,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C192",
@@ -25244,9 +26015,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "The KPI indicates the setup success ratio of the elementary E-RAB setup procedure, used to set up the E-RAB between MME and UE for high priority calls. ",
           "fieldConfig": {
             "defaults": {
@@ -25317,6 +26089,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C186",
@@ -25407,9 +26184,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -25479,6 +26257,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C188",
@@ -25605,9 +26388,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -25677,6 +26461,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -25779,9 +26568,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -25851,6 +26641,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -25953,9 +26748,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -26025,6 +26821,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -26139,9 +26940,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -26211,6 +27013,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -26313,9 +27120,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -26385,6 +27193,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -26475,9 +27288,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -26547,6 +27361,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -26637,9 +27456,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -26709,6 +27529,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -26919,9 +27744,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -26991,6 +27817,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -27085,7 +27916,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -27100,9 +27930,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -27164,6 +27995,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Radio_Bearer_M8007C14",
@@ -27230,9 +28066,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -27294,6 +28131,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Radio_Bearer_M8007C15",
@@ -27364,7 +28206,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -27379,9 +28220,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -27443,6 +28285,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C64",
@@ -27533,9 +28380,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -27597,6 +28445,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C55",
@@ -27675,9 +28528,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -27739,6 +28593,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C65",
@@ -27829,9 +28688,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -27893,6 +28753,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C56",
@@ -27971,9 +28836,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -28035,6 +28901,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C66",
@@ -28125,9 +28996,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -28189,6 +29061,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C57",
@@ -28267,9 +29144,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -28331,6 +29209,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C67",
@@ -28421,9 +29304,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -28485,6 +29369,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C58",
@@ -28563,9 +29452,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -28627,6 +29517,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C68",
@@ -28717,9 +29612,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -28781,6 +29677,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C59",
@@ -28859,9 +29760,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -28923,6 +29825,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C69",
@@ -29013,9 +29920,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -29077,6 +29985,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C60",
@@ -29155,9 +30068,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -29219,6 +30133,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C70",
@@ -29309,9 +30228,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -29373,6 +30293,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C61",
@@ -29451,9 +30376,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -29515,6 +30441,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C71",
@@ -29605,9 +30536,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -29669,6 +30601,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C62",
@@ -29747,9 +30684,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -29811,6 +30749,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C72",
@@ -29901,9 +30844,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -29965,6 +30909,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C63",
@@ -30043,9 +30992,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -30107,6 +31057,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C55",
@@ -30389,9 +31344,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -30453,6 +31409,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C55",
@@ -30639,9 +31600,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -30703,6 +31665,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C55",
@@ -30889,9 +31856,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -30953,6 +31921,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C55",
@@ -31139,9 +32112,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -31203,6 +32177,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C55",
@@ -31389,9 +32368,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -31453,6 +32433,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C55",
@@ -31643,7 +32628,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -31658,9 +32642,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -31722,6 +32707,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C45",
@@ -31812,9 +32802,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -31876,6 +32867,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C54",
@@ -31966,9 +32962,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -32030,6 +33027,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C54",
@@ -32120,9 +33122,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -32184,6 +33187,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C54",
@@ -32274,9 +33282,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -32338,6 +33347,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C54",
@@ -32428,9 +33442,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -32492,6 +33507,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C54",
@@ -32582,9 +33602,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -32646,6 +33667,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C54",
@@ -32736,9 +33762,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -32800,6 +33827,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C54",
@@ -32890,9 +33922,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -32954,6 +33987,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C54",
@@ -33044,9 +34082,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -33108,6 +34147,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C224",
@@ -33186,9 +34230,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -33250,6 +34295,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C225",
@@ -33328,9 +34378,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -33392,6 +34443,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C226",
@@ -33470,9 +34526,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -33534,6 +34591,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C227",
@@ -33612,9 +34674,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -33676,6 +34739,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C228",
@@ -33754,9 +34822,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -33818,6 +34887,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C229",
@@ -33896,9 +34970,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -33960,6 +35035,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C230",
@@ -34038,9 +35118,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -34102,6 +35183,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C231",
@@ -34180,9 +35266,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -34244,6 +35331,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C232",
@@ -34326,7 +35418,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -34341,9 +35432,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -34416,6 +35508,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C255",
@@ -34701,9 +35798,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -34776,6 +35874,11 @@
               ],
               "hide": false,
               "label": "$index1",
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C255",
@@ -35073,9 +36176,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -35145,6 +36249,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -35391,9 +36500,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -35463,6 +36573,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -35709,9 +36824,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -35781,6 +36897,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -36027,9 +37148,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -36099,6 +37221,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -36357,9 +37484,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -36429,6 +37557,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -36687,9 +37820,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -36759,6 +37893,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -37005,9 +38144,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -37077,6 +38217,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -37323,9 +38468,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -37395,6 +38541,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -37653,9 +38804,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -37725,6 +38877,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -37983,9 +39140,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -38055,6 +39213,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -38313,9 +39476,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -38385,6 +39549,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -38631,9 +39800,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -38703,6 +39873,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -38949,9 +40124,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -39021,6 +40197,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -39279,9 +40460,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -39351,6 +40533,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -39609,9 +40796,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -39681,6 +40869,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -40023,9 +41216,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -40095,6 +41289,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -40353,9 +41552,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -40425,6 +41625,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -40683,9 +41888,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -40755,6 +41961,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -41001,9 +42212,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -41073,6 +42285,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -41331,9 +42548,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -41403,6 +42621,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -41649,9 +42872,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -41721,6 +42945,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C254",
@@ -41967,9 +43196,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "LTE_5581b\tE-UTRAN E-RAB Retainability Rate, RAN View, RNL Failure with UE Lost",
           "fieldConfig": {
             "defaults": {
@@ -42040,6 +43270,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C176",
@@ -42226,9 +43461,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -42298,6 +43534,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C176",
@@ -42388,9 +43629,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -42461,6 +43703,11 @@
                 }
               ],
               "hide": false,
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C177",
@@ -42557,9 +43804,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "This KPI indicates QCI3 E-RAB retainablity ratio. It is given as the ratio of active QCI3 E-RAB releases due to the \"RNL failure with UE lost\" cause to the QCI3 E-RAB active time.\n",
           "fieldConfig": {
             "defaults": {
@@ -42631,6 +43879,11 @@
                 }
               ],
               "hide": false,
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C178",
@@ -42727,9 +43980,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -42800,6 +44054,11 @@
                 }
               ],
               "hide": false,
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C179",
@@ -42896,9 +44155,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -42969,6 +44229,11 @@
                 }
               ],
               "hide": false,
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C180",
@@ -43069,7 +44334,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -43084,9 +44348,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -43148,6 +44413,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C181",
@@ -43226,9 +44496,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -43290,6 +44561,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C182",
@@ -43368,9 +44644,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -43432,6 +44709,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C183",
@@ -43510,9 +44792,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -43574,6 +44857,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C184",
@@ -43652,9 +44940,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -43716,6 +45005,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_EPS_Bearer_M8006C185",
@@ -43798,7 +45092,6 @@
         "type": "datasource",
         "uid": "grafana"
       },
-      "queryType":"lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -43813,9 +45106,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -43885,6 +45179,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Cell_Load_M8001C423",
@@ -43987,9 +45286,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -44059,6 +45359,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Cell_Load_M8001C421",
@@ -44137,9 +45442,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -44209,6 +45515,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Cell_Load_M8001C422",
@@ -44287,9 +45598,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -44359,6 +45671,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Cell_Load_M8001C423",
@@ -44449,9 +45766,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "fieldConfig": {
             "defaults": {
               "links": []
@@ -44521,6 +45839,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Cell_Load_M8001C424",
@@ -44623,9 +45946,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "The KPI indicates the number of events when a dedicated preamble could not be assigned (eNB -> UE) because of insufficient dedicated preamble resources in the cell. Different indicators distinguish between the purposes of a dedicated preamble. ",
           "fieldConfig": {
             "defaults": {
@@ -44696,6 +46020,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Cell_Load_M8001C425",
@@ -44774,9 +46103,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "queryType":"lucene",
+          "queryType": "lucene",
           "description": "The KPI indicates the number of events when a dedicated preamble could not be assigned (eNB -> UE) because of insufficient dedicated preamble resources in the cell. Different indicators distinguish between the purposes of a dedicated preamble. ",
           "fieldConfig": {
             "defaults": {
@@ -44847,6 +46177,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.LTE_Cell_Load_M8001C426",
@@ -44942,7 +46277,7 @@
         "includeAll": false,
         "label": "Data Source",
         "multi": false,
-        "name": "dataSource",
+        "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
@@ -44958,7 +46293,7 @@
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
-          "uid": "$dataSource"
+          "uid": "${datasource}"
         },
         "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
@@ -44990,7 +46325,7 @@
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
-          "uid": "$dataSource"
+          "uid": "${datasource}"
         },
         "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",

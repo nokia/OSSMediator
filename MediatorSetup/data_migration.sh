@@ -33,31 +33,38 @@ echo "killing elasticsearch container"
 #kill elasticsearch container
 elastic_container=$(docker ps -a -q --filter="name=^/ndac_oss_elasticsearch$")
 
-echo "Hello"
-echo $elastic_container
-
 docker stop $elastic_container
 docker rm $elastic_container
 
 sleep 20
 
 #startup elastic search with repo.path
-docker run --name "ndac_oss_elasticsearch" -t -d -p 9200:9200 -p 9300:9300 --ulimit nofile=65535:65535  -e "path.repo=/usr/share/elasticsearch/snapshots" -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size -Dlog4j2.formatMsgNoLookups=true"  -v $(pwd)/es_data/snapshots:/usr/share/elasticsearch/snapshots -v $(pwd)/es_data:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+echo "starting elasticsearch with path.repo"
+docker run --name "ndac_oss_elasticsearch" -t -d -p 9200:9200 -p 9300:9300 --ulimit nofile=65535:65535  -e "path.repo=/mnt/snapshots" -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size -Dlog4j2.formatMsgNoLookups=true"  -v $(pwd)/es_data/snapshots:/mnt/snapshots -v $(pwd)/es_data:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+
+sleep 120
 
 echo "registering fs as repo for snapshots"
-sleep 60
 
 #register repository as fs
-curl -X PUT "localhost:9200/_snapshot/my-fs-repository" -H 'Content-Type: application/json' -d'{"type": "fs", "settings": {"location": "/usr/share/opensearch/snapshots"}}'
+curl -X PUT "localhost:9200/_snapshot/my-fs-repository" -H 'Content-Type: application/json' -d'{"type": "fs", "settings": {"location": "/mnt/snapshots"}}'
+
+sleep 10
 
 echo "take snapshots of all indices"
 #take snapshots of all indices
 curl -X PUT "localhost:9200/_snapshot/my-fs-repository/1"
 
-#kill elasticsearch docker
-elastic_container=$(docker ps -q --filter="name=^/ndac_oss_elasticsearch$")
+echo "snapshotting all indices"
+sleep 120
 
-echo $elastic_container
+echo "close all indices before restoring"
+#close all indices first before restoring
+curl -X POST "localhost:9200/_all/_close"
+
+#kill elasticsearch docker
+echo "killing elasticsearch"
+elastic_container=$(docker ps -q --filter="name=^/ndac_oss_elasticsearch$")
 
 docker stop $elastic_container
 docker rm $elastic_container
@@ -66,17 +73,23 @@ sleep 20
 
 echo "Installing opensearch"
 #start opensearch
-docker run --name "ndac_oss_opensearch" -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size"  -e "path.repo=/usr/share/opensearch/snapshots" -v $(pwd)/es_data:/usr/share/opensearch/data -v $(pwd)/es_data/snapshots:/usr/share/opensearch/snapshots opensearchproject/opensearch:2.5.0
+docker run --name "ndac_oss_opensearch" -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size"  -e "path.repo=/mnt/snapshots" -v $(pwd)/es_data:/usr/share/opensearch/data -v $(pwd)/es_data/snapshots:/mnt/snapshots opensearchproject/opensearch:2.5.0
 
 sleep 60
+
+#register repository as fs
+curl -X PUT "localhost:9200/_snapshot/my-fs-repository" -H 'Content-Type: application/json' -d'{"type": "fs", "settings": {"location": "/mnt/snapshots"}}'
 
 echo "close all indices before restoring"
 #close all indices first before restoring
 curl -X POST "localhost:9200/_all/_close"
 
-
 echo "restore all indices"
 #restore all indices
 curl -X POST "localhost:9200/_snapshot/my-fs-repository/1/_restore"
+
+echo "open all indices after restoring"
+#open all indices after restoring
+curl -X POST "localhost:9200/_all/_open"
 
 echo "data migration completed"

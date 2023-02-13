@@ -82,16 +82,4 @@ sleep 60
 #register repository as fs
 curl -X PUT "localhost:9200/_snapshot/my-fs-repository" -H 'Content-Type: application/json' -d'{"type": "fs", "settings": {"location": "/mnt/snapshots"}}'
 
-echo "close all indices before restoring"
-#close all indices first before restoring
-curl -X POST "localhost:9200/_all/_close"
-
-echo "restore all indices"
-#restore all indices
-curl -X POST "localhost:9200/_snapshot/my-fs-repository/1/_restore"
-
-echo "open all indices after restoring"
-#open all indices after restoring
-curl -X POST "localhost:9200/_all/_open"
-
 echo "data migration completed"

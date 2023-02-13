@@ -42,6 +42,7 @@ sleep 20
 echo "starting elasticsearch with path.repo"
 docker run --name "ndac_oss_elasticsearch" -t -d -p 9200:9200 -p 9300:9300 --ulimit nofile=65535:65535  -e "path.repo=/mnt/snapshots" -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size -Dlog4j2.formatMsgNoLookups=true"  -v $(pwd)/es_data/snapshots:/mnt/snapshots -v $(pwd)/es_data:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:7.4.2
 
+#waiting for all data to come up
 sleep 120
 
 echo "registering fs as repo for snapshots"
@@ -51,11 +52,12 @@ curl -X PUT "localhost:9200/_snapshot/my-fs-repository" -H 'Content-Type: applic
 
 sleep 10
 
-echo "take snapshots of all indices"
+echo "taking snapshots of all indices"
 #take snapshots of all indices
 curl -X PUT "localhost:9200/_snapshot/my-fs-repository/1"
 
 echo "snapshotting all indices"
+#how long data snapshot takes?
 sleep 120
 
 echo "close all indices before restoring"

@@ -79,10 +79,21 @@ The Grafana dashboards will appear with login prompt and default credentials are
   To increase the heap memory execute `sudo ./mediator_docker_startup.sh --heap_size <HEAP_SIZE>`.  
   Ex: `sudo ./startup.sh --mediator_docker_startup 4g`, `sudo ./mediator_docker_startup.sh --heap_size 500m`
 
+# Steps to upgrade Elasticsearch OSS to Opensearch
+There are various approaches to upgrade Elasticsearch OSS to Opensearch. Please refer `https://opensearch.org/docs/latest/upgrade-to/index/`
+For our MediatorSetup, we opted for taking snapshots of the running Elasticsearch indices, create an Opensearch cluster and restore the snapshots on the new cluster.
+Execute `./data_migration.sh` to upgrade Elasticsearch OSS to Opensearch.
+`data_migration.sh` script has the following steps:
+1. Kill the running elasticsearch container and restart elastic with the env `path.repo`. This configuration allows  to provide a shared filesystem repository for storing the snapshots.
+2. After the new elastic container is up and running, register the shared filesystem(specified in the path.repo conf) using elasticsearch rest API.
+3. Take snapshots of all the indices
+4. Kill the elasticsearch container and install Opensearch with the same repo.path env configuration.
+5. On startup, the indices are automatically restored but are then closed. So, after restoring, open all the indices.
+
 # Steps to modify NDAC dashboards:
 1. Make a copy of dashboard and save the dashboard title with prefix other than `NDAC`.
 2. Update the new dashboard as per the requirement.
 
 ````
 NOTE: Please don't update NDAC dashboards, any modifications will be lost after package update.
-````
+````=

@@ -18,7 +18,7 @@ if ! [ -x "$(command -v docker)" ]; then
         exit 1
 fi
 
-echo "Data migration from elastic search to opensearch"
+echo "Data migration from elastic search to OpenSearch"
 
 mkdir -p es_data
 mkdir -p es_data/snapshots

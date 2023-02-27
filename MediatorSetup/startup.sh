@@ -3,15 +3,15 @@ set -e
 
 install_grafana() {
 	if [ -x "$(command -v yum)" ]; then
-		wget https://dl.grafana.com/oss/release/grafana-8.5.9-1.x86_64.rpm
-    yum install grafana-8.5.9-1.x86_64.rpm
+		wget https://dl.grafana.com/oss/release/grafana-9.3.6-1.x86_64.rpm
+    yum install grafana-9.3.6-1.x86_64.rpm
 	elif [ -x "$(command -v apt-get)" ]; then
     apt-get install -y adduser libfontconfig1
-    wget https://dl.grafana.com/oss/release/grafana_8.5.9_amd64.deb
-    dpkg -i grafana_8.5.9_amd64.deb
+    wget https://dl.grafana.com/oss/release/grafana_9.3.6_amd64.deb
+    dpkg -i grafana_9.3.6_amd64.deb
 	elif [ -x "$(command -v rpm)" ]; then
-		wget https://dl.grafana.com/oss/release/grafana-8.5.9-1.x86_64.rpm
-    rpm -i --nodeps grafana-8.5.9-1.x86_64.rpm
+		wget https://dl.grafana.com/oss/release/grafana-9.3.6-1.x86_64.rpm
+    rpm -i --nodeps grafana-9.3.6-1.x86_64.rpm
 	else
 		echo "Error can't install Grafana, please install it manually and re-run the script."
 		exit 1;
@@ -44,7 +44,7 @@ if ! [ -x "$(command -v grafana-server)" ]; then
 	echo "Grafana version is $(grafana-server -v)."
 else
   grafana_version=$(grafana-server -v | cut -d' ' -f 2)
-  min_grafana_version=8.5.9
+  min_grafana_version=9.2.6
 
   if version_gt $min_grafana_version $grafana_version; then
     echo "Grafana version is $grafana_version."
@@ -55,11 +55,12 @@ else
   fi
 fi
 
-echo "Installing Elasticsearch"
-docker pull docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+echo "Installing OpenSearch"
+docker pull opensearchproject/opensearch:2.5.0
 mkdir -p es_data
 chmod g+rwx es_data
 chgrp 0 es_data
+chown 1000:1000 es_data/
 
 echo "Installing OSSMediator"
 mkdir -p collector plugin
@@ -96,12 +97,12 @@ systemctl enable collector.service
 systemctl enable elasticsearchplugin.service
 systemctl enable grafana-server.service
 
-echo "Starting Elasticsearch"
-name='ndac_oss_elasticsearch'
+echo "Starting OpenSearch"
+name='ndac_oss_opensearch'
 if [[ $(docker ps -f "name=$name" --format '{{.Names}}') == $name ]]; then
   docker update --restart=always $name
 else
-  docker run --name "$name" --restart=always -t -d -p 9200:9200 -p 9300:9300 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size -Dlog4j2.formatMsgNoLookups=true" -v $(pwd)/es_data:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+  docker run --name "$name" --restart=always -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size" -v $(pwd)/es_data:/usr/share/opensearch/data opensearchproject/opensearch:2.5.0
 fi
 
 echo "Checking Elasticsearch status"

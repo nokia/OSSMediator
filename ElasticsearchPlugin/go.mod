@@ -1,11 +1,10 @@
 module elasticsearchplugin
 
-go 1.15
+go 1.18
 
 require (
-	github.com/BurntSushi/toml v0.3.1 // indirect
-	github.com/fsnotify/fsnotify v1.4.9
-	github.com/sirupsen/logrus v1.8.1
-	gopkg.in/natefinch/lumberjack.v2 v2.0.0
-	gopkg.in/yaml.v2 v2.4.0 // indirect
+	github.com/fsnotify/fsnotify v1.6.0
+	github.com/sirupsen/logrus v1.9.0
+	gopkg.in/natefinch/lumberjack.v2 v2.2.1
+	golang.org/x/sys v0.0.0-20220908164124-27713097b956 // indirect
 )

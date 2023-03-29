@@ -27,7 +27,7 @@ build:
 
 build_storesecret:
 	@echo Building storesecret
-	@go mod download && go build -o bin/storesecret storesecret/storesecret.go || (echo "storesecret build failed"; exit 1)
+	@cd storesecret && go mod download && go build -o ../bin/storesecret storesecret.go || (echo "storesecret build failed"; exit 1)
 	@echo storesecret build successful.
 
 build_package:

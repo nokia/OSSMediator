@@ -133,8 +133,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the success ratio of intra-frequency intra-gNB intra-DU handover for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -205,6 +207,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NSL_M55149C00005",
@@ -296,9 +303,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -313,8 +321,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the success ratio of intra-frequency inter-gNB intra-DU handover for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -385,6 +395,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NSL_M55149C00007",
@@ -476,9 +491,10 @@
     {
       "collapsed": true,
       "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -493,8 +509,10 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "uid": "$dataSource"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "This KPI shows the success ratio of the intra-frequency inter-gNB outgoing handover for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -565,6 +583,11 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NSL_M55149C00009",
@@ -672,9 +695,9 @@
         "includeAll": false,
         "label": "Data Source",
         "multi": false,
-        "name": "dataSource",
+        "name": "datasource",
         "options": [],
-        "query": "elasticsearch",
+        "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-5g-pm",
         "skipUrlSync": false,
@@ -687,9 +710,10 @@
           "value": "TALOS_HPE_151_5G_SA"
         },
         "datasource": {
-          "type": "elasticsearch",
-          "uid": "$dataSource"
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
@@ -718,9 +742,10 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
-          "uid": "$dataSource"
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
         "hide": 0,
         "includeAll": true,

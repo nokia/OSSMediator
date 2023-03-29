@@ -67,8 +67,8 @@ The Grafana dashboards will appear with login prompt and default credentials are
 * By default, OpenSearch will be started with 2GB heap memory.  
   To increase the heap memory execute `sudo ./startup.sh --heap_size <HEAP_SIZE>`.  
   Ex:
-    * `To start OpenSearch with 4GB heap memory: sudo ./startup.sh --mediator_docker_startup 4g`
-    * `To start OpenSearch with 500MB heap memory: sudo ./mediator_docker_startup.sh --heap_size 500m`
+    * `To start OpenSearch with 4GB heap memory: sudo ./startup.sh --heap_size 4g`
+    * `To start OpenSearch with 500MB heap memory: sudo ./startup.sh --heap_size 500m`
 
 ### Installation with pre-installed elasticsearch/OpenSearch <a name="pre_elk_install"></a>
 
@@ -110,7 +110,7 @@ The Grafana dashboards will appear with login prompt and default credentials are
 * By default, OpenSearch will be started with 2GB heap memory.  
   To increase the heap memory execute `sudo ./mediator_docker_startup.sh --heap_size <HEAP_SIZE>`.  
   Ex:
-    * `To start OpenSearch with 4GB heap memory: sudo ./startup.sh --mediator_docker_startup 4g`
+    * `To start OpenSearch with 4GB heap memory: sudo ./mediator_docker_startup.sh --heap_size 4g`
     * `To start OpenSearch with 500MB heap memory: sudo ./mediator_docker_startup.sh --heap_size 500m`
 
 ## Steps to migrate from Elasticsearch to OpenSearch <a name="elk_to_opensearch"></a>

@@ -1,5 +1,5 @@
 # Staging: for building go app (ElasticsearchPlugin)
-FROM golang:1.16 as builder
+FROM golang:1.18 as builder
 
 # set environment variable
 ENV JAVA_BIN="/usr/local/jre1.8.0_171/bin/"
@@ -19,7 +19,7 @@ RUN mkdir /elasticsearch/ && cd /elasticsearch && \
 RUN mkdir -p /ElasticsearchPlugin/ /elasticsearch/elasticsearch-7.0.1/data/
 
 # download dependencies for build
-RUN go get github.com/jstemmer/go-junit-report
+RUN go install github.com/jstemmer/go-junit-report@latest
 
 # copy project directory to be built
 COPY . /ElasticsearchPlugin/.

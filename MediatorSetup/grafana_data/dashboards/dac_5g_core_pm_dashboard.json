@@ -24,6 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 8,
   "links": [
     {
       "asDropdown": true,
@@ -118,7 +119,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI describe the mean number of subscribers that are registered to a network slice instance.",
       "fieldConfig": {
         "defaults": {
@@ -126,6 +126,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -139,12 +141,12 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 4,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "always",
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -182,13 +184,15 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -217,7 +221,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_amf_mean_reg_nbr",
@@ -227,6 +230,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         },
@@ -246,7 +250,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "hide": false,
           "metrics": [
             {
@@ -256,6 +259,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
@@ -268,7 +272,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of initial registration procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice and network performance.",
       "fieldConfig": {
         "defaults": {
@@ -276,6 +279,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -289,12 +294,12 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 4,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "always",
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -332,13 +337,15 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -367,7 +374,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_rsr_initial_reg",
@@ -376,6 +382,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         },
@@ -395,7 +402,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "hide": false,
           "metrics": [
             {
@@ -405,6 +411,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
@@ -417,7 +424,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of attempted mobility procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice  and network performance.",
       "fieldConfig": {
         "defaults": {
@@ -425,6 +431,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -438,12 +446,12 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 4,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "always",
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -481,13 +489,15 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -516,7 +526,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_rsr_mobility_reg",
@@ -525,6 +534,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         },
@@ -544,7 +554,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "hide": false,
           "metrics": [
             {
@@ -554,6 +563,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
@@ -566,7 +576,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of attempted periodic procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice  and network performance.",
       "fieldConfig": {
         "defaults": {
@@ -574,6 +583,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -587,12 +598,12 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 4,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "always",
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -606,7 +617,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -629,13 +641,15 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -664,7 +678,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_rsr_periodic_reg",
@@ -673,6 +686,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         },
@@ -692,7 +706,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "hide": false,
           "metrics": [
             {
@@ -702,6 +715,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
@@ -714,7 +728,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI describes the ratio of the number of successful PDU session establishment request to the number of PDU session establishment request attempts for 5G network for the SMF which related to one network slice (S-NSSAI) and is used to evaluate accessibility provided by the end-to-end network slice and network performance.",
       "fieldConfig": {
         "defaults": {
@@ -722,6 +735,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -735,12 +750,12 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 4,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "always",
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -754,7 +769,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -802,13 +818,15 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -837,7 +855,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_pdu_session_est_sr",
@@ -846,6 +863,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         },
@@ -865,7 +883,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "hide": false,
           "metrics": [
             {
@@ -875,6 +892,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
@@ -887,7 +905,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI describes the upstream throughput of one single network slice  by computing the packet size for each successfully received  UL IP packet through the network slice  during each observing granularity period and is used to evaluate integrity performance of the end-to-end network slice .",
       "fieldConfig": {
         "defaults": {
@@ -895,6 +912,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -908,12 +927,12 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 4,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "always",
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -927,7 +946,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -950,13 +970,15 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -985,7 +1007,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_utsnsi",
@@ -994,6 +1015,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         },
@@ -1013,7 +1035,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "hide": false,
           "metrics": [
             {
@@ -1023,6 +1044,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
@@ -1035,7 +1057,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI describes the downstream throughput of one single network slice instance by computing the packet size for each successfully transmitted DL IP packet through the network slice instance during each observing granularity period and is used to evaluate integrity performance of the end-to-end network slice instance.",
       "fieldConfig": {
         "defaults": {
@@ -1043,6 +1064,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1056,12 +1079,12 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 4,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "always",
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1075,7 +1098,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1098,13 +1122,15 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -1133,7 +1159,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_dtsnsi",
@@ -1142,6 +1167,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         },
@@ -1161,7 +1187,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "hide": false,
           "metrics": [
             {
@@ -1171,6 +1196,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
@@ -1183,7 +1209,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI describes the mean number of PDU sessions that are successfully established in a network slice.",
       "fieldConfig": {
         "defaults": {
@@ -1191,6 +1216,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1204,12 +1231,12 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 4,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "always",
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1223,7 +1250,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1246,13 +1274,15 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -1281,7 +1311,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_over_5g_pdu_ses_mean_nbr",
@@ -1290,6 +1319,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         },
@@ -1309,7 +1339,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "hide": false,
           "metrics": [
             {
@@ -1319,6 +1348,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
@@ -1331,7 +1361,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI describes the time of successful PDU session establishment which related to one single network slice and is used to evaluate utilization provided by the end-to-end network slice and network performance.",
       "fieldConfig": {
         "defaults": {
@@ -1339,6 +1368,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1352,12 +1383,12 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 4,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "always",
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1371,7 +1402,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1394,13 +1426,15 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -1429,7 +1463,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_pdu_est_time",
@@ -1438,6 +1471,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         },
@@ -1457,7 +1491,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "hide": false,
           "metrics": [
             {
@@ -1467,6 +1500,7 @@
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
@@ -1476,7 +1510,7 @@
     }
   ],
   "refresh": "15m",
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [
     "CorePM"
@@ -1515,7 +1549,6 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
-        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\"}",
         "hide": 0,
         "includeAll": true,
@@ -1524,6 +1557,7 @@
         "name": "nhgid",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\"}",
+        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,

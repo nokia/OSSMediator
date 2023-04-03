@@ -1,7 +1,5 @@
 # OSSMediator
 
-[![Build Status](https://travis-ci.org/nokia/OSSMediator.svg?branch=master)](https://travis-ci.org/nokia/OSSMediator)
-
 ### Overview
 
 OSSMediator is used to obtain Performance Management (PM) and Fault Management (FM) data from Nokia DAC and to offer the data for any 3rd party NMS system like OpenNMS or any external datasource like Elasticsearch.  
@@ -15,7 +13,7 @@ The OSSMediatorCollector module will call the Nokia DAC APIs periodically as per
 
 The OpenNMSPlugin is a module that will take the data that Mediator collector has collected and convert it into the format needed by the third party Network Management System like OpenNMS in this case.
 
-The ElasticsearchPlugin reads data collected by Mediator collector and pushes it to elasticsearch.
+The ElasticsearchPlugin reads data collected by Mediator collector and pushes it to elasticsearch or OpenSearch.
 
 MediatorSetup includes shell script and Grafana dashboards used for installation and creation of Grafana dashboards for the PM/FM data collected using OSSMediatorCollector and ElasticsearchPlugin.  
 

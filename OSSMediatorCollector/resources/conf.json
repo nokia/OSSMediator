@@ -1,114 +1,112 @@
 {
-	"base_url": "https://api.dac.nokia.com/api/ndac/v2",
-	"users": [
-		{
-			"email_id": "<USER EMAIL>",
-			"response_dest": "<DIRECTORY PATH>",
-			"authorization": "<PASSWORD/TOKEN>"
-		},
-		{
-			"email_id": "<USER EMAIL>",
-			"response_dest": "<DIRECTORY PATH>",
-			"authorization": "PASSWORD/TOKEN"
-		}
-	],
-
-	"um_api": {
-		"login": "/login-session",
-		"refresh": "/refresh-session",
-		"logout": "/logout-session"
-	},
-	"list_nhg_api": {
-		"api": "/network-hardware-groups",
-		"interval": 60
-	},
-	"sim_apis": [
-		{
-			"api": "/network-hardware-groups/{nhg_id}/sims",
-			"interval": 60
-		},
-		{
-			"api": "/account-sims",
-			"interval": 60
-		},
-		{
-			"api": "/access-point-sims",
-			"interval": 60
-		}
-	],
-	"metric_apis": [
-		{
-			"api": "/network-hardware-groups/{nhg_id}/pmdata",
-			"metric_type": "RADIO",
-			"interval": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/pmdata",
-			"metric_type": "CORE",
-			"interval": 5
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/pmdata",
-			"metric_type": "EDGE",
-			"interval": 5
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "ACTIVE",
-			"metric_type": "RADIO",
-			"interval": 1,
-			"sync_duration": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "HISTORY",
-			"metric_type": "RADIO",
-			"interval": 1,
-			"sync_duration": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "ACTIVE",
-			"metric_type": "DAC",
-			"interval": 1,
-			"sync_duration": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "HISTORY",
-			"metric_type": "DAC",
-			"interval": 1,
-			"sync_duration": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "ACTIVE",
-			"metric_type": "CORE",
-			"interval": 1,
-			"sync_duration": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "HISTORY",
-			"metric_type": "CORE",
-			"interval": 1,
-			"sync_duration": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "ACTIVE",
-			"metric_type": "APPLICATION",
-			"interval": 5,
-			"sync_duration": 15
-		},
-		{
-			"api": "/network-hardware-groups/{nhg_id}/fmdata",
-			"type": "HISTORY",
-			"metric_type": "APPLICATION",
-			"interval": 5,
-			"sync_duration": 15
-		}
-	],
-	"limit": 10000,
-	"delay": 5
+  "base_url": "https://api.dac.nokia.com/api/ndac/v2",
+  "users": [
+    {
+      "email_id": "<USER EMAIL>",
+      "response_dest": "<DIRECTORY PATH>"
+    },
+    {
+      "email_id": "<USER EMAIL>",
+      "response_dest": "<DIRECTORY PATH>"
+    }
+  ],
+  "um_api": {
+    "login": "/login-session",
+    "refresh": "/refresh-session",
+    "logout": "/logout-session"
+  },
+  "list_nhg_api": {
+    "api": "/network-hardware-groups",
+    "interval": 60
+  },
+  "sim_apis": [
+    {
+      "api": "/network-hardware-groups/{nhg_id}/sims",
+      "interval": 60
+    },
+    {
+      "api": "/account-sims",
+      "interval": 60
+    },
+    {
+      "api": "/access-point-sims",
+      "interval": 60
+    }
+  ],
+  "metric_apis": [
+    {
+      "api": "/network-hardware-groups/{nhg_id}/pmdata",
+      "metric_type": "RADIO",
+      "interval": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/pmdata",
+      "metric_type": "CORE",
+      "interval": 5
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/pmdata",
+      "metric_type": "EDGE",
+      "interval": 5
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "ACTIVE",
+      "metric_type": "RADIO",
+      "interval": 15,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "HISTORY",
+      "metric_type": "RADIO",
+      "interval": 1,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "ACTIVE",
+      "metric_type": "DAC",
+      "interval": 15,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "HISTORY",
+      "metric_type": "DAC",
+      "interval": 1,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "ACTIVE",
+      "metric_type": "CORE",
+      "interval": 15,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "HISTORY",
+      "metric_type": "CORE",
+      "interval": 1,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "ACTIVE",
+      "metric_type": "APPLICATION",
+      "interval": 15,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "HISTORY",
+      "metric_type": "APPLICATION",
+      "interval": 5,
+      "sync_duration": 15
+    }
+  ],
+  "limit": 10000,
+  "delay": 5,
+  "max_procs": 20
 }

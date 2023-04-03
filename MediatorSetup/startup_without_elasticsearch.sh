@@ -3,15 +3,15 @@ set -e
 
 install_grafana() {
 	if [ -x "$(command -v yum)" ]; then
-		wget https://dl.grafana.com/oss/release/grafana-8.5.9-1.x86_64.rpm
-    yum install grafana-8.5.9-1.x86_64.rpm
+		wget https://dl.grafana.com/oss/release/grafana-9.3.6-1.x86_64.rpm
+    yum install grafana-9.3.6-1.x86_64.rpm
 	elif [ -x "$(command -v apt-get)" ]; then
     apt-get install -y adduser libfontconfig1
-    wget https://dl.grafana.com/oss/release/grafana_8.5.9_amd64.deb
-    dpkg -i grafana_8.5.9_amd64.deb
+    wget https://dl.grafana.com/oss/release/grafana_9.3.6_amd64.deb
+    dpkg -i grafana_9.3.6_amd64.deb
 	elif [ -x "$(command -v rpm)" ]; then
-		wget https://dl.grafana.com/oss/release/grafana-8.5.9-1.x86_64.rpm
-    rpm -i --nodeps grafana-8.5.9-1.x86_64.rpm
+		wget https://dl.grafana.com/oss/release/grafana-9.3.6-1.x86_64.rpm
+    rpm -i --nodeps grafana-9.3.6-1.x86_64.rpm
 	else
 		echo "Error can't install Grafana, please install it manually and re-run the script."
 		exit 1;
@@ -71,13 +71,13 @@ if [ -x "$(command -v sestatus)" ] && [ $(sestatus | cut -d':' -f 2 | awk '{prin
 fi
 
 echo "Setting up Grafana"
-mkdir -p /var/lib/grafana/dashboards /etc/grafana/provisioning/datasources /etc/grafana/provisioning/dashboards
+mkdir -p /etc/grafana/dashboards /etc/grafana/provisioning/datasources /etc/grafana/provisioning/dashboards
 cp ./grafana_data/provisioning/dashboards/dac_oss_dashboards.yaml /etc/grafana/provisioning/dashboards/.
 cp ./grafana_data/provisioning/datasources/dac_oss_datasources.yaml /etc/grafana/provisioning/datasources/.
-cp ./grafana_data/dashboards/*.json /var/lib/grafana/dashboards/.
+cp ./grafana_data/dashboards/*.json /etc/grafana/dashboards/.
 chmod 775 /etc/grafana/provisioning/datasources/*
 chmod 775 /etc/grafana/provisioning/dashboards/*
-chmod 775 /var/lib/grafana/dashboards/*
+chmod 775 /etc/grafana/dashboards/*
 
 systemctl daemon-reload
 systemctl enable collector.service

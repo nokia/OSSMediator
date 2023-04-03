@@ -13,6 +13,7 @@ import (
 	logger "log"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 
 	"collector/pkg/config"
@@ -56,17 +57,44 @@ func main() {
 	//Create HTTP client for all the GET/POST API calls
 	ndacapis.CreateHTTPClient(certFile, skipTLS)
 
+	//Authentication 2 types:
+
 	// Authenticating the users
 	for _, user := range config.Conf.Users {
-		user.Password, err = utils.ReadPassword(user.Email)
-		if err != nil {
-			fmt.Printf("\nUnable to read password for: %s\nError: %v", user.Email, err)
-			log.WithFields(log.Fields{"error": err}).Fatalf("Login Failed for %s", user.Email)
-		}
-		err = ndacapis.Login(user)
-		if err != nil {
-			fmt.Printf("\nLogin Failed for %s...\nError: %v", user.Email, err)
-			log.WithFields(log.Fields{"error": err}).Fatalf("Login Failed for %s", user.Email)
+		//if tokenAuthorize is set, no need to login
+		if user.Authorization == "PASSWORD" {
+			user.Password, err = utils.ReadPassword(user.Email)
+			if err != nil {
+				fmt.Printf("\nUnable to read password for: %s\nError: %v", user.Email, err)
+				log.WithFields(log.Fields{"error": err}).Fatalf("Login Failed for %s", user.Email)
+			}
+			err = ndacapis.Login(user)
+			if err != nil {
+				fmt.Printf("\nLogin Failed for %s...\nError: %v", user.Email, err)
+				log.WithFields(log.Fields{"error": err}).Fatalf("Login Failed for %s", user.Email)
+			}
+		} else {
+			//need to check
+			//var sessionToken []byte
+			sessionToken, err := utils.ReadSessionToken(user.Email)
+			if err != nil {
+				fmt.Printf("\nUnable to read sessionToken for: %s\nError: %v", user.Email, err)
+				log.WithFields(log.Fields{"error": err}).Fatalf("Token Authorization Failed for %s", user.Email)
+			}
+			token := strings.Split(sessionToken, ":")
+			user.SessionToken.AccessToken = token[0]
+			user.SessionToken.RefreshToken = token[1]
+			user.OrgUUID = token[2]
+			user.AccUUID = token[3]
+			fmt.Printf("access token : %s\n", user.SessionToken.AccessToken)
+			fmt.Printf("refresh token : %s\n", user.SessionToken.RefreshToken)
+			fmt.Printf("org uuid : %s\n", user.OrgUUID)
+			fmt.Printf("acc uuid : %s\n", user.AccUUID)
+			err = ndacapis.TokenAuthorize(user)
+			if err != nil {
+				fmt.Printf("\nToken Authorization Failed for %s...\nError: %v", user.Email, err)
+				log.WithFields(log.Fields{"error": err}).Fatalf("Token Authorization Failed for %s", user.Email)
+			}
 		}
 	}
 
@@ -103,6 +131,7 @@ func parseFlags() {
 	flag.StringVar(&confFile, "conf_file", "../resources/conf.json", "config file path")
 	flag.StringVar(&certFile, "cert_file", "", "certificate file path")
 	flag.BoolVar(&skipTLS, "skip_tls", false, "skip TLS authentication")
+	//flag.BoolVar(&tokenAuthorize, "token_authorization", false, "Enable token authorization")
 	flag.StringVar(&logDir, "log_dir", "../log", "Log directory")
 	flag.IntVar(&logLevel, "log_level", 4, "Log level")
 	flag.BoolVar(&enableConsoleLog, "enable_console_log", false, "Enable console logging, if true logs won't be written to file")
@@ -115,6 +144,7 @@ func parseFlags() {
 		fmt.Fprintf(os.Stderr, "\t-log_dir string\n\t\tLog Directory (default \"../log\"), logs will be stored in collector.log file.\n")
 		fmt.Fprintf(os.Stderr, "\t-log_level int\n\t\tLog Level (default 4). Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
 		fmt.Fprintf(os.Stderr, "\t-skip_tls\n\t\tSkip TLS Authentication\n")
+		fmt.Fprintf(os.Stderr, "\t-token_authorize\n\t\tEnable token Authorization\n")
 		fmt.Fprintf(os.Stderr, "\t-enable_console_log\n\t\tEnable console logging, if true logs won't be written to file\n")
 	}
 	flag.Parse()

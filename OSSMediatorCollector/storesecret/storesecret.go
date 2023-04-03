@@ -14,7 +14,8 @@ import (
 
 type Config struct {
 	Users []struct {
-		EmailID string `json:"email_id"`
+		EmailID       string `json:"email_id"`
+		Authorization string `json:"authorization"`
 	} `json:"users"`
 }
 
@@ -61,18 +62,43 @@ func readConfig(confFile string) (*Config, error) {
 
 func readPassword(conf *Config) {
 	for _, user := range conf.Users {
-		fmt.Printf("Enter password for %s: ", user.EmailID)
-		bytePassword, err := term.ReadPassword(int(syscall.Stdin))
-		if err != nil {
-			log.Fatalf("Error in reading password for %v: %v", user.EmailID, err)
+		if user.Authorization == "PASSWORD" {
+			fmt.Printf("Enter password for %s: ", user.EmailID)
+			bytePassword, err := term.ReadPassword(int(syscall.Stdin))
+			if err != nil {
+				log.Fatalf("Error in reading password for %v: %v", user.EmailID, err)
+			}
+			storePassword(user.EmailID, bytePassword)
+		} else {
+			fmt.Printf("Enter access token for %s: ", user.EmailID)
+			byteAccessToken, err := term.ReadPassword(int(syscall.Stdin))
+			if err != nil {
+				log.Fatalf("Error in reading password for %v: %v", user.EmailID, err)
+			}
+			fmt.Printf("Enter refresh token for %s: ", user.EmailID)
+			byteRefreshToken, err := term.ReadPassword(int(syscall.Stdin))
+			if err != nil {
+				log.Fatalf("Error in reading password for %v: %v", user.EmailID, err)
+			}
+			storeToken(user.EmailID, byteAccessToken, byteRefreshToken)
 		}
-		storePassword(user.EmailID, bytePassword)
 	}
 }
 
 func storePassword(user string, password []byte) {
 	fileName := secretDir + "/." + user
 	encodedPassword := base64.StdEncoding.EncodeToString(password)
+	err := ioutil.WriteFile(fileName, []byte(encodedPassword), 0600)
+	if err != nil {
+		log.Fatalf("Unable to store password for %v to %v, error: %v", user, fileName, err)
+	}
+	fmt.Printf("\nPassword stored for %v\n", user)
+}
+
+func storeToken(user string, accessToken []byte, refreshToken []byte) {
+	fileName := secretDir + "/." + user
+	//check the token format for delimeter(newline or colon as delimeter?)
+	encodedPassword := base64.StdEncoding.EncodeToString(accessToken) + "\n" + base64.StdEncoding.EncodeToString(refreshToken)
 	err := ioutil.WriteFile(fileName, []byte(encodedPassword), 0600)
 	if err != nil {
 		log.Fatalf("Unable to store password for %v to %v, error: %v", user, fileName, err)

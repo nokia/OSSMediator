@@ -3,13 +3,15 @@
 	"users": [
 		{
 			"email_id": "<USER EMAIL>",
-			"response_dest": "<DIRECTORY PATH>"
+			"response_dest": "<DIRECTORY PATH>",
+			"authorization": "<PASSWORD/TOKEN>"
 		},
 		{
 			"email_id": "<USER EMAIL>",
 			"response_dest": "<DIRECTORY PATH>"
 		}
 	],
+
 	"um_api": {
 		"login": "/login-session",
 		"refresh": "/refresh-session",

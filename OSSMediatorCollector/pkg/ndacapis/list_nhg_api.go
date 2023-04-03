@@ -35,7 +35,12 @@ const (
 
 //get nhg details for the customer
 func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
-	apiURL := config.Conf.BaseURL + api.API
+	var apiURL string
+	if user.Authorization == "TOKEN" {
+		apiURL = config.Conf.BaseURL + api.API + "?user_info.org_uuid=" + user.OrgUUID + "&user_info.account_uuid=" + user.AccUUID
+	} else {
+		apiURL = config.Conf.BaseURL + api.API
+	}
 	if !user.IsSessionAlive {
 		log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
 		return

@@ -11,6 +11,7 @@ import (
 	"encoding/base64"
 	"errors"
 	"io/ioutil"
+	"strings"
 	"time"
 )
 
@@ -64,6 +65,35 @@ func ReadPassword(email string) (string, error) {
 		if err != nil {
 			return "", errorPasswordDecoding
 		}
+	} else {
+		return "", errorPasswordFileNotFound
+	}
+	return string(bytePassword), nil
+}
+
+func ReadSessionToken(email string) (string, error) {
+	passwordFile := ".secret/." + email
+	var bytePassword []byte
+	var byteAccessToken []byte
+	var byteRefreshToken []byte
+	if fileExists(passwordFile) {
+		data, err := ioutil.ReadFile(passwordFile)
+		if err != nil {
+			return "", err
+		}
+		if len(data) == 0 {
+			return "", errorPasswordRead
+		}
+		sessionToken := strings.Split(string(data), "\n")
+		byteAccessToken, err = base64.StdEncoding.DecodeString(sessionToken[0])
+		if err != nil {
+			return "", errorPasswordDecoding
+		}
+		byteRefreshToken, err = base64.StdEncoding.DecodeString(sessionToken[1])
+		if err != nil {
+			return "", errorPasswordDecoding
+		}
+		bytePassword = []byte(string(byteAccessToken) + "\n" + string(byteRefreshToken))
 	} else {
 		return "", errorPasswordFileNotFound
 	}

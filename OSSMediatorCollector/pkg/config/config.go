@@ -32,8 +32,11 @@ type Config struct {
 type User struct {
 	Email          string        `json:"email_id"`      //User's email ID
 	Password       string        `json:"password"`      //User's password read from configuration file
+	Authorization  string        `json:"authorization"` //authorization type
 	ResponseDest   string        `json:"response_dest"` //Base directory where sub-directories will be created for each APIs to store its response.
 	SessionToken   *SessionToken //SessionToken variable keeps track of access_token, refresh_token and expiry_time of the token. It is used for authenticating the API calls.
+	OrgUUID        string
+	AccUUID        string
 	Wg             sync.WaitGroup
 	IsSessionAlive bool
 	NhgIDs         []string
@@ -41,7 +44,7 @@ type User struct {
 }
 
 //SessionToken struct tracks the access_token, refresh_token and expiry_time of the token
-//As the session token will be shared by multiple APIs.
+//As the sessiontoken will be shared by multiple APIs.
 type SessionToken struct {
 	AccessToken  string
 	RefreshToken string
@@ -101,7 +104,9 @@ func ReadConfig(confFile string) error {
 	for _, user := range Conf.Users {
 		user.Email = strings.TrimSpace(user.Email)
 		user.ResponseDest = strings.TrimSpace(user.ResponseDest)
+		user.Authorization = strings.TrimSpace(user.Authorization)
 	}
+
 	log.Info("Config read successfully.")
 	return nil
 }

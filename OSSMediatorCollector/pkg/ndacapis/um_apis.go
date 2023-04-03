@@ -92,6 +92,16 @@ func Login(user *config.User) error {
 	return nil
 }
 
+func TokenAuthorize(user *config.User) error {
+	sessionToken := user.SessionToken
+	resp := new(UMResponse)
+	resp.UAT.AccessToken = sessionToken.AccessToken
+	resp.RT.RefreshToken = sessionToken.RefreshToken
+
+	setToken(resp, user)
+	return nil
+}
+
 //Extracts the expiry time from access_token and set it to SessionToken.
 func setToken(response *UMResponse, user *config.User) {
 	//getting expiry time using jwt

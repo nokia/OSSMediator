@@ -61,7 +61,6 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64) {
 		log.WithFields(log.Fields{"tid": txnID, "api": api.API}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
 		return
 	}
-
 	if strings.Contains(api.API, accessPointSimsAPI) {
 		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("starting ap_sims api")
 		for _, hwID := range user.HwIDs {

@@ -31,7 +31,7 @@ const (
 	//Maximum no. of retry attempt for API call
 	maxRetryAttempts = 3
 
-	//Time interval at which the 1st API call should start
+	//Time interval at which the 1st API call should
 	interval = 15
 
 	//Query Params for GET APIS

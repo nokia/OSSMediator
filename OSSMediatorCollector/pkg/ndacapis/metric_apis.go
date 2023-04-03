@@ -19,7 +19,7 @@ import (
 	"strings"
 )
 
-//GetAPIResponse keeps track of response received from PM/FM API.
+// GetAPIResponse keeps track of response received from PM/FM API.
 type GetAPIResponse struct {
 	Type            string      `json:"type"`
 	TotalNumRecords int         `json:"total_num_records"`
@@ -30,19 +30,19 @@ type GetAPIResponse struct {
 	SearchAfterKey  string      `json:"search_after_key"`
 }
 
-//Status keeps track of status from response.
+// Status keeps track of status from response.
 type Status struct {
 	StatusCode        string            `json:"status_code"`
 	StatusDescription StatusDescription `json:"status_description"`
 }
 
-//StatusDescription keeps track of status description from response.
+// StatusDescription keeps track of status description from response.
 type StatusDescription struct {
 	DescriptionCode string `json:"description_code"`
 	Description     string `json:"description"`
 }
 
-//ErrorResponse struct for parsing error response from APIs.
+// ErrorResponse struct for parsing error response from APIs.
 type ErrorResponse struct {
 	Type   string `json:"type"`
 	Title  string `json:"title"`
@@ -59,6 +59,8 @@ type apiCallRequest struct {
 	index          int
 	limit          int
 	searchAfterKey string
+	orgUUID        string
+	accUUID        string
 }
 
 const (
@@ -98,6 +100,8 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64) {
 			endTime:   endTime,
 			index:     0,
 			limit:     config.Conf.Limit,
+			orgUUID:   user.OrgUUID,
+			accUUID:   user.AccUUID,
 		}
 		msg := callMetricAPI(apiReq, maxRetryAttempts, txnID)
 		if msg == retryCurrentMsg {
@@ -190,7 +194,7 @@ func handlePagination(req apiCallRequest, retryAttempts int, txnID uint64) (int,
 	return receivedNoOfRecords, nil
 }
 
-//retry failed API call
+// retry failed API call
 func retryAPICall(req apiCallRequest, retryAttempts int, txnID uint64) (*GetAPIResponse, error) {
 	var err error
 	var response *GetAPIResponse
@@ -207,8 +211,8 @@ func retryAPICall(req apiCallRequest, retryAttempts int, txnID uint64) (*GetAPIR
 	return nil, err
 }
 
-//CallAPI calls the API, adds authorization, query params and returns response.
-//If successful it returns response as array of byte, if there is any error it return nil.
+// CallAPI calls the API, adds authorization, query params and returns response.
+// If successful it returns response as array of byte, if there is any error it return nil.
 func callAPI(req apiCallRequest, txnID uint64) (*GetAPIResponse, error) {
 	request, err := http.NewRequest("GET", req.url, nil)
 	if err != nil {

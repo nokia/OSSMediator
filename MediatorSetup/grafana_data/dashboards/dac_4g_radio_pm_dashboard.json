@@ -159,7 +159,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 3,
+        "w": 4,
         "x": 0,
         "y": 0
       },
@@ -178,7 +178,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "targets": [
         {
           "bucketAggs": [
@@ -256,108 +256,6 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "queryType": "lucene",
-      "description": "Displays the number of cells up in the selected network",
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "0",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "max": 1000,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 3,
-        "y": 0
-      },
-      "id": 98,
-      "links": [],
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "8.5.2",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.end_timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 0,
-                "offset": "",
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "queryType": "lucene",
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Cell_Avail_M8020C3",
-              "id": "9",
-              "inlineScript": "doc['pm_data.LTE_Cell_Avail_M8020C3'].size()",
-              "meta": {},
-              "settings": {
-                "script": {
-                  "inline": "doc['pm_data.LTE_Cell_Avail_M8020C3'].size()"
-                }
-              },
-              "type": "sum"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND -pm_data.LTE_Cell_Avail_M8020C3:0",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "Cells UP",
-      "type": "stat"
-    },
-    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -377,8 +275,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 6,
-        "w": 6,
-        "x": 6,
+        "w": 7,
+        "x": 4,
         "y": 0
       },
       "hiddenSeries": false,
@@ -400,7 +298,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -525,8 +423,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 6,
-        "w": 6,
-        "x": 12,
+        "w": 7,
+        "x": 11,
         "y": 0
       },
       "hiddenSeries": false,
@@ -548,7 +446,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -699,7 +597,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "targets": [
         {
           "alias": "Avg PDCP Throughput UL",
@@ -814,7 +712,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "targets": [
         {
           "bucketAggs": [
@@ -885,111 +783,6 @@
         "uid": "${datasource}"
       },
       "queryType": "lucene",
-      "description": "Displays the number of cells down in the selected network",
-      "fieldConfig": {
-        "defaults": {
-          "decimals": 0,
-          "mappings": [
-            {
-              "from": "null",
-              "id": 0,
-              "op": "=",
-              "text": "0",
-              "to": "null",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 3,
-        "y": 3
-      },
-      "id": 100,
-      "links": [],
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "8.5.2",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.end_timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 0,
-                "offset": "",
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "queryType": "lucene",
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Cell_Avail_M8020C3",
-              "id": "9",
-              "inlineScript": "doc['pm_data.LTE_Cell_Avail_M8020C3'].size()",
-              "meta": {},
-              "settings": {
-                "script": {
-                  "inline": "doc['pm_data.LTE_Cell_Avail_M8020C3'].size()"
-                }
-              },
-              "type": "sum"
-            }
-          ],
-          "query": "(pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*) AND (pm_data.LTE_Cell_Avail_M8020C3:0 OR pm_data.LTE_Cell_Avail_M8020C6:0)",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "Cells DOWN",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "queryType": "lucene",
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean DL PDCP traffic throughput.",
       "fieldConfig": {
         "defaults": {
@@ -1000,10 +793,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 10240
               }
             ]
           },
@@ -1033,7 +822,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "targets": [
         {
           "alias": "Avg PDCP Throughput DL",
@@ -1130,7 +919,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -1301,7 +1090,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -1414,6 +1203,134 @@
       }
     },
     {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "queryType": "lucene",
+      "description": "E-UTRAN Average Latency Downlink [ms]\n",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 114,
+      "interval": "15m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "8.5.9",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "$groupby",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.end_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "15m",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "queryType": "lucene",
+          "metrics": [
+            {
+              "field": "pm_data.LTE_Cell_Load_M8001C2",
+              "hide": false,
+              "id": "4",
+              "meta": {},
+              "settings": {},
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Load_M8001C2:*",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "LTE_5134a\tE-UTRAN Average Latency Downlink [ms]",
+      "type": "timeseries"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -1436,7 +1353,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 21
       },
       "hiddenSeries": false,
       "id": 23,
@@ -1460,7 +1377,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -1679,7 +1596,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 26
       },
       "hiddenSeries": false,
       "id": 33,
@@ -1703,7 +1620,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -1838,7 +1755,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 31
       },
       "hiddenSeries": false,
       "id": 26,
@@ -1862,7 +1779,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -2009,7 +1926,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 31
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 30,
@@ -2033,7 +1950,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -2168,7 +2085,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 41
       },
       "hiddenSeries": false,
       "id": 42,
@@ -2192,7 +2109,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -2340,7 +2257,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 46
       },
       "hiddenSeries": false,
       "id": 44,
@@ -2364,7 +2281,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -2564,7 +2481,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 51
       },
       "hiddenSeries": false,
       "id": 46,
@@ -2588,7 +2505,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -2787,7 +2704,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 51
+        "y": 56
       },
       "hiddenSeries": false,
       "id": 48,
@@ -2811,7 +2728,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -2953,7 +2870,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 61
       },
       "hiddenSeries": false,
       "id": 50,
@@ -2977,7 +2894,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -3119,7 +3036,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 61
+        "y": 66
       },
       "hiddenSeries": false,
       "id": 58,
@@ -3143,7 +3060,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -3319,7 +3236,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 66
+        "y": 71
       },
       "hiddenSeries": false,
       "id": 40,
@@ -3343,7 +3260,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -3575,7 +3492,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 71
+        "y": 76
       },
       "hiddenSeries": false,
       "id": 54,
@@ -3599,7 +3516,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -4021,7 +3938,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 76
+        "y": 81
       },
       "hiddenSeries": false,
       "id": 61,
@@ -4045,7 +3962,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -4193,7 +4110,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 81
+        "y": 86
       },
       "hiddenSeries": false,
       "id": 62,
@@ -4217,7 +4134,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -4353,7 +4270,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 86
+        "y": 91
       },
       "hiddenSeries": false,
       "id": 76,
@@ -4377,7 +4294,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -4501,13 +4418,19 @@
       },
       "queryType": "lucene",
       "description": "This KPI shows the average value of the physical resource block (PRB) utilization per TTI in an uplink direction. The utilization is defined by the ratio of used to available PRBs per TTI.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 91
+        "y": 96
       },
       "hiddenSeries": false,
       "id": 111,
@@ -4528,9 +4451,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -4654,13 +4578,19 @@
       },
       "queryType": "lucene",
       "description": "This KPI shows the average UE reported Channel\nQuality Indicator (CQI) value.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 96
+        "y": 101
       },
       "hiddenSeries": false,
       "id": 94,
@@ -4681,9 +4611,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -5177,13 +5108,19 @@
       },
       "queryType": "lucene",
       "description": "This KPI indicates the success ratio for the inter-frequency HO when the source eNB receives information that the UE is successfully connected to the target cell within the target eNB. The KPI is defined independently of network topology (intra-eNB HO/inter-eNB HO) and of the usage of measurement gaps.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 101
+        "y": 106
       },
       "hiddenSeries": false,
       "id": 72,
@@ -5207,6 +5144,7 @@
         "dataLinks": []
       },
       "percentage": false,
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -5356,13 +5294,19 @@
       },
       "queryType": "lucene",
       "description": "This KPI indicates attempts at an intra-frequency HO when the source eNB receives information that the UE is successfully connected to the target cell. The KPI is defined independently of  network topology (intra-eNB HO/inter-eNB HO).",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 106
+        "y": 111
       },
       "hiddenSeries": false,
       "id": 74,
@@ -5386,6 +5330,7 @@
         "dataLinks": []
       },
       "percentage": false,
+      "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -5597,9 +5542,263 @@
       "yaxis": {
         "align": false
       }
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "queryType": "lucene",
+      "description": "This KPI shows the average Received Signal Strength Indicator (RSSI) value measured in the eNB for a physical UL control channel (PUCCH) per cell and normalized per the number of PRBs applicable to PUCCH.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dBm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 116
+      },
+      "id": 112,
+      "interval": "15m",
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.9",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "$groupby",
+              "id": "16",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "fake": true,
+              "field": "pm_data_source.end_timestamp",
+              "id": "15",
+              "settings": {
+                "interval": "15m",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
+          "metrics": [
+            {
+              "field": "pm_data.LTE_Pwr_and_Qual_UL_M8005C208",
+              "id": "14",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_UL_M8005C208:*",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "LTE_5368a\tE-UTRAN Average RSSI per Cell for PUCCH",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "queryType": "lucene",
+      "description": "This KPI shows the average Received Signal Strength Indicator (RSSI) value measured in the eNB for a physical UL shared channel (PUSCH) per cell and normalized per bandwidth (that is, a total number of PRBs).",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dBm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 121
+      },
+      "id": 113,
+      "interval": "15m",
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.9",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "$groupby",
+              "id": "16",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "fake": true,
+              "field": "pm_data_source.end_timestamp",
+              "id": "15",
+              "settings": {
+                "interval": "15m",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
+          "metrics": [
+            {
+              "field": "pm_data.LTE_Pwr_and_Qual_UL_M8005C233",
+              "id": "14",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_UL_M8005C233:*",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "LTE_5369a   E-UTRAN Average RSSI per Cell for PUSCH",
+      "type": "timeseries"
     }
   ],
-  "refresh": "15m",
+  "refresh": "",
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
@@ -5748,7 +5947,6 @@
   },
   "timezone": "",
   "title": "NDAC Radio 4G PM KPI - Dashboard",
-  "version": 12,
   "uid": "radio4gpm",
   "weekStart": ""
 }

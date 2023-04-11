@@ -3,11 +3,13 @@
   "users": [
     {
       "email_id": "<USER EMAIL>",
-      "response_dest": "<DIRECTORY PATH>"
+      "response_dest": "<DIRECTORY PATH>",
+      "Authorization": "TOKEN/PASSWORD"
     },
     {
       "email_id": "<USER EMAIL>",
-      "response_dest": "<DIRECTORY PATH>"
+      "response_dest": "<DIRECTORY PATH>",
+      "Authorization": "TOKEN/PASSWORD"
     }
   ],
   "um_api": {
@@ -27,12 +29,15 @@
     {
       "api": "/account-sims",
       "interval": 60
-    },
-    {
+    },    {
       "api": "/access-point-sims",
       "interval": 60
     }
   ],
+  "userAG_apis": {
+      "list_orgUUID": "/organizations",
+      "list_accUUID": "/organizations/{org_uuid}/accounts"
+  },
   "metric_apis": [
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",

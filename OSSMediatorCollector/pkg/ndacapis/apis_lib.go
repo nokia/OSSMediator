@@ -66,7 +66,7 @@ var (
 
 type fn func(*config.APIConf, *config.User, uint64)
 
-//StartDataCollection starts the tickers for PM/FM APIs.
+// StartDataCollection starts the tickers for PM/FM APIs.
 func StartDataCollection() {
 	currentTime := utils.CurrentTime()
 	diff := currentTime.Minute() - (currentTime.Minute() / interval * interval) - config.Conf.Delay
@@ -106,7 +106,7 @@ func StartDataCollection() {
 	}
 }
 
-//triggers the method periodically at specified interval.
+// triggers the method periodically at specified interval.
 func trigger(ticker *time.Ticker, api *config.APIConf, user *config.User, method fn) {
 	for {
 		<-ticker.C
@@ -114,9 +114,9 @@ func trigger(ticker *time.Ticker, api *config.APIConf, user *config.User, method
 	}
 }
 
-//CreateHTTPClient creates HTTP client for all the GET/POST API calls, if certFile is empty and skipTLS is false TLS authentication will be done using root certificates.
-//certFile keeps the server certificate file path
-//skipTLS if true all API calls will skip TLS auth.
+// CreateHTTPClient creates HTTP client for all the GET/POST API calls, if certFile is empty and skipTLS is false TLS authentication will be done using root certificates.
+// certFile keeps the server certificate file path
+// skipTLS if true all API calls will skip TLS auth.
 func CreateHTTPClient(certFile string, skipTLS bool) {
 	if skipTLS {
 		//skipping certificates
@@ -151,8 +151,8 @@ func CreateHTTPClient(certFile string, skipTLS bool) {
 	}
 }
 
-//Executes the request.
-//If successful returns response and nil, if there is any error it return error.
+// Executes the request.
+// If successful returns response and nil, if there is any error it return error.
 func doRequest(request *http.Request) ([]byte, error) {
 	response, err := client.Do(request)
 	if err != nil {
@@ -185,8 +185,8 @@ func doRequest(request *http.Request) ([]byte, error) {
 	return body, nil
 }
 
-//Validates the response's status code.
-//If status code = SUCCESS it returns nil, else it returns invalid status code error.
+// Validates the response's status code.
+// If status code = SUCCESS it returns nil, else it returns invalid status code error.
 func checkStatusCode(status Status) error {
 	if status.StatusCode != successStatusCode {
 		return fmt.Errorf("error while validating response status: Status Code: %s, Status Message: %s", status.StatusCode, status.StatusDescription.Description)

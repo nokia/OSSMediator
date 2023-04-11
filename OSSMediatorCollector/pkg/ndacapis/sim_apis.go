@@ -17,7 +17,7 @@ import (
 	"strings"
 )
 
-//SimAPIResponse struct for sims api response.
+// SimAPIResponse struct for sims api response.
 type SimAPIResponse struct {
 	Status        Status       `json:"status"`
 	EmailID       string       `json:"email_id"`
@@ -28,19 +28,19 @@ type SimAPIResponse struct {
 	RequestedSims int          `json:"requested_sims"`
 }
 
-//PageResponse struct is used to get pagination information of sims api.
+// PageResponse struct is used to get pagination information of sims api.
 type PageResponse struct {
 	PageDetails PageDetails `json:"page_details"`
 	TotalPages  int         `json:"total_pages"`
 }
 
-//PageDetails keeps individual page details for pagination.
+// PageDetails keeps individual page details for pagination.
 type PageDetails struct {
 	PageNumber int `json:"page_number"`
 	PageSize   int `json:"page_size"`
 }
 
-//SimData struct for storing received response from sims api.
+// SimData struct for storing received response from sims api.
 type SimData struct {
 	EmailID       string      `json:"email_id,omitempty"`
 	TotalSims     int         `json:"total_sims,omitempty"`
@@ -63,21 +63,22 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64) {
 	}
 	if strings.Contains(api.API, accessPointSimsAPI) {
 		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("starting ap_sims api")
-		for _, hwID := range user.HwIDs {
-			callAccessPointsSimAPI(api, user, hwID, txnID)
+		for hwID, orgAcc := range user.HwIDs {
+			callAccessPointsSimAPI(api, user, hwID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, txnID)
 		}
 		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("finished ap_sims api")
 	} else if strings.Contains(api.API, nhgPathParam) {
-		for _, nhgID := range user.NhgIDs {
-			callSimAPI(api, user, nhgID, 1, txnID)
+		for nhgID, orgAcc := range user.NhgIDs {
+			callSimAPI(api, user, nhgID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, 1, txnID)
 		}
 	} else {
-		callSimAPI(api, user, "", 1, txnID)
+		//check with Sourav
+		callSimAPI(api, user, "", "", "", 1, txnID)
 	}
 }
 
-func callSimAPI(api *config.APIConf, user *config.User, nhgID string, pageNo int, txnID uint64) {
-	apiURL := config.Conf.BaseURL + api.API
+func callSimAPI(api *config.APIConf, user *config.User, nhgID string, orgUUID string, accUUID string, pageNo int, txnID uint64) {
+	apiURL := config.Conf.BaseURL + api.API + "?user_info.org_uuid=" + orgUUID + "&user_info.account_uuid=" + accUUID
 	apiURL = strings.Replace(apiURL, "{nhg_id}", nhgID, -1)
 
 	//wait if refresh token api is running
@@ -132,12 +133,12 @@ func callSimAPI(api *config.APIConf, user *config.User, nhgID string, pageNo int
 	if resp.PageResponse.TotalPages == resp.PageResponse.PageDetails.PageNumber {
 		return
 	} else {
-		callSimAPI(api, user, nhgID, pageNo+1, txnID)
+		callSimAPI(api, user, nhgID, orgUUID, accUUID, pageNo+1, txnID)
 	}
 }
 
-func callAccessPointsSimAPI(api *config.APIConf, user *config.User, hwID string, txnID uint64) {
-	apiURL := config.Conf.BaseURL + api.API
+func callAccessPointsSimAPI(api *config.APIConf, user *config.User, hwID string, orgUUID string, accUUID string, txnID uint64) {
+	apiURL := config.Conf.BaseURL + api.API + "?user_info.org_uuid=" + orgUUID + "&user_info.account_uuid=" + accUUID
 	//wait if refresh token api is running
 	user.Wg.Wait()
 

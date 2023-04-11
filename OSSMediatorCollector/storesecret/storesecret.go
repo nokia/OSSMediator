@@ -99,7 +99,7 @@ func storeToken(user string, accessToken []byte, refreshToken []byte) {
 	fileName := secretDir + "/." + user
 	//check the token format for delimeter(newline or colon as delimeter?)
 	encodedPassword := base64.StdEncoding.EncodeToString(accessToken) + "\n" + base64.StdEncoding.EncodeToString(refreshToken)
-	err := ioutil.WriteFile(fileName, []byte(encodedPassword), 0600)
+	err := os.WriteFile(fileName, []byte(encodedPassword), 0600)
 	if err != nil {
 		log.Fatalf("Unable to store password for %v to %v, error: %v", user, fileName, err)
 	}

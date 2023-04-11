@@ -26,7 +26,7 @@ const (
 	multiplier     = 2
 )
 
-//UMResponse keeps track of response received from UM APIs.
+// UMResponse keeps track of response received from UM APIs.
 type UMResponse struct {
 	UAT struct {
 		AccessToken string `json:"access_token"` //access token
@@ -37,25 +37,24 @@ type UMResponse struct {
 	Status Status `json:"status"` // Status of the response
 }
 
-//LoginRequestBody to form the request body for login API.
+// LoginRequestBody to form the request body for login API.
 type LoginRequestBody struct {
 	EmailID  string `json:"email_id"` //User's Email ID
 	Password string `json:"password"` //User's password
 }
 
-//RefreshAndLogoutRequestBody to form the request body for refresh and logout API.
+// RefreshAndLogoutRequestBody to form the request body for refresh and logout API.
 type RefreshAndLogoutRequestBody struct {
 	RefreshToken string `json:"refresh_token"` //refresh token
 }
 
-//Login authenticates the BaseURL with email ID and password,
+// Login authenticates the BaseURL with email ID and password,
 // store the session token to SessionToken.
-//If successful it returns nil, if there is any error it return error.
+// If successful it returns nil, if there is any error it return error.
 func Login(user *config.User) error {
 	//forming the request body in following format
 	//{"email_id": "string", "password": "string"}
-	reqBody := LoginRequestBody{
-		EmailID:  user.Email,
+	reqBody := LoginRequestBody{EmailID: user.Email,
 		Password: user.Password,
 	}
 	body, _ := json.Marshal(reqBody)
@@ -102,7 +101,7 @@ func TokenAuthorize(user *config.User) error {
 	return nil
 }
 
-//Extracts the expiry time from access_token and set it to SessionToken.
+// Extracts the expiry time from access_token and set it to SessionToken.
 func setToken(response *UMResponse, user *config.User) {
 	//getting expiry time using jwt
 	token, _ := jwt.Parse(response.UAT.AccessToken, nil)
@@ -119,8 +118,8 @@ func setToken(response *UMResponse, user *config.User) {
 	log.Debugf("Expiry time: %v for %s", user.SessionToken.ExpiryTime, user.Email)
 }
 
-//RefreshToken refreshes the session token before expiry_time.
-//Input parameter apiUrl is the API URL for refreshing session.
+// RefreshToken refreshes the session token before expiry_time.
+// Input parameter apiUrl is the API URL for refreshing session.
 func RefreshToken(user *config.User) {
 	apiURL := config.Conf.BaseURL + config.Conf.UMAPIs.Refresh
 	duration := getRefreshDuration(user)
@@ -156,7 +155,7 @@ func RefreshToken(user *config.User) {
 	}
 }
 
-//Return the expiry duration.
+// Return the expiry duration.
 func getRefreshDuration(user *config.User) time.Duration {
 	duration := user.SessionToken.ExpiryTime.Sub(utils.CurrentTime())
 	duration -= 30 * time.Second
@@ -164,7 +163,7 @@ func getRefreshDuration(user *config.User) time.Duration {
 	return duration
 }
 
-//calls the refresh API, return nil when successful.
+// calls the refresh API, return nil when successful.
 func callRefreshAPI(apiURL string, user *config.User) error {
 	log.Infof("Refreshing token for %s", user.Email)
 	//forming body for refresh session API
@@ -221,8 +220,8 @@ func retryLogin(backoff time.Duration, user *config.User) {
 	}
 }
 
-//Logout to close the session.
-//If successful it returns nil, if there is any error it return error.
+// Logout to close the session.
+// If successful it returns nil, if there is any error it return error.
 func Logout(user *config.User) error {
 	log.Infof("Logging out from %s for user %s.", config.Conf.BaseURL, user.Email)
 	//forming body for logout API

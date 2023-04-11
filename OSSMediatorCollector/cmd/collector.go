@@ -84,12 +84,8 @@ func main() {
 			token := strings.Split(sessionToken, ":")
 			user.SessionToken.AccessToken = token[0]
 			user.SessionToken.RefreshToken = token[1]
-			user.OrgUUID = token[2]
-			user.AccUUID = token[3]
 			fmt.Printf("access token : %s\n", user.SessionToken.AccessToken)
 			fmt.Printf("refresh token : %s\n", user.SessionToken.RefreshToken)
-			fmt.Printf("org uuid : %s\n", user.OrgUUID)
-			fmt.Printf("acc uuid : %s\n", user.AccUUID)
 			err = ndacapis.TokenAuthorize(user)
 			if err != nil {
 				fmt.Printf("\nToken Authorization Failed for %s...\nError: %v", user.Email, err)
@@ -125,7 +121,7 @@ func main() {
 	shutdownHook()
 }
 
-//Reads command line options
+// Reads command line options
 func parseFlags() {
 	//read command line arguments
 	flag.StringVar(&confFile, "conf_file", "../resources/conf.json", "config file path")
@@ -150,8 +146,8 @@ func parseFlags() {
 	flag.Parse()
 }
 
-//create log file (collector.log) within logDir (in case of failure logs will be written to console)
-//if console logs is enabled then logs are written to stdout instead of file.
+// create log file (collector.log) within logDir (in case of failure logs will be written to console)
+// if console logs is enabled then logs are written to stdout instead of file.
 func initLogger(logDir string, logLevel int) {
 	if enableConsoleLog {
 		log.SetOutput(os.Stdout)

@@ -5,6 +5,7 @@ import (
 	"collector/pkg/config"
 	"collector/pkg/utils"
 	"encoding/json"
+	"fmt"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 	"strings"
@@ -20,54 +21,47 @@ type AccUUIDResponse struct {
 	Status     Status              `json:"status"` // Status of the response
 }
 
-func fetchOrgUUID(api *config.APIConf, user *config.User, txnID uint64) OrgUUIDResponse {
+func fetchOrgUUID(api *config.APIConf, user *config.User, txnID uint64) (OrgUUIDResponse, error) {
 	orgResp := OrgUUIDResponse{}
 	apiURL := config.Conf.BaseURL + config.Conf.UserAGAPIs.ListOrgUUID
 	request, err := http.NewRequest("GET", apiURL, nil)
 	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
-		return orgResp
+		return orgResp, err
 	}
 	request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
 	response, err := doRequest(request)
 	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
-		return orgResp
+		return orgResp, err
 	}
 
 	err = json.NewDecoder(bytes.NewReader(response)).Decode(&orgResp)
 	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to decode response")
-		return orgResp
+		return orgResp, err
 	}
 
+	fmt.Println("orguuid response :", orgResp)
 	//check response for status code
 	err = checkStatusCode(orgResp.Status)
 	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
-		return orgResp
+		return orgResp, err
 	}
 
 	err = utils.WriteResponse(user, api, orgResp.OrgDetails, "", txnID)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 	}
-
-	orgUUID := new(OrgUUIDResponse)
-	err = json.NewDecoder(bytes.NewReader(response)).Decode(orgUUID)
-	if err != nil {
-		user.IsSessionAlive = false
-		log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to extract data from response")
-		return orgResp
-	}
-	return orgResp
+	return orgResp, nil
 }
 
-func fetchAccUUID(api *config.APIConf, user *config.User, org config.OrgDetails, txnID uint64) AccUUIDResponse {
+func fetchAccUUID(api *config.APIConf, user *config.User, org config.OrgDetails, txnID uint64) (AccUUIDResponse, error) {
 	accResp := AccUUIDResponse{}
 	apiURL := config.Conf.BaseURL + config.Conf.UserAGAPIs.ListAccUUID
 	apiURL = strings.Replace(apiURL, "{org_uuid}", org.OrgUUID, -1)
@@ -75,21 +69,21 @@ func fetchAccUUID(api *config.APIConf, user *config.User, org config.OrgDetails,
 	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
-		return accResp
+		return accResp, err
 	}
 	request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
 	response, err := doRequest(request)
 	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
-		return accResp
+		return accResp, err
 	}
 
 	err = json.NewDecoder(bytes.NewReader(response)).Decode(&accResp)
 	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to decode response")
-		return accResp
+		return accResp, err
 	}
 
 	//check response for status code
@@ -97,20 +91,12 @@ func fetchAccUUID(api *config.APIConf, user *config.User, org config.OrgDetails,
 	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
-		return accResp
+		return accResp, err
 	}
 
 	err = utils.WriteResponse(user, api, accResp.AccDetails, "", txnID)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 	}
-
-	accUUID := new(AccUUIDResponse)
-	err = json.NewDecoder(bytes.NewReader(response)).Decode(accUUID)
-	if err != nil {
-		user.IsSessionAlive = false
-		log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to extract data from response")
-		return accResp
-	}
-	return accResp
+	return accResp, nil
 }

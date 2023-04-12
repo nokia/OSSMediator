@@ -36,8 +36,12 @@ const (
 
 // get nhg details for the customer
 func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
-	orgResponse := fetchOrgUUID(api, user, txnID)
-
+	orgResponse, error := fetchOrgUUID(api, user, txnID)
+	if error != nil {
+		user.IsSessionAlive = false
+		log.WithFields(log.Fields{"tid": txnID, "error": error}).Errorf("Error while fetching oruuid")
+		return
+	}
 	//check response for status code
 	err := checkStatusCode(orgResponse.Status)
 	if err != nil {
@@ -52,7 +56,12 @@ func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
 	}
 
 	for _, org := range orgResponse.OrgDetails {
-		accResponse := fetchAccUUID(api, user, org, txnID)
+		accResponse, error := fetchAccUUID(api, user, org, txnID)
+		if error != nil {
+			user.IsSessionAlive = false
+			log.WithFields(log.Fields{"tid": txnID, "error": error}).Errorf("Error while fetching oruuid")
+			return
+		}
 		for _, acc := range accResponse.AccDetails {
 			fmt.Println("Hi")
 			apiURL := config.Conf.BaseURL + api.API + "?user_info.org_uuid=" + org.OrgUUID + "&user_info.account_uuid=" + acc.AccUUID

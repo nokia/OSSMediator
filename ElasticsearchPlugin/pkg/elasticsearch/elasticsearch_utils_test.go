@@ -320,7 +320,7 @@ func TestPushFailedDataToElasticsearch(t *testing.T) {
 
 func searchOnElastic(indices []string) (string, error) {
 	searchURL := elasticsearchURL + "/" + strings.Join(indices, ",") + "/_search"
-	resp, err := httpCall(http.MethodGet, searchURL, "", "", "", nil, defaultTimeout)
+	resp, err := httpCall(http.MethodGet, searchURL, "", "", nil, nil, defaultTimeout)
 	if err != nil {
 		return "", err
 	}
@@ -447,7 +447,7 @@ func TestDeleteOldIndicesFormElasticsearch(t *testing.T) {
 	testIndices := []string{"4g-pm-" + indexSuffix, "5g-pm-" + indexSuffix}
 	for _, index := range testIndices {
 		indexCreateURL := elasticsearchURL + "/" + index
-		_, err := httpCall(http.MethodPut, indexCreateURL, "", "", "", nil, defaultTimeout)
+		_, err := httpCall(http.MethodPut, indexCreateURL, "", "", nil, nil, defaultTimeout)
 		if err != nil {
 			t.Error(err)
 		}
@@ -552,7 +552,7 @@ func TestAddCorePMMappingWithInvalidMapping(t *testing.T) {
 	}`
 
 	url := elasticsearchURL + "/core-pm/_doc"
-	_, err := httpCall(http.MethodPost, url, esConf.User, esConf.Password, testData, nil, defaultTimeout)
+	_, err := httpCall(http.MethodPost, url, esConf.User, esConf.Password, &testData, nil, defaultTimeout)
 	if err != nil {
 		t.Error(err)
 	}
@@ -561,7 +561,7 @@ func TestAddCorePMMappingWithInvalidMapping(t *testing.T) {
 	AddCorePMMapping(esConf)
 
 	url = elasticsearchURL + "/core-pm/_doc"
-	_, err = httpCall(http.MethodPost, url, esConf.User, esConf.Password, testData, nil, defaultTimeout)
+	_, err = httpCall(http.MethodPost, url, esConf.User, esConf.Password, &testData, nil, defaultTimeout)
 	if err != nil {
 		t.Error(err)
 	}

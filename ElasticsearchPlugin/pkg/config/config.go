@@ -19,9 +19,10 @@ import (
 
 //Config read from resources/conf.json file
 type Config struct {
-	SourceDirs        []string          `json:"source_dirs"`
-	CleanupDuration   int               `json:"cleanup_duration"`
-	ElasticsearchConf ElasticsearchConf `json:"elasticsearch"`
+	SourceDirs           []string          `json:"source_dirs"`
+	CleanupDuration      int               `json:"cleanup_duration"`
+	ElasticsearchConf    ElasticsearchConf `json:"elasticsearch"`
+	MaxConcurrentProcess int               `json:"max_concurrent_process"`
 }
 
 type ElasticsearchConf struct {
@@ -61,6 +62,9 @@ func ReadConfig(confFile string) (Config, error) {
 			return config, fmt.Errorf("Unable to decode password for %v, Error: %v", config.ElasticsearchConf.Password, err)
 		}
 		config.ElasticsearchConf.Password = string(decodedPwd)
+	}
+	if config.MaxConcurrentProcess <= 0 {
+		config.MaxConcurrentProcess = 1
 	}
 
 	log.Info("Config read successfully.")

@@ -104,6 +104,7 @@ func pushAPSimsData(filePath string, esConf config.ElasticsearchConf) {
 		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
 		return
 	}
+	data = nil
 
 	var postData string
 	index := indexMetaData[metric]
@@ -152,6 +153,7 @@ func pushSimsData(filePath string, esConf config.ElasticsearchConf) {
 		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
 		return
 	}
+	data = nil
 
 	var postData string
 	index := indexMetaData[metric]

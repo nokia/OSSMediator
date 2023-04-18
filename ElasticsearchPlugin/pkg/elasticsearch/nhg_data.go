@@ -103,6 +103,7 @@ func pushNHGData(filePath string, esConf config.ElasticsearchConf) {
 		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
 		return
 	}
+	data = nil
 	var postData string
 	index := indexMetaData[nhgData]
 	currTime := time.Now().UTC()

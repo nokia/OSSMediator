@@ -10,7 +10,7 @@ import (
 	"encoding/json"
 	"fmt"
 	log "github.com/sirupsen/logrus"
-	"io/ioutil"
+	"os"
 	"strings"
 	"sync"
 	"time"
@@ -18,20 +18,21 @@ import (
 
 //Config keeps the config from json
 type Config struct {
-	BaseURL    string     `json:"base_url"`     //Base URL of the API
-	UMAPIs     UMConf     `json:"um_api"`       //User management Configuration
-	ListNhGAPI *APIConf   `json:"list_nhg_api"` //list NHG API to keep track of all ACTIVE NHG of the user.
-	MetricAPIs []*APIConf `json:"metric_apis"`  //Array of API config
-	SimAPIs    []*APIConf `json:"sim_apis"`     //Array of API config
-	Users      []*User    `json:"users"`        //Keep track of all the user's details
-	Limit      int        `json:"limit"`
-	Delay      int        `json:"delay"`
+	BaseURL              string     `json:"base_url"`     //Base URL of the API
+	UMAPIs               UMConf     `json:"um_api"`       //User management Configuration
+	ListNhGAPI           *APIConf   `json:"list_nhg_api"` //list NHG API to keep track of all ACTIVE NHG of the user.
+	MetricAPIs           []*APIConf `json:"metric_apis"`  //Array of API config
+	SimAPIs              []*APIConf `json:"sim_apis"`     //Array of API config
+	Users                []*User    `json:"users"`        //Keep track of all the user's details
+	Limit                int        `json:"limit"`
+	Delay                int        `json:"delay"`
+	MaxConcurrentProcess int        `json:"max_concurrent_process"`
 }
 
 //User keeps Login configurations
 type User struct {
-	Email          string        `json:"email_id"`      //User's email ID
-	Password       string        `json:"password"`      //User's password read from configuration file
+	Email          string        `json:"email_id"` //User's email ID
+	Password       string        //User's password read from configuration file
 	ResponseDest   string        `json:"response_dest"` //Base directory where sub-directories will be created for each APIs to store its response.
 	SessionToken   *SessionToken //SessionToken variable keeps track of access_token, refresh_token and expiry_time of the token. It is used for authenticating the API calls.
 	Wg             sync.WaitGroup
@@ -71,7 +72,7 @@ var (
 
 //ReadConfig reads the configurations from resources/conf.json file and sets the Config object.
 func ReadConfig(confFile string) error {
-	contents, err := ioutil.ReadFile(confFile)
+	contents, err := os.ReadFile(confFile)
 	if err != nil {
 		return fmt.Errorf("error while reading conf file: %v", err)
 	}
@@ -101,6 +102,10 @@ func ReadConfig(confFile string) error {
 	for _, user := range Conf.Users {
 		user.Email = strings.TrimSpace(user.Email)
 		user.ResponseDest = strings.TrimSpace(user.ResponseDest)
+	}
+
+	if Conf.MaxConcurrentProcess <= 0 {
+		Conf.MaxConcurrentProcess = 1
 	}
 	log.Info("Config read successfully.")
 	return nil

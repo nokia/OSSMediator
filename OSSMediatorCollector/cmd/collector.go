@@ -9,7 +9,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
 	logger "log"
 	"os"
 	"os/signal"
@@ -155,7 +155,7 @@ func initLogger(logDir string, logLevel int) {
 		log.Info("Failed to log to file, using default stderr")
 		log.SetOutput(os.Stdout)
 	}
-	logger.SetOutput(ioutil.Discard)
+	logger.SetOutput(io.Discard)
 	log.SetFormatter(&log.TextFormatter{})
 	log.SetLevel(log.Level(logLevel))
 }

@@ -14,7 +14,6 @@ import (
 	"fmt"
 	log "github.com/sirupsen/logrus"
 	yaml "gopkg.in/yaml.v2"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"regexp"
@@ -115,7 +114,7 @@ var (
 )
 
 func readAlarmNotifierConfig(txnID uint64) error {
-	content, err := ioutil.ReadFile(alarmConfigFIlePath)
+	content, err := os.ReadFile(alarmConfigFIlePath)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error reading YAML file")
 		return err

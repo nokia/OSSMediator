@@ -17,6 +17,7 @@ import (
 	"path"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 //GetAPIResponse keeps track of response received from PM/FM API.
@@ -64,7 +65,6 @@ type apiCallRequest struct {
 const (
 	//retry msg
 	retryCurrentMsg = "retry current"
-	retryNextMsg    = "retry next"
 )
 
 func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64) {
@@ -88,28 +88,31 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64) {
 	activeAPIs[apiKey] = struct{}{}
 	mux.Unlock()
 
-	for _, nhgID := range user.NhgIDs {
-		startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
-		apiReq := apiCallRequest{
-			api:       api,
-			user:      user,
-			nhgID:     nhgID,
-			startTime: startTime,
-			endTime:   endTime,
-			index:     0,
-			limit:     config.Conf.Limit,
-		}
-		msg := callMetricAPI(apiReq, maxRetryAttempts, txnID)
-		if msg == retryCurrentMsg {
-			callMetricAPI(apiReq, 0, txnID)
-		}
-		for msg == retryNextMsg {
-			apiReq.startTime, apiReq.endTime = utils.GetTimeInterval(user, api, nhgID)
-			apiReq.index = 0
-			log.WithFields(log.Fields{"tid": txnID}).Info("retrying next")
-			msg = callMetricAPI(apiReq, maxRetryAttempts, txnID)
-		}
+	wg := sync.WaitGroup{}
+	requests := make(chan struct{}, config.Conf.MaxConcurrentProcess)
+	for _, nhg := range user.NhgIDs {
+		requests <- struct{}{}
+		wg.Add(1)
+		go func(nhgID string) {
+			startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
+			apiReq := apiCallRequest{
+				api:       api,
+				user:      user,
+				nhgID:     nhgID,
+				startTime: startTime,
+				endTime:   endTime,
+				index:     0,
+				limit:     config.Conf.Limit,
+			}
+			msg := callMetricAPI(apiReq, maxRetryAttempts, txnID)
+			if msg == retryCurrentMsg {
+				callMetricAPI(apiReq, 0, txnID)
+			}
+			<-requests
+			wg.Done()
+		}(nhg)
 	}
+	wg.Wait()
 	mux.Lock()
 	delete(activeAPIs, apiKey)
 	mux.Unlock()
@@ -208,7 +211,7 @@ func retryAPICall(req apiCallRequest, retryAttempts int, txnID uint64) (*GetAPIR
 }
 
 //CallAPI calls the API, adds authorization, query params and returns response.
-//If successful it returns response as array of byte, if there is any error it return nil.
+//If successful it returns response as array of byte, if there is any error it returns nil.
 func callAPI(req apiCallRequest, txnID uint64) (*GetAPIResponse, error) {
 	request, err := http.NewRequest("GET", req.url, nil)
 	if err != nil {
@@ -246,6 +249,10 @@ func callAPI(req apiCallRequest, txnID uint64) (*GetAPIResponse, error) {
 
 	response, err := doRequest(request)
 	if err != nil {
+		if strings.Contains(err.Error(), "404: no records found") {
+			log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("No records found for %s, %s", req.url, req.user.Email)
+			return nil, nil
+		}
 		log.WithFields(log.Fields{"tid": txnID, "error": err, "nhg_id": req.nhgID, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Errorf("Error while calling %s for %s", req.url, req.user.Email)
 		return nil, err
 	}
@@ -282,5 +289,6 @@ func callAPI(req apiCallRequest, txnID uint64) (*GetAPIResponse, error) {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", req.user.Email)
 		return nil, err
 	}
+	resp.Data = nil
 	return resp, nil
 }

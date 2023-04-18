@@ -30,7 +30,7 @@ func TestGetTimeInterval(t *testing.T) {
 	if startTime != "2021-06-17T19:45:00Z" {
 		t.Fail()
 	}
-	if endTime != "2021-06-17T19:59:50Z" {
+	if endTime != "2021-06-17T20:00:00Z" {
 		t.Fail()
 	}
 }
@@ -51,7 +51,7 @@ func TestGetTimeIntervalWithSyncDuration(t *testing.T) {
 	if startTime != "2021-06-17T19:30:00Z" {
 		t.Fail()
 	}
-	if endTime != "2021-06-17T19:59:50Z" {
+	if endTime != "2021-06-17T20:00:00Z" {
 		t.Fail()
 	}
 }

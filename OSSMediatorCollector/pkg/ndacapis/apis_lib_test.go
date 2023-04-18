@@ -134,6 +134,7 @@ func TestStartDataCollectionWithInvalidURL(t *testing.T) {
 	config.Conf.SimAPIs = []*config.APIConf{{API: "/sims", Interval: 15}}
 	config.Conf.ListNhGAPI = &config.APIConf{API: "/network-hardware-groups", Interval: 60}
 	config.Conf.Limit = 10
+	config.Conf.MaxConcurrentProcess = 1
 	CreateHTTPClient("", true)
 
 	StartDataCollection()
@@ -190,6 +191,7 @@ func TestStartDataCollection(t *testing.T) {
 	config.Conf.MetricAPIs = []*config.APIConf{{API: "/{nhg_id}/fmdata", Interval: 15, Type: "HISTORY", MetricType: "RADIO"}}
 	config.Conf.Limit = 10
 	config.Conf.ListNhGAPI = &config.APIConf{API: "/network-hardware-groups", Interval: 60}
+	config.Conf.MaxConcurrentProcess = 1
 	CreateHTTPClient("", true)
 
 	StartDataCollection()

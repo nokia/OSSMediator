@@ -89,28 +89,53 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64) {
 	activeAPIs[apiKey] = struct{}{}
 	mux.Unlock()
 
-	for nhgID, orgAcc := range user.NhgIDs {
-		startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
-		apiReq := apiCallRequest{
-			api:       api,
-			user:      user,
-			nhgID:     nhgID,
-			startTime: startTime,
-			endTime:   endTime,
-			index:     0,
-			limit:     config.Conf.Limit,
-			orgUUID:   orgAcc.OrgDetails.OrgUUID,
-			accUUID:   orgAcc.AccDetails.AccUUID,
+	if user.UserType == "ABAC" {
+		for nhgID, orgAcc := range user.NhgIDsABAC {
+			startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
+			apiReq := apiCallRequest{
+				api:       api,
+				user:      user,
+				nhgID:     nhgID,
+				startTime: startTime,
+				endTime:   endTime,
+				index:     0,
+				limit:     config.Conf.Limit,
+				orgUUID:   orgAcc.OrgDetails.OrgUUID,
+				accUUID:   orgAcc.AccDetails.AccUUID,
+			}
+			msg := callMetricAPI(apiReq, maxRetryAttempts, txnID)
+			if msg == retryCurrentMsg {
+				callMetricAPI(apiReq, 0, txnID)
+			}
+			for msg == retryNextMsg {
+				apiReq.startTime, apiReq.endTime = utils.GetTimeInterval(user, api, nhgID)
+				apiReq.index = 0
+				log.WithFields(log.Fields{"tid": txnID}).Info("retrying next")
+				msg = callMetricAPI(apiReq, maxRetryAttempts, txnID)
+			}
 		}
-		msg := callMetricAPI(apiReq, maxRetryAttempts, txnID)
-		if msg == retryCurrentMsg {
-			callMetricAPI(apiReq, 0, txnID)
-		}
-		for msg == retryNextMsg {
-			apiReq.startTime, apiReq.endTime = utils.GetTimeInterval(user, api, nhgID)
-			apiReq.index = 0
-			log.WithFields(log.Fields{"tid": txnID}).Info("retrying next")
-			msg = callMetricAPI(apiReq, maxRetryAttempts, txnID)
+	} else {
+		for _, nhgID := range user.NhgIDs {
+			startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
+			apiReq := apiCallRequest{
+				api:       api,
+				user:      user,
+				nhgID:     nhgID,
+				startTime: startTime,
+				endTime:   endTime,
+				index:     0,
+				limit:     config.Conf.Limit,
+			}
+			msg := callMetricAPI(apiReq, maxRetryAttempts, txnID)
+			if msg == retryCurrentMsg {
+				callMetricAPI(apiReq, 0, txnID)
+			}
+			for msg == retryNextMsg {
+				apiReq.startTime, apiReq.endTime = utils.GetTimeInterval(user, api, nhgID)
+				apiReq.index = 0
+				log.WithFields(log.Fields{"tid": txnID}).Info("retrying next")
+				msg = callMetricAPI(apiReq, maxRetryAttempts, txnID)
+			}
 		}
 	}
 	mux.Lock()
@@ -119,10 +144,15 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64) {
 }
 
 func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64) string {
-	apiURL := config.Conf.BaseURL + req.api.API + "?user_info.org_uuid=" + req.orgUUID + "&user_info.account_uuid=" + req.accUUID
-	apiURL = strings.Replace(apiURL, "{nhg_id}", req.nhgID, -1)
-	req.url = apiURL
-
+	apiURL := config.Conf.BaseURL + req.api.API
+	if req.user.UserType == "ABAC" {
+		apiURL = apiURL + "?user_info.org_uuid=" + req.orgUUID + "&user_info.account_uuid=" + req.accUUID
+		apiURL = strings.Replace(apiURL, "{nhg_id}", req.nhgID, -1)
+		req.url = apiURL
+	} else if req.user.UserType == "RBAC" {
+		apiURL = strings.Replace(apiURL, "{nhg_id}", req.nhgID, -1)
+		req.url = apiURL
+	}
 	log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("Triggered %s for %s at %v", apiURL, req.user.Email, utils.CurrentTime())
 	response, err := callAPI(req, txnID)
 	if err != nil {

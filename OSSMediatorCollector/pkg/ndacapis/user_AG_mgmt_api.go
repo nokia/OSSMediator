@@ -5,7 +5,6 @@ import (
 	"collector/pkg/config"
 	"collector/pkg/utils"
 	"encoding/json"
-	"fmt"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 	"strings"
@@ -24,7 +23,7 @@ type AccUUIDResponse struct {
 func fetchOrgUUID(api *config.APIConf, user *config.User, txnID uint64) (OrgUUIDResponse, error) {
 	orgResp := OrgUUIDResponse{}
 	apiURL := config.Conf.BaseURL + config.Conf.UserAGAPIs.ListOrgUUID
-	request, err := http.NewRequest("GET", apiURL, nil)
+	request, err := http.NewRequest("POST", apiURL, strings.NewReader("{}"))
 	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
@@ -45,7 +44,6 @@ func fetchOrgUUID(api *config.APIConf, user *config.User, txnID uint64) (OrgUUID
 		return orgResp, err
 	}
 
-	fmt.Println("orguuid response :", orgResp)
 	//check response for status code
 	err = checkStatusCode(orgResp.Status)
 	if err != nil {
@@ -65,23 +63,20 @@ func fetchAccUUID(api *config.APIConf, user *config.User, org config.OrgDetails,
 	accResp := AccUUIDResponse{}
 	apiURL := config.Conf.BaseURL + config.Conf.UserAGAPIs.ListAccUUID
 	apiURL = strings.Replace(apiURL, "{org_uuid}", org.OrgUUID, -1)
-	request, err := http.NewRequest("GET", apiURL, nil)
+	request, err := http.NewRequest("POST", apiURL, strings.NewReader("{}"))
 	if err != nil {
-		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
 		return accResp, err
 	}
 	request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
 	response, err := doRequest(request)
-	if err != nil {
-		user.IsSessionAlive = false
+	if err != nil || len(response) == 0 {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
 		return accResp, err
 	}
 
 	err = json.NewDecoder(bytes.NewReader(response)).Decode(&accResp)
 	if err != nil {
-		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to decode response")
 		return accResp, err
 	}
@@ -89,7 +84,6 @@ func fetchAccUUID(api *config.APIConf, user *config.User, org config.OrgDetails,
 	//check response for status code
 	err = checkStatusCode(accResp.Status)
 	if err != nil {
-		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
 		return accResp, err
 	}

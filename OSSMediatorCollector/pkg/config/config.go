@@ -53,13 +53,15 @@ type OrgAccDetails struct {
 type User struct {
 	Email          string        `json:"email_id"`      //User's email ID
 	Password       string        `json:"password"`      //User's password read from configuration file
-	Authorization  string        `json:"authorization"` //authorization type
+	UserType       string        `json:"user_type"`     //authorization type
 	ResponseDest   string        `json:"response_dest"` //Base directory where sub-directories will be created for each APIs to store its response.
 	SessionToken   *SessionToken //SessionToken variable keeps track of access_token, refresh_token and expiry_time of the token. It is used for authenticating the API calls.
 	Wg             sync.WaitGroup
 	IsSessionAlive bool
-	NhgIDs         map[string]OrgAccDetails
-	HwIDs          map[string]OrgAccDetails
+	NhgIDsABAC     map[string]OrgAccDetails
+	HwIDsABAC      map[string]OrgAccDetails
+	NhgIDs         []string
+	HwIDs          []string
 }
 
 // SessionToken struct tracks the access_token, refresh_token and expiry_time of the token
@@ -126,7 +128,7 @@ func ReadConfig(confFile string) error {
 	for _, user := range Conf.Users {
 		user.Email = strings.TrimSpace(user.Email)
 		user.ResponseDest = strings.TrimSpace(user.ResponseDest)
-		user.Authorization = strings.TrimSpace(user.Authorization)
+		user.UserType = strings.TrimSpace(user.UserType)
 	}
 
 	log.Info("Config read successfully.")

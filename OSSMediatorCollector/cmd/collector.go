@@ -13,7 +13,6 @@ import (
 	logger "log"
 	"os"
 	"os/signal"
-	"strings"
 	"syscall"
 
 	"collector/pkg/config"
@@ -61,8 +60,8 @@ func main() {
 
 	// Authenticating the users
 	for _, user := range config.Conf.Users {
-		//if tokenAuthorize is set, no need to login
-		if user.Authorization == "PASSWORD" {
+		//if usertype is ABAC, no need to login
+		if user.UserType == "RBAC" {
 			user.Password, err = utils.ReadPassword(user.Email)
 			if err != nil {
 				fmt.Printf("\nUnable to read password for: %s\nError: %v", user.Email, err)
@@ -81,12 +80,7 @@ func main() {
 				fmt.Printf("\nUnable to read sessionToken for: %s\nError: %v", user.Email, err)
 				log.WithFields(log.Fields{"error": err}).Fatalf("Token Authorization Failed for %s", user.Email)
 			}
-			token := strings.Split(sessionToken, ":")
-			user.SessionToken.AccessToken = token[0]
-			user.SessionToken.RefreshToken = token[1]
-			fmt.Printf("access token : %s\n", user.SessionToken.AccessToken)
-			fmt.Printf("refresh token : %s\n", user.SessionToken.RefreshToken)
-			err = ndacapis.TokenAuthorize(user)
+			err = ndacapis.TokenAuthorize(user, sessionToken)
 			if err != nil {
 				fmt.Printf("\nToken Authorization Failed for %s...\nError: %v", user.Email, err)
 				log.WithFields(log.Fields{"error": err}).Fatalf("Token Authorization Failed for %s", user.Email)

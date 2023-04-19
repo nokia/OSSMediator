@@ -14,8 +14,8 @@ import (
 
 type Config struct {
 	Users []struct {
-		EmailID       string `json:"email_id"`
-		Authorization string `json:"authorization"`
+		EmailID  string `json:"email_id"`
+		UserType string `json:"user_type"`
 	} `json:"users"`
 }
 
@@ -62,20 +62,20 @@ func readConfig(confFile string) (*Config, error) {
 
 func readPassword(conf *Config) {
 	for _, user := range conf.Users {
-		if user.Authorization == "PASSWORD" {
+		if user.UserType == "RBAC" {
 			fmt.Printf("Enter password for %s: ", user.EmailID)
 			bytePassword, err := term.ReadPassword(int(syscall.Stdin))
 			if err != nil {
 				log.Fatalf("Error in reading password for %v: %v", user.EmailID, err)
 			}
 			storePassword(user.EmailID, bytePassword)
-		} else {
+		} else if user.UserType == "ABAC" {
 			fmt.Printf("Enter access token for %s: ", user.EmailID)
 			byteAccessToken, err := term.ReadPassword(int(syscall.Stdin))
 			if err != nil {
 				log.Fatalf("Error in reading password for %v: %v", user.EmailID, err)
 			}
-			fmt.Printf("Enter refresh token for %s: ", user.EmailID)
+			fmt.Printf("\nEnter refresh token for %s: ", user.EmailID)
 			byteRefreshToken, err := term.ReadPassword(int(syscall.Stdin))
 			if err != nil {
 				log.Fatalf("Error in reading password for %v: %v", user.EmailID, err)
@@ -103,5 +103,5 @@ func storeToken(user string, accessToken []byte, refreshToken []byte) {
 	if err != nil {
 		log.Fatalf("Unable to store password for %v to %v, error: %v", user, fileName, err)
 	}
-	fmt.Printf("\nPassword stored for %v\n", user)
+	fmt.Printf("\nToken stored for %v\n", user)
 }

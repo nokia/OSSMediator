@@ -13,6 +13,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	jwt "github.com/golang-jwt/jwt/v4"
@@ -87,15 +88,14 @@ func Login(user *config.User) error {
 	setToken(resp, user)
 
 	log.Infof("Login successful for %s", user.Email)
-	fmt.Printf("\nLogin successful for %s", user.Email)
 	return nil
 }
 
-func TokenAuthorize(user *config.User) error {
-	sessionToken := user.SessionToken
+func TokenAuthorize(user *config.User, sessionToken string) error {
+	token := strings.Split(sessionToken, "\n")
 	resp := new(UMResponse)
-	resp.UAT.AccessToken = sessionToken.AccessToken
-	resp.RT.RefreshToken = sessionToken.RefreshToken
+	resp.UAT.AccessToken = token[0]
+	resp.RT.RefreshToken = token[1]
 
 	setToken(resp, user)
 	return nil

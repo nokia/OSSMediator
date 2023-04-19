@@ -63,13 +63,25 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64) {
 	}
 	if strings.Contains(api.API, accessPointSimsAPI) {
 		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("starting ap_sims api")
-		for hwID, orgAcc := range user.HwIDs {
-			callAccessPointsSimAPI(api, user, hwID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, txnID)
+		if user.UserType == "ABAC" {
+			for hwID, orgAcc := range user.HwIDsABAC {
+				callAccessPointsSimAPI(api, user, hwID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, txnID)
+			}
+		} else if user.UserType == "RBAC" {
+			for _, hwID := range user.HwIDs {
+				callAccessPointsSimAPI(api, user, hwID, "", "", txnID)
+			}
 		}
 		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("finished ap_sims api")
 	} else if strings.Contains(api.API, nhgPathParam) {
-		for nhgID, orgAcc := range user.NhgIDs {
-			callSimAPI(api, user, nhgID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, 1, txnID)
+		if user.UserType == "ABAC" {
+			for nhgID, orgAcc := range user.NhgIDsABAC {
+				callSimAPI(api, user, nhgID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, 1, txnID)
+			}
+		} else if user.UserType == "RBAC" {
+			for _, nhgID := range user.NhgIDs {
+				callSimAPI(api, user, nhgID, "", "", 1, txnID)
+			}
 		}
 	} else {
 		//check with Sourav

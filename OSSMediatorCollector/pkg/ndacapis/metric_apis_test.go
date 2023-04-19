@@ -383,7 +383,7 @@ func TestAPICallWithPagination(t *testing.T) {
 	orgAcc.AccDetails.AccAlias = "acc_alias_1"
 
 	m["test_nhg_1"] = orgAcc
-	user.NhgIDs = m
+	user.NhgIDsABAC = m
 	CreateHTTPClient("", true)
 	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
 	config.Conf.BaseURL = testServer.URL
@@ -431,7 +431,7 @@ func TestRetryAPICall(t *testing.T) {
 	orgAcc.AccDetails.AccAlias = "acc_alias_1"
 
 	m["test_nhg_1"] = orgAcc
-	user.NhgIDs = m
+	user.NhgIDsABAC = m
 	CreateHTTPClient("", true)
 	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
 	config.Conf.BaseURL = testServer.URL
@@ -518,7 +518,7 @@ func TestFetchMetricsDataWithRetryNext(t *testing.T) {
 	orgAcc.AccDetails.AccAlias = "acc_alias_1"
 
 	m["test_nhg_1"] = orgAcc
-	user.NhgIDs = m
+	user.NhgIDsABAC = m
 
 	CreateHTTPClient("", true)
 	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}

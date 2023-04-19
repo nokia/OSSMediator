@@ -155,7 +155,7 @@ func TestCallSimAPIWithWrongURL(t *testing.T) {
 	orgAcc.AccDetails.AccAlias = "acc_alias_1"
 
 	m["test_nhg1"] = orgAcc
-	user.NhgIDs = m
+	user.NhgIDsABAC = m
 
 	config.Conf = config.Config{
 		BaseURL: "http://localhost",
@@ -204,7 +204,7 @@ func TestCallAPSimAPIWithWrongURL(t *testing.T) {
 	orgAcc.AccDetails.AccAlias = "acc_alias_1"
 
 	m["test_nhg1"] = orgAcc
-	user.NhgIDs = m
+	user.NhgIDsABAC = m
 
 	config.Conf = config.Config{
 		BaseURL: "http://localhost",
@@ -253,7 +253,7 @@ func TestCallAPSimAPI(t *testing.T) {
 	orgAcc.AccDetails.AccAlias = "acc_alias_1"
 
 	m["test-hw1"] = orgAcc
-	user.HwIDs = m
+	user.HwIDsABAC = m
 
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")

@@ -62,23 +62,24 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64) {
 		return
 	}
 	if strings.Contains(api.API, accessPointSimsAPI) {
-		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("starting ap_sims api")
-		if user.UserType == "ABAC" {
+		if user.AuthType == "TOKEN" {
+			log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDsABAC)}).Infof("starting ap_sims api")
 			for hwID, orgAcc := range user.HwIDsABAC {
 				callAccessPointsSimAPI(api, user, hwID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, txnID)
 			}
-		} else if user.UserType == "RBAC" {
+		} else {
 			for _, hwID := range user.HwIDs {
+				log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("starting ap_sims api")
 				callAccessPointsSimAPI(api, user, hwID, "", "", txnID)
 			}
 		}
 		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("finished ap_sims api")
 	} else if strings.Contains(api.API, nhgPathParam) {
-		if user.UserType == "ABAC" {
+		if user.AuthType == "TOKEN" {
 			for nhgID, orgAcc := range user.NhgIDsABAC {
 				callSimAPI(api, user, nhgID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, 1, txnID)
 			}
-		} else if user.UserType == "RBAC" {
+		} else {
 			for _, nhgID := range user.NhgIDs {
 				callSimAPI(api, user, nhgID, "", "", 1, txnID)
 			}
@@ -90,6 +91,9 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64) {
 }
 
 func callSimAPI(api *config.APIConf, user *config.User, nhgID string, orgUUID string, accUUID string, pageNo int, txnID uint64) {
+	orgUUID = user.NhgIDsABAC[nhgID].OrgDetails.OrgUUID
+	accUUID = user.NhgIDsABAC[nhgID].AccDetails.AccUUID
+
 	apiURL := config.Conf.BaseURL + api.API + "?user_info.org_uuid=" + orgUUID + "&user_info.account_uuid=" + accUUID
 	apiURL = strings.Replace(apiURL, "{nhg_id}", nhgID, -1)
 

@@ -224,6 +224,11 @@ func retryLogin(backoff time.Duration, user *config.User) {
 // If successful it returns nil, if there is any error it return error.
 func Logout(user *config.User) error {
 	log.Infof("Logging out from %s for user %s.", config.Conf.BaseURL, user.Email)
+	if user.AuthType == "TOKEN" {
+		user.IsSessionAlive = false
+		log.Infof("%s Logged out", user.Email)
+		return nil
+	}
 	//forming body for logout API
 	reqBody := RefreshAndLogoutRequestBody{
 		RefreshToken: user.SessionToken.RefreshToken,

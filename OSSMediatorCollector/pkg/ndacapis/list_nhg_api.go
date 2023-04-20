@@ -35,7 +35,9 @@ const (
 
 // get nhg details for the customer
 func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
-	if user.UserType == "ABAC" {
+	user.HwIDsABAC = map[string]config.OrgAccDetails{}
+	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
+	if user.AuthType == "TOKEN" {
 		listNhgABAC(api, user, txnID)
 	} else {
 		listNhgRBAC(api, user, txnID)
@@ -143,9 +145,9 @@ func storeUserHwIDRBAC(nhgData []NetworkInfo, user *config.User, txnID uint64) {
 
 func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64) {
 	orgResponse, error := fetchOrgUUID(api, user, txnID)
-	if error != nil {
+	if error != nil || (len(orgResponse.OrgDetails)) == 0 {
 		user.IsSessionAlive = false
-		log.WithFields(log.Fields{"tid": txnID, "error": error}).Errorf("Error while fetching oruuid")
+		log.WithFields(log.Fields{"tid": txnID, "error": error}).Errorf("Error while fetching orguuid")
 		return
 	}
 	//check response for status code
@@ -220,40 +222,46 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64) {
 				log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to extract data from response")
 				return
 			}
-			storeUserNhgABAC(nhgData.NetworkInfo, user, org, acc, txnID)
-			storeUserHwIDABAC(nhgData.NetworkInfo, user, org, acc, txnID)
+			storeUserNhgABAC(nhgData.NetworkInfo, user, &org, &acc, txnID)
+			storeUserHwIDABAC(nhgData.NetworkInfo, user, &org, &acc, txnID)
 		}
 	}
-
+	if len(user.NhgIDsABAC) == 0 {
+		user.IsSessionAlive = false
+		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Info("no active nhg found for user")
+	}
 }
 
-func storeUserNhgABAC(nhgData []NetworkInfo, user *config.User, org config.OrgDetails, acc config.AccDetails, txnID uint64) {
+func storeUserNhgABAC(nhgData []NetworkInfo, user *config.User, org *config.OrgDetails, acc *config.AccDetails, txnID uint64) {
 	orgAcc := config.OrgAccDetails{}
-	orgAcc.OrgDetails = org
-	orgAcc.AccDetails = acc
+	orgDet := config.OrgDetails{OrgUUID: org.OrgUUID, OrgAlias: org.OrgAlias}
+	accDet := config.AccDetails{AccUUID: acc.AccUUID, AccAlias: acc.AccAlias}
 
-	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
+	orgAcc.OrgDetails = orgDet
+	orgAcc.AccDetails = accDet
+
 	for _, nhgInfo := range nhgData {
 		if nhgInfo.NhgConfigStatus == activeNhgStatus {
 			user.NhgIDsABAC[nhgInfo.NhgID] = orgAcc
 		}
 	}
-
 	if len(user.NhgIDsABAC) == 0 {
 		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Info("no active nhg found for user")
-		user.IsSessionAlive = false
+		//user.IsSessionAlive = false
 	} else {
 		user.IsSessionAlive = true
-		log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "nhg_ids": user.NhgIDs}).Info("user nhgs")
+		log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "nhg_ids": user.NhgIDsABAC}).Info("user nhgs")
 	}
 }
 
-func storeUserHwIDABAC(nhgData []NetworkInfo, user *config.User, org config.OrgDetails, acc config.AccDetails, txnID uint64) {
+func storeUserHwIDABAC(nhgData []NetworkInfo, user *config.User, org *config.OrgDetails, acc *config.AccDetails, txnID uint64) {
 	orgAcc := config.OrgAccDetails{}
-	orgAcc.OrgDetails = org
-	orgAcc.AccDetails = acc
+	orgDet := config.OrgDetails{OrgUUID: org.OrgUUID, OrgAlias: org.OrgAlias}
+	accDet := config.AccDetails{AccUUID: acc.AccUUID, AccAlias: acc.AccAlias}
 
-	user.HwIDsABAC = map[string]config.OrgAccDetails{}
+	orgAcc.OrgDetails = orgDet
+	orgAcc.AccDetails = accDet
+
 	hwIDsMap := make(map[string]struct{})
 	for _, nhgInfo := range nhgData {
 		if nhgInfo.NhgConfigStatus != activeNhgStatus {
@@ -269,5 +277,5 @@ func storeUserHwIDABAC(nhgData []NetworkInfo, user *config.User, org config.OrgD
 	for hwID := range hwIDsMap {
 		user.HwIDsABAC[hwID] = orgAcc
 	}
-	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDs}).Info("user's access point hardware")
+	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDsABAC}).Info("user's access point hardware")
 }

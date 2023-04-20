@@ -15,7 +15,7 @@ import (
 type Config struct {
 	Users []struct {
 		EmailID  string `json:"email_id"`
-		UserType string `json:"user_type"`
+		AuthType string `json:"auth_type"`
 	} `json:"users"`
 }
 
@@ -62,14 +62,14 @@ func readConfig(confFile string) (*Config, error) {
 
 func readPassword(conf *Config) {
 	for _, user := range conf.Users {
-		if user.UserType == "RBAC" {
+		if user.AuthType == "PASSWORD" {
 			fmt.Printf("Enter password for %s: ", user.EmailID)
 			bytePassword, err := term.ReadPassword(int(syscall.Stdin))
 			if err != nil {
 				log.Fatalf("Error in reading password for %v: %v", user.EmailID, err)
 			}
 			storePassword(user.EmailID, bytePassword)
-		} else if user.UserType == "ABAC" {
+		} else if user.AuthType == "TOKEN" {
 			fmt.Printf("Enter access token for %s: ", user.EmailID)
 			byteAccessToken, err := term.ReadPassword(int(syscall.Stdin))
 			if err != nil {

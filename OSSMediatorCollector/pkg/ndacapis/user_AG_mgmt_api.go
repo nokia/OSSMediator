@@ -23,6 +23,8 @@ type AccUUIDResponse struct {
 func fetchOrgUUID(api *config.APIConf, user *config.User, txnID uint64) (OrgUUIDResponse, error) {
 	orgResp := OrgUUIDResponse{}
 	apiURL := config.Conf.BaseURL + config.Conf.UserAGAPIs.ListOrgUUID
+	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "api_type": api.Type, "metric_type": api.MetricType}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
+
 	request, err := http.NewRequest("POST", apiURL, strings.NewReader("{}"))
 	if err != nil {
 		user.IsSessionAlive = false
@@ -63,6 +65,8 @@ func fetchAccUUID(api *config.APIConf, user *config.User, org config.OrgDetails,
 	accResp := AccUUIDResponse{}
 	apiURL := config.Conf.BaseURL + config.Conf.UserAGAPIs.ListAccUUID
 	apiURL = strings.Replace(apiURL, "{org_uuid}", org.OrgUUID, -1)
+	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "api_type": api.Type, "metric_type": api.MetricType}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
+
 	request, err := http.NewRequest("POST", apiURL, strings.NewReader("{}"))
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)

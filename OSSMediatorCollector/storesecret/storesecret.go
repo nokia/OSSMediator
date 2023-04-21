@@ -6,7 +6,6 @@ import (
 	"flag"
 	"fmt"
 	"golang.org/x/term"
-	"io/ioutil"
 	"log"
 	"os"
 	"syscall"
@@ -47,7 +46,7 @@ func main() {
 }
 
 func readConfig(confFile string) (*Config, error) {
-	contents, err := ioutil.ReadFile(confFile)
+	contents, err := os.ReadFile(confFile)
 	if err != nil {
 		return nil, err
 	}
@@ -61,7 +60,7 @@ func readConfig(confFile string) (*Config, error) {
 
 func readPassword(conf *Config) {
 	for _, user := range conf.Users {
-		fmt.Printf("Enter password for %s: ", user.EmailID)
+		fmt.Printf("Enter password/token for %s: ", user.EmailID)
 		bytePassword, err := term.ReadPassword(int(syscall.Stdin))
 		if err != nil {
 			log.Fatalf("Error in reading password for %v: %v", user.EmailID, err)
@@ -73,7 +72,7 @@ func readPassword(conf *Config) {
 func storePassword(user string, password []byte) {
 	fileName := secretDir + "/." + user
 	encodedPassword := base64.StdEncoding.EncodeToString(password)
-	err := ioutil.WriteFile(fileName, []byte(encodedPassword), 0600)
+	err := os.WriteFile(fileName, []byte(encodedPassword), 0600)
 	if err != nil {
 		log.Fatalf("Unable to store password for %v to %v, error: %v", user, fileName, err)
 	}

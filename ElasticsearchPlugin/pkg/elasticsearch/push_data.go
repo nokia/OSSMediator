@@ -60,7 +60,7 @@ const (
 	elkCatIndicesAPI     = "/_cat/indices/"
 	elkWaitQueryParam    = "wait_for_completion"
 	elkIgnoreUnavailable = "ignore_unavailable"
-	elkNoOfRecordsPerAPI = 500
+	elkNoOfRecordsPerAPI = 2000
 
 	maxRetryAttempts = 3
 
@@ -112,10 +112,10 @@ func PushData(filePath string, esConf config.ElasticsearchConf) {
 }
 
 func pushData(elkURL, elkUser, elkPassword string, data string, filePath string) {
-	_, err := httpCall(http.MethodPost, elkURL, elkUser, elkPassword, data, nil, defaultTimeout)
+	_, err := httpCall(http.MethodPost, elkURL, elkUser, elkPassword, &data, nil, defaultTimeout)
 	if err != nil {
 		log.WithFields(log.Fields{"Error": err, "url": elkURL, "file": filePath}).Error("Unable to push data to elasticsearch, push to elasticsearch will be retried")
-		err = retryPushData(elkURL, elkUser, elkPassword, data)
+		err = retryPushData(elkURL, elkUser, elkPassword, &data)
 		if err != nil {
 			failedData = append(failedData, failedResponse{filePath: filePath, data: data})
 			log.WithFields(log.Fields{"Error": err, "url": elkURL, "file": filePath}).Error("Unable to push data to elasticsearch, will be retried later...")
@@ -125,11 +125,16 @@ func pushData(elkURL, elkUser, elkPassword string, data string, filePath string)
 	log.Infof("Data from %s pushed to elasticsearch successfully", filePath)
 }
 
-func httpCall(httpMethod, elkURL, elkUser, elkPassword string, data string, queryParams map[string]string, timeout time.Duration) ([]byte, error) {
-	request, err := http.NewRequest(httpMethod, elkURL, bytes.NewBuffer([]byte(data)))
+func httpCall(httpMethod, elkURL, elkUser, elkPassword string, data *string, queryParams map[string]string, timeout time.Duration) ([]byte, error) {
+	var postData []byte
+	if data != nil {
+		postData = []byte(*data)
+	}
+	request, err := http.NewRequest(httpMethod, elkURL, bytes.NewBuffer(postData))
 	if err != nil {
 		return nil, err
 	}
+	postData = nil
 	request.Close = true
 	if elkUser != "" && elkPassword != "" {
 		request.SetBasicAuth(elkUser, elkPassword)
@@ -162,7 +167,7 @@ func httpCall(httpMethod, elkURL, elkUser, elkPassword string, data string, quer
 	return resp, nil
 }
 
-func retryPushData(elkURL, elkUser, elkPassword string, data string) error {
+func retryPushData(elkURL, elkUser, elkPassword string, data *string) error {
 	var err error
 	for i := 0; i < maxRetryAttempts; i++ {
 		log.WithFields(log.Fields{"url": elkURL}).Error("retrying push data to elasticsearch")
@@ -188,7 +193,7 @@ func PushFailedData(esConf config.ElasticsearchConf) {
 				filePath := failedData[i].filePath
 				data := failedData[i].data
 				log.Infof("Retrying to push failed data from %s to elasticsearch", filePath)
-				_, err := httpCall(http.MethodPost, elkURL, esConf.User, esConf.Password, data, nil, defaultTimeout)
+				_, err := httpCall(http.MethodPost, elkURL, esConf.User, esConf.Password, &data, nil, defaultTimeout)
 				if err == nil {
 					failedData = append(failedData[:i], failedData[i+1:]...)
 					log.Infof("Data from %s pushed to elasticsearch successfully", filePath)

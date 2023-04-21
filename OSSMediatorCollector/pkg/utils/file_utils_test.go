@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"os"
+	"strings"
 	"testing"
 )
 
@@ -49,7 +50,7 @@ func TestWriteResponseForPM(t *testing.T) {
 			t.Error(err)
 		}
 		content, err := ioutil.ReadFile(user.ResponseDest + api.API + "/" + files[0].Name())
-		if err != nil || len(content) == 0 || string(content) != `"test"` {
+		if err != nil || len(content) == 0 || !strings.Contains(string(content), data) {
 			t.Fail()
 		}
 	}

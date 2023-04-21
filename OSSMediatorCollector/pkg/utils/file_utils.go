@@ -10,7 +10,6 @@ import (
 	"collector/pkg/config"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path"
 	"sort"
@@ -24,7 +23,6 @@ import (
 var (
 	//CurrentTime
 	CurrentTime = time.Now
-	//mux         sync.Mutex
 )
 
 const (
@@ -82,8 +80,14 @@ func CreateResponseDirectory(basePath string, api string) {
 
 //WriteResponse writes the data in json format to responseDest directory.
 func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id string, txnID uint64) error {
-	//mux.Lock()
-	//defer mux.Unlock()
+	//formattedData, err := json.MarshalIndent(data, "", "  ")
+	//if err != nil {
+	//	log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Unable to indent received data, error: %v", err)
+	//	return err
+	//}
+	//data = nil
+
+	log.WithFields(log.Fields{"tid": txnID}).Info("starting response write")
 	fileName := path.Base(api.API)
 	if fileName == fmdataResponseType || fileName == pmdataResponseType {
 		if api.MetricType != "" {
@@ -116,18 +120,21 @@ func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id 
 	}
 	fileName = name + fileExtension
 
-	formattedData, err := json.MarshalIndent(data, "", "  ")
-	if err != nil {
-		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Unable to indent received data, error: %v", err)
-		return err
-	}
-
 	log.WithFields(log.Fields{"tid": txnID}).Infof("Writing response to file %s for %s", fileName, user.Email)
-	err = writeFile(fileName, formattedData)
+	file, _ := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
+	defer file.Close()
+	encoder := json.NewEncoder(file)
+	err := encoder.Encode(data)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Writing response to file %s for %s failed", fileName, user.Email)
 		return err
 	}
+
+	//err = writeFile(fileName, formattedData)
+	//if err != nil {
+	//	log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Writing response to file %s for %s failed", fileName, user.Email)
+	//	return err
+	//}
 	return nil
 }
 
@@ -145,7 +152,7 @@ func getLastReceivedDataTime(user *config.User, api *config.APIConf, nhgID strin
 	if nhgID != "" {
 		fileName = fileName + "_" + nhgID
 	}
-	data, err := ioutil.ReadFile(fileName)
+	data, err := os.ReadFile(fileName)
 	if err != nil || len(data) == 0 {
 		return ""
 	}
@@ -174,6 +181,7 @@ func StoreLastReceivedDataTime(user *config.User, data interface{}, api *config.
 			receivedData[metricTime] = struct{}{}
 		}
 	}
+	data = nil
 	var eventTimes []time.Time
 	for key := range receivedData {
 		eventTime, err := time.Parse(eventTimeFormatBaiCell, key)

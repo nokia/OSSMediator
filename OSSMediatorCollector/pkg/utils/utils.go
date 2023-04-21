@@ -10,7 +10,7 @@ import (
 	"collector/pkg/config"
 	"encoding/base64"
 	"errors"
-	"io/ioutil"
+	"os"
 	"time"
 )
 
@@ -45,15 +45,14 @@ func GetTimeInterval(user *config.User, api *config.APIConf, nhgID string) (stri
 			startTime = truncateSeconds(stTime).Format(time.RFC3339)
 		}
 	}
-	endTime = endTime.Add(-1 * time.Minute)
-	return startTime, endTime.Format(time.RFC3339)
+	return startTime, truncateSeconds(endTime).Format(time.RFC3339)
 }
 
 func ReadPassword(email string) (string, error) {
 	passwordFile := ".secret/." + email
 	var bytePassword []byte
 	if fileExists(passwordFile) {
-		data, err := ioutil.ReadFile(passwordFile)
+		data, err := os.ReadFile(passwordFile)
 		if err != nil {
 			return "", err
 		}

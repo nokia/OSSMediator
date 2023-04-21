@@ -187,8 +187,9 @@ func TestWatchEvents(t *testing.T) {
 	dir, _ := os.Getwd()
 	tmpDir := "./tmp"
 	conf := config.Config{
-		SourceDirs:      []string{dir + "/tmp"},
-		CleanupDuration: 60,
+		SourceDirs:           []string{dir + "/tmp"},
+		CleanupDuration:      60,
+		MaxConcurrentProcess: 1,
 	}
 	if _, err := os.Stat(tmpDir); os.IsNotExist(err) {
 		os.MkdirAll(tmpDir+"/pm", os.ModePerm)
@@ -259,6 +260,7 @@ func TestProcessExistingFiles(t *testing.T) {
 		ElasticsearchConf: config.ElasticsearchConf{
 			URL: "http://127.0.0.1:9299",
 		},
+		MaxConcurrentProcess: 1,
 	}
 
 	processExistingFiles(pmDirPath, conf)

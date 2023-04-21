@@ -77,22 +77,33 @@ ElasticsearchPlugin reads all the collected PM/FM from OSSMediatorCollector and 
     "password": "<PASSWORD>",
     "data_retention_duration": 90
   },
-  "cleanup_duration": 1440
+  "cleanup_duration": 1440,
+  "max_concurrent_process": 1
 }
 ````
 
-| Field                                 | Type              | Description                                                                                                                                                                                                               |
-|---------------------------------------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| source_dirs                           | [string]          | Base directory path of the respective user where PM/FM data is pushed by the collector. This path has to be same as the path mentioned in response_dest directory of respective user in mediator collector configuration. |
-| elasticsearch.url                     | string            | The url to connect to elasticSearch data source. Default: "http://localhost:9200".                                                                                                                                        |
-| elasticsearch.user                    | string (Optional) | Elasticsearch user name.                                                                                                                                                                                                  |
-| elasticsearch.password                | string (Optional) | Elasticsearch user's password encoded as base64 string.                                                                                                                                                                   |
-| elasticsearch.data_retention_duration | integer           | Duration in days, for which ElasticsearchPlugin will cleanup the metrics from Elasticsearch data source.                                                                                                                  |
-| cleanup_duration                      | integer           | Duration in minutes, after which ElasticsearchPlugin will cleanup the collected files on the local file system.                                                                                                           |
+| Field                                 | Type               | Description                                                                                                                                                                                                               |
+|---------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| source_dirs                           | [string]           | Base directory path of the respective user where PM/FM data is pushed by the collector. This path has to be same as the path mentioned in response_dest directory of respective user in mediator collector configuration. |
+| elasticsearch.url                     | string             | The url to connect to elasticSearch data source. Default: "http://localhost:9200".                                                                                                                                        |
+| elasticsearch.user                    | string (Optional)  | Elasticsearch user name.                                                                                                                                                                                                  |
+| elasticsearch.password                | string (Optional)  | Elasticsearch user's password encoded as base64 string.                                                                                                                                                                   |
+| elasticsearch.data_retention_duration | integer            | Duration in days, for which ElasticsearchPlugin will cleanup the metrics from Elasticsearch data source.                                                                                                                  |
+| cleanup_duration                      | integer            | Duration in minutes, after which ElasticsearchPlugin will cleanup the collected files on the local file system.                                                                                                           |
+| max_concurrent_process                | integer (Optional) | Default value is 1. Maximum no. of concurrent process for pushing PM/FM data to elasticsearch.                                                                                                                            |
 
 ````
-NOTE: If the data collection directories are modified, then the source_dir should be matched with the directory as given in OSSMediatorCollector configuration information.
+NOTE: 
+    * If the data collection directories are modified, then the source_dir should be matched with the directory as given in OSSMediatorCollector configuration information.
       The source_dir should be same as the response_dest directory in OSSMediatorCollector configuration.
+
+    * Keeping high value for max_concurrent_process will increase the memory usage by ElasticsearchPlugin.
+      It is advised to set this value depending on the network size.
+      ex: Small Network (1 nhg) : 1
+          Medium Network (5 nhg) : 10
+          Large Network (20 nhg) : 50
+          XL Network (50 nhg) : 100
+          XXL Network (150 nhg) : 200
 ````
 
 * To start ElasticsearchPlugin, go to the installed path of the mediator bin directory and start by calling the following command:

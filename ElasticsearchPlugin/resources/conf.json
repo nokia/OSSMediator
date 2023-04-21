@@ -1,13 +1,14 @@
 {
-  "source_dirs":[
+  "source_dirs": [
     "<SOURCE DIRECTORY PATH>",
     "<SOURCE DIRECTORY PATH>"
   ],
   "elasticsearch": {
-    "url":"http://localhost:9200",
+    "url": "http://localhost:9200",
     "user": "<USERNAME>",
     "password": "<PASSWORD>",
     "data_retention_duration": 90
   },
-  "cleanup_duration": 60
+  "cleanup_duration": 60,
+  "max_concurrent_process": 1
 }

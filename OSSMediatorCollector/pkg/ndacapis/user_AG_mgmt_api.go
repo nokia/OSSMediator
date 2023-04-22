@@ -5,6 +5,7 @@ import (
 	"collector/pkg/config"
 	"collector/pkg/utils"
 	"encoding/json"
+	"fmt"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 	"strings"
@@ -23,6 +24,7 @@ type AccUUIDResponse struct {
 func fetchOrgUUID(api *config.APIConf, user *config.User, txnID uint64) (OrgUUIDResponse, error) {
 	orgResp := OrgUUIDResponse{}
 	apiURL := config.Conf.BaseURL + config.Conf.UserAGAPIs.ListOrgUUID
+	fmt.Println("url for fetchorguuid: ", apiURL)
 	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "api_type": api.Type, "metric_type": api.MetricType}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
 
 	request, err := http.NewRequest("POST", apiURL, strings.NewReader("{}"))

@@ -61,6 +61,7 @@ func TestGetNhgDetails(t *testing.T) {
 		RefreshToken: "refreshToken",
 		ExpiryTime:   utils.CurrentTime(),
 	}
+	user.AuthType = "PASSWORD"
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintln(w, listNhgResp)
@@ -72,12 +73,12 @@ func TestGetNhgDetails(t *testing.T) {
 	CreateHTTPClient("", false)
 	utils.CreateResponseDirectory(user.ResponseDest, "/getNhgDetail")
 	getNhgDetails(&config.APIConf{API: "/getNhgDetail", Interval: 15}, &user, 1234)
-	if len(user.NhgIDs) != 5 {
+	if len(user.NhgIDs) != 1 {
 		t.Fail()
 	}
-	//	if user.NhgIDs[0] != "test_nhg_2" {
-	//		t.Fail()
-	//	}
+	if user.NhgIDs[0] != "test_nhg_2" {
+		t.Fail()
+	}
 }
 
 func TestGetNhgDetailsWithInactiveSession(t *testing.T) {

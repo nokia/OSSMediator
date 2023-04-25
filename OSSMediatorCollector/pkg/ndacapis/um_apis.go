@@ -138,6 +138,7 @@ func RefreshToken(user *config.User) {
 	} else {
 		apiURL = config.Conf.BaseURL + config.Conf.UMAPIs.Refresh
 	}
+	fmt.Println("refresh api is : ", apiURL)
 	duration := getRefreshDuration(user)
 	refreshTimer := time.NewTimer(duration)
 	for {
@@ -201,7 +202,15 @@ func callRefreshAPI(apiURL string, user *config.User) error {
 
 	//Map the received response to umResponse struct
 	resp := new(UMResponse)
-	err = json.NewDecoder(bytes.NewReader(response)).Decode(resp)
+	respAzure := new(AzureRefreshResponse)
+	if user.AuthType == "TOKEN" {
+		err = json.NewDecoder(bytes.NewReader(response)).Decode(respAzure)
+		resp.UAT.AccessToken = respAzure.Token.AccessToken
+		resp.RT.RefreshToken = respAzure.Token.RefreshToken
+		resp.Status = respAzure.Status
+	} else {
+		err = json.NewDecoder(bytes.NewReader(response)).Decode(resp)
+	}
 	if err != nil {
 		return fmt.Errorf("unable to decode response received from refresh API for %s, error:%v", user.Email, err)
 	}
@@ -211,7 +220,8 @@ func callRefreshAPI(apiURL string, user *config.User) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("Token Refreshed ")
+	fmt.Println("Token Refreshed :access:", resp.UAT)
+	fmt.Println("Token Refreshed :refresh:", resp.RT)
 	setToken(resp, user)
 	return nil
 }

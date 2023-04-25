@@ -38,7 +38,7 @@ if ! [ -x "$(command -v grafana-server)" ]; then
 	echo "Grafana version is $(grafana-server -v)."
 else
   grafana_version=$(grafana-server -v | cut -d' ' -f 2)
-  min_grafana_version=8.5.9
+  min_grafana_version=9.2.6
 
   if version_gt $grafana_version $min_grafana_version; then
     echo "Grafana version is $grafana_version."

@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 
 NEW FEATURES:
 
-* OSSMediator: Changes to support running OSSMediator in docker.
+* OSSMediator: 
+  * Changes to support running OSSMediator in docker.
+* OSSMediatorCollector:
+  * Added `max_concurrent_process` parameter in config for concurrent call of PM/FM APIs.
+* ElasticsearchPlugin:
+  * Added `max_concurrent_process` parameter in config for concurrent push of PM/FM response to OpenSearch/Elasticsearch.
 * MediatorSetup:
   * Added dashboards to view 5G CORE PM dashboard.
   * Added `mediator_docker_startup.sh` script to start OSSMediator setup with docker.

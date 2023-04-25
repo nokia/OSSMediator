@@ -23,15 +23,16 @@ type UserAGConf struct {
 
 // Config keeps the config from json
 type Config struct {
-	BaseURL    string     `json:"base_url"`     //Base URL of the API
-	UMAPIs     UMConf     `json:"um_api"`       //User management Configuration
-	ListNhGAPI *APIConf   `json:"list_nhg_api"` //list NHG API to keep track of all ACTIVE NHG of the user.
-	MetricAPIs []*APIConf `json:"metric_apis"`  //Array of API config
-	SimAPIs    []*APIConf `json:"sim_apis"`     //Array of API config
-	UserAGAPIs UserAGConf `json:"userAG_apis"`  //Array of API config
-	Users      []*User    `json:"users"`        //Keep track of all the user's details
-	Limit      int        `json:"limit"`
-	Delay      int        `json:"delay"`
+	BaseURL            string     `json:"base_url"` //Base URL of the API
+	AzureWebRefreshURL string     `json:"azure_web_refresh_url"`
+	UMAPIs             UMConf     `json:"um_api"`       //User management Configuration
+	ListNhGAPI         *APIConf   `json:"list_nhg_api"` //list NHG API to keep track of all ACTIVE NHG of the user.
+	MetricAPIs         []*APIConf `json:"metric_apis"`  //Array of API config
+	SimAPIs            []*APIConf `json:"sim_apis"`     //Array of API config
+	UserAGAPIs         UserAGConf `json:"userAG_apis"`  //Array of API config
+	Users              []*User    `json:"users"`        //Keep track of all the user's details
+	Limit              int        `json:"limit"`
+	Delay              int        `json:"delay"`
 }
 
 type OrgDetails struct {
@@ -106,6 +107,7 @@ func ReadConfig(confFile string) error {
 
 	//trim spaces
 	Conf.BaseURL = strings.TrimSpace(Conf.BaseURL)
+	Conf.AzureWebRefreshURL = strings.TrimSpace(Conf.AzureWebRefreshURL)
 	Conf.UMAPIs.Login = strings.TrimSpace(Conf.UMAPIs.Login)
 	Conf.UMAPIs.Logout = strings.TrimSpace(Conf.UMAPIs.Logout)
 	Conf.UMAPIs.Refresh = strings.TrimSpace(Conf.UMAPIs.Refresh)

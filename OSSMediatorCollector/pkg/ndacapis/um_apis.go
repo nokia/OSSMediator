@@ -38,6 +38,15 @@ type UMResponse struct {
 	Status Status `json:"status"` // Status of the response
 }
 
+type AzureRefreshResponse struct {
+	Token struct {
+		AccessToken  string `json:"access_token"`  //access token
+		RefreshToken string `json:"refresh_token"` //refresh token
+	} `json:"token"`
+
+	Status Status `json:"status"` // Status of the response
+}
+
 // LoginRequestBody to form the request body for login API.
 type LoginRequestBody struct {
 	EmailID  string `json:"email_id"` //User's Email ID
@@ -54,7 +63,7 @@ type RefreshAndLogoutRequestBody struct {
 // If successful it returns nil, if there is any error it return error.
 func Login(user *config.User) error {
 	//forming the request body in following format
-	//{"email_id": "string", "password": "string"}
+	//{"email_id": "string", password": "string"}
 	reqBody := LoginRequestBody{EmailID: user.Email,
 		Password: user.Password,
 	}
@@ -109,6 +118,8 @@ func setToken(response *UMResponse, user *config.User) {
 	exp := int64(claims["exp"].(float64))
 	expTime := time.Unix(exp, 0)
 
+	fmt.Println("Access Token expiration is :", expTime)
+
 	user.SessionToken = &config.SessionToken{
 		AccessToken:  response.UAT.AccessToken,
 		RefreshToken: response.RT.RefreshToken,
@@ -121,7 +132,12 @@ func setToken(response *UMResponse, user *config.User) {
 // RefreshToken refreshes the session token before expiry_time.
 // Input parameter apiUrl is the API URL for refreshing session.
 func RefreshToken(user *config.User) {
-	apiURL := config.Conf.BaseURL + config.Conf.UMAPIs.Refresh
+	apiURL := ""
+	if user.AuthType == "TOKEN" {
+		apiURL = config.Conf.AzureWebRefreshURL
+	} else {
+		apiURL = config.Conf.BaseURL + config.Conf.UMAPIs.Refresh
+	}
 	duration := getRefreshDuration(user)
 	refreshTimer := time.NewTimer(duration)
 	for {
@@ -195,6 +211,7 @@ func callRefreshAPI(apiURL string, user *config.User) error {
 	if err != nil {
 		return err
 	}
+	fmt.Println("Token Refreshed ")
 	setToken(resp, user)
 	return nil
 }

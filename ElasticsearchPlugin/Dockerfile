@@ -1,5 +1,5 @@
 # Staging: for building go app (ElasticsearchPlugin)
-FROM golang:1.16 as builder
+FROM golang:1.18 as builder
 
 # set environment variable
 ENV JAVA_BIN="/usr/local/jre1.8.0_171/bin/"
@@ -18,9 +18,11 @@ RUN mkdir /elasticsearch/ && cd /elasticsearch && \
 # create required directory for ElasticsearchPlugin
 RUN mkdir -p /ElasticsearchPlugin/ /elasticsearch/elasticsearch-7.0.1/data/
 
+# download dependencies for build
+RUN go install github.com/jstemmer/go-junit-report@latest
+
 # copy project directory to be built
 COPY . /ElasticsearchPlugin/.
-COPY ./VERSION ../.
 
 # set the working directory
 WORKDIR /ElasticsearchPlugin/
@@ -34,3 +36,17 @@ RUN chown -R elasticsearch /elasticsearch/elasticsearch-7.0.1/bin/elasticsearch 
 
 # build the go app (ElasticsearchPlugin)
 RUN make build test
+
+# staging: base package for app deployment
+FROM alpine:3.17.3
+
+RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
+
+RUN mkdir -p /plugin/bin
+
+# copy compiled binary from the builder stage
+COPY --from=builder /ElasticsearchPlugin/bin/elasticsearchplugin /plugin/bin/
+
+WORKDIR /plugin/bin
+
+ENTRYPOINT ["./elasticsearchplugin"]

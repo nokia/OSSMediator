@@ -1,0 +1,1654 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 8,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "Radio4G"
+      ],
+      "title": "Radio 4G Dashboards",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "Radio5G"
+      ],
+      "title": "Radio 5G Dashboards",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "EdgePM"
+      ],
+      "targetBlank": false,
+      "title": "Edge PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "CorePM"
+      ],
+      "targetBlank": false,
+      "title": "CORE PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "RadioAlarms"
+      ],
+      "targetBlank": false,
+      "title": "Radio Alarms",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "DACAlarms"
+      ],
+      "title": "DAC Alarms",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "COREAlarms"
+      ],
+      "targetBlank": false,
+      "title": "CORE Alarms",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "ApplAlarms"
+      ],
+      "targetBlank": false,
+      "title": "Application Alarms",
+      "type": "dashboards"
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI describe the mean number of subscribers that are registered to a network slice instance.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "queryType": "lucene",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_amf_mean_reg_nbr",
+              "id": "3",
+              "settings": {},
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "total",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_amf_mean_reg_nbr",
+              "id": "3",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "AMFMeanRegNbr",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of initial registration procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice and network performance.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "queryType": "lucene",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_rsr_initial_reg",
+              "id": "3",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "total",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_rsr_initial_reg",
+              "id": "3",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "RSR- initialReg",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of attempted mobility procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice  and network performance.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 49,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "queryType": "lucene",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_rsr_mobility_reg",
+              "id": "3",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "total",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_rsr_mobility_reg",
+              "id": "3",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "RSR-MobilityReg",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of attempted periodic procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice  and network performance.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 50,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "queryType": "lucene",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_rsr_periodic_reg",
+              "id": "3",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "total",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_rsr_periodic_reg",
+              "id": "3",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "RSR-PeriodicReg",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI describes the ratio of the number of successful PDU session establishment request to the number of PDU session establishment request attempts for 5G network for the SMF which related to one network slice (S-NSSAI) and is used to evaluate accessibility provided by the end-to-end network slice and network performance.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "total"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 44,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "queryType": "lucene",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_pdu_session_est_sr",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "total",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_pdu_session_est_sr",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "PDUSessionEstSR",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI describes the upstream throughput of one single network slice  by computing the packet size for each successfully received  UL IP packet through the network slice  during each observing granularity period and is used to evaluate integrity performance of the end-to-end network slice .",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Kbits"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 30
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "queryType": "lucene",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_utsnsi",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "total",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_utsnsi",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "UTSNSI",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI describes the downstream throughput of one single network slice instance by computing the packet size for each successfully transmitted DL IP packet through the network slice instance during each observing granularity period and is used to evaluate integrity performance of the end-to-end network slice instance.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Kbits"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "queryType": "lucene",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_dtsnsi",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "total",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_dtsnsi",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "DTSNSI",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI describes the mean number of PDU sessions that are successfully established in a network slice.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "queryType": "lucene",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_over_5g_pdu_ses_mean_nbr",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "total",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_over_5g_pdu_ses_mean_nbr",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "PDUSesMeanNbr",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI describes the time of successful PDU session establishment which related to one single network slice and is used to evaluate utilization provided by the end-to-end network slice and network performance.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 48
+      },
+      "id": 48,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "queryType": "lucene",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_pdu_est_time",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "total",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_mcn_5g_pdu_est_time",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "PDUEstTime",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "15m",
+  "schemaVersion": 37,
+  "style": "dark",
+  "tags": [
+    "CorePM"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "dac-core-pm",
+          "value": "dac-core-pm"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Data Source",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "grafana-opensearch-datasource",
+        "refresh": 1,
+        "regex": "dac-core-pm",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\"}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Network Hw Group ID",
+        "multi": true,
+        "name": "nhgid",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\"}",
+        "queryType": "lucene",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "1m",
+          "value": "1m"
+        },
+        "description": "Aggregation",
+        "hide": 2,
+        "includeAll": false,
+        "label": "",
+        "multi": false,
+        "name": "agg",
+        "options": [
+          {
+            "selected": true,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "15m",
+            "value": "15m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "15d",
+            "value": "15d"
+          },
+          {
+            "selected": false,
+            "text": "1w",
+            "value": "1w"
+          },
+          {
+            "selected": false,
+            "text": "1M",
+            "value": "1M"
+          },
+          {
+            "selected": false,
+            "text": "2M",
+            "value": "2M"
+          },
+          {
+            "selected": false,
+            "text": "3M",
+            "value": "3M"
+          }
+        ],
+        "query": "1m,5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now-15m"
+  },
+  "timepicker": {
+    "nowDelay": "15m"
+  },
+  "timezone": "",
+  "title": "NDAC CORE 5G PM KPI",
+  "uid": "core5g",
+  "weekStart": ""
+}

@@ -1,6 +1,36 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 3.7
+
+NEW FEATURES:
+
+* OSSMediator: 
+  * Changes to support running OSSMediator in docker.
+* OSSMediatorCollector:
+  * Added `max_concurrent_process` parameter in config for concurrent call of PM/FM APIs.
+* ElasticsearchPlugin:
+  * Added `max_concurrent_process` parameter in config for concurrent push of PM/FM response to OpenSearch/Elasticsearch.
+* MediatorSetup:
+  * Added dashboards to view 5G CORE PM dashboard.
+  * Added `mediator_docker_startup.sh` script to start OSSMediator setup with docker.
+  * Added `data_migration.sh` script to migrate data from `elasticsearch` to `OpenSearch`.
+  * Using `OpenSearch` for storing KPI data instead of `elasticsearch`.
+  * Updated required grafana version to `9.2.6`.
+
+IMPROVEMENTS:
+
+* MediatorSetup:
+  * Updated 4G CORE PM dashboard.
+
+BUG FIXES:
+
+* ElasticsearchPlugin: core-pm index has incorrect default mapping of long type instead of float.
+
+REMOVED:
+
+* MediatorSetup: Removed installation of elasticsearch for storing KPI data.
+
 # 3.6
 
 BUG FIXES:

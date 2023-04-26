@@ -9,7 +9,9 @@ package util
 import (
 	"fmt"
 	"io/ioutil"
+	"math"
 	"os"
+	"sync"
 
 	"elasticsearchplugin/pkg/config"
 	"elasticsearchplugin/pkg/elasticsearch"
@@ -36,7 +38,7 @@ func AddWatcher(conf config.Config) error {
 		if sourceDir == "" {
 			return fmt.Errorf("source directory path can't be empty")
 		}
-		if _, err := os.Stat(sourceDir); os.IsNotExist(err) {
+		if _, err = os.Stat(sourceDir); os.IsNotExist(err) {
 			return fmt.Errorf("source directory %s not found, error: %v", sourceDir, err)
 		}
 		files, err := ioutil.ReadDir(sourceDir)
@@ -73,12 +75,17 @@ func add(sourceDir string) error {
 
 //WatchEvents watches file creation events and formats PM/FM data.
 func WatchEvents(conf config.Config) {
+	requests := make(chan struct{}, conf.MaxConcurrentProcess)
 	for {
 		select {
 		case event := <-watcher.Events:
 			if event.Op&fsnotify.Write == fsnotify.Write {
 				log.Infof("Received event: %s", event.Name)
-				elasticsearch.PushData(event.Name, conf.ElasticsearchConf)
+				requests <- struct{}{}
+				go func() {
+					elasticsearch.PushData(event.Name, conf.ElasticsearchConf)
+					<-requests
+				}()
 			}
 		case err := <-watcher.Errors:
 			log.Error(err)
@@ -97,12 +104,20 @@ func processExistingFiles(directory string, conf config.Config) {
 		log.Error(err)
 		return
 	}
-
+	wg := sync.WaitGroup{}
+	requests := make(chan struct{}, int(math.Ceil(float64(conf.MaxConcurrentProcess)/4)))
 	for _, file := range files {
 		if file.IsDir() {
 			continue
 		}
 		//push data to elk
-		elasticsearch.PushData(directory+"/"+file.Name(), conf.ElasticsearchConf)
+		requests <- struct{}{}
+		wg.Add(1)
+		go func(fileName string) {
+			elasticsearch.PushData(directory+"/"+fileName, conf.ElasticsearchConf)
+			wg.Done()
+			<-requests
+		}(file.Name())
 	}
+	wg.Wait()
 }

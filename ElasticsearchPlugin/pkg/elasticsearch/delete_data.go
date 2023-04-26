@@ -51,7 +51,7 @@ func deleteData(indices []string, deletionTime string, esConf config.Elasticsear
 	queryParams := make(map[string]string)
 	queryParams[elkWaitQueryParam] = "false"
 	queryParams[elkIgnoreUnavailable] = "true"
-	_, err := httpCall(http.MethodPost, elkURL, esConf.User, esConf.Password, query, queryParams)
+	_, err := httpCall(http.MethodPost, elkURL, esConf.User, esConf.Password, &query, queryParams, defaultTimeout)
 	if err != nil {
 		log.WithFields(log.Fields{"Error": err, "url": elkURL, "delete_from_time": deletionTime}).Error("Unable to delete data from elasticsearch")
 	} else {
@@ -69,14 +69,14 @@ func deleteIndices(indices []string, esConf config.ElasticsearchConf) {
 	queryParams[elkIgnoreUnavailable] = "true"
 
 	//closing the indices
-	_, err := httpCall(http.MethodPost, elkURL+"/"+"_close", esConf.User, esConf.Password, "", queryParams)
+	_, err := httpCall(http.MethodPost, elkURL+"/"+"_close", esConf.User, esConf.Password, nil, queryParams, defaultTimeout)
 	if err != nil {
 		log.WithFields(log.Fields{"Error": err, "url": elkURL}).Error("unable to close indices")
 		return
 	}
 
 	//deleting the indices
-	_, err = httpCall(http.MethodDelete, elkURL, esConf.User, esConf.Password, "", queryParams)
+	_, err = httpCall(http.MethodDelete, elkURL, esConf.User, esConf.Password, nil, queryParams, defaultTimeout)
 	if err != nil {
 		log.WithFields(log.Fields{"Error": err, "url": elkURL}).Error("unable to delete indices")
 		return
@@ -93,7 +93,7 @@ func getOldIndices(esConf config.ElasticsearchConf) []string {
 	indicesPattern := []string{"4g-pm*", "5g-pm*"}
 	elkURL := esConf.URL + elkCatIndicesAPI + strings.Join(indicesPattern, ",") + "?h=index"
 	//fetch the indices
-	respBody, err := httpCall(http.MethodGet, elkURL, esConf.User, esConf.Password, "", nil)
+	respBody, err := httpCall(http.MethodGet, elkURL, esConf.User, esConf.Password, nil, nil, defaultTimeout)
 	if err != nil {
 		log.WithFields(log.Fields{"Error": err, "url": elkURL}).Error("Unable to fetch indices, exiting delete old indices process")
 		return indicesToDelete

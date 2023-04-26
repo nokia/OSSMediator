@@ -21,16 +21,16 @@
       }
     ]
   },
-  "description": "NDAC CORE FM History alarms dashboard",
+  "description": "NDAC Application History alarms dashboard",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1658907267089,
+  "iteration": 1658907256827,
   "links": [
     {
       "icon": "external link",
       "tags": [
-        "COREActiveAlarms"
+        "ApplActiveAlarms"
       ],
       "type": "dashboards"
     },
@@ -104,12 +104,16 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
-        "ApplAlarms"
+        "COREAlarms"
       ],
       "targetBlank": false,
-      "title": "Application Alarms",
-      "type": "dashboards"
+      "title": "CORE Alarms",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
     }
   ],
   "liveNow": false,
@@ -132,15 +136,16 @@
         "mode": "markdown"
       },
       "pluginVersion": "8.5.2",
-      "title": "NDAC CORE FM HISTORY ALARMS DASHBOARD",
+      "title": "NDAC APPLICATION HISTORY ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Provides the count of critical alarms",
       "fieldConfig": {
         "defaults": {
@@ -215,9 +220,10 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -237,9 +243,10 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Provides the count of major alarms",
       "fieldConfig": {
         "defaults": {
@@ -313,9 +320,10 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -333,9 +341,10 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Provides the count of minor alarms",
       "fieldConfig": {
         "defaults": {
@@ -409,9 +418,10 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -429,9 +439,10 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Provides the count of warning alarms",
       "fieldConfig": {
         "defaults": {
@@ -505,9 +516,10 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -525,9 +537,10 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Provides the count of cleared alarms",
       "fieldConfig": {
         "defaults": {
@@ -563,7 +576,7 @@
         "x": 16,
         "y": 2
       },
-      "id": 15,
+      "id": 11,
       "links": [],
       "options": {
         "colorMode": "value",
@@ -596,9 +609,10 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -616,9 +630,10 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Provides the count of active alarms",
       "fieldConfig": {
         "defaults": {
@@ -654,7 +669,7 @@
         "x": 20,
         "y": 2
       },
-      "id": 11,
+      "id": 15,
       "links": [],
       "options": {
         "colorMode": "value",
@@ -687,9 +702,10 @@
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -759,9 +775,10 @@
         }
       ],
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "This table will show all alarms history across all edges enodeB's",
       "fontSize": "90%",
       "gridPos": {
@@ -959,9 +976,10 @@
         {
           "bucketAggs": [],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "000000005"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -987,16 +1005,16 @@
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
-    "COREAlarms",
-    "COREHistoryAlarms"
+    "ApplAlarms",
+    "ApplHistoryAlarms"
   ],
   "templating": {
     "list": [
       {
         "current": {
           "selected": false,
-          "text": "dac-core-fm",
-          "value": "dac-core-fm"
+          "text": "dac-application-fm",
+          "value": "dac-application-fm"
         },
         "hide": 2,
         "includeAll": false,
@@ -1004,9 +1022,9 @@
         "multi": false,
         "name": "datasource",
         "options": [],
-        "query": "elasticsearch",
+        "query": "grafana-opensearch-datasource",
         "refresh": 1,
-        "regex": "dac-core-fm",
+        "regex": "dac-application-fm",
         "skipUrlSync": false,
         "type": "datasource"
       },
@@ -1021,9 +1039,10 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
-          "uid": "$datasource"
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": true,
@@ -1052,9 +1071,10 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
-          "uid": "$datasource"
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data.severity.keyword\"}",
         "hide": 0,
         "includeAll": true,
@@ -1083,9 +1103,10 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
+          "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data.alarm_state.keyword\"}",
         "hide": 0,
         "includeAll": true,
@@ -1132,7 +1153,8 @@
     ]
   },
   "timezone": "browser",
-  "title": "NDAC CORE FM Alarms History Dashboard",
+  "title": "NDAC Application Alarms History Dashboard",
   "version": 1,
+  "uid": "applfmhist",
   "weekStart": ""
 }

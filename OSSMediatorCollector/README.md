@@ -182,33 +182,47 @@ PM / FM data collection by collector is performed using REST interface at regula
     }
   ],
   "limit": 10000,
-  "delay": 5
+  "delay": 5,
+  "max_concurrent_process": 1
 }
 ````
 
-| Field                         | Type                  | Description                                                                                                                                                                   |
-|-------------------------------|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| base_url                      | string                | APIGW base URL.                                                                                                                                                               |
-| users                         | [object]              | Users details.                                                                                                                                                                |
-| users.email_id                | string                | User's email ID.                                                                                                                                                              |
-| users.response_dest           | string                | Base directory to store the response from the REST APIs. Subdirectories will be created inside the base directory for storing each APIs response in their respective location |
-| um_api                        | object                | User management APIs.                                                                                                                                                         |
-| um_api.login                  | string                | Customer portal login API.                                                                                                                                                    |
-| um_api.refresh                | string                | Customer portal refresh session API.                                                                                                                                          |
-| um_api.logout                 | string                | Customer portal logout API.                                                                                                                                                   |
-| list_nhg_api.api              | string                | API URl for getting user's network details. Collector uses the list of NHGs for each FM/PM data collection.                                                                   |
-| list_nhg_api.interval         | integer               | Interval at which list_nhg_api will be called..                                                                                                                               |
-| sim_apis                      | [object] (Optional)   | Get SIM APIs.                                                                                                                                                                 |
-| sim_apis.api                  | string                | API URL for fetching SIM data.                                                                                                                                                |
-| sim_apis.interval             | integer               | Interval at which SIM API should be called to collect data.                                                                                                                   |
-| metric_apis                   | [object]              | Get PM/FM APIs.                                                                                                                                                               |
-| metric_apis.api               | string                | API URL of get PM/FM data.                                                                                                                                                    |
-| metric_apis.interval          | integer               | Interval at which API should be called to collect data.                                                                                                                       |
-| metric_apis.type              | string                | Type of FM request ("ACTIVE" or "HISTORY").                                                                                                                                   |
-| metric_apis.metric_type       | string                | Type of metric for PM("RADIO" or "CORE" or "EDGE") or FM("DAC" or "RADIO" or "CORE" or "APPLICATION").                                                                        |
-| metric_apis.sync_duration     | integer               | Time duration in minutes, for syncing FM for the given duration.                                                                                                              |
-| limit                         | integer               | Number of records to be fetched from the API, should be within 1-10000.                                                                                                       |
-| delay                         | integer               | Time duration in minutes, for adding delay in API calls.                                                                                                                      |
+| Field                     | Type                | Description                                                                                                                                                                   |
+|---------------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| base_url                  | string              | APIGW base URL.                                                                                                                                                               |
+| users                     | [object]            | Users details.                                                                                                                                                                |
+| users.email_id            | string              | User's email ID.                                                                                                                                                              |
+| users.response_dest       | string              | Base directory to store the response from the REST APIs. Subdirectories will be created inside the base directory for storing each APIs response in their respective location |
+| um_api                    | object              | User management APIs.                                                                                                                                                         |
+| um_api.login              | string              | Customer portal login API.                                                                                                                                                    |
+| um_api.refresh            | string              | Customer portal refresh session API.                                                                                                                                          |
+| um_api.logout             | string              | Customer portal logout API.                                                                                                                                                   |
+| list_nhg_api.api          | string              | API URl for getting user's network details. Collector uses the list of NHGs for each FM/PM data collection.                                                                   |
+| list_nhg_api.interval     | integer             | Interval at which list_nhg_api will be called..                                                                                                                               |
+| sim_apis                  | [object] (Optional) | Get SIM APIs.                                                                                                                                                                 |
+| sim_apis.api              | string              | API URL for fetching SIM data.                                                                                                                                                |
+| sim_apis.interval         | integer             | Interval at which SIM API should be called to collect data.                                                                                                                   |
+| metric_apis               | [object]            | Get PM/FM APIs.                                                                                                                                                               |
+| metric_apis.api           | string              | API URL of get PM/FM data.                                                                                                                                                    |
+| metric_apis.interval      | integer             | Interval at which API should be called to collect data.                                                                                                                       |
+| metric_apis.type          | string              | Type of FM request ("ACTIVE" or "HISTORY").                                                                                                                                   |
+| metric_apis.metric_type   | string              | Type of metric for PM("RADIO" or "CORE" or "EDGE") or FM("DAC" or "RADIO" or "CORE" or "APPLICATION").                                                                        |
+| metric_apis.sync_duration | integer             | Time duration in minutes, for syncing FM for the given duration.                                                                                                              |
+| limit                     | integer             | Number of records to be fetched from the API, should be within 1-10000.                                                                                                       |
+| delay                     | integer             | Time duration in minutes, for adding delay in API calls.                                                                                                                      |
+| max_concurrent_process    | integer (Optional)  | Default value is 1. Maximum no. of concurrent process for calling each PM/FM APIs.                                                                                            |
+
+````
+NOTE: 
+
+    * Keeping high value for max_concurrent_process will increase the memory usage by OSSMediatorCollector.
+      It is advised to set this value depending on the network size.
+      ex: Small Network (1 edge) : 1
+          Medium Network (5 edge) : 1
+          Large Network (20 edge) : 5
+          XL Network (50 edge) : 10
+          XXL Network (150 edge) : 20
+````
 
 ## Starting OSSMediatorCollector  
 

@@ -24,20 +24,15 @@ import (
 )
 
 var (
-	confFile   string
-	logDir     string
-	logLevel   int
-	version    bool
-	appVersion string
+	confFile         string
+	logDir           string
+	logLevel         int
+	enableConsoleLog bool
 )
 
 func main() {
 	//Read command line options
 	parseFlags()
-	if version {
-		fmt.Println(appVersion)
-		os.Exit(0)
-	}
 
 	//initialize logger
 	initLogger(logDir, logLevel)
@@ -47,6 +42,9 @@ func main() {
 	if err != nil {
 		log.WithFields(log.Fields{"error": err}).Fatal("Error while reading config")
 	}
+
+	//add elasticsearch mapping for core-pm index
+	elasticsearch.AddCorePMMapping(conf.ElasticsearchConf)
 
 	//Add watcher to the PM/FM source directory
 	err = util.AddWatcher(conf)
@@ -92,7 +90,7 @@ func parseFlags() {
 	flag.StringVar(&confFile, "conf_file", "../resources/conf.json", "config file path")
 	flag.StringVar(&logDir, "log_dir", "../log", "Log directory")
 	flag.IntVar(&logLevel, "log_level", 4, "Log level")
-	flag.BoolVar(&version, "v", false, "Prints OSSMediator's version")
+	flag.BoolVar(&enableConsoleLog, "enable_console_log", false, "Enable console logging, if true logs won't be written to file")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: ./elasticsearchplugin [options]\n")
 		fmt.Fprintf(os.Stderr, "Options:\n")
@@ -100,13 +98,19 @@ func parseFlags() {
 		fmt.Fprintf(os.Stderr, "\t-conf_file\n\t\tConfig file path (default \"../resources/conf.json\")\n")
 		fmt.Fprintf(os.Stderr, "\t-log_dir\n\t\tLog Directory (default \"../log\"), logs will be stored in ElasticsearchPlugin.log file.\n")
 		fmt.Fprintf(os.Stderr, "\t-log_level\n\t\tLog Level (default 4). Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
-		fmt.Fprintf(os.Stderr, "\t-v\n\t\tPrints OSSMediator's version\n")
+		fmt.Fprintf(os.Stderr, "\t-enable_console_log\n\t\tEnable console logging, if true logs won't be written to file\n")
 	}
 	flag.Parse()
 }
 
 //create log file (ElasticsearchPlugin.log) within logDir (in case of failure logs will be written to console)
 func initLogger(logDir string, logLevel int) {
+	if enableConsoleLog {
+		log.SetOutput(os.Stdout)
+		log.SetFormatter(&log.TextFormatter{})
+		log.SetLevel(log.Level(logLevel))
+		return
+	}
 	var err error
 	err = os.MkdirAll(logDir, os.ModePerm)
 	if err != nil {

@@ -15,8 +15,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -26,7 +26,7 @@ import (
 
 const (
 	//Timeout duration for HTTP calls
-	timeout = 62 * time.Second
+	timeout = 120 * time.Second
 
 	//Maximum no. of retry attempt for API call
 	maxRetryAttempts = 3
@@ -130,7 +130,7 @@ func CreateHTTPClient(certFile string, skipTLS bool) {
 		log.Debugf("TLS authentication using root certificates")
 	} else {
 		//Load CA cert
-		caCert, err := ioutil.ReadFile(certFile)
+		caCert, err := os.ReadFile(certFile)
 		if err != nil {
 			log.WithFields(log.Fields{"error": err}).Error("Error while reading server certificate file")
 			client = &http.Client{Timeout: timeout}
@@ -177,7 +177,7 @@ func doRequest(request *http.Request) ([]byte, error) {
 		reader = response.Body
 	}
 
-	body, err := ioutil.ReadAll(reader)
+	body, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}

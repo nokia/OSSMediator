@@ -1,7 +1,5 @@
 module storesecret
 
-go 1.16
+go 1.18
 
-require (
-	golang.org/x/term v0.0.0-20220722155259-a9ba230a4035
-)
+require golang.org/x/term v0.5.0

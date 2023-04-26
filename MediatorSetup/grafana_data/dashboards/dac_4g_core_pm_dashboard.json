@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1658988828896,
   "links": [
     {
       "asDropdown": true,
@@ -54,6 +53,20 @@
       ],
       "targetBlank": false,
       "title": "Edge PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "CorePM"
+      ],
+      "targetBlank": false,
+      "title": "CORE PM Dashboards",
       "tooltip": "",
       "type": "dashboards",
       "url": ""
@@ -102,9 +115,10 @@
   "panels": [
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "${dataSource}"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Bits per second rate in UL on S1u interface",
       "fieldConfig": {
         "defaults": {
@@ -146,7 +160,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.9",
       "targets": [
         {
           "alias": "",
@@ -155,18 +169,19 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m"
+                "interval": "$agg"
               },
               "type": "date_histogram"
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "PC30AD9F96C2EF279"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_s1u_ul_rate",
+              "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
               "id": "1",
               "settings": {},
               "type": "sum"
@@ -182,9 +197,10 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "${dataSource}"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Bits per second rate in DL on S1u interface",
       "fieldConfig": {
         "defaults": {
@@ -226,7 +242,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.9",
       "targets": [
         {
           "alias": "",
@@ -235,18 +251,19 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m"
+                "interval": "$agg"
               },
               "type": "date_histogram"
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "PC30AD9F96C2EF279"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_s1u_dl_rate",
+              "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
               "id": "1",
               "settings": {},
               "type": "sum"
@@ -262,9 +279,10 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "${dataSource}"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "UE throughput  on uplink",
       "fieldConfig": {
         "defaults": {
@@ -306,7 +324,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.9",
       "targets": [
         {
           "alias": "",
@@ -315,18 +333,19 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m"
+                "interval": "$agg"
               },
               "type": "date_histogram"
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "PC30AD9F96C2EF279"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_ue_ul_rate",
+              "field": "pm_data.ndac_rr_mcn_4g_ue_ul_rate",
               "id": "1",
               "settings": {},
               "type": "sum"
@@ -342,9 +361,10 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "${dataSource}"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "UE throughput  on downlink",
       "fieldConfig": {
         "defaults": {
@@ -386,7 +406,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.9",
       "targets": [
         {
           "alias": "",
@@ -395,18 +415,19 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m"
+                "interval": "$agg"
               },
               "type": "date_histogram"
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "PC30AD9F96C2EF279"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_ue_dl_rate",
+              "field": "pm_data.ndac_rr_mcn_4g_ue_dl_rate",
               "id": "1",
               "settings": {},
               "type": "sum"
@@ -422,9 +443,10 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "${dataSource}"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Current Number of Registered UEs",
       "fieldConfig": {
         "defaults": {
@@ -471,7 +493,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.9",
       "targets": [
         {
           "alias": "",
@@ -480,18 +502,19 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m"
+                "interval": "$agg"
               },
               "type": "date_histogram"
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "PC30AD9F96C2EF279"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_data_emm_registered_ues",
+              "field": "pm_data.ndac_rr_mcn_4g_data_emm_registered_ues",
               "id": "1",
               "settings": {},
               "type": "sum"
@@ -507,9 +530,10 @@
     },
     {
       "datasource": {
-        "type": "elasticsearch",
-        "uid": "${dataSource}"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
+      "queryType": "lucene",
       "description": "Current Number of UEs in EMMREGISTERED+ECMCONNECTED states",
       "fieldConfig": {
         "defaults": {
@@ -552,7 +576,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "8.5.9",
       "targets": [
         {
           "alias": "",
@@ -561,18 +585,19 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m"
+                "interval": "$agg"
               },
               "type": "date_histogram"
             }
           ],
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "PC30AD9F96C2EF279"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_data_active_ues",
+              "field": "pm_data.ndac_rr_mcn_4g_data_active_ues",
               "id": "1",
               "settings": {},
               "type": "sum"
@@ -598,9 +623,10 @@
       "panels": [
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of DL Bytes sent on S1u interface.",
           "fieldConfig": {
             "defaults": {
@@ -663,12 +689,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -676,27 +702,68 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_s1u_dl_nbr_bytes",
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_bytes",
                   "id": "3",
                   "type": "sum"
                 }
               ],
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_bytes",
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
               "timeField": "pm_data_source.timestamp"
             }
           ],
@@ -705,9 +772,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Bytes received in UL on S1u interface",
           "fieldConfig": {
             "defaults": {
@@ -770,12 +838,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -783,34 +851,68 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.mcn_s1u_ul_nbr_bytes_counter",
-                  "hide": true,
-                  "id": "1",
-                  "settings": {},
-                  "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_s1u_ul_nbr_bytes",
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_bytes",
                   "id": "3",
                   "type": "sum"
                 }
               ],
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_bytes",
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
               "timeField": "pm_data_source.timestamp"
             }
           ],
@@ -819,9 +921,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Bits per second rate in DL on S1u interface",
           "fieldConfig": {
             "defaults": {
@@ -884,12 +987,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -897,21 +1000,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_s1u_dl_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -920,6 +1035,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "KPI for DL throughput",
@@ -927,9 +1072,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Bits per second rate in UL on S1u interface",
           "fieldConfig": {
             "defaults": {
@@ -992,12 +1138,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -1005,21 +1151,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_s1u_ul_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1028,6 +1186,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "KPI for UL Throughput",
@@ -1035,9 +1223,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "UE throughput  on uplink",
           "fieldConfig": {
             "defaults": {
@@ -1100,12 +1289,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -1113,21 +1302,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_ue_ul_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_ue_ul_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1136,6 +1337,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_ue_ul_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "UE throughput UL",
@@ -1143,9 +1374,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "UE throughput  on downlink",
           "fieldConfig": {
             "defaults": {
@@ -1208,12 +1440,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -1221,21 +1453,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_ue_dl_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_ue_dl_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1243,6 +1487,36 @@
               ],
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_ue_dl_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
               "timeField": "pm_data_source.timestamp"
             }
           ],
@@ -1265,9 +1539,10 @@
       "panels": [
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Current Number of Active Bearers",
           "fieldConfig": {
             "defaults": {
@@ -1330,12 +1605,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -1343,21 +1618,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_active_bearers",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_active_bearers",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1366,6 +1653,35 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_active_bearers",
+                  "id": "1",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Active bearers",
@@ -1373,9 +1689,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Current Number of Active PDN Sessions",
           "fieldConfig": {
             "defaults": {
@@ -1438,12 +1755,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -1451,21 +1768,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_active_pdn_sessions",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_active_pdn_sessions",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1474,6 +1803,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_active_pdn_sessions",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Active pdn sessions",
@@ -1481,9 +1840,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of received Create Session Requests",
           "fieldConfig": {
             "defaults": {
@@ -1546,12 +1906,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -1559,28 +1919,70 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_pdn_conn_requests",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_requests",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*mme*",
               "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_requests",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*mme*",
+              "refId": "B",
               "timeField": "pm_data_source.timestamp"
             }
           ],
@@ -1589,9 +1991,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful Create Session procedures",
           "fieldConfig": {
             "defaults": {
@@ -1654,12 +2057,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -1667,28 +2070,70 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_pdn_conn_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*mme*",
               "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_success",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*mme*",
+              "refId": "B",
               "timeField": "pm_data_source.timestamp"
             }
           ],
@@ -1697,9 +2142,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful PDN Connectivity procedures per second.",
           "fieldConfig": {
             "defaults": {
@@ -1762,12 +2208,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -1775,21 +2221,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_pdn_conn_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1797,6 +2255,36 @@
               ],
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
               "timeField": "pm_data_source.timestamp"
             }
           ],
@@ -1819,9 +2307,10 @@
       "panels": [
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of UE Attach Requests",
           "fieldConfig": {
             "defaults": {
@@ -1884,12 +2373,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -1898,21 +2387,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_requests",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_attach_requests",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1921,6 +2422,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_attach_requests",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Num of attach requests",
@@ -1928,9 +2459,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful UE Attaches",
           "fieldConfig": {
             "defaults": {
@@ -1993,12 +2525,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -2007,21 +2539,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_attach_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2030,6 +2574,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_attach_success",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Num of attach success",
@@ -2037,9 +2611,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful UE Attaches per second",
           "fieldConfig": {
             "defaults": {
@@ -2102,12 +2677,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -2116,21 +2691,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_attach_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2139,6 +2726,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_attach_success_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Num of attach success rate",
@@ -2146,9 +2763,312 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
+          "description": "Current Number of Registered UEs",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 25
+          },
+          "id": 49,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "8.5.11",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_emm_registered_ues",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_emm_registered_ues",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "Num of registered UEs",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "queryType": "lucene",
+          "description": "Current Number of UEs in EMMREGISTERED+ECMCONNECTED states",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 32
+          },
+          "id": 48,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "8.5.11",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_active_ues",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_active_ues",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "Num of active UEs",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "queryType": "lucene",
           "description": "Number of UE X2 Handover Requests",
           "fieldConfig": {
             "defaults": {
@@ -2205,18 +3125,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 25
+            "y": 39
           },
           "id": 22,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -2225,21 +3145,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_x2_attempts",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_x2_attempts",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2248,6 +3180,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_x2_attempts",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Ho_x2_attempts",
@@ -2255,9 +3217,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful X2 Handovers",
           "fieldConfig": {
             "defaults": {
@@ -2314,18 +3277,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 31
+            "y": 45
           },
           "id": 23,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -2334,21 +3297,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_x2_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_x2_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2357,6 +3332,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_x2_success",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Ho_x2_success",
@@ -2364,9 +3369,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful X2 Handovers per second",
           "fieldConfig": {
             "defaults": {
@@ -2423,18 +3429,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 37
+            "y": 51
           },
           "id": 42,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -2443,21 +3449,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_x2_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_x2_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2466,6 +3484,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_x2_success_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "X2 HO success rate",
@@ -2473,9 +3521,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of processed S1 Handover Required messages",
           "fieldConfig": {
             "defaults": {
@@ -2532,18 +3581,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 43
+            "y": 57
           },
           "id": 24,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -2552,21 +3601,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_s1_attempts",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_s1_attempts",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2575,6 +3636,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_s1_attempts",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Ho_S1_attempts",
@@ -2582,9 +3673,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful S1 Handovers",
           "fieldConfig": {
             "defaults": {
@@ -2641,18 +3733,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 49
+            "y": 63
           },
           "id": 25,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -2661,21 +3753,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_s1_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_s1_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2684,6 +3788,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_s1_success",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Ho_S1_success",
@@ -2691,9 +3825,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful S1 Handovers per second",
           "fieldConfig": {
             "defaults": {
@@ -2750,18 +3885,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 55
+            "y": 69
           },
           "id": 41,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -2770,21 +3905,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_ho_s1_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_s1_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2793,6 +3940,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_ho_s1_success_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "S1 HO success rate",
@@ -2800,9 +3977,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of UE Tracking Area Update Requests",
           "fieldConfig": {
             "defaults": {
@@ -2859,18 +4037,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 61
+            "y": 75
           },
           "id": 26,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -2879,21 +4057,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_requests",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_tau_requests",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2902,6 +4092,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_tau_requests",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "TAU requests",
@@ -2909,9 +4129,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful UE Tracking Area Updates",
           "fieldConfig": {
             "defaults": {
@@ -2968,18 +4189,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 67
+            "y": 81
           },
           "id": 27,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -2988,21 +4209,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_tau_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3011,6 +4244,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_tau_success",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "TAU success",
@@ -3018,9 +4281,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful UE Tracking Area Updates per second.",
           "fieldConfig": {
             "defaults": {
@@ -3077,18 +4341,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 73
+            "y": 87
           },
           "id": 40,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -3097,21 +4361,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_tau_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3120,6 +4396,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_tau_success_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "TAU success rate",
@@ -3127,9 +4433,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of UE Psdomain Paging Requests",
           "fieldConfig": {
             "defaults": {
@@ -3186,18 +4493,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 79
+            "y": 93
           },
           "id": 28,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -3206,21 +4513,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_paging_ps_requests",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_paging_ps_requests",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3229,6 +4548,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_paging_ps_requests",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Paging Requests",
@@ -3236,9 +4585,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful UE PS-domain Paging Requests",
           "fieldConfig": {
             "defaults": {
@@ -3295,18 +4645,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 85
+            "y": 99
           },
           "id": 29,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -3315,21 +4665,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_paging_ps_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_paging_ps_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3338,6 +4700,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_paging_ps_success",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Paging Success",
@@ -3345,9 +4737,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful UE PS-domain Paging Requests per second.",
           "fieldConfig": {
             "defaults": {
@@ -3404,18 +4797,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 91
+            "y": 105
           },
           "id": 39,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -3424,21 +4817,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_paging_ps_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_paging_ps_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3447,6 +4852,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_paging_ps_success_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Paging Success rate",
@@ -3454,9 +4889,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of started Dedicated Bearer Addition procedures",
           "fieldConfig": {
             "defaults": {
@@ -3513,18 +4949,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 97
+            "y": 111
           },
           "id": 30,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -3533,21 +4969,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_bearer_add_attempts",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_bearer_add_attempts",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3556,6 +5004,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_bearer_add_attempts",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Bearer addition attempts",
@@ -3563,9 +5041,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful Dedicated Bearer Addition procedures",
           "fieldConfig": {
             "defaults": {
@@ -3622,18 +5101,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 103
+            "y": 117
           },
           "id": 31,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -3642,21 +5121,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_bearer_add_success",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_bearer_add_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3665,6 +5156,36 @@
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_bearer_add_success",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
             }
           ],
           "title": "Bearer addition success",
@@ -3672,9 +5193,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "Number of Successful Dedicated Bearer Addition procedures per second.",
           "fieldConfig": {
             "defaults": {
@@ -3731,18 +5253,18 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 109
+            "y": 123
           },
           "id": 38,
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -3751,21 +5273,33 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_bearer_add_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_bearer_add_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -3773,6 +5307,36 @@
               ],
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
               "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "queryType": "lucene",
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_bearer_add_success_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_id.keyword:$nhgid",
+              "refId": "B",
               "timeField": "pm_data_source.timestamp"
             }
           ],
@@ -3795,9 +5359,10 @@
       "panels": [
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "This KPI describes the ratio of the number of successfully performed EPS attach procedures to the number of attempted EPS attach procedures for EPC network and is used to evaluate accessibility provided by EPS and network performance.",
           "fieldConfig": {
             "defaults": {
@@ -3860,12 +5425,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -3874,48 +5439,37 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "5",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_requests",
-                  "hide": true,
+                  "field": "pm_data.ndac_rr_mcn_4g_eps_attach_success_rate",
+                  "hide": false,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_data_attach_success",
-                  "hide": true,
-                  "id": "3",
-                  "type": "sum"
-                },
-                {
-                  "id": "4",
-                  "pipelineVariables": [
-                    {
-                      "name": "reqCounter",
-                      "pipelineAgg": "1"
-                    },
-                    {
-                      "name": "successCounter",
-                      "pipelineAgg": "3"
-                    }
-                  ],
-                  "settings": {
-                    "script": "if (params.successCounter == 0) { return 0 } else { return 100*(params.successCounter/params.reqCounter) }"
-                  },
-                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
@@ -3928,9 +5482,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "This KPI describes the ratio of the number of successfully performed dedicated EPS bearer creation procedures by PGW to the number of attempted dedicated EPS bearer creation procedures by PGW and is used to evaluate service availability provided by EPS and network performance.",
           "fieldConfig": {
             "defaults": {
@@ -3993,12 +5548,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -4007,54 +5562,37 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_bearer_add_attempts_nw_init",
-                  "hide": true,
+                  "field": "pm_data.ndac_rr_mcn_4g_dedicated_eps_bearer_creation_success_rate",
+                  "hide": false,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_create_bearer_nw_init_bearer_attempts",
-                  "hide": true,
-                  "id": "3",
-                  "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_create_bearer_nw_init_bearer_success",
-                  "hide": true,
-                  "id": "5",
-                  "type": "sum"
-                },
-                {
-                  "id": "6",
-                  "pipelineVariables": [
-                    {
-                      "name": "attemptCounter",
-                      "pipelineAgg": "3"
-                    },
-                    {
-                      "name": "successCounter",
-                      "pipelineAgg": "5"
-                    }
-                  ],
-                  "settings": {
-                    "script": "if (params.successCounter == 0) { return 0 } else { return 100*(params.successCounter/params.attemptCounter) }"
-                  },
-                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
@@ -4067,9 +5605,10 @@
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "${dataSource}"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
+          "queryType": "lucene",
           "description": "This KPI describes the ratio of the number of successfully performed tracking area update procedures to the number of attempted tracking area update procedures and is used to evaluate mobility provided by EPS and network performance.\n",
           "fieldConfig": {
             "defaults": {
@@ -4132,12 +5671,12 @@
           "options": {
             "legend": {
               "calcs": [],
-              "displayMode": "hidden",
+              "displayMode": "list",
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.5.2",
@@ -4146,48 +5685,37 @@
               "alias": "",
               "bucketAggs": [
                 {
+                  "field": "pm_data_source.nhg_id.keyword",
+                  "id": "5",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "1m"
+                    "interval": "$agg"
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "PC30AD9F96C2EF279"
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
               },
+              "queryType": "lucene",
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_requests",
-                  "hide": true,
+                  "field": "pm_data.ndac_rr_mcn_4g_tracking_area_update_success_rate",
+                  "hide": false,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_data_tau_success",
-                  "hide": true,
-                  "id": "3",
-                  "type": "sum"
-                },
-                {
-                  "id": "4",
-                  "pipelineVariables": [
-                    {
-                      "name": "reqCounter",
-                      "pipelineAgg": "1"
-                    },
-                    {
-                      "name": "successCounter",
-                      "pipelineAgg": "3"
-                    }
-                  ],
-                  "settings": {
-                    "script": "if (params.successCounter == 0) { return 0 } else { return 100*(params.successCounter/params.reqCounter) }"
-                  },
-                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_id.keyword:$nhgid",
@@ -4203,7 +5731,7 @@
       "type": "row"
     }
   ],
-  "refresh": false,
+  "refresh": "15m",
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
@@ -4221,9 +5749,9 @@
         "includeAll": false,
         "label": "Data Source",
         "multi": false,
-        "name": "dataSource",
+        "name": "datasource",
         "options": [],
-        "query": "elasticsearch",
+        "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-core-pm",
         "skipUrlSync": false,
@@ -4233,16 +5761,17 @@
         "current": {
           "selected": true,
           "text": [
-            "273e348b-416c-40e7-6b68-f9b0f7e5fa7e"
+            "All"
           ],
           "value": [
-            "273e348b-416c-40e7-6b68-f9b0f7e5fa7e"
+            "$__all"
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
-          "uid": "${dataSource}"
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
         },
+        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\"}",
         "hide": 0,
         "includeAll": true,
@@ -4256,6 +5785,80 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "1m",
+          "value": "1m"
+        },
+        "description": "Aggregation",
+        "hide": 2,
+        "includeAll": false,
+        "label": "",
+        "multi": false,
+        "name": "agg",
+        "options": [
+          {
+            "selected": true,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "15m",
+            "value": "15m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "15d",
+            "value": "15d"
+          },
+          {
+            "selected": false,
+            "text": "1w",
+            "value": "1w"
+          },
+          {
+            "selected": false,
+            "text": "1M",
+            "value": "1M"
+          },
+          {
+            "selected": false,
+            "text": "2M",
+            "value": "2M"
+          },
+          {
+            "selected": false,
+            "text": "3M",
+            "value": "3M"
+          }
+        ],
+        "query": "1m,5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -4268,6 +5871,6 @@
   },
   "timezone": "",
   "title": "NDAC CORE 4G PM KPI",
-  "version": 20,
+  "uid": "core4g",
   "weekStart": ""
 }

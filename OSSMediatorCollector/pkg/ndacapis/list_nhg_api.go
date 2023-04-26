@@ -16,6 +16,7 @@ import (
 )
 
 type nhgAPIResponse struct {
+	Status      Status        `json:"status"`
 	NetworkInfo []NetworkInfo `json:"network_info"`
 }
 
@@ -60,11 +61,7 @@ func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
 		return
 	}
 
-	//Map the received response to struct
-	var resp struct {
-		Status     Status      `json:"status"` // Status of the response
-		NhgDetails interface{} `json:"network_info"`
-	}
+	resp := new(nhgAPIResponse)
 	err = json.NewDecoder(bytes.NewReader(response)).Decode(&resp)
 	if err != nil {
 		user.IsSessionAlive = false
@@ -80,20 +77,12 @@ func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
 		return
 	}
 
-	err = utils.WriteResponse(user, api, resp.NhgDetails, "", txnID)
+	storeUserNhg(resp.NetworkInfo, user, txnID)
+	storeUserHwID(resp.NetworkInfo, user, txnID)
+	err = utils.WriteResponse(user, api, resp.NetworkInfo, "", txnID)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 	}
-
-	nhgData := new(nhgAPIResponse)
-	err = json.NewDecoder(bytes.NewReader(response)).Decode(nhgData)
-	if err != nil {
-		user.IsSessionAlive = false
-		log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to extract data from response")
-		return
-	}
-	storeUserNhg(nhgData.NetworkInfo, user, txnID)
-	storeUserHwID(nhgData.NetworkInfo, user, txnID)
 }
 
 func storeUserNhg(nhgData []NetworkInfo, user *config.User, txnID uint64) {

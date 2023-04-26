@@ -349,6 +349,7 @@ func TestCallAPIWithInactiveSession(t *testing.T) {
 	}()
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: false}
 	api := &config.APIConf{API: "/fmdata", Interval: 15}
+	config.Conf.MaxConcurrentProcess = 1
 	fetchMetricsData(api, &user, 123)
 
 	if !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
@@ -379,6 +380,7 @@ func TestAPICallWithPagination(t *testing.T) {
 	CreateHTTPClient("", true)
 	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
 	config.Conf.BaseURL = testServer.URL
+	config.Conf.MaxConcurrentProcess = 1
 	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
 
 	fetchMetricsData(apiConf, &user, 123)
@@ -418,6 +420,7 @@ func TestRetryAPICall(t *testing.T) {
 	CreateHTTPClient("", true)
 	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
 	config.Conf.BaseURL = testServer.URL
+	config.Conf.MaxConcurrentProcess = 1
 	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
 
 	fetchMetricsData(apiConf, &user, 123)
@@ -497,6 +500,7 @@ func TestFetchMetricsDataWithRetryNext(t *testing.T) {
 	CreateHTTPClient("", true)
 	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
 	config.Conf.BaseURL = testServer.URL
+	config.Conf.MaxConcurrentProcess = 1
 	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
 
 	fetchMetricsData(apiConf, &user, 123)

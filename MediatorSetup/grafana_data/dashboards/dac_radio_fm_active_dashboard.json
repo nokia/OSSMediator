@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1658907584523,
+  "id": 14,
   "links": [
     {
       "icon": "external link",
@@ -128,17 +128,24 @@
       "id": 5,
       "links": [],
       "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.3.6",
+      "queryType": "lucene",
       "title": "NDAC FM ACTIVE ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
     },
     {
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
       "description": "Provides the count of critical alarms",
       "fieldConfig": {
@@ -195,7 +202,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.3.6",
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "Critical",
@@ -213,6 +221,10 @@
               "type": "terms"
             }
           ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
           "metrics": [
             {
               "field": "select field",
@@ -223,6 +235,7 @@
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:critical",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -232,7 +245,8 @@
     },
     {
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
       "description": "Provides the count of major alarms",
       "fieldConfig": {
@@ -289,7 +303,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.3.6",
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "Major",
@@ -306,6 +321,10 @@
               "type": "terms"
             }
           ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
           "metrics": [
             {
               "field": "select field",
@@ -313,7 +332,8 @@
               "type": "count"
             }
           ],
-          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:major AND !(fm_data.specific_problem:61074)",
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:major",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -323,7 +343,8 @@
     },
     {
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
       "description": "Provides the count of minor alarms",
       "fieldConfig": {
@@ -380,7 +401,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.3.6",
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "Critical",
@@ -397,6 +419,10 @@
               "type": "terms"
             }
           ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
           "metrics": [
             {
               "field": "select field",
@@ -405,6 +431,7 @@
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:minor",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -414,7 +441,8 @@
     },
     {
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
       "description": "Provides the count of warning alarms",
       "fieldConfig": {
@@ -471,7 +499,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.3.6",
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "Critical",
@@ -488,6 +517,10 @@
               "type": "terms"
             }
           ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
           "metrics": [
             {
               "field": "select field",
@@ -496,6 +529,7 @@
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:warning",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -555,7 +589,8 @@
         }
       ],
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
       "description": "This table will show all Service Impacting active alarms that are raised across all edges enodeB's.\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
@@ -570,6 +605,7 @@
       "interval": "",
       "links": [],
       "pageSize": 10,
+      "queryType": "lucene",
       "scroll": true,
       "showHeader": true,
       "sort": {
@@ -772,6 +808,10 @@
       "targets": [
         {
           "bucketAggs": [],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
           "metrics": [
             {
               "field": "select field",
@@ -784,6 +824,7 @@
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND ((fm_data.specific_problem:6825) OR (fm_data.specific_problem:7655) OR (fm_data.specific_problem:61631))",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -844,7 +885,8 @@
         }
       ],
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
       "description": "This table will show all active alarms that are critical across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
@@ -859,6 +901,7 @@
       "interval": "",
       "links": [],
       "pageSize": 10,
+      "queryType": "lucene",
       "scroll": true,
       "showHeader": true,
       "sort": {
@@ -1061,6 +1104,10 @@
       "targets": [
         {
           "bucketAggs": [],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
           "metrics": [
             {
               "field": "select field",
@@ -1073,6 +1120,7 @@
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:critical",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -1133,7 +1181,8 @@
         }
       ],
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
       "description": "This table will show all active alarms that are major across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
@@ -1148,6 +1197,7 @@
       "interval": "",
       "links": [],
       "pageSize": 10,
+      "queryType": "lucene",
       "scroll": true,
       "showHeader": true,
       "sort": {
@@ -1350,6 +1400,10 @@
       "targets": [
         {
           "bucketAggs": [],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
           "metrics": [
             {
               "field": "select field",
@@ -1361,7 +1415,8 @@
               "type": "raw_document"
             }
           ],
-          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:major AND !(fm_data.specific_problem:61074)",
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:major",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -1422,7 +1477,8 @@
         }
       ],
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
       "description": "This table will show all active alarms that are minor across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
@@ -1437,6 +1493,7 @@
       "interval": "",
       "links": [],
       "pageSize": 10,
+      "queryType": "lucene",
       "scroll": true,
       "showHeader": true,
       "sort": {
@@ -1639,6 +1696,10 @@
       "targets": [
         {
           "bucketAggs": [],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
           "metrics": [
             {
               "field": "select field",
@@ -1651,6 +1712,7 @@
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:minor",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -1711,7 +1773,8 @@
         }
       ],
       "datasource": {
-        "uid": "$datasource"
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
       },
       "description": "This table will show all active alarms that are warning across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
       "fontSize": "90%",
@@ -1726,6 +1789,7 @@
       "interval": "",
       "links": [],
       "pageSize": 10,
+      "queryType": "lucene",
       "scroll": true,
       "showHeader": true,
       "sort": {
@@ -1928,6 +1992,10 @@
       "targets": [
         {
           "bucketAggs": [],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
           "metrics": [
             {
               "field": "select field",
@@ -1940,6 +2008,7 @@
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND fm_data.severity:warning",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -1950,7 +2019,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [
     "ActiveAlarmDashboard",
@@ -1970,7 +2039,7 @@
         "multi": false,
         "name": "datasource",
         "options": [],
-        "query": "elasticsearch",
+        "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-fm",
         "skipUrlSync": false,
@@ -1987,8 +2056,8 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
-          "uid": "$datasource"
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
@@ -1998,6 +2067,7 @@
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
+        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -2018,8 +2088,8 @@
           ]
         },
         "datasource": {
-          "type": "elasticsearch",
-          "uid": "$datasource"
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.dn.keyword\", \"query\":\"fm_data_source.nhg_alias.keyword:$nhgname\"}",
         "hide": 0,
@@ -2029,6 +2099,7 @@
         "name": "apid",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"fm_data_source.dn.keyword\", \"query\":\"fm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "queryType": "lucene",
         "refresh": 2,
         "regex": ".*BTS-(\\d+).*",
         "skipUrlSync": false,
@@ -2071,6 +2142,6 @@
   },
   "timezone": "browser",
   "title": "NDAC Radio FM Alarms Active Dashboard",
-  "version": 2,
+  "uid": "radiofmact",
   "weekStart": ""
 }

@@ -150,7 +150,7 @@ func RefreshToken(user *config.User) {
 				count := 1
 				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to refresh again", user.Email)
 				for i := 0; i < 4; i++ {
-					time.Sleep(10 * time.Second)
+					time.Sleep(5 * time.Second)
 					count += 1
 					fmt.Println("Calling refresh API for the ith time: ", i)
 					err = callRefreshAPI(apiURL, user)

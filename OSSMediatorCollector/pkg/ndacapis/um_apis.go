@@ -115,15 +115,11 @@ func TokenAuthorize(user *config.User, sessionToken string) error {
 func setToken(response *UMResponse, user *config.User) {
 	//getting expiry time using jwt
 	token, _ := jwt.Parse(response.UAT.AccessToken, nil)
-	refreshToken, _ := jwt.Parse(response.RT.RefreshToken, nil)
 	claims := token.Claims.(jwt.MapClaims)
-	claimsRef := refreshToken.Claims.(jwt.MapClaims)
 	exp := int64(claims["exp"].(float64))
-	refExp := time.Unix(int64(claimsRef["exp"].(float64)), 0)
 	expTime := time.Unix(exp, 0)
 
 	fmt.Println("Access Token expiration is :", expTime)
-	fmt.Println("Refresh Token expiration is :", refExp)
 
 	user.SessionToken = &config.SessionToken{
 		AccessToken:  response.UAT.AccessToken,

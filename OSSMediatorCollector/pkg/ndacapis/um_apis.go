@@ -137,7 +137,6 @@ func setToken(response *UMResponse, user *config.User) {
 // RefreshToken refreshes the session token before expiry_time.
 // Input parameter apiUrl is the API URL for refreshing session.
 func RefreshToken(user *config.User) {
-	count := 0
 	apiURL := ""
 	if user.AuthType == "TOKEN" {
 		apiURL = config.Conf.AzureWebRefreshURL
@@ -152,19 +151,23 @@ func RefreshToken(user *config.User) {
 		err := callRefreshAPI(apiURL, user)
 		if err != nil {
 			if user.AuthType == "TOKEN" {
+				count := 1
 				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to refresh again", user.Email)
-				time.Sleep(10 * time.Second)
-				if count < 4 {
-					fmt.Println("Calling refrsh api for the ith time: ", count+1)
-					err = callRefreshAPI(apiURL, user)
+				for i := 0; i < 4; i++ {
+					time.Sleep(10 * time.Second)
 					count += 1
-				} else {
+					fmt.Println("Calling refresh API for the ith time: ", i)
+					err = callRefreshAPI(apiURL, user)
+					if err == nil {
+						break
+					}
+				}
+				if count == 4 {
 					user.IsSessionAlive = false
 					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s after multiple retries..Please restart OSSMediator with a new token", user.Email)
 					log.Info("Terminating DA OSS Collector...")
 					os.Exit(0)
 				}
-				//retry refreshAPi for 3 times within 30 secs?
 			} else {
 				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to login", user.Email)
 				err = Login(user)

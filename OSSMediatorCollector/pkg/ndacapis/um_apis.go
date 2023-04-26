@@ -13,6 +13,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
@@ -114,11 +115,15 @@ func TokenAuthorize(user *config.User, sessionToken string) error {
 func setToken(response *UMResponse, user *config.User) {
 	//getting expiry time using jwt
 	token, _ := jwt.Parse(response.UAT.AccessToken, nil)
+	refreshToken, _ := jwt.Parse(response.RT.RefreshToken, nil)
 	claims := token.Claims.(jwt.MapClaims)
+	claimsRef := refreshToken.Claims.(jwt.MapClaims)
 	exp := int64(claims["exp"].(float64))
+	refExp := time.Unix(int64(claimsRef["exp"].(float64)), 0)
 	expTime := time.Unix(exp, 0)
 
 	fmt.Println("Access Token expiration is :", expTime)
+	fmt.Println("Refresh Token expiration is :", refExp)
 
 	user.SessionToken = &config.SessionToken{
 		AccessToken:  response.UAT.AccessToken,
@@ -132,13 +137,13 @@ func setToken(response *UMResponse, user *config.User) {
 // RefreshToken refreshes the session token before expiry_time.
 // Input parameter apiUrl is the API URL for refreshing session.
 func RefreshToken(user *config.User) {
+	count := 0
 	apiURL := ""
 	if user.AuthType == "TOKEN" {
 		apiURL = config.Conf.AzureWebRefreshURL
 	} else {
 		apiURL = config.Conf.BaseURL + config.Conf.UMAPIs.Refresh
 	}
-	fmt.Println("refresh api is : ", apiURL)
 	duration := getRefreshDuration(user)
 	refreshTimer := time.NewTimer(duration)
 	for {
@@ -146,15 +151,31 @@ func RefreshToken(user *config.User) {
 		user.Wg.Add(1)
 		err := callRefreshAPI(apiURL, user)
 		if err != nil {
-			log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to login", user.Email)
-			err = Login(user)
-			if err != nil {
-				log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
-				user.IsSessionAlive = false
-				go retryLogin(initialBackoff, user)
+			if user.AuthType == "TOKEN" {
+				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to refresh again", user.Email)
+				time.Sleep(10 * time.Second)
+				if count < 4 {
+					fmt.Println("Calling refrsh api for the ith time: ", count+1)
+					err = callRefreshAPI(apiURL, user)
+					count += 1
+				} else {
+					user.IsSessionAlive = false
+					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s after multiple retries..Please restart OSSMediator with a new token", user.Email)
+					log.Info("Terminating DA OSS Collector...")
+					os.Exit(0)
+				}
+				//retry refreshAPi for 3 times within 30 secs?
 			} else {
-				user.IsSessionAlive = true
-				user.Wg.Done()
+				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to login", user.Email)
+				err = Login(user)
+				if err != nil {
+					log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
+					user.IsSessionAlive = false
+					go retryLogin(initialBackoff, user)
+				} else {
+					user.IsSessionAlive = true
+					user.Wg.Done()
+				}
 			}
 		} else {
 			user.IsSessionAlive = true

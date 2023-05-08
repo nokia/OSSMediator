@@ -1,11 +1,7 @@
 {
   "base_url": "https://api.dac.nokia.com/api/ndac/v2",
+  "azure_web_refresh_url": "https://api.dac.nokia.com/api/v4/azure-web-apps/refresh-sessions",
   "users": [
-    {
-      "email_id": "<USER EMAIL>",
-      "response_dest": "<DIRECTORY PATH>",
-      "auth_type": "<PASSWORD/TOKEN>"
-    },
     {
       "email_id": "<USER EMAIL>",
       "response_dest": "<DIRECTORY PATH>",
@@ -47,6 +43,11 @@
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
       "metric_type": "CORE",
+      "interval": 5
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/pmdata",
+      "metric_type": "IXR",
       "interval": 5
     },
     {
@@ -93,6 +94,20 @@
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "HISTORY",
       "metric_type": "CORE",
+      "interval": 1,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "ACTIVE",
+      "metric_type": "IXR",
+      "interval": 15,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "HISTORY",
+      "metric_type": "IXR",
       "interval": 1,
       "sync_duration": 15
     },

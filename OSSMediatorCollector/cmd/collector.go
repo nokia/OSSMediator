@@ -13,6 +13,7 @@ import (
 	logger "log"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 
 	"collector/pkg/config"
@@ -61,7 +62,8 @@ func main() {
 	// Authenticating the users
 	for _, user := range config.Conf.Users {
 		//if usertype is ABAC, no need to login
-		if user.AuthType == "PASSWORD" {
+		authType := strings.ToUpper(user.AuthType)
+		if authType == "PASSWORD" {
 			user.Password, err = utils.ReadPassword(user.Email)
 			if err != nil {
 				fmt.Printf("\nUnable to read password for: %s\nError: %v", user.Email, err)

@@ -13,6 +13,7 @@ import (
 	"encoding/json"
 	log "github.com/sirupsen/logrus"
 	"net/http"
+	"strings"
 )
 
 type nhgAPIResponse struct {
@@ -37,7 +38,8 @@ const (
 func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
 	user.HwIDsABAC = map[string]config.OrgAccDetails{}
 	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
-	if user.AuthType == "TOKEN" {
+	authType := strings.ToUpper(user.AuthType)
+	if authType == "TOKEN" {
 		listNhgABAC(api, user, txnID)
 	} else {
 		listNhgRBAC(api, user, txnID)

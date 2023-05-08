@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 	"syscall"
 )
 
@@ -62,14 +63,15 @@ func readConfig(confFile string) (*Config, error) {
 
 func readPassword(conf *Config) {
 	for _, user := range conf.Users {
-		if user.AuthType == "PASSWORD" {
+		authType := strings.ToUpper(user.AuthType)
+		if authType == "PASSWORD" {
 			fmt.Printf("Enter password for %s: ", user.EmailID)
 			bytePassword, err := term.ReadPassword(int(syscall.Stdin))
 			if err != nil {
 				log.Fatalf("Error in reading password for %v: %v", user.EmailID, err)
 			}
 			storePassword(user.EmailID, bytePassword)
-		} else if user.AuthType == "TOKEN" {
+		} else if authType == "TOKEN" {
 			fmt.Printf("Enter access token for %s: ", user.EmailID)
 			byteAccessToken, err := term.ReadPassword(int(syscall.Stdin))
 			if err != nil {

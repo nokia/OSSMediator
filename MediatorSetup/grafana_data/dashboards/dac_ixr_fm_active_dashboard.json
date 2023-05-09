@@ -555,8 +555,8 @@
         },
         {
           "$$hashKey": "object:2604",
-          "text": "fm_data.alarm_identifier",
-          "value": "fm_data.alarm_identifier"
+          "text": "fm_data.fault_id",
+          "value": "fm_data.fault_id"
         },
         {
           "$$hashKey": "object:2605",
@@ -565,8 +565,8 @@
         },
         {
           "$$hashKey": "object:2606",
-          "text": "fm_data.alarm_text",
-          "value": "fm_data.alarm_text"
+          "text": "fm_data.additional_text",
+          "value": "fm_data.additional_text"
         },
         {
           "$$hashKey": "object:2607",
@@ -683,7 +683,7 @@
         },
         {
           "$$hashKey": "object:2623",
-          "alias": "AlarmID",
+          "alias": "FaultId",
           "align": "auto",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -693,7 +693,7 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data.alarm_identifier",
+          "pattern": "fm_data.fault_id",
           "thresholds": [],
           "type": "string",
           "unit": "short"
@@ -717,7 +717,7 @@
         },
         {
           "$$hashKey": "object:2625",
-          "alias": "AlarmText",
+          "alias": "AdditionalText",
           "align": "auto",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -727,7 +727,7 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data.alarm_text",
+          "pattern": "fm_data.additional_text",
           "thresholds": [],
           "type": "string",
           "unit": "short"
@@ -809,8 +809,8 @@
         },
         {
           "$$hashKey": "object:1572",
-          "text": "fm_data.alarm_identifier",
-          "value": "fm_data.alarm_identifier"
+          "text": "fm_data.fault_id",
+          "value": "fm_data.fault_id"
         },
         {
           "$$hashKey": "object:1573",
@@ -819,8 +819,8 @@
         },
         {
           "$$hashKey": "object:1574",
-          "text": "fm_data.alarm_text",
-          "value": "fm_data.alarm_text"
+          "text": "fm_data.additional_text",
+          "value": "fm_data.additional_text"
         },
         {
           "$$hashKey": "object:1575",
@@ -937,7 +937,7 @@
         },
         {
           "$$hashKey": "object:1591",
-          "alias": "AlarmID",
+          "alias": "FaultID",
           "align": "auto",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -947,7 +947,7 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data.alarm_identifier",
+          "pattern": "fm_data.fault_id",
           "thresholds": [],
           "type": "string",
           "unit": "short"
@@ -981,7 +981,7 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data.alarm_text",
+          "pattern": "fm_data.additional_text",
           "thresholds": [],
           "type": "string",
           "unit": "short"
@@ -1063,8 +1063,8 @@
         },
         {
           "$$hashKey": "object:2269",
-          "text": "fm_data.alarm_identifier",
-          "value": "fm_data.alarm_identifier"
+          "text": "fm_data.fault_id",
+          "value": "fm_data.fault_id"
         },
         {
           "$$hashKey": "object:2270",
@@ -1073,8 +1073,8 @@
         },
         {
           "$$hashKey": "object:2271",
-          "text": "fm_data.alarm_text",
-          "value": "fm_data.alarm_text"
+          "text": "fm_data.additional_text",
+          "value": "fm_data.additional_text"
         },
         {
           "$$hashKey": "object:2272",
@@ -1191,7 +1191,7 @@
         },
         {
           "$$hashKey": "object:2288",
-          "alias": "AlarmID",
+          "alias": "FaultID",
           "align": "auto",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1201,7 +1201,7 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data.alarm_identifier",
+          "pattern": "fm_data.fault_id",
           "thresholds": [],
           "type": "string",
           "unit": "short"
@@ -1225,7 +1225,7 @@
         },
         {
           "$$hashKey": "object:2290",
-          "alias": "AlarmText",
+          "alias": "AdditionalText",
           "align": "auto",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1235,7 +1235,7 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data.alarm_text",
+          "pattern": "fm_data.additional_text",
           "thresholds": [],
           "type": "string",
           "unit": "short"
@@ -1317,8 +1317,8 @@
         },
         {
           "$$hashKey": "object:1961",
-          "text": "fm_data.alarm_identifier",
-          "value": "fm_data.alarm_identifier"
+          "text": "fm_data.fault_id",
+          "value": "fm_data.fault_id"
         },
         {
           "$$hashKey": "object:1962",
@@ -1327,8 +1327,8 @@
         },
         {
           "$$hashKey": "object:1963",
-          "text": "fm_data.alarm_text",
-          "value": "fm_data.alarm_text"
+          "text": "fm_data.additional_text",
+          "value": "fm_data.additional_text"
         },
         {
           "$$hashKey": "object:1964",
@@ -1445,7 +1445,7 @@
         },
         {
           "$$hashKey": "object:1980",
-          "alias": "AlarmID",
+          "alias": "FaultID",
           "align": "auto",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1455,7 +1455,7 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data.alarm_identifier",
+          "pattern": "fm_data.fault_id",
           "thresholds": [],
           "type": "string",
           "unit": "short"
@@ -1479,7 +1479,7 @@
         },
         {
           "$$hashKey": "object:1982",
-          "alias": "AlarmText",
+          "alias": "AdditionalText",
           "align": "auto",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1489,7 +1489,7 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "fm_data.alarm_text",
+          "pattern": "fm_data.additional_text",
           "thresholds": [],
           "type": "string",
           "unit": "short"

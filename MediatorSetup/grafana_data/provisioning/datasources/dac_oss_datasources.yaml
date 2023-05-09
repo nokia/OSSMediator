@@ -79,6 +79,32 @@ datasources:
       tlsSkipVerify: true
     editable: true
 
+  - name: dac-ixr-fm
+    type: grafana-opensearch-datasource
+    access: proxy
+    url: http://localhost:9200
+    jsonData:
+      database: "ixr-fm*"
+      timeInterval: 15m
+      timeField: "fm_data.event_time"
+      version: "1.0.0"
+      flavor: "opensearch"
+      tlsSkipVerify: true
+    editable: true
+
+  - name: dac-ixr-pm
+    type: grafana-opensearch-datasource
+    access: proxy
+    url: http://localhost:9200
+    jsonData:
+      database: "ixr-pm*"
+      timeInterval: 15m
+      timeField: "pm_data_source.timestamp"
+      version: "1.0.0"
+      flavor: "opensearch"
+      tlsSkipVerify: true
+    editable: true
+
   - name: dac-core-pm
     type: grafana-opensearch-datasource
     access: proxy

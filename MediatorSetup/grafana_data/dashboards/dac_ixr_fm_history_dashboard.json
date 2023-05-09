@@ -21,7 +21,7 @@
       }
     ]
   },
-  "description": "NDAC Application History alarms dashboard",
+  "description": "NDAC IXR History alarms dashboard",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -30,7 +30,7 @@
     {
       "icon": "external link",
       "tags": [
-        "ApplActiveAlarms"
+        "IXRActiveAlarms"
       ],
       "type": "dashboards"
     },
@@ -38,10 +38,10 @@
       "asDropdown": true,
       "icon": "external link",
       "tags": [
-        "IXRAlarms"
+        "ApplAlarms"
       ],
       "targetBlank": false,
-      "title": "IXR Alarms",
+      "title": "Application Alarms",
       "type": "dashboards"
     },
     {
@@ -146,7 +146,7 @@
         "mode": "markdown"
       },
       "pluginVersion": "8.5.2",
-      "title": "NDAC APPLICATION HISTORY ALARMS DASHBOARD",
+      "title": "NDAC IXR HISTORY ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
     },
@@ -1015,16 +1015,16 @@
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
-    "ApplAlarms",
-    "ApplHistoryAlarms"
+    "IXRAlarms",
+    "IXRHistoryAlarms"
   ],
   "templating": {
     "list": [
       {
         "current": {
           "selected": false,
-          "text": "dac-application-fm",
-          "value": "dac-application-fm"
+          "text": "dac-ixr-fm",
+          "value": "dac-ixr-fm"
         },
         "hide": 2,
         "includeAll": false,
@@ -1034,7 +1034,7 @@
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
-        "regex": "dac-application-fm",
+        "regex": "dac-ixr-fm",
         "skipUrlSync": false,
         "type": "datasource"
       },
@@ -1163,8 +1163,8 @@
     ]
   },
   "timezone": "browser",
-  "title": "NDAC Application Alarms History Dashboard",
+  "title": "NDAC IXR Alarms History Dashboard",
   "version": 1,
-  "uid": "applfmhist",
+  "uid": "ixrfmhist",
   "weekStart": ""
 }

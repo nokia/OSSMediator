@@ -130,7 +130,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI describe the mean number of subscribers that are registered to a network slice instance.",
+      "description": "This KPI shows the physical port counters",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -283,7 +283,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of initial registration procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice and network performance.",
+      "description": "This KPI shows the BGP session state for each neighbor in each VPRN",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -333,7 +333,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -341,7 +341,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 6
+        "y": 65
       },
       "id": 3,
       "options": {
@@ -435,7 +435,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of attempted mobility procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice  and network performance.",
+      "description": "This KPI shows the Operational State of the physical ports",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -485,7 +485,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -539,7 +539,7 @@
           },
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_ixr_port_state",
+              "field": "pm_data.ndac_rr_ixr_port_state_oper_state",
               "id": "3",
               "type": "avg"
             }
@@ -568,7 +568,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_ixr_port_state",
+              "field": "pm_data.ndac_rr_ixr_port_state_oper_state",
               "id": "3",
               "type": "avg"
             }
@@ -587,7 +587,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI describes the ratio of the number of successfully performed registration procedures to the number of attempted periodic procedures for the AMF set which related to one single network slice  and is used to evaluate accessibility provided by the end-to-end network slice  and network performance.",
+      "description": "This KPI shows the Operational State of an L3 interface for each VPRN(VRF)",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -637,7 +637,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -691,7 +691,7 @@
           },
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_ixr_vrf_iface_state",
+              "field": "pm_data.ndac_rr_ixr_vrf_iface_state_oper_state",
               "id": "3",
               "type": "avg"
             }
@@ -720,7 +720,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_ixr_vrf_iface_state",
+              "field": "pm_data.ndac_rr_ixr_vrf_iface_state_oper_state",
               "id": "3",
               "type": "avg"
             }
@@ -739,7 +739,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI describes the ratio of the number of successful PDU session establishment request to the number of PDU session establishment request attempts for 5G network for the SMF which related to one network slice (S-NSSAI) and is used to evaluate accessibility provided by the end-to-end network slice and network performance.",
+      "description": "This KPI shows the available memory in the system",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -789,7 +789,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "Kbits"
         },
         "overrides": [
           {
@@ -868,7 +868,7 @@
           },
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_ixr_sys_avail_mem",
+              "field": "pm_data.ndac_rr_ixr_sys_avail_mem_available_memory",
               "id": "1",
               "type": "avg"
             }
@@ -897,7 +897,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_ixr_sys_avail_mem",
+              "field": "pm_data.ndac_rr_ixr_sys_avail_mem_available_memory",
               "id": "1",
               "type": "avg"
             }
@@ -916,7 +916,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI describes the upstream throughput of one single network slice  by computing the packet size for each successfully received  UL IP packet through the network slice  during each observing granularity period and is used to evaluate integrity performance of the end-to-end network slice .",
+      "description": "This KPI shows the memory used by the system",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1020,7 +1020,7 @@
           },
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_ixr_sys_used_mem",
+              "field": "pm_data.ndac_rr_ixr_sys_used_mem_total_in_use",
               "id": "1",
               "type": "avg"
             }
@@ -1049,7 +1049,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_ixr_sys_used_mem",
+              "field": "pm_data.ndac_rr_ixr_sys_used_mem_total_in_use",
               "id": "1",
               "type": "avg"
             }

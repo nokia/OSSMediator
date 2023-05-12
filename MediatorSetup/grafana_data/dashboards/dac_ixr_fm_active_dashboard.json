@@ -28,12 +28,10 @@
   "iteration": 1658907255604,
   "links": [
     {
-      "asDropdown": true,
       "icon": "external link",
       "tags": [
-        "IXRAlarms"
+        "IXRHistoryAlarms"
       ],
-      "title": "IXR Alarms",
       "type": "dashboards"
     },
     {
@@ -89,6 +87,20 @@
       ],
       "targetBlank": false,
       "title": "CORE PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "IXRPM"
+      ],
+      "targetBlank": false,
+      "title": "IXR PM Dashboards",
       "tooltip": "",
       "type": "dashboards",
       "url": ""

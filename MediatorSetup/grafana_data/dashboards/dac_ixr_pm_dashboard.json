@@ -853,6 +853,9 @@
                       "pipelineAgg": "26"
                     }
                   ],
+                  "settings": {
+                    "script": "if (params.inPackets == null || params.outOctets == null) { return null }"
+                  },
                   "type": "bucket_script"
                 }
               ],

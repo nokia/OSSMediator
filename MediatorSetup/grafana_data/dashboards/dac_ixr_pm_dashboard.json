@@ -206,7 +206,124 @@
       "queryType": "lucene",
       "targets": [
         {
-          "alias": "",
+          "alias": "Out Packets",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_ixr_port_stats_out_packets",
+              "id": "3",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "In Packets",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_ixr_port_stats_in_packets",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "In Octets",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_ixr_port_stats_in_octets",
+              "id": "5",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "C",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "Out Octets",
           "bucketAggs": [
             {
               "field": "pm_data_source.nhg_id.keyword",
@@ -235,19 +352,29 @@
           "metrics": [
             {
               "field": "pm_data.ndac_rr_ixr_port_stats_out_octets",
-              "id": "3",
-              "settings": {},
+              "id": "6",
               "type": "avg"
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
           "queryType": "lucene",
-          "refId": "A",
+          "refId": "D",
           "timeField": "pm_data_source.timestamp"
         },
         {
-          "alias": "total",
+          "alias": "In Errors",
           "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
             {
               "field": "pm_data_source.timestamp",
               "id": "2",
@@ -261,21 +388,99 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
-              "field": "ndac_rr_ixr_port_stats_out_octets",
-              "id": "3",
+              "field": "pm_data.ndac_rr_ixr_port_stats_in_errors",
+              "id": "7",
               "type": "avg"
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
           "queryType": "lucene",
-          "refId": "B",
+          "refId": "E",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "Out Errors",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_ixr_port_stats_out_errors",
+              "id": "8",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "F",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "Egress Queue",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.nhg_id.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_ixr_port_stats_egress_queue_queue_queue_id",
+              "id": "9",
+              "settings": {},
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_id.keyword:$nhgid",
+          "queryType": "lucene",
+          "refId": "G",
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "PortStatsOutOctets",
+      "title": "Port Stats",
       "type": "timeseries"
     },
     {

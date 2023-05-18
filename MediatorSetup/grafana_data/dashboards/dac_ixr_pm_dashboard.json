@@ -236,7 +236,10 @@
             {
               "field": "pm_data.ndac_rr_ixr_port_stats_out_packets",
               "id": "3",
-              "type": "avg"
+              "type": "sum",
+              "settings": {
+                "script": "_value*8"
+              }
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
@@ -275,7 +278,10 @@
             {
               "field": "pm_data.ndac_rr_ixr_port_stats_in_packets",
               "id": "1",
-              "type": "avg"
+              "type": "sum",
+              "settings": {
+                "script": "_value*8"
+              }
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
@@ -314,7 +320,10 @@
             {
               "field": "pm_data.ndac_rr_ixr_port_stats_in_octets",
               "id": "5",
-              "type": "avg"
+              "type": "sum",
+              "settings": {
+                "script": "_value*8"
+              }
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
@@ -353,7 +362,10 @@
             {
               "field": "pm_data.ndac_rr_ixr_port_stats_out_octets",
               "id": "6",
-              "type": "avg"
+              "type": "sum",
+              "settings": {
+                "script": "_value*8"
+              }
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
@@ -392,7 +404,10 @@
             {
               "field": "pm_data.ndac_rr_ixr_port_stats_in_errors",
               "id": "7",
-              "type": "avg"
+              "type": "sum",
+              "settings": {
+                "script": "_value*8"
+              }
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
@@ -431,7 +446,10 @@
             {
               "field": "pm_data.ndac_rr_ixr_port_stats_out_errors",
               "id": "8",
-              "type": "avg"
+              "type": "sum",
+              "settings": {
+                "script": "_value*8"
+              }
             }
           ],
           "query": "pm_data_source.nhg_id.keyword:$nhgid",
@@ -538,7 +556,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "bps"
         },
         "overrides": []
       },

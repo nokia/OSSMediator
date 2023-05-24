@@ -306,6 +306,11 @@ func callAPI(req apiCallRequest, txnID uint64) (*GetAPIResponse, error) {
 	}
 	log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType, "total_no_of_records": resp.TotalNumRecords, "no_of_records_received": resp.NumOfRecords, "next_record_index": resp.NextRecord}).Infof("%s called successfully for %s.", req.url, req.user.Email)
 
+	if resp.NumOfRecords == 0 {
+		log.WithFields(log.Fields{"tid": txnID, "api_url": req.url, "user": req.user.Email, "total_no_of_records": resp.TotalNumRecords}).Info("no records found")
+		return resp, nil
+	}
+
 	//storing LastReceivedDataTime timestamp value to file
 	err = utils.StoreLastReceivedDataTime(req.user, resp.Data, req.api, req.nhgID, txnID)
 	if err != nil {

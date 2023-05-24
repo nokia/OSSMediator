@@ -169,8 +169,12 @@ func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64) string {
 			return ""
 		}
 	}
+
 	if response == nil {
 		log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("found nil response, resp: %v, err: %v", response, err)
+		return ""
+	}
+	if response.NumOfRecords == 0 {
 		return ""
 	}
 	log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "total_no_of_records": response.TotalNumRecords, "received_no_of_records": response.NumOfRecords}).Infof("Received response details")

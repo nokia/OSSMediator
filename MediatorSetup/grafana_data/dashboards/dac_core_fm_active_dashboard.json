@@ -614,10 +614,6 @@
               {
                 "id": "unit",
                 "value": "time: YYYY-MM-DD HH:mm:ss"
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -642,10 +638,6 @@
               {
                 "id": "unit",
                 "value": "time: YYYY-MM-DD HH:mm:ss"
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -690,10 +682,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -710,10 +698,6 @@
               {
                 "id": "unit",
                 "value": "none"
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -734,10 +718,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -758,10 +738,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -782,10 +758,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -798,10 +770,6 @@
               {
                 "id": "displayName",
                 "value": "EdgeID"
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           }
@@ -951,16 +919,17 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": "auto",
+            "align": "center",
             "displayMode": "auto",
-            "inspect": false
+            "inspect": true
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -991,10 +960,6 @@
               {
                 "id": "unit",
                 "value": "time: YYYY-MM-DD HH:mm:ss"
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -1019,10 +984,6 @@
               {
                 "id": "unit",
                 "value": "time: YYYY-MM-DD HH:mm:ss"
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -1043,10 +1004,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -1067,10 +1024,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -1083,10 +1036,6 @@
               {
                 "id": "displayName",
                 "value": "AlarmID"
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -1107,10 +1056,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -1131,10 +1076,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -1155,10 +1096,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           },
@@ -1179,10 +1116,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align",
-                "value": "center"
               }
             ]
           }
@@ -1328,16 +1261,17 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": "auto",
+            "align": "center",
             "displayMode": "auto",
-            "inspect": false
+            "inspect": true
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1368,9 +1302,6 @@
               {
                 "id": "unit",
                 "value": "time: YYYY-MM-DD HH:mm:ss"
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1395,9 +1326,6 @@
               {
                 "id": "unit",
                 "value": "time: YYYY-MM-DD HH:mm:ss"
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1418,9 +1346,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1441,9 +1366,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1464,9 +1386,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1487,9 +1406,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1510,9 +1426,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1533,9 +1446,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1556,9 +1466,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           }
@@ -1636,16 +1543,17 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": "auto",
+            "align": "center",
             "displayMode": "auto",
-            "inspect": false
+            "inspect": true
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1676,9 +1584,6 @@
               {
                 "id": "unit",
                 "value": "time: YYYY-MM-DD HH:mm:ss"
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1703,9 +1608,6 @@
               {
                 "id": "unit",
                 "value": "time: YYYY-MM-DD HH:mm:ss"
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1726,9 +1628,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1749,9 +1648,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1772,9 +1668,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1795,9 +1688,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1818,9 +1708,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1841,9 +1728,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           },
@@ -1864,9 +1748,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
               }
             ]
           }
@@ -2027,7 +1908,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-30d",
     "to": "now"
   },
   "timepicker": {
@@ -2058,6 +1939,6 @@
   "timezone": "browser",
   "title": "NDAC CORE FM Alarms Active Dashboard",
   "uid": "corefmact",
-  "version": 11,
+  "version": 3,
   "weekStart": ""
 }

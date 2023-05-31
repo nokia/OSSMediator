@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 16,
+  "id": 8,
   "links": [
     {
       "icon": "external link",
@@ -758,9 +758,10 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": "auto",
+            "align": "center",
             "displayMode": "auto",
-            "inspect": false
+            "filterable": false,
+            "inspect": true
           },
           "mappings": [],
           "thresholds": {
@@ -979,21 +980,6 @@
               {
                 "id": "decimals",
                 "value": 2
-              },
-              {
-                "id": "custom.align"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "EventTime"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 185
               }
             ]
           }
@@ -1084,7 +1070,43 @@
               "fm_data_source.technology": true,
               "timestamp": true
             },
-            "indexByName": {},
+            "indexByName": {
+              "_id": 10,
+              "_index": 11,
+              "_type": 12,
+              "fm_data.additional_text": 13,
+              "fm_data.alarm_identifier": 4,
+              "fm_data.alarm_state": 9,
+              "fm_data.alarm_text": 6,
+              "fm_data.clear_alarm_time": 14,
+              "fm_data.clear_text": 15,
+              "fm_data.event_time": 0,
+              "fm_data.event_type": 16,
+              "fm_data.fault_id": 17,
+              "fm_data.last_updated_time": 1,
+              "fm_data.notification_type": 18,
+              "fm_data.probable_cause": 19,
+              "fm_data.severity": 5,
+              "fm_data.specific_problem": 20,
+              "fm_data_source.ap_id": 21,
+              "fm_data_source.app_id": 22,
+              "fm_data_source.app_name": 23,
+              "fm_data_source.cluster_id": 24,
+              "fm_data_source.dc_id": 25,
+              "fm_data_source.dc_name": 26,
+              "fm_data_source.dn": 3,
+              "fm_data_source.edge_alias": 27,
+              "fm_data_source.edge_hostname": 2,
+              "fm_data_source.edge_id": 7,
+              "fm_data_source.hw_alias": 28,
+              "fm_data_source.hw_id": 29,
+              "fm_data_source.nhg_alias": 30,
+              "fm_data_source.nhg_id": 8,
+              "fm_data_source.serial_no": 31,
+              "fm_data_source.slice_id": 32,
+              "fm_data_source.technology": 33,
+              "timestamp": 34
+            },
             "renameByName": {}
           }
         }
@@ -1246,6 +1268,6 @@
   "timezone": "browser",
   "title": "NDAC CORE FM Alarms History Dashboard",
   "uid": "corefmhist",
-  "version": 6,
+  "version": 2,
   "weekStart": ""
 }

@@ -20,7 +20,7 @@ import (
 	"sync"
 )
 
-//GetAPIResponse keeps track of response received from PM/FM API.
+// GetAPIResponse keeps track of response received from PM/FM API.
 type GetAPIResponse struct {
 	Type            string      `json:"type"`
 	TotalNumRecords int         `json:"total_num_records"`
@@ -31,19 +31,19 @@ type GetAPIResponse struct {
 	SearchAfterKey  string      `json:"search_after_key"`
 }
 
-//Status keeps track of status from response.
+// Status keeps track of status from response.
 type Status struct {
 	StatusCode        string            `json:"status_code"`
 	StatusDescription StatusDescription `json:"status_description"`
 }
 
-//StatusDescription keeps track of status description from response.
+// StatusDescription keeps track of status description from response.
 type StatusDescription struct {
 	DescriptionCode string `json:"description_code"`
 	Description     string `json:"description"`
 }
 
-//ErrorResponse struct for parsing error response from APIs.
+// ErrorResponse struct for parsing error response from APIs.
 type ErrorResponse struct {
 	Type   string `json:"type"`
 	Title  string `json:"title"`
@@ -141,6 +141,9 @@ func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64) string {
 		log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("found nil response, resp: %v, err: %v", response, err)
 		return ""
 	}
+	if response.NumOfRecords == 0 {
+		return ""
+	}
 	log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "total_no_of_records": response.TotalNumRecords, "received_no_of_records": response.NumOfRecords}).Infof("Received response details")
 
 	receivedNoOfRecords := response.NumOfRecords
@@ -193,7 +196,7 @@ func handlePagination(req apiCallRequest, retryAttempts int, txnID uint64) (int,
 	return receivedNoOfRecords, nil
 }
 
-//retry failed API call
+// retry failed API call
 func retryAPICall(req apiCallRequest, retryAttempts int, txnID uint64) (*GetAPIResponse, error) {
 	var err error
 	var response *GetAPIResponse
@@ -210,8 +213,8 @@ func retryAPICall(req apiCallRequest, retryAttempts int, txnID uint64) (*GetAPIR
 	return nil, err
 }
 
-//CallAPI calls the API, adds authorization, query params and returns response.
-//If successful it returns response as array of byte, if there is any error it returns nil.
+// CallAPI calls the API, adds authorization, query params and returns response.
+// If successful it returns response as array of byte, if there is any error it returns nil.
 func callAPI(req apiCallRequest, txnID uint64) (*GetAPIResponse, error) {
 	request, err := http.NewRequest("GET", req.url, nil)
 	if err != nil {
@@ -273,6 +276,11 @@ func callAPI(req apiCallRequest, txnID uint64) (*GetAPIResponse, error) {
 		return nil, err
 	}
 	log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType, "total_no_of_records": resp.TotalNumRecords, "no_of_records_received": resp.NumOfRecords, "next_record_index": resp.NextRecord}).Infof("%s called successfully for %s.", req.url, req.user.Email)
+
+	if resp.NumOfRecords == 0 {
+		log.WithFields(log.Fields{"tid": txnID, "api_url": req.url, "user": req.user.Email, "total_no_of_records": resp.TotalNumRecords}).Info("no records found")
+		return resp, nil
+	}
 
 	//storing LastReceivedDataTime timestamp value to file
 	err = utils.StoreLastReceivedDataTime(req.user, resp.Data, req.api, req.nhgID, txnID)

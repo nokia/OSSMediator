@@ -71,7 +71,7 @@ func readPassword(conf *Config) {
 				log.Fatalf("Error in reading password for %v: %v", user.EmailID, err)
 			}
 			storePassword(user.EmailID, bytePassword)
-		} else if authType == "TOKEN" {
+		} else if authType == "ADTOKEN" {
 			fmt.Printf("Enter access token for %s: ", user.EmailID)
 			byteAccessToken, err := term.ReadPassword(int(syscall.Stdin))
 			if err != nil {

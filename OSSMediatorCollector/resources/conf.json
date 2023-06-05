@@ -1,13 +1,15 @@
 {
   "base_url": "https://api.dac.nokia.com/api/ndac/v2",
-  "azure_web_refresh_url": "https://api.dac.nokia.com/api/v4/azure-web-apps/refresh-sessions",
   "users": [
     {
       "email_id": "<USER EMAIL>",
       "response_dest": "<DIRECTORY PATH>",
-      "auth_type": "<PASSWORD/TOKEN>"
+      "auth_type": "<PASSWORD/ADTOKEN>"
     }
   ],
+  "azure_session_api": {
+    "refresh": "/azure-refresh-sessions"
+  },
   "um_api": {
     "login": "/login-session",
     "refresh": "/refresh-session",

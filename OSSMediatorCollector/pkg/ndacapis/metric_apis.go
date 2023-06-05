@@ -90,7 +90,7 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64) {
 	mux.Unlock()
 
 	authType := strings.ToUpper(user.AuthType)
-	if authType == "TOKEN" {
+	if authType == "ADTOKEN" {
 		for nhgID, orgAcc := range user.NhgIDsABAC {
 			startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
 			apiReq := apiCallRequest{
@@ -147,7 +147,7 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64) {
 func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64) string {
 	apiURL := config.Conf.BaseURL + req.api.API
 	authType := strings.ToUpper(req.user.AuthType)
-	if authType == "TOKEN" {
+	if authType == "ADTOKEN" {
 		apiURL = apiURL + "?user_info.org_uuid=" + req.orgUUID + "&user_info.account_uuid=" + req.accUUID
 		apiURL = strings.Replace(apiURL, "{nhg_id}", req.nhgID, -1)
 		req.url = apiURL

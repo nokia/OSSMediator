@@ -133,11 +133,11 @@ func setToken(response *UMResponse, user *config.User) {
 // RefreshToken refreshes the session token before expiry_time.
 // Input parameter apiUrl is the API URL for refreshing session.
 func RefreshToken(user *config.User) {
-	apiURL := ""
+	apiURL := config.Conf.BaseURL
 	if user.AuthType == "TOKEN" {
-		apiURL = config.Conf.AzureWebRefreshURL
+		apiURL = apiURL + config.Conf.AzureSessionAPIs.Refresh
 	} else {
-		apiURL = config.Conf.BaseURL + config.Conf.UMAPIs.Refresh
+		apiURL = apiURL + config.Conf.UMAPIs.Refresh
 	}
 	duration := getRefreshDuration(user)
 	refreshTimer := time.NewTimer(duration)
@@ -146,7 +146,7 @@ func RefreshToken(user *config.User) {
 		user.Wg.Add(1)
 		err := callRefreshAPI(apiURL, user)
 		if err != nil {
-			if user.AuthType == "TOKEN" {
+			if user.AuthType == "ADTOKEN" {
 				count := 1
 				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to refresh again", user.Email)
 				for i := 0; i < 4; i++ {
@@ -223,7 +223,7 @@ func callRefreshAPI(apiURL string, user *config.User) error {
 	//Map the received response to umResponse struct
 	resp := new(UMResponse)
 	respAzure := new(AzureRefreshResponse)
-	if user.AuthType == "TOKEN" {
+	if user.AuthType == "ADTOKEN" {
 		err = json.NewDecoder(bytes.NewReader(response)).Decode(respAzure)
 		resp.UAT.AccessToken = respAzure.Token.AccessToken
 		resp.RT.RefreshToken = respAzure.Token.RefreshToken
@@ -271,7 +271,7 @@ func retryLogin(backoff time.Duration, user *config.User) {
 // If successful it returns nil, if there is any error it return error.
 func Logout(user *config.User) error {
 	log.Infof("Logging out from %s for user %s.", config.Conf.BaseURL, user.Email)
-	if user.AuthType == "TOKEN" {
+	if user.AuthType == "ADTOKEN" {
 		user.IsSessionAlive = false
 		log.Infof("%s Logged out", user.Email)
 		return nil

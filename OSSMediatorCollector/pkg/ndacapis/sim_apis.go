@@ -63,7 +63,7 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64) {
 	}
 	if strings.Contains(api.API, accessPointSimsAPI) {
 		authType := strings.ToUpper(user.AuthType)
-		if authType == "TOKEN" {
+		if authType == "ADTOKEN" {
 			log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDsABAC)}).Infof("starting ap_sims api")
 			for hwID, orgAcc := range user.HwIDsABAC {
 				callAccessPointsSimAPI(api, user, hwID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, txnID)
@@ -77,7 +77,7 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64) {
 		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("finished ap_sims api")
 	} else if strings.Contains(api.API, nhgPathParam) {
 		authType := strings.ToUpper(user.AuthType)
-		if authType == "TOKEN" {
+		if authType == "ADTOKEN" {
 			for nhgID, orgAcc := range user.NhgIDsABAC {
 				callSimAPI(api, user, nhgID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, 1, txnID)
 			}

@@ -39,7 +39,7 @@ func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
 	user.HwIDsABAC = map[string]config.OrgAccDetails{}
 	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
 	authType := strings.ToUpper(user.AuthType)
-	if authType == "TOKEN" {
+	if authType == "ADTOKEN" {
 		listNhgABAC(api, user, txnID)
 	} else {
 		listNhgRBAC(api, user, txnID)

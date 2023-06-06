@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 17,
+  "id": 14,
   "links": [
     {
       "icon": "external link",
@@ -1072,14 +1072,15 @@
           "custom": {
             "align": "center",
             "displayMode": "auto",
-            "inspect": true
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1343,6 +1344,7 @@
       "links": [],
       "options": {
         "footer": {
+          "enablePagination": true,
           "fields": "",
           "reducer": [
             "sum"
@@ -1377,13 +1379,6 @@
       ],
       "title": " Critical Active Alarms",
       "transformations": [
-        {
-          "id": "extractFields",
-          "options": {
-            "format": "json",
-            "replace": false
-          }
-        },
         {
           "id": "organize",
           "options": {
@@ -1435,44 +1430,41 @@
               "timestamp": true
             },
             "indexByName": {
-              "A": 0,
-              "_id": 1,
-              "_index": 3,
-              "_type": 2,
-              "additional_text": 18,
-              "alarm_identifier": 11,
-              "alarm_state": 19,
-              "alarm_text": 14,
-              "ap_id": 25,
-              "app_id": 26,
-              "app_name": 27,
-              "clear_alarm_time": 20,
-              "clear_text": 21,
-              "cluster_id": 28,
-              "dc_id": 29,
-              "dc_name": 30,
-              "dn": 16,
-              "edge_alias": 31,
-              "edge_hostname": 32,
-              "edge_id": 33,
-              "event_time": 7,
-              "event_type": 22,
-              "fault_id": 23,
-              "fm_data": 4,
-              "fm_data_source": 5,
-              "hw_alias": 10,
-              "hw_id": 34,
-              "last_updated_time": 8,
-              "nhg_alias": 17,
-              "nhg_id": 35,
-              "notification_type": 24,
-              "probable_cause": 15,
-              "serial_no": 9,
-              "severity": 12,
-              "slice_id": 36,
-              "specific_problem": 13,
-              "technology": 37,
-              "timestamp": 6
+              "_id": 12,
+              "_index": 14,
+              "_type": 13,
+              "fm_data.additional_text": 11,
+              "fm_data.alarm_identifier": 4,
+              "fm_data.alarm_state": 16,
+              "fm_data.alarm_text": 7,
+              "fm_data.clear_alarm_time": 17,
+              "fm_data.clear_text": 18,
+              "fm_data.event_time": 0,
+              "fm_data.event_type": 19,
+              "fm_data.fault_id": 20,
+              "fm_data.last_updated_time": 1,
+              "fm_data.notification_type": 21,
+              "fm_data.probable_cause": 8,
+              "fm_data.severity": 5,
+              "fm_data.specific_problem": 6,
+              "fm_data_source.ap_id": 22,
+              "fm_data_source.app_id": 23,
+              "fm_data_source.app_name": 24,
+              "fm_data_source.cluster_id": 25,
+              "fm_data_source.dc_id": 26,
+              "fm_data_source.dc_name": 27,
+              "fm_data_source.dn": 9,
+              "fm_data_source.edge_alias": 28,
+              "fm_data_source.edge_hostname": 29,
+              "fm_data_source.edge_id": 30,
+              "fm_data_source.hw_alias": 3,
+              "fm_data_source.hw_id": 31,
+              "fm_data_source.nhg_alias": 10,
+              "fm_data_source.nhg_id": 32,
+              "fm_data_source.serial_no": 2,
+              "fm_data_source.slice_id": 33,
+              "fm_data_source.technology": 34,
+              "timestamp": 15
             },
             "renameByName": {}
           }
@@ -1494,14 +1486,15 @@
           "custom": {
             "align": "center",
             "displayMode": "auto",
-            "inspect": true
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1799,12 +1792,6 @@
       "title": " Major Active Alarms",
       "transformations": [
         {
-          "id": "extractFields",
-          "options": {
-            "format": "json"
-          }
-        },
-        {
           "id": "organize",
           "options": {
             "excludeByName": {
@@ -1911,7 +1898,7 @@
           "custom": {
             "align": "center",
             "displayMode": "auto",
-            "inspect": true,
+            "inspect": false,
             "minWidth": 150
           },
           "mappings": [],
@@ -1919,7 +1906,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2207,12 +2195,6 @@
       "title": " Minor Active Alarms",
       "transformations": [
         {
-          "id": "extractFields",
-          "options": {
-            "format": "json"
-          }
-        },
-        {
           "id": "organize",
           "options": {
             "excludeByName": {
@@ -2327,7 +2309,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2571,7 +2554,7 @@
         "h": 22,
         "w": 24,
         "x": 0,
-        "y": 72
+        "y": 94
       },
       "hideTimeOverride": false,
       "id": 17,
@@ -2808,7 +2791,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-5y",
     "to": "now"
   },
   "timepicker": {
@@ -2839,6 +2822,6 @@
   "timezone": "browser",
   "title": "NDAC Radio FM Alarms Active Dashboard",
   "uid": "radiofmact",
-  "version": 19,
+  "version": 5,
   "weekStart": ""
 }

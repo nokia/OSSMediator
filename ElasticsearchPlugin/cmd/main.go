@@ -44,7 +44,8 @@ func main() {
 	}
 
 	//add elasticsearch mapping for core-pm index
-	elasticsearch.AddCorePMMapping(conf.ElasticsearchConf)
+	elasticsearch.AddPMMapping(conf.ElasticsearchConf, "core-pm")
+	elasticsearch.AddPMMapping(conf.ElasticsearchConf, "ixr-pm")
 
 	//Add watcher to the PM/FM source directory
 	err = util.AddWatcher(conf)
@@ -84,7 +85,7 @@ func main() {
 	shutdownHook()
 }
 
-//Reads command line options
+// Reads command line options
 func parseFlags() {
 	//read command line arguments
 	flag.StringVar(&confFile, "conf_file", "../resources/conf.json", "config file path")
@@ -103,7 +104,7 @@ func parseFlags() {
 	flag.Parse()
 }
 
-//create log file (ElasticsearchPlugin.log) within logDir (in case of failure logs will be written to console)
+// create log file (ElasticsearchPlugin.log) within logDir (in case of failure logs will be written to console)
 func initLogger(logDir string, logLevel int) {
 	if enableConsoleLog {
 		log.SetOutput(os.Stdout)

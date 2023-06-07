@@ -154,73 +154,73 @@ func pushPMData(filePath string, esConf config.ElasticsearchConf) {
 	}
 }
 
-func AddCorePMMapping(esConf config.ElasticsearchConf) {
+func AddPMMapping(esConf config.ElasticsearchConf, index string) {
 	//check if core-pm index exists
-	url := esConf.URL + "/_cat/indices/core-pm"
+	url := esConf.URL + "/_cat/indices/" + index
 	_, err := httpCall(http.MethodGet, url, esConf.User, esConf.Password, "", nil, defaultTimeout)
 	if err != nil && !strings.Contains(err.Error(), "status: 404 Not Found") {
 		log.WithFields(log.Fields{"error": err}).Errorf("Unable to query elasticsearch")
 		return
 	}
 	if err != nil && strings.Contains(err.Error(), "status: 404 Not Found") {
-		err = createMapping("core-pm", esConf)
+		err = createMapping(index, esConf)
 		if err != nil {
-			log.WithFields(log.Fields{"error": err}).Errorf("Unable to cretae mapping for core-pm index")
+			log.WithFields(log.Fields{"error": err}).Errorf("Unable to cretae mapping for %s index ", index)
 		}
 		return
 	}
 
-	log.Info("core-pm index exists, checking mapping")
+	log.Info(index + " index exists, checking mapping")
 	//check if mapping is correct
-	resp, err := getCorePMMapping("core-pm", "pm_data.*", esConf)
+	resp, err := getPMMapping(index, "pm_data.*", esConf)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Unable to get mapping for core-pm index")
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to get mapping for %s index", index)
 		return
 	}
 
 	if !strings.Contains(string(resp), "long") {
-		log.Info("Found correct mapping for core-pm")
+		log.Info("Found correct mapping for : " + index)
 		return
 	}
 
-	log.Info("found incorrect mapping for core-pm, reindexing data...")
+	log.Info("found incorrect mapping for " + index + ", reindexing data...")
 	// create mapping on core-pm-temp
-	err = createMapping("core-pm-temp", esConf)
+	err = createMapping(index+"-temp", esConf)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Unable to creat mapping for core-pm-temp index")
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to creat mapping for %s-temp index", index)
 		return
 	}
 	// reindex core-pm to core-pm-temp
 	startTime := time.Now()
-	err = reindexData("core-pm", "core-pm-temp", esConf)
+	err = reindexData(index, index+"-temp", esConf)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Unable to reindex data from core-pm to core-pm-temp index")
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to reindex data from %s to %s-temp index", index, index)
 		return
 	}
 	endTime := time.Now()
-	log.Info("core-pm to core-pm-temp reindex time: ", endTime.Sub(startTime))
+	log.Info(index+" to "+index+"-temp reindex time: ", index, index, endTime.Sub(startTime))
 	// delete core-pm index
-	deleteIndices([]string{"core-pm"}, esConf)
+	deleteIndices([]string{index}, esConf)
 	// create mapping on core-pm
-	err = createMapping("core-pm", esConf)
+	err = createMapping(index, esConf)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Unable to creat mapping for core-pm index")
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to create mapping for %s", index)
 		return
 	}
 	// reindex core-pm-temp to core-pm
 	startTime = time.Now()
-	err = reindexData("core-pm-temp", "core-pm", esConf)
+	err = reindexData(index+"-temp", index, esConf)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Unable to reindex data from core-pm-temp to core-pm index")
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to reindex data from %s-temp to %s index", index, index)
 		return
 	}
 	endTime = time.Now()
-	log.Info("core-pm-temp to core-pm reindex time: ", endTime.Sub(startTime))
-	// delete core-pm-temp index
-	deleteIndices([]string{"core-pm-temp"}, esConf)
+	log.Info(index+"-temp to "+index+" reindex time: ", endTime.Sub(startTime))
+	// delete -pm-temp index
+	deleteIndices([]string{index + "-temp"}, esConf)
 }
 
-func getCorePMMapping(index, field string, esConf config.ElasticsearchConf) ([]byte, error) {
+func getPMMapping(index, field string, esConf config.ElasticsearchConf) ([]byte, error) {
 	//get core-pm mapping
 	url := esConf.URL + "/" + index + "/_mapping/field/" + field
 	resp, err := httpCall(http.MethodGet, url, esConf.User, esConf.Password, "", nil, defaultTimeout)

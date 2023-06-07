@@ -8,7 +8,7 @@ NEW FEATURES:
 * OSSMediator:
   * Added support for `IXR` pm and fm APIs.
 * MediatorSetup:
-  * Added dashboards to view `NDAC IXR PM KPI`, `NDAC IXR Alarms Active Dashboard` and `NDAC IXR Alarms Active Dashboard`.
+  * Added dashboards to view `NDAC IXR PM KPI`, `NDAC IXR Alarms Active Dashboard` and `NDAC IXR Alarms History Dashboard` metrics.
 
 IMPROVEMENTS:
 

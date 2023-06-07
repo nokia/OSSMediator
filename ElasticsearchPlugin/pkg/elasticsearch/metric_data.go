@@ -12,20 +12,19 @@ import (
 	"fmt"
 	log "github.com/sirupsen/logrus"
 	"net/http"
-	"os"
 	"path"
 	"strconv"
 	"strings"
 	"time"
 )
 
-type pmResponse struct {
+type pmResponse []struct {
 	PMData       map[string]interface{} `json:"pm_data"`
 	PMDataSource map[string]interface{} `json:"pm_data_source"`
 	Timestamp    time.Time              `json:"timestamp"`
 }
 
-type fmResponse struct {
+type fmResponse []struct {
 	FMData       map[string]interface{} `json:"fm_data"`
 	FMDataSource map[string]interface{} `json:"fm_data_source"`
 	Timestamp    time.Time              `json:"timestamp"`
@@ -52,56 +51,38 @@ const (
 func pushFMData(filePath string, esConf config.ElasticsearchConf) {
 	elkURL := esConf.URL + elkBulkAPI
 	log.Infof("Pushing data from %s to elasticsearch", filePath)
-
-	file, err := os.Open(filePath)
+	data, err := readFile(filePath)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
 		return
 	}
-	defer file.Close()
 
 	fileName := path.Base(filePath)
 	metricType := strings.Split(fileName, "_")[1]
 	metricType = strings.ToLower(metricType)
-	index := strings.Join([]string{metricType, "fm"}, "-")
-	var postData string
-	dec := json.NewDecoder(file)
 
-	// read open bracket
-	t, err := dec.Token()
+	var resp fmResponse
+	err = json.Unmarshal(data, &resp)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Error while getting json token: %s", filePath)
-		return
-	}
-	if delim, ok := t.(json.Delim); !ok || delim != '[' {
-		log.WithFields(log.Fields{"error": err}).Errorf("Invalid file %s, array starting not found", filePath)
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
 		return
 	}
 
-	// while the array contains values
-	i := 0
-	for dec.More() {
-		var resp fmResponse
-		err = dec.Decode(&resp)
-		if err != nil {
-			log.WithFields(log.Fields{"error": err}).Errorf("Error while decoding json: %s", filePath)
-			return
-		}
-		i++
-
-		if resp.FMData["event_time"] == nil {
+	var postData string
+	index := strings.Join([]string{metricType, "fm"}, "-")
+	for i, d := range resp {
+		if d.FMData["event_time"] == nil {
 			continue
 		}
-		dn := resp.FMDataSource["dn"].(string)
-		eventTime := resp.FMData["event_time"].(string)
-		hwID := resp.FMDataSource["hw_id"].(string)
-		alarmID := resp.FMData["alarm_identifier"].(string)
+		dn := d.FMDataSource["dn"].(string)
+		eventTime := d.FMData["event_time"].(string)
+		hwID := d.FMDataSource["hw_id"].(string)
+		alarmID := d.FMData["alarm_identifier"].(string)
 		var id string
 		if metricType == "radio" {
-			specificProb := resp.FMData["specific_problem"].(string)
+			specificProb := d.FMData["specific_problem"].(string)
 			id = strings.Join([]string{hwID, dn, alarmID, specificProb, eventTime}, "_")
 		} else {
-			faultID := resp.FMData["fault_id"].(string)
+			faultID := d.FMData["fault_id"].(string)
 			keys := []string{metricType, hwID, dn, alarmID}
 			if faultID != "" {
 				keys = append(keys, faultID)
@@ -109,79 +90,45 @@ func pushFMData(filePath string, esConf config.ElasticsearchConf) {
 			keys = append(keys, eventTime)
 			id = strings.Join(keys, "_")
 		}
-		resp.Timestamp = time.Now()
-		source, _ := json.Marshal(resp)
+		d.Timestamp = time.Now()
+		source, _ := json.Marshal(d)
 		postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
 		postData += string(source) + "\n"
-		if i%elkNoOfRecordsPerAPI == 0 {
+		if i != 0 && i%elkNoOfRecordsPerAPI == 0 || i == len(resp)-1 {
 			pushData(elkURL, esConf.User, esConf.Password, postData, filePath)
 			postData = ""
 		}
-	}
-
-	if postData != "" {
-		pushData(elkURL, esConf.User, esConf.Password, postData, filePath)
-		postData = ""
-	}
-
-	// read closing bracket
-	t, err = dec.Token()
-	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Error while getting json token: %s", filePath)
-		return
-	}
-	if delim, ok := t.(json.Delim); !ok || delim != ']' {
-		log.WithFields(log.Fields{"error": err}).Errorf("Invalid file %s, array ending not found", filePath)
-		return
 	}
 }
 
 func pushPMData(filePath string, esConf config.ElasticsearchConf) {
 	elkURL := esConf.URL + elkBulkAPI
 	log.Infof("Pushing data from %s to elasticsearch", filePath)
-
-	file, err := os.Open(filePath)
+	data, err := readFile(filePath)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
 		return
 	}
-	defer file.Close()
+
+	var resp pmResponse
+	err = json.Unmarshal(data, &resp)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to unmarshal json data %s", filePath)
+		return
+	}
 
 	fileName := path.Base(filePath)
 	metricType := strings.Split(fileName, "_")[1]
 	metricType = strings.ToLower(metricType)
+
 	var postData string
 	currTime := time.Now().UTC()
-	dec := json.NewDecoder(file)
-
-	// read open bracket
-	t, err := dec.Token()
-	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Error while getting json token: %s", filePath)
-		return
-	}
-	if delim, ok := t.(json.Delim); !ok || delim != '[' {
-		log.WithFields(log.Fields{"error": err}).Errorf("Invalid file %s, array starting not found", filePath)
-		return
-	}
-
-	// while the array contains values
-	i := 0
-	for dec.More() {
-		var resp pmResponse
-		err = dec.Decode(&resp)
-		if err != nil {
-			log.WithFields(log.Fields{"error": err}).Errorf("Error while decoding json: %s", filePath)
-			return
-		}
-		i++
-
-		hwID := resp.PMDataSource["hw_id"].(string)
-		dn := resp.PMDataSource["dn"].(string)
-		eventTime := resp.PMDataSource["timestamp"].(string)
-		technology := resp.PMDataSource["technology"].(string)
+	for i, d := range resp {
+		hwID := d.PMDataSource["hw_id"].(string)
+		dn := d.PMDataSource["dn"].(string)
+		eventTime := d.PMDataSource["timestamp"].(string)
+		technology := d.PMDataSource["technology"].(string)
 		var objectType string
-		for k := range resp.PMData {
+		for k := range d.PMData {
 			objectType = k
 			break
 		}
@@ -196,103 +143,87 @@ func pushPMData(filePath string, esConf config.ElasticsearchConf) {
 			id = strings.Join([]string{objectType, dn, eventTime}, "_")
 		}
 
-		resp.Timestamp = time.Now()
-		source, _ := json.Marshal(resp)
+		d.Timestamp = time.Now()
+		source, _ := json.Marshal(d)
 		postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
 		postData += string(source) + "\n"
-		if i%elkNoOfRecordsPerAPI == 0 {
+		if i != 0 && i%elkNoOfRecordsPerAPI == 0 || i == len(resp)-1 {
 			pushData(elkURL, esConf.User, esConf.Password, postData, filePath)
 			postData = ""
 		}
 	}
-
-	if postData != "" {
-		pushData(elkURL, esConf.User, esConf.Password, postData, filePath)
-		postData = ""
-	}
-
-	// read closing bracket
-	t, err = dec.Token()
-	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Error while getting json token: %s", filePath)
-		return
-	}
-	if delim, ok := t.(json.Delim); !ok || delim != ']' {
-		log.WithFields(log.Fields{"error": err}).Errorf("Invalid file %s, array ending not found", filePath)
-		return
-	}
 }
 
-func AddCorePMMapping(esConf config.ElasticsearchConf) {
+func AddPMMapping(esConf config.ElasticsearchConf, index string) {
 	//check if core-pm index exists
-	url := esConf.URL + "/_cat/indices/core-pm"
-	_, err := httpCall(http.MethodGet, url, esConf.User, esConf.Password, nil, nil, defaultTimeout)
+	url := esConf.URL + "/_cat/indices/" + index
+	_, err := httpCall(http.MethodGet, url, esConf.User, esConf.Password, "", nil, defaultTimeout)
 	if err != nil && !strings.Contains(err.Error(), "status: 404 Not Found") {
 		log.WithFields(log.Fields{"error": err}).Errorf("Unable to query elasticsearch")
 		return
 	}
 	if err != nil && strings.Contains(err.Error(), "status: 404 Not Found") {
-		err = createMapping("core-pm", esConf)
+		err = createMapping(index, esConf)
 		if err != nil {
-			log.WithFields(log.Fields{"error": err}).Errorf("Unable to cretae mapping for core-pm index")
+			log.WithFields(log.Fields{"error": err}).Errorf("Unable to cretae mapping for %s index ", index)
 		}
 		return
 	}
 
-	log.Info("core-pm index exists, checking mapping")
+	log.Info(index + " index exists, checking mapping")
 	//check if mapping is correct
-	resp, err := getCorePMMapping("core-pm", "pm_data.*", esConf)
+	resp, err := getPMMapping(index, "pm_data.*", esConf)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Unable to get mapping for core-pm index")
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to get mapping for %s index", index)
 		return
 	}
 
 	if !strings.Contains(string(resp), "long") {
-		log.Info("Found correct mapping for core-pm")
+		log.Info("Found correct mapping for : " + index)
 		return
 	}
 
-	log.Info("found incorrect mapping for core-pm, reindexing data...")
+	log.Info("found incorrect mapping for " + index + ", reindexing data...")
 	// create mapping on core-pm-temp
-	err = createMapping("core-pm-temp", esConf)
+	err = createMapping(index+"-temp", esConf)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Unable to creat mapping for core-pm-temp index")
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to creat mapping for %s-temp index", index)
 		return
 	}
 	// reindex core-pm to core-pm-temp
 	startTime := time.Now()
-	err = reindexData("core-pm", "core-pm-temp", esConf)
+	err = reindexData(index, index+"-temp", esConf)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Unable to reindex data from core-pm to core-pm-temp index")
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to reindex data from %s to %s-temp index", index, index)
 		return
 	}
 	endTime := time.Now()
-	log.Info("core-pm to core-pm-temp reindex time: ", endTime.Sub(startTime))
+	log.Info(index+" to "+index+"-temp reindex time: ", index, index, endTime.Sub(startTime))
 	// delete core-pm index
-	deleteIndices([]string{"core-pm"}, esConf)
+	deleteIndices([]string{index}, esConf)
 	// create mapping on core-pm
-	err = createMapping("core-pm", esConf)
+	err = createMapping(index, esConf)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Unable to creat mapping for core-pm index")
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to create mapping for %s", index)
 		return
 	}
 	// reindex core-pm-temp to core-pm
 	startTime = time.Now()
-	err = reindexData("core-pm-temp", "core-pm", esConf)
+	err = reindexData(index+"-temp", index, esConf)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Errorf("Unable to reindex data from core-pm-temp to core-pm index")
+		log.WithFields(log.Fields{"error": err}).Errorf("Unable to reindex data from %s-temp to %s index", index, index)
 		return
 	}
 	endTime = time.Now()
-	log.Info("core-pm-temp to core-pm reindex time: ", endTime.Sub(startTime))
-	// delete core-pm-temp index
-	deleteIndices([]string{"core-pm-temp"}, esConf)
+	log.Info(index+"-temp to "+index+" reindex time: ", endTime.Sub(startTime))
+	// delete -pm-temp index
+	deleteIndices([]string{index + "-temp"}, esConf)
 }
 
-func getCorePMMapping(index, field string, esConf config.ElasticsearchConf) ([]byte, error) {
+func getPMMapping(index, field string, esConf config.ElasticsearchConf) ([]byte, error) {
 	//get core-pm mapping
 	url := esConf.URL + "/" + index + "/_mapping/field/" + field
-	resp, err := httpCall(http.MethodGet, url, esConf.User, esConf.Password, nil, nil, defaultTimeout)
+	resp, err := httpCall(http.MethodGet, url, esConf.User, esConf.Password, "", nil, defaultTimeout)
 	if err != nil {
 		log.WithFields(log.Fields{"error": err}).Errorf("Unable to query elasticsearch")
 		return nil, err
@@ -306,7 +237,7 @@ func reindexData(source, dest string, esConf config.ElasticsearchConf) error {
 	url := esConf.URL + "/_reindex"
 	postData := strings.Replace(reindexPostData, "SOURCE", source, -1)
 	postData = strings.Replace(postData, "DEST", dest, -1)
-	_, err := httpCall(http.MethodPost, url, esConf.User, esConf.Password, &postData, nil, 0)
+	_, err := httpCall(http.MethodPost, url, esConf.User, esConf.Password, postData, nil, 0)
 	if err != nil {
 		log.WithFields(log.Fields{"error": err}).Errorf("Unable to query elasticsearch")
 		return err
@@ -318,8 +249,7 @@ func createMapping(index string, esConf config.ElasticsearchConf) error {
 	log.Infof("creating mapping for %s", index)
 	//create mapping on core-pm
 	url := esConf.URL + "/" + index
-	mapping := corePMMapping
-	_, err := httpCall(http.MethodPut, url, esConf.User, esConf.Password, &mapping, nil, defaultTimeout)
+	_, err := httpCall(http.MethodPut, url, esConf.User, esConf.Password, corePMMapping, nil, defaultTimeout)
 	if err != nil {
 		log.WithFields(log.Fields{"error": err}).Errorf("Unable to query elasticsearch")
 		return err

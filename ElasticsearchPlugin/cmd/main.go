@@ -43,7 +43,7 @@ func main() {
 		log.WithFields(log.Fields{"error": err}).Fatal("Error while reading config")
 	}
 
-	//add elasticsearch mapping for core-pm index
+	//add elasticsearch mapping for core-pm and ixr-pm index
 	elasticsearch.AddPMMapping(conf.ElasticsearchConf, "core-pm")
 	elasticsearch.AddPMMapping(conf.ElasticsearchConf, "ixr-pm")
 

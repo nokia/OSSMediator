@@ -75,6 +75,20 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "IXRPM"
+      ],
+      "targetBlank": false,
+      "title": "IXR PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
       "tags": [
         "RadioAlarms"
       ],
@@ -109,6 +123,20 @@
       "targetBlank": false,
       "title": "Application Alarms",
       "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "IXRAlarms"
+      ],
+      "targetBlank": false,
+      "title": "IXR  Alarms",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
     }
   ],
   "liveNow": false,

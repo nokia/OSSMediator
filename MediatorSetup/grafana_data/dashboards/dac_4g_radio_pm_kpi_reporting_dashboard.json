@@ -29,16 +29,11 @@
     {
       "asDropdown": true,
       "icon": "external link",
-      "includeVars": false,
-      "keepTime": false,
       "tags": [
         "Radio4G"
       ],
-      "targetBlank": false,
       "title": "Radio 4G Dashboards",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
+      "type": "dashboards"
     },
     {
       "asDropdown": true,
@@ -46,7 +41,7 @@
       "tags": [
         "Radio5G"
       ],
-      "title": "Radio 5G Dashboard",
+      "title": "Radio 5G Dashboards",
       "type": "dashboards"
     },
     {
@@ -80,6 +75,20 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "IXRPM"
+      ],
+      "targetBlank": false,
+      "title": "IXR PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
       "tags": [
         "RadioAlarms"
       ],
@@ -99,16 +108,12 @@
     {
       "asDropdown": true,
       "icon": "external link",
-      "includeVars": false,
-      "keepTime": false,
       "tags": [
         "COREAlarms"
       ],
       "targetBlank": false,
       "title": "CORE Alarms",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
+      "type": "dashboards"
     },
     {
       "asDropdown": true,
@@ -119,6 +124,20 @@
       "targetBlank": false,
       "title": "Application Alarms",
       "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "IXRAlarms"
+      ],
+      "targetBlank": false,
+      "title": "IXR  Alarms",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
     }
   ],
   "liveNow": false,
@@ -3630,7 +3649,7 @@
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
         "hide": 0,
         "includeAll": true,
-        "label": "AP ID",
+        "label": "Access Point ID",
         "multi": true,
         "name": "ap_id",
         "options": [],

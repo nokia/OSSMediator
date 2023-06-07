@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 3.8
+
+NEW FEATURES:
+
+* OSSMediator:
+  * Added support for `IXR` pm and fm APIs.
+* MediatorSetup:
+  * Added dashboards to view `NDAC IXR PM KPI`, `NDAC IXR Alarms Active Dashboard` and `NDAC IXR Alarms Active Dashboard`.
+
+IMPROVEMENTS:
+
+* MediatorSetup:
+  * Added `NHG Name` filter for `CORE PM Dashboards` and `EDGE PM Dashboard`.
+  * Updated OpenSearch version to `2.8.0`.
+
 # 3.7
 
 NEW FEATURES:

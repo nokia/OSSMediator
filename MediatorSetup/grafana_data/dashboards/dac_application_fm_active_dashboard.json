@@ -25,7 +25,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1658907255604,
   "links": [
     {
       "icon": "external link",
@@ -84,6 +83,20 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "IXRPM"
+      ],
+      "targetBlank": false,
+      "title": "IXR PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
       "tags": [
         "RadioAlarms"
       ],
@@ -110,6 +123,20 @@
       "targetBlank": false,
       "title": "CORE Alarms",
       "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "IXRAlarms"
+      ],
+      "targetBlank": false,
+      "title": "IXR  Alarms",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
     }
   ],
   "liveNow": false,
@@ -128,10 +155,15 @@
       "id": 5,
       "links": [],
       "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.3.6",
       "title": "NDAC APPLICATION ACTIVE ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
@@ -141,7 +173,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "Provides the count of critical alarms",
       "fieldConfig": {
         "defaults": {
@@ -197,7 +228,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.3.6",
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "Critical",
@@ -219,7 +251,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -230,6 +261,7 @@
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:CRITICAL",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -242,7 +274,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "Provides the count of major alarms",
       "fieldConfig": {
         "defaults": {
@@ -298,7 +329,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.3.6",
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "Critical",
@@ -319,7 +351,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -328,6 +359,7 @@
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:MAJOR",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -340,7 +372,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "Provides the count of minor alarms",
       "fieldConfig": {
         "defaults": {
@@ -396,7 +427,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.3.6",
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "Critical",
@@ -417,7 +449,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -426,6 +457,7 @@
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:MINOR",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -438,7 +470,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "Provides the count of warning alarms",
       "fieldConfig": {
         "defaults": {
@@ -494,7 +525,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "9.3.6",
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "Critical",
@@ -515,7 +547,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "select field",
@@ -524,6 +555,7 @@
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:WARNING",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
@@ -532,60 +564,227 @@
       "type": "stat"
     },
     {
-      "columns": [
-        {
-          "$$hashKey": "object:2601",
-          "text": "fm_data.event_time",
-          "value": "fm_data.event_time"
-        },
-        {
-          "$$hashKey": "object:2602",
-          "text": "fm_data.last_updated_time",
-          "value": "fm_data.last_updated_time"
-        },
-        {
-          "$$hashKey": "object:2604",
-          "text": "fm_data.alarm_identifier",
-          "value": "fm_data.alarm_identifier"
-        },
-        {
-          "$$hashKey": "object:2605",
-          "text": "fm_data.severity",
-          "value": "fm_data.severity"
-        },
-        {
-          "$$hashKey": "object:2606",
-          "text": "fm_data.alarm_text",
-          "value": "fm_data.alarm_text"
-        },
-        {
-          "$$hashKey": "object:2607",
-          "text": "fm_data_source.edge_hostname",
-          "value": "fm_data_source.edge_hostname"
-        },
-        {
-          "$$hashKey": "object:2608",
-          "text": "fm_data_source.edge_id",
-          "value": "fm_data_source.edge_id"
-        },
-        {
-          "$$hashKey": "object:2609",
-          "text": "fm_data_source.nhg_id",
-          "value": "fm_data_source.nhg_id"
-        },
-        {
-          "$$hashKey": "object:2867",
-          "text": "fm_data_source.dn",
-          "value": "fm_data_source.dn"
-        }
-      ],
       "datasource": {
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This table will show all active alarms that are critical across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
-      "fontSize": "90%",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.event_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EventTime"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.last_updated_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "LastUpdatedTime"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.edge_hostname"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EdgeHostName"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.dn"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "DN"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.fault_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FaultID"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.severity"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Severity"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.additional_text"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "AdditionalText"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.edge_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EdgeID"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.nhg_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NHGID"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
         "h": 22,
         "w": 24,
@@ -593,170 +792,21 @@
         "y": 7
       },
       "hideTimeOverride": false,
-      "id": 19,
+      "id": 22,
       "interval": "",
       "links": [],
-      "pageSize": 10,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "desc": false
+      "options": {
+        "footer": {
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
       },
-      "styles": [
-        {
-          "$$hashKey": "object:2619",
-          "alias": "EventTime",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.event_time",
-          "thresholds": [],
-          "type": "date",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2620",
-          "alias": "LastUpdatedTime",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.last_updated_time",
-          "thresholds": [],
-          "type": "date",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2621",
-          "alias": "EdgeHostName",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.edge_hostname",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2622",
-          "alias": "DN",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.dn",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2623",
-          "alias": "AlarmID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.alarm_identifier",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2624",
-          "alias": "Severity",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.severity",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2625",
-          "alias": "AlarmText",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.alarm_text",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2626",
-          "alias": "EdgeID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.edge_id",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2627",
-          "alias": "NHGID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.nhg_id",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        }
-      ],
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "bucketAggs": [],
@@ -764,82 +814,292 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "hide": false,
           "metrics": [
             {
-              "field": "select field",
               "id": "1",
-              "meta": {},
               "settings": {
-                "size": 5000
+                "size": "500",
+                "useTimeRange": true
               },
-              "type": "raw_document"
+              "type": "raw_data"
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:CRITICAL",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
       ],
-      "title": " Critical Active Alarms",
-      "transform": "json",
-      "type": "table-old"
-    },
-    {
-      "columns": [
+      "title": "Critical Active Alarms",
+      "transformations": [
         {
-          "$$hashKey": "object:1569",
-          "text": "fm_data.event_time",
-          "value": "fm_data.event_time"
+          "id": "extractFields",
+          "options": {
+            "format": "json"
+          }
         },
         {
-          "$$hashKey": "object:1570",
-          "text": "fm_data.last_updated_time",
-          "value": "fm_data.last_updated_time"
-        },
-        {
-          "$$hashKey": "object:1572",
-          "text": "fm_data.alarm_identifier",
-          "value": "fm_data.alarm_identifier"
-        },
-        {
-          "$$hashKey": "object:1573",
-          "text": "fm_data.severity",
-          "value": "fm_data.severity"
-        },
-        {
-          "$$hashKey": "object:1574",
-          "text": "fm_data.alarm_text",
-          "value": "fm_data.alarm_text"
-        },
-        {
-          "$$hashKey": "object:1575",
-          "text": "fm_data_source.edge_hostname",
-          "value": "fm_data_source.edge_hostname"
-        },
-        {
-          "$$hashKey": "object:1576",
-          "text": "fm_data_source.edge_id",
-          "value": "fm_data_source.edge_id"
-        },
-        {
-          "$$hashKey": "object:1577",
-          "text": "fm_data_source.nhg_id",
-          "value": "fm_data_source.nhg_id"
-        },
-        {
-          "$$hashKey": "object:1835",
-          "text": "fm_data_source.dn",
-          "value": "fm_data_source.dn"
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "_id": true,
+              "_index": true,
+              "_type": true,
+              "fm_data.additional_text": false,
+              "fm_data.alarm_identifier": true,
+              "fm_data.alarm_state": true,
+              "fm_data.alarm_text": true,
+              "fm_data.clear_alarm_time": true,
+              "fm_data.clear_text": true,
+              "fm_data.event_type": true,
+              "fm_data.notification_type": true,
+              "fm_data.probable_cause": true,
+              "fm_data.specific_problem": true,
+              "fm_data_source.ap_id": true,
+              "fm_data_source.app_id": true,
+              "fm_data_source.app_name": true,
+              "fm_data_source.cluster_id": true,
+              "fm_data_source.dc_id": true,
+              "fm_data_source.dc_name": true,
+              "fm_data_source.edge_alias": true,
+              "fm_data_source.hw_alias": true,
+              "fm_data_source.hw_id": true,
+              "fm_data_source.nhg_alias": true,
+              "fm_data_source.serial_no": true,
+              "fm_data_source.slice_id": true,
+              "fm_data_source.technology": true,
+              "timestamp": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
         }
       ],
+      "type": "table"
+    },
+    {
       "datasource": {
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This table will show all active alarms that are major across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
-      "fontSize": "90%",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.event_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EventTime"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.last_updated_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "LastUpdatedTime"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.edge_hostname"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EdgeHostName"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.dn"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "DN"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.fault_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FaultID"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.severity"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Severity"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.additional_text"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "AdditionalText"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.edge_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EdgeID"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.nhg_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NHGID"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
         "h": 22,
         "w": 24,
@@ -847,253 +1107,314 @@
         "y": 29
       },
       "hideTimeOverride": false,
-      "id": 20,
+      "id": 22,
       "interval": "",
       "links": [],
-      "pageSize": 10,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "desc": false
+      "options": {
+        "footer": {
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
       },
-      "styles": [
-        {
-          "$$hashKey": "object:1587",
-          "alias": "EventTime",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.event_time",
-          "thresholds": [],
-          "type": "date",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1588",
-          "alias": "LastUpdatedTime",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.last_updated_time",
-          "thresholds": [],
-          "type": "date",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1589",
-          "alias": "EdgeHostName",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.edge_hostname",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1590",
-          "alias": "DN",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.dn",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1591",
-          "alias": "AlarmID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.alarm_identifier",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1592",
-          "alias": "Severity",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.severity",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1593",
-          "alias": "AlarmText",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.alarm_text",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1594",
-          "alias": "EdgeID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.edge_id",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1595",
-          "alias": "NHGID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.nhg_id",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        }
-      ],
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "bucketAggs": [],
-          "metrics": [
-            {
-              "field": "select field",
-              "id": "1",
-              "meta": {},
-              "settings": {
-                "size": 5000
-              },
-              "type": "raw_document"
-            }
-          ],
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "settings": {
+                "size": "500",
+                "useTimeRange": true
+              },
+              "type": "raw_data"
+            }
+          ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:MAJOR",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
       ],
       "title": "Major Active Alarms",
-      "transform": "json",
-      "type": "table-old"
-    },
-    {
-      "columns": [
+      "transformations": [
         {
-          "$$hashKey": "object:2266",
-          "text": "fm_data.event_time",
-          "value": "fm_data.event_time"
+          "id": "extractFields",
+          "options": {
+            "format": "json"
+          }
         },
         {
-          "$$hashKey": "object:2267",
-          "text": "fm_data.last_updated_time",
-          "value": "fm_data.last_updated_time"
-        },
-        {
-          "$$hashKey": "object:2269",
-          "text": "fm_data.alarm_identifier",
-          "value": "fm_data.alarm_identifier"
-        },
-        {
-          "$$hashKey": "object:2270",
-          "text": "fm_data.severity",
-          "value": "fm_data.severity"
-        },
-        {
-          "$$hashKey": "object:2271",
-          "text": "fm_data.alarm_text",
-          "value": "fm_data.alarm_text"
-        },
-        {
-          "$$hashKey": "object:2272",
-          "text": "fm_data_source.edge_hostname",
-          "value": "fm_data_source.edge_hostname"
-        },
-        {
-          "$$hashKey": "object:2273",
-          "text": "fm_data_source.edge_id",
-          "value": "fm_data_source.edge_id"
-        },
-        {
-          "$$hashKey": "object:2274",
-          "text": "fm_data_source.nhg_id",
-          "value": "fm_data_source.nhg_id"
-        },
-        {
-          "$$hashKey": "object:2532",
-          "text": "fm_data_source.dn",
-          "value": "fm_data_source.dn"
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "_id": true,
+              "_index": true,
+              "_type": true,
+              "fm_data.additional_text": false,
+              "fm_data.alarm_identifier": true,
+              "fm_data.alarm_state": true,
+              "fm_data.alarm_text": true,
+              "fm_data.clear_alarm_time": true,
+              "fm_data.clear_text": true,
+              "fm_data.event_type": true,
+              "fm_data.notification_type": true,
+              "fm_data.probable_cause": true,
+              "fm_data.specific_problem": true,
+              "fm_data_source.ap_id": true,
+              "fm_data_source.app_id": true,
+              "fm_data_source.app_name": true,
+              "fm_data_source.cluster_id": true,
+              "fm_data_source.dc_id": true,
+              "fm_data_source.dc_name": true,
+              "fm_data_source.edge_alias": true,
+              "fm_data_source.hw_alias": true,
+              "fm_data_source.hw_id": true,
+              "fm_data_source.nhg_alias": true,
+              "fm_data_source.serial_no": true,
+              "fm_data_source.slice_id": true,
+              "fm_data_source.technology": true,
+              "timestamp": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
         }
       ],
+      "type": "table"
+    },
+    {
       "datasource": {
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This table will show all active alarms that are minor across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
-      "fontSize": "90%",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.event_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EventTime"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.last_updated_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "LastUpdatedTime"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.edge_hostname"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EdgeHostName"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.dn"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "DN"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.fault_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FaultID"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.severity"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Severity"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.additional_text"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "AdditionalText"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.edge_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EdgeID"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.nhg_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NHGID"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
         "h": 22,
         "w": 24,
@@ -1101,170 +1422,21 @@
         "y": 51
       },
       "hideTimeOverride": false,
-      "id": 21,
+      "id": 22,
       "interval": "",
       "links": [],
-      "pageSize": 10,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "desc": false
+      "options": {
+        "footer": {
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
       },
-      "styles": [
-        {
-          "$$hashKey": "object:2284",
-          "alias": "EventTime",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.event_time",
-          "thresholds": [],
-          "type": "date",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2285",
-          "alias": "LastUpdatedTime",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.last_updated_time",
-          "thresholds": [],
-          "type": "date",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2286",
-          "alias": "EdgeHostName",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.edge_hostname",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2287",
-          "alias": "DN",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.dn",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2288",
-          "alias": "AlarmID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.alarm_identifier",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2289",
-          "alias": "Severity",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.severity",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2290",
-          "alias": "AlarmText",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.alarm_text",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2291",
-          "alias": "EdgeID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.edge_id",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:2292",
-          "alias": "NHGID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.nhg_id",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        }
-      ],
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "bucketAggs": [],
@@ -1272,82 +1444,292 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "hide": false,
           "metrics": [
             {
-              "field": "select field",
               "id": "1",
-              "meta": {},
               "settings": {
-                "size": 5000
+                "size": "500",
+                "useTimeRange": true
               },
-              "type": "raw_document"
+              "type": "raw_data"
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:MINOR",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
       ],
-      "title": " Minor Active Alarms",
-      "transform": "json",
-      "type": "table-old"
-    },
-    {
-      "columns": [
+      "title": "Minor Active Alarms",
+      "transformations": [
         {
-          "$$hashKey": "object:1958",
-          "text": "fm_data.event_time",
-          "value": "fm_data.event_time"
+          "id": "extractFields",
+          "options": {
+            "format": "json"
+          }
         },
         {
-          "$$hashKey": "object:1959",
-          "text": "fm_data.last_updated_time",
-          "value": "fm_data.last_updated_time"
-        },
-        {
-          "$$hashKey": "object:1961",
-          "text": "fm_data.alarm_identifier",
-          "value": "fm_data.alarm_identifier"
-        },
-        {
-          "$$hashKey": "object:1962",
-          "text": "fm_data.severity",
-          "value": "fm_data.severity"
-        },
-        {
-          "$$hashKey": "object:1963",
-          "text": "fm_data.alarm_text",
-          "value": "fm_data.alarm_text"
-        },
-        {
-          "$$hashKey": "object:1964",
-          "text": "fm_data_source.edge_hostname",
-          "value": "fm_data_source.edge_hostname"
-        },
-        {
-          "$$hashKey": "object:1965",
-          "text": "fm_data_source.edge_id",
-          "value": "fm_data_source.edge_id"
-        },
-        {
-          "$$hashKey": "object:1966",
-          "text": "fm_data_source.nhg_id",
-          "value": "fm_data_source.nhg_id"
-        },
-        {
-          "$$hashKey": "object:2197",
-          "text": "fm_data_source.dn",
-          "value": "fm_data_source.dn"
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "_id": true,
+              "_index": true,
+              "_type": true,
+              "fm_data.additional_text": false,
+              "fm_data.alarm_identifier": true,
+              "fm_data.alarm_state": true,
+              "fm_data.alarm_text": true,
+              "fm_data.clear_alarm_time": true,
+              "fm_data.clear_text": true,
+              "fm_data.event_type": true,
+              "fm_data.notification_type": true,
+              "fm_data.probable_cause": true,
+              "fm_data.specific_problem": true,
+              "fm_data_source.ap_id": true,
+              "fm_data_source.app_id": true,
+              "fm_data_source.app_name": true,
+              "fm_data_source.cluster_id": true,
+              "fm_data_source.dc_id": true,
+              "fm_data_source.dc_name": true,
+              "fm_data_source.edge_alias": true,
+              "fm_data_source.hw_alias": true,
+              "fm_data_source.hw_id": true,
+              "fm_data_source.nhg_alias": true,
+              "fm_data_source.serial_no": true,
+              "fm_data_source.slice_id": true,
+              "fm_data_source.technology": true,
+              "timestamp": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
         }
       ],
+      "type": "table"
+    },
+    {
       "datasource": {
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This table will show all active alarms that are warning across all edges enodeB's\n\nNote: Turnoff the refresh timer when moving to different page.",
-      "fontSize": "90%",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.event_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EventTime"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.last_updated_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "LastUpdatedTime"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.edge_hostname"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EdgeHostName"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.dn"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "DN"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.fault_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FaultID"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.severity"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Severity"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data.additional_text"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "AdditionalText"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.edge_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EdgeID"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fm_data_source.nhg_id"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NHGID"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
         "h": 22,
         "w": 24,
@@ -1358,167 +1740,18 @@
       "id": 22,
       "interval": "",
       "links": [],
-      "pageSize": 10,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "desc": false
+      "options": {
+        "footer": {
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
       },
-      "styles": [
-        {
-          "$$hashKey": "object:1976",
-          "alias": "EventTime",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.event_time",
-          "thresholds": [],
-          "type": "date",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1977",
-          "alias": "LastUpdatedTime",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.last_updated_time",
-          "thresholds": [],
-          "type": "date",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1978",
-          "alias": "EdgeHostName",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.edge_hostname",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1979",
-          "alias": "DN",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.dn",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1980",
-          "alias": "AlarmID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.alarm_identifier",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1981",
-          "alias": "Severity",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.severity",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1982",
-          "alias": "AlarmText",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data.alarm_text",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1983",
-          "alias": "EdgeID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.edge_id",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "$$hashKey": "object:1984",
-          "alias": "NHGID",
-          "align": "auto",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "fm_data_source.nhg_id",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        }
-      ],
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "bucketAggs": [],
@@ -1526,30 +1759,73 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "hide": false,
           "metrics": [
             {
-              "field": "select field",
               "id": "1",
-              "meta": {},
               "settings": {
-                "size": 5000
+                "size": "500",
+                "useTimeRange": true
               },
-              "type": "raw_document"
+              "type": "raw_data"
             }
           ],
           "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data.severity:WARNING",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
         }
       ],
       "title": "Warning Active Alarms",
-      "transform": "json",
-      "type": "table-old"
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "format": "json"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "_id": true,
+              "_index": true,
+              "_type": true,
+              "fm_data.additional_text": false,
+              "fm_data.alarm_identifier": true,
+              "fm_data.alarm_state": true,
+              "fm_data.alarm_text": true,
+              "fm_data.clear_alarm_time": true,
+              "fm_data.clear_text": true,
+              "fm_data.event_type": true,
+              "fm_data.notification_type": true,
+              "fm_data.probable_cause": true,
+              "fm_data.specific_problem": true,
+              "fm_data_source.ap_id": true,
+              "fm_data_source.app_id": true,
+              "fm_data_source.app_name": true,
+              "fm_data_source.cluster_id": true,
+              "fm_data_source.dc_id": true,
+              "fm_data_source.dc_name": true,
+              "fm_data_source.edge_alias": true,
+              "fm_data_source.hw_alias": true,
+              "fm_data_source.hw_id": true,
+              "fm_data_source.nhg_alias": true,
+              "fm_data_source.serial_no": true,
+              "fm_data_source.slice_id": true,
+              "fm_data_source.technology": true,
+              "timestamp": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
     }
   ],
-  "refresh": "30s",
-  "schemaVersion": 36,
+  "refresh": "1m",
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [
     "ApplActiveAlarms",
@@ -1589,7 +1865,6 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
-        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": true,
@@ -1598,6 +1873,7 @@
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
+        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -1640,7 +1916,6 @@
   },
   "timezone": "browser",
   "title": "NDAC Application Alarms Active Dashboard",
-  "version": 2,
   "uid": "applfmact",
   "weekStart": ""
 }

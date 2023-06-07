@@ -50,6 +50,11 @@
       "interval": 5
     },
     {
+      "api": "/network-hardware-groups/{nhg_id}/pmdata",
+      "metric_type": "IXR",
+      "interval": 5
+    },
+    {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "RADIO",
@@ -103,6 +108,20 @@
       "type": "HISTORY",
       "metric_type": "APPLICATION",
       "interval": 5,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "ACTIVE",
+      "metric_type": "IXR",
+      "interval": 30,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "HISTORY",
+      "metric_type": "IXR",
+      "interval": 1,
       "sync_duration": 15
     }
   ],

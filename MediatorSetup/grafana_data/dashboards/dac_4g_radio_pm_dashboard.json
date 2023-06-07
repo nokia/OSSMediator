@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1658907630369,
   "links": [
     {
       "asDropdown": true,
@@ -75,6 +74,20 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "IXRPM"
+      ],
+      "targetBlank": false,
+      "title": "IXR PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
       "tags": [
         "RadioAlarms"
       ],
@@ -110,6 +123,20 @@
       "targetBlank": false,
       "title": "Application Alarms",
       "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "IXRAlarms"
+      ],
+      "targetBlank": false,
+      "title": "IXR  Alarms",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
     }
   ],
   "liveNow": false,
@@ -119,7 +146,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -140,16 +166,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 50
+                "color": "dark-red"
               },
               {
                 "color": "dark-green",
-                "value": 90
+                "value": 51
               }
             ]
           },
@@ -159,7 +180,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
+        "w": 3,
         "x": 0,
         "y": 0
       },
@@ -179,6 +200,7 @@
         "showThresholdMarkers": true
       },
       "pluginVersion": "8.5.11",
+      "queryType": "lucene",
       "targets": [
         {
           "bucketAggs": [
@@ -193,11 +215,6 @@
               "type": "date_histogram"
             }
           ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Avail_M8020C3",
@@ -256,6 +273,93 @@
       "type": "gauge"
     },
     {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "Displays the number of cells up in the selected network",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 0
+      },
+      "id": 116,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.end_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "15m"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "field": "pm_data.LTE_Cell_Avail_M8020C3",
+              "id": "1",
+              "settings": {
+                "script": "doc['pm_data.LTE_Cell_Avail_M8020C3'].size()"
+              },
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND -pm_data.LTE_Cell_Avail_M8020C3:0",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "Cells UP",
+      "type": "stat"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -264,7 +368,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -275,8 +378,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 6,
-        "w": 7,
-        "x": 4,
+        "w": 6,
+        "x": 6,
         "y": 0
       },
       "hiddenSeries": false,
@@ -298,9 +401,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": false,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -326,7 +430,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C23",
@@ -337,6 +440,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         },
@@ -358,7 +462,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C22",
@@ -369,6 +472,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C22:*",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -412,7 +516,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -423,8 +526,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 6,
-        "w": 7,
-        "x": 11,
+        "w": 6,
+        "x": 12,
         "y": 0
       },
       "hiddenSeries": false,
@@ -446,9 +549,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": false,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -474,7 +578,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C26",
@@ -485,6 +588,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         },
@@ -507,7 +611,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C25",
@@ -518,6 +621,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C25:*",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -557,7 +661,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean UL PDCP traffic throughput.",
       "fieldConfig": {
         "defaults": {
@@ -597,7 +700,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "Avg PDCP Throughput UL",
@@ -629,7 +733,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C23",
@@ -640,6 +743,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -652,7 +756,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -712,7 +815,8 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
+      "queryType": "lucene",
       "targets": [
         {
           "bucketAggs": [
@@ -731,7 +835,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.LTE_UE_Quantity_M8051C58",
@@ -770,6 +873,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C58:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -782,7 +886,93 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
+      "description": "Displays the number of cells locked in the selected network",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 3
+      },
+      "id": 117,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.end_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "15m"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "field": "pm_data.LTE_Cell_Avail_M8020C3",
+              "id": "1",
+              "settings": {
+                "script": "doc['pm_data.LTE_Cell_Avail_M8020C3'].size()"
+              },
+              "type": "sum"
+            }
+          ],
+          "query": "(pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*) AND (pm_data.LTE_Cell_Avail_M8020C3:0 OR pm_data.LTE_Cell_Avail_M8020C6:0)",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "Cells Locked",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean DL PDCP traffic throughput.",
       "fieldConfig": {
         "defaults": {
@@ -822,7 +1012,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "Avg PDCP Throughput DL",
@@ -854,7 +1045,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C26",
@@ -865,6 +1055,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -881,7 +1072,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI shows the ratio of services in a cell being available for end users.",
       "fieldConfig": {
         "defaults": {
@@ -919,9 +1109,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -954,12 +1145,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Avail_M8020C3",
@@ -1010,6 +1200,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Avail_M8020C3:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -1053,7 +1244,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "E-UTRAN LTE_UE_Quantity_M8051C58\n",
       "fieldConfig": {
         "defaults": {
@@ -1090,9 +1280,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "repeatDirection": "h",
       "seriesOverrides": [],
@@ -1129,7 +1320,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.LTE_UE_Quantity_M8051C58",
@@ -1168,6 +1358,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C58:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -1207,7 +1398,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "E-UTRAN Average Latency Downlink [ms]\n",
       "fieldConfig": {
         "defaults": {
@@ -1215,6 +1405,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1248,7 +1440,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1272,7 +1465,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "table",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1280,6 +1474,7 @@
         }
       },
       "pluginVersion": "8.5.9",
+      "queryType": "lucene",
       "repeatDirection": "h",
       "targets": [
         {
@@ -1311,7 +1506,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Load_M8001C2",
@@ -1323,6 +1517,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Load_M8001C2:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -1339,7 +1534,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "The KPI shows the number of attempts for the elementary procedure \"RRC connection establishment\" used to set up a radio connection from UE to eNB (involves SRB1 establishment).",
       "fieldConfig": {
         "defaults": {
@@ -1377,9 +1571,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -1411,12 +1606,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_UE_State_M8013C17",
@@ -1539,6 +1733,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_State_M8013C17:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -1582,7 +1777,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "The KPI indicates the number of E-RAB setup attempts.",
       "fieldConfig": {
         "defaults": {
@@ -1620,9 +1814,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -1654,12 +1849,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -1698,6 +1892,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C0:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -1741,7 +1936,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "The KPI shows the setup success ratio for the RRC connection re-establishment procedure. The procedure is used in case of a failure situation (such as a radio or handover failure) to keep the UE in an LTE RRC_CONNECTED state and continue the RRC connection without going to an RRC_IDLE state.",
       "fieldConfig": {
         "defaults": {
@@ -1779,9 +1973,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -1813,12 +2008,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_RRC_M8008C5",
@@ -1869,6 +2063,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_RRC_M8008C5:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -1912,7 +2107,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "The KPI shows the Data Radio Bearer Setup Attempts.",
       "fieldConfig": {
         "defaults": {
@@ -1950,9 +2144,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -1984,12 +2179,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Radio_Bearer_M8007C0",
@@ -2028,6 +2222,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Radio_Bearer_M8007C0:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -2071,7 +2266,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI shows the average number of UEs having one SRB during the measurement period.",
       "fieldConfig": {
         "defaults": {
@@ -2109,9 +2303,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -2144,12 +2339,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_UE_Quantity_M8051C60",
@@ -2200,6 +2394,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C61:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -2243,7 +2438,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI shows the PDCP SDU volume on an eUu interface per cell in a downlink direction.",
       "fieldConfig": {
         "defaults": {
@@ -2281,9 +2475,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -2316,13 +2511,12 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
-          "hide": false,
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
+          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
@@ -2361,6 +2555,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C20:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         },
@@ -2379,13 +2574,12 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
-          "hide": false,
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
+          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
@@ -2424,6 +2618,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C20:*",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -2467,7 +2662,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI shows the PDCP SDU volume on an eUu interface per cell in an uplink direction.",
       "fieldConfig": {
         "defaults": {
@@ -2505,9 +2699,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -2541,12 +2736,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C19",
@@ -2585,6 +2779,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C19:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         },
@@ -2603,12 +2798,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C19",
@@ -2647,6 +2841,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C19:*",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -2690,7 +2885,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean UL PDCP traffic throughput.\nThis counter is updated when a PDCP SDU is received from UE.",
       "fieldConfig": {
         "defaults": {
@@ -2728,9 +2922,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -2763,12 +2958,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C23",
@@ -2779,6 +2973,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         },
@@ -2797,12 +2992,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C23",
@@ -2813,6 +3007,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -2856,7 +3051,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean DL PDCP traffic throughput.\nThis counter is updated when a PDCP SDU is transmitted towards the UE.",
       "fieldConfig": {
         "defaults": {
@@ -2894,9 +3088,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "9.3.6",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -2929,12 +3124,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C26",
@@ -2945,6 +3139,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         },
@@ -2963,12 +3158,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C26",
@@ -2979,6 +3173,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
+          "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -3022,7 +3217,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI describes the total number of RA preambles.\nBoth contention based and dedicated preambles are considered within the KPI.",
       "fieldConfig": {
         "defaults": {
@@ -3063,6 +3257,7 @@
       "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -3095,12 +3290,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Load_M8001C6",
@@ -3179,6 +3373,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Load_M8001C6:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -3222,7 +3417,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "The KPI shows the setup success ratio for the elementary procedure \"RRC connection establishment\" used to set up a radio connection from UE to eNB (involves SRB1 establishment) .",
       "fieldConfig": {
         "defaults": {
@@ -3263,6 +3457,7 @@
       "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -3295,12 +3490,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_UE_State_M8013C5",
@@ -3435,6 +3629,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_State_M8013C5:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -3478,7 +3673,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI describes the ratio of abnormally released (dropped) E-RABs from RAN point of view.\nEach bearer of the Bearer to be Released List IE is counted. RAN point of view means that as abnormal E-RAB drops only those ones initiated by eNB are counted.E-RAB releases due to pre-emption initiated by eNB are counted as normal releases as they are not real drops resulted from any radio quality problems. In denominator of the formula normal E-RAB releases due to successful HO to eHRPD are not counted.",
       "fieldConfig": {
         "defaults": {
@@ -3519,6 +3713,7 @@
       "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -3551,12 +3746,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_EPS_Bearer_M8006C261",
@@ -3881,6 +4075,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C261:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -3924,7 +4119,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "The KPI indicates the setup success ratio of the elementary E-RAB setup procedure, used to set up the E-RAB between MME and UE.\nIt shows the E-UTRAN's contribution to network accessibility for the end user, not the whole end-to-end service accessibility.",
       "fieldConfig": {
         "defaults": {
@@ -3965,6 +4159,7 @@
       "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -3997,12 +4192,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_EPS_Bearer_M8006C0",
@@ -4053,6 +4247,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C0:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -4096,7 +4291,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "The KPI shows the RRC Connection Re-establishment Attempts per type, e.g. total, due to \"HandoverFailure\", due to \"otherFailure\" or due to \"reconfigFailure\".",
       "fieldConfig": {
         "defaults": {
@@ -4137,6 +4331,7 @@
       "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -4169,12 +4364,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_RRC_M8008C4",
@@ -4213,6 +4407,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_RRC_M8008C4:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -4256,7 +4451,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI shows the average value of the physical resource block (PRB) utilization per TTI in a downlink direction. The utilization is defined by the ratio of used to available PRBs per TTI.\nThe monitoring also includes almost blank subframes (ABSs) for the cells that are configured as macro ones in the eICIC partnership.",
       "fieldConfig": {
         "defaults": {
@@ -4297,6 +4491,7 @@
       "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -4329,12 +4524,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Resource_M8011C37",
@@ -4373,6 +4567,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Resource_M8011C37:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -4416,7 +4611,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI shows the average value of the physical resource block (PRB) utilization per TTI in an uplink direction. The utilization is defined by the ratio of used to available PRBs per TTI.",
       "fieldConfig": {
         "defaults": {
@@ -4457,6 +4651,7 @@
       "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -4489,12 +4684,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Resource_M8011C24",
@@ -4533,6 +4727,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Resource_M8011C24:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -4576,7 +4771,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI shows the average UE reported Channel\nQuality Indicator (CQI) value.",
       "fieldConfig": {
         "defaults": {
@@ -4617,6 +4811,7 @@
       "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -4649,12 +4844,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C36",
@@ -5063,6 +5257,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_DL_M8010C36:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -5106,7 +5301,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI indicates the success ratio for the inter-frequency HO when the source eNB receives information that the UE is successfully connected to the target cell within the target eNB. The KPI is defined independently of network topology (intra-eNB HO/inter-eNB HO) and of the usage of measurement gaps.",
       "fieldConfig": {
         "defaults": {
@@ -5147,6 +5341,7 @@
       "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -5179,12 +5374,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Handover_M8021C2",
@@ -5249,6 +5443,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Handover_M8021C2:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -5292,7 +5487,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI indicates attempts at an intra-frequency HO when the source eNB receives information that the UE is successfully connected to the target cell. The KPI is defined independently of  network topology (intra-eNB HO/inter-eNB HO).",
       "fieldConfig": {
         "defaults": {
@@ -5333,6 +5527,7 @@
       "pluginVersion": "8.5.11",
       "pointradius": 2,
       "points": true,
+      "queryType": "lucene",
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -5365,12 +5560,11 @@
               "type": "date_histogram"
             }
           ],
-          "dsType": "grafana-opensearch-datasource",
           "datasource": {
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
+          "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
               "field": "pm_data.LTE_Intra_eNB_HO_M8009C7",
@@ -5509,6 +5703,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND (pm_data.LTE_Intra_eNB_HO_M8009C7:* OR pm_data.LTE_Inter_eNB_HO_M8014C7:* OR pm_data.LTE_Handover_M8021C2:*)",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -5548,7 +5743,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI shows the average Received Signal Strength Indicator (RSSI) value measured in the eNB for a physical UL control channel (PUCCH) per cell and normalized per the number of PRBs applicable to PUCCH.",
       "fieldConfig": {
         "defaults": {
@@ -5614,7 +5808,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "table",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -5622,6 +5817,7 @@
         }
       },
       "pluginVersion": "8.5.9",
+      "queryType": "lucene",
       "targets": [
         {
           "bucketAggs": [
@@ -5653,7 +5849,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -5663,6 +5858,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_UL_M8005C208:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -5675,7 +5871,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "description": "This KPI shows the average Received Signal Strength Indicator (RSSI) value measured in the eNB for a physical UL shared channel (PUSCH) per cell and normalized per bandwidth (that is, a total number of PRBs).",
       "fieldConfig": {
         "defaults": {
@@ -5741,7 +5936,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "table",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -5749,6 +5945,7 @@
         }
       },
       "pluginVersion": "8.5.9",
+      "queryType": "lucene",
       "targets": [
         {
           "bucketAggs": [
@@ -5780,7 +5977,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -5790,6 +5986,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_UL_M8005C233:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
@@ -5798,8 +5995,8 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
-  "schemaVersion": 36,
+  "refresh": "15m",
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [
     "Radio4G"
@@ -5826,15 +6023,15 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "Altoona Spare 24-109",
-          "value": "Altoona Spare 24-109"
+          "isNone": true,
+          "selected": false,
+          "text": "None",
+          "value": ""
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
-        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
@@ -5843,6 +6040,7 @@
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -5866,7 +6064,6 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
-        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
         "hide": 0,
         "includeAll": true,
@@ -5875,6 +6072,7 @@
         "name": "ap_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
+        "queryType": "lucene",
         "refresh": 2,
         "regex": ".*BTS-(\\d+).*",
         "skipUrlSync": false,

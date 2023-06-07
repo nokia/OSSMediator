@@ -320,7 +320,7 @@ func TestPushFailedDataToElasticsearch(t *testing.T) {
 
 func searchOnElastic(indices []string) (string, error) {
 	searchURL := elasticsearchURL + "/" + strings.Join(indices, ",") + "/_search"
-	resp, err := httpCall(http.MethodGet, searchURL, "", "", nil, nil, defaultTimeout)
+	resp, err := httpCall(http.MethodGet, searchURL, "", "", "", nil, defaultTimeout)
 	if err != nil {
 		return "", err
 	}
@@ -447,7 +447,7 @@ func TestDeleteOldIndicesFormElasticsearch(t *testing.T) {
 	testIndices := []string{"4g-pm-" + indexSuffix, "5g-pm-" + indexSuffix}
 	for _, index := range testIndices {
 		indexCreateURL := elasticsearchURL + "/" + index
-		_, err := httpCall(http.MethodPut, indexCreateURL, "", "", nil, nil, defaultTimeout)
+		_, err := httpCall(http.MethodPut, indexCreateURL, "", "", "", nil, defaultTimeout)
 		if err != nil {
 			t.Error(err)
 		}
@@ -493,7 +493,7 @@ func TestAddCorePMMappingInvalidAddress(t *testing.T) {
 	time.Sleep(1 * time.Second)
 	esConf.URL = "http://localhost:12345"
 
-	AddCorePMMapping(esConf)
+	AddPMMapping(esConf, "core-pm")
 
 	_, err := searchOnElastic([]string{"core-pm"})
 	if err != nil && !strings.Contains(err.Error(), "status: 404 Not Found") {
@@ -509,9 +509,9 @@ func TestAddCorePMMapping(t *testing.T) {
 	deleteIndices([]string{"core-pm"}, esConf)
 	time.Sleep(1 * time.Second)
 
-	AddCorePMMapping(esConf)
+	AddPMMapping(esConf, "core-pm")
 
-	resp, err := getCorePMMapping("core-pm", "pm_data.*", esConf)
+	resp, err := getPMMapping("core-pm", "pm_data.*", esConf)
 	if err != nil {
 		t.Error(err)
 	}
@@ -526,7 +526,7 @@ func TestAddCorePMMapping(t *testing.T) {
 	defer func() {
 		log.SetOutput(os.Stderr)
 	}()
-	AddCorePMMapping(esConf)
+	AddPMMapping(esConf, "core-pm")
 	if !strings.Contains(buf.String(), "Found correct mapping for core-pm") {
 		t.Fail()
 	}
@@ -552,20 +552,20 @@ func TestAddCorePMMappingWithInvalidMapping(t *testing.T) {
 	}`
 
 	url := elasticsearchURL + "/core-pm/_doc"
-	_, err := httpCall(http.MethodPost, url, esConf.User, esConf.Password, &testData, nil, defaultTimeout)
+	_, err := httpCall(http.MethodPost, url, esConf.User, esConf.Password, testData, nil, defaultTimeout)
 	if err != nil {
 		t.Error(err)
 	}
 	time.Sleep(100 * time.Millisecond)
 
-	AddCorePMMapping(esConf)
+	AddPMMapping(esConf, "core-pm")
 
 	url = elasticsearchURL + "/core-pm/_doc"
-	_, err = httpCall(http.MethodPost, url, esConf.User, esConf.Password, &testData, nil, defaultTimeout)
+	_, err = httpCall(http.MethodPost, url, esConf.User, esConf.Password, testData, nil, defaultTimeout)
 	if err != nil {
 		t.Error(err)
 	}
-	resp, err := getCorePMMapping("core-pm", "pm_data.*", esConf)
+	resp, err := getPMMapping("core-pm", "pm_data.*", esConf)
 	if err != nil {
 		t.Error(err)
 	}

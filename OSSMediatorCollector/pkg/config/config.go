@@ -81,7 +81,7 @@ type UMConf struct {
 }
 
 type AzureConf struct {
-	Refresh string `json:"azure-refresh-sessions"`
+	Refresh string `json:"refresh"`
 }
 
 // APIConf keeps API configs

@@ -135,6 +135,8 @@ func setToken(response *UMResponse, user *config.User) {
 func RefreshToken(user *config.User) {
 	apiURL := config.Conf.BaseURL
 	authType := strings.ToUpper(user.AuthType)
+	fmt.Println("user auth is :", authType)
+	fmt.Println("azure refresh url is: ", config.Conf.AzureSessionAPIs.Refresh)
 	if authType == "ADTOKEN" {
 		apiURL = apiURL + config.Conf.AzureSessionAPIs.Refresh
 	} else {

@@ -139,6 +139,7 @@ func RefreshToken(user *config.User) {
 	} else {
 		apiURL = apiURL + config.Conf.UMAPIs.Refresh
 	}
+	fmt.Println("Refresh url is : ", apiURL)
 	duration := getRefreshDuration(user)
 	refreshTimer := time.NewTimer(duration)
 	for {

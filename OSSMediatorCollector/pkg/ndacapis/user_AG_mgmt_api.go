@@ -24,6 +24,8 @@ type AccUUIDResponse struct {
 func fetchOrgUUID(api *config.APIConf, user *config.User, txnID uint64) (OrgUUIDResponse, error) {
 	orgResp := OrgUUIDResponse{}
 	apiURL := config.Conf.BaseURL + config.Conf.UserAGAPIs.ListOrgUUID
+	fmt.Println("detchorguuid user auth is :", user.AuthType)
+	fmt.Println("fetchorguuid azure refresh url is: ", config.Conf.AzureSessionAPIs.Refresh)
 	fmt.Println("url for fetchorguuid: ", apiURL)
 	fmt.Println("refresh url from fetchorguud", config.Conf.BaseURL+config.Conf.AzureSessionAPIs.Refresh)
 	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "api_type": api.Type, "metric_type": api.MetricType}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())

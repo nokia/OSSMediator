@@ -116,6 +116,8 @@ func ReadConfig(confFile string) error {
 	Conf.UMAPIs.Logout = strings.TrimSpace(Conf.UMAPIs.Logout)
 	Conf.UMAPIs.Refresh = strings.TrimSpace(Conf.UMAPIs.Refresh)
 
+	fmt.Println("config refresh url : ", Conf.AzureSessionAPIs.Refresh)
+
 	Conf.UserAGAPIs.ListOrgUUID = strings.TrimSpace(Conf.UserAGAPIs.ListOrgUUID)
 	Conf.UserAGAPIs.ListAccUUID = strings.TrimSpace(Conf.UserAGAPIs.ListAccUUID)
 

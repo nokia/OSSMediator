@@ -134,7 +134,7 @@ func setToken(response *UMResponse, user *config.User) {
 // Input parameter apiUrl is the API URL for refreshing session.
 func RefreshToken(user *config.User) {
 	apiURL := config.Conf.BaseURL
-	if user.AuthType == "TOKEN" {
+	if user.AuthType == "ADTOKEN" {
 		apiURL = apiURL + config.Conf.AzureSessionAPIs.Refresh
 	} else {
 		apiURL = apiURL + config.Conf.UMAPIs.Refresh

@@ -135,14 +135,12 @@ func setToken(response *UMResponse, user *config.User) {
 func RefreshToken(user *config.User) {
 	apiURL := config.Conf.BaseURL
 	authType := strings.ToUpper(user.AuthType)
-	fmt.Println("user auth is :", authType)
-	fmt.Println("azure refresh url is: ", config.Conf.AzureSessionAPIs.Refresh)
+
 	if authType == "ADTOKEN" {
 		apiURL = apiURL + config.Conf.AzureSessionAPIs.Refresh
 	} else {
 		apiURL = apiURL + config.Conf.UMAPIs.Refresh
 	}
-	fmt.Println("Refresh url is : ", apiURL)
 	duration := getRefreshDuration(user)
 	refreshTimer := time.NewTimer(duration)
 	for {
@@ -162,7 +160,7 @@ func RefreshToken(user *config.User) {
 						break
 					}
 				}
-				if count == 4 {
+				if count == 3 {
 					user.IsSessionAlive = false
 					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s after multiple retries..Please restart OSSMediator with a new token", user.Email)
 					log.Info("Terminating DA OSS Collector...")

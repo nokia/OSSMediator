@@ -753,8 +753,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2592,9 +2591,10 @@
       },
       {
         "current": {
+          "isNone": true,
           "selected": false,
-          "text": "Edge25c1",
-          "value": "Edge25c1"
+          "text": "None",
+          "value": ""
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -2617,9 +2617,10 @@
       },
       {
         "current": {
+          "isNone": true,
           "selected": false,
-          "text": "18-503-n-1",
-          "value": "18-503-n-1"
+          "text": "None",
+          "value": ""
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -2642,9 +2643,10 @@
       },
       {
         "current": {
+          "isNone": true,
           "selected": false,
-          "text": "92145b77-89bb-4940-4a32-37467a3d9ea3",
-          "value": "92145b77-89bb-4940-4a32-37467a3d9ea3"
+          "text": "None",
+          "value": ""
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",

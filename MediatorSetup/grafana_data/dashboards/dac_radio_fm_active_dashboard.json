@@ -967,7 +967,7 @@
               "type": "raw_data"
             }
           ],
-          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid AND ((fm_data.specific_problem:6825) OR (fm_data.specific_problem:7655) OR (fm_data.specific_problem:61631))",
+          "query": "fm_data.alarm_state:ACTIVE AND fm_data_source.nhg_alias.keyword:$nhgname AND fm_data_source.dn:$apid  AND ((fm_data.specific_problem:6825) OR (fm_data.specific_problem:7655) OR (fm_data.specific_problem:61631))",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "fm_data.event_time"
@@ -990,12 +990,13 @@
               "_index": true,
               "_type": true,
               "fm_data.additional_text": false,
+              "fm_data.alarm_state": true,
               "fm_data.clear_alarm_time": true,
               "fm_data.clear_text": true,
               "fm_data.event_type": true,
               "fm_data.fault_id": true,
               "fm_data.notification_type": true,
-              "fm_data.probable_cause": false,
+              "fm_data.probable_cause": true,
               "fm_data_source.ap_id": true,
               "fm_data_source.app_id": true,
               "fm_data_source.app_name": true,
@@ -1082,8 +1083,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1411,6 +1411,7 @@
               "fm_data.event_type": true,
               "fm_data.fault_id": true,
               "fm_data.notification_type": true,
+              "fm_data.probable_cause": true,
               "fm_data_source": true,
               "fm_data_source.ap_id": true,
               "fm_data_source.app_id": true,
@@ -1496,8 +1497,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1817,12 +1817,14 @@
               "event_type": true,
               "fault_id": true,
               "fm_data": true,
+              "fm_data.alarm_identifier": true,
               "fm_data.alarm_state": true,
               "fm_data.clear_alarm_time": true,
               "fm_data.clear_text": true,
               "fm_data.event_type": true,
               "fm_data.fault_id": true,
               "fm_data.notification_type": true,
+              "fm_data.probable_cause": true,
               "fm_data_source": true,
               "fm_data_source.ap_id": true,
               "fm_data_source.app_id": true,
@@ -1909,8 +1911,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2157,7 +2158,7 @@
         "y": 72
       },
       "hideTimeOverride": false,
-      "id": 17,
+      "id": 45,
       "interval": "",
       "links": [],
       "options": {
@@ -2220,12 +2221,14 @@
               "event_type": true,
               "fault_id": true,
               "fm_data": true,
+              "fm_data.alarm_identifier": true,
               "fm_data.alarm_state": true,
               "fm_data.clear_alarm_time": true,
               "fm_data.clear_text": true,
               "fm_data.event_type": true,
               "fm_data.fault_id": true,
               "fm_data.notification_type": true,
+              "fm_data.probable_cause": true,
               "fm_data_source": true,
               "fm_data_source.ap_id": true,
               "fm_data_source.app_id": true,
@@ -2312,8 +2315,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2582,6 +2584,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
+          "hide": false,
           "metrics": [
             {
               "id": "1",
@@ -2629,12 +2632,14 @@
               "event_type": true,
               "fault_id": true,
               "fm_data": true,
+              "fm_data.alarm_identifier": true,
               "fm_data.alarm_state": true,
               "fm_data.clear_alarm_time": true,
               "fm_data.clear_text": true,
               "fm_data.event_type": true,
               "fm_data.fault_id": true,
               "fm_data.notification_type": true,
+              "fm_data.probable_cause": true,
               "fm_data_source": true,
               "fm_data_source.ap_id": true,
               "fm_data_source.app_id": true,

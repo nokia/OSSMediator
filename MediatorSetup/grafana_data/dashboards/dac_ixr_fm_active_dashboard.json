@@ -580,7 +580,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -784,7 +785,7 @@
         "h": 22,
         "w": 24,
         "x": 0,
-        "y": 73
+        "y": 7
       },
       "hideTimeOverride": false,
       "id": 22,
@@ -858,16 +859,56 @@
               "fm_data_source.dc_id": true,
               "fm_data_source.dc_name": true,
               "fm_data_source.edge_alias": true,
+              "fm_data_source.edge_hostname": true,
               "fm_data_source.hw_alias": true,
               "fm_data_source.hw_id": true,
-              "fm_data_source.nhg_alias": true,
+              "fm_data_source.nhg_alias": false,
+              "fm_data_source.nhg_id": true,
               "fm_data_source.serial_no": true,
               "fm_data_source.slice_id": true,
               "fm_data_source.technology": true,
               "timestamp": true
             },
-            "indexByName": {},
-            "renameByName": {}
+            "indexByName": {
+              "_id": 3,
+              "_index": 4,
+              "_type": 5,
+              "fm_data.additional_text": 6,
+              "fm_data.alarm_identifier": 7,
+              "fm_data.alarm_state": 8,
+              "fm_data.alarm_text": 9,
+              "fm_data.clear_alarm_time": 10,
+              "fm_data.clear_text": 11,
+              "fm_data.event_time": 0,
+              "fm_data.event_type": 12,
+              "fm_data.fault_id": 13,
+              "fm_data.last_updated_time": 1,
+              "fm_data.notification_type": 14,
+              "fm_data.probable_cause": 15,
+              "fm_data.severity": 16,
+              "fm_data.specific_problem": 17,
+              "fm_data_source.ap_id": 18,
+              "fm_data_source.app_id": 19,
+              "fm_data_source.app_name": 20,
+              "fm_data_source.cluster_id": 21,
+              "fm_data_source.dc_id": 22,
+              "fm_data_source.dc_name": 23,
+              "fm_data_source.dn": 2,
+              "fm_data_source.edge_alias": 24,
+              "fm_data_source.edge_hostname": 25,
+              "fm_data_source.edge_id": 26,
+              "fm_data_source.hw_alias": 27,
+              "fm_data_source.hw_id": 28,
+              "fm_data_source.nhg_alias": 29,
+              "fm_data_source.nhg_id": 30,
+              "fm_data_source.serial_no": 31,
+              "fm_data_source.slice_id": 32,
+              "fm_data_source.technology": 33,
+              "timestamp": 34
+            },
+            "renameByName": {
+              "fm_data_source.nhg_alias": "NHGName"
+            }
           }
         }
       ],
@@ -1098,10 +1139,10 @@
         "h": 22,
         "w": 24,
         "x": 0,
-        "y": 73
+        "y": 29
       },
       "hideTimeOverride": false,
-      "id": 22,
+      "id": 25,
       "interval": "",
       "links": [],
       "options": {
@@ -1172,16 +1213,56 @@
               "fm_data_source.dc_id": true,
               "fm_data_source.dc_name": true,
               "fm_data_source.edge_alias": true,
+              "fm_data_source.edge_hostname": true,
               "fm_data_source.hw_alias": true,
               "fm_data_source.hw_id": true,
-              "fm_data_source.nhg_alias": true,
+              "fm_data_source.nhg_alias": false,
+              "fm_data_source.nhg_id": true,
               "fm_data_source.serial_no": true,
               "fm_data_source.slice_id": true,
               "fm_data_source.technology": true,
               "timestamp": true
             },
-            "indexByName": {},
-            "renameByName": {}
+            "indexByName": {
+              "_id": 3,
+              "_index": 4,
+              "_type": 5,
+              "fm_data.additional_text": 6,
+              "fm_data.alarm_identifier": 7,
+              "fm_data.alarm_state": 8,
+              "fm_data.alarm_text": 9,
+              "fm_data.clear_alarm_time": 10,
+              "fm_data.clear_text": 11,
+              "fm_data.event_time": 0,
+              "fm_data.event_type": 12,
+              "fm_data.fault_id": 13,
+              "fm_data.last_updated_time": 1,
+              "fm_data.notification_type": 14,
+              "fm_data.probable_cause": 15,
+              "fm_data.severity": 16,
+              "fm_data.specific_problem": 17,
+              "fm_data_source.ap_id": 18,
+              "fm_data_source.app_id": 19,
+              "fm_data_source.app_name": 20,
+              "fm_data_source.cluster_id": 21,
+              "fm_data_source.dc_id": 22,
+              "fm_data_source.dc_name": 23,
+              "fm_data_source.dn": 2,
+              "fm_data_source.edge_alias": 24,
+              "fm_data_source.edge_hostname": 25,
+              "fm_data_source.edge_id": 26,
+              "fm_data_source.hw_alias": 27,
+              "fm_data_source.hw_id": 28,
+              "fm_data_source.nhg_alias": 29,
+              "fm_data_source.nhg_id": 30,
+              "fm_data_source.serial_no": 31,
+              "fm_data_source.slice_id": 32,
+              "fm_data_source.technology": 33,
+              "timestamp": 34
+            },
+            "renameByName": {
+              "fm_data_source.nhg_alias": "NHGName"
+            }
           }
         }
       ],
@@ -1412,10 +1493,10 @@
         "h": 22,
         "w": 24,
         "x": 0,
-        "y": 73
+        "y": 51
       },
       "hideTimeOverride": false,
-      "id": 22,
+      "id": 24,
       "interval": "",
       "links": [],
       "options": {
@@ -1486,16 +1567,56 @@
               "fm_data_source.dc_id": true,
               "fm_data_source.dc_name": true,
               "fm_data_source.edge_alias": true,
+              "fm_data_source.edge_hostname": true,
               "fm_data_source.hw_alias": true,
               "fm_data_source.hw_id": true,
-              "fm_data_source.nhg_alias": true,
+              "fm_data_source.nhg_alias": false,
+              "fm_data_source.nhg_id": true,
               "fm_data_source.serial_no": true,
               "fm_data_source.slice_id": true,
               "fm_data_source.technology": true,
               "timestamp": true
             },
-            "indexByName": {},
-            "renameByName": {}
+            "indexByName": {
+              "_id": 3,
+              "_index": 4,
+              "_type": 5,
+              "fm_data.additional_text": 6,
+              "fm_data.alarm_identifier": 7,
+              "fm_data.alarm_state": 8,
+              "fm_data.alarm_text": 9,
+              "fm_data.clear_alarm_time": 10,
+              "fm_data.clear_text": 11,
+              "fm_data.event_time": 0,
+              "fm_data.event_type": 12,
+              "fm_data.fault_id": 13,
+              "fm_data.last_updated_time": 1,
+              "fm_data.notification_type": 14,
+              "fm_data.probable_cause": 15,
+              "fm_data.severity": 16,
+              "fm_data.specific_problem": 17,
+              "fm_data_source.ap_id": 18,
+              "fm_data_source.app_id": 19,
+              "fm_data_source.app_name": 20,
+              "fm_data_source.cluster_id": 21,
+              "fm_data_source.dc_id": 22,
+              "fm_data_source.dc_name": 23,
+              "fm_data_source.dn": 2,
+              "fm_data_source.edge_alias": 24,
+              "fm_data_source.edge_hostname": 25,
+              "fm_data_source.edge_id": 26,
+              "fm_data_source.hw_alias": 27,
+              "fm_data_source.hw_id": 28,
+              "fm_data_source.nhg_alias": 29,
+              "fm_data_source.nhg_id": 30,
+              "fm_data_source.serial_no": 31,
+              "fm_data_source.slice_id": 32,
+              "fm_data_source.technology": 33,
+              "timestamp": 34
+            },
+            "renameByName": {
+              "fm_data_source.nhg_alias": "NHGName"
+            }
           }
         }
       ],
@@ -1729,7 +1850,7 @@
         "y": 73
       },
       "hideTimeOverride": false,
-      "id": 22,
+      "id": 23,
       "interval": "",
       "links": [],
       "options": {
@@ -1800,16 +1921,56 @@
               "fm_data_source.dc_id": true,
               "fm_data_source.dc_name": true,
               "fm_data_source.edge_alias": true,
+              "fm_data_source.edge_hostname": true,
               "fm_data_source.hw_alias": true,
               "fm_data_source.hw_id": true,
-              "fm_data_source.nhg_alias": true,
+              "fm_data_source.nhg_alias": false,
+              "fm_data_source.nhg_id": true,
               "fm_data_source.serial_no": true,
               "fm_data_source.slice_id": true,
               "fm_data_source.technology": true,
               "timestamp": true
             },
-            "indexByName": {},
-            "renameByName": {}
+            "indexByName": {
+              "_id": 3,
+              "_index": 4,
+              "_type": 5,
+              "fm_data.additional_text": 6,
+              "fm_data.alarm_identifier": 7,
+              "fm_data.alarm_state": 8,
+              "fm_data.alarm_text": 9,
+              "fm_data.clear_alarm_time": 10,
+              "fm_data.clear_text": 11,
+              "fm_data.event_time": 0,
+              "fm_data.event_type": 12,
+              "fm_data.fault_id": 13,
+              "fm_data.last_updated_time": 1,
+              "fm_data.notification_type": 14,
+              "fm_data.probable_cause": 15,
+              "fm_data.severity": 16,
+              "fm_data.specific_problem": 17,
+              "fm_data_source.ap_id": 18,
+              "fm_data_source.app_id": 19,
+              "fm_data_source.app_name": 20,
+              "fm_data_source.cluster_id": 21,
+              "fm_data_source.dc_id": 22,
+              "fm_data_source.dc_name": 23,
+              "fm_data_source.dn": 2,
+              "fm_data_source.edge_alias": 24,
+              "fm_data_source.edge_hostname": 25,
+              "fm_data_source.edge_id": 26,
+              "fm_data_source.hw_alias": 27,
+              "fm_data_source.hw_id": 28,
+              "fm_data_source.nhg_alias": 29,
+              "fm_data_source.nhg_id": 30,
+              "fm_data_source.serial_no": 31,
+              "fm_data_source.slice_id": 32,
+              "fm_data_source.technology": 33,
+              "timestamp": 34
+            },
+            "renameByName": {
+              "fm_data_source.nhg_alias": "NHGName"
+            }
           }
         }
       ],

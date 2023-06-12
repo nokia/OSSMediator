@@ -527,7 +527,7 @@ func TestAddCorePMMapping(t *testing.T) {
 		log.SetOutput(os.Stderr)
 	}()
 	AddPMMapping(esConf, "core-pm")
-	if !strings.Contains(buf.String(), "Found correct mapping for core-pm") {
+	if !strings.Contains(buf.String(), "Found correct mapping for : core-pm") {
 		t.Fail()
 	}
 

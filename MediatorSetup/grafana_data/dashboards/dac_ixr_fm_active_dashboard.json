@@ -21,7 +21,7 @@
       }
     ]
   },
-  "description": "NDAC Application FM Active alarms dashboard",
+  "description": "NDAC IXR FM Active alarms dashboard",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -29,7 +29,7 @@
     {
       "icon": "external link",
       "tags": [
-        "ApplHistoryAlarms"
+        "IXRHistoryAlarms"
       ],
       "type": "dashboards"
     },
@@ -127,16 +127,12 @@
     {
       "asDropdown": true,
       "icon": "external link",
-      "includeVars": false,
-      "keepTime": false,
       "tags": [
-        "IXRAlarms"
+        "ApplAlarms"
       ],
       "targetBlank": false,
-      "title": "IXR  Alarms",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
+      "title": "Application Alarms",
+      "type": "dashboards"
     }
   ],
   "liveNow": false,
@@ -164,7 +160,7 @@
         "mode": "markdown"
       },
       "pluginVersion": "9.3.6",
-      "title": "NDAC APPLICATION ACTIVE ALARMS DASHBOARD",
+      "title": "NDAC IXR ACTIVE ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
     },
@@ -846,10 +842,10 @@
               "_id": true,
               "_index": true,
               "_type": true,
-              "fm_data.additional_text": true,
+              "fm_data.additional_text": false,
               "fm_data.alarm_identifier": true,
               "fm_data.alarm_state": true,
-              "fm_data.alarm_text": false,
+              "fm_data.alarm_text": true,
               "fm_data.clear_alarm_time": true,
               "fm_data.clear_text": true,
               "fm_data.event_type": true,
@@ -874,19 +870,19 @@
               "timestamp": true
             },
             "indexByName": {
-              "_id": 1,
-              "_index": 2,
-              "_type": 3,
-              "fm_data.additional_text": 4,
-              "fm_data.alarm_identifier": 5,
-              "fm_data.alarm_state": 6,
-              "fm_data.alarm_text": 13,
-              "fm_data.clear_alarm_time": 7,
-              "fm_data.clear_text": 8,
+              "_id": 3,
+              "_index": 4,
+              "_type": 5,
+              "fm_data.additional_text": 6,
+              "fm_data.alarm_identifier": 7,
+              "fm_data.alarm_state": 8,
+              "fm_data.alarm_text": 9,
+              "fm_data.clear_alarm_time": 10,
+              "fm_data.clear_text": 11,
               "fm_data.event_time": 0,
-              "fm_data.event_type": 9,
-              "fm_data.fault_id": 12,
-              "fm_data.last_updated_time": 10,
+              "fm_data.event_type": 12,
+              "fm_data.fault_id": 13,
+              "fm_data.last_updated_time": 1,
               "fm_data.notification_type": 14,
               "fm_data.probable_cause": 15,
               "fm_data.severity": 16,
@@ -897,7 +893,7 @@
               "fm_data_source.cluster_id": 21,
               "fm_data_source.dc_id": 22,
               "fm_data_source.dc_name": 23,
-              "fm_data_source.dn": 11,
+              "fm_data_source.dn": 2,
               "fm_data_source.edge_alias": 24,
               "fm_data_source.edge_hostname": 25,
               "fm_data_source.edge_id": 26,
@@ -911,7 +907,6 @@
               "timestamp": 34
             },
             "renameByName": {
-              "fm_data.alarm_text": "AlarmText",
               "fm_data_source.nhg_alias": "NHGName"
             }
           }
@@ -1201,10 +1196,10 @@
               "_id": true,
               "_index": true,
               "_type": true,
-              "fm_data.additional_text": true,
+              "fm_data.additional_text": false,
               "fm_data.alarm_identifier": true,
               "fm_data.alarm_state": true,
-              "fm_data.alarm_text": false,
+              "fm_data.alarm_text": true,
               "fm_data.clear_alarm_time": true,
               "fm_data.clear_text": true,
               "fm_data.event_type": true,
@@ -1229,19 +1224,19 @@
               "timestamp": true
             },
             "indexByName": {
-              "_id": 1,
-              "_index": 2,
-              "_type": 3,
-              "fm_data.additional_text": 4,
-              "fm_data.alarm_identifier": 5,
-              "fm_data.alarm_state": 6,
-              "fm_data.alarm_text": 13,
-              "fm_data.clear_alarm_time": 7,
-              "fm_data.clear_text": 8,
+              "_id": 3,
+              "_index": 4,
+              "_type": 5,
+              "fm_data.additional_text": 6,
+              "fm_data.alarm_identifier": 7,
+              "fm_data.alarm_state": 8,
+              "fm_data.alarm_text": 9,
+              "fm_data.clear_alarm_time": 10,
+              "fm_data.clear_text": 11,
               "fm_data.event_time": 0,
-              "fm_data.event_type": 9,
-              "fm_data.fault_id": 12,
-              "fm_data.last_updated_time": 10,
+              "fm_data.event_type": 12,
+              "fm_data.fault_id": 13,
+              "fm_data.last_updated_time": 1,
               "fm_data.notification_type": 14,
               "fm_data.probable_cause": 15,
               "fm_data.severity": 16,
@@ -1252,7 +1247,7 @@
               "fm_data_source.cluster_id": 21,
               "fm_data_source.dc_id": 22,
               "fm_data_source.dc_name": 23,
-              "fm_data_source.dn": 11,
+              "fm_data_source.dn": 2,
               "fm_data_source.edge_alias": 24,
               "fm_data_source.edge_hostname": 25,
               "fm_data_source.edge_id": 26,
@@ -1266,7 +1261,6 @@
               "timestamp": 34
             },
             "renameByName": {
-              "fm_data.alarm_text": "AlarmText",
               "fm_data_source.nhg_alias": "NHGName"
             }
           }
@@ -1556,10 +1550,10 @@
               "_id": true,
               "_index": true,
               "_type": true,
-              "fm_data.additional_text": true,
+              "fm_data.additional_text": false,
               "fm_data.alarm_identifier": true,
               "fm_data.alarm_state": true,
-              "fm_data.alarm_text": false,
+              "fm_data.alarm_text": true,
               "fm_data.clear_alarm_time": true,
               "fm_data.clear_text": true,
               "fm_data.event_type": true,
@@ -1584,19 +1578,19 @@
               "timestamp": true
             },
             "indexByName": {
-              "_id": 1,
-              "_index": 2,
-              "_type": 3,
-              "fm_data.additional_text": 4,
-              "fm_data.alarm_identifier": 5,
-              "fm_data.alarm_state": 6,
-              "fm_data.alarm_text": 13,
-              "fm_data.clear_alarm_time": 7,
-              "fm_data.clear_text": 8,
+              "_id": 3,
+              "_index": 4,
+              "_type": 5,
+              "fm_data.additional_text": 6,
+              "fm_data.alarm_identifier": 7,
+              "fm_data.alarm_state": 8,
+              "fm_data.alarm_text": 9,
+              "fm_data.clear_alarm_time": 10,
+              "fm_data.clear_text": 11,
               "fm_data.event_time": 0,
-              "fm_data.event_type": 9,
-              "fm_data.fault_id": 12,
-              "fm_data.last_updated_time": 10,
+              "fm_data.event_type": 12,
+              "fm_data.fault_id": 13,
+              "fm_data.last_updated_time": 1,
               "fm_data.notification_type": 14,
               "fm_data.probable_cause": 15,
               "fm_data.severity": 16,
@@ -1607,7 +1601,7 @@
               "fm_data_source.cluster_id": 21,
               "fm_data_source.dc_id": 22,
               "fm_data_source.dc_name": 23,
-              "fm_data_source.dn": 11,
+              "fm_data_source.dn": 2,
               "fm_data_source.edge_alias": 24,
               "fm_data_source.edge_hostname": 25,
               "fm_data_source.edge_id": 26,
@@ -1621,7 +1615,6 @@
               "timestamp": 34
             },
             "renameByName": {
-              "fm_data.alarm_text": "AlarmText",
               "fm_data_source.nhg_alias": "NHGName"
             }
           }
@@ -1911,10 +1904,10 @@
               "_id": true,
               "_index": true,
               "_type": true,
-              "fm_data.additional_text": true,
+              "fm_data.additional_text": false,
               "fm_data.alarm_identifier": true,
               "fm_data.alarm_state": true,
-              "fm_data.alarm_text": false,
+              "fm_data.alarm_text": true,
               "fm_data.clear_alarm_time": true,
               "fm_data.clear_text": true,
               "fm_data.event_type": true,
@@ -1939,19 +1932,19 @@
               "timestamp": true
             },
             "indexByName": {
-              "_id": 1,
-              "_index": 2,
-              "_type": 3,
-              "fm_data.additional_text": 4,
-              "fm_data.alarm_identifier": 5,
-              "fm_data.alarm_state": 6,
-              "fm_data.alarm_text": 13,
-              "fm_data.clear_alarm_time": 7,
-              "fm_data.clear_text": 8,
+              "_id": 3,
+              "_index": 4,
+              "_type": 5,
+              "fm_data.additional_text": 6,
+              "fm_data.alarm_identifier": 7,
+              "fm_data.alarm_state": 8,
+              "fm_data.alarm_text": 9,
+              "fm_data.clear_alarm_time": 10,
+              "fm_data.clear_text": 11,
               "fm_data.event_time": 0,
-              "fm_data.event_type": 9,
-              "fm_data.fault_id": 12,
-              "fm_data.last_updated_time": 10,
+              "fm_data.event_type": 12,
+              "fm_data.fault_id": 13,
+              "fm_data.last_updated_time": 1,
               "fm_data.notification_type": 14,
               "fm_data.probable_cause": 15,
               "fm_data.severity": 16,
@@ -1962,7 +1955,7 @@
               "fm_data_source.cluster_id": 21,
               "fm_data_source.dc_id": 22,
               "fm_data_source.dc_name": 23,
-              "fm_data_source.dn": 11,
+              "fm_data_source.dn": 2,
               "fm_data_source.edge_alias": 24,
               "fm_data_source.edge_hostname": 25,
               "fm_data_source.edge_id": 26,
@@ -1976,7 +1969,6 @@
               "timestamp": 34
             },
             "renameByName": {
-              "fm_data.alarm_text": "AlarmText",
               "fm_data_source.nhg_alias": "NHGName"
             }
           }
@@ -1989,16 +1981,16 @@
   "schemaVersion": 37,
   "style": "dark",
   "tags": [
-    "ApplActiveAlarms",
-    "ApplAlarms"
+    "IXRActiveAlarms",
+    "IXRAlarms"
   ],
   "templating": {
     "list": [
       {
         "current": {
           "selected": false,
-          "text": "dac-application-fm",
-          "value": "dac-application-fm"
+          "text": "dac-ixr-fm",
+          "value": "dac-ixr-fm"
         },
         "hide": 2,
         "includeAll": false,
@@ -2008,7 +2000,7 @@
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
-        "regex": "dac-application-fm",
+        "regex": "dac-ixr-fm",
         "skipUrlSync": false,
         "type": "datasource"
       },
@@ -2076,7 +2068,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "NDAC Application Alarms Active Dashboard",
-  "uid": "applfmact",
+  "title": "NDAC IXR Alarms Active Dashboard",
+  "uid": "ixrfmact",
   "weekStart": ""
 }

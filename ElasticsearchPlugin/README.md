@@ -127,6 +127,7 @@ NOTE:
 | pmdata (RADIO) (5G)            | 5g-pm-<METRIC_NAME>-MM-YYYY |
 | pmdata (EDGE)                  | edge-pm                     |
 | pmdata (CORE)                  | core-pm                     |
+| pmdata (IXR)                   | ixr-pm                      |
 | fmdata (RADIO) (ACTIVE)        | radio-fm                    |
 | fmdata (RADIO) (HISTORY)       | radio-fm                    |
 | fmdata (CORE) (ACTIVE)         | core-fm                     |
@@ -135,6 +136,8 @@ NOTE:
 | fmdata (DAC) (HISTORY)         | dac-fm                      |
 | fmdata (APPLICATION) (ACTIVE)  | application-fm              |
 | fmdata (APPLICATION) (HISTORY) | application-fm              |
+| fmdata (IXR) (ACTIVE)          | ixr-fm                      |
+| fmdata (IXR) (HISTORY)         | ixr-fm                      |
 
 `MM-YYYY` denotes month and years of the collected metric time.
 

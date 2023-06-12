@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1659089700337,
   "links": [
     {
       "asDropdown": true,
@@ -67,7 +66,21 @@
         "CorePM"
       ],
       "targetBlank": false,
-      "title": "CORE PM Dashboards",
+      "title": "CORE PM Dashoards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "IXRPM"
+      ],
+      "targetBlank": false,
+      "title": "IXR PM Dashboards",
       "tooltip": "",
       "type": "dashboards",
       "url": ""
@@ -109,6 +122,20 @@
       "targetBlank": false,
       "title": "Application Alarms",
       "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "IXRAlarms"
+      ],
+      "targetBlank": false,
+      "title": "IXR  Alarms",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
     }
   ],
   "liveNow": false,
@@ -136,7 +163,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the success ratio of intra-frequency intra-gNB intra-DU handover for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -176,6 +202,7 @@
           "pluginVersion": "8.5.2",
           "pointradius": 2,
           "points": true,
+          "queryType": "lucene",
           "renderer": "flot",
           "seriesOverrides": [],
           "spaceLength": 10,
@@ -211,7 +238,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NSL_M55149C00005",
@@ -262,6 +288,7 @@
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -306,7 +333,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -324,7 +350,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the success ratio of intra-frequency inter-gNB intra-DU handover for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -364,6 +389,7 @@
           "pluginVersion": "8.5.2",
           "pointradius": 2,
           "points": true,
+          "queryType": "lucene",
           "renderer": "flot",
           "seriesOverrides": [],
           "spaceLength": 10,
@@ -399,7 +425,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NSL_M55149C00007",
@@ -450,6 +475,7 @@
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -485,6 +511,7 @@
           }
         }
       ],
+      "queryType": "lucene",
       "title": "SA Intra-frequency intra-gNB inter-DU HO per slice",
       "type": "row"
     },
@@ -494,7 +521,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -512,7 +538,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the success ratio of the intra-frequency inter-gNB outgoing handover for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -552,6 +577,7 @@
           "pluginVersion": "8.5.2",
           "pointradius": 2,
           "points": true,
+          "queryType": "lucene",
           "renderer": "flot",
           "seriesOverrides": [],
           "spaceLength": 10,
@@ -587,7 +613,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "queryType": "lucene",
               "metrics": [
                 {
                   "field": "pm_data.NSL_M55149C00009",
@@ -638,6 +663,7 @@
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -673,12 +699,13 @@
           }
         }
       ],
+      "queryType": "lucene",
       "title": "SA Intra-frequency inter-gNB outgoing HO per slice",
       "type": "row"
     }
   ],
   "refresh": "15m",
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [
     "Radio5G"
@@ -713,7 +740,6 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
-        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
@@ -722,6 +748,7 @@
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -745,7 +772,6 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
-        "queryType": "lucene",
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
         "hide": 0,
         "includeAll": true,
@@ -754,6 +780,7 @@
         "name": "ap_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
+        "queryType": "lucene",
         "refresh": 2,
         "regex": ".*MRBTS-(\\d+).*",
         "skipUrlSync": false,
@@ -814,7 +841,6 @@
   },
   "timezone": "",
   "title": "NDAC Radio 5G PM KPI - Slice Performance 5G035",
-  "version": 5,
   "uid": "radio5gslc",
   "weekStart": ""
 }

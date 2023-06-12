@@ -24,7 +24,7 @@ mkdir -p es_data
 chmod g+rwx es_data
 chgrp 0 es_data
 chown 1000:1000 es_data/
-docker start ndac_oss_opensearch 2>/dev/null || docker run --name "ndac_oss_opensearch" --restart=always -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size" -v $(pwd)/es_data:/usr/share/opensearch/data opensearchproject/opensearch:2.5.0
+docker start ndac_oss_opensearch 2>/dev/null || docker run --name "ndac_oss_opensearch" --restart=always -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size" -v $(pwd)/es_data:/usr/share/opensearch/data opensearchproject/opensearch:2.8.0
 
 mkdir -p grafana_storage
 chown 472:472 grafana_storage/

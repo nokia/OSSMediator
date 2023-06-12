@@ -116,19 +116,24 @@ PM / FM data collection by collector is performed using REST interface at regula
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
+      "metric_type": "CORE",
+      "interval": 5
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/pmdata",
       "metric_type": "EDGE",
       "interval": 5
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
-      "metric_type": "CORE",
+      "metric_type": "IXR",
       "interval": 5
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "RADIO",
-      "interval": 1,
+      "interval": 30,
       "sync_duration": 15
     },
     {
@@ -142,7 +147,7 @@ PM / FM data collection by collector is performed using REST interface at regula
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "DAC",
-      "interval": 1,
+      "interval": 30,
       "sync_duration": 15
     },
     {
@@ -156,7 +161,7 @@ PM / FM data collection by collector is performed using REST interface at regula
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "CORE",
-      "interval": 1,
+      "interval": 30,
       "sync_duration": 15
     },
     {
@@ -170,7 +175,7 @@ PM / FM data collection by collector is performed using REST interface at regula
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "APPLICATION",
-      "interval": 5,
+      "interval": 30,
       "sync_duration": 15
     },
     {
@@ -178,6 +183,20 @@ PM / FM data collection by collector is performed using REST interface at regula
       "type": "HISTORY",
       "metric_type": "APPLICATION",
       "interval": 5,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "ACTIVE",
+      "metric_type": "IXR",
+      "interval": 30,
+      "sync_duration": 15
+    },
+    {
+      "api": "/network-hardware-groups/{nhg_id}/fmdata",
+      "type": "HISTORY",
+      "metric_type": "IXR",
+      "interval": 1,
       "sync_duration": 15
     }
   ],

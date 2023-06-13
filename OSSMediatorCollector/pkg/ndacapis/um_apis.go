@@ -156,8 +156,7 @@ func RefreshToken(user *config.User) {
 					log.Info("Inside i loop...")
 					time.Sleep(5 * time.Second)
 					count += 1
-					log.Info("Calling refresh API for the " + strconv.Itoa(i) + "time")
-					fmt.Println("Calling refresh API for the ith time: ", i)
+					log.Info("Calling refresh API for the " + strconv.Itoa(i+1) + "th time")
 					err = callRefreshAPI(apiURL, user)
 					if err == nil {
 						break
@@ -244,10 +243,10 @@ func callRefreshAPI(apiURL string, user *config.User) error {
 	//check response for status code
 	err = checkStatusCode(resp.Status)
 	if err != nil {
+		fmt.Println("Error inside callrefreshAPI: " + err.Error())
 		return err
 	}
-	fmt.Println("Token Refreshed :access:", resp.UAT)
-	fmt.Println("Token Refreshed :refresh:", resp.RT)
+	fmt.Println("Setting token to user profile")
 	setToken(resp, user)
 	return nil
 }

@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -152,8 +153,10 @@ func RefreshToken(user *config.User) {
 				count := 1
 				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to refresh again", user.Email)
 				for i := 0; i < 4; i++ {
+					log.Info("Inside i loop...")
 					time.Sleep(5 * time.Second)
 					count += 1
+					log.Info("Calling refresh API for the " + strconv.Itoa(i) + "time")
 					fmt.Println("Calling refresh API for the ith time: ", i)
 					err = callRefreshAPI(apiURL, user)
 					if err == nil {

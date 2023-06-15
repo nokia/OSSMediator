@@ -154,19 +154,25 @@ func RefreshToken(user *config.User) {
 				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to refresh again", user.Email)
 				for i := 0; i < 4; i++ {
 					log.Info("Inside i loop...")
-					time.Sleep(5 * time.Second)
-					count += 1
 					log.Info("Calling refresh API for the " + strconv.Itoa(i+1) + "th time")
+					fmt.Println("Calling refresh API for the " + strconv.Itoa(i+1) + "th time")
 					err = callRefreshAPI(apiURL, user)
+					time.Sleep(5 * time.Second)
+					fmt.Println("err ?:", err)
+					count += 1
 					if err == nil {
 						break
 					}
 				}
-				if count == 3 {
+				fmt.Println("count is : ", count)
+				if count == 3 && err != nil {
 					user.IsSessionAlive = false
 					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s after multiple retries..Please restart OSSMediator with a new token", user.Email)
 					log.Info("Terminating DA OSS Collector...")
 					os.Exit(0)
+				} else {
+					user.IsSessionAlive = true
+					user.Wg.Done()
 				}
 			} else {
 				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to login", user.Email)

@@ -42,6 +42,7 @@ func main() {
 	initLogger(logDir, logLevel)
 
 	log.Info("Starting DA OSS Collector...")
+
 	//Reading config from json file
 	err := config.ReadConfig(confFile)
 	if err != nil {
@@ -71,7 +72,6 @@ func main() {
 			}
 			err = ndacapis.Login(user)
 			if err != nil {
-				fmt.Printf("\nLogin Failed for %s...\nError: %v", user.Email, err)
 				log.WithFields(log.Fields{"error": err}).Fatalf("Login Failed for %s", user.Email)
 			}
 		} else {

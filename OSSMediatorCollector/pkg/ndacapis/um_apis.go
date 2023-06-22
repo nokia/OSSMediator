@@ -151,7 +151,7 @@ func RefreshToken(user *config.User) {
 			if authType == "ADTOKEN" {
 				count := 1
 				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to refresh again", user.Email)
-				for i := 0; i < 4; i++ {
+				for i := 0; i < 5; i++ {
 					err = callRefreshAPI(apiURL, user)
 					time.Sleep(5 * time.Second)
 					count += 1
@@ -161,7 +161,7 @@ func RefreshToken(user *config.User) {
 						break
 					}
 				}
-				if count >= 5 && err != nil {
+				if count == 6 && err != nil {
 					user.IsSessionAlive = false
 					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s after multiple retries..Please restart OSSMediator with a new token", user.Email)
 					log.Info("Terminating DA OSS Collector...")

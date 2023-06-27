@@ -156,7 +156,7 @@ func RefreshToken(user *config.User) {
 					time.Sleep(5 * time.Second)
 					count += 1
 					if err != nil {
-						fmt.Println("err again...so in for loop again:", err)
+						fmt.Println("err:", err)
 					} else {
 						break
 					}

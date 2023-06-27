@@ -161,7 +161,7 @@ func RefreshToken(user *config.User) {
 						break
 					}
 				}
-				if count == 6 && err != nil {
+				if count == 5 && err != nil {
 					user.IsSessionAlive = false
 					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s after multiple retries..Please restart OSSMediator with a new token", user.Email)
 					log.Info("Terminating DA OSS Collector...")

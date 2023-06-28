@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -149,26 +150,29 @@ func RefreshToken(user *config.User) {
 		err := callRefreshAPI(apiURL, user)
 		if err != nil {
 			if authType == "ADTOKEN" {
-				count := 1
-				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to refresh again", user.Email)
-				for i := 0; i < 5; i++ {
-					err = callRefreshAPI(apiURL, user)
-					time.Sleep(5 * time.Second)
-					count += 1
-					if err != nil {
-						fmt.Println("err:", err)
-					} else {
-						break
+				errStr := strings.Split(err.Error(), ":")
+				errCode, _ := strconv.Atoi(errStr[0])
+				errNo := errCode
+				fmt.Println("err is : ", errCode)
+				if errCode >= 500 && errCode <= 599 {
+					log.Infof("RefreshApi issues from server...retrying again")
+					for errNo >= 500 && errNo <= 599 {
+						time.Sleep(5 * time.Second)
+						err = callRefreshAPI(apiURL, user)
+						if err != nil {
+							errStr := strings.Split(err.Error(), ":")
+							errNo, _ = strconv.Atoi(errStr[0])
+						} else {
+							user.IsSessionAlive = true
+							user.Wg.Done()
+							break
+						}
 					}
-				}
-				if count == 5 && err != nil {
+				} else {
+					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
 					user.IsSessionAlive = false
-					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s after multiple retries..Please restart OSSMediator with a new token", user.Email)
 					log.Info("Terminating DA OSS Collector...")
 					os.Exit(0)
-				} else {
-					user.IsSessionAlive = true
-					user.Wg.Done()
 				}
 			} else {
 				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to login", user.Email)

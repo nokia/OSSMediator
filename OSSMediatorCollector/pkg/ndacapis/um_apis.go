@@ -154,13 +154,20 @@ func RefreshToken(user *config.User) {
 				errCode, _ := strconv.Atoi(errStr[0])
 				errNo := errCode
 				if errCode > 500 && errCode <= 599 {
-					log.Infof("RefreshApi issues from server...retrying again")
+					log.Info("RefreshApi issues from server...retrying again : ", errCode)
 					for errNo > 500 && errNo <= 599 {
 						time.Sleep(5 * time.Second)
 						err = callRefreshAPI(apiURL, user)
 						if err != nil {
+							log.Info("RefreshApi issues : ", err)
 							errStr := strings.Split(err.Error(), ":")
 							errNo, _ = strconv.Atoi(errStr[0])
+							if errNo <= 500 {
+								log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
+								user.IsSessionAlive = false
+								log.Info("Terminating DA OSS Collector...")
+								os.Exit(0)
+							}
 						} else {
 							user.IsSessionAlive = true
 							user.Wg.Done()

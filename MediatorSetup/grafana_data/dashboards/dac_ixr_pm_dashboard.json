@@ -38,6 +38,16 @@
       "asDropdown": true,
       "icon": "external link",
       "tags": [
+        "IXRAlarms"
+      ],
+      "targetBlank": false,
+      "title": "IXR Alarms",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
         "Radio5G"
       ],
       "title": "Radio 5G Dashboards",
@@ -109,16 +119,6 @@
       "targetBlank": false,
       "title": "Application Alarms",
       "type": "dashboards"
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "tags": [
-        "IXRAlarms"
-      ],
-      "targetBlank": false,
-      "title": "IXR Alarms",
-      "type": "dashboards"
     }
   ],
   "liveNow": false,
@@ -151,7 +151,7 @@
             },
             {
               "options": {
-                "pattern": ".*(port-.+)/source.*",
+                "pattern": ".*PORT-(.+)/SOURCE.*",
                 "result": {
                   "index": 0,
                   "text": "$1"
@@ -276,30 +276,6 @@
                 "value": "pps"
               }
             ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "In Errors Rate"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "cps"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Out Errors rate"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "cps"
-              }
-            ]
           }
         ]
       },
@@ -317,10 +293,14 @@
           "show": false
         },
         "showHeader": true,
-        "sortBy": []
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Port Status"
+          }
+        ]
       },
       "pluginVersion": "9.3.6",
-      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -349,6 +329,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "format": "table",
@@ -386,18 +367,18 @@
               "type": "avg"
             },
             {
-              "field": "pm_data.ndac_rr_ixr_port_stats_in_errors_rate",
+              "field": "pm_data.ndac_rr_ixr_port_stats_in_errors",
               "id": "8",
               "settings": {},
               "type": "avg"
             },
             {
-              "field": "pm_data.ndac_rr_ixr_port_stats_out_errors_rate",
+              "field": "pm_data.ndac_rr_ixr_port_stats_out_errors",
               "id": "9",
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn:*port* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.dn:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -410,18 +391,17 @@
           "options": {
             "excludeByName": {
               "Max": false,
+              "pm_data_source.dn.keyword": false,
               "pm_data_source.timestamp": true
             },
             "indexByName": {},
             "renameByName": {
               "Average pm_data.ndac_rr_ixr_port_stats_in_errors": "In Errors",
-              "Average pm_data.ndac_rr_ixr_port_stats_in_errors_rate": "In Errors Rate",
               "Average pm_data.ndac_rr_ixr_port_stats_in_octets": "In Octets",
               "Average pm_data.ndac_rr_ixr_port_stats_in_octets_rate": "In Data Rate",
               "Average pm_data.ndac_rr_ixr_port_stats_in_packets": "In Packets",
               "Average pm_data.ndac_rr_ixr_port_stats_in_packets_rate": "In Packets Rate",
               "Average pm_data.ndac_rr_ixr_port_stats_out_errors": "Out Errors",
-              "Average pm_data.ndac_rr_ixr_port_stats_out_errors_rate": "Out Errors rate",
               "Average pm_data.ndac_rr_ixr_port_stats_out_octets": "Out Octets",
               "Average pm_data.ndac_rr_ixr_port_stats_out_octets_rate": "Out Data Rate",
               "Average pm_data.ndac_rr_ixr_port_stats_out_packets": "Out Packets",
@@ -435,7 +415,7 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*port-(.+)/.*",
+            "regex": ".*PORT-(.+)/.*",
             "renamePattern": "$1"
           }
         },
@@ -450,6 +430,10 @@
               {
                 "destinationType": "time",
                 "targetField": "Timestamp"
+              },
+              {
+                "destinationType": "string",
+                "targetField": "Port"
               }
             ],
             "fields": {}
@@ -463,7 +447,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the physical port counters",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -475,7 +458,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "line",
+            "drawStyle": "points",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -485,12 +468,12 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 4,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "always",
-            "spanNulls": true,
+            "showPoints": "auto",
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -503,17 +486,28 @@
             {
               "options": {
                 "0": {
-                  "color": "dark-red",
-                  "index": 0,
+                  "color": "red",
+                  "index": 1,
                   "text": "Down"
                 },
                 "1": {
-                  "color": "dark-green",
-                  "index": 1,
+                  "color": "green",
+                  "index": 0,
                   "text": "Up"
                 }
               },
               "type": "value"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
             }
           ],
           "thresholds": {
@@ -528,18 +522,94 @@
                 "value": 80
               }
             ]
-          },
-          "unit": "bool"
+          }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Port Status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "#C4162A",
+                        "index": 0,
+                        "text": "Down"
+                      },
+                      "1": {
+                        "color": "dark-green",
+                        "index": 1,
+                        "text": "Up"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "In Data Rate"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bps"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Out Data Rate"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bps"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "In Packets Rate"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "pps"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Out Packets Rate"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "pps"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 6,
+        "h": 9,
         "w": 24,
         "x": 0,
         "y": 9
       },
-      "id": 54,
+      "id": 63,
       "options": {
         "legend": {
           "calcs": [],
@@ -548,19 +618,18 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
+          "mode": "single",
+          "sort": "none"
         }
       },
-      "pluginVersion": "8.5.11",
-      "queryType": "lucene",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "alias": "",
           "bucketAggs": [
             {
               "field": "pm_data_source.dn.keyword",
-              "id": "4",
+              "id": "2",
               "settings": {
                 "min_doc_count": "1",
                 "order": "desc",
@@ -571,136 +640,41 @@
             },
             {
               "field": "pm_data_source.timestamp",
-              "id": "2",
+              "id": "3",
               "settings": {
-                "interval": "$agg"
+                "interval": "$agg",
+                "min_doc_count": "1",
+                "trimEdges": "0"
               },
               "type": "date_histogram"
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
+          "format": "table",
           "hide": false,
           "metrics": [
             {
               "field": "pm_data.ndac_rr_ixr_port_state_oper_state",
-              "hide": false,
-              "id": "3",
-              "type": "avg"
+              "id": "1",
+              "type": "max"
             }
           ],
-          "query": "pm_data_source.dn:*port* AND pm_data_source.edge_alias.keyword:$slice",
-          "queryType": "lucene",
-          "refId": "Rate",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_in_packets",
-              "hide": true,
-              "id": "3",
-              "type": "sum"
-            },
-            {
-              "field": "3",
-              "hide": false,
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_in_packets",
-              "hide": true,
-              "id": "3",
-              "type": "avg"
-            },
-            {
-              "field": "3",
-              "hide": false,
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
-          "queryType": "lucene",
-          "refId": "B",
-          "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "Port Status",
+      "title": "IXR Port Status",
       "transformations": [
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*(port-.+)/source.*",
-            "renamePattern": "$1"
+            "regex": ".*[PORT|port]{4}-(.+)/.*",
+            "renamePattern": "port-$1"
           }
         }
       ],
@@ -753,7 +727,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -769,9 +744,9 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 18
       },
-      "id": 63,
+      "id": 54,
       "options": {
         "legend": {
           "calcs": [],
@@ -810,6 +785,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": false,
@@ -821,7 +797,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn:*port* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn:*PORT*",
           "queryType": "lucene",
           "refId": "Rate",
           "timeField": "pm_data_source.timestamp"
@@ -850,6 +826,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": true,
@@ -870,7 +847,7 @@
               "type": "derivative"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*port*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -899,6 +876,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": true,
@@ -919,7 +897,7 @@
               "type": "derivative"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*port*",
           "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
@@ -930,8 +908,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*(port-.+)/source.*",
-            "renamePattern": "$1"
+            "regex": ".*[port|PORT]{4}-(.+)/[SOURCE|source].*",
+            "renamePattern": "port-$1"
           }
         }
       ],
@@ -983,7 +961,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -999,7 +978,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 24
       },
       "id": 2,
       "options": {
@@ -1040,6 +1019,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": false,
@@ -1051,7 +1031,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn:*port* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn:*PORT*",
           "queryType": "lucene",
           "refId": "Rate",
           "timeField": "pm_data_source.timestamp"
@@ -1080,6 +1060,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": true,
@@ -1099,7 +1080,7 @@
               "type": "derivative"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*port*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -1128,6 +1109,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": true,
@@ -1146,7 +1128,7 @@
               "type": "derivative"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*port*",
           "queryType": "lucene",
           "refId": "C",
           "timeField": "pm_data_source.timestamp"
@@ -1157,8 +1139,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*(port-.+)/source.*",
-            "renamePattern": "$1"
+            "regex": ".*[port|PORT]{4}-(.+)/[SOURCE|source].*",
+            "renamePattern": "port-$1"
           }
         }
       ],
@@ -1211,7 +1193,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1227,7 +1210,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 30
       },
       "id": 55,
       "options": {
@@ -1268,6 +1251,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": false,
@@ -1276,13 +1260,11 @@
               "field": "pm_data.ndac_rr_ixr_port_stats_in_octets_rate",
               "hide": false,
               "id": "3",
-              "settings": {
-                "script": "_value*8"
-              },
+              "settings": {},
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn:*port* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn:*PORT*",
           "queryType": "lucene",
           "refId": "Rate",
           "timeField": "pm_data_source.timestamp"
@@ -1311,6 +1293,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": true,
@@ -1330,7 +1313,7 @@
               "type": "derivative"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*port*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -1359,6 +1342,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": true,
@@ -1378,7 +1362,7 @@
               "type": "derivative"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*port*",
           "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
@@ -1389,8 +1373,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*(port-.+)/source.*",
-            "renamePattern": "$1"
+            "regex": ".*[port|PORT]{4}-(.+)/[SOURCE|source].*",
+            "renamePattern": "port-$1"
           }
         }
       ],
@@ -1443,7 +1427,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1459,7 +1444,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 36
       },
       "id": 56,
       "options": {
@@ -1500,6 +1485,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": false,
@@ -1507,13 +1493,11 @@
             {
               "field": "pm_data.ndac_rr_ixr_port_stats_out_octets_rate",
               "id": "3",
-              "settings": {
-                "script": "_value*8"
-              },
+              "settings": {},
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn:*port* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn:*PORT*",
           "queryType": "lucene",
           "refId": "Rate",
           "timeField": "pm_data_source.timestamp"
@@ -1542,6 +1526,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": true,
@@ -1561,7 +1546,7 @@
               "type": "derivative"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*port*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -1590,6 +1575,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": true,
@@ -1608,7 +1594,7 @@
               "type": "derivative"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*port*",
           "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
@@ -1619,189 +1605,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*(port-.+)/source.*",
-            "renamePattern": "$1"
-          }
-        }
-      ],
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "description": "This KPI shows the physical port error rate counters",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "cps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 24,
-        "x": 0,
-        "y": 39
-      },
-      "id": 57,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "pluginVersion": "9.3.6",
-      "queryType": "lucene",
-      "targets": [
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_in_errors",
-              "hide": true,
-              "id": "3",
-              "type": "avg"
-            },
-            {
-              "field": "3",
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.dn:*port* AND pm_data_source.edge_alias.keyword:$slice",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_in_errors_rate",
-              "hide": false,
-              "id": "3",
-              "type": "avg"
-            }
-          ],
-          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn:*port*",
-          "queryType": "lucene",
-          "refId": "B",
-          "timeField": "pm_data_source.timestamp"
-        }
-      ],
-      "title": "In Errors Rate",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": ".*(port-.+)/source.*",
-            "renamePattern": "$1"
+            "regex": ".*[port|PORT]{4}-(.+)/[SOURCE|source].*",
+            "renamePattern": "port-$1"
           }
         }
       ],
@@ -1853,7 +1658,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1861,7 +1667,7 @@
               }
             ]
           },
-          "unit": "cps"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -1869,9 +1675,9 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 42
       },
-      "id": 58,
+      "id": 57,
       "options": {
         "legend": {
           "calcs": [],
@@ -1885,7 +1691,6 @@
         }
       },
       "pluginVersion": "9.3.6",
-      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -1911,9 +1716,193 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_ixr_port_stats_in_errors_rate",
+              "hide": false,
+              "id": "3",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn:*PORT*",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.dn.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": true,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_ixr_port_stats_in_errors",
+              "hide": true,
+              "id": "3",
+              "type": "avg"
+            },
+            {
+              "field": "3",
+              "id": "5",
+              "settings": {
+                "unit": "1s"
+              },
+              "type": "derivative"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        }
+      ],
+      "title": "In Errors",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": ".*[port|PORT]{4}-(.+)/[SOURCE|source].*",
+            "renamePattern": "port-$1"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI shows the physical port counters",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 48
+      },
+      "id": 58,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.dn.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
           "metrics": [
             {
               "field": "pm_data.ndac_rr_ixr_port_stats_out_errors",
@@ -1922,7 +1911,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn:*port* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn:*PORT*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -1951,30 +1940,31 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
+          "hide": true,
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_ixr_port_stats_out_errors_rate",
+              "field": "out",
               "hide": false,
               "id": "3",
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.nhg_id.keyword:$nhgid AND pm_data_source.dn:*port*",
           "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "Out Errors Rate",
+      "title": "Out Errors",
       "transformations": [
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*(port-.+)/source.*",
-            "renamePattern": "$1"
+            "regex": ".*[port|PORT]{4}-(.+)/[SOURCE|source].*",
+            "renamePattern": "port-$1"
           }
         }
       ],
@@ -1991,21 +1981,33 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 0,
           "mappings": [
             {
               "options": {
                 "0": {
-                  "color": "red",
+                  "color": "dark-red",
                   "index": 0,
                   "text": "Down"
                 },
                 "1": {
-                  "color": "green",
+                  "color": "dark-green",
                   "index": 1,
                   "text": "Up"
                 }
               },
               "type": "value"
+            },
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "dark-yellow",
+                  "index": 2,
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
             }
           ],
           "max": 1,
@@ -2014,14 +2016,16 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "none"
         },
         "overrides": []
       },
@@ -2029,7 +2033,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 51
+        "y": 54
       },
       "id": 50,
       "options": {
@@ -2047,7 +2051,6 @@
         "showUnfilled": true
       },
       "pluginVersion": "9.3.6",
-      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -2073,6 +2076,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": false,
@@ -2083,7 +2087,7 @@
               "type": "max"
             }
           ],
-          "query": "pm_data_source.dn:$sn AND pm_data_source.edge_alias.keyword:$slice AND NOT pm_data_source.dn:$snvrf",
+          "query": "pm_data_source.dn:*IFACE* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -2094,18 +2098,12 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*(svc_name-.*)/source.*",
-            "renamePattern": "$1"
-          }
-        },
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": ".*svc_name-(.*)",
-            "renamePattern": "$1"
+            "regex": ".*IFACE-(.*)/SVC_NAME-(.*)/SOURCE.*",
+            "renamePattern": "$1/$2"
           }
         }
       ],
+      "transparent": true,
       "type": "bargauge"
     },
     {
@@ -2117,35 +2115,35 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "fixed"
+            "mode": "thresholds"
           },
           "mappings": [
             {
               "options": {
+                "0": {
+                  "color": "text",
+                  "index": 0,
+                  "text": "NA"
+                },
                 "1": {
-                  "color": "super-light-orange",
+                  "color": "dark-red",
                   "index": 1,
                   "text": "Idle"
                 },
                 "2": {
-                  "color": "blue",
+                  "color": "dark-yellow",
                   "index": 2,
                   "text": "Active"
                 },
                 "3": {
-                  "color": "orange",
+                  "color": "dark-orange",
                   "index": 3,
                   "text": "Connect"
                 },
                 "4": {
-                  "color": "green",
+                  "color": "dark-green",
                   "index": 4,
                   "text": "Established"
-                },
-                "null": {
-                  "color": "dark-red",
-                  "index": 0,
-                  "text": "N/A"
                 }
               },
               "type": "value"
@@ -2157,14 +2155,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
+                "color": "green",
+                "value": null
               }
             ]
-          }
+          },
+          "unit": "none"
         },
         "overrides": []
       },
@@ -2172,11 +2168,11 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 51
+        "y": 54
       },
       "id": 3,
       "options": {
-        "displayMode": "gradient",
+        "displayMode": "basic",
         "minVizHeight": 10,
         "minVizWidth": 0,
         "orientation": "horizontal",
@@ -2190,7 +2186,6 @@
         "showUnfilled": false
       },
       "pluginVersion": "9.3.6",
-      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -2216,6 +2211,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": false,
@@ -2226,7 +2222,7 @@
               "type": "max"
             }
           ],
-          "query": "pm_data_source.dn:$snip AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$snvrf AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -2237,14 +2233,14 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*/(svc_name-.+)/source.*",
+            "regex": ".*/(SVC_NAME-.+/IP-.+)/SOURCE.*",
             "renamePattern": "$1"
           }
         },
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*svc_name-(.*)",
+            "regex": ".*SVC_NAME-(.*)",
             "renamePattern": "$1"
           }
         }
@@ -2299,7 +2295,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2309,38 +2306,13 @@
           },
           "unit": "decbytes"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "24-675-n-2"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 61
       },
       "id": 44,
       "options": {
@@ -2381,6 +2353,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": false,
@@ -2391,7 +2364,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -2447,7 +2420,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2457,38 +2431,13 @@
           },
           "unit": "decbytes"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "24-675-n-2"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 64
+        "y": 67
       },
       "id": 5,
       "options": {
@@ -2529,6 +2478,7 @@
             }
           ],
           "datasource": {
+            "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
           "hide": false,
@@ -2539,7 +2489,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -2573,43 +2523,23 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "dac-ixr-pm",
-          "value": "dac-ixr-pm"
-        },
-        "hide": 2,
-        "includeAll": false,
-        "label": "Data Source",
-        "multi": false,
-        "name": "datasource",
-        "options": [],
-        "query": "grafana-opensearch-datasource",
-        "refresh": 1,
-        "regex": "dac-ixr-pm",
-        "skipUrlSync": false,
-        "type": "datasource"
-      },
-      {
-        "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
+          "selected": true,
+          "text": "LaaS 19",
+          "value": "LaaS 19"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
-        "definition": "{\"find\": \"terms\", \"field\":\"pm_data_source.nhg_alias.keyword\"}",
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
         "multi": false,
         "name": "nhgname",
         "options": [],
-        "query": "{\"find\": \"terms\", \"field\":\"pm_data_source.nhg_alias.keyword\"}",
-        "queryType": "lucene",
-        "refresh": 2,
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -2617,80 +2547,27 @@
       },
       {
         "current": {
-          "isNone": true,
           "selected": false,
-          "text": "None",
-          "value": ""
+          "text": "18-573-n-1",
+          "value": "18-573-n-1"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
-        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\",\n\"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
+        "description": "",
         "hide": 0,
         "includeAll": false,
         "label": "Slice ID",
         "multi": false,
         "name": "slice",
         "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
-        "queryType": "lucene",
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\",\n\"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
-        },
-        "datasource": {
-          "type": "grafana-opensearch-datasource",
-          "uid": "${datasource}"
-        },
-        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_id.keyword\",\n\"field\":\"pm_data_source.nhg_id.keyword\"}",
-        "hide": 2,
-        "includeAll": false,
-        "label": "Edge ID",
-        "multi": true,
-        "name": "edgeid",
-        "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_id.keyword\",\n\"field\":\"pm_data_source.nhg_id.keyword\"}",
-        "queryType": "lucene",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
-        },
-        "datasource": {
-          "type": "grafana-opensearch-datasource",
-          "uid": "${datasource}"
-        },
-        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_id.keyword:$nhgid\"}",
-        "hide": 2,
-        "includeAll": false,
-        "label": "Source",
-        "multi": false,
-        "name": "source",
-        "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_id.keyword:$nhgid\"}",
-        "queryType": "lucene",
-        "refresh": 1,
-        "regex": ".*source-(.+).*",
-        "skipUrlSync": false,
-        "sort": 1,
         "type": "query"
       },
       {
@@ -2770,6 +2647,73 @@
       {
         "current": {
           "selected": false,
+          "text": "dac-ixr-pm",
+          "value": "dac-ixr-pm"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Data Source",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "grafana-opensearch-datasource",
+        "refresh": 1,
+        "regex": "dac-ixr-pm",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "419278ce-2ffd-4175-5fe0-d2dc183fb530",
+          "value": "419278ce-2ffd-4175-5fe0-d2dc183fb530"
+        },
+        "datasource": {
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\"}",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Network Hw Group ID",
+        "multi": false,
+        "name": "nhgid",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_id.keyword\"}",
+        "queryType": "lucene",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "192.168.253.250",
+          "value": "192.168.253.250"
+        },
+        "datasource": {
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.edge_alias.keyword:$slice\"}",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Source",
+        "multi": false,
+        "name": "source",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.edge_alias.keyword:$slice\"}",
+        "refresh": 1,
+        "regex": ".*SOURCE-(.+).*",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -2777,17 +2721,16 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
-        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.nhg_id.keyword:$nhgid\"}",
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.edge_alias.keyword:$slice\"}",
         "hide": 2,
         "includeAll": true,
         "label": "Service Name",
         "multi": false,
         "name": "sn",
         "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.nhg_id.keyword:$nhgid\"}",
-        "queryType": "lucene",
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.edge_alias.keyword:$slice\"}",
         "refresh": 1,
-        "regex": ".*/svc_name-(.+)/ip-.*",
+        "regex": ".*/SVC_NAME-(.+)/IP-.*",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -2795,49 +2738,71 @@
       {
         "current": {
           "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "text": "APN-1/IP-169.254.221.2",
+          "value": "APN-1/IP-169.254.221.2"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
-        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.nhg_id.keyword:$nhgid\"}",
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.edge_alias.keyword:$slice\"}",
         "hide": 2,
-        "includeAll": true,
+        "includeAll": false,
         "label": "Service Name With IP",
         "multi": false,
         "name": "snip",
         "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.nhg_id.keyword:$nhgid\"}",
-        "queryType": "lucene",
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.edge_alias.keyword:$slice\"}",
         "refresh": 1,
-        "regex": ".*/svc_name-(.+/ip-.+)/source-(.*)",
+        "regex": ".*/SVC_NAME-(.+/IP-.+)/SOURCE.*",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "isNone": true,
           "selected": false,
-          "text": "None",
-          "value": ""
+          "text": "/IP-169.254.221.2",
+          "value": "/IP-169.254.221.2"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
-        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.nhg_id.keyword:$nhgid\"}",
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.edge_alias.keyword:$slice\"}",
         "hide": 2,
         "includeAll": false,
+        "label": "Service Name VRF",
         "multi": false,
         "name": "snvrf",
         "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.nhg_id.keyword:$nhgid\"}",
-        "queryType": "lucene",
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.edge_alias.keyword:$slice\"}",
         "refresh": 1,
-        "regex": ".*(.+ip-.*)/source-.*",
+        "regex": ".*(.+IP-.*)/SOURCE-.*",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "app_fw_gw/SVC_NAME-APN-1",
+          "value": "app_fw_gw/SVC_NAME-APN-1"
+        },
+        "datasource": {
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.edge_alias.keyword:$slice\"}",
+        "hide": 2,
+        "includeAll": false,
+        "label": "VRF Interface Name",
+        "multi": false,
+        "name": "vrfi",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.edge_alias.keyword:$slice\"}",
+        "refresh": 1,
+        "regex": ".*/IFACE-(.+)/SOURCE-.*",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"

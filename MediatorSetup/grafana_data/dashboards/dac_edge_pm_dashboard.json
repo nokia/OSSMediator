@@ -181,7 +181,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -273,7 +273,7 @@
           "titleSize": 8
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -322,8 +322,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*/disk-(.*)",
-            "renamePattern": "$1"
+            "regex": ".*/(DISK|disk)-(.*)",
+            "renamePattern": "$2"
           }
         }
       ],
@@ -385,7 +385,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -476,7 +476,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -677,7 +677,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -753,8 +754,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*/disk-(.*)",
-            "renamePattern": "$1"
+            "regex": ".*/(DISK|disk)-(.*)",
+            "renamePattern": "$2"
           }
         }
       ],
@@ -806,7 +807,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -914,7 +916,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -989,7 +992,8 @@
     }
   ],
   "refresh": "15m",
-  "schemaVersion": 37,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "EdgePM"
@@ -1017,8 +1021,8 @@
       {
         "current": {
           "selected": false,
-          "text": "HP_GRMediumPlusV2",
-          "value": "HP_GRMediumPlusV2"
+          "text": "Cont_syve 5GNSA",
+          "value": "Cont_syve 5GNSA"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -1042,8 +1046,8 @@
       {
         "current": {
           "selected": false,
-          "text": "19-313-n-1",
-          "value": "19-313-n-1"
+          "text": "18-505-n-1",
+          "value": "18-505-n-1"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",

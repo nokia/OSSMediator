@@ -187,7 +187,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -269,7 +269,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -351,7 +351,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -433,7 +433,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -520,7 +520,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -603,7 +603,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -695,7 +695,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -846,7 +847,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -997,7 +999,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1150,7 +1153,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1303,7 +1307,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1351,6 +1356,17 @@
                   "type": "terms"
                 },
                 {
+                  "field": "pm_data_source.dn.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
@@ -1363,6 +1379,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
+              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_ue_ul_rate",
@@ -1371,7 +1388,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*IMSI* OR pm_data_source.dn:*imsi*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
@@ -1408,6 +1425,15 @@
             }
           ],
           "title": "UE throughput UL",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.*)ACCOUNT.*(IMSI|imsi)-(.+).*",
+                "renamePattern": "$1/ $3"
+              }
+            }
+          ],
           "type": "timeseries"
         },
         {
@@ -1456,7 +1482,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1504,6 +1531,17 @@
                   "type": "terms"
                 },
                 {
+                  "field": "pm_data_source.dn.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                },
+                {
                   "field": "pm_data_source.timestamp",
                   "id": "2",
                   "settings": {
@@ -1516,6 +1554,7 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
+              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_ue_dl_rate",
@@ -1524,7 +1563,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*IMSI* OR pm_data_source.dn:*imsi*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
@@ -1561,6 +1600,15 @@
             }
           ],
           "title": "UE throughput DL",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.*)ACCOUNT.*(IMSI|imsi)-(.+).*",
+                "renamePattern": "$1/ $3"
+              }
+            }
+          ],
           "type": "timeseries"
         }
       ],
@@ -5828,7 +5876,8 @@
     }
   ],
   "refresh": "15m",
-  "schemaVersion": 37,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "CorePM"

@@ -155,11 +155,12 @@ func RefreshToken(user *config.User) {
 				errNo := errCode
 				if errCode > 500 && errCode <= 599 {
 					log.Info("RefreshApi issues from server...retrying again : ", errCode)
+					log.Infof(string(errCode))
 					for errNo > 500 && errNo <= 599 {
 						time.Sleep(5 * time.Second)
 						err = callRefreshAPI(apiURL, user)
 						if err != nil {
-							log.Info("RefreshApi issues : ", err)
+							fmt.Println("RefreshApi issues : ", err)
 							errStr := strings.Split(err.Error(), ":")
 							errNo, _ = strconv.Atoi(errStr[0])
 							if errNo <= 500 {

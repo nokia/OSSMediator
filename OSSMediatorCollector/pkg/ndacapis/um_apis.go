@@ -150,6 +150,12 @@ func RefreshToken(user *config.User) {
 		err := callRefreshAPI(apiURL, user)
 		if err != nil {
 			if authType == "ADTOKEN" {
+				if err.Error() == "500: Failed to refresh azure token" {
+					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
+					user.IsSessionAlive = false
+					log.Info("Terminating DA OSS Collector...")
+					os.Exit(0)
+				}
 				errStr := strings.Split(err.Error(), ":")
 				errCode, _ := strconv.Atoi(errStr[0])
 				errNo := errCode

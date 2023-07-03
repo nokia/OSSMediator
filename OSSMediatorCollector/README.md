@@ -78,13 +78,18 @@ PM / FM data collection by collector is performed using REST interface at regula
   "users": [
     {
       "email_id": "<USER EMAIL>",
-      "response_dest": "<DIRECTORY PATH>"
+      "response_dest": "<DIRECTORY PATH>",
+      "auth_type": "<ADTOKEN/PASSWORD>"
     },
     {
       "email_id": "<USER EMAIL>",
-      "response_dest": "<DIRECTORY PATH>"
+      "response_dest": "<DIRECTORY PATH>",
+      "auth_type": "<ADTOKEN/PASSWORD>"
     }
   ],
+  "azure_session_api": {
+    "refresh": "/azure-refresh-sessions"
+  },
   "um_api": {
     "login": "/login-session",
     "refresh": "/refresh-session",
@@ -225,7 +230,7 @@ Options:
                 Config file path (default "../resources/conf.json")
 ```
 
-Check if execute permissions are there for the `storesecret` binary, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret` command to store the user passwords.
+Check if execute permissions/ are there for the `storesecret` binary, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret` command to store the user passwords.
 Enter the password for each customer having the right permission.  
 
 NOTE:

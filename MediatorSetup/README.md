@@ -46,13 +46,13 @@ Follow the below steps to setup OSSMediator on your instance:
 1. Download/Copy the mediator packages from the Info Center by clicking "Download Package" button into a new directory.
 2. Unzip the OSSPackage-xx.zip in the new directory.
 3. Update collector_conf.json template with the correct "base_url", "users" section with the credentials  ("email_id") provided by NDAC Operations/Helpdesk team.  
-   Update the "response_dest" with the directory path where you want the collected metrics data to be stored locally on the disk.  
+   Update the authorization type for the user - either "PASSWORD" or "ADTOKEN". ADTOKEN is for ABAC users where the users will get the sso azure login token from the user management. PASSWORD is for the usual RBAC users. Update the "response_dest" with the directory path where you want the collected metrics data to be stored locally on the disk.  
    You can refer the document "Nokia DAC OSS Mediator Collector Configuration" under section "User configuration" for clarification.  
    In the OSS Mediator package there are 2 template files provided, the default "collector_conf.json file" and "collector_conf_all_api.json" file. The "collector_conf_all_api.json" template file has SIM API added along with the basic FM/PM APIs.  
    If you want to collect SIM, APPLICATION metrics as well, then first copy "collector_conf_all_api.json" into "collector_conf.json" file and then edit the file as described above.
 4. Update plugin_conf.json template file for the field `<SOURCE DIRECTORY PATH>` with the same directory path as set in above step.
    You can refer to the document "Nokia DAC OSS ElasticSearchPlugin Configuration" under section "User configuration" for clarification.
-5. Configure the passwords for the users configured in collector_conf.json file for API access by executing `storesecret`.  
+5. Configure the passwords/tokens for the users configured in collector_conf.json file for API access by executing `storesecret`.  
    Check if execute permissions are there for the `storesecret` binary, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret -c collector_conf.json` command to store the user passwords.
 6. Use `grafana_cleanup.sh` script to clean grafana, check if execute permissions are there for the `grafana_cleanup.sh` script, if not set it as `chmod 777 grafana_cleanup.sh`.  
    `sudo ./grafana_cleanup.sh`.
@@ -62,7 +62,7 @@ Follow the below steps to setup OSSMediator on your instance:
 The setup should be ready, and you can access the PM and FM dashboards from your browser at `http://<your_Ip_address>:3000/dashboards`, all the NDAC dashboards will be created inside `Nokia-DAC` directory.  
 The Grafana dashboards will appear with login prompt and default credentials are `admin` with password `admin`.
 
-* To update the user’s password, execute `sudo ./storesecret -c collector_conf.json` and input the updated password, then execute `sudo ./startup.sh` to restart the modules again.
+* To update the user’s password/token, execute `sudo ./storesecret -c collector_conf.json` and input the updated password, then execute `sudo ./startup.sh` to restart the modules again.
 
 * By default, OpenSearch will be started with 2GB heap memory.  
   To increase the heap memory execute `sudo ./startup.sh --heap_size <HEAP_SIZE>`.  

@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-//Config keeps the config from json
+// Config keeps the config from json
 type Config struct {
 	BaseURL              string     `json:"base_url"`     //Base URL of the API
 	UMAPIs               UMConf     `json:"um_api"`       //User management Configuration
@@ -27,9 +27,10 @@ type Config struct {
 	Limit                int        `json:"limit"`
 	Delay                int        `json:"delay"`
 	MaxConcurrentProcess int        `json:"max_concurrent_process"`
+	PrettyResponse       bool       `json:"pretty_response"`
 }
 
-//User keeps Login configurations
+// User keeps Login configurations
 type User struct {
 	Email          string        `json:"email_id"` //User's email ID
 	Password       string        //User's password read from configuration file
@@ -41,22 +42,22 @@ type User struct {
 	HwIDs          []string
 }
 
-//SessionToken struct tracks the access_token, refresh_token and expiry_time of the token
-//As the session token will be shared by multiple APIs.
+// SessionToken struct tracks the access_token, refresh_token and expiry_time of the token
+// As the session token will be shared by multiple APIs.
 type SessionToken struct {
 	AccessToken  string
 	RefreshToken string
 	ExpiryTime   time.Time
 }
 
-//UMConf keeps user management APIs
+// UMConf keeps user management APIs
 type UMConf struct {
 	Login   string `json:"login"`   //Login API
 	Refresh string `json:"refresh"` //Refresh session URL
 	Logout  string `json:"logout"`  //Logout API
 }
 
-//APIConf keeps API configs
+// APIConf keeps API configs
 type APIConf struct {
 	API          string `json:"api"`           //API URL
 	Type         string `json:"type"`          //API type, HISTORY or ACTIVE from FM API.
@@ -70,7 +71,7 @@ var (
 	Conf Config
 )
 
-//ReadConfig reads the configurations from resources/conf.json file and sets the Config object.
+// ReadConfig reads the configurations from resources/conf.json file and sets the Config object.
 func ReadConfig(confFile string) error {
 	contents, err := os.ReadFile(confFile)
 	if err != nil {

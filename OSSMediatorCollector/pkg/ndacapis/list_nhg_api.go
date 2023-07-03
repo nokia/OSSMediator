@@ -34,8 +34,8 @@ const (
 	activeNhgStatus = "ACTIVE"
 )
 
-//get nhg details for the customer
-func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
+// get nhg details for the customer
+func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
 	apiURL := config.Conf.BaseURL + api.API
 	if !user.IsSessionAlive {
 		log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
@@ -79,7 +79,7 @@ func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64) {
 
 	storeUserNhg(resp.NetworkInfo, user, txnID)
 	storeUserHwID(resp.NetworkInfo, user, txnID)
-	err = utils.WriteResponse(user, api, resp.NetworkInfo, "", txnID)
+	err = utils.WriteResponse(user, api, resp.NetworkInfo, "", txnID, prettyResponse)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 	}

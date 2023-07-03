@@ -45,7 +45,7 @@ const (
 	eventTimeFormatNokiaCell = "2006-01-02T15:04:05Z07:00:00"
 )
 
-//checks whether file exists, return false if file ids not present.
+// checks whether file exists, return false if file ids not present.
 func fileExists(path string) bool {
 	if _, err := os.Stat(path); !os.IsNotExist(err) {
 		return true
@@ -53,7 +53,7 @@ func fileExists(path string) bool {
 	return false
 }
 
-//writes data to file, returns error if file creation or data writing failed.
+// writes data to file, returns error if file creation or data writing failed.
 func writeFile(fileName string, data []byte) error {
 	file, err := os.Create(fileName)
 	if err != nil {
@@ -67,7 +67,7 @@ func writeFile(fileName string, data []byte) error {
 	return nil
 }
 
-//CreateResponseDirectory creates directory named path, along with any necessary parents.
+// CreateResponseDirectory creates directory named path, along with any necessary parents.
 // If the directory creation fails it will terminate the program.
 func CreateResponseDirectory(basePath string, api string) {
 	dirPath := basePath + "/" + path.Base(api)
@@ -78,14 +78,18 @@ func CreateResponseDirectory(basePath string, api string) {
 	}
 }
 
-//WriteResponse writes the data in json format to responseDest directory.
-func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id string, txnID uint64) error {
-	//formattedData, err := json.MarshalIndent(data, "", "  ")
-	//if err != nil {
-	//	log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Unable to indent received data, error: %v", err)
-	//	return err
-	//}
-	//data = nil
+// WriteResponse writes the data in json format to responseDest directory.
+func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id string, txnID uint64, prettyResponse bool) error {
+	content := data
+	var err error
+	if prettyResponse {
+		content, err = json.MarshalIndent(data, "", "  ")
+		if err != nil {
+			log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Unable to indent received data, error: %v", err)
+			return err
+		}
+	}
+	data = nil
 
 	log.WithFields(log.Fields{"tid": txnID}).Info("starting response write")
 	fileName := path.Base(api.API)
@@ -124,7 +128,7 @@ func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id 
 	file, _ := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
 	defer file.Close()
 	encoder := json.NewEncoder(file)
-	err := encoder.Encode(data)
+	err = encoder.Encode(content)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Writing response to file %s for %s failed", fileName, user.Email)
 		return err
@@ -138,7 +142,7 @@ func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id 
 	return nil
 }
 
-//retrieves the last received metric time from file per API
+// retrieves the last received metric time from file per API
 func getLastReceivedDataTime(user *config.User, api *config.APIConf, nhgID string) string {
 	//Reading start time value from file
 	fileName := "checkpoints/" + path.Base(api.API)
@@ -159,9 +163,9 @@ func getLastReceivedDataTime(user *config.User, api *config.APIConf, nhgID strin
 	return strings.TrimSpace(string(data))
 }
 
-//StoreLastReceivedDataTime writes the last received metric's event time to a file so that next time that time stamp will be used as start_time for api calls.
-//Creates file for each user and each APIs.
-//returns error if writing to or reading from the response directory fails.
+// StoreLastReceivedDataTime writes the last received metric's event time to a file so that next time that time stamp will be used as start_time for api calls.
+// Creates file for each user and each APIs.
+// returns error if writing to or reading from the response directory fails.
 func StoreLastReceivedDataTime(user *config.User, data interface{}, api *config.APIConf, nhgID string, txnID uint64) error {
 	var fieldName, source string
 	baseAPIPath := path.Base(api.API)

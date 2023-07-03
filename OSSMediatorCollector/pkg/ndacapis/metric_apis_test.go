@@ -120,7 +120,7 @@ func TestCallAPIForInvalidCase(t *testing.T) {
 		index:     0,
 		limit:     100,
 	}
-	response, err := callAPI(apiReq, 123)
+	response, err := callAPI(apiReq, 123, true)
 	if err == nil || response != nil || !strings.Contains(err.Error(), "error while validating response status") {
 		t.Fail()
 	}
@@ -150,7 +150,7 @@ func TestCallAPIForInvalidURL(t *testing.T) {
 		index:     0,
 		limit:     100,
 	}
-	response, err := callAPI(apiReq, 123)
+	response, err := callAPI(apiReq, 123, true)
 	if err == nil || response != nil || !strings.Contains(err.Error(), "missing protocol scheme") {
 		t.Fail()
 	}
@@ -187,7 +187,7 @@ func TestCallAPI(t *testing.T) {
 		index:     0,
 		limit:     100,
 	}
-	resp, err := callAPI(apiReq, 123)
+	resp, err := callAPI(apiReq, 123, true)
 	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 {
 		t.Fail()
 	}
@@ -223,7 +223,7 @@ func TestCallAPIWithInvalidResponse(t *testing.T) {
 		limit:     100,
 	}
 
-	resp, err := callAPI(apiReq, 123)
+	resp, err := callAPI(apiReq, 123, true)
 	if resp != nil && strings.Contains(err.Error(), "Unable to decode response") {
 		t.Fail()
 	}
@@ -260,7 +260,7 @@ func TestCallAPIWithSkipCert(t *testing.T) {
 		index:     0,
 		limit:     100,
 	}
-	resp, err := callAPI(apiReq, 123)
+	resp, err := callAPI(apiReq, 123, true)
 	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 {
 		t.Fail()
 	}
@@ -300,7 +300,7 @@ func TestCallAPIWithCert(t *testing.T) {
 		limit:     100,
 	}
 
-	resp, err := callAPI(apiReq, 123)
+	resp, err := callAPI(apiReq, 123, true)
 	if err != nil || resp.Status.StatusCode != "SUCCESS" || resp.Type != "fmdata" || resp.TotalNumRecords != 2 || resp.NumOfRecords != 2 || resp.NextRecord != 0 {
 		t.Fail()
 	}
@@ -335,7 +335,7 @@ func TestCallAPIWithErrorStatusCode(t *testing.T) {
 		index:     0,
 		limit:     100,
 	}
-	resp, err := callAPI(apiReq, 123)
+	resp, err := callAPI(apiReq, 123, true)
 	if err == nil || resp != nil {
 		t.Fail()
 	}
@@ -350,7 +350,7 @@ func TestCallAPIWithInactiveSession(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: false}
 	api := &config.APIConf{API: "/fmdata", Interval: 15}
 	config.Conf.MaxConcurrentProcess = 1
-	fetchMetricsData(api, &user, 123)
+	fetchMetricsData(api, &user, 123, false)
 
 	if !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
 		t.Fail()
@@ -383,7 +383,7 @@ func TestAPICallWithPagination(t *testing.T) {
 	config.Conf.MaxConcurrentProcess = 1
 	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
 
-	fetchMetricsData(apiConf, &user, 123)
+	fetchMetricsData(apiConf, &user, 123, true)
 	files, err := ioutil.ReadDir(user.ResponseDest + apiConf.API)
 	if err != nil {
 		t.Error(err)
@@ -423,7 +423,7 @@ func TestRetryAPICall(t *testing.T) {
 	config.Conf.MaxConcurrentProcess = 1
 	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
 
-	fetchMetricsData(apiConf, &user, 123)
+	fetchMetricsData(apiConf, &user, 123, false)
 	files, err := ioutil.ReadDir(user.ResponseDest + apiConf.API)
 	if err != nil {
 		t.Error(err)
@@ -472,7 +472,7 @@ func TestCallMetricAPIForLargeResponse(t *testing.T) {
 	}
 	config.Conf.BaseURL = testServer.URL
 
-	status := callMetricAPI(apiReq, 1, 123)
+	status := callMetricAPI(apiReq, 1, 123, false)
 	if status != "" {
 		t.Fail()
 	}
@@ -503,7 +503,7 @@ func TestFetchMetricsDataWithRetryNext(t *testing.T) {
 	config.Conf.MaxConcurrentProcess = 1
 	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
 
-	fetchMetricsData(apiConf, &user, 123)
+	fetchMetricsData(apiConf, &user, 123, false)
 	files, err := ioutil.ReadDir(user.ResponseDest + apiConf.API)
 	if err != nil {
 		t.Error(err)

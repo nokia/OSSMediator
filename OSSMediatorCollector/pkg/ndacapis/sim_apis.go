@@ -17,7 +17,7 @@ import (
 	"strings"
 )
 
-//SimAPIResponse struct for sims api response.
+// SimAPIResponse struct for sims api response.
 type SimAPIResponse struct {
 	Status        Status       `json:"status"`
 	EmailID       string       `json:"email_id"`
@@ -28,19 +28,19 @@ type SimAPIResponse struct {
 	RequestedSims int          `json:"requested_sims"`
 }
 
-//PageResponse struct is used to get pagination information of sims api.
+// PageResponse struct is used to get pagination information of sims api.
 type PageResponse struct {
 	PageDetails PageDetails `json:"page_details"`
 	TotalPages  int         `json:"total_pages"`
 }
 
-//PageDetails keeps individual page details for pagination.
+// PageDetails keeps individual page details for pagination.
 type PageDetails struct {
 	PageNumber int `json:"page_number"`
 	PageSize   int `json:"page_size"`
 }
 
-//SimData struct for storing received response from sims api.
+// SimData struct for storing received response from sims api.
 type SimData struct {
 	EmailID       string      `json:"email_id,omitempty"`
 	TotalSims     int         `json:"total_sims,omitempty"`
@@ -56,7 +56,7 @@ const (
 	hwIDQueryParam     = "access_point_hw_id"
 )
 
-func fetchSimData(api *config.APIConf, user *config.User, txnID uint64) {
+func fetchSimData(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
 	if !user.IsSessionAlive {
 		log.WithFields(log.Fields{"tid": txnID, "api": api.API}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
 		return
@@ -65,19 +65,19 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64) {
 	if strings.Contains(api.API, accessPointSimsAPI) {
 		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("starting ap_sims api")
 		for _, hwID := range user.HwIDs {
-			callAccessPointsSimAPI(api, user, hwID, txnID)
+			callAccessPointsSimAPI(api, user, hwID, txnID, prettyResponse)
 		}
 		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("finished ap_sims api")
 	} else if strings.Contains(api.API, nhgPathParam) {
 		for _, nhgID := range user.NhgIDs {
-			callSimAPI(api, user, nhgID, 1, txnID)
+			callSimAPI(api, user, nhgID, 1, txnID, prettyResponse)
 		}
 	} else {
-		callSimAPI(api, user, "", 1, txnID)
+		callSimAPI(api, user, "", 1, txnID, prettyResponse)
 	}
 }
 
-func callSimAPI(api *config.APIConf, user *config.User, nhgID string, pageNo int, txnID uint64) {
+func callSimAPI(api *config.APIConf, user *config.User, nhgID string, pageNo int, txnID uint64, prettyResponse bool) {
 	apiURL := config.Conf.BaseURL + api.API
 	apiURL = strings.Replace(apiURL, "{nhg_id}", nhgID, -1)
 
@@ -124,7 +124,7 @@ func callSimAPI(api *config.APIConf, user *config.User, nhgID string, pageNo int
 		Subsc:         resp.Subsc,
 		RequestedSims: resp.RequestedSims,
 	}
-	err = utils.WriteResponse(user, api, simData, nhgID, txnID)
+	err = utils.WriteResponse(user, api, simData, nhgID, txnID, prettyResponse)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 		return
@@ -133,11 +133,11 @@ func callSimAPI(api *config.APIConf, user *config.User, nhgID string, pageNo int
 	if resp.PageResponse.TotalPages == resp.PageResponse.PageDetails.PageNumber {
 		return
 	} else {
-		callSimAPI(api, user, nhgID, pageNo+1, txnID)
+		callSimAPI(api, user, nhgID, pageNo+1, txnID, prettyResponse)
 	}
 }
 
-func callAccessPointsSimAPI(api *config.APIConf, user *config.User, hwID string, txnID uint64) {
+func callAccessPointsSimAPI(api *config.APIConf, user *config.User, hwID string, txnID uint64, prettyResponse bool) {
 	apiURL := config.Conf.BaseURL + api.API
 	//wait if refresh token api is running
 	user.Wg.Wait()
@@ -182,7 +182,7 @@ func callAccessPointsSimAPI(api *config.APIConf, user *config.User, hwID string,
 		log.WithFields(log.Fields{"tid": txnID, "hw_id": hwID}).Errorf("no access point sims found for %s", user.Email)
 		return
 	}
-	err = utils.WriteResponse(user, api, resp.AccessPointDetails, "", txnID)
+	err = utils.WriteResponse(user, api, resp.AccessPointDetails, "", txnID, prettyResponse)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err, "hw_id": hwID}).Errorf("unable to write response for %s", user.Email)
 	}

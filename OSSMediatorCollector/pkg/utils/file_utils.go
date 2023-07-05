@@ -80,17 +80,6 @@ func CreateResponseDirectory(basePath string, api string) {
 
 // WriteResponse writes the data in json format to responseDest directory.
 func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id string, txnID uint64, prettyResponse bool) error {
-	content := data
-	var err error
-	if prettyResponse {
-		content, err = json.MarshalIndent(data, "", "  ")
-		if err != nil {
-			log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Unable to indent received data, error: %v", err)
-			return err
-		}
-	}
-	data = nil
-
 	log.WithFields(log.Fields{"tid": txnID}).Info("starting response write")
 	fileName := path.Base(api.API)
 	if fileName == fmdataResponseType || fileName == pmdataResponseType {
@@ -112,6 +101,7 @@ func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id 
 			fileName += "_" + user.Email
 		}
 	}
+	//todo filename for orgid and acc_id apis
 
 	fileName += "_response_" + strconv.Itoa(int(CurrentTime().Unix()))
 	responseDest := user.ResponseDest + "/" + path.Base(api.API)
@@ -128,7 +118,10 @@ func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id 
 	file, _ := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
 	defer file.Close()
 	encoder := json.NewEncoder(file)
-	err = encoder.Encode(content)
+	if prettyResponse {
+		encoder.SetIndent("", "  ")
+	}
+	err := encoder.Encode(data)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Writing response to file %s for %s failed", fileName, user.Email)
 		return err

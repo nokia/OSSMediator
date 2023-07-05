@@ -376,7 +376,15 @@ func TestAPICallWithPagination(t *testing.T) {
 		RefreshToken: "refreshToken",
 		ExpiryTime:   utils.CurrentTime(),
 	}
-	user.NhgIDs = []string{"test_nhg_1"}
+	m := map[string]config.OrgAccDetails{}
+	orgAcc := config.OrgAccDetails{}
+	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"
+	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
+	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
+	orgAcc.AccDetails.AccAlias = "acc_alias_1"
+
+	m["test_nhg_1"] = orgAcc
+	user.NhgIDsABAC = m
 	CreateHTTPClient("", true)
 	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
 	config.Conf.BaseURL = testServer.URL
@@ -416,7 +424,16 @@ func TestRetryAPICall(t *testing.T) {
 		RefreshToken: "refreshToken",
 		ExpiryTime:   utils.CurrentTime(),
 	}
-	user.NhgIDs = []string{"test_nhg_1"}
+
+	m := map[string]config.OrgAccDetails{}
+	orgAcc := config.OrgAccDetails{}
+	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"
+	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
+	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
+	orgAcc.AccDetails.AccAlias = "acc_alias_1"
+
+	m["test_nhg_1"] = orgAcc
+	user.NhgIDsABAC = m
 	CreateHTTPClient("", true)
 	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
 	config.Conf.BaseURL = testServer.URL
@@ -496,7 +513,16 @@ func TestFetchMetricsDataWithRetryNext(t *testing.T) {
 		RefreshToken: "refreshToken",
 		ExpiryTime:   utils.CurrentTime(),
 	}
-	user.NhgIDs = []string{"test_nhg_1"}
+	m := map[string]config.OrgAccDetails{}
+	orgAcc := config.OrgAccDetails{}
+	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"
+	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
+	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
+	orgAcc.AccDetails.AccAlias = "acc_alias_1"
+
+	m["test_nhg_1"] = orgAcc
+	user.NhgIDsABAC = m
+
 	CreateHTTPClient("", true)
 	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
 	config.Conf.BaseURL = testServer.URL

@@ -147,7 +147,15 @@ func TestCallSimAPIWithWrongURL(t *testing.T) {
 	user.SessionToken = &config.SessionToken{
 		AccessToken: "accessToken",
 	}
-	user.NhgIDs = []string{"test_nhg1"}
+	m := map[string]config.OrgAccDetails{}
+	orgAcc := config.OrgAccDetails{}
+	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"
+	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
+	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
+	orgAcc.AccDetails.AccAlias = "acc_alias_1"
+
+	m["test_nhg1"] = orgAcc
+	user.NhgIDsABAC = m
 
 	config.Conf = config.Config{
 		BaseURL: "http://localhost",
@@ -188,7 +196,15 @@ func TestCallAPSimAPIWithWrongURL(t *testing.T) {
 	user.SessionToken = &config.SessionToken{
 		AccessToken: "accessToken",
 	}
-	user.NhgIDs = []string{"test_nhg1"}
+	m := map[string]config.OrgAccDetails{}
+	orgAcc := config.OrgAccDetails{}
+	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"
+	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
+	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
+	orgAcc.AccDetails.AccAlias = "acc_alias_1"
+
+	m["test_nhg1"] = orgAcc
+	user.NhgIDsABAC = m
 
 	config.Conf = config.Config{
 		BaseURL: "http://localhost",
@@ -229,7 +245,16 @@ func TestCallAPSimAPI(t *testing.T) {
 	user.SessionToken = &config.SessionToken{
 		AccessToken: "accessToken",
 	}
-	user.HwIDs = []string{"test-hw1"}
+	m := map[string]config.OrgAccDetails{}
+	orgAcc := config.OrgAccDetails{}
+	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"
+	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
+	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
+	orgAcc.AccDetails.AccAlias = "acc_alias_1"
+
+	m["test-hw1"] = orgAcc
+	user.HwIDsABAC = m
+
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintln(w, apSimsAPIResponse)

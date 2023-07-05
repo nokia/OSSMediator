@@ -12,14 +12,13 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"os"
-	"strings"
 	"testing"
 )
 
 func TestWriteResponseWithWrongDir(t *testing.T) {
 	user := &config.User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
 	apiConf := &config.APIConf{API: "/fmdata", Type: "ACTIVE", MetricType: "RADIO"}
-	err := WriteResponse(user, apiConf, "", "", 123)
+	err := WriteResponse(user, apiConf, "", "", 123, true)
 	if err == nil {
 		t.Error(err)
 	}
@@ -40,7 +39,7 @@ func TestWriteResponseForPM(t *testing.T) {
 	defer os.RemoveAll(user.ResponseDest)
 
 	for _, api := range apiConfs {
-		err := WriteResponse(user, &api, data, "", 123)
+		err := WriteResponse(user, &api, data, "", 123, true)
 		if err != nil {
 			t.Error(err)
 		}
@@ -50,7 +49,7 @@ func TestWriteResponseForPM(t *testing.T) {
 			t.Error(err)
 		}
 		content, err := ioutil.ReadFile(user.ResponseDest + api.API + "/" + files[0].Name())
-		if err != nil || len(content) == 0 || !strings.Contains(string(content), data) {
+		if err != nil || len(content) == 0 || string(content) != `"test"` {
 			t.Fail()
 		}
 	}

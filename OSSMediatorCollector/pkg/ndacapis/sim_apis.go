@@ -61,24 +61,38 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64, prettyRe
 		log.WithFields(log.Fields{"tid": txnID, "api": api.API}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
 		return
 	}
-
 	if strings.Contains(api.API, accessPointSimsAPI) {
-		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("starting ap_sims api")
-		for _, hwID := range user.HwIDs {
-			callAccessPointsSimAPI(api, user, hwID, txnID, prettyResponse)
+		authType := strings.ToUpper(user.AuthType)
+		if authType == "ADTOKEN" {
+			log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDsABAC)}).Infof("starting ap_sims api")
+			for hwID, orgAcc := range user.HwIDsABAC {
+				callAccessPointsSimAPI(api, user, hwID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, txnID, prettyResponse)
+			}
+		} else {
+			for _, hwID := range user.HwIDs {
+				log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("starting ap_sims api")
+				callAccessPointsSimAPI(api, user, hwID, "", "", txnID, prettyResponse)
+			}
 		}
 		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("finished ap_sims api")
 	} else if strings.Contains(api.API, nhgPathParam) {
-		for _, nhgID := range user.NhgIDs {
-			callSimAPI(api, user, nhgID, 1, txnID, prettyResponse)
+		authType := strings.ToUpper(user.AuthType)
+		if authType == "ADTOKEN" {
+			for nhgID, orgAcc := range user.NhgIDsABAC {
+				callSimAPI(api, user, nhgID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, 1, txnID, prettyResponse)
+			}
+		} else {
+			for _, nhgID := range user.NhgIDs {
+				callSimAPI(api, user, nhgID, "", "", 1, txnID, prettyResponse)
+			}
 		}
 	} else {
-		callSimAPI(api, user, "", 1, txnID, prettyResponse)
+		callSimAPI(api, user, "", "", "", 1, txnID, prettyResponse)
 	}
 }
 
-func callSimAPI(api *config.APIConf, user *config.User, nhgID string, pageNo int, txnID uint64, prettyResponse bool) {
-	apiURL := config.Conf.BaseURL + api.API
+func callSimAPI(api *config.APIConf, user *config.User, nhgID string, orgUUID string, accUUID string, pageNo int, txnID uint64, prettyResponse bool) {
+	apiURL := config.Conf.BaseURL + api.API + "?user_info.org_uuid=" + orgUUID + "&user_info.account_uuid=" + accUUID
 	apiURL = strings.Replace(apiURL, "{nhg_id}", nhgID, -1)
 
 	//wait if refresh token api is running
@@ -133,12 +147,12 @@ func callSimAPI(api *config.APIConf, user *config.User, nhgID string, pageNo int
 	if resp.PageResponse.TotalPages == resp.PageResponse.PageDetails.PageNumber {
 		return
 	} else {
-		callSimAPI(api, user, nhgID, pageNo+1, txnID, prettyResponse)
+		callSimAPI(api, user, nhgID, orgUUID, accUUID, pageNo+1, txnID, prettyResponse)
 	}
 }
 
-func callAccessPointsSimAPI(api *config.APIConf, user *config.User, hwID string, txnID uint64, prettyResponse bool) {
-	apiURL := config.Conf.BaseURL + api.API
+func callAccessPointsSimAPI(api *config.APIConf, user *config.User, hwID string, orgUUID string, accUUID string, txnID uint64, prettyResponse bool) {
+	apiURL := config.Conf.BaseURL + api.API + "?user_info.org_uuid=" + orgUUID + "&user_info.account_uuid=" + accUUID
 	//wait if refresh token api is running
 	user.Wg.Wait()
 

@@ -13,6 +13,7 @@ import (
 	"encoding/json"
 	log "github.com/sirupsen/logrus"
 	"net/http"
+	"strings"
 )
 
 type nhgAPIResponse struct {
@@ -36,6 +37,17 @@ const (
 
 // get nhg details for the customer
 func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
+	user.HwIDsABAC = map[string]config.OrgAccDetails{}
+	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
+	authType := strings.ToUpper(user.AuthType)
+	if authType == "ADTOKEN" {
+		listNhgABAC(api, user, txnID, prettyResponse)
+	} else {
+		listNhgRBAC(api, user, txnID, prettyResponse)
+	}
+}
+
+func listNhgRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
 	apiURL := config.Conf.BaseURL + api.API
 	if !user.IsSessionAlive {
 		log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
@@ -77,15 +89,15 @@ func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64, prettyR
 		return
 	}
 
-	storeUserNhg(resp.NetworkInfo, user, txnID)
-	storeUserHwID(resp.NetworkInfo, user, txnID)
+	storeUserNhgRBAC(resp.NetworkInfo, user, txnID)
+	storeUserHwIDRBAC(resp.NetworkInfo, user, txnID)
 	err = utils.WriteResponse(user, api, resp.NetworkInfo, "", txnID, prettyResponse)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 	}
 }
 
-func storeUserNhg(nhgData []NetworkInfo, user *config.User, txnID uint64) {
+func storeUserNhgRBAC(nhgData []NetworkInfo, user *config.User, txnID uint64) {
 	user.NhgIDs = []string{}
 	for _, nhgInfo := range nhgData {
 		if nhgInfo.NhgConfigStatus == activeNhgStatus {
@@ -102,7 +114,7 @@ func storeUserNhg(nhgData []NetworkInfo, user *config.User, txnID uint64) {
 	}
 }
 
-func storeUserHwID(nhgData []NetworkInfo, user *config.User, txnID uint64) {
+func storeUserHwIDRBAC(nhgData []NetworkInfo, user *config.User, txnID uint64) {
 	user.HwIDs = []string{}
 	hwIDs := make(map[string]struct{})
 	for _, nhgInfo := range nhgData {
@@ -120,4 +132,131 @@ func storeUserHwID(nhgData []NetworkInfo, user *config.User, txnID uint64) {
 		user.HwIDs = append(user.HwIDs, hwID)
 	}
 	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDs}).Info("user's access point hardware")
+}
+
+func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
+	orgResponse, err := fetchOrgUUID(api, user, txnID, prettyResponse)
+	if err != nil || (len(orgResponse.OrgDetails)) == 0 {
+		user.IsSessionAlive = false
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while fetching orguuid")
+		return
+	}
+	//check response for status code
+	err = checkStatusCode(orgResponse.Status)
+	if err != nil {
+		user.IsSessionAlive = false
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Invalid status code received while calling")
+		return
+	}
+
+	err = utils.WriteResponse(user, api, orgResponse.OrgDetails, "", txnID, prettyResponse)
+	if err != nil {
+		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
+	}
+
+	for _, org := range orgResponse.OrgDetails {
+		accResponse, err := fetchAccUUID(api, user, org, txnID, prettyResponse)
+		if err != nil || len(accResponse.AccDetails) == 0 {
+			log.WithFields(log.Fields{"tid": txnID, "error": err}).Debug("No accounts mapped")
+			continue
+		}
+		for _, acc := range accResponse.AccDetails {
+			apiURL := config.Conf.BaseURL + api.API + "?user_info.org_uuid=" + org.OrgUUID + "&user_info.account_uuid=" + acc.AccUUID
+			if !user.IsSessionAlive {
+				log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
+				return
+			}
+
+			//wait if refresh token api is running
+			user.Wg.Wait()
+
+			log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
+			request, err := http.NewRequest("GET", apiURL, nil)
+			if err != nil {
+				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
+				return
+			}
+
+			request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
+			response, err := doRequest(request)
+			if err != nil {
+				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
+				return
+			}
+
+			resp := new(nhgAPIResponse)
+			err = json.NewDecoder(bytes.NewReader(response)).Decode(&resp)
+			if err != nil {
+				log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to decode response")
+				return
+			}
+
+			//check response for status code
+			err = checkStatusCode(resp.Status)
+			if err != nil {
+				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
+				return
+			}
+
+			err = utils.WriteResponse(user, api, resp.NetworkInfo, "", txnID, prettyResponse)
+			if err != nil {
+				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
+			}
+
+			storeUserNhgABAC(resp.NetworkInfo, user, &org, &acc, txnID)
+			storeUserHwIDABAC(resp.NetworkInfo, user, &org, &acc, txnID)
+		}
+	}
+	if len(user.NhgIDsABAC) == 0 {
+		user.IsSessionAlive = false
+		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Info("no active nhg found for user")
+	}
+}
+
+func storeUserNhgABAC(nhgData []NetworkInfo, user *config.User, org *config.OrgDetails, acc *config.AccDetails, txnID uint64) {
+	orgAcc := config.OrgAccDetails{}
+	orgDet := config.OrgDetails{OrgUUID: org.OrgUUID, OrgAlias: org.OrgAlias}
+	accDet := config.AccDetails{AccUUID: acc.AccUUID, AccAlias: acc.AccAlias}
+
+	orgAcc.OrgDetails = orgDet
+	orgAcc.AccDetails = accDet
+
+	for _, nhgInfo := range nhgData {
+		if nhgInfo.NhgConfigStatus == activeNhgStatus {
+			user.NhgIDsABAC[nhgInfo.NhgID] = orgAcc
+		}
+	}
+	if len(user.NhgIDsABAC) == 0 {
+		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Info("no active nhg found for user")
+		//user.IsSessionAlive = false
+	} else {
+		user.IsSessionAlive = true
+		log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "nhg_ids": user.NhgIDsABAC}).Info("user nhgs")
+	}
+}
+
+func storeUserHwIDABAC(nhgData []NetworkInfo, user *config.User, org *config.OrgDetails, acc *config.AccDetails, txnID uint64) {
+	orgAcc := config.OrgAccDetails{}
+	orgDet := config.OrgDetails{OrgUUID: org.OrgUUID, OrgAlias: org.OrgAlias}
+	accDet := config.AccDetails{AccUUID: acc.AccUUID, AccAlias: acc.AccAlias}
+
+	orgAcc.OrgDetails = orgDet
+	orgAcc.AccDetails = accDet
+
+	hwIDsMap := make(map[string]struct{})
+	for _, nhgInfo := range nhgData {
+		if nhgInfo.NhgConfigStatus != activeNhgStatus {
+			continue
+		}
+		for _, cluster := range nhgInfo.Clusters {
+			for _, hwSet := range cluster.HwSet {
+				hwIDsMap[hwSet.HwID] = struct{}{}
+			}
+		}
+	}
+
+	for hwID := range hwIDsMap {
+		user.HwIDsABAC[hwID] = orgAcc
+	}
+	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDsABAC}).Info("user's access point hardware")
 }

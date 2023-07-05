@@ -60,6 +60,8 @@ type apiCallRequest struct {
 	index          int
 	limit          int
 	searchAfterKey string
+	orgUUID        string
+	accUUID        string
 }
 
 const (
@@ -90,28 +92,59 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, pret
 
 	wg := sync.WaitGroup{}
 	requests := make(chan struct{}, config.Conf.MaxConcurrentProcess)
-	for _, nhg := range user.NhgIDs {
-		requests <- struct{}{}
-		wg.Add(1)
-		go func(nhgID string) {
-			startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
-			apiReq := apiCallRequest{
-				api:       api,
-				user:      user,
-				nhgID:     nhgID,
-				startTime: startTime,
-				endTime:   endTime,
-				index:     0,
-				limit:     config.Conf.Limit,
-			}
-			msg := callMetricAPI(apiReq, maxRetryAttempts, txnID, prettyResponse)
-			if msg == retryCurrentMsg {
-				callMetricAPI(apiReq, 0, txnID, prettyResponse)
-			}
-			<-requests
-			wg.Done()
-		}(nhg)
+	authType := strings.ToUpper(user.AuthType)
+	if authType == "ADTOKEN" {
+		//ABAC user
+		for nhg, orgAcc := range user.NhgIDsABAC {
+			requests <- struct{}{}
+			wg.Add(1)
+			go func(nhgID string, accDetail config.OrgAccDetails) {
+				startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
+				apiReq := apiCallRequest{
+					api:       api,
+					user:      user,
+					nhgID:     nhgID,
+					startTime: startTime,
+					endTime:   endTime,
+					index:     0,
+					limit:     config.Conf.Limit,
+					orgUUID:   accDetail.OrgDetails.OrgUUID,
+					accUUID:   accDetail.AccDetails.AccUUID,
+				}
+				msg := callMetricAPI(apiReq, maxRetryAttempts, txnID, prettyResponse)
+				if msg == retryCurrentMsg {
+					callMetricAPI(apiReq, 0, txnID, prettyResponse)
+				}
+				<-requests
+				wg.Done()
+			}(nhg, orgAcc)
+		}
+	} else {
+		//RBAC user
+		for _, nhg := range user.NhgIDs {
+			requests <- struct{}{}
+			wg.Add(1)
+			go func(nhgID string) {
+				startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
+				apiReq := apiCallRequest{
+					api:       api,
+					user:      user,
+					nhgID:     nhgID,
+					startTime: startTime,
+					endTime:   endTime,
+					index:     0,
+					limit:     config.Conf.Limit,
+				}
+				msg := callMetricAPI(apiReq, maxRetryAttempts, txnID, prettyResponse)
+				if msg == retryCurrentMsg {
+					callMetricAPI(apiReq, 0, txnID, prettyResponse)
+				}
+				<-requests
+				wg.Done()
+			}(nhg)
+		}
 	}
+
 	wg.Wait()
 	mux.Lock()
 	delete(activeAPIs, apiKey)
@@ -120,6 +153,10 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, pret
 
 func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64, prettyResponse bool) string {
 	apiURL := config.Conf.BaseURL + req.api.API
+	authType := strings.ToUpper(req.user.AuthType)
+	if authType == "ADTOKEN" {
+		apiURL = apiURL + "?user_info.org_uuid=" + req.orgUUID + "&user_info.account_uuid=" + req.accUUID
+	}
 	apiURL = strings.Replace(apiURL, "{nhg_id}", req.nhgID, -1)
 	req.url = apiURL
 

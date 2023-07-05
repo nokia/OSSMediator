@@ -32,7 +32,7 @@ var (
   		"organization_details": [
     		{
       			"organization_uuid": "test_orguuid_1",
-      			"organization_alias": "TEST_ORGUUID1"
+      			"oranization_alias": "TEST_ORGUUID1"
     		},
     		{
       			"organization_uuid": "test_orguuid_2",

@@ -142,6 +142,58 @@ func TestCallSimAPI(t *testing.T) {
 	}
 }
 
+func TestCallSimAPIABAC(t *testing.T) {
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
+	user.SessionToken = &config.SessionToken{
+		AccessToken: "accessToken",
+	}
+	user.AuthType = "ADTOKEN"
+	m := map[string]config.OrgAccDetails{}
+	orgAcc := config.OrgAccDetails{}
+	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"
+	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
+	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
+	orgAcc.AccDetails.AccAlias = "acc_alias_1"
+
+	m["test_nhg1"] = orgAcc
+	user.NhgIDsABAC = m
+
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintln(w, simAPIResponse)
+	}))
+	defer testServer.Close()
+
+	config.Conf = config.Config{
+		BaseURL: testServer.URL,
+	}
+	apiConf := config.APIConf{API: "/sims", Interval: 15}
+	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
+	defer os.RemoveAll(user.ResponseDest)
+	CreateHTTPClient("", true)
+
+	oldCurrentTime := utils.CurrentTime
+	defer func() { utils.CurrentTime = oldCurrentTime }()
+
+	myCurrentTime := func() time.Time {
+		return time.Date(2018, 12, 17, 20, 9, 58, 0, time.UTC)
+	}
+	utils.CurrentTime = myCurrentTime
+	fetchSimData(&apiConf, &user, 123, true)
+
+	fileName := "./tmp/sims/sims_testuser@nokia.com_response_" + strconv.Itoa(int(utils.CurrentTime().Unix())) + ".json"
+	if _, err := os.Stat(fileName); os.IsNotExist(err) {
+		t.Error("File not found,  ", err)
+	}
+	data, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		t.Error(err)
+	}
+	if len(data) == 0 {
+		t.Error("Found empty file")
+	}
+}
+
 func TestCallSimAPIWithWrongURL(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
 	user.SessionToken = &config.SessionToken{
@@ -153,6 +205,8 @@ func TestCallSimAPIWithWrongURL(t *testing.T) {
 	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
 	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
 	orgAcc.AccDetails.AccAlias = "acc_alias_1"
+
+	user.AuthType = "ADTOKEN"
 
 	m["test_nhg1"] = orgAcc
 	user.NhgIDsABAC = m
@@ -242,6 +296,7 @@ func TestGetAPSimsDataWithInactiveSession(t *testing.T) {
 
 func TestCallAPSimAPI(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
+	user.AuthType = "ADTOKEN"
 	user.SessionToken = &config.SessionToken{
 		AccessToken: "accessToken",
 	}

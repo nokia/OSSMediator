@@ -357,6 +357,23 @@ func TestCallAPIWithInactiveSession(t *testing.T) {
 	}
 }
 
+func TestCallAPIWithInactiveSessionABAC(t *testing.T) {
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: false}
+	user.AuthType = "ADTOKEN"
+	api := &config.APIConf{API: "/fmdata", Interval: 15}
+	config.Conf.MaxConcurrentProcess = 1
+	fetchMetricsData(api, &user, 123, false)
+
+	if !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
+		t.Fail()
+	}
+}
+
 func TestAPICallWithPagination(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		query := r.URL.Query()
@@ -451,6 +468,56 @@ func TestRetryAPICall(t *testing.T) {
 	os.RemoveAll(user.ResponseDest)
 }
 
+func TestRetryAPICallABAC(t *testing.T) {
+	count := 0
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		query := r.URL.Query()
+		index, _ := strconv.Atoi(query.Get(indexQueryParam))
+		w.Header().Set("Content-Type", "application/json")
+		if index == 0 {
+			fmt.Fprintln(w, paginationResponse1)
+		} else if count == 2 {
+			fmt.Fprintln(w, paginationResponse2)
+		} else {
+			count++
+			w.WriteHeader(http.StatusBadRequest)
+		}
+	}))
+	defer testServer.Close()
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   utils.CurrentTime(),
+	}
+	user.AuthType = "ADTOKEN"
+
+	m := map[string]config.OrgAccDetails{}
+	orgAcc := config.OrgAccDetails{}
+	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"
+	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
+	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
+	orgAcc.AccDetails.AccAlias = "acc_alias_1"
+
+	m["test_nhg_1"] = orgAcc
+	user.NhgIDsABAC = m
+	CreateHTTPClient("", true)
+	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
+	config.Conf.BaseURL = testServer.URL
+	config.Conf.MaxConcurrentProcess = 1
+	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
+
+	fetchMetricsData(apiConf, &user, 123, false)
+	files, err := ioutil.ReadDir(user.ResponseDest + apiConf.API)
+	if err != nil {
+		t.Error(err)
+	}
+	if len(files) != 2 {
+		t.Fail()
+	}
+	os.RemoveAll(user.ResponseDest)
+}
+
 func TestCallMetricAPIForLargeResponse(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
 	user.SessionToken = &config.SessionToken{
@@ -513,6 +580,52 @@ func TestFetchMetricsDataWithRetryNext(t *testing.T) {
 		RefreshToken: "refreshToken",
 		ExpiryTime:   utils.CurrentTime(),
 	}
+	m := map[string]config.OrgAccDetails{}
+	orgAcc := config.OrgAccDetails{}
+	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"
+	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
+	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
+	orgAcc.AccDetails.AccAlias = "acc_alias_1"
+
+	m["test_nhg_1"] = orgAcc
+	user.NhgIDsABAC = m
+
+	CreateHTTPClient("", true)
+	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
+	config.Conf.BaseURL = testServer.URL
+	config.Conf.MaxConcurrentProcess = 1
+	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
+
+	fetchMetricsData(apiConf, &user, 123, false)
+	files, err := ioutil.ReadDir(user.ResponseDest + apiConf.API)
+	if err != nil {
+		t.Error(err)
+	}
+	if len(files) != 2 {
+		t.Fail()
+	}
+	os.RemoveAll(user.ResponseDest)
+}
+
+func TestFetchMetricsDataWithRetryNextABAC(t *testing.T) {
+	count := 0
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		if count == 0 {
+			fmt.Fprintln(w, largeResponse)
+		} else if count == 1 {
+			fmt.Fprintln(w, fmResponse)
+		}
+		count++
+	}))
+	defer testServer.Close()
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   utils.CurrentTime(),
+	}
+	user.AuthType = "ADTOKEN"
 	m := map[string]config.OrgAccDetails{}
 	orgAcc := config.OrgAccDetails{}
 	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"

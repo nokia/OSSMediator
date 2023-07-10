@@ -258,7 +258,7 @@ func TestReadSessionTokenWithInvalidEncoding(t *testing.T) {
 	defer file.Close()
 	defer os.RemoveAll(secretDir)
 
-	_, err = file.Write([]byte("???"))
+	_, err = file.Write([]byte("??"))
 	if err != nil {
 		t.Error(err)
 	}

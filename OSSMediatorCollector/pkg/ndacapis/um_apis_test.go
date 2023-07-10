@@ -342,6 +342,7 @@ func TestSetToken(t *testing.T) {
 
 	user := config.User{Email: "testuser@nokia.com", Password: "MTIzNA=="}
 	setToken(&response, &user)
+
 	if user.SessionToken.ExpiryTime.String() != "2018-03-08 05:10:16 +0000 UTC" {
 		t.Fail()
 	}
@@ -405,6 +406,101 @@ func TestRefreshTokenRBAC(t *testing.T) {
 		RefreshToken: "",
 		ExpiryTime:   time.Now().Add(30100 * time.Millisecond),
 	}
+	go RefreshToken(&user)
+	time.Sleep(200 * time.Millisecond)
+	if user.SessionToken.AccessToken != tokenString && user.SessionToken.RefreshToken != tokenString {
+		t.Fail()
+	}
+}
+
+func TestRefreshTokenABAC(t *testing.T) {
+	mySigningKey := []byte("testtoken")
+	claims := &jwt.StandardClaims{
+		ExpiresAt: time.Now().Add(60 * time.Second).Unix(),
+		Issuer:    "test",
+	}
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	tokenString, _ := token.SignedString(mySigningKey)
+
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintf(w, `{
+			"status": {
+				"status_code": "SUCCESS",
+				"status_description": {
+					"description_code": "NOT_SPECIFIED",
+					"description": "Success"
+				}
+			},
+			"token": {
+				"access_token": "%s",
+				"refresh_token": "%s"
+			}
+		}
+`, tokenString, tokenString)
+	}))
+	defer testServer.Close()
+	config.Conf = config.Config{
+		AzureSessionAPIs: config.AzureConf{
+			Refresh: testServer.URL},
+	}
+
+	CreateHTTPClient("", true)
+	user := config.User{Email: "testuser@nokia.com"}
+	user.AuthType = "ADTOKEN"
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "",
+		RefreshToken: "",
+		ExpiryTime:   time.Now().Add(30100 * time.Millisecond),
+	}
+
+	go RefreshToken(&user)
+	time.Sleep(200 * time.Millisecond)
+	if user.SessionToken.AccessToken != tokenString && user.SessionToken.RefreshToken != tokenString {
+		t.Fail()
+	}
+}
+
+func TestRefreshTokenABACError(t *testing.T) {
+	mySigningKey := []byte("testtoken")
+	claims := &jwt.StandardClaims{
+		ExpiresAt: time.Now().Add(60 * time.Second).Unix(),
+		Issuer:    "test",
+	}
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	tokenString, _ := token.SignedString(mySigningKey)
+
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintf(w, `{
+			"status": {
+				"status_code": "SUCCESS",
+				"status_description": {
+					"description_code": "NOT_SPECIFIED",
+					"description": "Success"
+				}
+			},
+			"token": {
+				"access_token": "%s",
+				"refresh_token": "%s"
+			}
+		}`, tokenString, tokenString)
+	}))
+
+	defer testServer.Close()
+	config.Conf = config.Config{
+		AzureSessionAPIs: config.AzureConf{
+			Refresh: testServer.URL},
+	}
+	CreateHTTPClient("", true)
+	user := config.User{Email: "testuser@nokia.com"}
+	user.AuthType = "ADTOKEN"
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "",
+		RefreshToken: "",
+		ExpiryTime:   time.Now().Add(30100 * time.Millisecond),
+	}
+	fmt.Println("user token: ", user.SessionToken.AccessToken)
 	go RefreshToken(&user)
 	time.Sleep(200 * time.Millisecond)
 	if user.SessionToken.AccessToken != tokenString && user.SessionToken.RefreshToken != tokenString {

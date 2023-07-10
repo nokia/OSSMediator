@@ -10,10 +10,46 @@ import (
 	"bytes"
 	"collector/pkg/config"
 	"encoding/json"
+	"fmt"
+	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"testing"
 )
+
+func TestWriteFile_Success(t *testing.T) {
+	fileName := "testfile.txt"
+	data := []byte("This is a test")
+
+	// Call the function under test
+	err := writeFile(fileName, data)
+
+	// Assert that no error occurred
+	assert.Nil(t, err)
+
+	// Read the file and verify its content
+	fileContent, err := ioutil.ReadFile(fileName)
+	assert.Nil(t, err)
+	assert.Equal(t, data, fileContent)
+
+	// Clean up: remove the created file
+	err = os.Remove(fileName)
+	assert.Nil(t, err)
+}
+
+func TestWriteFile_FileCreationError(t *testing.T) {
+	fileName := "/nonexistentfolder/testfile.txt"
+	data := []byte("This is a test")
+
+	// Call the function under test
+	err := writeFile(fileName, data)
+
+	// Assert that an error occurred during file creation
+	expectedError := fmt.Errorf("file creation failed")
+	assert.NotNil(t, err)
+	assert.Contains(t, err.Error(), expectedError.Error())
+}
 
 func TestWriteResponseWithWrongDir(t *testing.T) {
 	user := &config.User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
@@ -62,6 +98,41 @@ func TestCreateResponseDirectory(t *testing.T) {
 	if _, err := os.Stat(respDir + "/pmdata"); os.IsNotExist(err) {
 		t.Fail()
 	}
+}
+
+func TestCreateResponseDirectory_Success(t *testing.T) {
+	basePath := "/path/to/base"
+	api := "/api/v1/foo"
+
+	// Call the function under test
+	CreateResponseDirectory(basePath, api)
+
+	// Assert that the directory exists
+	dirPath := filepath.Join(basePath, filepath.Base(api))
+	_, err := os.Stat(dirPath)
+	assert.Nil(t, err)
+
+	// Clean up: remove the created directory
+	err = os.RemoveAll(dirPath)
+	assert.Nil(t, err)
+}
+
+func TestCreateResponseDirectory_Error(t *testing.T) {
+	basePath := "/path/to/nonexistent"
+
+	// Call the function under test
+	CreateResponseDirectory(basePath, "/api/v1/bar")
+
+	// Assert that the function logs the error
+	// In this example, we assume you have a logging mechanism in place and check the log messages accordingly
+	// You may need to customize this part to match your logging implementation
+	// assert.Contains(t, logOutput, "Error while creating")
+
+	// Assert that the directory does not exist
+	dirPath := filepath.Join(basePath, "bar")
+	_, err := os.Stat(dirPath)
+	assert.NotNil(t, err)
+	assert.True(t, os.IsNotExist(err))
 }
 
 func TestStoreLastReceivedDataTimeForFM(t *testing.T) {

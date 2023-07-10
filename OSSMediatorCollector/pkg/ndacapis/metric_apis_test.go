@@ -401,7 +401,53 @@ func TestAPICallWithPagination(t *testing.T) {
 	orgAcc.AccDetails.AccAlias = "acc_alias_1"
 
 	m["test_nhg_1"] = orgAcc
+	user.NhgIDs = []string{"test_nhg_1"}
+	CreateHTTPClient("", true)
+	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
+	config.Conf.BaseURL = testServer.URL
+	config.Conf.MaxConcurrentProcess = 1
+	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
+
+	fetchMetricsData(apiConf, &user, 123, true)
+	files, err := ioutil.ReadDir(user.ResponseDest + apiConf.API)
+	if err != nil {
+		t.Error(err)
+	}
+	if len(files) != 2 {
+		t.Fail()
+	}
+	os.RemoveAll(user.ResponseDest)
+}
+
+func TestAPICallWithPaginationABAC(t *testing.T) {
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		query := r.URL.Query()
+		index, _ := strconv.Atoi(query.Get(indexQueryParam))
+		w.Header().Set("Content-Type", "application/json")
+		if index == 0 {
+			fmt.Fprintln(w, paginationResponse1)
+		} else {
+			fmt.Fprintln(w, paginationResponse2)
+		}
+	}))
+	defer testServer.Close()
+
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   utils.CurrentTime(),
+	}
+	m := map[string]config.OrgAccDetails{}
+	orgAcc := config.OrgAccDetails{}
+	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"
+	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
+	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
+	orgAcc.AccDetails.AccAlias = "acc_alias_1"
+
+	m["test_nhg_1"] = orgAcc
 	user.NhgIDsABAC = m
+	user.AuthType = "ADTOKEN"
 	CreateHTTPClient("", true)
 	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
 	config.Conf.BaseURL = testServer.URL
@@ -450,7 +496,7 @@ func TestRetryAPICall(t *testing.T) {
 	orgAcc.AccDetails.AccAlias = "acc_alias_1"
 
 	m["test_nhg_1"] = orgAcc
-	user.NhgIDsABAC = m
+	user.NhgIDs = []string{"test_nhg_1"}
 	CreateHTTPClient("", true)
 	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
 	config.Conf.BaseURL = testServer.URL
@@ -562,6 +608,52 @@ func TestCallMetricAPIForLargeResponse(t *testing.T) {
 	}
 }
 
+func TestFetchMetricsDataWithRetryNextABAC(t *testing.T) {
+	count := 0
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		if count == 0 {
+			fmt.Fprintln(w, largeResponse)
+		} else if count == 1 {
+			fmt.Fprintln(w, fmResponse)
+		}
+		count++
+	}))
+	defer testServer.Close()
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   utils.CurrentTime(),
+	}
+	m := map[string]config.OrgAccDetails{}
+	orgAcc := config.OrgAccDetails{}
+	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"
+	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
+	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
+	orgAcc.AccDetails.AccAlias = "acc_alias_1"
+
+	m["test_nhg_1"] = orgAcc
+	user.NhgIDsABAC = m
+
+	user.AuthType = "ADTOKEN"
+	CreateHTTPClient("", true)
+	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
+	config.Conf.BaseURL = testServer.URL
+	config.Conf.MaxConcurrentProcess = 1
+	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
+
+	fetchMetricsData(apiConf, &user, 123, false)
+	files, err := ioutil.ReadDir(user.ResponseDest + apiConf.API)
+	if err != nil {
+		t.Error(err)
+	}
+	if len(files) != 2 {
+		t.Fail()
+	}
+	os.RemoveAll(user.ResponseDest)
+}
+
 func TestFetchMetricsDataWithRetryNext(t *testing.T) {
 	count := 0
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -588,54 +680,7 @@ func TestFetchMetricsDataWithRetryNext(t *testing.T) {
 	orgAcc.AccDetails.AccAlias = "acc_alias_1"
 
 	m["test_nhg_1"] = orgAcc
-	user.NhgIDsABAC = m
-
-	CreateHTTPClient("", true)
-	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
-	config.Conf.BaseURL = testServer.URL
-	config.Conf.MaxConcurrentProcess = 1
-	utils.CreateResponseDirectory(user.ResponseDest, apiConf.API)
-
-	fetchMetricsData(apiConf, &user, 123, false)
-	files, err := ioutil.ReadDir(user.ResponseDest + apiConf.API)
-	if err != nil {
-		t.Error(err)
-	}
-	if len(files) != 2 {
-		t.Fail()
-	}
-	os.RemoveAll(user.ResponseDest)
-}
-
-func TestFetchMetricsDataWithRetryNextABAC(t *testing.T) {
-	count := 0
-	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		if count == 0 {
-			fmt.Fprintln(w, largeResponse)
-		} else if count == 1 {
-			fmt.Fprintln(w, fmResponse)
-		}
-		count++
-	}))
-	defer testServer.Close()
-	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
-	user.SessionToken = &config.SessionToken{
-		AccessToken:  "accessToken",
-		RefreshToken: "refreshToken",
-		ExpiryTime:   utils.CurrentTime(),
-	}
-	user.AuthType = "ADTOKEN"
-	m := map[string]config.OrgAccDetails{}
-	orgAcc := config.OrgAccDetails{}
-	orgAcc.OrgDetails.OrgUUID = "org_uuid_1"
-	orgAcc.OrgDetails.OrgAlias = "org_alias_1"
-	orgAcc.AccDetails.AccUUID = "acc_uuid_1"
-	orgAcc.AccDetails.AccAlias = "acc_alias_1"
-
-	m["test_nhg_1"] = orgAcc
-	user.NhgIDsABAC = m
-
+	user.NhgIDs = []string{"test_nhg_1"}
 	CreateHTTPClient("", true)
 	apiConf := &config.APIConf{API: "/fmdata", Interval: 15}
 	config.Conf.BaseURL = testServer.URL

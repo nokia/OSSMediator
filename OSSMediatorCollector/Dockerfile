@@ -1,5 +1,5 @@
 # Staging: for building go app (OSSMediatorCollector)
-FROM registry.prod.srv.da.nsn-rdnet.net/baseimage/golang:1.18
+FROM registry.prod.srv.da.nsn-rdnet.net/baseimage/golang:1.18 as builder
 #FROM golang:1.18 as builder
 
 # download dependencies for build

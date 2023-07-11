@@ -32,7 +32,7 @@ var (
   		"organization_details": [
     		{
       			"organization_uuid": "test_orguuid_1",
-      			"organization_alias": "TEST_ORGUUID1"
+      			"oranization_alias": "TEST_ORGUUID1"
     		},
     		{
       			"organization_uuid": "test_orguuid_2",
@@ -121,6 +121,87 @@ func TestFetchOrgUUIDForInvalidCase(t *testing.T) {
 	CreateHTTPClient("", true)
 	fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
 	if len(user.NhgIDsABAC) != 0 {
+		t.Fail()
+	}
+}
+
+func TestFetchOrgUUIDError(t *testing.T) {
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   utils.CurrentTime(),
+	}
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusInternalServerError)
+	}))
+	defer testServer.Close()
+	config.Conf = config.Config{
+		BaseURL: testServer.URL,
+	}
+
+	CreateHTTPClient("", true)
+	orgResp, err := fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
+	fmt.Println("orgResp: ", len(orgResp.OrgDetails))
+	fmt.Println("err : ", err)
+
+	if err != nil && len(orgResp.OrgDetails) != 0 {
+		t.Fail()
+	}
+}
+
+func TestFetchOrgUUIDInvalidResponse(t *testing.T) {
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   utils.CurrentTime(),
+	}
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		// Provide a response that cannot be decoded properly
+		w.Write([]byte("invalid response"))
+	}))
+
+	defer testServer.Close()
+	config.Conf = config.Config{
+		BaseURL: testServer.URL,
+	}
+
+	CreateHTTPClient("", true)
+	orgResp, err := fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
+	fmt.Println("orgResp: ", len(orgResp.OrgDetails))
+	fmt.Println("err : ", err)
+
+	if err != nil && len(orgResp.OrgDetails) != 0 {
+		t.Fail()
+	}
+}
+
+func TestFetchOrgUUIDDecodingError(t *testing.T) {
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   utils.CurrentTime(),
+	}
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		// Provide a response that cannot be decoded properly
+		w.Write([]byte("Unable to decode response"))
+	}))
+
+	defer testServer.Close()
+	config.Conf = config.Config{
+		BaseURL: testServer.URL,
+	}
+
+	CreateHTTPClient("", true)
+	orgResp, err := fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
+	fmt.Println("orgResp: ", orgResp)
+	fmt.Println("err : ", err)
+
+	if err != nil && len(orgResp.OrgDetails) != 0 {
 		t.Fail()
 	}
 }
@@ -234,6 +315,61 @@ func TestFetchAccUUIDWithInactiveSession(t *testing.T) {
 
 	_, err := fetchAccUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, orgDet, 1234, true)
 	if err != nil || !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
+		t.Fail()
+	}
+}
+
+func TestFetchAccUUIDError(t *testing.T) {
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   utils.CurrentTime(),
+	}
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusInternalServerError)
+	}))
+	defer testServer.Close()
+	orgDet := config.OrgDetails{OrgUUID: "org_uuid_1", OrgAlias: "org_alias_1"}
+	config.Conf = config.Config{
+		BaseURL: testServer.URL,
+	}
+
+	CreateHTTPClient("", true)
+	orgResp, err := fetchAccUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, orgDet, 1234, true)
+	fmt.Println("orgResp: ", len(orgResp.AccDetails))
+	fmt.Println("err : ", err)
+
+	if err != nil && len(orgResp.AccDetails) != 0 {
+		t.Fail()
+	}
+}
+
+func TestFetchAccUUIDInvalidResponse(t *testing.T) {
+	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   utils.CurrentTime(),
+	}
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		// Provide a response that cannot be decoded properly
+		w.Write([]byte("invalid response"))
+	}))
+
+	defer testServer.Close()
+	config.Conf = config.Config{
+		BaseURL: testServer.URL,
+	}
+	orgDet := config.OrgDetails{OrgUUID: "org_uuid_1", OrgAlias: "org_alias_1"}
+
+	CreateHTTPClient("", true)
+	orgResp, err := fetchAccUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, orgDet, 1234, true)
+	fmt.Println("orgResp: ", len(orgResp.AccDetails))
+	fmt.Println("err : ", err)
+
+	if err != nil && len(orgResp.AccDetails) != 0 {
 		t.Fail()
 	}
 }

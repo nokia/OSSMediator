@@ -80,6 +80,37 @@ func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 	}
 }
 
+func TestReadSessionToken(t *testing.T) {
+	secretDir := ".secret"
+	err := os.Mkdir(secretDir, os.ModePerm)
+	if err != nil {
+		t.Error(err)
+	}
+
+	emailID := "testuser@nokia.com"
+	tmpFile := secretDir + "/." + emailID
+	file, err := os.Create(tmpFile)
+	if err != nil {
+		t.Error(err)
+	}
+	defer file.Close()
+	defer os.RemoveAll(secretDir)
+
+	encodedPassword := base64.StdEncoding.EncodeToString([]byte("test")) + "\n" + base64.StdEncoding.EncodeToString([]byte("test2"))
+	_, err = file.Write([]byte(encodedPassword))
+	if err != nil {
+		t.Error(err)
+	}
+
+	password, err := ReadSessionToken(emailID)
+	if password != "test\ntest2" {
+		t.Fail()
+	}
+	if err != nil {
+		t.Fail()
+	}
+}
+
 func TestReadPassword(t *testing.T) {
 	secretDir := ".secret"
 	err := os.Mkdir(secretDir, os.ModePerm)
@@ -121,6 +152,16 @@ func TestReadPasswordWithInvalidFile(t *testing.T) {
 	}
 }
 
+func TestReadSessionTokenWithInvalidFile(t *testing.T) {
+	password, err := ReadSessionToken("testuser@nokia.com")
+	if password != "" {
+		t.Fail()
+	}
+	if err != errorPasswordFileNotFound {
+		t.Fail()
+	}
+}
+
 func TestReadPasswordWithEmptyFile(t *testing.T) {
 	secretDir := ".secret"
 	err := os.Mkdir(secretDir, os.ModePerm)
@@ -138,6 +179,31 @@ func TestReadPasswordWithEmptyFile(t *testing.T) {
 	defer os.RemoveAll(secretDir)
 
 	password, err := ReadPassword(emailID)
+	if password != "" {
+		t.Fail()
+	}
+	if err != errorPasswordRead {
+		t.Fail()
+	}
+}
+
+func TestReadSessionTokenWithEmptyFile(t *testing.T) {
+	secretDir := ".secret"
+	err := os.Mkdir(secretDir, os.ModePerm)
+	if err != nil {
+		t.Error(err)
+	}
+
+	emailID := "testuser@nokia.com"
+	tmpFile := secretDir + "/." + emailID
+	file, err := os.Create(tmpFile)
+	if err != nil {
+		t.Error(err)
+	}
+	defer file.Close()
+	defer os.RemoveAll(secretDir)
+
+	password, err := ReadSessionToken(emailID)
 	if password != "" {
 		t.Fail()
 	}
@@ -168,6 +234,36 @@ func TestReadPasswordWithInvalidEncoding(t *testing.T) {
 	}
 
 	password, err := ReadPassword(emailID)
+	if password != "" {
+		t.Fail()
+	}
+	if err != errorPasswordDecoding {
+		t.Fail()
+	}
+}
+
+func TestReadSessionTokenWithInvalidEncoding(t *testing.T) {
+	secretDir := ".secret"
+	err := os.Mkdir(secretDir, os.ModePerm)
+	if err != nil {
+		t.Error(err)
+	}
+
+	emailID := "testuser@nokia.com"
+	tmpFile := secretDir + "/." + emailID
+	file, err := os.Create(tmpFile)
+	if err != nil {
+		t.Error(err)
+	}
+	defer file.Close()
+	defer os.RemoveAll(secretDir)
+
+	_, err = file.Write([]byte("??"))
+	if err != nil {
+		t.Error(err)
+	}
+
+	password, err := ReadSessionToken(emailID)
 	if password != "" {
 		t.Fail()
 	}

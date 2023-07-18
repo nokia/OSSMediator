@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.0
+
+NEW FEATURES:
+
+* OSSMediatorCollector:
+  * Added support for `ABAC` users.
+  * Added configuration `auth_type` to identify authorization type for user, `PASSWORD` for `RBAC` and `ADTOKEN` for `ABAC` user.
+  * Added configuration `pretty_response` to enable/disable pretty json response file.
+
+SECURITY UPDATE:
+* OSSMediator:
+  * Updating base image to `alpine:3.18.2`.
+
 # 3.8
 
 NEW FEATURES:

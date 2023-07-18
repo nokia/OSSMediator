@@ -63,6 +63,7 @@ type User struct {
 	IsSessionAlive bool
 	NhgIDsABAC     map[string]OrgAccDetails
 	HwIDsABAC      map[string]OrgAccDetails
+	AccountIDsABAC map[string][]string
 	NhgIDs         []string
 	HwIDs          []string
 }

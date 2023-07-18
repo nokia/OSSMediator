@@ -61,8 +61,8 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64, prettyRe
 		log.WithFields(log.Fields{"tid": txnID, "api": api.API}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
 		return
 	}
+	authType := strings.ToUpper(user.AuthType)
 	if strings.Contains(api.API, accessPointSimsAPI) {
-		authType := strings.ToUpper(user.AuthType)
 		if authType == "ADTOKEN" {
 			log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDsABAC)}).Infof("starting ap_sims api")
 			for hwID, orgAcc := range user.HwIDsABAC {
@@ -76,7 +76,6 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64, prettyRe
 		}
 		log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("finished ap_sims api")
 	} else if strings.Contains(api.API, nhgPathParam) {
-		authType := strings.ToUpper(user.AuthType)
 		if authType == "ADTOKEN" {
 			for nhgID, orgAcc := range user.NhgIDsABAC {
 				callSimAPI(api, user, nhgID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, 1, txnID, prettyResponse)
@@ -87,7 +86,15 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64, prettyRe
 			}
 		}
 	} else {
-		callSimAPI(api, user, "", "", "", 1, txnID, prettyResponse)
+		if authType == "ADTOKEN" {
+			for orgID, accIDs := range user.AccountIDsABAC {
+				for _, accID := range accIDs {
+					callSimAPI(api, user, "", orgID, accID, 1, txnID, prettyResponse)
+				}
+			}
+		} else {
+			callSimAPI(api, user, "", "", "", 1, txnID, prettyResponse)
+		}
 	}
 }
 

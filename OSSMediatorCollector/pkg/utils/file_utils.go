@@ -29,10 +29,12 @@ const (
 	//File extension for writing response
 	fileExtension = ".json"
 
-	fmdataResponseType = "fmdata"
-	pmdataResponseType = "pmdata"
-	nhgResponseType    = "network-hardware-groups"
-	simsResponseType   = "sims"
+	fmdataResponseType   = "fmdata"
+	pmdataResponseType   = "pmdata"
+	nhgResponseType      = "network-hardware-groups"
+	simsResponseType     = "sims"
+	orgResponseType      = "organizations"
+	accountsResponseType = "accounts"
 
 	//field name to extract data from PM response file
 	pmSourceField    = "pm_data_source"
@@ -80,7 +82,6 @@ func CreateResponseDirectory(basePath string, api string) {
 
 // WriteResponse writes the data in json format to responseDest directory.
 func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id string, txnID uint64, prettyResponse bool) error {
-	log.WithFields(log.Fields{"tid": txnID}).Info("starting response write")
 	fileName := path.Base(api.API)
 	if fileName == fmdataResponseType || fileName == pmdataResponseType {
 		if api.MetricType != "" {
@@ -100,8 +101,12 @@ func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id 
 		} else {
 			fileName += "_" + user.Email
 		}
+	} else if fileName == orgResponseType || fileName == accountsResponseType {
+		fileName += "_" + user.Email
+		if id != "" {
+			fileName += "_" + id
+		}
 	}
-	//todo filename for orgid and acc_id apis
 
 	fileName += "_response_" + strconv.Itoa(int(CurrentTime().Unix()))
 	responseDest := user.ResponseDest + "/" + path.Base(api.API)

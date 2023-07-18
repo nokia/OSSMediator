@@ -60,7 +60,12 @@ func fetchOrgUUID(api *config.APIConf, user *config.User, txnID uint64, prettyRe
 		return orgResp, err
 	}
 
-	err = utils.WriteResponse(user, api, orgResp.OrgDetails, "", txnID, prettyResponse)
+	if len(orgResp.OrgDetails) == 0 {
+		log.WithFields(log.Fields{"tid": txnID}).Debugf("No org_id mapped: %s for %s", apiURL, user.Email)
+		return orgResp, nil
+	}
+
+	err = utils.WriteResponse(user, &config.APIConf{API: config.Conf.UserAGAPIs.ListOrgUUID}, orgResp.OrgDetails, "", txnID, prettyResponse)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 	}
@@ -103,7 +108,12 @@ func fetchAccUUID(api *config.APIConf, user *config.User, org config.OrgDetails,
 		return accResp, err
 	}
 
-	err = utils.WriteResponse(user, api, accResp.AccDetails, org.OrgUUID, txnID, prettyResponse)
+	if len(accResp.AccDetails) == 0 {
+		log.WithFields(log.Fields{"tid": txnID}).Debugf("No account_uuid mapped: %s for %s", apiURL, user.Email)
+		return accResp, nil
+	}
+
+	err = utils.WriteResponse(user, &config.APIConf{API: config.Conf.UserAGAPIs.ListAccUUID}, accResp.AccDetails, org.OrgUUID, txnID, prettyResponse)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 	}

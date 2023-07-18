@@ -29,7 +29,7 @@ var (
 	retryTicker *time.Ticker
 
 	//indexList from which old data will be deleted
-	indexList   = []string{"radio-fm*", "dac-fm*", "core-fm*", "4g-pm*", "5g-pm*"}
+	indexList   = []string{"radio-fm*", "dac-fm*", "core-fm*", "4g-pm*", "5g-pm*", "edge-pm*", "core-pm*", "ixr-fm*", "ixr-pm*", "application-fm*"}
 	deleteQuery = `
 {
   "query": {
@@ -179,7 +179,7 @@ func retryPushData(elkURL, elkUser, elkPassword string, data *string) error {
 	return err
 }
 
-//PushFailedData pushes previously failed files from failedData map to elasticsearch every 5 min.
+// PushFailedData pushes previously failed files from failedData map to elasticsearch every 5 min.
 func PushFailedData(esConf config.ElasticsearchConf) {
 	elkURL := esConf.URL + elkBulkAPI
 	if retryTicker == nil {

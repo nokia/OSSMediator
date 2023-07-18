@@ -39,6 +39,7 @@ const (
 func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
 	user.HwIDsABAC = map[string]config.OrgAccDetails{}
 	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
+	user.AccountIDsABAC = map[string][]string{}
 	authType := strings.ToUpper(user.AuthType)
 	if authType == "ADTOKEN" {
 		listNhgABAC(api, user, txnID, prettyResponse)
@@ -136,30 +137,33 @@ func storeUserHwIDRBAC(nhgData []NetworkInfo, user *config.User, txnID uint64) {
 
 func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
 	orgResponse, err := fetchOrgUUID(api, user, txnID, prettyResponse)
-	if err != nil || (len(orgResponse.OrgDetails)) == 0 {
+	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while fetching orguuid")
 		return
 	}
-	//check response for status code
-	err = checkStatusCode(orgResponse.Status)
-	if err != nil {
+	if len(orgResponse.OrgDetails) == 0 {
 		user.IsSessionAlive = false
-		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Invalid status code received while calling")
 		return
-	}
-
-	err = utils.WriteResponse(user, api, orgResponse.OrgDetails, "", txnID, prettyResponse)
-	if err != nil {
-		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 	}
 
 	for _, org := range orgResponse.OrgDetails {
 		accResponse, err := fetchAccUUID(api, user, org, txnID, prettyResponse)
-		if err != nil || len(accResponse.AccDetails) == 0 {
-			log.WithFields(log.Fields{"tid": txnID, "error": err}).Debug("No accounts mapped")
+		if err != nil {
+			log.WithFields(log.Fields{"tid": txnID, "user": user, "org_id": org, "error": err}).Errorf("Error while getting account_id")
 			continue
 		}
+		if err != nil || len(accResponse.AccDetails) == 0 {
+			log.WithFields(log.Fields{"tid": txnID, "user": user, "org_id": org}).Debug("No accounts mapped")
+			continue
+		}
+
+		var accIDs []string
+		for _, acc := range accResponse.AccDetails {
+			accIDs = append(accIDs, acc.AccUUID)
+		}
+		user.AccountIDsABAC[org.OrgUUID] = accIDs
+
 		for _, acc := range accResponse.AccDetails {
 			apiURL := config.Conf.BaseURL + api.API + "?user_info.org_uuid=" + org.OrgUUID + "&user_info.account_uuid=" + acc.AccUUID
 			if !user.IsSessionAlive {
@@ -196,6 +200,11 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 			if err != nil {
 				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
 				return
+			}
+
+			if len(resp.NetworkInfo) == 0 {
+				log.WithFields(log.Fields{"tid": txnID, "user": user, "org_id": org.OrgUUID, "acc_id": acc.AccUUID}).Debugf("No nhg mapped")
+				continue
 			}
 
 			err = utils.WriteResponse(user, api, resp.NetworkInfo, "", txnID, prettyResponse)

@@ -11,6 +11,7 @@ NEW FEATURES:
   * Added configuration `pretty_response` to enable/disable pretty json response file.
 
 SECURITY UPDATE:
+
 * OSSMediator:
   * Updating base image to `alpine:3.18.2`.
 

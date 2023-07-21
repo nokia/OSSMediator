@@ -1,6 +1,6 @@
 module collector
 
-go 1.17
+go 1.18
 
 require (
 	github.com/golang-jwt/jwt/v4 v4.5.0

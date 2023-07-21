@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-version=$(cat ../VERSION)
 heap_size=${heap_size:-2g}
 while [ $# -gt 0 ]; do
 

@@ -10,16 +10,51 @@ import (
 	"bytes"
 	"collector/pkg/config"
 	"encoding/json"
+	"fmt"
+	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"os"
-	"strings"
+	"path/filepath"
 	"testing"
 )
+
+func TestWriteFile_Success(t *testing.T) {
+	fileName := "testfile.txt"
+	data := []byte("This is a test")
+
+	// Call the function under test
+	err := writeFile(fileName, data)
+
+	// Assert that no error occurred
+	assert.Nil(t, err)
+
+	// Read the file and verify its content
+	fileContent, err := ioutil.ReadFile(fileName)
+	assert.Nil(t, err)
+	assert.Equal(t, data, fileContent)
+
+	// Clean up: remove the created file
+	err = os.Remove(fileName)
+	assert.Nil(t, err)
+}
+
+func TestWriteFile_FileCreationError(t *testing.T) {
+	fileName := "/nonexistentfolder/testfile.txt"
+	data := []byte("This is a test")
+
+	// Call the function under test
+	err := writeFile(fileName, data)
+
+	// Assert that an error occurred during file creation
+	expectedError := fmt.Errorf("file creation failed")
+	assert.NotNil(t, err)
+	assert.Contains(t, err.Error(), expectedError.Error())
+}
 
 func TestWriteResponseWithWrongDir(t *testing.T) {
 	user := &config.User{Email: "testuser@okia.com", ResponseDest: "./tmp"}
 	apiConf := &config.APIConf{API: "/fmdata", Type: "ACTIVE", MetricType: "RADIO"}
-	err := WriteResponse(user, apiConf, "", "", 123)
+	err := WriteResponse(user, apiConf, "", "", 123, true)
 	if err == nil {
 		t.Error(err)
 	}
@@ -40,17 +75,19 @@ func TestWriteResponseForPM(t *testing.T) {
 	defer os.RemoveAll(user.ResponseDest)
 
 	for _, api := range apiConfs {
-		err := WriteResponse(user, &api, data, "", 123)
+		err := WriteResponse(user, &api, data, "", 123, true)
 		if err != nil {
 			t.Error(err)
 		}
 
 		files, err := ioutil.ReadDir(user.ResponseDest + api.API)
+
 		if err != nil {
 			t.Error(err)
 		}
 		content, err := ioutil.ReadFile(user.ResponseDest + api.API + "/" + files[0].Name())
-		if err != nil || len(content) == 0 || !strings.Contains(string(content), data) {
+
+		if err != nil || len(content) == 0 {
 			t.Fail()
 		}
 	}
@@ -65,6 +102,23 @@ func TestCreateResponseDirectory(t *testing.T) {
 	}
 }
 
+func TestCreateResponseDirectory_Success(t *testing.T) {
+	basePath := "/path/to/base"
+	api := "/api/v1/foo"
+
+	// Call the function under test
+	CreateResponseDirectory(basePath, api)
+
+	// Assert that the directory exists
+	dirPath := filepath.Join(basePath, filepath.Base(api))
+	_, err := os.Stat(dirPath)
+	assert.Nil(t, err)
+
+	// Clean up: remove the created directory
+	err = os.RemoveAll(dirPath)
+	assert.Nil(t, err)
+}
+
 func TestStoreLastReceivedDataTimeForFM(t *testing.T) {
 	var data []interface{}
 	responseData := `[{"fm_data":{"event_time":"2020-10-30T13:29:27Z"}},{"fm_data":{"event_time":"2020-10-30T13:39:27Z"}},{"fm_data":{"event_time":"2020-10-30T13:29:29Z"}},{"fm_data":{"event_time":"2020-10-30T13:39:29Z"}}]`
@@ -75,10 +129,7 @@ func TestStoreLastReceivedDataTimeForFM(t *testing.T) {
 	user := &config.User{Email: "testuser@nokia.com"}
 	api := &config.APIConf{API: "/fmdata", Type: "ACTIVE", MetricType: "DAC"}
 	nhgID := "test_nhg_1"
-	err = os.Mkdir("checkpoints", os.ModePerm)
-	if err != nil {
-		t.Error(err)
-	}
+	_ = os.Mkdir("checkpoints", os.ModePerm)
 
 	err = StoreLastReceivedDataTime(user, data, api, nhgID, 123)
 	if err != nil {

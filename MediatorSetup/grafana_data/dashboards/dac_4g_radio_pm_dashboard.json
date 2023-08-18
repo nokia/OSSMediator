@@ -171,7 +171,7 @@
               },
               {
                 "color": "dark-green",
-                "value": 51
+                "value": 49.9
               }
             ]
           },
@@ -266,6 +266,7 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Avail_M8020C3:*",
+          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }

@@ -3,13 +3,18 @@
   "users": [
     {
       "email_id": "<USER EMAIL>",
-      "response_dest": "<DIRECTORY PATH>"
+      "response_dest": "<DIRECTORY PATH>",
+      "auth_type": "<PASSWORD/ADTOKEN>"
     },
     {
       "email_id": "<USER EMAIL>",
-      "response_dest": "<DIRECTORY PATH>"
+      "response_dest": "<DIRECTORY PATH>",
+      "auth_type": "<PASSWORD/ADTOKEN>"
     }
   ],
+  "azure_session_api": {
+    "refresh": "/azure-refresh-sessions"
+  },
   "um_api": {
     "login": "/login-session",
     "refresh": "/refresh-session",
@@ -18,6 +23,10 @@
   "list_nhg_api": {
     "api": "/network-hardware-groups",
     "interval": 60
+  },
+  "userAG_apis": {
+    "list_orgUUID": "/organizations",
+    "list_accUUID": "/organizations/{org_uuid}/accounts"
   },
   "metric_apis": [
     {
@@ -98,6 +107,7 @@
     }
   ],
   "limit": 10000,
-  "delay": 5,
-  "max_concurrent_process": 1
+  "delay": 10,
+  "max_concurrent_process": 1,
+  "pretty_response": false
 }

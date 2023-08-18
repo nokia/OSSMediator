@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
+	"strconv"
+	"strings"
 	"time"
 
 	jwt "github.com/golang-jwt/jwt/v4"
@@ -26,7 +29,7 @@ const (
 	multiplier     = 2
 )
 
-//UMResponse keeps track of response received from UM APIs.
+// UMResponse keeps track of response received from UM APIs.
 type UMResponse struct {
 	UAT struct {
 		AccessToken string `json:"access_token"` //access token
@@ -37,20 +40,29 @@ type UMResponse struct {
 	Status Status `json:"status"` // Status of the response
 }
 
-//LoginRequestBody to form the request body for login API.
+type AzureRefreshResponse struct {
+	Token struct {
+		AccessToken  string `json:"access_token"`  //access token
+		RefreshToken string `json:"refresh_token"` //refresh token
+	} `json:"token"`
+
+	Status Status `json:"status"` // Status of the response
+}
+
+// LoginRequestBody to form the request body for login API.
 type LoginRequestBody struct {
 	EmailID  string `json:"email_id"` //User's Email ID
 	Password string `json:"password"` //User's password
 }
 
-//RefreshAndLogoutRequestBody to form the request body for refresh and logout API.
+// RefreshAndLogoutRequestBody to form the request body for refresh and logout API.
 type RefreshAndLogoutRequestBody struct {
 	RefreshToken string `json:"refresh_token"` //refresh token
 }
 
-//Login authenticates the BaseURL with email ID and password,
+// Login authenticates the BaseURL with email ID and password,
 // store the session token to SessionToken.
-//If successful it returns nil, if there is any error it return error.
+// If successful it returns nil, if there is any error it return error.
 func Login(user *config.User) error {
 	//forming the request body in following format
 	//{"email_id": "string", "password": "string"}
@@ -92,7 +104,17 @@ func Login(user *config.User) error {
 	return nil
 }
 
-//Extracts the expiry time from access_token and set it to SessionToken.
+func TokenAuthorize(user *config.User, sessionToken string) error {
+	token := strings.Split(sessionToken, "\n")
+	resp := new(UMResponse)
+	resp.UAT.AccessToken = token[0]
+	resp.RT.RefreshToken = token[1]
+
+	setToken(resp, user)
+	return nil
+}
+
+// Extracts the expiry time from access_token and set it to SessionToken.
 func setToken(response *UMResponse, user *config.User) {
 	//getting expiry time using jwt
 	token, _ := jwt.Parse(response.UAT.AccessToken, nil)
@@ -109,10 +131,16 @@ func setToken(response *UMResponse, user *config.User) {
 	log.Debugf("Expiry time: %v for %s", user.SessionToken.ExpiryTime, user.Email)
 }
 
-//RefreshToken refreshes the session token before expiry_time.
-//Input parameter apiUrl is the API URL for refreshing session.
+// RefreshToken refreshes the session token before expiry_time.
+// Input parameter apiUrl is the API URL for refreshing session.
 func RefreshToken(user *config.User) {
-	apiURL := config.Conf.BaseURL + config.Conf.UMAPIs.Refresh
+	apiURL := config.Conf.BaseURL
+	authType := strings.ToUpper(user.AuthType)
+	if authType == "ADTOKEN" {
+		apiURL = apiURL + config.Conf.AzureSessionAPIs.Refresh
+	} else {
+		apiURL = apiURL + config.Conf.UMAPIs.Refresh
+	}
 	duration := getRefreshDuration(user)
 	refreshTimer := time.NewTimer(duration)
 	for {
@@ -120,15 +148,54 @@ func RefreshToken(user *config.User) {
 		user.Wg.Add(1)
 		err := callRefreshAPI(apiURL, user)
 		if err != nil {
-			log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to login", user.Email)
-			err = Login(user)
-			if err != nil {
-				log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
-				user.IsSessionAlive = false
-				go retryLogin(initialBackoff, user)
+			if authType == "ADTOKEN" {
+				if err.Error() == "500: Failed to refresh azure token" {
+					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
+					user.IsSessionAlive = false
+					log.Info("Terminating DA OSS Collector...")
+					os.Exit(0)
+				}
+				errStr := strings.Split(err.Error(), ":")
+				errCode, _ := strconv.Atoi(errStr[0])
+				errNo := errCode
+				if errCode >= 500 && errCode <= 599 {
+					log.WithFields(log.Fields{"error": err}).Info("RefreshApi issues from server...retrying again")
+					for errNo >= 500 && errNo <= 599 {
+						time.Sleep(5 * time.Second)
+						err = callRefreshAPI(apiURL, user)
+						if err != nil {
+							log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s", user.Email)
+							errStr := strings.Split(err.Error(), ":")
+							errNo, _ = strconv.Atoi(errStr[0])
+							if errNo < 500 {
+								log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
+								user.IsSessionAlive = false
+								log.Info("Terminating DA OSS Collector...")
+								os.Exit(0)
+							}
+						} else {
+							user.IsSessionAlive = true
+							user.Wg.Done()
+							break
+						}
+					}
+				} else {
+					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
+					user.IsSessionAlive = false
+					log.Info("Terminating DA OSS Collector...")
+					os.Exit(0)
+				}
 			} else {
-				user.IsSessionAlive = true
-				user.Wg.Done()
+				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to login", user.Email)
+				err = Login(user)
+				if err != nil {
+					log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
+					user.IsSessionAlive = false
+					go retryLogin(initialBackoff, user)
+				} else {
+					user.IsSessionAlive = true
+					user.Wg.Done()
+				}
 			}
 		} else {
 			user.IsSessionAlive = true
@@ -146,7 +213,7 @@ func RefreshToken(user *config.User) {
 	}
 }
 
-//Return the expiry duration.
+// Return the expiry duration.
 func getRefreshDuration(user *config.User) time.Duration {
 	duration := user.SessionToken.ExpiryTime.Sub(utils.CurrentTime())
 	duration -= 30 * time.Second
@@ -154,7 +221,7 @@ func getRefreshDuration(user *config.User) time.Duration {
 	return duration
 }
 
-//calls the refresh API, return nil when successful.
+// calls the refresh API, return nil when successful.
 func callRefreshAPI(apiURL string, user *config.User) error {
 	log.Infof("Refreshing token for %s", user.Email)
 	//forming body for refresh session API
@@ -176,7 +243,16 @@ func callRefreshAPI(apiURL string, user *config.User) error {
 
 	//Map the received response to umResponse struct
 	resp := new(UMResponse)
-	err = json.NewDecoder(bytes.NewReader(response)).Decode(resp)
+	authType := strings.ToUpper(user.AuthType)
+	if authType == "ADTOKEN" {
+		respAzure := new(AzureRefreshResponse)
+		err = json.NewDecoder(bytes.NewReader(response)).Decode(respAzure)
+		resp.UAT.AccessToken = respAzure.Token.AccessToken
+		resp.RT.RefreshToken = respAzure.Token.RefreshToken
+		resp.Status = respAzure.Status
+	} else {
+		err = json.NewDecoder(bytes.NewReader(response)).Decode(resp)
+	}
 	if err != nil {
 		return fmt.Errorf("unable to decode response received from refresh API for %s, error:%v", user.Email, err)
 	}
@@ -211,10 +287,16 @@ func retryLogin(backoff time.Duration, user *config.User) {
 	}
 }
 
-//Logout to close the session.
-//If successful it returns nil, if there is any error it return error.
+// Logout to close the session.
+// If successful it returns nil, if there is any error it return error.
 func Logout(user *config.User) error {
 	log.Infof("Logging out from %s for user %s.", config.Conf.BaseURL, user.Email)
+	authType := strings.ToUpper(user.AuthType)
+	if authType == "ADTOKEN" {
+		user.IsSessionAlive = false
+		log.Infof("%s Logged out", user.Email)
+		return nil
+	}
 	//forming body for logout API
 	reqBody := RefreshAndLogoutRequestBody{
 		RefreshToken: user.SessionToken.RefreshToken,

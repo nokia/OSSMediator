@@ -163,7 +163,7 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "title": "NDAC FM HISTORY ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
@@ -228,7 +228,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -329,7 +329,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -427,7 +427,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -525,7 +525,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -619,7 +619,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -712,7 +712,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -762,7 +762,9 @@
           },
           "custom": {
             "align": "center",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "inspect": false
           },
           "mappings": [],
@@ -963,6 +965,7 @@
       "links": [],
       "options": {
         "footer": {
+          "countRows": false,
           "enablePagination": true,
           "fields": "",
           "reducer": [
@@ -972,7 +975,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
           "bucketAggs": [],

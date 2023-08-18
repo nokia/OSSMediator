@@ -91,6 +91,7 @@ cp ./grafana_data/dashboards/*.json /etc/grafana/dashboards/.
 chmod 775 /etc/grafana/provisioning/datasources/*
 chmod 775 /etc/grafana/provisioning/dashboards/*
 chmod 775 /etc/grafana/dashboards/*
+grafana-cli plugins install grafana-opensearch-datasource
 
 systemctl daemon-reload
 systemctl enable collector.service
@@ -102,15 +103,15 @@ name='ndac_oss_opensearch'
 if [[ $(docker ps -f "name=$name" --format '{{.Names}}') == $name ]]; then
   docker update --restart=always $name
 else
-  docker run --name "$name" --restart=always -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size" -v $(pwd)/es_data:/usr/share/opensearch/data opensearchproject/opensearch:2.8.0
+  docker run --name "$name" --restart=always -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size" -v $(pwd)/es_data:/usr/share/opensearch/data opensearchproject/opensearch:2.9.0
 fi
 
-echo "Checking Elasticsearch status"
+echo "Checking OpenSearch status"
 Status=`docker inspect --format "{{.State.Running}}" $name` || true
 if [ "$Status" == "true" ]; then
-    echo "Elasticsearch service started successfully"
+    echo "OpenSearch service started successfully"
 else
-	echo 'Elasticsearch failed See docker ps -a --filter "name=ndac_oss_elasticsearch" and docker logs ndac_oss_elasticsearch for details.'
+	echo 'OpenSearch failed See docker ps -a --filter "name=ndac_oss_opensearch" and docker logs ndac_oss_opensearch for details.'
   exit 1
 fi
 

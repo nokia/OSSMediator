@@ -60,6 +60,8 @@ type apiCallRequest struct {
 	index          int
 	limit          int
 	searchAfterKey string
+	orgUUID        string
+	accUUID        string
 }
 
 const (
@@ -67,7 +69,7 @@ const (
 	retryCurrentMsg = "retry current"
 )
 
-func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64) {
+func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
 	if !user.IsSessionAlive {
 		log.WithFields(log.Fields{"tid": txnID, "api": api.API, "api_type": api.Type, "metric_type": api.MetricType}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
 		return
@@ -90,45 +92,80 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64) {
 
 	wg := sync.WaitGroup{}
 	requests := make(chan struct{}, config.Conf.MaxConcurrentProcess)
-	for _, nhg := range user.NhgIDs {
-		requests <- struct{}{}
-		wg.Add(1)
-		go func(nhgID string) {
-			startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
-			apiReq := apiCallRequest{
-				api:       api,
-				user:      user,
-				nhgID:     nhgID,
-				startTime: startTime,
-				endTime:   endTime,
-				index:     0,
-				limit:     config.Conf.Limit,
-			}
-			msg := callMetricAPI(apiReq, maxRetryAttempts, txnID)
-			if msg == retryCurrentMsg {
-				callMetricAPI(apiReq, 0, txnID)
-			}
-			<-requests
-			wg.Done()
-		}(nhg)
+	authType := strings.ToUpper(user.AuthType)
+	if authType == "ADTOKEN" {
+		//ABAC user
+		for nhg, orgAcc := range user.NhgIDsABAC {
+			requests <- struct{}{}
+			wg.Add(1)
+			go func(nhgID string, accDetail config.OrgAccDetails) {
+				startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
+				apiReq := apiCallRequest{
+					api:       api,
+					user:      user,
+					nhgID:     nhgID,
+					startTime: startTime,
+					endTime:   endTime,
+					index:     0,
+					limit:     config.Conf.Limit,
+					orgUUID:   accDetail.OrgDetails.OrgUUID,
+					accUUID:   accDetail.AccDetails.AccUUID,
+				}
+				msg := callMetricAPI(apiReq, maxRetryAttempts, txnID, prettyResponse)
+				if msg == retryCurrentMsg {
+					callMetricAPI(apiReq, 0, txnID, prettyResponse)
+				}
+				<-requests
+				wg.Done()
+			}(nhg, orgAcc)
+		}
+	} else {
+		//RBAC user
+		for _, nhg := range user.NhgIDs {
+			requests <- struct{}{}
+			wg.Add(1)
+			go func(nhgID string) {
+				startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
+				apiReq := apiCallRequest{
+					api:       api,
+					user:      user,
+					nhgID:     nhgID,
+					startTime: startTime,
+					endTime:   endTime,
+					index:     0,
+					limit:     config.Conf.Limit,
+				}
+				msg := callMetricAPI(apiReq, maxRetryAttempts, txnID, prettyResponse)
+				if msg == retryCurrentMsg {
+					callMetricAPI(apiReq, 0, txnID, prettyResponse)
+				}
+				<-requests
+				wg.Done()
+			}(nhg)
+		}
 	}
+
 	wg.Wait()
 	mux.Lock()
 	delete(activeAPIs, apiKey)
 	mux.Unlock()
 }
 
-func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64) string {
+func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64, prettyResponse bool) string {
 	apiURL := config.Conf.BaseURL + req.api.API
+	authType := strings.ToUpper(req.user.AuthType)
+	if authType == "ADTOKEN" {
+		apiURL = apiURL + "?user_info.org_uuid=" + req.orgUUID + "&user_info.account_uuid=" + req.accUUID
+	}
 	apiURL = strings.Replace(apiURL, "{nhg_id}", req.nhgID, -1)
 	req.url = apiURL
 
 	log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("Triggered %s for %s at %v", apiURL, req.user.Email, utils.CurrentTime())
-	response, err := callAPI(req, txnID)
+	response, err := callAPI(req, txnID, prettyResponse)
 	if err != nil {
 		//retry api when 500 status code is returned
 		if strings.Contains(err.Error(), "500") {
-			response, err = retryAPICall(req, retryAttempts, txnID)
+			response, err = retryAPICall(req, retryAttempts, txnID, prettyResponse)
 			if err != nil {
 				log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": apiURL, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("API call failed, data will be skipped...")
 				return ""
@@ -151,7 +188,7 @@ func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64) string {
 	if response.NextRecord > 0 {
 		req.index = response.NextRecord
 		req.searchAfterKey = response.SearchAfterKey
-		noOfRecords, err = handlePagination(req, retryAttempts, txnID)
+		noOfRecords, err = handlePagination(req, retryAttempts, txnID, prettyResponse)
 		if err != nil {
 			return retryCurrentMsg
 		}
@@ -162,15 +199,15 @@ func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64) string {
 	return ""
 }
 
-func handlePagination(req apiCallRequest, retryAttempts int, txnID uint64) (int, error) {
+func handlePagination(req apiCallRequest, retryAttempts int, txnID uint64, prettyResponse bool) (int, error) {
 	var receivedNoOfRecords int
 	for req.index > 0 {
-		response, err := callAPI(req, txnID)
+		response, err := callAPI(req, txnID, prettyResponse)
 		if response == nil {
 			log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("found nil response, resp: %v, err: %v", response, err)
 		}
 		if err != nil {
-			response, err = retryAPICall(req, retryAttempts, txnID)
+			response, err = retryAPICall(req, retryAttempts, txnID, prettyResponse)
 			if err != nil {
 				log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("API call failed, will be retried from starting...")
 				return 0, err
@@ -197,12 +234,12 @@ func handlePagination(req apiCallRequest, retryAttempts int, txnID uint64) (int,
 }
 
 // retry failed API call
-func retryAPICall(req apiCallRequest, retryAttempts int, txnID uint64) (*GetAPIResponse, error) {
+func retryAPICall(req apiCallRequest, retryAttempts int, txnID uint64, prettyResponse bool) (*GetAPIResponse, error) {
 	var err error
 	var response *GetAPIResponse
 	for i := 0; i < retryAttempts; i++ {
 		log.WithFields(log.Fields{"txn_id": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "limit": req.limit, "index": req.index, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Info("retrying api call")
-		response, err = callAPI(req, txnID)
+		response, err = callAPI(req, txnID, prettyResponse)
 		if response == nil {
 			log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "api_url": req.url, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType}).Infof("err: %v, resp: %v", err, response)
 		}
@@ -215,7 +252,7 @@ func retryAPICall(req apiCallRequest, retryAttempts int, txnID uint64) (*GetAPIR
 
 // CallAPI calls the API, adds authorization, query params and returns response.
 // If successful it returns response as array of byte, if there is any error it returns nil.
-func callAPI(req apiCallRequest, txnID uint64) (*GetAPIResponse, error) {
+func callAPI(req apiCallRequest, txnID uint64, prettyResponse bool) (*GetAPIResponse, error) {
 	request, err := http.NewRequest("GET", req.url, nil)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", req.url, req.user.Email)
@@ -292,7 +329,7 @@ func callAPI(req apiCallRequest, txnID uint64) (*GetAPIResponse, error) {
 		go notifier.RaiseAlarmNotification(txnID, resp.Data, req.api.MetricType, req.api.Type)
 	}
 	//write response
-	err = utils.WriteResponse(req.user, req.api, resp.Data, req.nhgID, txnID)
+	err = utils.WriteResponse(req.user, req.api, resp.Data, req.nhgID, txnID, prettyResponse)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", req.user.Email)
 		return nil, err

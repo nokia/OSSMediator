@@ -1,4 +1,4 @@
-# OSS Mediator Collector
+# OSSMediatorCollector
 
 The OSS Mediator Collector is a command line API client. It connects with NDAC APIGW and gets the FM and PM data using REST interface at regular intervals based on the collector configuration for the customer’s managed networks only.
 
@@ -78,13 +78,18 @@ PM / FM data collection by collector is performed using REST interface at regula
   "users": [
     {
       "email_id": "<USER EMAIL>",
-      "response_dest": "<DIRECTORY PATH>"
+      "response_dest": "<DIRECTORY PATH>",
+      "auth_type": "<PASSWORD/ADTOKEN>"
     },
     {
       "email_id": "<USER EMAIL>",
-      "response_dest": "<DIRECTORY PATH>"
+      "response_dest": "<DIRECTORY PATH>",
+      "auth_type": "<PASSWORD/ADTOKEN>"
     }
   ],
+  "azure_session_api": {
+    "refresh": "/azure-refresh-sessions"
+  },
   "um_api": {
     "login": "/login-session",
     "refresh": "/refresh-session",
@@ -108,6 +113,10 @@ PM / FM data collection by collector is performed using REST interface at regula
       "interval": 60
     }
   ],
+  "userAG_apis": {
+    "list_orgUUID": "/organizations",
+    "list_accUUID": "/organizations/{org_uuid}/accounts"
+  },
   "metric_apis": [
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
@@ -202,7 +211,8 @@ PM / FM data collection by collector is performed using REST interface at regula
   ],
   "limit": 10000,
   "delay": 5,
-  "max_concurrent_process": 1
+  "max_concurrent_process": 1,
+  "pretty_response": false
 }
 ````
 
@@ -211,6 +221,7 @@ PM / FM data collection by collector is performed using REST interface at regula
 | base_url                  | string              | APIGW base URL.                                                                                                                                                               |
 | users                     | [object]            | Users details.                                                                                                                                                                |
 | users.email_id            | string              | User's email ID.                                                                                                                                                              |
+| users.auth_type           | string (Optional)   | User's authorization type - either "ADTOKEN" or "PASSWORD". Default value is "PASSWORD".                                                                                      |
 | users.response_dest       | string              | Base directory to store the response from the REST APIs. Subdirectories will be created inside the base directory for storing each APIs response in their respective location |
 | um_api                    | object              | User management APIs.                                                                                                                                                         |
 | um_api.login              | string              | Customer portal login API.                                                                                                                                                    |
@@ -230,6 +241,7 @@ PM / FM data collection by collector is performed using REST interface at regula
 | limit                     | integer             | Number of records to be fetched from the API, should be within 1-10000.                                                                                                       |
 | delay                     | integer             | Time duration in minutes, for adding delay in API calls.                                                                                                                      |
 | max_concurrent_process    | integer (Optional)  | Default value is 1. Maximum no. of concurrent process for calling each PM/FM APIs.                                                                                            |
+| pretty_response           | boolean (Optional)  | Default value is false. To enable/disable formatted json response file.                                                                                                       |
 
 ````
 NOTE: 
@@ -259,11 +271,11 @@ Options:
 ```
 
 Check if execute permissions are there for the `storesecret` binary, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret` command to store the user passwords.
-Enter the password for each customer having the right permission.  
+Enter the password/authorization token for each customer having the right permission.  
 
 NOTE:
 * For login details (email ID and password) contact Nokia DAC support/operations team.
-* In case the user’s password is updated, execute `sudo ./storesecret` and input the updated password, then restart the OSSMediatorCollector module.  
+* In case the user’s password/token is updated, execute `sudo ./storesecret` and input the updated password/token, then restart the OSSMediatorCollector module.  
 
 To start collector, go to the installed path of the collector bin directory and start by calling the following command:
 

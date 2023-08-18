@@ -31,6 +31,8 @@ func TestParseFlag(t *testing.T) {
 		"-conf_file", "conf.json",
 		"-cert_file", "tmp.crt",
 		"-log_level", "3",
+		"-skip_tls", "true",
+		"-enable_console_log", "true",
 	}
 	parseFlags()
 

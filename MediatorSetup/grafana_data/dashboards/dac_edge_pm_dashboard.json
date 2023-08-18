@@ -181,7 +181,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -191,7 +191,7 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m"
+                "interval": "$agg"
               },
               "type": "date_histogram"
             }
@@ -204,7 +204,7 @@
             {
               "field": "pm_data.ndac_rr_edge_cpu_usage_percentage",
               "id": "1",
-              "type": "sum"
+              "type": "avg"
             }
           ],
           "query": "pm_data_source.edge_alias.keyword:$edgealias",
@@ -273,7 +273,7 @@
           "titleSize": 8
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -294,7 +294,7 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m",
+                "interval": "$agg",
                 "min_doc_count": "0"
               },
               "type": "date_histogram"
@@ -308,7 +308,7 @@
             {
               "field": "pm_data.ndac_rr_edge_disk_temp_celsius",
               "id": "1",
-              "type": "sum"
+              "type": "avg"
             }
           ],
           "query": "pm_data_source.edge_alias.keyword:$edgealias AND pm_data.ndac_rr_edge_disk_temp_celsius\n:* ",
@@ -322,7 +322,7 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*/disk-(.*)",
+            "regex": ".*/DISK-(.*)",
             "renamePattern": "$1"
           }
         }
@@ -385,7 +385,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -395,7 +395,7 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m"
+                "interval": "$agg"
               },
               "type": "date_histogram"
             }
@@ -408,7 +408,7 @@
             {
               "field": "pm_data.ndac_rr_edge_ram_usage_percentage",
               "id": "1",
-              "type": "sum"
+              "type": "avg"
             }
           ],
           "query": "pm_data_source.edge_alias.keyword:$edgealias",
@@ -476,7 +476,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.7",
       "queryType": "lucene",
       "targets": [
         {
@@ -497,7 +497,7 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m"
+                "interval": "$agg"
               },
               "type": "date_histogram"
             }
@@ -510,7 +510,7 @@
             {
               "field": "pm_data.ndac_rr_edge_disk_usage_percentage",
               "id": "1",
-              "type": "sum"
+              "type": "avg"
             }
           ],
           "query": "pm_data_source.edge_alias.keyword:$edgealias AND pm_data.ndac_rr_edge_disk_usage_percentage:*",
@@ -587,9 +587,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -606,7 +606,7 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m"
+                "interval": "$agg"
               },
               "type": "date_histogram"
             }
@@ -619,7 +619,7 @@
             {
               "field": "pm_data.ndac_rr_edge_cpu_usage_percentage",
               "id": "1",
-              "type": "sum"
+              "type": "avg"
             }
           ],
           "query": "pm_data_source.edge_alias.keyword:$edgealias",
@@ -677,7 +677,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -725,7 +726,7 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m",
+                "interval": "$agg",
                 "min_doc_count": "0"
               },
               "type": "date_histogram"
@@ -739,7 +740,7 @@
             {
               "field": "pm_data.ndac_rr_edge_disk_temp_celsius",
               "id": "1",
-              "type": "sum"
+              "type": "avg"
             }
           ],
           "query": "pm_data_source.edge_alias.keyword:$edgealias AND pm_data.ndac_rr_edge_disk_temp_celsius\n:* ",
@@ -753,7 +754,7 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*/disk-(.*)",
+            "regex": ".*/DISK-(.*)",
             "renamePattern": "$1"
           }
         }
@@ -806,7 +807,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -824,9 +826,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -843,7 +845,7 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m"
+                "interval": "$agg"
               },
               "type": "date_histogram"
             }
@@ -856,7 +858,7 @@
             {
               "field": "pm_data.ndac_rr_edge_ram_usage_percentage",
               "id": "1",
-              "type": "sum"
+              "type": "avg"
             }
           ],
           "query": "pm_data_source.edge_alias.keyword:$edgealias",
@@ -914,7 +916,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -932,9 +935,9 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -942,7 +945,6 @@
         }
       },
       "pluginVersion": "8.5.2",
-      "queryType": "lucene",
       "targets": [
         {
           "alias": "Memory Usage",
@@ -962,7 +964,7 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "1m"
+                "interval": "$agg"
               },
               "type": "date_histogram"
             }
@@ -975,7 +977,7 @@
             {
               "field": "pm_data.ndac_rr_edge_disk_usage_percentage",
               "id": "1",
-              "type": "sum"
+              "type": "avg"
             }
           ],
           "query": "pm_data_source.edge_alias.keyword:$edgealias AND pm_data.ndac_rr_edge_disk_usage_percentage:*",
@@ -989,7 +991,8 @@
     }
   ],
   "refresh": "15m",
-  "schemaVersion": 37,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "EdgePM"
@@ -1017,8 +1020,8 @@
       {
         "current": {
           "selected": false,
-          "text": "HP_GRMediumPlusV2",
-          "value": "HP_GRMediumPlusV2"
+          "text": "Cont_syve 5GNSA",
+          "value": "Cont_syve 5GNSA"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -1042,8 +1045,8 @@
       {
         "current": {
           "selected": false,
-          "text": "19-313-n-1",
-          "value": "19-313-n-1"
+          "text": "18-505-n-1",
+          "value": "18-505-n-1"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -1052,7 +1055,7 @@
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "hide": 0,
         "includeAll": false,
-        "label": "Edge Alias",
+        "label": "Slice ID",
         "multi": false,
         "name": "edgealias",
         "options": [],
@@ -1063,6 +1066,80 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "1m",
+          "value": "1m"
+        },
+        "description": "Aggregation",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Aggregation",
+        "multi": false,
+        "name": "agg",
+        "options": [
+          {
+            "selected": true,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "15m",
+            "value": "15m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "15d",
+            "value": "15d"
+          },
+          {
+            "selected": false,
+            "text": "1w",
+            "value": "1w"
+          },
+          {
+            "selected": false,
+            "text": "1M",
+            "value": "1M"
+          },
+          {
+            "selected": false,
+            "text": "2M",
+            "value": "2M"
+          },
+          {
+            "selected": false,
+            "text": "3M",
+            "value": "3M"
+          }
+        ],
+        "query": "1m,5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },

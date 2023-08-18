@@ -56,7 +56,6 @@ else
 fi
 
 echo "Installing OpenSearch"
-docker pull opensearchproject/opensearch:2.8.0
 mkdir -p es_data
 chmod g+rwx es_data
 chgrp 0 es_data

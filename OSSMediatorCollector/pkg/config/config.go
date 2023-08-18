@@ -137,6 +137,9 @@ func ReadConfig(confFile string) error {
 		user.Email = strings.TrimSpace(user.Email)
 		user.ResponseDest = strings.TrimSpace(user.ResponseDest)
 		user.AuthType = strings.TrimSpace(user.AuthType)
+		if user.AuthType == "" {
+			user.AuthType = "PASSWORD"
+		}
 	}
 
 	if Conf.MaxConcurrentProcess <= 0 {

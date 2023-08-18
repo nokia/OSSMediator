@@ -129,10 +129,7 @@ func TestStoreLastReceivedDataTimeForFM(t *testing.T) {
 	user := &config.User{Email: "testuser@nokia.com"}
 	api := &config.APIConf{API: "/fmdata", Type: "ACTIVE", MetricType: "DAC"}
 	nhgID := "test_nhg_1"
-	err = os.Mkdir("checkpoints", os.ModePerm)
-	if err != nil {
-		t.Error(err)
-	}
+	_ = os.Mkdir("checkpoints", os.ModePerm)
 
 	err = StoreLastReceivedDataTime(user, data, api, nhgID, 123)
 	if err != nil {

@@ -46,7 +46,8 @@ Follow the below steps to setup OSSMediator on your instance:
 1. Download/Copy the mediator packages from the Info Center by clicking "Download Package" button into a new directory.
 2. Unzip the OSSPackage-xx.zip in the new directory.
 3. Update collector_conf.json template with the correct `base_url`, `users` section with the credentials  (`email_id`) provided by NDAC Operations/Helpdesk team.  
-   Update the authorization type for the user - either `PASSWORD` or `ADTOKEN`. `ADTOKEN` is for ABAC users where the users will get the sso azure login token from the user management. `PASSWORD` is for the usual RBAC users.  
+   To download access token login to `Nokia NDAC Manager Portal` -> From User detail section -> Access Info -> Download token  .
+   Update the authorization type for the user - either `PASSWORD` or `ADTOKEN`. `ADTOKEN` is for ABAC users where the users will get the sso azure login token from the user management. `PASSWORD` is for the usual RBAC users.    
    Update the `response_dest` with the directory path where you want the collected metrics data to be stored locally on the disk.  
    You can refer the `OSSMediatorCollector` Readme.md file, under section `Configuration` for clarification.  
    In the OSS Mediator package there are 2 template files provided, the default `collector_conf.json file` and `collector_conf_all_api.json` file. The `collector_conf_all_api.json` template file has SIM API added along with the basic FM/PM APIs.  
@@ -87,6 +88,8 @@ NOTE: Refer "Nokia DAC OSS ElasticSearchPlugin Configuration" document to know m
 1. Move to `OSSMediator` base directory and run `make all` command. It will create two docker images `ossmediatorcollector:<VERSION>` and `elasticsearchplugin:<VERSION>`.
 2. Run `cd MediatorSetup` command.
 3. Update collector_conf.json template with the correct `base_url`, `users` section with the credentials (`email_id`, `auth_type`) provided by NDAC Operations/Helpdesk team.  
+   To download access token login to `Nokia NDAC Manager Portal` -> From User detail section -> Access Info -> Download token  
+   Update the authorization type for the user - either `PASSWORD` or `ADTOKEN`. `ADTOKEN` is for ABAC users where the users will get the sso azure login token from the user management. `PASSWORD` is for the usual RBAC users.
    Update the `response_dest` with `/reports` value.  
    You can refer the `OSSMediatorCollector` README.md file, under section `Configuration` for clarification.  
    In the OSS Mediator package there are 2 template files provided, the default `collector_conf.json` file and `collector_conf_all_api.json` file. The `collector_conf_all_api.json` template file has SIM API added along with the basic FM/PM APIs.  

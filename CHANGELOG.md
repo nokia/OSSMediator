@@ -10,10 +10,21 @@ NEW FEATURES:
   * Added configuration `auth_type` to identify authorization type for user, `PASSWORD` for `RBAC` and `ADTOKEN` for `ABAC` user.
   * Added configuration `pretty_response` to enable/disable pretty json response file.
 
+IMPROVEMENTS:
+
+* MediatorSetup:
+  * Dashboard improvements.
+  * Updated OpenSearch version to `2.9.0`.
+
+BUG FIXES:
+
+* ElasticsearchPlugin: Added deletion of old data from core-pm, edge-pm and ixr-pm index.
+
+
 SECURITY UPDATE:
 
 * OSSMediator:
-  * Updating base image to `alpine:3.18.2`.
+  * Updating base image to `alpine:3.18.3`.
 
 # 3.8
 

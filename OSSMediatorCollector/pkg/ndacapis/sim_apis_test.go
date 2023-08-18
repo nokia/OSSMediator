@@ -157,6 +157,8 @@ func TestCallSimAPIABAC(t *testing.T) {
 
 	m["test_nhg1"] = orgAcc
 	user.NhgIDsABAC = m
+	user.AccountIDsABAC = map[string][]string{}
+	user.AccountIDsABAC[orgAcc.OrgDetails.OrgUUID] = []string{"acc_uuid_1"}
 
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")

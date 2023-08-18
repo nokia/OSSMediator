@@ -63,7 +63,7 @@ func readConfig(confFile string) (*Config, error) {
 func readPassword(conf *Config) {
 	for _, user := range conf.Users {
 		authType := strings.ToUpper(user.AuthType)
-		if authType == "PASSWORD" {
+		if authType == "PASSWORD" || authType == "" {
 			fmt.Printf("Enter password for %s: ", user.EmailID)
 			bytePassword, err := term.ReadPassword(int(syscall.Stdin))
 			if err != nil {

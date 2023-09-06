@@ -281,11 +281,12 @@ func callAPI(req apiCallRequest, txnID uint64, prettyResponse bool) (*GetAPIResp
 	if req.searchAfterKey != "" {
 		query.Add(searchAfterKeyQueryParam, req.searchAfterKey)
 	}
+	if strings.Contains(req.api.API, "pmdata") && req.api.Aggregation != "" {
+		query.Add(aggregationQueryParam, req.api.Aggregation)
+	}
 
 	request.URL.RawQuery = query.Encode()
-	log.WithFields(log.Fields{"tid": txnID}).Info(startTimeQueryParam, ": ", query[startTimeQueryParam])
-	log.WithFields(log.Fields{"tid": txnID}).Info(endTimeQueryParam, ": ", query[endTimeQueryParam])
-	log.WithFields(log.Fields{"tid": txnID}).Info("URL:", request.URL)
+	log.WithFields(log.Fields{"tid": txnID, startTimeQueryParam: query[startTimeQueryParam], endTimeQueryParam: query[endTimeQueryParam]}).Info("URL:", request.URL)
 
 	response, err := doRequest(request)
 	if err != nil {

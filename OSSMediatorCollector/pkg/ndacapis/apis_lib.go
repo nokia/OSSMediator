@@ -42,6 +42,7 @@ const (
 	alarmTypeQueryParam      = "alarm_type"
 	metricTypeQueryParam     = "metric_type"
 	searchAfterKeyQueryParam = "search_after_key"
+	aggregationQueryParam    = "aggr"
 
 	//Headers
 	authorizationHeader = "Authorization"

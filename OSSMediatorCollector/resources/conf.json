@@ -51,16 +51,19 @@
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
       "metric_type": "CORE",
+      "aggregation": "1m",
       "interval": 5
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
       "metric_type": "EDGE",
+      "aggregation": "1m",
       "interval": 5
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
       "metric_type": "IXR",
+      "aggregation": "5m",
       "interval": 5
     },
     {

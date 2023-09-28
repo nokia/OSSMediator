@@ -37,7 +37,7 @@
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
       "metric_type": "CORE",
-      "aggregation": "1m",
+      "aggregation": "5m",
       "interval": 5
     },
     {

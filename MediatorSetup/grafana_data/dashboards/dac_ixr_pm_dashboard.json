@@ -128,7 +128,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -136,9 +135,7 @@
           },
           "custom": {
             "align": "center",
-            "cellOptions": {
-              "type": "auto"
-            },
+            "displayMode": "auto",
             "inspect": false,
             "minWidth": 50
           },
@@ -325,6 +322,7 @@
         ]
       },
       "pluginVersion": "9.4.7",
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -2607,8 +2605,8 @@
       {
         "current": {
           "selected": true,
-          "text": "1m",
-          "value": "1m"
+          "text": "5m",
+          "value": "5m"
         },
         "description": "",
         "hide": 0,
@@ -2619,11 +2617,6 @@
         "options": [
           {
             "selected": true,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": false,
             "text": "5m",
             "value": "5m"
           },
@@ -2673,7 +2666,7 @@
             "value": "3M"
           }
         ],
-        "query": "1m,5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
+        "query": "5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -2705,7 +2698,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-12h",
     "to": "now-15m"
   },
   "timepicker": {

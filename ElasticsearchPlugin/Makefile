@@ -1,21 +1,26 @@
 SHELL := /bin/bash
 
-all: clean docker_build
+all: clean docker_build_all copy_binary
+
+docker_build_all:
+	@echo "---------------------------------------------------------------------------------"
+	@echo "Starting docker build and test process, for ElasticsearchPlugin......"
+	@echo "---------------------------------------------------------------------------------"
+	@docker build -t elasticsearchplugin:$(shell cat ../VERSION) . --network host
+	@echo "docker build completed."
 
 docker_build:
 	@echo "---------------------------------------------------------------------------------"
 	@echo "Starting docker build process, for ElasticsearchPlugin......"
 	@echo "---------------------------------------------------------------------------------"
-	@echo ""
-	@echo "Docker Build..."
-	@echo "..............."
-	@docker build -t elasticsearchplugin:$(shell cat ../VERSION) . --network host
-	@docker build --target builder -t plugin-builder:1 . --network host
-	@docker create --name plugin-builder plugin-builder:1
-	@mkdir -p bin
-	@docker cp plugin-builder:/ElasticsearchPlugin/bin/elasticsearchplugin ./bin/
-	@docker rm plugin-builder
+	@docker build -t elasticsearchplugin:$(shell cat ../VERSION) . --network host --build-arg BUILD_CMD="build"
 	@echo "docker build completed."
+
+copy_binary:
+	@docker create --name elasticsearchplugin elasticsearchplugin:$(shell cat ../VERSION)
+	@mkdir -p bin
+	@docker cp elasticsearchplugin:/plugin/bin/. ./bin/
+	@docker rm elasticsearchplugin
 
 build:
 	@echo Building ElasticsearchPlugin

@@ -492,7 +492,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1586,24 +1587,19 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "1m",
-          "value": "1m"
+          "selected": true,
+          "text": "5m",
+          "value": "5m"
         },
         "description": "Aggregation",
-        "hide": 2,
+        "hide": 0,
         "includeAll": false,
-        "label": "",
+        "label": "Aggregation",
         "multi": false,
         "name": "agg",
         "options": [
           {
             "selected": true,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": false,
             "text": "5m",
             "value": "5m"
           },
@@ -1653,7 +1649,7 @@
             "value": "3M"
           }
         ],
-        "query": "1m,5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
+        "query": "5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"

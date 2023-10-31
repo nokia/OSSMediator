@@ -268,8 +268,10 @@ func callAPI(req apiCallRequest, txnID uint64, prettyResponse bool) (*GetAPIResp
 
 	//Adding query params
 	query := request.URL.Query()
-	query.Add(startTimeQueryParam, req.startTime)
-	query.Add(endTimeQueryParam, req.endTime)
+	if !(strings.Contains(req.api.API, "fmdata") && req.api.Type == "ACTIVE") {
+		query.Add(startTimeQueryParam, req.startTime)
+		query.Add(endTimeQueryParam, req.endTime)
+	}
 	query.Add(limitQueryParam, strconv.Itoa(req.limit))
 	query.Add(indexQueryParam, strconv.Itoa(req.index))
 	if req.api.Type != "" {

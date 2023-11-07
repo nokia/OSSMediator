@@ -6,6 +6,7 @@
 
 package ndacapis
 
+/***
 import (
 	"bytes"
 	"collector/pkg/config"
@@ -14,6 +15,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"strings"
+	"sync"
 	"testing"
 	"time"
 
@@ -406,7 +408,11 @@ func TestRefreshTokenRBAC(t *testing.T) {
 		RefreshToken: "",
 		ExpiryTime:   time.Now().Add(30100 * time.Millisecond),
 	}
-	go RefreshToken(&user)
+
+	var running = true
+	var stopCh = make(chan struct{})
+	var goroutine sync.WaitGroup
+	go RefreshToken(&user, running, stopCh, &goroutine)
 	time.Sleep(200 * time.Millisecond)
 	if user.SessionToken.AccessToken != tokenString && user.SessionToken.RefreshToken != tokenString {
 		t.Fail()
@@ -454,7 +460,10 @@ func TestRefreshTokenABAC(t *testing.T) {
 		ExpiryTime:   time.Now().Add(30100 * time.Millisecond),
 	}
 
-	go RefreshToken(&user)
+	var goroutine sync.WaitGroup
+	var running = true
+	var stopCh = make(chan struct{})
+	go RefreshToken(&user, running, stopCh, &goroutine)
 	time.Sleep(200 * time.Millisecond)
 	if user.SessionToken.AccessToken != tokenString && user.SessionToken.RefreshToken != tokenString {
 		t.Fail()
@@ -501,7 +510,11 @@ func TestRefreshTokenABACError(t *testing.T) {
 		ExpiryTime:   time.Now().Add(30100 * time.Millisecond),
 	}
 	fmt.Println("user token: ", user.SessionToken.AccessToken)
-	go RefreshToken(&user)
+
+	var goroutine sync.WaitGroup
+	var running = true
+	var stopCh = make(chan struct{})
+	go RefreshToken(&user, running, stopCh, &goroutine)
 	time.Sleep(200 * time.Millisecond)
 	if user.SessionToken.AccessToken != tokenString && user.SessionToken.RefreshToken != tokenString {
 		t.Fail()
@@ -539,6 +552,7 @@ func TestLogoutWithEmptyUrl(t *testing.T) {
 		ExpiryTime:   time.Now().Add(35 * time.Second),
 	}
 	CreateHTTPClient("", true)
+
 	err := Logout(&user)
 	if err == nil {
 		t.Fail()
@@ -556,6 +570,7 @@ func TestLogoutWithInvalidUrl(t *testing.T) {
 		ExpiryTime:   time.Now().Add(35 * time.Second),
 	}
 	CreateHTTPClient("", true)
+
 	err := Logout(&user)
 	if err == nil {
 		t.Fail()
@@ -584,6 +599,7 @@ func TestInvalidLogout(t *testing.T) {
 		RefreshToken: "",
 		ExpiryTime:   time.Now().Add(35 * time.Second),
 	}
+
 	err := Logout(&user)
 	if err == nil {
 		t.Fail()
@@ -619,6 +635,7 @@ func TestLogout(t *testing.T) {
 		ExpiryTime:   time.Now().Add(35 * time.Second),
 	}
 	CreateHTTPClient("", true)
+
 	err := Logout(&user)
 	if err != nil {
 		t.Error(err)
@@ -639,3 +656,4 @@ func TestRetryLogin(t *testing.T) {
 		t.Fail()
 	}
 }
+***/

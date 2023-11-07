@@ -1,0 +1,454 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 2,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "simpod-json-datasource",
+        "uid": "bdb54773-4090-4a56-9f42-d65f7e032a32"
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "buttonGroup": {
+          "orientation": "center",
+          "size": "md"
+        },
+        "elements": [
+          {
+            "hidden": false,
+            "id": "user",
+            "labelWidth": 10,
+            "section": "",
+            "title": "User",
+            "tooltip": "",
+            "type": "string",
+            "uid": "b0303908-fa1c-457e-86ab-9a75dd3af87e",
+            "unit": "",
+            "value": ""
+          },
+          {
+            "id": "auth_type",
+            "options": [
+              {
+                "id": "",
+                "label": "Password",
+                "type": "string",
+                "value": "password"
+              },
+              {
+                "id": "",
+                "label": "Azure Token",
+                "type": "string",
+                "value": "azure_token"
+              }
+            ],
+            "section": "",
+            "title": "Auth Type",
+            "tooltip": "Choose either password or token type auth",
+            "type": "select",
+            "uid": "fddaadc0-a195-4055-9110-c4f87a3d7e3f",
+            "unit": "",
+            "value": ""
+          },
+          {
+            "id": "password",
+            "section": "",
+            "title": "Password",
+            "tooltip": "Enter password for password type auth, else leave it blank",
+            "type": "password",
+            "uid": "a4f7223f-a8da-4c4a-b48a-77643f6cf847",
+            "unit": "",
+            "value": ""
+          },
+          {
+            "id": "access_token",
+            "section": "",
+            "title": "Access Token",
+            "tooltip": "Mandatory if auth type is token",
+            "type": "password",
+            "uid": "d319b5b0-7959-4a86-97e4-78f5263c70d6",
+            "unit": "",
+            "value": ""
+          },
+          {
+            "id": "refresh_token",
+            "section": "",
+            "title": "Refresh Token",
+            "tooltip": "Mandatory for token type auth",
+            "type": "password",
+            "uid": "96b0737a-581d-45ad-9c53-b35563f63a33",
+            "unit": "",
+            "value": ""
+          },
+          {
+            "hidden": false,
+            "id": "base_url",
+            "section": "",
+            "title": "Base URL",
+            "tooltip": "Fill only when you want to update, else leave it blank",
+            "type": "string",
+            "uid": "5b56a68f-4c71-479e-bc98-76568dda38ca",
+            "unit": "",
+            "value": ""
+          }
+        ],
+        "initial": {
+          "code": "console.log(data, response, initial, elements)",
+          "contentType": "application/json",
+          "highlight": false,
+          "highlightColor": "red",
+          "method": "-"
+        },
+        "layout": {
+          "orientation": "horizontal",
+          "padding": 10,
+          "variant": "single"
+        },
+        "reset": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "process",
+          "text": "Reset",
+          "variant": "hidden"
+        },
+        "saveDefault": {
+          "icon": "save",
+          "text": "Save Default",
+          "variant": "hidden"
+        },
+        "submit": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "plus",
+          "text": "Add",
+          "variant": "primary"
+        },
+        "update": {
+          "code": "if (response && response.ok) {\n  notifySuccess(['Update', 'Values updated successfully.']);\n  locationService.reload();\n} else {\n  notifyError(['Update', 'An error occured updating values.']);\n}",
+          "confirm": false,
+          "contentType": "application/json",
+          "method": "POST",
+          "updatedOnly": false,
+          "url": "http://localhost:8080/add_user"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "simpod-json-datasource",
+            "uid": "bdb54773-4090-4a56-9f42-d65f7e032a32"
+          },
+          "editorMode": "code",
+          "refId": "A"
+        }
+      ],
+      "title": "Add New User",
+      "type": "volkovlabs-form-panel"
+    },
+    {
+      "datasource": {
+        "type": "simpod-json-datasource",
+        "uid": "bdb54773-4090-4a56-9f42-d65f7e032a32"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.0.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "simpod-json-datasource",
+            "uid": "bdb54773-4090-4a56-9f42-d65f7e032a32"
+          },
+          "editorMode": "code",
+          "hide": false,
+          "refId": "A"
+        }
+      ],
+      "title": "List of Users Added",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "buttonGroup": {
+          "orientation": "center",
+          "size": "md"
+        },
+        "elements": [
+          {
+            "id": "status",
+            "labelWidth": 10,
+            "options": [],
+            "section": "",
+            "title": "Status",
+            "tooltip": "",
+            "type": "disabled",
+            "uid": "1d960fff-c755-4949-b7c6-472272518d74",
+            "unit": "",
+            "value": ""
+          },
+          {
+            "id": "action",
+            "labelWidth": 10,
+            "options": [
+              {
+                "id": "",
+                "label": "Start",
+                "type": "string",
+                "value": "start"
+              },
+              {
+                "id": "",
+                "label": "Stop",
+                "type": "string",
+                "value": "stop"
+              }
+            ],
+            "section": "",
+            "title": "Action",
+            "tooltip": "",
+            "type": "radio",
+            "uid": "cca195a7-548d-4fdd-a6f1-48c2e16fc2c1",
+            "unit": "",
+            "value": ""
+          }
+        ],
+        "initial": {
+          "code": "console.log(data, response, initial, elements)",
+          "contentType": "application/json",
+          "highlight": false,
+          "highlightColor": "dark-green",
+          "method": "GET",
+          "url": "http://localhost:8080/status"
+        },
+        "layout": {
+          "orientation": "horizontal",
+          "padding": 10,
+          "variant": "single"
+        },
+        "reset": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "process",
+          "text": "Reset",
+          "variant": "hidden"
+        },
+        "saveDefault": {
+          "icon": "save",
+          "text": "Save Default",
+          "variant": "hidden"
+        },
+        "submit": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "cloud-upload",
+          "text": "Submit",
+          "variant": "primary"
+        },
+        "update": {
+          "code": "if (response && response.ok) {\n  notifySuccess(['Update', 'Values updated successfully.']);\n  locationService.reload();\n} else {\n  notifyError(['Update', 'An error occured updating values.']);\n}",
+          "confirm": false,
+          "contentType": "application/json",
+          "method": "POST",
+          "updatedOnly": false,
+          "url": "http://localhost:8080/trigger"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "queryType": "randomWalk",
+          "refId": "A"
+        }
+      ],
+      "title": "Trigger OSSMediator",
+      "type": "volkovlabs-form-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 2,
+      "options": {
+        "buttonGroup": {
+          "orientation": "center",
+          "size": "md"
+        },
+        "elements": [
+          {
+            "hidden": false,
+            "id": "user",
+            "labelWidth": 10,
+            "section": "",
+            "title": "User",
+            "tooltip": "",
+            "type": "string",
+            "uid": "7d1d1427-9d00-4ed7-a92b-20efb3a48bed",
+            "unit": "",
+            "value": ""
+          }
+        ],
+        "initial": {
+          "code": "console.log(data, response, initial, elements)",
+          "contentType": "application/json",
+          "highlight": false,
+          "highlightColor": "red",
+          "method": "-"
+        },
+        "layout": {
+          "orientation": "horizontal",
+          "padding": 10,
+          "variant": "single"
+        },
+        "reset": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "process",
+          "text": "Reset",
+          "variant": "hidden"
+        },
+        "saveDefault": {
+          "icon": "save",
+          "text": "Save Default",
+          "variant": "hidden"
+        },
+        "submit": {
+          "backgroundColor": "purple",
+          "foregroundColor": "yellow",
+          "icon": "minus",
+          "text": "Delete",
+          "variant": "primary"
+        },
+        "update": {
+          "code": "if (response && response.ok) {\n  notifySuccess(['Update', 'Values updated successfully.']);\n  locationService.reload();\n} else {\n  notifyError(['Update', 'An error occured updating values.']);\n}",
+          "confirm": false,
+          "contentType": "application/json",
+          "method": "DELETE",
+          "updatedOnly": false,
+          "url": "http://localhost:8080/delete_user"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "queryType": "randomWalk",
+          "refId": "A"
+        }
+      ],
+      "title": "Delete User",
+      "type": "volkovlabs-form-panel"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "User Mananagement",
+  "uid": "dd60cf1e-456e-4ac8-90e7-1218ef8ca410",
+  "version": 19,
+  "weekStart": ""
+}

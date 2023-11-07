@@ -16,6 +16,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	jwt "github.com/golang-jwt/jwt/v4"
@@ -133,7 +134,9 @@ func setToken(response *UMResponse, user *config.User) {
 
 // RefreshToken refreshes the session token before expiry_time.
 // Input parameter apiUrl is the API URL for refreshing session.
-func RefreshToken(user *config.User) {
+func RefreshToken(user *config.User, running bool, stopCh chan struct{}, goroutine *sync.WaitGroup) {
+	/****
+	fmt.Println("Refreshing token starting...")
 	apiURL := config.Conf.BaseURL
 	authType := strings.ToUpper(user.AuthType)
 	if authType == "ADTOKEN" {
@@ -210,6 +213,107 @@ func RefreshToken(user *config.User) {
 		user.Wg.Wait()
 		log.Infof("Token refreshed for %s.", user.Email)
 		refreshTimer.Reset(duration)
+	}
+	//			time.Sleep(time.Second)
+
+	**/
+
+	fmt.Println("Starting RefreshToken")
+	running = true
+	internalStopCh := make(chan struct{})
+	var goroutine1 sync.WaitGroup
+	goroutine1.Add(1)
+
+	for {
+		select {
+		case <-stopCh:
+			fmt.Println("Stopping RefreshToken...")
+			close(internalStopCh)
+			goroutine.Done()
+			goroutine1.Wait()
+			return
+		default:
+			fmt.Println("RefreshToken is running...")
+			apiURL := config.Conf.BaseURL
+			authType := strings.ToUpper(user.AuthType)
+			if authType == "ADTOKEN" {
+				apiURL = apiURL + config.Conf.AzureSessionAPIs.Refresh
+			} else {
+				apiURL = apiURL + config.Conf.UMAPIs.Refresh
+			}
+			duration := getRefreshDuration(user)
+			refreshTimer := time.NewTimer(duration)
+			for {
+				<-refreshTimer.C
+				user.Wg.Add(1)
+				fmt.Println("Calling refreshAPI")
+				err := callRefreshAPI(apiURL, user)
+				if err != nil {
+					if authType == "ADTOKEN" {
+						if err.Error() == "500: Failed to refresh azure token" {
+							log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
+							user.IsSessionAlive = false
+							log.Info("Terminating DA OSS Collector...")
+							os.Exit(0)
+						}
+						errStr := strings.Split(err.Error(), ":")
+						errCode, _ := strconv.Atoi(errStr[0])
+						errNo := errCode
+						if !(errCode >= 400 && errCode <= 499) {
+							log.WithFields(log.Fields{"error": err}).Info("RefreshApi issues from server...retrying again")
+							for !(errNo >= 400 && errNo <= 499) {
+								time.Sleep(5 * time.Second)
+								err = callRefreshAPI(apiURL, user)
+								if err != nil {
+									log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s", user.Email)
+									errStr := strings.Split(err.Error(), ":")
+									errNo, _ = strconv.Atoi(errStr[0])
+									if errNo < 500 {
+										log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
+										user.IsSessionAlive = false
+										log.Info("Terminating DA OSS Collector....")
+										os.Exit(0)
+									}
+								} else {
+									user.IsSessionAlive = true
+									user.Wg.Done()
+									break
+								}
+							}
+						} else {
+							log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
+							user.IsSessionAlive = false
+							log.Info("Terminating DA OSS Collector...")
+							os.Exit(0)
+						}
+					} else {
+						log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to login", user.Email)
+						err = Login(user)
+						if err != nil {
+							log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
+							user.IsSessionAlive = false
+							go retryLogin(initialBackoff, user)
+						} else {
+							user.IsSessionAlive = true
+							user.Wg.Done()
+						}
+					}
+				} else {
+					user.IsSessionAlive = true
+					user.Wg.Done()
+				}
+				duration = getRefreshDuration(user)
+				if duration < 10*time.Second {
+					log.WithFields(log.Fields{"refresh_duration": duration, "user": user.Email}).Debugf("Found less refresh duration, login will be tried for %s.", user.Email)
+					duration = 5 * time.Second
+					user.IsSessionAlive = false
+				}
+				user.Wg.Wait()
+				log.Infof("Token refreshed for %s.", user.Email)
+				refreshTimer.Reset(duration)
+			}
+			//time.Sleep(time.Second * 2)
+		}
 	}
 }
 
@@ -290,6 +394,7 @@ func retryLogin(backoff time.Duration, user *config.User) {
 // Logout to close the session.
 // If successful it returns nil, if there is any error it return error.
 func Logout(user *config.User) error {
+	fmt.Println("Logging out users")
 	log.Infof("Logging out from %s for user %s.", config.Conf.BaseURL, user.Email)
 	authType := strings.ToUpper(user.AuthType)
 	if authType == "ADTOKEN" {
@@ -315,6 +420,7 @@ func Logout(user *config.User) error {
 		return err
 	}
 
+	fmt.Println("User logged out: ", user.Email)
 	log.Infof("%s Logged out", user.Email)
 	return nil
 }

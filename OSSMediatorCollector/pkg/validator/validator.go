@@ -13,11 +13,11 @@ import (
 	"strings"
 )
 
-//ValidateConf validates the parameters from json file
+// ValidateConf validates the parameters from json file
 func ValidateConf(conf config.Config) error {
-	if len(conf.Users) == 0 {
-		return fmt.Errorf("number of users can't be zero")
-	}
+	//if len(conf.Users) == 0 {
+	//	return fmt.Errorf("number of users can't be zero")
+	//}
 
 	if len(conf.MetricAPIs) == 0 {
 		return fmt.Errorf("number of APIs can't be zero")

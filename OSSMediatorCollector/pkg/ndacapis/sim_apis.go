@@ -11,10 +11,13 @@ import (
 	"collector/pkg/config"
 	"collector/pkg/utils"
 	"encoding/json"
+	"fmt"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 	"strconv"
 	"strings"
+	"sync"
+	"time"
 )
 
 // SimAPIResponse struct for sims api response.
@@ -56,7 +59,56 @@ const (
 	hwIDQueryParam     = "access_point_hw_id"
 )
 
-func fetchSimData(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
+func fetchSimData(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool, running bool, stopCh chan struct{}, goroutine *sync.WaitGroup) {
+	/***
+		fmt.Println("fetchSimData working...")
+		if !user.IsSessionAlive {
+			log.WithFields(log.Fields{"tid": txnID, "api": api.API}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
+			return
+		}
+		authType := strings.ToUpper(user.AuthType)
+		if strings.Contains(api.API, accessPointSimsAPI) {
+			if authType == "ADTOKEN" {
+				log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDsABAC)}).Infof("starting ap_sims api")
+				for hwID, orgAcc := range user.HwIDsABAC {
+					callAccessPointsSimAPI(api, user, hwID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, txnID, prettyResponse)
+				}
+			} else {
+				for _, hwID := range user.HwIDs {
+					log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("starting ap_sims api")
+					callAccessPointsSimAPI(api, user, hwID, "", "", txnID, prettyResponse)
+				}
+			}
+			log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDs)}).Infof("finished ap_sims api")
+		} else if strings.Contains(api.API, nhgPathParam) {
+			if authType == "ADTOKEN" {
+				for nhgID, orgAcc := range user.NhgIDsABAC {
+					callSimAPI(api, user, nhgID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, 1, txnID, prettyResponse)
+				}
+			} else {
+				for _, nhgID := range user.NhgIDs {
+					callSimAPI(api, user, nhgID, "", "", 1, txnID, prettyResponse)
+				}
+			}
+		} else {
+			if authType == "ADTOKEN" {
+				for orgID, accIDs := range user.AccountIDsABAC {
+					for _, accID := range accIDs {
+						callSimAPI(api, user, "", orgID, accID, 1, txnID, prettyResponse)
+					}
+				}
+			} else {
+				callSimAPI(api, user, "", "", "", 1, txnID, prettyResponse)
+			}
+		}
+	***/
+	fmt.Println("Starting fetchSimAPI...")
+	running = true
+	internalStopCh := make(chan struct{})
+	var goroutine1 sync.WaitGroup
+	goroutine1.Add(1)
+
+	fmt.Println("fetchSimData working...")
 	if !user.IsSessionAlive {
 		log.WithFields(log.Fields{"tid": txnID, "api": api.API}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
 		return
@@ -94,6 +146,21 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64, prettyRe
 			}
 		} else {
 			callSimAPI(api, user, "", "", "", 1, txnID, prettyResponse)
+		}
+	}
+	goroutine1.Add(1)
+
+	for {
+		select {
+		case <-stopCh:
+			fmt.Println("Stopping fetchSimAPI...")
+			close(internalStopCh)
+			goroutine.Done()
+			goroutine1.Wait()
+			return
+		default:
+			fmt.Println("fetchSimAPI is running...")
+			time.Sleep(time.Second * 2)
 		}
 	}
 }

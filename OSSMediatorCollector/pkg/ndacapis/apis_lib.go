@@ -1,10 +1,10 @@
+package ndacapis
+
 /*
 * Copyright 2018 Nokia
 * Licensed under BSD 3-Clause Clear License,
 * see LICENSE file for details.
  */
-
-package ndacapis
 
 import (
 	"collector/pkg/config"
@@ -64,10 +64,11 @@ var (
 	mux        = sync.RWMutex{}
 )
 
-type fn func(*config.APIConf, *config.User, uint64, bool)
+type fn func(*config.APIConf, *config.User, uint64, bool, bool, chan struct{}, *sync.WaitGroup)
 
 // StartDataCollection starts the tickers for PM/FM APIs.
-func StartDataCollection() {
+func StartDataCollection(running bool, stopCh chan struct{}, goroutine *sync.WaitGroup) {
+	/***
 	currentTime := utils.CurrentTime()
 	diff := currentTime.Minute() - (currentTime.Minute() / interval * interval) - config.Conf.Delay
 	begTime := currentTime.Add(time.Duration(-1*diff) * time.Minute)
@@ -104,13 +105,82 @@ func StartDataCollection() {
 			go trigger(ticker, api, user, config.Conf.PrettyResponse, fetchSimData)
 		}
 	}
+	 **/
+
+	running = true
+	internalStopCh := make(chan struct{})
+	var goroutine1 sync.WaitGroup
+	goroutine1.Add(1)
+
+	currentTime := utils.CurrentTime()
+	diff := currentTime.Minute() - (currentTime.Minute() / interval * interval) - config.Conf.Delay
+	begTime := currentTime.Add(time.Duration(-1*diff) * time.Minute)
+	if currentTime.After(begTime) {
+		begTime = begTime.Add(time.Duration(interval) * time.Minute)
+		for _, user := range config.Conf.Users {
+			goroutine1.Add(1)
+			fmt.Println("Calling getNHG api")
+			//go getNhgDetails(config.Conf.ListNhGAPI, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse, running, internalStopCh, &goroutine1)
+			getNhgDetails(config.Conf.ListNhGAPI, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
+			for _, api := range config.Conf.MetricAPIs {
+				fmt.Println("calling fetchMetrics api")
+				goroutine1.Add(1)
+				go fetchMetricsData(api, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse, running, internalStopCh, &goroutine1)
+			}
+			for _, api := range config.Conf.SimAPIs {
+				fmt.Println("calling fetchSimAPI ......")
+				goroutine1.Add(1)
+				go fetchSimData(api, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse, running, internalStopCh, &goroutine1)
+			}
+		}
+	}
+	/**
+		timer := time.NewTimer(time.Until(begTime))
+		<-timer.C
+		//For each APIs creates ticker to trigger the API periodically at specified interval.
+		for _, user := range config.Conf.Users {
+			if config.Conf.ListNhGAPI != nil {
+				getNhgDetails(config.Conf.ListNhGAPI, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
+				ticker := time.NewTicker(time.Duration(config.Conf.ListNhGAPI.Interval) * time.Minute)
+				goroutine1.Add(1)
+				go trigger(ticker, config.Conf.ListNhGAPI, user, config.Conf.PrettyResponse, getNhgDetails, running, internalStopCh, &goroutine1)
+			}
+			for _, api := range config.Conf.MetricAPIs {
+				goroutine1.Add(1)
+				go fetchMetricsData(api, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse, running, internalStopCh, &goroutine1)
+				ticker := time.NewTicker(time.Duration(api.Interval) * time.Minute)
+				goroutine1.Add(1)
+				go trigger(ticker, api, user, config.Conf.PrettyResponse, fetchMetricsData, running, internalStopCh, &goroutine1)
+			}
+			for _, api := range config.Conf.SimAPIs {
+				goroutine1.Add(1)
+				go fetchSimData(api, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse, running, internalStopCh, &goroutine1)
+				ticker := time.NewTicker(time.Duration(api.Interval) * time.Minute)
+				goroutine1.Add(1)
+				go trigger(ticker, api, user, config.Conf.PrettyResponse, fetchSimData, running, internalStopCh, &goroutine1)
+			}
+		}
+	**/
+	for {
+		select {
+		case <-stopCh:
+			fmt.Println("Stopping startDataCollection...")
+			close(internalStopCh)
+			goroutine.Done()
+			goroutine1.Wait()
+			return
+		default:
+			fmt.Println("StartDataCollection is running...")
+			time.Sleep(time.Second * 2)
+		}
+	}
 }
 
 // triggers the method periodically at specified interval.
-func trigger(ticker *time.Ticker, api *config.APIConf, user *config.User, prettyResponse bool, method fn) {
+func trigger(ticker *time.Ticker, api *config.APIConf, user *config.User, prettyResponse bool, method fn, running bool, stopCh chan struct{}, goroutine *sync.WaitGroup) {
 	for {
 		<-ticker.C
-		method(api, user, atomic.AddUint64(&txnID, 1), prettyResponse)
+		method(api, user, atomic.AddUint64(&txnID, 1), prettyResponse, running, stopCh, goroutine)
 	}
 }
 

@@ -11,6 +11,7 @@ import (
 	"collector/pkg/config"
 	"collector/pkg/utils"
 	"encoding/json"
+	"fmt"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 	"strings"
@@ -35,8 +36,41 @@ const (
 	activeNhgStatus = "ACTIVE"
 )
 
+/**
 // get nhg details for the customer
+func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool, running bool, stopCh chan struct{}, goroutine *sync.WaitGroup) {
+	fmt.Println("Starting GetNhgId details")
+	user.HwIDsABAC = map[string]config.OrgAccDetails{}
+	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
+	user.AccountIDsABAC = map[string][]string{}
+	authType := strings.ToUpper(user.AuthType)
+	if authType == "ADTOKEN" {
+		listNhgABAC(api, user, txnID, prettyResponse)
+	} else {
+		listNhgRBAC(api, user, txnID, prettyResponse)
+	}
+	running = true
+	internalStopCh := make(chan struct{})
+	//var goroutine1 sync.WaitGroup
+	//goroutine1.Add(1)
+	for {
+		select {
+		case <-stopCh:
+			fmt.Println("Stopping getNhgId")
+			close(internalStopCh)
+			goroutine.Done()
+			//		goroutine1.Wait()
+			return
+		default:
+			fmt.Println("Inside getNhgid...")
+			time.Sleep(time.Second * 2)
+		}
+	}
+}
+**/
+
 func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
+	fmt.Println("Starting GetNhgId details")
 	user.HwIDsABAC = map[string]config.OrgAccDetails{}
 	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
 	user.AccountIDsABAC = map[string][]string{}

@@ -10,6 +10,7 @@ import (
 	"collector/pkg/config"
 	"encoding/base64"
 	"errors"
+	"fmt"
 	"os"
 	"strings"
 	"time"
@@ -50,7 +51,8 @@ func GetTimeInterval(user *config.User, api *config.APIConf, nhgID string) (stri
 }
 
 func ReadPassword(email string) (string, error) {
-	passwordFile := ".secret/." + email
+	passwordFile := "/collector/bin/.secret/." + email
+	fmt.Println("\nPassword path : ", passwordFile)
 	var bytePassword []byte
 	if fileExists(passwordFile) {
 		data, err := os.ReadFile(passwordFile)
@@ -71,7 +73,7 @@ func ReadPassword(email string) (string, error) {
 }
 
 func ReadSessionToken(email string) (string, error) {
-	passwordFile := ".secret/." + email
+	passwordFile := "./.secret/." + email
 	var bytePassword []byte
 	var byteAccessToken []byte
 	var byteRefreshToken []byte

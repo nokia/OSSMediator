@@ -12,12 +12,14 @@ import (
 	"collector/pkg/notifier"
 	"collector/pkg/utils"
 	"encoding/json"
+	"fmt"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 	"path"
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 )
 
 // GetAPIResponse keeps track of response received from PM/FM API.
@@ -69,7 +71,9 @@ const (
 	retryCurrentMsg = "retry current"
 )
 
-func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
+func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool, running bool, stopCh chan struct{}, goroutine *sync.WaitGroup) {
+	/***
+	fmt.Println("FetchMetricsAPI working...")
 	if !user.IsSessionAlive {
 		log.WithFields(log.Fields{"tid": txnID, "api": api.API, "api_type": api.Type, "metric_type": api.MetricType}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
 		return
@@ -149,6 +153,110 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, pret
 	mux.Lock()
 	delete(activeAPIs, apiKey)
 	mux.Unlock()
+	time.Sleep(time.Second)
+	**/
+
+	fmt.Println("Starting fetchMetricApI...")
+	running = true
+	internalStopCh := make(chan struct{})
+	var goroutine1 sync.WaitGroup
+	goroutine1.Add(1)
+	fmt.Println("FetchMetricsAPI working...")
+	if !user.IsSessionAlive {
+		log.WithFields(log.Fields{"tid": txnID, "api": api.API, "api_type": api.Type, "metric_type": api.MetricType}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
+		return
+	}
+
+	apiKey := user.Email + "_" + path.Base(api.API) + "_" + api.MetricType
+	if api.Type != "" {
+		apiKey += "_" + api.Type
+	}
+	mux.RLock()
+	_, ok := activeAPIs[apiKey]
+	mux.RUnlock()
+	if ok {
+		log.WithFields(log.Fields{"tid": txnID, "api": api.API, "api_type": api.Type, "metric_type": api.MetricType}).Debugf("Previous API call for %s at %v is  still active", user.Email, utils.CurrentTime())
+		return
+	}
+	mux.Lock()
+	activeAPIs[apiKey] = struct{}{}
+	mux.Unlock()
+
+	wg := sync.WaitGroup{}
+	requests := make(chan struct{}, config.Conf.MaxConcurrentProcess)
+	authType := strings.ToUpper(user.AuthType)
+	if authType == "ADTOKEN" {
+		//ABAC user
+		for nhg, orgAcc := range user.NhgIDsABAC {
+			requests <- struct{}{}
+			wg.Add(1)
+			go func(nhgID string, accDetail config.OrgAccDetails) {
+				log.Println("Inside go func in fetchmetrics api")
+				startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
+				apiReq := apiCallRequest{
+					api:       api,
+					user:      user,
+					nhgID:     nhgID,
+					startTime: startTime,
+					endTime:   endTime,
+					index:     0,
+					limit:     config.Conf.Limit,
+					orgUUID:   accDetail.OrgDetails.OrgUUID,
+					accUUID:   accDetail.AccDetails.AccUUID,
+				}
+				msg := callMetricAPI(apiReq, maxRetryAttempts, txnID, prettyResponse)
+				if msg == retryCurrentMsg {
+					callMetricAPI(apiReq, 0, txnID, prettyResponse)
+				}
+				<-requests
+				wg.Done()
+			}(nhg, orgAcc)
+		}
+	} else {
+		//RBAC user
+		for _, nhg := range user.NhgIDs {
+			requests <- struct{}{}
+			wg.Add(1)
+			go func(nhgID string) {
+				startTime, endTime := utils.GetTimeInterval(user, api, nhgID)
+				apiReq := apiCallRequest{
+					api:       api,
+					user:      user,
+					nhgID:     nhgID,
+					startTime: startTime,
+					endTime:   endTime,
+					index:     0,
+					limit:     config.Conf.Limit,
+				}
+				msg := callMetricAPI(apiReq, maxRetryAttempts, txnID, prettyResponse)
+				if msg == retryCurrentMsg {
+					callMetricAPI(apiReq, 0, txnID, prettyResponse)
+				}
+				<-requests
+				wg.Done()
+			}(nhg)
+		}
+	}
+
+	wg.Wait()
+	mux.Lock()
+	delete(activeAPIs, apiKey)
+	mux.Unlock()
+	time.Sleep(time.Second * 2)
+
+	for {
+		select {
+		case <-stopCh:
+			fmt.Println("Stopping fetchMetricsAPI...")
+			close(internalStopCh)
+			goroutine.Done()
+			goroutine1.Wait()
+			return
+		default:
+			fmt.Println("FetchMetricAPI is running...")
+			time.Sleep(time.Second * 2)
+		}
+	}
 }
 
 func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64, prettyResponse bool) string {

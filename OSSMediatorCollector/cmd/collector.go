@@ -9,6 +9,7 @@ import (
 	"github.com/rs/cors"
 	log "github.com/sirupsen/logrus"
 	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/microsoft"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"io"
 	"io/ioutil"
@@ -34,21 +35,16 @@ var (
 var (
 	//clientID     = "4748e241-b573-422c-a423-e2cd0af95de2"     //grafana-trial
 	//clientSecret = "Ayh8Q~MhHURqNFE7aYGVdMHT6Oyie.FMDTCrobd9" //grafana-trial
-	clientID     = "34d8ed68-e1c5-4d60-92d2-8dc3818752ab"     //dev2
-	clientSecret = "afV8Q~7ptnDeD-gUldv265vSCBG2kmENwgL1Lavx" //dev2
+	clientID     = "634d076a-8d0f-4ce3-bf02-ed1a28fbb60a"     //dev2
+	clientSecret = "I0V8Q~RkEMzw0qSqQFPz1D4V~x7zr3HIq9b.hdgS" //dev2
 	redirectURI  = "https://10.183.35.228:9000/callback"
 	//redirectURI  = "http://localhost:8080/callback"
 	oauth2Config = oauth2.Config{
 		ClientID:     clientID,
 		ClientSecret: clientSecret,
 		RedirectURL:  redirectURI,
-		Endpoint: oauth2.Endpoint{
-			//AuthURL:  "https://login.microsoftonline.com/5d471751-9675-428d-917b-70f44f9630b0/oauth2/authorize", //grafana-trial
-			//TokenURL: "https://login.microsoftonline.com/5d471751-9675-428d-917b-70f44f9630b0/oauth2/token",     //grafana-trial
-			AuthURL:  "https://login.microsoftonline.com/c8c2a43b-31cc-430e-87b1-394e4cc06d9b/oauth2/authorize", //dev2
-			TokenURL: "https://login.microsoftonline.com/c8c2a43b-31cc-430e-87b1-394e4cc06d9b/oauth2/token",     //dev2
-		},
-		Scopes: []string{"openid", "profile", "offline_access"},
+		Endpoint:     microsoft.AzureADEndpoint("c8c2a43b-31cc-430e-87b1-394e4cc06d9b"),
+		Scopes:       []string{"openid", "profile", "offline_access", "User.Read", "api://634d076a-8d0f-4ce3-bf02-ed1a28fbb60a/token"},
 	}
 )
 
@@ -77,11 +73,8 @@ func handleAddABACUserRequest(w http.ResponseWriter, r *http.Request) {
 	if users == nil {
 		users = make(map[string]User)
 	}
-	if r.Method != http.MethodPost {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		return
-	}
-	url := oauth2Config.AuthCodeURL("", oauth2.AccessTypeOffline)
+
+	url := oauth2Config.AuthCodeURL("state", oauth2.AccessTypeOffline)
 	http.Redirect(w, r, url, http.StatusFound)
 }
 
@@ -89,20 +82,60 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 	code := r.URL.Query().Get("code")
 
 	token, err := oauth2Config.Exchange(r.Context(), code)
-	//token, err := oauth2Config.Exchange(context.Background(), code)
 	if err != nil {
-		http.Error(w, "Failed to exchange code for token", http.StatusInternalServerError)
+		http.Error(w, "Error exchanging code for token: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	client := oauth2Config.Client(r.Context(), token)
+	resp, err := client.Get("https://graph.microsoft.com/v1.0/me")
+	if err != nil {
+		http.Error(w, "Failed to fetch user data", http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+	// Read the user's profile data
+	var userData map[string]interface{}
+	if err := json.NewDecoder(resp.Body).Decode(&userData); err != nil {
+		http.Error(w, "Failed to read user data", http.StatusInternalServerError)
 		return
 	}
 
-	idToken := token.Extra("id_token").(string)
+	// Extract the email from the user's profile
+	user, ok := userData["mail"].(string)
+	if !ok {
+		http.Error(w, "Email not found", http.StatusInternalServerError)
+		return
+	}
 
-	fmt.Println("\nid token : ", idToken)
-	fmt.Println("\n\naccess token : ", token.AccessToken)
-	fmt.Println("\n\nRefresh token : ", token.RefreshToken)
+	accessToken := token.AccessToken
+	refreshToken := token.RefreshToken
+
+	fmt.Println("\n\naccess token : ", accessToken)
+	fmt.Println("\n\nRefresh token : ", refreshToken)
 
 	// Store or use the token as needed.
 	// You can use token.AccessToken for API requests.
+
+	err = utils.StoreToken(user, []byte(accessToken), []byte(refreshToken))
+	if err != nil {
+		fmt.Println("Error storing token:", err)
+		return
+	}
+
+	//save in conf file
+	err = utils.StoreConf(user, "ADTOKEN", "")
+	if err != nil {
+		fmt.Println("Error updating config file : ", err)
+		return
+	}
+
+	// Respond with a success message and a 200 OK status
+	response := map[string]string{
+		"message": "Success",
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(response)
 
 	// Optionally, you can also retrieve the user's profile information.
 	// See: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-go#step-4-authenticate-and-authorize
@@ -246,12 +279,33 @@ func handleListUsersRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Respond with the list of added users
-	fmt.Println("Responding with list of users")
+	var formattedUsers []map[string]string
+
+	// Iterate over the existing user map and extract the desired fields
+	for _, user := range users {
+		formattedUser := map[string]string{
+			"auth_type": user.AuthType,
+			"user":      user.Username,
+		}
+		formattedUsers = append(formattedUsers, formattedUser)
+	}
+
+	// Create a map with a "users" key and the formatted user data
+	response := map[string][]map[string]string{
+		"users": formattedUsers,
+	}
+
+	// Convert the response to JSON and send it in the HTTP response
+	jsonResponse, err := json.Marshal(response)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	fmt.Println("users: ", users)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(users)
+	w.Write(jsonResponse)
 }
 
 func handleOSSStatusRequest(w http.ResponseWriter, r *http.Request) {
@@ -387,7 +441,7 @@ func main() {
 	running = false
 	mux := http.NewServeMux()
 	mux.HandleFunc("/add_user", handleAddUserRequest)
-	mux.HandleFunc("/add_abac", handleAddUserRequest)
+	//mux.HandleFunc("/add_abac", handleAddUserRequest)
 	mux.HandleFunc("/list_users", handleListUsersRequest) // Add a new route for handling GET requests
 	mux.HandleFunc("/delete_user", handleDeleteRequest)
 	mux.HandleFunc("/status", handleOSSStatusRequest)
@@ -411,7 +465,7 @@ func main() {
 
 	isUserConfigured := populateUsers()
 	if isUserConfigured {
-		fmt.Println("Starting OSS Collector from config")
+		//fmt.Println("Starting OSS Collector from config")
 		//goroutine.Add(1)
 		//running = true
 		//var startCollectorRunning bool

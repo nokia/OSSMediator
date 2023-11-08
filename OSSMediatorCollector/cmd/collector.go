@@ -73,12 +73,27 @@ func handleAddABACUserRequest(w http.ResponseWriter, r *http.Request) {
 	if users == nil {
 		users = make(map[string]User)
 	}
+	fmt.Println("Request to Configure Azure Token")
+	w.Header().Set("Access-Control-Allow-Origin", "https://10.183.35.228:3000") // Update with your Grafana frontend URL.
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
 
 	url := oauth2Config.AuthCodeURL("state", oauth2.AccessTypeOffline)
 	http.Redirect(w, r, url, http.StatusFound)
 }
 
 func handleCallback(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Request to Configure Azure Token")
+	w.Header().Set("Access-Control-Allow-Origin", "*") // Update with your Grafana frontend URL.
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Origin,Authorization, Accept")
+
+	fmt.Println("Inside callback")
+
+	if users == nil {
+		users = make(map[string]User)
+	}
+
 	code := r.URL.Query().Get("code")
 
 	token, err := oauth2Config.Exchange(r.Context(), code)
@@ -137,6 +152,7 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
 
+	fmt.Fprintf(w, "ABAC User added...you can close the window")
 	// Optionally, you can also retrieve the user's profile information.
 	// See: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-go#step-4-authenticate-and-authorize
 }
@@ -440,6 +456,14 @@ func main() {
 	oss.Status = "stopped"
 	running = false
 	mux := http.NewServeMux()
+	// Setup CORS options
+	corsOpts := cors.New(cors.Options{
+		AllowedOrigins:   []string{"http://10.183.35.228:3000", "http://10.183.35.228:9000"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
+		AllowedHeaders:   []string{"*"},
+		AllowCredentials: true,
+	})
+
 	mux.HandleFunc("/add_user", handleAddUserRequest)
 	//mux.HandleFunc("/add_abac", handleAddUserRequest)
 	mux.HandleFunc("/list_users", handleListUsersRequest) // Add a new route for handling GET requests
@@ -448,13 +472,6 @@ func main() {
 	mux.HandleFunc("/trigger", handleOSSTriggerRequest)
 	mux.HandleFunc("/add_abac", handleAddABACUserRequest)
 	mux.HandleFunc("/callback", handleCallback)
-	// Setup CORS options
-	corsOpts := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://10.183.35.228:3000", "http://10.183.35.228:9000"},
-		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
-		AllowedHeaders:   []string{"*"},
-		AllowCredentials: true,
-	})
 
 	// Wrap the original mux with the CORS middleware
 	handler := corsOpts.Handler(mux)

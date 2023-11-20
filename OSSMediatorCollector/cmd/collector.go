@@ -456,9 +456,10 @@ func main() {
 	oss.Status = "stopped"
 	running = false
 	mux := http.NewServeMux()
+
 	// Setup CORS options
 	corsOpts := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://10.183.35.228:3000", "http://10.183.35.228:9000"},
+		AllowedOrigins:   []string{"https://10.183.35.228:3000", "https://10.183.35.228:3000/d/dd60cf1e-456e-4ac8-90e7-1218ef8ca410/user-mananagement?orgId=1", "https://10.183.35.228:9000"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
 		AllowedHeaders:   []string{"*"},
 		AllowCredentials: true,
@@ -496,7 +497,7 @@ func main() {
 
 	// Start the server on port 8080
 	fmt.Println("Server listening on https://<ip>:9000")
-	err := http.ListenAndServeTLS("0.0.0.0:9000", certPath, keyFile, handler)
+	err := http.ListenAndServeTLS("0.0.0.0:9000", certPath, keyFile, corsOpts.Handler(handler))
 	if err != nil {
 		fmt.Println("Error starting server:", err)
 	}

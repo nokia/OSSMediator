@@ -6,7 +6,7 @@
 
 package ndacapis
 
-/**
+/***
 import (
 	"bytes"
 	"collector/pkg/config"
@@ -203,6 +203,7 @@ func TestCallSimAPIABAC(t *testing.T) {
 	}
 }
 
+
 func TestCallSimAPIWithWrongURL(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
 	user.SessionToken = &config.SessionToken{
@@ -297,6 +298,8 @@ func TestCallAPSimAPIWithWrongURL(t *testing.T) {
 	var running = true
 	var stopCh = make(chan struct{})
 	fetchSimData(&apiConf, &user, 123, true, running, stopCh, &goroutine)
+	time.Sleep(500 * time.Millisecond)
+
 	//fetchSimData(&apiConf, &user, 123, true)
 	fileName := "./tmp/access-point-sims/access-point-sims_testuser@nokia.com_response_" + strconv.Itoa(int(utils.CurrentTime().Unix())) + ".json"
 	if _, err := os.Stat(fileName); !os.IsNotExist(err) {
@@ -377,4 +380,4 @@ func TestCallAPSimAPI(t *testing.T) {
 		t.Error("Found empty file")
 	}
 }
-**/
+***/

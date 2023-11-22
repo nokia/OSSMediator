@@ -6,19 +6,13 @@
 
 package ndacapis
 
-/***
 import (
-	"bytes"
 	"collector/pkg/config"
 	"collector/pkg/utils"
 	"encoding/json"
 	"fmt"
-	log "github.com/sirupsen/logrus"
 	"net/http"
 	"net/http/httptest"
-	"os"
-	"strings"
-	"sync"
 	"testing"
 )
 
@@ -413,6 +407,7 @@ func TestStoreHWRBAC(t *testing.T) {
 	}
 }
 
+/**
 func TestGetNhgDetails(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
 	user.SessionToken = &config.SessionToken{
@@ -572,4 +567,4 @@ func TestGetNhgDetailsWithInvalidResponse(t *testing.T) {
 		t.Fail()
 	}
 }
-***/
+**/

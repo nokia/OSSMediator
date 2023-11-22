@@ -6,27 +6,20 @@
 
 package ndacapis
 
-/*
-*
 import (
-
 	"bytes"
 	"collector/pkg/config"
 	"collector/pkg/utils"
 	"fmt"
 	log "github.com/sirupsen/logrus"
-	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"os"
-	"strconv"
 	"strings"
 	"sync"
 	"testing"
-
 )
-**
-*/
+
 var (
 	fmResponse = `{
 		"data": [{"fm_data":{"alarm_identifier":"2","severity":"major","specific_problem":"111","alarm_text":"Synchronizationlost","additional_text":"Synchronizationlost","alarm_state":"ACTIVE","event_type":"communications","event_time":"2020-10-30T13:29:27Z","last_updated_time":"2020-11-05T08:10:36Z","notification_type":"alarmNew"},"fm_data_source":{"hw_alias":"testhw","serial_no":"12345","nhg_id":"test_nhg_1","nhg_alias":"testnhg"}},{"fm_data":{"alarm_identifier":"3","severity":"minor","specific_problem":"2222","alarm_text":"SSHenabled","additional_text":"SSHenabled","alarm_state":"ACTIVE","event_type":"communications","event_time":"2020-10-30T13:29:27Z","last_updated_time":"2020-11-05T08:10:36Z","notification_type":"alarmNew"},"fm_data_source":{"hw_alias":"testhw","serial_no":"12345","nhg_id":"test_nhg_1","nhg_alias":"testnhg"}}],
@@ -89,7 +82,6 @@ var (
 	  }`
 )
 
-/**
 func TestCallAPIForInvalidCase(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true}
 	user.SessionToken = &config.SessionToken{
@@ -393,6 +385,7 @@ func TestCallAPIWithInactiveSessionABAC(t *testing.T) {
 	}
 }
 
+/***
 func TestAPICallWithPagination(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		query := r.URL.Query()

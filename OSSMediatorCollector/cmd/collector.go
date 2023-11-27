@@ -140,10 +140,13 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 	//save in conf file
 	err = utils.StoreConf(user, "ADTOKEN", "")
 	if err != nil {
-		fmt.Println("Error updating config file : ", err)
+		fmt.Println("Error updating config file: : ", err)
 		return
 	}
 
+	//save in the usermap
+	var userDet = User{Username: user, AuthType: "ADTOKEN", AccessToken: accessToken, RefreshToken: refreshToken}
+	users[user] = userDet
 	// Respond with a success message and a 200 OK status
 	response := map[string]string{
 		"message": "Success",
@@ -348,7 +351,7 @@ func handleOSSTriggerRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println("Here in trigger handle")
+	fmt.Println("Here in trigger handle????")
 	//remove this later for security reasons
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 

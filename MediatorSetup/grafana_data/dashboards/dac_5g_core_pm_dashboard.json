@@ -262,7 +262,7 @@
           "timeField": "pm_data_source.timestamp"
         },
         {
-          "alias": "total",
+          "alias": "Total",
           "bucketAggs": [
             {
               "field": "pm_data_source.timestamp",
@@ -414,7 +414,7 @@
           "timeField": "pm_data_source.timestamp"
         },
         {
-          "alias": "total",
+          "alias": "Total",
           "bucketAggs": [
             {
               "field": "pm_data_source.timestamp",
@@ -566,7 +566,7 @@
           "timeField": "pm_data_source.timestamp"
         },
         {
-          "alias": "total",
+          "alias": "Total",
           "bucketAggs": [
             {
               "field": "pm_data_source.timestamp",
@@ -717,7 +717,7 @@
           "timeField": "pm_data_source.timestamp"
         },
         {
-          "alias": "total",
+          "alias": "Total",
           "bucketAggs": [
             {
               "field": "pm_data_source.timestamp",
@@ -813,7 +813,7 @@
               "options": {
                 "mode": "exclude",
                 "names": [
-                  "total"
+                  "Total"
                 ],
                 "prefix": "All except:",
                 "readOnly": true
@@ -893,7 +893,7 @@
           "timeField": "pm_data_source.timestamp"
         },
         {
-          "alias": "total",
+          "alias": "Total",
           "bucketAggs": [
             {
               "field": "pm_data_source.timestamp",
@@ -1044,7 +1044,7 @@
           "timeField": "pm_data_source.timestamp"
         },
         {
-          "alias": "total",
+          "alias": "Total",
           "bucketAggs": [
             {
               "field": "pm_data_source.timestamp",
@@ -1195,7 +1195,7 @@
           "timeField": "pm_data_source.timestamp"
         },
         {
-          "alias": "total",
+          "alias": "Total",
           "bucketAggs": [
             {
               "field": "pm_data_source.timestamp",
@@ -1346,7 +1346,7 @@
           "timeField": "pm_data_source.timestamp"
         },
         {
-          "alias": "total",
+          "alias": "Total",
           "bucketAggs": [
             {
               "field": "pm_data_source.timestamp",
@@ -1497,7 +1497,7 @@
           "timeField": "pm_data_source.timestamp"
         },
         {
-          "alias": "total",
+          "alias": "Total",
           "bucketAggs": [
             {
               "field": "pm_data_source.timestamp",

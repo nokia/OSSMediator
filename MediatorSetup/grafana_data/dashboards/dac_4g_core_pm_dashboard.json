@@ -187,7 +187,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -206,12 +206,37 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
+          "hide": false,
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
+              "hide": true,
               "id": "1",
               "settings": {},
               "type": "sum"
+            },
+            {
+              "field": "pm_data.ndac_rr_mcn_4g_upf_ul_rate",
+              "hide": true,
+              "id": "3",
+              "type": "sum"
+            },
+            {
+              "id": "4",
+              "pipelineVariables": [
+                {
+                  "name": "var1",
+                  "pipelineAgg": "1"
+                },
+                {
+                  "name": "var2",
+                  "pipelineAgg": "3"
+                }
+              ],
+              "settings": {
+                "script": "params.var1+params.var2"
+              },
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -269,7 +294,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -291,9 +316,33 @@
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
+              "hide": true,
               "id": "1",
               "settings": {},
               "type": "sum"
+            },
+            {
+              "field": "pm_data.ndac_rr_mcn_4g_upf_dl_rate",
+              "hide": true,
+              "id": "3",
+              "type": "sum"
+            },
+            {
+              "id": "4",
+              "pipelineVariables": [
+                {
+                  "name": "var1",
+                  "pipelineAgg": "1"
+                },
+                {
+                  "name": "var2",
+                  "pipelineAgg": "3"
+                }
+              ],
+              "settings": {
+                "script": "params.var1+params.var2"
+              },
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -351,7 +400,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -433,7 +482,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -516,7 +565,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -599,7 +648,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -654,7 +703,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "description": "Number of DL Bytes sent on S1u interface.",
+          "description": "Number of DL Bytes sent on S1u+UPF interface.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -760,8 +809,32 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_bytes",
+                  "hide": true,
                   "id": "3",
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_dl_nbr_bytes",
+                  "hide": true,
+                  "id": "5",
+                  "type": "sum"
+                },
+                {
+                  "id": "6",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "5"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -789,8 +862,32 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_bytes",
+                  "hide": true,
                   "id": "3",
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_dl_nbr_bytes",
+                  "hide": true,
+                  "id": "4",
+                  "type": "sum"
+                },
+                {
+                  "id": "5",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "4"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -799,7 +896,7 @@
               "timeField": "pm_data_source.timestamp"
             }
           ],
-          "title": "S1U DL bytes",
+          "title": "KPI for DL bytes",
           "type": "timeseries"
         },
         {
@@ -807,7 +904,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "description": "Number of Bytes received in UL on S1u interface",
+          "description": "Number of Bytes received in UL on S1u+UPF interface",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -913,8 +1010,32 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_bytes",
+                  "hide": true,
                   "id": "3",
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_ul_nbr_bytes",
+                  "hide": true,
+                  "id": "5",
+                  "type": "sum"
+                },
+                {
+                  "id": "6",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "5"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -942,8 +1063,32 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_bytes",
+                  "hide": true,
                   "id": "3",
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_ul_nbr_bytes",
+                  "hide": true,
+                  "id": "4",
+                  "type": "sum"
+                },
+                {
+                  "id": "5",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "4"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -952,7 +1097,7 @@
               "timeField": "pm_data_source.timestamp"
             }
           ],
-          "title": "S1U UL bytes",
+          "title": "KPI for UL bytes",
           "type": "timeseries"
         },
         {
@@ -1065,9 +1210,33 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
+                  "hide": true,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_dl_rate",
+                  "hide": true,
+                  "id": "4",
+                  "type": "sum"
+                },
+                {
+                  "id": "5",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "1"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "4"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -1095,9 +1264,33 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
+                  "hide": true,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_dl_rate",
+                  "hide": true,
+                  "id": "3",
+                  "type": "sum"
+                },
+                {
+                  "id": "4",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "1"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "3"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -1219,9 +1412,33 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
+                  "hide": true,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_ul_rate",
+                  "hide": true,
+                  "id": "4",
+                  "type": "sum"
+                },
+                {
+                  "id": "5",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "1"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "4"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -1249,9 +1466,33 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
+                  "hide": true,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_ul_rate",
+                  "hide": true,
+                  "id": "3",
+                  "type": "sum"
+                },
+                {
+                  "id": "4",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "1"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "3"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",

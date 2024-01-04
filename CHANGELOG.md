@@ -1,6 +1,29 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.1
+
+NEW FEATURES:
+
+* OSSMediatorCollector:
+  * Adding `aggregation` parameter for IXR,EDGE and CORE PM API.
+
+IMPROVEMENTS:
+
+* MediatorSetup:
+  * Adding `Aggregation` parameter for IXR,EDGE and CORE PM Dashboard.
+  * IXR and CORE PM Dashboard improvements.
+  * Updated default Grafana version to `9.5.15`.
+
+BUG FIXES:
+
+* OSSMediatorCollector: Removing start_time and end_time from fmdata API for ACTIVE alarm_type to fetch all active alarms.
+
+SECURITY UPDATE:
+
+* OSSMediator:
+  * Updating base image to `alpine:3.19.0`.
+
 # 4.0
 
 NEW FEATURES:
@@ -19,7 +42,6 @@ IMPROVEMENTS:
 BUG FIXES:
 
 * ElasticsearchPlugin: Added deletion of old data from core-pm, edge-pm and ixr-pm index.
-
 
 SECURITY UPDATE:
 

@@ -1,5 +1,5 @@
 {
-  "base_url": "https://api.dac.nokia.com/api/ndac/v2",
+  "base_url": "https://console.dac.nokia.com/api/ndac/v2",
   "users": [
     {
       "email_id": "<USER EMAIL>",
@@ -37,16 +37,19 @@
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
       "metric_type": "CORE",
+      "aggregation": "5m",
       "interval": 5
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
       "metric_type": "EDGE",
+      "aggregation": "1m",
       "interval": 5
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
       "metric_type": "IXR",
+      "aggregation": "5m",
       "interval": 5
     },
     {

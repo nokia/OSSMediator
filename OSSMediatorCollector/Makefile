@@ -1,22 +1,26 @@
 SHELL := /bin/bash
 
-all: clean docker_build
+all: clean docker_build_all copy_binary
+
+docker_build_all:
+	@echo "---------------------------------------------------------------------------------"
+	@echo "Starting docker build and test process, for OSSMediatorCollector......"
+	@echo "---------------------------------------------------------------------------------"
+	@docker build -t ossmediatorcollector:$(shell cat ../VERSION) . --network host
+	@echo "docker build completed."
 
 docker_build:
 	@echo "---------------------------------------------------------------------------------"
 	@echo "Starting docker build process, for OSSMediatorCollector......"
 	@echo "---------------------------------------------------------------------------------"
-	@echo ""
-	@echo "Docker Build..."
-	@echo "..............."
-	@docker build -t ossmediatorcollector:$(shell cat ../VERSION) . --network host
-	@docker build --target builder -t collector-builder:1 . --network host
-	@docker create --name collector-builder collector-builder:1
-	@mkdir -p bin
-	@docker cp collector-builder:/OSSMediatorCollector/bin/collector ./bin/
-	@docker cp collector-builder:/OSSMediatorCollector/bin/storesecret ./bin/
-	@docker rm collector-builder
+	@docker build -t ossmediatorcollector:$(shell cat ../VERSION) . --network host --build-arg BUILD_CMD="build build_storesecret"
 	@echo "docker build completed."
+
+copy_binary:
+	@docker create --name ossmediatorcollector ossmediatorcollector:$(shell cat ../VERSION)
+	@mkdir -p bin
+	@docker cp ossmediatorcollector:/collector/bin/. ./bin/
+	@docker rm ossmediatorcollector
 
 build:
 	@echo Building OSSMediatorCollector

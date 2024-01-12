@@ -97,7 +97,7 @@ NOTE:
     * If the data collection directories are modified, then the source_dir should be matched with the directory as given in OSSMediatorCollector configuration information.
       The source_dir should be same as the response_dest directory in OSSMediatorCollector configuration.
 
-    * Keeping high value for max_concurrent_process will increase the memory usage by ElasticsearchPlugin.
+    * Keeping high value for max_concurrent_process will increase the CPU/memory usage by ElasticsearchPlugin.
       It is advised to set this value depending on the network size.
       ex: Small Network (1 nhg) : 1
           Medium Network (5 nhg) : 10

@@ -128,7 +128,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "queryType": "lucene",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -310,6 +309,7 @@
       },
       "id": 62,
       "options": {
+        "cellHeight": "sm",
         "footer": {
           "countRows": false,
           "fields": [],
@@ -324,7 +324,8 @@
           }
         ]
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
+      "queryType": "lucene",
       "targets": [
         {
           "alias": "",
@@ -399,9 +400,14 @@
               "field": "pm_data.ndac_rr_ixr_port_stats_out_errors_rate",
               "id": "9",
               "type": "avg"
+            },
+            {
+              "field": "pm_data.ndac_rr_ixr_port_oper_state_oper_state",
+              "id": "10",
+              "type": "max"
             }
           ],
-          "query": "pm_data_source.dn:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -410,13 +416,65 @@
       "title": "IXR Statistics",
       "transformations": [
         {
+          "id": "renameByRegex",
+          "options": {
+            "regex": ".*PORT-(.+)/.*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "number",
+                "targetField": "Max pm_data.ndac_rr_ixr_port_state_oper_state"
+              },
+              {
+                "destinationType": "time",
+                "targetField": "Timestamp"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Port Status",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "Max pm_data.ndac_rr_ixr_port_oper_state_oper_state",
+                "Max pm_data.ndac_rr_ixr_port_state_oper_state"
+              ],
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
           "id": "organize",
           "options": {
             "excludeByName": {
               "Max": false,
+              "Max pm_data.ndac_rr_ixr_port_oper_state_oper_state": true,
+              "Max pm_data.ndac_rr_ixr_port_state_oper_state": true,
               "pm_data_source.timestamp": true
             },
-            "indexByName": {},
+            "indexByName": {
+              "Average pm_data.ndac_rr_ixr_port_stats_in_errors_rate": 9,
+              "Average pm_data.ndac_rr_ixr_port_stats_in_octets_rate": 7,
+              "Average pm_data.ndac_rr_ixr_port_stats_in_packets_rate": 5,
+              "Average pm_data.ndac_rr_ixr_port_stats_out_errors_rate": 10,
+              "Average pm_data.ndac_rr_ixr_port_stats_out_octets_rate": 8,
+              "Average pm_data.ndac_rr_ixr_port_stats_out_packets_rate": 6,
+              "Max pm_data.ndac_rr_ixr_port_oper_state_oper_state": 4,
+              "Max pm_data.ndac_rr_ixr_port_state_oper_state": 3,
+              "Port Status": 2,
+              "pm_data_source.dn.keyword": 0,
+              "pm_data_source.timestamp": 1
+            },
             "renameByName": {
               "Average pm_data.ndac_rr_ixr_port_stats_in_errors": "In Errors",
               "Average pm_data.ndac_rr_ixr_port_stats_in_errors_rate": "In Errors Rate",
@@ -431,32 +489,12 @@
               "Average pm_data.ndac_rr_ixr_port_stats_out_packets": "Out Packets",
               "Average pm_data.ndac_rr_ixr_port_stats_out_packets_rate": "Out Packets Rate",
               "Max": "Port Status",
+              "Max pm_data.ndac_rr_ixr_port_oper_state_oper_state": "",
+              "Max pm_data.ndac_rr_ixr_port_state_oper_state": "",
+              "Port Status": "Port Status",
               "pm_data_source.dn.keyword": "Port",
               "pm_data_source.timestamp": "Timestamp"
             }
-          }
-        },
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": ".*PORT-(.+)/.*",
-            "renamePattern": "$1"
-          }
-        },
-        {
-          "id": "convertFieldType",
-          "options": {
-            "conversions": [
-              {
-                "destinationType": "number",
-                "targetField": "Port Status"
-              },
-              {
-                "destinationType": "time",
-                "targetField": "Timestamp"
-              }
-            ],
-            "fields": {}
           }
         }
       ],
@@ -594,56 +632,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
-          "queryType": "lucene",
-          "refId": "Rate",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_in_packets",
-              "hide": true,
-              "id": "3",
-              "type": "sum"
-            },
-            {
-              "field": "3",
-              "hide": false,
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice AND pm_data.ndac_rr_ixr_port_state_oper_state:*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -674,25 +663,16 @@
           "datasource": {
             "uid": "${datasource}"
           },
-          "hide": true,
+          "hide": false,
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_ixr_port_stats_in_packets",
-              "hide": true,
+              "field": "pm_data.ndac_rr_ixr_port_oper_state_oper_state",
+              "hide": false,
               "id": "3",
               "type": "avg"
-            },
-            {
-              "field": "3",
-              "hide": false,
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice AND pm_data.ndac_rr_ixr_port_oper_state_oper_state:*",
           "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
@@ -826,107 +806,9 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
           "queryType": "lucene",
           "refId": "Rate",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_in_packets",
-              "hide": true,
-              "id": "3",
-              "type": "sum"
-            },
-            {
-              "field": "3",
-              "hide": false,
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_in_packets",
-              "hide": true,
-              "id": "3",
-              "type": "avg"
-            },
-            {
-              "field": "3",
-              "hide": false,
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
-          "queryType": "lucene",
-          "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
       ],
@@ -1057,104 +939,9 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "Rate",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_out_packets",
-              "hide": true,
-              "id": "3",
-              "type": "avg"
-            },
-            {
-              "field": "3",
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*PORT*",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_out_packets",
-              "id": "3",
-              "type": "sum"
-            },
-            {
-              "field": "3",
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*PORT*",
-          "queryType": "lucene",
-          "refId": "C",
           "timeField": "pm_data_source.timestamp"
         }
       ],
@@ -1289,105 +1076,9 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "Rate",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_in_octets",
-              "hide": true,
-              "id": "3",
-              "type": "sum"
-            },
-            {
-              "field": "3",
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_in_octets",
-              "hide": true,
-              "id": "3",
-              "type": "avg"
-            },
-            {
-              "field": "3",
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
-          "queryType": "lucene",
-          "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
       ],
@@ -1521,104 +1212,9 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn:*port* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "Rate",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_out_octets",
-              "hide": true,
-              "id": "3",
-              "type": "avg"
-            },
-            {
-              "field": "3",
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_out_octets",
-              "id": "3",
-              "type": "sum"
-            },
-            {
-              "field": "3",
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*port*",
-          "queryType": "lucene",
-          "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
       ],
@@ -1741,54 +1337,6 @@
           "datasource": {
             "uid": "${datasource}"
           },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_in_errors",
-              "hide": true,
-              "id": "3",
-              "type": "avg"
-            },
-            {
-              "field": "3",
-              "id": "5",
-              "settings": {
-                "unit": "1s"
-              },
-              "type": "derivative"
-            }
-          ],
-          "query": "pm_data_source.dn:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
           "hide": false,
           "metrics": [
             {
@@ -1798,7 +1346,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
           "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
@@ -1923,46 +1471,6 @@
           "datasource": {
             "uid": "${datasource}"
           },
-          "hide": true,
-          "metrics": [
-            {
-              "field": "pm_data.ndac_rr_ixr_port_stats_out_errors",
-              "hide": false,
-              "id": "3",
-              "type": "avg"
-            }
-          ],
-          "query": "pm_data_source.dn:*port* AND pm_data_source.edge_alias.keyword:$slice",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.timestamp"
-        },
-        {
-          "alias": "",
-          "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "4",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "$agg"
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "uid": "${datasource}"
-          },
           "hide": false,
           "metrics": [
             {
@@ -1972,7 +1480,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn:*port*",
+          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
           "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
@@ -2063,9 +1571,10 @@
         "showUnfilled": true,
         "text": {
           "valueSize": 10
-        }
+        },
+        "valueMode": "color"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -2102,9 +1611,48 @@
               "type": "max"
             }
           ],
-          "query": "pm_data_source.dn:*IFACE* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.dn.keyword:*IFACE* AND pm_data_source.edge_alias.keyword:$slice AND pm_data.ndac_rr_ixr_vrf_iface_state_oper_state:*",
           "queryType": "lucene",
           "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.dn.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_ixr_vrf_iface_oper_state_oper_state",
+              "id": "3",
+              "type": "max"
+            }
+          ],
+          "query": "pm_data_source.dn.keyword:*IFACE* AND pm_data_source.edge_alias.keyword:$slice AND pm_data.ndac_rr_ixr_vrf_iface_oper_state_oper_state:*",
+          "queryType": "lucene",
+          "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
       ],
@@ -2200,9 +1748,10 @@
           "fields": "",
           "values": false
         },
-        "showUnfilled": false
+        "showUnfilled": true,
+        "valueMode": "color"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "targets": [
         {
           "alias": "",
@@ -2238,9 +1787,48 @@
               "type": "max"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$snvrf AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$snvrf AND pm_data_source.edge_alias.keyword:$slice AND pm_data.ndac_rr_ixr_bgp_neighbor_state_session_state:*",
           "queryType": "lucene",
           "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.dn.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "1",
+              "settings": {
+                "interval": "auto"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_ixr_bgp_vprn_neighbor_state_session_state",
+              "id": "3",
+              "type": "max"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$snvrf AND pm_data_source.edge_alias.keyword:$slice AND pm_data.ndac_rr_ixr_bgp_vprn_neighbor_state_session_state:*",
+          "queryType": "lucene",
+          "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
       ],
@@ -2607,8 +2195,8 @@
       {
         "current": {
           "selected": true,
-          "text": "1m",
-          "value": "1m"
+          "text": "5m",
+          "value": "5m"
         },
         "description": "",
         "hide": 0,
@@ -2619,11 +2207,6 @@
         "options": [
           {
             "selected": true,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": false,
             "text": "5m",
             "value": "5m"
           },
@@ -2673,7 +2256,7 @@
             "value": "3M"
           }
         ],
-        "query": "1m,5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
+        "query": "5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -2705,7 +2288,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-12h",
     "to": "now-15m"
   },
   "timepicker": {

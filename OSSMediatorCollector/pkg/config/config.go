@@ -94,6 +94,7 @@ type APIConf struct {
 	MetricType   string `json:"metric_type"`   //Metrics type for the API, RADIO and DAC from FM API.
 	Interval     int    `json:"interval"`      //Interval at which the API will be triggered periodically.
 	SyncDuration int    `json:"sync_duration"` //Interval in minutes for which duration FM will be re-synced.
+	Aggregation  string `json:"aggregation"`
 }
 
 var (

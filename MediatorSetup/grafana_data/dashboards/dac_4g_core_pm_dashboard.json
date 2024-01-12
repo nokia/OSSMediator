@@ -187,7 +187,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -206,12 +206,37 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
+          "hide": false,
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
+              "hide": true,
               "id": "1",
               "settings": {},
               "type": "sum"
+            },
+            {
+              "field": "pm_data.ndac_rr_mcn_4g_upf_ul_rate",
+              "hide": true,
+              "id": "3",
+              "type": "sum"
+            },
+            {
+              "id": "4",
+              "pipelineVariables": [
+                {
+                  "name": "var1",
+                  "pipelineAgg": "1"
+                },
+                {
+                  "name": "var2",
+                  "pipelineAgg": "3"
+                }
+              ],
+              "settings": {
+                "script": "params.var1+params.var2"
+              },
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -269,7 +294,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -291,9 +316,33 @@
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
+              "hide": true,
               "id": "1",
               "settings": {},
               "type": "sum"
+            },
+            {
+              "field": "pm_data.ndac_rr_mcn_4g_upf_dl_rate",
+              "hide": true,
+              "id": "3",
+              "type": "sum"
+            },
+            {
+              "id": "4",
+              "pipelineVariables": [
+                {
+                  "name": "var1",
+                  "pipelineAgg": "1"
+                },
+                {
+                  "name": "var2",
+                  "pipelineAgg": "3"
+                }
+              ],
+              "settings": {
+                "script": "params.var1+params.var2"
+              },
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -351,7 +400,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -433,7 +482,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -516,7 +565,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -599,7 +648,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "9.5.13",
       "queryType": "lucene",
       "targets": [
         {
@@ -637,6 +686,10 @@
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -650,7 +703,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "description": "Number of DL Bytes sent on S1u interface.",
+          "description": "Number of DL Bytes sent on S1u+UPF interface.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -756,8 +809,32 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_bytes",
+                  "hide": true,
                   "id": "3",
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_dl_nbr_bytes",
+                  "hide": true,
+                  "id": "5",
+                  "type": "sum"
+                },
+                {
+                  "id": "6",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "5"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -785,8 +862,32 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_bytes",
+                  "hide": true,
                   "id": "3",
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_dl_nbr_bytes",
+                  "hide": true,
+                  "id": "4",
+                  "type": "sum"
+                },
+                {
+                  "id": "5",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "4"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -795,7 +896,7 @@
               "timeField": "pm_data_source.timestamp"
             }
           ],
-          "title": "S1U DL bytes",
+          "title": "KPI for DL bytes",
           "type": "timeseries"
         },
         {
@@ -803,7 +904,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "description": "Number of Bytes received in UL on S1u interface",
+          "description": "Number of Bytes received in UL on S1u+UPF interface",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -909,8 +1010,32 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_bytes",
+                  "hide": true,
                   "id": "3",
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_ul_nbr_bytes",
+                  "hide": true,
+                  "id": "5",
+                  "type": "sum"
+                },
+                {
+                  "id": "6",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "5"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -938,8 +1063,32 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_bytes",
+                  "hide": true,
                   "id": "3",
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_ul_nbr_bytes",
+                  "hide": true,
+                  "id": "4",
+                  "type": "sum"
+                },
+                {
+                  "id": "5",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "4"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -948,7 +1097,7 @@
               "timeField": "pm_data_source.timestamp"
             }
           ],
-          "title": "S1U UL bytes",
+          "title": "KPI for UL bytes",
           "type": "timeseries"
         },
         {
@@ -1061,9 +1210,33 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
+                  "hide": true,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_dl_rate",
+                  "hide": true,
+                  "id": "4",
+                  "type": "sum"
+                },
+                {
+                  "id": "5",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "1"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "4"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -1091,9 +1264,33 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
+                  "hide": true,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_dl_rate",
+                  "hide": true,
+                  "id": "3",
+                  "type": "sum"
+                },
+                {
+                  "id": "4",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "1"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "3"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -1215,9 +1412,33 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
+                  "hide": true,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_ul_rate",
+                  "hide": true,
+                  "id": "4",
+                  "type": "sum"
+                },
+                {
+                  "id": "5",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "1"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "4"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -1245,9 +1466,33 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
+                  "hide": true,
                   "id": "1",
                   "settings": {},
                   "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_ul_rate",
+                  "hide": true,
+                  "id": "3",
+                  "type": "sum"
+                },
+                {
+                  "id": "4",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "1"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "3"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -1586,11 +1831,24 @@
           "type": "timeseries"
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Traffic KPIs",
       "type": "row"
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1645,7 +1903,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1661,7 +1920,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 22
+            "y": 6
           },
           "id": 12,
           "options": {
@@ -1797,7 +2056,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1813,7 +2073,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 28
+            "y": 12
           },
           "id": 13,
           "options": {
@@ -1950,7 +2210,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1966,7 +2227,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 34
+            "y": 18
           },
           "id": 14,
           "options": {
@@ -2104,7 +2365,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2120,7 +2382,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 40
+            "y": 24
           },
           "id": 15,
           "options": {
@@ -2257,7 +2519,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2273,7 +2536,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 46
+            "y": 30
           },
           "id": 37,
           "options": {
@@ -2365,11 +2628,24 @@
           "type": "timeseries"
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "SGW Control KPIs",
       "type": "row"
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2424,7 +2700,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2440,7 +2717,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 23
+            "y": 7
           },
           "id": 20,
           "options": {
@@ -2578,7 +2855,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2594,7 +2872,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 29
+            "y": 13
           },
           "id": 21,
           "options": {
@@ -2732,7 +3010,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2748,7 +3027,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 35
+            "y": 19
           },
           "id": 43,
           "options": {
@@ -2887,7 +3166,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2903,7 +3183,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 41
+            "y": 25
           },
           "id": 49,
           "options": {
@@ -3042,7 +3322,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -3054,7 +3335,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 48
+            "y": 32
           },
           "id": 48,
           "options": {
@@ -3192,7 +3473,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3208,7 +3490,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 55
+            "y": 39
           },
           "id": 22,
           "options": {
@@ -3346,7 +3628,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3362,7 +3645,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 61
+            "y": 45
           },
           "id": 23,
           "options": {
@@ -3500,7 +3783,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3516,7 +3800,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 67
+            "y": 51
           },
           "id": 42,
           "options": {
@@ -3654,7 +3938,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3670,7 +3955,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 73
+            "y": 57
           },
           "id": 24,
           "options": {
@@ -3808,7 +4093,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3824,7 +4110,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 79
+            "y": 63
           },
           "id": 25,
           "options": {
@@ -3962,7 +4248,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3978,7 +4265,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 85
+            "y": 69
           },
           "id": 41,
           "options": {
@@ -4116,7 +4403,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4132,7 +4420,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 91
+            "y": 75
           },
           "id": 26,
           "options": {
@@ -4270,7 +4558,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4286,7 +4575,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 97
+            "y": 81
           },
           "id": 27,
           "options": {
@@ -4424,7 +4713,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4440,7 +4730,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 103
+            "y": 87
           },
           "id": 40,
           "options": {
@@ -4578,7 +4868,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4594,7 +4885,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 109
+            "y": 93
           },
           "id": 28,
           "options": {
@@ -4732,7 +5023,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4748,7 +5040,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 115
+            "y": 99
           },
           "id": 29,
           "options": {
@@ -4886,7 +5178,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -4902,7 +5195,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 121
+            "y": 105
           },
           "id": 39,
           "options": {
@@ -5040,7 +5333,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -5056,7 +5350,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 127
+            "y": 111
           },
           "id": 30,
           "options": {
@@ -5194,7 +5488,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -5210,7 +5505,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 133
+            "y": 117
           },
           "id": 31,
           "options": {
@@ -5348,7 +5643,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -5364,7 +5660,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 139
+            "y": 123
           },
           "id": 38,
           "options": {
@@ -5457,11 +5753,24 @@
           "type": "timeseries"
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "MME KPIs",
       "type": "row"
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -5516,7 +5825,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -5532,7 +5842,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 24
+            "y": 8
           },
           "id": 34,
           "options": {
@@ -5641,7 +5951,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -5657,7 +5968,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 30
+            "y": 14
           },
           "id": 35,
           "options": {
@@ -5766,7 +6077,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -5782,7 +6094,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 36
+            "y": 20
           },
           "id": 36,
           "options": {
@@ -5846,12 +6158,22 @@
           "type": "timeseries"
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "3GPP KPIs",
       "type": "row"
     }
   ],
   "refresh": "15m",
   "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "CorePM"
@@ -5859,6 +6181,7 @@
   "templating": {
     "list": [
       {
+        "allFormat": "glob",
         "current": {
           "selected": false,
           "text": "dac-core-pm",
@@ -5877,6 +6200,7 @@
         "type": "datasource"
       },
       {
+        "allFormat": "glob",
         "current": {
           "selected": true,
           "text": [
@@ -5906,25 +6230,21 @@
         "type": "query"
       },
       {
+        "allFormat": "glob",
         "current": {
-          "selected": false,
-          "text": "1m",
-          "value": "1m"
+          "selected": true,
+          "text": "5m",
+          "value": "5m"
         },
         "description": "Aggregation",
-        "hide": 2,
+        "hide": 0,
         "includeAll": false,
-        "label": "",
+        "label": "Aggregation",
         "multi": false,
         "name": "agg",
         "options": [
           {
             "selected": true,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": false,
             "text": "5m",
             "value": "5m"
           },
@@ -5974,7 +6294,7 @@
             "value": "3M"
           }
         ],
-        "query": "1m,5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
+        "query": "5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"

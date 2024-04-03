@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.2
+
+SECURITY UPDATE:
+
+* OSSMediator:
+  * Updating base image to `alpine:3.19.1`.
+* MediatorSetup:
+  * Updating OpenSearch version to `2.13.0`.
+  * Updating Grafana version to `9.5.18`.
+
 # 4.1
 
 NEW FEATURES:

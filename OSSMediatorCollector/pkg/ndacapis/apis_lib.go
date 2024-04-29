@@ -78,7 +78,9 @@ func StartDataCollection() {
 		begTime = begTime.Add(time.Duration(interval) * time.Minute)
 		for _, user := range config.Conf.Users {
 			getNhgDetails(config.Conf.ListNhGAPI, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
-			getGngDetails(config.Conf.ListGNGAPI, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
+			if config.Conf.ListGNGAPI != nil {
+				getGngDetails(config.Conf.ListGNGAPI, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
+			}
 			for _, api := range config.Conf.MetricAPIs {
 				go fetchMetricsData(api, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
 			}

@@ -169,10 +169,9 @@ func TestValidateConfWithInvalidAPITypeForFM(t *testing.T) {
 
 func TestValidateConfWithInvalidAPIMetricTypeForFM(t *testing.T) {
 	tmp := conf.MetricAPIs[1].MetricType
-	conf.MetricAPIs[1].MetricType = "IXR"
+	conf.MetricAPIs[1].MetricType = ""
 	defer func() { conf.MetricAPIs[1].MetricType = tmp }()
 	err := ValidateConf(conf)
-	t.Log(err)
 	if err == nil || !strings.Contains(err.Error(), "API metric type for fmdata should be RADIO/DAC") {
 		t.Error(err)
 	}

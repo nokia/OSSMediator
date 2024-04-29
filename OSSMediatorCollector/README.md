@@ -74,7 +74,7 @@ PM / FM data collection by collector is performed using REST interface at regula
 
 ````json
 {
-  "base_url": "https://api.dac.nokia.com/api/ndac/v2",
+  "base_url": "https://console.dac.nokia.com/api/ndac/v2",
   "users": [
     {
       "email_id": "<USER EMAIL>",
@@ -97,6 +97,10 @@ PM / FM data collection by collector is performed using REST interface at regula
   },
   "list_nhg_api": {
     "api": "/network-hardware-groups",
+    "interval": 60
+  },
+  "list_gng_api": {
+    "api": "/generic-network-groups",
     "interval": 60
   },
   "sim_apis": [
@@ -126,7 +130,7 @@ PM / FM data collection by collector is performed using REST interface at regula
     {
       "api": "/network-hardware-groups/{nhg_id}/pmdata",
       "metric_type": "CORE",
-      "aggregation": "1m",
+      "aggregation": "5m",
       "interval": 5
     },
     {
@@ -145,8 +149,7 @@ PM / FM data collection by collector is performed using REST interface at regula
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "RADIO",
-      "interval": 30,
-      "sync_duration": 15
+      "interval": 30
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
@@ -159,8 +162,7 @@ PM / FM data collection by collector is performed using REST interface at regula
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "DAC",
-      "interval": 30,
-      "sync_duration": 15
+      "interval": 30
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
@@ -173,8 +175,7 @@ PM / FM data collection by collector is performed using REST interface at regula
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "CORE",
-      "interval": 30,
-      "sync_duration": 15
+      "interval": 30
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
@@ -187,8 +188,7 @@ PM / FM data collection by collector is performed using REST interface at regula
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "APPLICATION",
-      "interval": 30,
-      "sync_duration": 15
+      "interval": 30
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
@@ -201,8 +201,7 @@ PM / FM data collection by collector is performed using REST interface at regula
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "IXR",
-      "interval": 30,
-      "sync_duration": 15
+      "interval": 30
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
@@ -232,6 +231,8 @@ PM / FM data collection by collector is performed using REST interface at regula
 | um_api.logout             | string              | Customer portal logout API.                                                                                                                                                                                                                                                        |
 | list_nhg_api.api          | string              | API URl for getting user's network details. Collector uses the list of NHGs for each FM/PM data collection.                                                                                                                                                                        |
 | list_nhg_api.interval     | integer             | Interval at which list_nhg_api will be called..                                                                                                                                                                                                                                    |
+| list_gng_api.api          | string              | API URl for getting user's MXIE network details. Collector uses the list of GNGs for each FM/PM data collection.                                                                                                                                                                   |
+| list_gng_api.interval     | integer             | Interval at which list_gng_api will be called..                                                                                                                                                                                                                                    |
 | sim_apis                  | [object] (Optional) | Get SIM APIs.                                                                                                                                                                                                                                                                      |
 | sim_apis.api              | string              | API URL for fetching SIM data.                                                                                                                                                                                                                                                     |
 | sim_apis.interval         | integer             | Interval at which SIM API should be called to collect data.                                                                                                                                                                                                                        |
@@ -321,14 +322,14 @@ This feature is optional and disabled by default.
   message_format: <ms_teams/json>
 ```
 
-| Field                                 | Type        | Description                                                                                            |
-|---------------------------------------|-------------|--------------------------------------------------------------------------------------------------------|
-| webhook_url                           | string      | Webhook url.                                                                                           |
-| radio_alarm_filters.specific_problem  | integer     | Specific problem of the alarm of radio module for which notification should be sent.                   |
-| radio_alarm_filters.fault_ids         | integer     | Fault id of the radio alarm (can be found in Alarm text' second part).                                 |
-| dac_alarm_filters.alarm_id            | integer     | Alarm ID of the DAC alarm for which notification should be sent.                                       |
-| core_alarm_filters.alarm_id           | integer     | Alarm ID of the CORE alarm for which notification should be sent.                                      |
-| alarm_sync_duration                   | integer     | Duration in minutes after which notification for the already notified active alarms wil be sent again. |
-| group_events                          | boolean     | To group notification events based on Network Hardware level. Default: False                           |
-| notify_clear_event                    | boolean     | To enable clear alarm notifications. Default: False                                                    |
-| message_format                        | string      | Message format (ms_teams or json)                                                                      |
+| Field                                | Type    | Description                                                                                                                                                       |
+|--------------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| webhook_url                          | string  | Webhook url.                                                                                                                                                      |
+| radio_alarm_filters.specific_problem | integer | Specific problem of the alarm of radio module for which notification should be sent. Add * value for specific_problem to allow notification for all RADIO alarms. |
+| radio_alarm_filters.fault_ids        | integer | Fault id of the radio alarm (can be found in Alarm text' second part).                                                                                            |
+| dac_alarm_filters.alarm_id           | integer | Alarm ID of the DAC alarm for which notification should be sent. Add * value for alarm_id to allow notification for all DAC alarms.                               |
+| core_alarm_filters.alarm_id          | integer | Alarm ID of the CORE alarm for which notification should be sent. Add * value for alarm_id to allow notification for all CORE alarms.                             |
+| alarm_sync_duration                  | integer | Duration in minutes after which notification for the already notified active alarms wil be sent again.                                                            |
+| group_events                         | boolean | To group notification events based on Network Hardware level. Default: False                                                                                      |
+| notify_clear_event                   | boolean | To enable clear alarm notifications. Default: False                                                                                                               |
+| message_format                       | string  | Message format (ms_teams or json)                                                                                                                                 |

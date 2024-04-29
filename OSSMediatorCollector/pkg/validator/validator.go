@@ -13,7 +13,7 @@ import (
 	"strings"
 )
 
-//ValidateConf validates the parameters from json file
+// ValidateConf validates the parameters from json file
 func ValidateConf(conf config.Config) error {
 	if len(conf.Users) == 0 {
 		return fmt.Errorf("number of users can't be zero")
@@ -49,14 +49,14 @@ func ValidateConf(conf config.Config) error {
 		if strings.Contains(api.API, "pm") && api.Type != "" {
 			return fmt.Errorf("API type for pmdata should be empty")
 		}
-		if strings.Contains(api.API, "pm") && api.MetricType == "" && !(api.MetricType == "RADIO" || api.MetricType == "EDGE" || api.MetricType == "CORE" || api.MetricType == "APPLICATION") {
-			return fmt.Errorf("API metric type for pmdata should be RADIO/CORE/EDGE/APPLICATION")
+		if strings.Contains(api.API, "pm") && !(api.MetricType == "RADIO" || api.MetricType == "EDGE" || api.MetricType == "CORE" || api.MetricType == "APPLICATION" || api.MetricType == "IXR") {
+			return fmt.Errorf("API metric type for pmdata should be RADIO/CORE/EDGE/APPLICATION/IXR")
 		}
-		if strings.Contains(api.API, "fm") && api.Type == "" && !(api.Type == "HISTORY" || api.Type == "ACTIVE") {
+		if strings.Contains(api.API, "fm") && !(api.Type == "HISTORY" || api.Type == "ACTIVE") {
 			return fmt.Errorf("API type for fmdata should be HISTORY/ACTIVE")
 		}
-		if strings.Contains(api.API, "fm") && api.MetricType == "" && !(api.MetricType == "RADIO" || api.MetricType == "DAC" || api.MetricType == "CORE" || api.MetricType == "APPLICATION") {
-			return fmt.Errorf("API metric type for fmdata should be RADIO/DAC/CORE/APPLICATION")
+		if strings.Contains(api.API, "fm") && !(api.MetricType == "RADIO" || api.MetricType == "DAC" || api.MetricType == "CORE" || api.MetricType == "APPLICATION" || api.MetricType == "IXR") {
+			return fmt.Errorf("API metric type for fmdata should be RADIO/DAC/CORE/APPLICATION/IXR")
 		}
 	}
 

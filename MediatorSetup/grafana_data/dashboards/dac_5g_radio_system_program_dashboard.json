@@ -88,51 +88,13 @@
     {
       "asDropdown": true,
       "icon": "external link",
-      "tags": [
-        "RadioAlarms"
-      ],
-      "title": "Radio Alarms",
-      "type": "dashboards"
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "tags": [
-        "DACAlarms"
-      ],
-      "title": "DAC Alarms",
-      "type": "dashboards"
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "tags": [
-        "COREAlarms"
-      ],
-      "targetBlank": false,
-      "title": "CORE Alarms",
-      "type": "dashboards"
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "tags": [
-        "ApplAlarms"
-      ],
-      "targetBlank": false,
-      "title": "Application Alarms",
-      "type": "dashboards"
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
       "includeVars": false,
       "keepTime": false,
       "tags": [
-        "IXRAlarms"
+        "AllAlarms"
       ],
       "targetBlank": false,
-      "title": "IXR  Alarms",
+      "title": "Alarms Dashboard",
       "tooltip": "",
       "type": "dashboards",
       "url": ""

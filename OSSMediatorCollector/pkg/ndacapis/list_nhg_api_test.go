@@ -199,7 +199,7 @@ func TestStoreNhgABAC(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserNhgABAC(resp.NetworkInfo, &user, &orgUUID, &accUUID, 1234)
+	storeUserNhgABAC(resp.NetworkInfo, &user, &orgUUID, &accUUID)
 	if len(user.NhgIDsABAC) != 1 {
 		t.Fail()
 	}
@@ -237,7 +237,7 @@ func TestStoreNhgABACInActive(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserNhgABAC(resp.NetworkInfo, &user, &orgUUID, &accUUID, 1234)
+	storeUserNhgABAC(resp.NetworkInfo, &user, &orgUUID, &accUUID)
 	if len(user.NhgIDsABAC) != 0 {
 		t.Fail()
 	}
@@ -268,7 +268,7 @@ func TestStoreNhgRBAC(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserNhgRBAC(resp.NetworkInfo, &user, 1234)
+	storeUserNhgRBAC(resp.NetworkInfo, &user)
 	if len(user.NhgIDs) != 1 {
 		t.Fail()
 	}
@@ -302,7 +302,7 @@ func TestStoreNhgRBACInactiveUser(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserNhgRBAC(resp.NetworkInfo, &user, 1234)
+	storeUserNhgRBAC(resp.NetworkInfo, &user)
 	if len(user.NhgIDs) != 0 {
 		t.Fail()
 	}
@@ -336,7 +336,7 @@ func TestStoreHWABAC(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserHwIDABAC(resp2.NetworkInfo, &user, &orgUUID, &accUUID, 1234)
+	storeUserHwIDABAC(resp2.NetworkInfo, &user, &orgUUID, &accUUID)
 	if len(user.HwIDsABAC) != 1 {
 		t.Fail()
 	}
@@ -374,7 +374,7 @@ func TestStoreHWABACInactive(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserHwIDABAC(resp2.NetworkInfo, &user, &orgUUID, &accUUID, 1234)
+	storeUserHwIDABAC(resp2.NetworkInfo, &user, &orgUUID, &accUUID)
 	if len(user.HwIDsABAC) != 0 {
 		t.Fail()
 	}

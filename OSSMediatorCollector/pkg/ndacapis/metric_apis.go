@@ -18,6 +18,7 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 )
 
 // GetAPIResponse keeps track of response received from PM/FM API.
@@ -153,10 +154,6 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, pret
 
 func callMetricAPI(req apiCallRequest, retryAttempts int, txnID uint64, prettyResponse bool) string {
 	apiURL := config.Conf.BaseURL + req.api.API
-	authType := strings.ToUpper(req.user.AuthType)
-	if authType == "ADTOKEN" {
-		apiURL = apiURL + "?user_info.org_uuid=" + req.orgUUID + "&user_info.account_uuid=" + req.accUUID
-	}
 	apiURL = strings.Replace(apiURL, "{nhg_id}", req.nhgID, -1)
 	req.url = apiURL
 
@@ -253,7 +250,8 @@ func retryAPICall(req apiCallRequest, retryAttempts int, txnID uint64, prettyRes
 // CallAPI calls the API, adds authorization, query params and returns response.
 // If successful it returns response as array of byte, if there is any error it returns nil.
 func callAPI(req apiCallRequest, txnID uint64, prettyResponse bool) (*GetAPIResponse, error) {
-	request, err := http.NewRequest("GET", req.url, nil)
+	reqStartTime := time.Now()
+	request, err := http.NewRequest(http.MethodGet, req.url, nil)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", req.url, req.user.Email)
 		return nil, err
@@ -286,6 +284,11 @@ func callAPI(req apiCallRequest, txnID uint64, prettyResponse bool) (*GetAPIResp
 	if strings.Contains(req.api.API, "pmdata") && req.api.Aggregation != "" {
 		query.Add(aggregationQueryParam, req.api.Aggregation)
 	}
+	authType := strings.ToUpper(req.user.AuthType)
+	if authType == "ADTOKEN" {
+		query.Add(orgIDQueryParam, req.orgUUID)
+		query.Add(accIDQueryParam, req.accUUID)
+	}
 
 	request.URL.RawQuery = query.Encode()
 	log.WithFields(log.Fields{"tid": txnID, startTimeQueryParam: query[startTimeQueryParam], endTimeQueryParam: query[endTimeQueryParam]}).Info("URL:", request.URL)
@@ -315,7 +318,8 @@ func callAPI(req apiCallRequest, txnID uint64, prettyResponse bool) (*GetAPIResp
 		log.WithFields(log.Fields{"tid": txnID, "error": err, "nhg_id": req.nhgID, "start_time": req.startTime, "end_time": req.endTime}).Errorf("Invalid status code received while calling %s for %s", req.url, req.user.Email)
 		return nil, err
 	}
-	log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "start_time": req.startTime, "end_time": req.endTime, "api_type": req.api.Type, "metric_type": req.api.MetricType, "total_no_of_records": resp.TotalNumRecords, "no_of_records_received": resp.NumOfRecords, "next_record_index": resp.NextRecord}).Infof("%s called successfully for %s.", req.url, req.user.Email)
+	reqEndTime := time.Now()
+	log.WithFields(log.Fields{"tid": txnID, "nhg_id": req.nhgID, "start_time": req.startTime, "end_time": req.endTime, "response_time": reqEndTime.Sub(reqStartTime), "api_type": req.api.Type, "metric_type": req.api.MetricType, "total_no_of_records": resp.TotalNumRecords, "no_of_records_received": resp.NumOfRecords, "next_record_index": resp.NextRecord}).Infof("%s called successfully for %s.", req.url, req.user.Email)
 
 	if resp.NumOfRecords == 0 {
 		log.WithFields(log.Fields{"tid": txnID, "api_url": req.url, "user": req.user.Email, "total_no_of_records": resp.TotalNumRecords}).Info("no records found")

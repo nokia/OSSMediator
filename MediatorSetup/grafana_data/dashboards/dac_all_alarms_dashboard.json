@@ -21,18 +21,11 @@
       }
     ]
   },
-  "description": "NDAC Application History alarms dashboard",
+  "description": "NDAC ALL FM Alarms Dashboard",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "links": [
-    {
-      "icon": "external link",
-      "tags": [
-        "ApplActiveAlarms"
-      ],
-      "type": "dashboards"
-    },
     {
       "asDropdown": true,
       "icon": "external link",
@@ -92,55 +85,6 @@
       "tooltip": "",
       "type": "dashboards",
       "url": ""
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "keepTime": false,
-      "tags": [
-        "RadioAlarms"
-      ],
-      "targetBlank": false,
-      "title": "Radio Alarms",
-      "type": "dashboards"
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "tags": [
-        "DACAlarms"
-      ],
-      "targetBlank": false,
-      "title": "DAC Alarms",
-      "type": "dashboards"
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": false,
-      "keepTime": false,
-      "tags": [
-        "COREAlarms"
-      ],
-      "targetBlank": false,
-      "title": "CORE Alarms",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": false,
-      "keepTime": false,
-      "tags": [
-        "IXRAlarms"
-      ],
-      "targetBlank": false,
-      "title": "IXR  Alarms",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
     }
   ],
   "liveNow": false,
@@ -167,8 +111,8 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "9.3.6",
-      "title": "NDAC APPLICATION HISTORY ALARMS DASHBOARD",
+      "pluginVersion": "9.5.18",
+      "title": "NDAC ALL FM HISTORY ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
     },
@@ -177,7 +121,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "Provides the count of critical alarms",
+      "description": "Provides the count of major alarms",
       "fieldConfig": {
         "defaults": {
           "links": [],
@@ -197,12 +141,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-red",
+                "color": "dark-red",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
@@ -216,7 +156,7 @@
         "x": 0,
         "y": 2
       },
-      "id": 7,
+      "id": 16,
       "links": [],
       "options": {
         "colorMode": "value",
@@ -225,14 +165,14 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "last"
+            "mean"
           ],
           "fields": "",
           "values": false
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.5.18",
       "queryType": "lucene",
       "targets": [
         {
@@ -243,7 +183,6 @@
               "id": "2",
               "settings": {
                 "min_doc_count": 1,
-                "missing": "0",
                 "order": "desc",
                 "orderBy": "_term",
                 "size": "0"
@@ -255,12 +194,11 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
+          "hide": false,
           "metrics": [
             {
               "field": "select field",
               "id": "1",
-              "meta": {},
-              "settings": {},
               "type": "count"
             }
           ],
@@ -298,12 +236,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-orange",
+                "color": "orange",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
@@ -333,11 +267,11 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.5.18",
       "queryType": "lucene",
       "targets": [
         {
-          "alias": "Critical",
+          "alias": "Major",
           "bucketAggs": [
             {
               "field": "fm_data.severity.keyword",
@@ -355,6 +289,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
+          "hide": false,
           "metrics": [
             {
               "field": "select field",
@@ -396,12 +331,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-yellow",
+                "color": "yellow",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
@@ -431,7 +362,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.5.18",
       "queryType": "lucene",
       "targets": [
         {
@@ -494,12 +425,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
+                "color": "dark-blue",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
@@ -529,7 +456,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.5.18",
       "queryType": "lucene",
       "targets": [
         {
@@ -607,7 +534,7 @@
         "x": 16,
         "y": 2
       },
-      "id": 11,
+      "id": 15,
       "links": [],
       "options": {
         "colorMode": "value",
@@ -623,7 +550,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.5.18",
       "queryType": "lucene",
       "targets": [
         {
@@ -685,7 +612,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "dark-red",
                 "value": null
               }
             ]
@@ -700,7 +627,7 @@
         "x": 20,
         "y": 2
       },
-      "id": 15,
+      "id": 11,
       "links": [],
       "options": {
         "colorMode": "value",
@@ -716,7 +643,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.5.18",
       "queryType": "lucene",
       "targets": [
         {
@@ -766,7 +693,10 @@
           },
           "custom": {
             "align": "center",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
             "inspect": false
           },
           "mappings": [],
@@ -797,14 +727,6 @@
               },
               {
                 "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "unit",
                 "value": "time: YYYY-MM-DD HH:mm:ss"
               }
             ]
@@ -821,15 +743,7 @@
               },
               {
                 "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "unit",
-                "value": "time: YYYY-MM-DD HH:mm:ss"
+                "value": "dateTimeAsSystem"
               }
             ]
           },
@@ -845,11 +759,7 @@
               },
               {
                 "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
+                "value": "string"
               }
             ]
           },
@@ -865,31 +775,23 @@
               },
               {
                 "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
+                "value": "string"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "fm_data.fault_id"
+              "options": "fm_data.alarm_identifier"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "FaultID"
+                "value": "AlarmID"
               },
               {
                 "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
+                "value": "none"
               }
             ]
           },
@@ -905,31 +807,23 @@
               },
               {
                 "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
+                "value": "string"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "fm_data.additional_text"
+              "options": "fm_data.alarm_text"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "AdditionalText"
+                "value": "AlarmText"
               },
               {
                 "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
+                "value": "string"
               }
             ]
           },
@@ -945,11 +839,7 @@
               },
               {
                 "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
+                "value": "string"
               }
             ]
           },
@@ -965,11 +855,7 @@
               },
               {
                 "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
+                "value": "string"
               }
             ]
           },
@@ -985,11 +871,7 @@
               },
               {
                 "id": "unit",
-                "value": "short"
-              },
-              {
-                "id": "decimals",
-                "value": 2
+                "value": "string"
               }
             ]
           }
@@ -1006,7 +888,9 @@
       "interval": "",
       "links": [],
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "enablePagination": true,
           "fields": "",
           "reducer": [
@@ -1014,9 +898,10 @@
           ],
           "show": false
         },
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": []
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.5.18",
       "targets": [
         {
           "bucketAggs": [],
@@ -1044,26 +929,20 @@
       "title": "History Alarms",
       "transformations": [
         {
-          "id": "extractFields",
-          "options": {
-            "format": "json"
-          }
-        },
-        {
           "id": "organize",
           "options": {
             "excludeByName": {
               "_id": true,
               "_index": true,
               "_type": true,
-              "fm_data.alarm_identifier": true,
-              "fm_data.alarm_text": false,
+              "fm_data.additional_text": true,
               "fm_data.clear_alarm_time": false,
-              "fm_data.clear_text": false,
+              "fm_data.clear_text": true,
               "fm_data.event_type": true,
+              "fm_data.fault_id": true,
               "fm_data.notification_type": true,
               "fm_data.probable_cause": true,
-              "fm_data.specific_problem": true,
+              "fm_data.specific_problem": false,
               "fm_data_source.ap_id": true,
               "fm_data_source.app_id": true,
               "fm_data_source.app_name": true,
@@ -1072,7 +951,6 @@
               "fm_data_source.dc_name": true,
               "fm_data_source.edge_alias": true,
               "fm_data_source.edge_hostname": true,
-              "fm_data_source.edge_id": false,
               "fm_data_source.hw_alias": true,
               "fm_data_source.hw_id": true,
               "fm_data_source.nhg_alias": false,
@@ -1085,21 +963,21 @@
             "indexByName": {
               "_id": 12,
               "_index": 13,
-              "_type": 15,
-              "fm_data.additional_text": 7,
-              "fm_data.alarm_identifier": 16,
+              "_type": 14,
+              "fm_data.additional_text": 15,
+              "fm_data.alarm_identifier": 4,
               "fm_data.alarm_state": 11,
               "fm_data.alarm_text": 6,
-              "fm_data.clear_alarm_time": 17,
-              "fm_data.clear_text": 14,
+              "fm_data.clear_alarm_time": 16,
+              "fm_data.clear_text": 17,
               "fm_data.event_time": 0,
               "fm_data.event_type": 18,
-              "fm_data.fault_id": 4,
+              "fm_data.fault_id": 19,
               "fm_data.last_updated_time": 1,
-              "fm_data.notification_type": 19,
-              "fm_data.probable_cause": 20,
+              "fm_data.notification_type": 20,
+              "fm_data.probable_cause": 21,
               "fm_data.severity": 5,
-              "fm_data.specific_problem": 21,
+              "fm_data.specific_problem": 7,
               "fm_data_source.ap_id": 22,
               "fm_data_source.app_id": 23,
               "fm_data_source.app_name": 24,
@@ -1123,6 +1001,7 @@
               "fm_data.alarm_text": "AlarmText",
               "fm_data.clear_alarm_time": "ClearAlarmTime",
               "fm_data.clear_text": "ClearText",
+              "fm_data.specific_problem": "RadioSpecProb",
               "fm_data_source.nhg_alias": "NHGName"
             }
           }
@@ -1132,19 +1011,66 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 37,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
-    "ApplAlarms",
-    "ApplHistoryAlarms"
+    "AllAlarms"
   ],
   "templating": {
     "list": [
       {
         "current": {
+          "selected": true,
+          "text": "All",
+          "value": "dac-all-fm"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Alarm Type",
+        "multi": false,
+        "name": "alarmType",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "dac-all-fm"
+          },
+          {
+            "selected": false,
+            "text": "RADIO",
+            "value": "dac-radio-fm"
+          },
+          {
+            "selected": false,
+            "text": "DAC",
+            "value": "dac-fm"
+          },
+          {
+            "selected": false,
+            "text": "CORE",
+            "value": "dac-core-fm"
+          },
+          {
+            "selected": false,
+            "text": "IXR",
+            "value": "dac-ixr-fm"
+          },
+          {
+            "selected": false,
+            "text": "APPLICATION",
+            "value": "dac-application-fm"
+          }
+        ],
+        "query": "All : dac-all-fm, RADIO : dac-radio-fm, DAC : dac-fm, CORE : dac-core-fm, IXR : dac-ixr-fm, APPLICATION : dac-application-fm",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
           "selected": false,
-          "text": "dac-application-fm",
-          "value": "dac-application-fm"
+          "text": "dac-all-fm",
+          "value": "dac-all-fm"
         },
         "hide": 2,
         "includeAll": false,
@@ -1154,7 +1080,7 @@
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
-        "regex": "dac-application-fm",
+        "regex": "$alarmType",
         "skipUrlSync": false,
         "type": "datasource"
       },
@@ -1283,7 +1209,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "NDAC Application Alarms History Dashboard",
-  "uid": "applfmhist",
+  "title": "NDAC ALL FM Alarms Dashboard",
+  "uid": "allalarm",
   "weekStart": ""
 }

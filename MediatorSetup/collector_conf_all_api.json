@@ -24,6 +24,10 @@
     "api": "/network-hardware-groups",
     "interval": 60
   },
+  "list_gng_api": {
+    "api": "/generic-network-groups",
+    "interval": 60
+  },
   "sim_apis": [
     {
       "api": "/network-hardware-groups/{nhg_id}/sims",
@@ -70,8 +74,7 @@
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "RADIO",
-      "interval": 30,
-      "sync_duration": 15
+      "interval": 30
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
@@ -84,8 +87,7 @@
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "DAC",
-      "interval": 30,
-      "sync_duration": 15
+      "interval": 30
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
@@ -98,8 +100,7 @@
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "CORE",
-      "interval": 30,
-      "sync_duration": 15
+      "interval": 30
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
@@ -112,8 +113,7 @@
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "APPLICATION",
-      "interval": 30,
-      "sync_duration": 15
+      "interval": 30
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
@@ -126,8 +126,7 @@
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
       "metric_type": "IXR",
-      "interval": 30,
-      "sync_duration": 15
+      "interval": 30
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",

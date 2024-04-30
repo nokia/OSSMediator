@@ -11,6 +11,7 @@ NEW FEATURES:
   * Add support to enable alarm notification for all alarms. User can add * wildcard in alarm filter config to enable all alarm notification. 
 * MediatorSetup:
   * `All Alarm Dashboard` to view all alarms in single dashboard.
+  * Added `UE throughput - Per IMSI` panel in `CORE PM` dashboards. 
 
 REMOVED:
 

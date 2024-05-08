@@ -5,6 +5,7 @@
    2. [Installation with binary package](#package_install)
    3. [Installation with pre-installed elasticsearch/OpenSearch](#pre_elk_install)
    4. [Installation with Docker](#docker_install)
+   5. [Steps to Download SSO Azure token](#azure_token)
 3. [Steps to migrate from Elasticsearch to OpenSearch](#elk_to_opensearch)
 4. [Steps to modify NDAC dashboards](#dashboard_update)
 
@@ -56,6 +57,7 @@ Follow the below steps to setup OSSMediator on your instance:
    You can refer to the `ElasticSearchPlugin` Readme.md file, under section `Configuration` for clarification.
 5. Configure the passwords/authorization token for the users configured in collector_conf.json file for API access by executing `storesecret`.  
    Check if execute permissions are there for the `storesecret` binary, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret -c collector_conf.json` command to store the user passwords/token.
+   * To download Azure token from NDAC Manager please follow `Steps to Download SSO Azure token` section. 
 6. Use `grafana_cleanup.sh` script to clean grafana, check if execute permissions are there for the `grafana_cleanup.sh` script, if not set it as `chmod 777 grafana_cleanup.sh`.  
    `sudo ./grafana_cleanup.sh`.
 7. Check if execute permissions are there for the `startup.sh` script, if not set it as `chmod 777 startup.sh`, then execute `sudo ./startup.sh` command.
@@ -98,6 +100,7 @@ NOTE: Refer "Nokia DAC OSS ElasticSearchPlugin Configuration" document to know m
    You can refer to the `ElasticSearchPlugin` README.md file, under section `Configuration` for clarification.
 5. Configure the passwords/authorization token for the users configured in collector_conf.json file for API access by executing `storesecret`.  
    Check if execute permissions are there for the `storesecret` binary, if not set it as `chmod 777 storesecret`, then execute `sudo ./storesecret -c collector_conf.json` command to store the user passwords/token.
+   * To download Azure token from NDAC Manager please follow `Steps to Download SSO Azure token` section. 
 6. Check if execute permissions are there for the `mediator_docker_startup.sh` script, then execute `sudo ./mediator_docker_startup.sh` script to start the OSSMediator modules inside docker.
 
 `mediator_docker_startup.sh` script will create following docker containers:
@@ -116,6 +119,22 @@ The Grafana dashboards will appear with login prompt and default credentials are
   Ex:
     * `To start OpenSearch with 4GB heap memory: sudo ./mediator_docker_startup.sh --heap_size 4g`
     * `To start OpenSearch with 500MB heap memory: sudo ./mediator_docker_startup.sh --heap_size 500m`
+
+### Steps to Download SSO Azure token <a name="azure_token"></a>
+
+1. Login to NDAC Manager with Login with Azure option.
+2. Go to Access Info from User section.
+   ![plot](./docs/azure_token_screen.png)
+3. Download the API token by clicking the download button.
+   ![plot](./docs/azure_token_download.png)
+4. Downloaded file will contain access token and refresh token in the following format.
+```
+{
+	"access_token": "<AUTH_TOKEN>",
+	"refresh_token": "<REFRESH_TOKEN>"
+}
+```
+
 
 ## Steps to migrate from Elasticsearch to OpenSearch <a name="elk_to_opensearch"></a>
 

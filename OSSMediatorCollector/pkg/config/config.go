@@ -27,6 +27,7 @@ type Config struct {
 	AzureSessionAPIs     AzureConf  `json:"azure_session_api"`
 	UMAPIs               UMConf     `json:"um_api"`       //User management Configuration
 	ListNhGAPI           *APIConf   `json:"list_nhg_api"` //list NHG API to keep track of all ACTIVE NHG of the user.
+	ListGNGAPI           *APIConf   `json:"list_gng_api"` //list GNG API to keep track of all ACTIVE GNG of the user.
 	MetricAPIs           []*APIConf `json:"metric_apis"`  //Array of API config
 	SimAPIs              []*APIConf `json:"sim_apis"`     //Array of API config
 	UserAGAPIs           UserAGConf `json:"userAG_apis"`  //Array of API config

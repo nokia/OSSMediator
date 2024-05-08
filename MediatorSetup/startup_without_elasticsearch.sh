@@ -3,14 +3,14 @@ set -e
 
 install_grafana() {
 	if [ -x "$(command -v yum)" ]; then
-		yum install -y https://dl.grafana.com/oss/release/grafana-9.5.15-1.x86_64.rpm
+		yum install -y https://dl.grafana.com/oss/release/grafana-9.5.18-1.x86_64.rpm
 	elif [ -x "$(command -v apt-get)" ]; then
 		apt-get install -y adduser libfontconfig1 musl
-		wget https://dl.grafana.com/oss/release/grafana_9.5.15_amd64.deb
-		dpkg -i grafana_9.5.15_amd64.deb
+		wget https://dl.grafana.com/oss/release/grafana_9.5.18_amd64.deb
+		dpkg -i grafana_9.5.18_amd64.deb
 	elif [ -x "$(command -v rpm)" ]; then
-		wget https://dl.grafana.com/oss/release/grafana-9.5.15-1.x86_64.rpm
-		rpm -Uvh grafana-9.5.15-1.x86_64.rpm
+		wget https://dl.grafana.com/oss/release/grafana-9.5.18-1.x86_64.rpm
+		rpm -Uvh grafana-9.5.18-1.x86_64.rpm
 	else
 		echo "Error can't install Grafana, please install it manually and re-run the script."
 		exit 1;

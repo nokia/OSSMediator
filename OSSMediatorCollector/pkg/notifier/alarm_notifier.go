@@ -31,7 +31,7 @@ const (
 	jsonMsgFormat    = "json"
 )
 
-//AlarmNotifier keeps alarm notification config.
+// AlarmNotifier keeps alarm notification config.
 type AlarmNotifier struct {
 	WebhookURL        string              `yaml:"webhook_url"`
 	RadioAlarmFilters []RadioAlarmFilters `yaml:"radio_alarm_filters"`
@@ -43,18 +43,18 @@ type AlarmNotifier struct {
 	MessageFormat     string              `yaml:"message_format"`
 }
 
-//AlarmIDFilters stores alarm_id to be applied on dac/core alarms before notifying.
+// AlarmIDFilters stores alarm_id to be applied on dac/core alarms before notifying.
 type AlarmIDFilters struct {
 	AlarmID string `yaml:"alarm_id"`
 }
 
-//RadioAlarmFilters stores filters to be applied on radio alarms before notifying.
+// RadioAlarmFilters stores filters to be applied on radio alarms before notifying.
 type RadioAlarmFilters struct {
 	SpecificProblem string   `yaml:"specific_problem"`
 	FaultIds        []string `yaml:"fault_ids"`
 }
 
-//FMSource struct keeps fm data.
+// FMSource struct keeps fm data.
 type FMSource struct {
 	FmData struct {
 		AdditionalText   string `json:"additional_text"`
@@ -93,13 +93,13 @@ type FMSource struct {
 	} `json:"fm_data_source"`
 }
 
-//RaisedNotification struct to keep track of all the notified alarms.
+// RaisedNotification struct to keep track of all the notified alarms.
 type RaisedNotification struct {
 	alarm            FMSource
 	notificationTime time.Time
 }
 
-//TeamsMessage forms the body of message to be sent over MS teams.
+// TeamsMessage forms the body of message to be sent over MS teams.
 type TeamsMessage struct {
 	Text       string `json:"text"`
 	TextFormat string `json:"textFormat,omitempty"`
@@ -133,7 +133,7 @@ func readAlarmNotifierConfig(txnID uint64) error {
 	return nil
 }
 
-//RaiseAlarmNotification alerts about specific alarms configured in resources/alarm_notifier.yaml to MS teams.
+// RaiseAlarmNotification alerts about specific alarms configured in resources/alarm_notifier.yaml to MS teams.
 func RaiseAlarmNotification(txnID uint64, fmData interface{}, metricType string, eventType string) {
 	if _, err := os.Stat(alarmConfigFIlePath); os.IsNotExist(err) {
 		log.WithFields(log.Fields{"tid": txnID}).Debugf("Alarm notifier config not present, skipping alarm notification")
@@ -242,7 +242,7 @@ func getAlarmDetails(txnID uint64, fmData string, metricType string) []FMSource 
 
 func checkAlarmIDFilter(alarmID string, alarmIDFilters []AlarmIDFilters) bool {
 	for _, v := range alarmIDFilters {
-		if v.AlarmID == alarmID {
+		if v.AlarmID == alarmID || v.AlarmID == "*" {
 			return true
 		}
 	}
@@ -288,7 +288,7 @@ func checkRadioAlarmFilter(specificProblem string, additionalText string, filter
 
 func checkSpecificProblem(specificProblem string, alarmSpecificProblems []string) bool {
 	for _, v := range alarmSpecificProblems {
-		if v == specificProblem {
+		if v == specificProblem || v == "*" {
 			return true
 		}
 	}

@@ -1,6 +1,30 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.2
+
+NEW FEATURES:
+
+* OSSMediatorCollector:
+  * Adding support for `MXIE` networks.
+    * Added `/generic-network-groups` API to get the list of MXIE networks.
+  * Add support to enable alarm notification for all alarms. User can add * wildcard in alarm filter config to enable all alarm notification. 
+* MediatorSetup:
+  * `All Alarm Dashboard` to view all alarms in single dashboard.
+  * Added `UE throughput - Per IMSI` panel in `CORE PM` dashboards. 
+
+REMOVED:
+
+* MediatorSetup: Removed RADIO, CORE, DAC, IXR and APPLICATION specific alarm dashboards..
+
+SECURITY UPDATE:
+
+* OSSMediator:
+  * Updating base image to `alpine:3.19.1`.
+* MediatorSetup:
+  * Updating OpenSearch version to `2.13.0`.
+  * Updating Grafana version to `9.5.18`.
+
 # 4.1
 
 NEW FEATURES:

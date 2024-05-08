@@ -43,6 +43,8 @@ const (
 	metricTypeQueryParam     = "metric_type"
 	searchAfterKeyQueryParam = "search_after_key"
 	aggregationQueryParam    = "aggr"
+	orgIDQueryParam          = "user_info.org_uuid"
+	accIDQueryParam          = "user_info.account_uuid"
 
 	//Headers
 	authorizationHeader = "Authorization"
@@ -76,6 +78,9 @@ func StartDataCollection() {
 		begTime = begTime.Add(time.Duration(interval) * time.Minute)
 		for _, user := range config.Conf.Users {
 			getNhgDetails(config.Conf.ListNhGAPI, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
+			if config.Conf.ListGNGAPI != nil {
+				getGngDetails(config.Conf.ListGNGAPI, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
+			}
 			for _, api := range config.Conf.MetricAPIs {
 				go fetchMetricsData(api, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
 			}
@@ -93,6 +98,11 @@ func StartDataCollection() {
 			getNhgDetails(config.Conf.ListNhGAPI, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
 			ticker := time.NewTicker(time.Duration(config.Conf.ListNhGAPI.Interval) * time.Minute)
 			go trigger(ticker, config.Conf.ListNhGAPI, user, config.Conf.PrettyResponse, getNhgDetails)
+		}
+		if config.Conf.ListGNGAPI != nil {
+			getGngDetails(config.Conf.ListGNGAPI, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
+			ticker := time.NewTicker(time.Duration(config.Conf.ListGNGAPI.Interval) * time.Minute)
+			go trigger(ticker, config.Conf.ListGNGAPI, user, config.Conf.PrettyResponse, getGngDetails)
 		}
 		for _, api := range config.Conf.MetricAPIs {
 			go fetchMetricsData(api, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)

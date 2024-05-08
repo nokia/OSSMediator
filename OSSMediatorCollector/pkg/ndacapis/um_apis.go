@@ -72,7 +72,7 @@ func Login(user *config.User) error {
 	}
 	body, _ := json.Marshal(reqBody)
 	apiURL := config.Conf.BaseURL + config.Conf.UMAPIs.Login
-	request, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(body))
+	request, err := http.NewRequest(http.MethodPost, apiURL, bytes.NewBuffer(body))
 	if err != nil {
 		return err
 	}
@@ -229,7 +229,7 @@ func callRefreshAPI(apiURL string, user *config.User) error {
 		RefreshToken: user.SessionToken.RefreshToken,
 	}
 	body, _ := json.Marshal(reqBody)
-	request, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(body))
+	request, err := http.NewRequest(http.MethodPost, apiURL, bytes.NewBuffer(body))
 	if err != nil {
 		return err
 	}
@@ -303,7 +303,7 @@ func Logout(user *config.User) error {
 	}
 	body, _ := json.Marshal(reqBody)
 	apiURL := config.Conf.BaseURL + config.Conf.UMAPIs.Logout
-	request, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(body))
+	request, err := http.NewRequest(http.MethodPost, apiURL, bytes.NewBuffer(body))
 	if err != nil {
 		return err
 	}

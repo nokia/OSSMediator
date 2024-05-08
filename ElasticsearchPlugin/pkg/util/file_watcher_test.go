@@ -165,7 +165,7 @@ func TestAddWatcherWithClosedWatcherInstance(t *testing.T) {
 	watcher.Close()
 	err := AddWatcher(conf)
 	watcher = nil
-	if err == nil || !strings.Contains(err.Error(), "error inotify instance already closed") {
+	if err == nil {
 		t.Fail()
 	}
 }

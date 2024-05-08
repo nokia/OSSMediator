@@ -99,14 +99,14 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64, prettyRe
 }
 
 func callSimAPI(api *config.APIConf, user *config.User, nhgID string, orgUUID string, accUUID string, pageNo int, txnID uint64, prettyResponse bool) {
-	apiURL := config.Conf.BaseURL + api.API + "?user_info.org_uuid=" + orgUUID + "&user_info.account_uuid=" + accUUID
+	apiURL := config.Conf.BaseURL + api.API
 	apiURL = strings.Replace(apiURL, "{nhg_id}", nhgID, -1)
 
 	//wait if refresh token api is running
 	user.Wg.Wait()
 
 	log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
-	request, err := http.NewRequest("GET", apiURL, nil)
+	request, err := http.NewRequest(http.MethodGet, apiURL, nil)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
 		return
@@ -116,6 +116,8 @@ func callSimAPI(api *config.APIConf, user *config.User, nhgID string, orgUUID st
 	//Adding query params
 	query := request.URL.Query()
 	query.Add(pageNoQueryParam, strconv.Itoa(pageNo))
+	query.Add(orgIDQueryParam, orgUUID)
+	query.Add(accIDQueryParam, accUUID)
 	request.URL.RawQuery = query.Encode()
 
 	response, err := doRequest(request)
@@ -159,12 +161,12 @@ func callSimAPI(api *config.APIConf, user *config.User, nhgID string, orgUUID st
 }
 
 func callAccessPointsSimAPI(api *config.APIConf, user *config.User, hwID string, orgUUID string, accUUID string, txnID uint64, prettyResponse bool) {
-	apiURL := config.Conf.BaseURL + api.API + "?user_info.org_uuid=" + orgUUID + "&user_info.account_uuid=" + accUUID
+	apiURL := config.Conf.BaseURL + api.API
 	//wait if refresh token api is running
 	user.Wg.Wait()
 
 	log.WithFields(log.Fields{"tid": txnID, "hw_id": hwID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
-	request, err := http.NewRequest("GET", apiURL, nil)
+	request, err := http.NewRequest(http.MethodGet, apiURL, nil)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID, "error": err, "hw_id": hwID}).Errorf("Error while calling %s for %s", apiURL, user.Email)
 		return
@@ -174,6 +176,8 @@ func callAccessPointsSimAPI(api *config.APIConf, user *config.User, hwID string,
 	//Adding query params
 	query := request.URL.Query()
 	query.Add(hwIDQueryParam, hwID)
+	query.Add(orgIDQueryParam, orgUUID)
+	query.Add(accIDQueryParam, accUUID)
 	request.URL.RawQuery = query.Encode()
 
 	response, err := doRequest(request)

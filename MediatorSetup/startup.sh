@@ -89,7 +89,7 @@ cp ./grafana_data/dashboards/*.json /etc/grafana/dashboards/.
 chmod 775 /etc/grafana/provisioning/datasources/*
 chmod 775 /etc/grafana/provisioning/dashboards/*
 chmod 775 /etc/grafana/dashboards/*
-grafana-cli plugins install grafana-opensearch-datasource
+grafana-cli plugins install grafana-opensearch-datasource v2.14.7
 
 systemctl daemon-reload
 systemctl enable collector.service

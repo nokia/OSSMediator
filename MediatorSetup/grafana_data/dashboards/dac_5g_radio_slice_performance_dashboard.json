@@ -165,8 +165,7 @@
 								"mode": "absolute",
 								"steps": [
 									{
-										"color": "green",
-										"value": null
+										"color": "green"
 									},
 									{
 										"color": "red",
@@ -326,8 +325,7 @@
 								"mode": "absolute",
 								"steps": [
 									{
-										"color": "green",
-										"value": null
+										"color": "green"
 									},
 									{
 										"color": "red",
@@ -516,8 +514,7 @@
 								"mode": "absolute",
 								"steps": [
 									{
-										"color": "green",
-										"value": null
+										"color": "green"
 									},
 									{
 										"color": "red",
@@ -706,8 +703,7 @@
 								"mode": "absolute",
 								"steps": [
 									{
-										"color": "green",
-										"value": null
+										"color": "green"
 									},
 									{
 										"color": "red",
@@ -897,8 +893,7 @@
 								"mode": "absolute",
 								"steps": [
 									{
-										"color": "green",
-										"value": null
+										"color": "green"
 									},
 									{
 										"color": "red",
@@ -1083,8 +1078,7 @@
 								"mode": "absolute",
 								"steps": [
 									{
-										"color": "green",
-										"value": null
+										"color": "green"
 									},
 									{
 										"color": "red",
@@ -1241,8 +1235,7 @@
 								"mode": "absolute",
 								"steps": [
 									{
-										"color": "green",
-										"value": null
+										"color": "green"
 									},
 									{
 										"color": "red",
@@ -1452,7 +1445,7 @@
 			},
 			{
 				"current": {
-					"selected": true,
+					"selected": false,
 					"text": "Cell",
 					"value": "pm_data_source.dn.keyword"
 				},
@@ -1464,7 +1457,7 @@
 				"options": [
 					{
 						"selected": false,
-						"text": "eNB",
+						"text": "gNB",
 						"value": "pm_data_source.hw_id.keyword"
 					},
 					{
@@ -1473,7 +1466,7 @@
 						"value": "pm_data_source.dn.keyword"
 					}
 				],
-				"query": "eNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
+				"query": "gNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
 				"queryValue": "",
 				"skipUrlSync": false,
 				"type": "custom"

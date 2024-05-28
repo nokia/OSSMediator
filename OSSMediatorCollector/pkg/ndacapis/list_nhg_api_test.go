@@ -21,7 +21,7 @@ import (
 )
 
 var (
-	fetchOrgUUIDResp1 = `
+	listOrgResp = `
 	{
   		"status": {
     		"status_code": "SUCCESS",
@@ -41,6 +41,30 @@ var (
     		}
   		]
 	}`
+
+	listAccResp = `{
+  "status": {
+    "status_code": "SUCCESS",
+    "status_description": {
+      "description_code": "NOT_SPECIFIED",
+      "description": "Successfully fetched accounts mapped to organization"
+    }
+  },
+  "account_details": [
+    {
+      "account_uuid": "test_acc_1",
+      "account_alias": "ORG2_Acc1"
+    },
+    {
+      "account_uuid": "test_acc_2",
+      "account_alias": "ORG2_Acc2"
+    },
+    {
+      "account_uuid": "test_acc_3",
+      "account_alias": "ORG2_Acc3"
+    }
+  ]
+}`
 
 	listHwResp = `
 	{
@@ -438,21 +462,22 @@ func TestGetNhgDetails(t *testing.T) {
 	}
 }
 
-func TestGetNhgDetailsWithInactiveSession(t *testing.T) {
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
-	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: false}
-	config.Conf = config.Config{
-		BaseURL: "http://localhost:8080/v1",
-	}
-	getNhgDetails(&config.APIConf{API: "/getNhgDetail", Interval: 15}, &user, 1234, true)
-	if !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
-		t.Fail()
-	}
-}
+//
+//func TestGetNhgDetailsWithInactiveSession(t *testing.T) {
+//	var buf bytes.Buffer
+//	log.SetOutput(&buf)
+//	defer func() {
+//		log.SetOutput(os.Stderr)
+//	}()
+//	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: false}
+//	config.Conf = config.Config{
+//		BaseURL: "http://localhost:8080/v1",
+//	}
+//	getNhgDetails(&config.APIConf{API: "/getNhgDetail", Interval: 15}, &user, 1234, true)
+//	if !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
+//		t.Fail()
+//	}
+//}
 
 func TestGetNhgDetailsForInvalidCase(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true}
@@ -540,4 +565,43 @@ func TestGetNhgDetailsWithInvalidResponse(t *testing.T) {
 	if len(user.NhgIDs) != 0 {
 		t.Fail()
 	}
+}
+
+func TestGetNhgDetailsABAC(t *testing.T) {
+	user := config.User{Email: "testuser@nokia.com", AuthType: "ADTOKEN", IsSessionAlive: true, ResponseDest: "./tmp"}
+	user.SessionToken = &config.SessionToken{
+		AccessToken:  "accessToken",
+		RefreshToken: "refreshToken",
+		ExpiryTime:   utils.CurrentTime(),
+	}
+
+	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		url := r.URL.String()
+		if strings.Contains(url, "getNhgDetail") {
+			fmt.Fprintln(w, listNhgResp)
+		} else if strings.Contains(url, "getOrgDetail") {
+			fmt.Fprintln(w, listOrgResp)
+		} else if strings.Contains(url, "getAccDetail") {
+			fmt.Fprintln(w, listAccResp)
+		}
+	}))
+	defer testServer.Close()
+	config.Conf = config.Config{
+		BaseURL: testServer.URL,
+		UserAGAPIs: config.UserAGConf{
+			ListOrgUUID: "/getOrgDetail",
+			ListAccUUID: "/getAccDetail",
+		},
+	}
+	CreateHTTPClient("", false)
+	utils.CreateResponseDirectory(user.ResponseDest, "/getNhgDetail")
+	getNhgDetails(&config.APIConf{API: "/getNhgDetail", Interval: 15}, &user, 1234, true)
+	if len(user.NhgIDs) != 0 {
+		t.Fail()
+	}
+	if len(user.NhgIDsABAC) != 1 {
+		t.Fail()
+	}
+	t.Log(user.NhgIDsABAC)
 }

@@ -2,7 +2,10 @@ module collector
 
 go 1.22
 
-replace gopkg.in/yaml.v3 => gopkg.in/yaml.v3 v3.0.1
+replace (
+	golang.org/x/sys => golang.org/x/sys v0.20.0
+	gopkg.in/yaml.v3 => gopkg.in/yaml.v3 v3.0.1
+)
 
 require (
 	github.com/golang-jwt/jwt/v4 v4.5.0

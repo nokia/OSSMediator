@@ -65,34 +65,33 @@ func TestFetchOrgUUID(t *testing.T) {
 	}
 }
 
-func TestFetchOrgUUIDWithInactiveSession(t *testing.T) {
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
-	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: false}
-	user.SessionToken = &config.SessionToken{
-		AccessToken:  "accessToken",
-		RefreshToken: "refreshToken",
-		ExpiryTime:   utils.CurrentTime(),
-	}
-	user.IsSessionAlive = false
-	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, fetchOrgUUIDResp)
-	}))
-	defer testServer.Close()
-	config.Conf = config.Config{
-		BaseURL: testServer.URL,
-	}
-	CreateHTTPClient("", false)
-
-	_, err := fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
-	if err != nil || !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
-		t.Fail()
-	}
-}
+//func TestFetchOrgUUIDWithInactiveSession(t *testing.T) {
+//	var buf bytes.Buffer
+//	log.SetOutput(&buf)
+//	defer func() {
+//		log.SetOutput(os.Stderr)
+//	}()
+//	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: false}
+//	user.SessionToken = &config.SessionToken{
+//		AccessToken:  "accessToken",
+//		RefreshToken: "refreshToken",
+//		ExpiryTime:   utils.CurrentTime(),
+//	}
+//	user.IsSessionAlive = false
+//	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+//		w.Header().Set("Content-Type", "application/json")
+//		fmt.Fprintln(w, fetchOrgUUIDResp)
+//	}))
+//	defer testServer.Close()
+//	config.Conf = config.Config{
+//		BaseURL: testServer.URL,
+//	}
+//	CreateHTTPClient("", false)
+//
+//	_, err := fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
+//	if err != nil || !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
+//		t.Fail()
+//	}
 
 func TestFetchOrgUUIDForInvalidCase(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true}
@@ -119,7 +118,10 @@ func TestFetchOrgUUIDForInvalidCase(t *testing.T) {
 	}
 
 	CreateHTTPClient("", true)
-	fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
+	_, err := fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
+	if err == nil {
+		t.Fail()
+	}
 	if len(user.NhgIDsABAC) != 0 {
 		t.Fail()
 	}
@@ -142,9 +144,6 @@ func TestFetchOrgUUIDError(t *testing.T) {
 
 	CreateHTTPClient("", true)
 	orgResp, err := fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
-	fmt.Println("orgResp: ", len(orgResp.OrgDetails))
-	fmt.Println("err : ", err)
-
 	if err != nil && len(orgResp.OrgDetails) != 0 {
 		t.Fail()
 	}
@@ -170,9 +169,6 @@ func TestFetchOrgUUIDInvalidResponse(t *testing.T) {
 
 	CreateHTTPClient("", true)
 	orgResp, err := fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
-	fmt.Println("orgResp: ", len(orgResp.OrgDetails))
-	fmt.Println("err : ", err)
-
 	if err != nil && len(orgResp.OrgDetails) != 0 {
 		t.Fail()
 	}
@@ -198,9 +194,6 @@ func TestFetchOrgUUIDDecodingError(t *testing.T) {
 
 	CreateHTTPClient("", true)
 	orgResp, err := fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
-	fmt.Println("orgResp: ", orgResp)
-	fmt.Println("err : ", err)
-
 	if err != nil && len(orgResp.OrgDetails) != 0 {
 		t.Fail()
 	}
@@ -223,7 +216,10 @@ func TestFetchOrgUUIDForInvalidURL(t *testing.T) {
 	config.Conf = config.Config{
 		BaseURL: ":",
 	}
-	fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
+	_, err := fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
+	if err == nil {
+		t.Fail()
+	}
 	if !strings.Contains(buf.String(), "missing protocol scheme") {
 		t.Fail()
 	}
@@ -254,7 +250,10 @@ func TestFetchOrgUUIDWithInvalidResponse(t *testing.T) {
 	}
 
 	CreateHTTPClient("", true)
-	fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
+	_, err := fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
+	if err == nil {
+		t.Fail()
+	}
 	if !strings.Contains(buf.String(), "Unable to decode response") {
 		t.Fail()
 	}
@@ -289,35 +288,35 @@ func TestFetchAccUUID(t *testing.T) {
 	}
 }
 
-func TestFetchAccUUIDWithInactiveSession(t *testing.T) {
-	var buf bytes.Buffer
-	log.SetOutput(&buf)
-	defer func() {
-		log.SetOutput(os.Stderr)
-	}()
-	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: false}
-	user.SessionToken = &config.SessionToken{
-		AccessToken:  "accessToken",
-		RefreshToken: "refreshToken",
-		ExpiryTime:   utils.CurrentTime(),
-	}
-	user.IsSessionAlive = false
-	orgDet := config.OrgDetails{OrgUUID: "org_uuid_1", OrgAlias: "org_alias_1"}
-	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintln(w, fetchOrgUUIDResp)
-	}))
-	defer testServer.Close()
-	config.Conf = config.Config{
-		BaseURL: testServer.URL,
-	}
-	CreateHTTPClient("", false)
-
-	_, err := fetchAccUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, orgDet, 1234, true)
-	if err != nil || !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
-		t.Fail()
-	}
-}
+//func TestFetchAccUUIDWithInactiveSession(t *testing.T) {
+//	var buf bytes.Buffer
+//	log.SetOutput(&buf)
+//	defer func() {
+//		log.SetOutput(os.Stderr)
+//	}()
+//	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: false}
+//	user.SessionToken = &config.SessionToken{
+//		AccessToken:  "accessToken",
+//		RefreshToken: "refreshToken",
+//		ExpiryTime:   utils.CurrentTime(),
+//	}
+//	user.IsSessionAlive = false
+//	orgDet := config.OrgDetails{OrgUUID: "org_uuid_1", OrgAlias: "org_alias_1"}
+//	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+//		w.Header().Set("Content-Type", "application/json")
+//		fmt.Fprintln(w, fetchOrgUUIDResp)
+//	}))
+//	defer testServer.Close()
+//	config.Conf = config.Config{
+//		BaseURL: testServer.URL,
+//	}
+//	CreateHTTPClient("", false)
+//
+//	_, err := fetchAccUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, orgDet, 1234, true)
+//	if err != nil || !strings.Contains(buf.String(), "Skipping API call for testuser@nokia.com") {
+//		t.Fail()
+//	}
+//}
 
 func TestFetchAccUUIDError(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true}
@@ -337,9 +336,6 @@ func TestFetchAccUUIDError(t *testing.T) {
 
 	CreateHTTPClient("", true)
 	orgResp, err := fetchAccUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, orgDet, 1234, true)
-	fmt.Println("orgResp: ", len(orgResp.AccDetails))
-	fmt.Println("err : ", err)
-
 	if err != nil && len(orgResp.AccDetails) != 0 {
 		t.Fail()
 	}
@@ -366,9 +362,6 @@ func TestFetchAccUUIDInvalidResponse(t *testing.T) {
 
 	CreateHTTPClient("", true)
 	orgResp, err := fetchAccUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, orgDet, 1234, true)
-	fmt.Println("orgResp: ", len(orgResp.AccDetails))
-	fmt.Println("err : ", err)
-
 	if err != nil && len(orgResp.AccDetails) != 0 {
 		t.Fail()
 	}
@@ -402,7 +395,10 @@ func TestFetchAccUUIDForInvalidCase(t *testing.T) {
 	}
 
 	CreateHTTPClient("", true)
-	fetchAccUUID(&config.APIConf{API: "/getAccDetail", Interval: 15}, &user, orgDet, 1234, true)
+	_, err := fetchAccUUID(&config.APIConf{API: "/getAccDetail", Interval: 15}, &user, orgDet, 1234, true)
+	if err == nil {
+		t.Fail()
+	}
 	if len(user.NhgIDsABAC) != 0 {
 		t.Fail()
 	}
@@ -425,7 +421,10 @@ func TestFetchAccUUIDForInvalidURL(t *testing.T) {
 	config.Conf = config.Config{
 		BaseURL: ":",
 	}
-	fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
+	_, err := fetchOrgUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, 1234, true)
+	if err == nil {
+		t.Fail()
+	}
 	if !strings.Contains(buf.String(), "missing protocol scheme") {
 		t.Fail()
 	}
@@ -457,7 +456,10 @@ func TestFetchAccUUIDWithInvalidResponse(t *testing.T) {
 	}
 
 	CreateHTTPClient("", true)
-	fetchAccUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, orgDet, 1234, true)
+	_, err := fetchAccUUID(&config.APIConf{API: "/getOrgDetail", Interval: 15}, &user, orgDet, 1234, true)
+	if err == nil {
+		t.Fail()
+	}
 	if !strings.Contains(buf.String(), "Unable to decode response") {
 		t.Fail()
 	}

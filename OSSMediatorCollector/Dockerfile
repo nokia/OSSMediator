@@ -18,7 +18,7 @@ ARG BUILD_CMD="build test build_storesecret"
 RUN make $BUILD_CMD
 
 # staging: base package for app deployment
-FROM alpine:3.19.1
+FROM alpine:3.20.0
 
 RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 

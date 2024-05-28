@@ -1,1499 +1,1507 @@
 {
-	"annotations": {
-		"list": [
-			{
-				"builtIn": 1,
-				"datasource": {
-					"type": "datasource",
-					"uid": "grafana"
-				},
-				"enable": true,
-				"hide": true,
-				"iconColor": "rgba(0, 211, 255, 1)",
-				"name": "Annotations & Alerts",
-				"target": {
-					"limit": 100,
-					"matchAny": false,
-					"tags": [],
-					"type": "dashboard"
-				},
-				"type": "dashboard"
-			}
-		]
-	},
-	"editable": true,
-	"fiscalYearStartMonth": 0,
-	"graphTooltip": 0,
-	"links": [
-		{
-			"asDropdown": true,
-			"icon": "external link",
-			"tags": [
-				"Radio5G"
-			],
-			"title": "Radio 5G Dashboards",
-			"type": "dashboards"
-		},
-		{
-			"asDropdown": true,
-			"icon": "external link",
-			"tags": [
-				"Radio4G"
-			],
-			"title": "Radio 4G Dashboards",
-			"type": "dashboards"
-		},
-		{
-			"asDropdown": true,
-			"icon": "external link",
-			"includeVars": false,
-			"keepTime": false,
-			"tags": [
-				"EdgePM"
-			],
-			"targetBlank": false,
-			"title": "Edge PM Dashboards",
-			"tooltip": "",
-			"type": "dashboards",
-			"url": ""
-		},
-		{
-			"asDropdown": true,
-			"icon": "external link",
-			"includeVars": false,
-			"keepTime": false,
-			"tags": [
-				"CorePM"
-			],
-			"targetBlank": false,
-			"title": "CORE PM Dashoards",
-			"tooltip": "",
-			"type": "dashboards",
-			"url": ""
-		},
-		{
-			"asDropdown": true,
-			"icon": "external link",
-			"includeVars": false,
-			"keepTime": false,
-			"tags": [
-				"IXRPM"
-			],
-			"targetBlank": false,
-			"title": "IXR PM Dashboards",
-			"tooltip": "",
-			"type": "dashboards",
-			"url": ""
-		},
-		{
-			"asDropdown": true,
-			"icon": "external link",
-			"includeVars": false,
-			"keepTime": false,
-			"tags": [
-				"AllAlarms"
-			],
-			"targetBlank": false,
-			"title": "Alarms Dashboard",
-			"tooltip": "",
-			"type": "dashboards",
-			"url": ""
-		}
-	],
-	"liveNow": false,
-	"panels": [
-		{
-			"collapsed": true,
-			"datasource": {
-				"type": "datasource",
-				"uid": "grafana"
-			},
-			"gridPos": {
-				"h": 1,
-				"w": 24,
-				"x": 0,
-				"y": 0
-			},
-			"id": 228,
-			"panels": [
-				{
-					"datasource": {
-						"type": "grafana-opensearch-datasource",
-						"uid": "${datasource}"
-					},
-					"description": "This KPI shows the non-GBR DRB radio admission requests for SA user, for the given slice and PLMN.",
-					"fieldConfig": {
-						"defaults": {
-							"color": {
-								"mode": "palette-classic"
-							},
-							"custom": {
-								"axisBorderShow": false,
-								"axisCenteredZero": false,
-								"axisColorMode": "text",
-								"axisLabel": "",
-								"axisPlacement": "auto",
-								"barAlignment": 0,
-								"drawStyle": "line",
-								"fillOpacity": 10,
-								"gradientMode": "none",
-								"hideFrom": {
-									"legend": false,
-									"tooltip": false,
-									"viz": false
-								},
-								"insertNulls": false,
-								"lineInterpolation": "linear",
-								"lineWidth": 1,
-								"pointSize": 6,
-								"scaleDistribution": {
-									"type": "linear"
-								},
-								"showPoints": "always",
-								"spanNulls": false,
-								"stacking": {
-									"group": "A",
-									"mode": "none"
-								},
-								"thresholdsStyle": {
-									"mode": "off"
-								}
-							},
-							"links": [],
-							"mappings": [],
-							"thresholds": {
-								"mode": "absolute",
-								"steps": [
-									{
-										"color": "green"
-									},
-									{
-										"color": "red",
-										"value": 80
-									}
-								]
-							},
-							"unit": "none"
-						},
-						"overrides": []
-					},
-					"gridPos": {
-						"h": 7,
-						"w": 24,
-						"x": 0,
-						"y": 1
-					},
-					"id": 229,
-					"interval": "15m",
-					"options": {
-						"legend": {
-							"calcs": [],
-							"displayMode": "list",
-							"placement": "right",
-							"showLegend": true
-						},
-						"tooltip": {
-							"maxHeight": 600,
-							"mode": "multi",
-							"sort": "none"
-						}
-					},
-					"pluginVersion": "10.2.2",
-					"targets": [
-						{
-							"bucketAggs": [
-								{
-									"fake": true,
-									"field": "$groupby",
-									"id": "7",
-									"settings": {
-										"min_doc_count": 1,
-										"order": "desc",
-										"orderBy": "_term",
-										"size": "0"
-									},
-									"type": "terms"
-								},
-								{
-									"field": "pm_data_source.end_timestamp",
-									"id": "2",
-									"settings": {
-										"interval": "15m",
-										"min_doc_count": 1,
-										"trimEdges": 0
-									},
-									"type": "date_histogram"
-								}
-							],
-							"datasource": {
-								"type": "grafana-opensearch-datasource",
-								"uid": "${datasource}"
-							},
-							"metrics": [
-								{
-									"field": "pm_data.NSL_M55149C00002",
-									"hide": true,
-									"id": "3",
-									"meta": {},
-									"settings": {},
-									"type": "avg"
-								},
-								{
-									"field": "pm_data.NSL_M55149C00002",
-									"hide": true,
-									"id": "4",
-									"meta": {},
-									"settings": {},
-									"type": "sum"
-								},
-								{
-									"field": "select field",
-									"hide": false,
-									"id": "6",
-									"meta": {},
-									"pipelineVariables": [
-										{
-											"name": "am55149c00002",
-											"pipelineAgg": "3"
-										},
-										{
-											"name": "m55149c00002",
-											"pipelineAgg": "4"
-										}
-									],
-									"settings": {
-										"script": "if (params.am55149c00002 == null) {return null} else {return params.m55149c00002}"
-									},
-									"type": "bucket_script"
-								}
-							],
-							"query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
-							"queryType": "lucene",
-							"refId": "A",
-							"timeField": "pm_data_source.end_timestamp"
-						}
-					],
-					"title": "NR_5207a 5G SA Number of non-GBR DRB radio admission requests for SA user, per PLMN, per slice / nonGBR DRB AC req PLMN slice [#]",
-					"type": "timeseries"
-				},
-				{
-					"datasource": {
-						"type": "grafana-opensearch-datasource",
-						"uid": "${datasource}"
-					},
-					"description": "This KPI shows the success ratio of non-GBR DRB radio admission for SA user, for the given slice and PLMN.",
-					"fieldConfig": {
-						"defaults": {
-							"color": {
-								"mode": "palette-classic"
-							},
-							"custom": {
-								"axisBorderShow": false,
-								"axisCenteredZero": false,
-								"axisColorMode": "text",
-								"axisLabel": "",
-								"axisPlacement": "auto",
-								"barAlignment": 0,
-								"drawStyle": "line",
-								"fillOpacity": 10,
-								"gradientMode": "none",
-								"hideFrom": {
-									"legend": false,
-									"tooltip": false,
-									"viz": false
-								},
-								"insertNulls": false,
-								"lineInterpolation": "linear",
-								"lineWidth": 1,
-								"pointSize": 6,
-								"scaleDistribution": {
-									"type": "linear"
-								},
-								"showPoints": "always",
-								"spanNulls": false,
-								"stacking": {
-									"group": "A",
-									"mode": "none"
-								},
-								"thresholdsStyle": {
-									"mode": "off"
-								}
-							},
-							"links": [],
-							"mappings": [],
-							"thresholds": {
-								"mode": "absolute",
-								"steps": [
-									{
-										"color": "green"
-									},
-									{
-										"color": "red",
-										"value": 80
-									}
-								]
-							},
-							"unit": "percent"
-						},
-						"overrides": []
-					},
-					"gridPos": {
-						"h": 7,
-						"w": 24,
-						"x": 0,
-						"y": 8
-					},
-					"id": 230,
-					"interval": "15m",
-					"options": {
-						"legend": {
-							"calcs": [],
-							"displayMode": "list",
-							"placement": "right",
-							"showLegend": true
-						},
-						"tooltip": {
-							"maxHeight": 600,
-							"mode": "multi",
-							"sort": "none"
-						}
-					},
-					"pluginVersion": "10.2.2",
-					"targets": [
-						{
-							"bucketAggs": [
-								{
-									"fake": true,
-									"field": "$groupby",
-									"id": "7",
-									"settings": {
-										"min_doc_count": 1,
-										"order": "desc",
-										"orderBy": "_term",
-										"size": "0"
-									},
-									"type": "terms"
-								},
-								{
-									"field": "pm_data_source.end_timestamp",
-									"id": "2",
-									"settings": {
-										"interval": "15m",
-										"min_doc_count": 1,
-										"trimEdges": 0
-									},
-									"type": "date_histogram"
-								}
-							],
-							"datasource": {
-								"type": "grafana-opensearch-datasource",
-								"uid": "${datasource}"
-							},
-							"metrics": [
-								{
-									"field": "pm_data.NSL_M55149C00002",
-									"hide": true,
-									"id": "3",
-									"meta": {},
-									"settings": {},
-									"type": "avg"
-								},
-								{
-									"field": "pm_data.NSL_M55149C00002",
-									"hide": true,
-									"id": "4",
-									"meta": {},
-									"settings": {},
-									"type": "sum"
-								},
-								{
-									"field": "pm_data.NSL_M55149C00003",
-									"hide": true,
-									"id": "5",
-									"meta": {},
-									"settings": {},
-									"type": "sum"
-								},
-								{
-									"field": "select field",
-									"id": "6",
-									"meta": {},
-									"pipelineVariables": [
-										{
-											"name": "am55149c00002",
-											"pipelineAgg": "3"
-										},
-										{
-											"name": "m55149c00002",
-											"pipelineAgg": "4"
-										},
-										{
-											"name": "m55149c00003",
-											"pipelineAgg": "5"
-										}
-									],
-									"settings": {
-										"script": "if (params.am55149c00002 == null) {return null} else if(params.m55149c00002 == 0) {return 0} else {return (100*(params.m55149c00003)/(params.m55149c00002))}"
-									},
-									"type": "bucket_script"
-								}
-							],
-							"query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
-							"queryType": "lucene",
-							"refId": "A",
-							"timeField": "pm_data_source.end_timestamp"
-						}
-					],
-					"title": "NR_5208a 5G SA Non-GBR DRB admission control success ratio for SA user, per PLMN, per slice / nonGBR DRB AC SR PLMN slice [%]",
-					"type": "timeseries"
-				}
-			],
-			"title": "Admission control per slice",
-			"type": "row"
-		},
-		{
-			"collapsed": true,
-			"datasource": {
-				"type": "grafana-opensearch-datasource",
-				"uid": "${datasource}"
-			},
-			"gridPos": {
-				"h": 1,
-				"w": 24,
-				"x": 0,
-				"y": 1
-			},
-			"id": 218,
-			"panels": [
-				{
-					"datasource": {
-						"type": "grafana-opensearch-datasource",
-						"uid": "${datasource}"
-					},
-					"description": "This KPI shows the success ratio of intra-frequency intra-gNB intra-DU handover for the given slice and PLMN.",
-					"fieldConfig": {
-						"defaults": {
-							"color": {
-								"mode": "palette-classic"
-							},
-							"custom": {
-								"axisBorderShow": false,
-								"axisCenteredZero": false,
-								"axisColorMode": "text",
-								"axisLabel": "",
-								"axisPlacement": "auto",
-								"barAlignment": 0,
-								"drawStyle": "line",
-								"fillOpacity": 10,
-								"gradientMode": "none",
-								"hideFrom": {
-									"legend": false,
-									"tooltip": false,
-									"viz": false
-								},
-								"insertNulls": false,
-								"lineInterpolation": "linear",
-								"lineWidth": 1,
-								"pointSize": 6,
-								"scaleDistribution": {
-									"type": "linear"
-								},
-								"showPoints": "always",
-								"spanNulls": false,
-								"stacking": {
-									"group": "A",
-									"mode": "none"
-								},
-								"thresholdsStyle": {
-									"mode": "off"
-								}
-							},
-							"links": [],
-							"mappings": [],
-							"thresholds": {
-								"mode": "absolute",
-								"steps": [
-									{
-										"color": "green"
-									},
-									{
-										"color": "red",
-										"value": 80
-									}
-								]
-							},
-							"unit": "percent"
-						},
-						"overrides": []
-					},
-					"gridPos": {
-						"h": 7,
-						"w": 24,
-						"x": 0,
-						"y": 16
-					},
-					"id": 216,
-					"interval": "15m",
-					"options": {
-						"legend": {
-							"calcs": [],
-							"displayMode": "list",
-							"placement": "right",
-							"showLegend": true
-						},
-						"tooltip": {
-							"maxHeight": 600,
-							"mode": "multi",
-							"sort": "none"
-						}
-					},
-					"pluginVersion": "10.2.2",
-					"targets": [
-						{
-							"bucketAggs": [
-								{
-									"fake": true,
-									"field": "$groupby",
-									"id": "7",
-									"settings": {
-										"min_doc_count": 1,
-										"order": "desc",
-										"orderBy": "_term",
-										"size": "0"
-									},
-									"type": "terms"
-								},
-								{
-									"field": "pm_data_source.end_timestamp",
-									"id": "2",
-									"settings": {
-										"interval": "15m",
-										"min_doc_count": 1,
-										"trimEdges": 0
-									},
-									"type": "date_histogram"
-								}
-							],
-							"datasource": {
-								"type": "grafana-opensearch-datasource",
-								"uid": "${datasource}"
-							},
-							"metrics": [
-								{
-									"field": "pm_data.NSL_M55149C00005",
-									"hide": true,
-									"id": "3",
-									"meta": {},
-									"settings": {},
-									"type": "avg"
-								},
-								{
-									"field": "pm_data.NSL_M55149C00005",
-									"hide": true,
-									"id": "4",
-									"meta": {},
-									"settings": {},
-									"type": "sum"
-								},
-								{
-									"field": "pm_data.NSL_M55149C00004",
-									"hide": true,
-									"id": "5",
-									"meta": {},
-									"settings": {},
-									"type": "sum"
-								},
-								{
-									"field": "select field",
-									"id": "6",
-									"meta": {},
-									"pipelineVariables": [
-										{
-											"name": "am55149c00005",
-											"pipelineAgg": "3"
-										},
-										{
-											"name": "m55149c00005",
-											"pipelineAgg": "4"
-										},
-										{
-											"name": "m55149c00004",
-											"pipelineAgg": "5"
-										}
-									],
-									"settings": {
-										"script": "  if (params.am55149c00005 == null) {return null} else if(params.m55149c00004 == 0) {return 0} else {return (params.m55149c00005 * 100)/params.m55149c00004}"
-									},
-									"type": "bucket_script"
-								}
-							],
-							"query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
-							"queryType": "lucene",
-							"refId": "A",
-							"timeField": "pm_data_source.end_timestamp"
-						}
-					],
-					"title": "NR_5210a 5G SA Intra-frequency intra-gNB intra-DU handover success ratio per PLMN, per slice / intraf intraDU HO exe SR PLMN slice [%]",
-					"type": "timeseries"
-				}
-			],
-			"title": "SA Intra-frequency intra-gNB intra-DU HO per slice",
-			"type": "row"
-		},
-		{
-			"collapsed": true,
-			"datasource": {
-				"type": "grafana-opensearch-datasource",
-				"uid": "${datasource}"
-			},
-			"gridPos": {
-				"h": 1,
-				"w": 24,
-				"x": 0,
-				"y": 2
-			},
-			"id": 221,
-			"panels": [
-				{
-					"datasource": {
-						"type": "grafana-opensearch-datasource",
-						"uid": "${datasource}"
-					},
-					"description": "This KPI shows the success ratio of intra-frequency inter-gNB intra-DU handover for the given slice and PLMN.",
-					"fieldConfig": {
-						"defaults": {
-							"color": {
-								"mode": "palette-classic"
-							},
-							"custom": {
-								"axisBorderShow": false,
-								"axisCenteredZero": false,
-								"axisColorMode": "text",
-								"axisLabel": "",
-								"axisPlacement": "auto",
-								"barAlignment": 0,
-								"drawStyle": "line",
-								"fillOpacity": 10,
-								"gradientMode": "none",
-								"hideFrom": {
-									"legend": false,
-									"tooltip": false,
-									"viz": false
-								},
-								"insertNulls": false,
-								"lineInterpolation": "linear",
-								"lineWidth": 1,
-								"pointSize": 6,
-								"scaleDistribution": {
-									"type": "linear"
-								},
-								"showPoints": "always",
-								"spanNulls": false,
-								"stacking": {
-									"group": "A",
-									"mode": "none"
-								},
-								"thresholdsStyle": {
-									"mode": "off"
-								}
-							},
-							"links": [],
-							"mappings": [],
-							"thresholds": {
-								"mode": "absolute",
-								"steps": [
-									{
-										"color": "green"
-									},
-									{
-										"color": "red",
-										"value": 80
-									}
-								]
-							},
-							"unit": "percent"
-						},
-						"overrides": []
-					},
-					"gridPos": {
-						"h": 7,
-						"w": 24,
-						"x": 0,
-						"y": 24
-					},
-					"id": 219,
-					"interval": "15m",
-					"options": {
-						"legend": {
-							"calcs": [],
-							"displayMode": "list",
-							"placement": "right",
-							"showLegend": true
-						},
-						"tooltip": {
-							"maxHeight": 600,
-							"mode": "multi",
-							"sort": "none"
-						}
-					},
-					"pluginVersion": "8.3.2",
-					"targets": [
-						{
-							"bucketAggs": [
-								{
-									"fake": true,
-									"field": "$groupby",
-									"id": "7",
-									"settings": {
-										"min_doc_count": 1,
-										"order": "desc",
-										"orderBy": "_term",
-										"size": "0"
-									},
-									"type": "terms"
-								},
-								{
-									"field": "pm_data_source.end_timestamp",
-									"id": "2",
-									"settings": {
-										"interval": "15m",
-										"min_doc_count": 1,
-										"trimEdges": 0
-									},
-									"type": "date_histogram"
-								}
-							],
-							"datasource": {
-								"type": "grafana-opensearch-datasource",
-								"uid": "${datasource}"
-							},
-							"metrics": [
-								{
-									"field": "pm_data.NSL_M55149C00007",
-									"hide": true,
-									"id": "3",
-									"meta": {},
-									"settings": {},
-									"type": "avg"
-								},
-								{
-									"field": "pm_data.NSL_M55149C00007",
-									"hide": true,
-									"id": "4",
-									"meta": {},
-									"settings": {},
-									"type": "sum"
-								},
-								{
-									"field": "pm_data.NSL_M55149C00006",
-									"hide": true,
-									"id": "5",
-									"meta": {},
-									"settings": {},
-									"type": "sum"
-								},
-								{
-									"field": "select field",
-									"id": "6",
-									"meta": {},
-									"pipelineVariables": [
-										{
-											"name": "am55149c00007",
-											"pipelineAgg": "3"
-										},
-										{
-											"name": "m55149c00007",
-											"pipelineAgg": "4"
-										},
-										{
-											"name": "m55149c00006",
-											"pipelineAgg": "5"
-										}
-									],
-									"settings": {
-										"script": "if (params.am55149c00007 == null) {return null} else if(params.m55149c00006 == 0) {return 0} else {return (params.m55149c00007 * 100)/params.m55149c00006}"
-									},
-									"type": "bucket_script"
-								}
-							],
-							"query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
-							"queryType": "lucene",
-							"refId": "A",
-							"timeField": "pm_data_source.end_timestamp"
-						}
-					],
-					"title": "NR_5212a 5G SA Intra-frequency intra-gNB inter-DU handover execution success ratio per PLMN, per slice / intraf inagNB interDU HO exe SR PLMN slice [%]",
-					"type": "timeseries"
-				}
-			],
-			"queryType": "lucene",
-			"title": "SA Intra-frequency intra-gNB inter-DU HO per slice",
-			"type": "row"
-		},
-		{
-			"collapsed": true,
-			"datasource": {
-				"type": "grafana-opensearch-datasource",
-				"uid": "${datasource}"
-			},
-			"gridPos": {
-				"h": 1,
-				"w": 24,
-				"x": 0,
-				"y": 3
-			},
-			"id": 224,
-			"panels": [
-				{
-					"datasource": {
-						"type": "grafana-opensearch-datasource",
-						"uid": "${datasource}"
-					},
-					"description": "This KPI shows the success ratio of the intra-frequency inter-gNB outgoing handover for the given slice and PLMN.",
-					"fieldConfig": {
-						"defaults": {
-							"color": {
-								"mode": "palette-classic"
-							},
-							"custom": {
-								"axisBorderShow": false,
-								"axisCenteredZero": false,
-								"axisColorMode": "text",
-								"axisLabel": "",
-								"axisPlacement": "auto",
-								"barAlignment": 0,
-								"drawStyle": "line",
-								"fillOpacity": 10,
-								"gradientMode": "none",
-								"hideFrom": {
-									"legend": false,
-									"tooltip": false,
-									"viz": false
-								},
-								"insertNulls": false,
-								"lineInterpolation": "linear",
-								"lineWidth": 1,
-								"pointSize": 6,
-								"scaleDistribution": {
-									"type": "linear"
-								},
-								"showPoints": "always",
-								"spanNulls": false,
-								"stacking": {
-									"group": "A",
-									"mode": "none"
-								},
-								"thresholdsStyle": {
-									"mode": "off"
-								}
-							},
-							"links": [],
-							"mappings": [],
-							"thresholds": {
-								"mode": "absolute",
-								"steps": [
-									{
-										"color": "green"
-									},
-									{
-										"color": "red",
-										"value": 80
-									}
-								]
-							},
-							"unit": "percent"
-						},
-						"overrides": []
-					},
-					"gridPos": {
-						"h": 7,
-						"w": 24,
-						"x": 0,
-						"y": 32
-					},
-					"id": 222,
-					"interval": "15m",
-					"options": {
-						"legend": {
-							"calcs": [],
-							"displayMode": "table",
-							"placement": "right",
-							"showLegend": true
-						},
-						"tooltip": {
-							"maxHeight": 600,
-							"mode": "multi",
-							"sort": "none"
-						}
-					},
-					"pluginVersion": "8.5.2",
-					"targets": [
-						{
-							"bucketAggs": [
-								{
-									"fake": true,
-									"field": "$groupby",
-									"id": "7",
-									"settings": {
-										"min_doc_count": 1,
-										"order": "desc",
-										"orderBy": "_term",
-										"size": "0"
-									},
-									"type": "terms"
-								},
-								{
-									"field": "pm_data_source.end_timestamp",
-									"id": "2",
-									"settings": {
-										"interval": "15m",
-										"min_doc_count": 1,
-										"trimEdges": 0
-									},
-									"type": "date_histogram"
-								}
-							],
-							"datasource": {
-								"type": "grafana-opensearch-datasource",
-								"uid": "${datasource}"
-							},
-							"metrics": [
-								{
-									"field": "pm_data.NSL_M55149C00009",
-									"hide": true,
-									"id": "3",
-									"meta": {},
-									"settings": {},
-									"type": "avg"
-								},
-								{
-									"field": "pm_data.NSL_M55149C00009",
-									"hide": true,
-									"id": "4",
-									"meta": {},
-									"settings": {},
-									"type": "sum"
-								},
-								{
-									"field": "pm_data.NSL_M55149C00008",
-									"hide": true,
-									"id": "5",
-									"meta": {},
-									"settings": {},
-									"type": "sum"
-								},
-								{
-									"field": "select field",
-									"id": "6",
-									"meta": {},
-									"pipelineVariables": [
-										{
-											"name": "am55149c00009",
-											"pipelineAgg": "3"
-										},
-										{
-											"name": "m55149c00009",
-											"pipelineAgg": "4"
-										},
-										{
-											"name": "m55149c00008",
-											"pipelineAgg": "5"
-										}
-									],
-									"settings": {
-										"script": "if (params.m55149c00009 == null) {return null} else if(params.m55149c00008 == 0) {return 0} else {return (params.m55149c00009 * 100)/params.m55149c00008}"
-									},
-									"type": "bucket_script"
-								}
-							],
-							"query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
-							"queryType": "lucene",
-							"refId": "A",
-							"timeField": "pm_data_source.end_timestamp"
-						}
-					],
-					"title": "NR_5214a 5G SA Intra-frequency inter-gNB outgoing handover execution success ratio per PLMN, per slice / intraf interNB out HO exe SR PLMN slice [%]",
-					"type": "timeseries"
-				}
-			],
-			"title": "SA Intra-frequency inter-gNB outgoing HO per slice",
-			"type": "row"
-		},
-		{
-			"collapsed": true,
-			"gridPos": {
-				"h": 1,
-				"w": 24,
-				"x": 0,
-				"y": 4
-			},
-			"id": 225,
-			"panels": [
-				{
-					"datasource": {
-						"type": "grafana-opensearch-datasource",
-						"uid": "${datasource}"
-					},
-					"description": "This KPI shows the number of inter-frequency intra-gNB intra-DU handover attempts for the given slice and PLMN.",
-					"fieldConfig": {
-						"defaults": {
-							"color": {
-								"mode": "palette-classic"
-							},
-							"custom": {
-								"axisBorderShow": false,
-								"axisCenteredZero": false,
-								"axisColorMode": "text",
-								"axisLabel": "",
-								"axisPlacement": "auto",
-								"barAlignment": 0,
-								"drawStyle": "line",
-								"fillOpacity": 10,
-								"gradientMode": "none",
-								"hideFrom": {
-									"legend": false,
-									"tooltip": false,
-									"viz": false
-								},
-								"insertNulls": false,
-								"lineInterpolation": "linear",
-								"lineWidth": 1,
-								"pointSize": 6,
-								"scaleDistribution": {
-									"type": "linear"
-								},
-								"showPoints": "always",
-								"spanNulls": false,
-								"stacking": {
-									"group": "A",
-									"mode": "none"
-								},
-								"thresholdsStyle": {
-									"mode": "off"
-								}
-							},
-							"links": [],
-							"mappings": [],
-							"thresholds": {
-								"mode": "absolute",
-								"steps": [
-									{
-										"color": "green"
-									},
-									{
-										"color": "red",
-										"value": 80
-									}
-								]
-							},
-							"unit": "none"
-						},
-						"overrides": []
-					},
-					"gridPos": {
-						"h": 7,
-						"w": 24,
-						"x": 0,
-						"y": 40
-					},
-					"id": 226,
-					"interval": "15m",
-					"options": {
-						"legend": {
-							"calcs": [],
-							"displayMode": "list",
-							"placement": "right",
-							"showLegend": true
-						},
-						"tooltip": {
-							"maxHeight": 600,
-							"mode": "multi",
-							"sort": "none"
-						}
-					},
-					"pluginVersion": "9.5.2",
-					"targets": [
-						{
-							"bucketAggs": [
-								{
-									"fake": true,
-									"field": "$groupby",
-									"id": "7",
-									"settings": {
-										"min_doc_count": 1,
-										"order": "desc",
-										"orderBy": "_term",
-										"size": "0"
-									},
-									"type": "terms"
-								},
-								{
-									"field": "pm_data_source.end_timestamp",
-									"id": "2",
-									"settings": {
-										"interval": "15m",
-										"min_doc_count": 1,
-										"trimEdges": 0
-									},
-									"type": "date_histogram"
-								}
-							],
-							"datasource": {
-								"type": "grafana-opensearch-datasource",
-								"uid": "${datasource}"
-							},
-							"metrics": [
-								{
-									"field": "pm_data.NSL_M55149C00550",
-									"hide": true,
-									"id": "3",
-									"meta": {},
-									"settings": {},
-									"type": "avg"
-								},
-								{
-									"field": "pm_data.NSL_M55149C00550",
-									"hide": true,
-									"id": "4",
-									"meta": {},
-									"settings": {},
-									"type": "sum"
-								},
-								{
-									"id": "8",
-									"pipelineVariables": [
-										{
-											"name": "am55149c00550",
-											"pipelineAgg": "3"
-										},
-										{
-											"name": "m55149c00550",
-											"pipelineAgg": "4"
-										}
-									],
-									"settings": {
-										"script": "if (params.am55149c00550 == null) { return null } else { return params.m55149c00550 }"
-									},
-									"type": "bucket_script"
-								}
-							],
-							"query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
-							"queryType": "lucene",
-							"refId": "A",
-							"timeField": "pm_data_source.end_timestamp"
-						}
-					],
-					"title": "NR_5215a 5G SA Number of inter-frequency intra-gNB intra-DU handover execution attempts per PLMN, per slice [#]",
-					"type": "timeseries"
-				},
-				{
-					"datasource": {
-						"type": "grafana-opensearch-datasource",
-						"uid": "${datasource}"
-					},
-					"description": "This KPI shows the success ratio of inter-frequency intra-gNB intra-DU handover for the given slice and PLMN.",
-					"fieldConfig": {
-						"defaults": {
-							"color": {
-								"mode": "palette-classic"
-							},
-							"custom": {
-								"axisBorderShow": false,
-								"axisCenteredZero": false,
-								"axisColorMode": "text",
-								"axisLabel": "",
-								"axisPlacement": "auto",
-								"barAlignment": 0,
-								"drawStyle": "line",
-								"fillOpacity": 10,
-								"gradientMode": "none",
-								"hideFrom": {
-									"legend": false,
-									"tooltip": false,
-									"viz": false
-								},
-								"insertNulls": false,
-								"lineInterpolation": "linear",
-								"lineWidth": 1,
-								"pointSize": 6,
-								"scaleDistribution": {
-									"type": "linear"
-								},
-								"showPoints": "always",
-								"spanNulls": false,
-								"stacking": {
-									"group": "A",
-									"mode": "none"
-								},
-								"thresholdsStyle": {
-									"mode": "off"
-								}
-							},
-							"links": [],
-							"mappings": [],
-							"thresholds": {
-								"mode": "absolute",
-								"steps": [
-									{
-										"color": "green"
-									},
-									{
-										"color": "red",
-										"value": 80
-									}
-								]
-							},
-							"unit": "percent"
-						},
-						"overrides": []
-					},
-					"gridPos": {
-						"h": 7,
-						"w": 24,
-						"x": 0,
-						"y": 47
-					},
-					"id": 227,
-					"interval": "15m",
-					"options": {
-						"legend": {
-							"calcs": [],
-							"displayMode": "list",
-							"placement": "right",
-							"showLegend": true
-						},
-						"tooltip": {
-							"maxHeight": 600,
-							"mode": "multi",
-							"sort": "none"
-						}
-					},
-					"pluginVersion": "9.5.2",
-					"targets": [
-						{
-							"bucketAggs": [
-								{
-									"fake": true,
-									"field": "$groupby",
-									"id": "7",
-									"settings": {
-										"min_doc_count": 1,
-										"order": "desc",
-										"orderBy": "_term",
-										"size": "0"
-									},
-									"type": "terms"
-								},
-								{
-									"field": "pm_data_source.end_timestamp",
-									"id": "2",
-									"settings": {
-										"interval": "15m",
-										"min_doc_count": 1,
-										"trimEdges": 0
-									},
-									"type": "date_histogram"
-								}
-							],
-							"datasource": {
-								"type": "grafana-opensearch-datasource",
-								"uid": "${datasource}"
-							},
-							"metrics": [
-								{
-									"field": "pm_data.NSL_M55149C00550",
-									"hide": true,
-									"id": "3",
-									"meta": {},
-									"settings": {},
-									"type": "avg"
-								},
-								{
-									"field": "pm_data.NSL_M55149C00550",
-									"hide": true,
-									"id": "4",
-									"meta": {},
-									"settings": {},
-									"type": "sum"
-								},
-								{
-									"field": "pm_data.NSL_M55149C00551",
-									"hide": true,
-									"id": "8",
-									"type": "sum"
-								},
-								{
-									"id": "9",
-									"pipelineVariables": [
-										{
-											"name": "am55149c00550",
-											"pipelineAgg": "3"
-										},
-										{
-											"name": "m55149c00550",
-											"pipelineAgg": "4"
-										},
-										{
-											"name": "m55149c00551",
-											"pipelineAgg": "8"
-										}
-									],
-									"settings": {
-										"script": "if ( params.am55149c00550 == null ) { return null } else if ( params.m55149c00550 == 0 ) { return 0 } else { return 100*(params.m55149c00551)/(params.m55149c00550) }"
-									},
-									"type": "bucket_script"
-								}
-							],
-							"query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
-							"queryType": "lucene",
-							"refId": "A",
-							"timeField": "pm_data_source.end_timestamp"
-						}
-					],
-					"title": "NR_5216a 5G SA Inter-frequency intra-gNB intra-DU handover execution success ratio per PLMN, per slice [%]",
-					"type": "timeseries"
-				}
-			],
-			"title": "SA Inter-frequency intra-DU handover per slice",
-			"type": "row"
-		}
-	],
-	"refresh": "15m",
-	"schemaVersion": 39,
-	"tags": [
-		"Radio5G"
-	],
-	"templating": {
-		"list": [
-			{
-				"current": {
-					"selected": false,
-					"text": "dac-radio-5g-pm",
-					"value": "dac-radio-5g-pm"
-				},
-				"hide": 2,
-				"includeAll": false,
-				"label": "Data Source",
-				"multi": false,
-				"name": "datasource",
-				"options": [],
-				"query": "grafana-opensearch-datasource",
-				"refresh": 1,
-				"regex": "dac-radio-5g-pm",
-				"skipUrlSync": false,
-				"type": "datasource"
-			},
-			{
-				"current": {
-					"selected": false,
-					"text": "IXR_MXIE_GNG_04042024",
-					"value": "IXR_MXIE_GNG_04042024"
-				},
-				"datasource": {
-					"type": "grafana-opensearch-datasource",
-					"uid": "${datasource}"
-				},
-				"definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-				"hide": 0,
-				"includeAll": false,
-				"label": "Network Hw Group Name",
-				"multi": false,
-				"name": "nhgname",
-				"options": [],
-				"query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-				"queryType": "lucene",
-				"refresh": 2,
-				"regex": "",
-				"skipUrlSync": false,
-				"sort": 0,
-				"tagValuesQuery": "",
-				"tagsQuery": "",
-				"type": "query",
-				"useTags": false
-			},
-			{
-				"current": {
-					"selected": true,
-					"text": [
-						"All"
-					],
-					"value": [
-						"$__all"
-					]
-				},
-				"datasource": {
-					"type": "grafana-opensearch-datasource",
-					"uid": "${datasource}"
-				},
-				"definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
-				"hide": 0,
-				"includeAll": true,
-				"label": "Access Point ID",
-				"multi": true,
-				"name": "ap_id",
-				"options": [],
-				"query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
-				"queryType": "lucene",
-				"refresh": 2,
-				"regex": ".*MRBTS-(\\d+).*",
-				"skipUrlSync": false,
-				"sort": 0,
-				"tagValuesQuery": "",
-				"tagsQuery": "",
-				"type": "query",
-				"useTags": false
-			},
-			{
-				"current": {
-					"selected": false,
-					"text": "Cell",
-					"value": "pm_data_source.dn.keyword"
-				},
-				"hide": 0,
-				"includeAll": false,
-				"label": "Object Level",
-				"multi": false,
-				"name": "groupby",
-				"options": [
-					{
-						"selected": false,
-						"text": "gNB",
-						"value": "pm_data_source.hw_id.keyword"
-					},
-					{
-						"selected": true,
-						"text": "Cell",
-						"value": "pm_data_source.dn.keyword"
-					}
-				],
-				"query": "gNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
-				"queryValue": "",
-				"skipUrlSync": false,
-				"type": "custom"
-			}
-		]
-	},
-	"time": {
-		"from": "now-24h",
-		"to": "now-15m"
-	},
-	"timeRangeUpdatedDuringEditOrView": false,
-	"timepicker": {
-		"nowDelay": "15m",
-		"refresh_intervals": [
-			"10s",
-			"30s",
-			"1m",
-			"5m",
-			"15m",
-			"30m",
-			"1h",
-			"2h",
-			"1d"
-		]
-	},
-	"timezone": "",
-	"title": "NDAC Radio 5G PM KPI - Slice Performance 5G035",
-	"uid": "radio5gslc",
-	"weekStart": ""
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 16,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "Radio5G"
+      ],
+      "title": "Radio 5G Dashboards",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "tags": [
+        "Radio4G"
+      ],
+      "title": "Radio 4G Dashboards",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "EdgePM"
+      ],
+      "targetBlank": false,
+      "title": "Edge PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "CorePM"
+      ],
+      "targetBlank": false,
+      "title": "CORE PM Dashoards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "IXRPM"
+      ],
+      "targetBlank": false,
+      "title": "IXR PM Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "AllAlarms"
+      ],
+      "targetBlank": false,
+      "title": "Alarms Dashboard",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 228,
+      "panels": [
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "This KPI shows the non-GBR DRB radio admission requests for SA user, for the given slice and PLMN.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 6,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 1
+          },
+          "id": 229,
+          "interval": "15m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "10.2.2",
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "$groupby",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.end_timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "15m",
+                    "min_doc_count": 1,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.NSL_M55149C00002",
+                  "hide": true,
+                  "id": "3",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00002",
+                  "hide": true,
+                  "id": "4",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "select field",
+                  "hide": false,
+                  "id": "6",
+                  "meta": {},
+                  "pipelineVariables": [
+                    {
+                      "name": "am55149c00002",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "m55149c00002",
+                      "pipelineAgg": "4"
+                    }
+                  ],
+                  "settings": {
+                    "script": "if (params.am55149c00002 == null) {return null} else {return params.m55149c00002}"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.end_timestamp"
+            }
+          ],
+          "title": "NR_5207a 5G SA Number of non-GBR DRB radio admission requests for SA user, per PLMN, per slice / nonGBR DRB AC req PLMN slice [#]",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "This KPI shows the success ratio of non-GBR DRB radio admission for SA user, for the given slice and PLMN.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 6,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 8
+          },
+          "id": 230,
+          "interval": "15m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "10.2.2",
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "$groupby",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.end_timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "15m",
+                    "min_doc_count": 1,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.NSL_M55149C00002",
+                  "hide": true,
+                  "id": "3",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00002",
+                  "hide": true,
+                  "id": "4",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00003",
+                  "hide": true,
+                  "id": "5",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "select field",
+                  "id": "6",
+                  "meta": {},
+                  "pipelineVariables": [
+                    {
+                      "name": "am55149c00002",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "m55149c00002",
+                      "pipelineAgg": "4"
+                    },
+                    {
+                      "name": "m55149c00003",
+                      "pipelineAgg": "5"
+                    }
+                  ],
+                  "settings": {
+                    "script": "if (params.am55149c00002 == null) {return null} else if(params.m55149c00002 == 0) {return 0} else {return (100*(params.m55149c00003)/(params.m55149c00002))}"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.end_timestamp"
+            }
+          ],
+          "title": "NR_5208a 5G SA Non-GBR DRB admission control success ratio for SA user, per PLMN, per slice / nonGBR DRB AC SR PLMN slice [%]",
+          "type": "timeseries"
+        }
+      ],
+      "title": "Admission control per slice",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 218,
+      "panels": [
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "This KPI shows the success ratio of intra-frequency intra-gNB intra-DU handover for the given slice and PLMN.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 6,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 16
+          },
+          "id": 216,
+          "interval": "15m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "10.2.2",
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "$groupby",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.end_timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "15m",
+                    "min_doc_count": 1,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.NSL_M55149C00005",
+                  "hide": true,
+                  "id": "3",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00005",
+                  "hide": true,
+                  "id": "4",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00004",
+                  "hide": true,
+                  "id": "5",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "select field",
+                  "id": "6",
+                  "meta": {},
+                  "pipelineVariables": [
+                    {
+                      "name": "am55149c00005",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "m55149c00005",
+                      "pipelineAgg": "4"
+                    },
+                    {
+                      "name": "m55149c00004",
+                      "pipelineAgg": "5"
+                    }
+                  ],
+                  "settings": {
+                    "script": "  if (params.am55149c00005 == null) {return null} else if(params.m55149c00004 == 0) {return 0} else {return (params.m55149c00005 * 100)/params.m55149c00004}"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.end_timestamp"
+            }
+          ],
+          "title": "NR_5210a 5G SA Intra-frequency intra-gNB intra-DU handover success ratio per PLMN, per slice / intraf intraDU HO exe SR PLMN slice [%]",
+          "type": "timeseries"
+        }
+      ],
+      "title": "SA Intra-frequency intra-gNB intra-DU HO per slice",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 221,
+      "panels": [
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "This KPI shows the success ratio of intra-frequency inter-gNB intra-DU handover for the given slice and PLMN.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 6,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 24
+          },
+          "id": 219,
+          "interval": "15m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.3.2",
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "$groupby",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.end_timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "15m",
+                    "min_doc_count": 1,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.NSL_M55149C00007",
+                  "hide": true,
+                  "id": "3",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00007",
+                  "hide": true,
+                  "id": "4",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00006",
+                  "hide": true,
+                  "id": "5",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "select field",
+                  "id": "6",
+                  "meta": {},
+                  "pipelineVariables": [
+                    {
+                      "name": "am55149c00007",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "m55149c00007",
+                      "pipelineAgg": "4"
+                    },
+                    {
+                      "name": "m55149c00006",
+                      "pipelineAgg": "5"
+                    }
+                  ],
+                  "settings": {
+                    "script": "if (params.am55149c00007 == null) {return null} else if(params.m55149c00006 == 0) {return 0} else {return (params.m55149c00007 * 100)/params.m55149c00006}"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.end_timestamp"
+            }
+          ],
+          "title": "NR_5212a 5G SA Intra-frequency intra-gNB inter-DU handover execution success ratio per PLMN, per slice / intraf inagNB interDU HO exe SR PLMN slice [%]",
+          "type": "timeseries"
+        }
+      ],
+      "queryType": "lucene",
+      "title": "SA Intra-frequency intra-gNB inter-DU HO per slice",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      },
+      "id": 224,
+      "panels": [
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "This KPI shows the success ratio of the intra-frequency inter-gNB outgoing handover for the given slice and PLMN.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 6,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 32
+          },
+          "id": 222,
+          "interval": "15m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.5.2",
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "$groupby",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.end_timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "15m",
+                    "min_doc_count": 1,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.NSL_M55149C00009",
+                  "hide": true,
+                  "id": "3",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00009",
+                  "hide": true,
+                  "id": "4",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00008",
+                  "hide": true,
+                  "id": "5",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "select field",
+                  "id": "6",
+                  "meta": {},
+                  "pipelineVariables": [
+                    {
+                      "name": "am55149c00009",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "m55149c00009",
+                      "pipelineAgg": "4"
+                    },
+                    {
+                      "name": "m55149c00008",
+                      "pipelineAgg": "5"
+                    }
+                  ],
+                  "settings": {
+                    "script": "if (params.m55149c00009 == null) {return null} else if(params.m55149c00008 == 0) {return 0} else {return (params.m55149c00009 * 100)/params.m55149c00008}"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.end_timestamp"
+            }
+          ],
+          "title": "NR_5214a 5G SA Intra-frequency inter-gNB outgoing handover execution success ratio per PLMN, per slice / intraf interNB out HO exe SR PLMN slice [%]",
+          "type": "timeseries"
+        }
+      ],
+      "title": "SA Intra-frequency inter-gNB outgoing HO per slice",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 225,
+      "panels": [
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "This KPI shows the number of inter-frequency intra-gNB intra-DU handover attempts for the given slice and PLMN.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 6,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 40
+          },
+          "id": 226,
+          "interval": "15m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "$groupby",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.end_timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "15m",
+                    "min_doc_count": 1,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.NSL_M55149C00550",
+                  "hide": true,
+                  "id": "3",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00550",
+                  "hide": true,
+                  "id": "4",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "id": "8",
+                  "pipelineVariables": [
+                    {
+                      "name": "am55149c00550",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "m55149c00550",
+                      "pipelineAgg": "4"
+                    }
+                  ],
+                  "settings": {
+                    "script": "if (params.am55149c00550 == null) { return null } else { return params.m55149c00550 }"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.end_timestamp"
+            }
+          ],
+          "title": "NR_5215a 5G SA Number of inter-frequency intra-gNB intra-DU handover execution attempts per PLMN, per slice [#]",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "This KPI shows the success ratio of inter-frequency intra-gNB intra-DU handover for the given slice and PLMN.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 6,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 47
+          },
+          "id": 227,
+          "interval": "15m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "$groupby",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.end_timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "15m",
+                    "min_doc_count": 1,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.NSL_M55149C00550",
+                  "hide": true,
+                  "id": "3",
+                  "meta": {},
+                  "settings": {},
+                  "type": "avg"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00550",
+                  "hide": true,
+                  "id": "4",
+                  "meta": {},
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NSL_M55149C00551",
+                  "hide": true,
+                  "id": "8",
+                  "type": "sum"
+                },
+                {
+                  "id": "9",
+                  "pipelineVariables": [
+                    {
+                      "name": "am55149c00550",
+                      "pipelineAgg": "3"
+                    },
+                    {
+                      "name": "m55149c00550",
+                      "pipelineAgg": "4"
+                    },
+                    {
+                      "name": "m55149c00551",
+                      "pipelineAgg": "8"
+                    }
+                  ],
+                  "settings": {
+                    "script": "if ( params.am55149c00550 == null ) { return null } else if ( params.m55149c00550 == 0 ) { return 0 } else { return 100*(params.m55149c00551)/(params.m55149c00550) }"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.end_timestamp"
+            }
+          ],
+          "title": "NR_5216a 5G SA Inter-frequency intra-gNB intra-DU handover execution success ratio per PLMN, per slice [%]",
+          "type": "timeseries"
+        }
+      ],
+      "title": "SA Inter-frequency intra-DU handover per slice",
+      "type": "row"
+    }
+  ],
+  "refresh": "15m",
+  "schemaVersion": 39,
+  "tags": [
+    "Radio5G"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "dac-radio-5g-pm",
+          "value": "PC1EB916CEA4FA59D"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Data Source",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "grafana-opensearch-datasource",
+        "refresh": 1,
+        "regex": "dac-radio-5g-pm",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "IXR_MXIE_GNG_04042024",
+          "value": "IXR_MXIE_GNG_04042024"
+        },
+        "datasource": {
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Network Hw Group Name",
+        "multi": false,
+        "name": "nhgname",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "queryType": "lucene",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Access Point ID",
+        "multi": true,
+        "name": "ap_id",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
+        "queryType": "lucene",
+        "refresh": 2,
+        "regex": ".*MRBTS-(\\d+).*",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Cell",
+          "value": "pm_data_source.dn.keyword"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Object Level",
+        "multi": false,
+        "name": "groupby",
+        "options": [
+          {
+            "selected": false,
+            "text": "gNB",
+            "value": "pm_data_source.hw_id.keyword"
+          },
+          {
+            "selected": true,
+            "text": "Cell",
+            "value": "pm_data_source.dn.keyword"
+          }
+        ],
+        "query": "gNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now-15m"
+  },
+  "timeRangeUpdatedDuringEditOrView": false,
+  "timepicker": {
+    "nowDelay": "15m",
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "NDAC Radio 5G PM KPI - Slice Performance 5G035",
+  "uid": "radio5gslc",
+  "weekStart": ""
 }

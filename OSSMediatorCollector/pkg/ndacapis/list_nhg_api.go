@@ -129,7 +129,7 @@ func storeUserHwIDRBAC(nhgData []NetworkInfo, user *config.User, txnID uint64) {
 	for hwID := range hwIDs {
 		user.HwIDs = append(user.HwIDs, hwID)
 	}
-	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDs}).Debug("user's access point hardware")
+	//log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDs}).Debug("user's access point hardware")
 }
 
 func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
@@ -258,5 +258,5 @@ func storeUserHwIDABAC(nhgData []NetworkInfo, user *config.User, org *config.Org
 	for hwID := range hwIDsMap {
 		user.HwIDsABAC[hwID] = orgAcc
 	}
-	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDsABAC}).Debug("user's access point hardware")
+	//log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDsABAC}).Debug("user's access point hardware")
 }

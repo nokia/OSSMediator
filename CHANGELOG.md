@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 NEW FEATURES:
 
+* OSSMediator:
+  * Added `-v` option to display the version of OSSMediator.
+  * Updated `golang` version to `1.22.3`. 
 * MediatorSetup:
   * Added `NDAC Radio 4G PM KPI MOCN Dashboard`.
   * Added QOS KPIs in `CORE 5G PM Dashboard` and `Radio 5G Dashboards`.

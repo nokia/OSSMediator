@@ -20,20 +20,28 @@ type Config struct {
 }
 
 var (
-	confFile  string
-	secretDir = ".secret"
+	confFile   string
+	version    bool
+	appVersion string
+	secretDir  = ".secret"
 )
 
 func main() {
 	//read command line arguments
 	flag.StringVar(&confFile, "c", "../resources/conf.json", "config file path")
+	flag.BoolVar(&version, "v", false, "Prints OSSMediator's version")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: ./storesecret [options]\n")
 		fmt.Fprintf(os.Stderr, "Options:\n")
 		fmt.Fprintf(os.Stderr, "\t-h, --help\n\t\tOutput a usage message.\n")
 		fmt.Fprintf(os.Stderr, "\t-c string\n\t\tConfig file path (default \"../resources/conf.json\")\n")
+		fmt.Fprintf(os.Stderr, "\t-v\n\t\tPrints OSSMediator's version\n")
 	}
 	flag.Parse()
+	if version {
+		fmt.Println(appVersion)
+		os.Exit(0)
+	}
 
 	conf, err := readConfig(confFile)
 	if err != nil {

@@ -48,7 +48,7 @@ type nhgDetails struct {
 	NhgAlias                 string    `json:"nhg_alias"`
 	DeploymentType           string    `json:"deployment_type"`
 	DeployReadinessStatus    int       `json:"deploy_readiness_status"`
-	Cluster                  Cluster   `json:"cluster"`
+	Cluster                  *Cluster  `json:"cluster,omitempty"`
 	NhgConfigStatus          string    `json:"nhg_config_status"`
 	NhgSliceStatusModifyTime time.Time `json:"nhg_slice_status_modify_time"`
 	NetworkType              string    `json:"network_type"`
@@ -60,7 +60,7 @@ type nhgDetails struct {
 type Cluster struct {
 	ClusterID                    string    `json:"cluster_id"`
 	ClusterAlias                 string    `json:"cluster_alias"`
-	HwSet                        HwSet     `json:"hw_set"`
+	HwSet                        *HwSet    `json:"hw_set,omitempty"`
 	ClusterStatus                string    `json:"cluster_status"`
 	Region                       string    `json:"region"`
 	Location                     string    `json:"location"`
@@ -120,8 +120,12 @@ func pushNHGData(filePath string, esConf config.ElasticsearchConf) {
 			SLA:                      nhg.SLA,
 			Timestamp:                currTime,
 		}
+		if len(nhg.Clusters) == 0 {
+			id := strings.Join([]string{"nhg-data", "test@nokia.com", nhgDetail.NhgID}, "_")
+			postData += addToBulkReq(index, id, nhgDetail)
+		}
 		for _, cluster := range nhg.Clusters {
-			nhgDetail.Cluster = Cluster{
+			nhgDetail.Cluster = &Cluster{
 				ClusterID:                    cluster.ClusterID,
 				ClusterAlias:                 cluster.ClusterAlias,
 				ClusterStatus:                cluster.ClusterStatus,
@@ -136,14 +140,23 @@ func pushNHGData(filePath string, esConf config.ElasticsearchConf) {
 				SrxIPAddress:                 cluster.SrxIPAddress,
 				SliceID:                      cluster.SliceID,
 			}
+			if len(cluster.HwSet) == 0 {
+				id := strings.Join([]string{"nhg-data", "test@nokia.com", nhgDetail.NhgID, nhgDetail.Cluster.ClusterID}, "_")
+				postData += addToBulkReq(index, id, nhgDetail)
+			}
 			for _, hwSet := range cluster.HwSet {
-				nhgDetail.Cluster.HwSet = hwSet
+				nhgDetail.Cluster.HwSet = &hwSet
 				id := strings.Join([]string{metric, user, nhgDetail.NhgID, nhgDetail.Cluster.ClusterID, nhgDetail.Cluster.HwSet.HwID}, "_")
-				source, _ := json.Marshal(nhgDetail)
-				postData += `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
-				postData += string(source) + "\n"
+				postData += addToBulkReq(index, id, nhgDetail)
 			}
 		}
 	}
 	pushData(elkURL, esConf.User, esConf.Password, postData, filePath)
+}
+
+func addToBulkReq(index, id string, details nhgDetails) string {
+	source, _ := json.Marshal(details)
+	postData := `{"index": {"_index": "` + index + `", "_id": "` + id + `"}}` + "\n"
+	postData += string(source) + "\n"
+	return postData
 }

@@ -1,5 +1,5 @@
 # Staging: for building go app (OSSMediatorCollector)
-FROM golang:1.22 as builder
+FROM golang:1.22.3 as builder
 
 # download dependencies for build
 RUN go install github.com/jstemmer/go-junit-report@latest
@@ -9,6 +9,7 @@ RUN mkdir /OSSMediatorCollector
 
 # copy project directory to be built
 COPY . /OSSMediatorCollector/.
+COPY ./VERSION ../.
 
 # set the working directory
 WORKDIR /OSSMediatorCollector/

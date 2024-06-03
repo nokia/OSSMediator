@@ -30,7 +30,7 @@ mkdir -p grafana_storage
 chown 472:472 grafana_storage/
 docker start ndac_grafana 2>/dev/null || docker run -d --name "ndac_grafana" --network host  -e "GF_INSTALL_PLUGINS=grafana-opensearch-datasource" -v $(pwd)/grafana_storage:/var/lib/grafana -v $(pwd)/grafana_data/provisioning/dashboards:/etc/grafana/provisioning/dashboards -v $(pwd)/grafana_data/provisioning/datasources:/etc/grafana/provisioning/datasources -v $(pwd)/grafana_data/dashboards:/etc/grafana/dashboards grafana/grafana-oss:11.0.0
 
-docker start ndac_oss_collector 2>/dev/null || docker run -d --name "ndac_oss_collector" --network host -v $(pwd)/reports:/reports  -v $(pwd)/collector/log:/collector/log -v $(pwd)/collector/checkpoints:/collector/bin/checkpoints -v $(pwd)/.secret:/collector/bin/.secret -v $(pwd)/collector_conf.json:/collector/resources/conf.json ossmediatorcollector:$version -skip_tls
+docker start ndac_oss_collector 2>/dev/null || docker run -d --name "ndac_oss_collector" --network host -v $(pwd)/reports:/reports  -v $(pwd)/collector/log:/collector/log -v $(pwd)/collector/checkpoints:/collector/bin/checkpoints -v $(pwd)/.secret:/collector/bin/.secret -v $(pwd)/collector_conf.json:/collector/resources/conf.json ossmediatorcollector:$version
 sleep 30
 
 docker start ndac_oss_elasticsearchplugin 2>/dev/null || docker run -d --name "ndac_oss_elasticsearchplugin" --network host -v $(pwd)/reports:/reports -v $(pwd)/plugin/log:/plugin/log -v $(pwd)/plugin_conf.json:/plugin/resources/conf.json elasticsearchplugin:$version

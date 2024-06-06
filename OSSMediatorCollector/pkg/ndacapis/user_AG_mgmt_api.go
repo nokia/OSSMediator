@@ -26,11 +26,6 @@ func fetchOrgUUID(api *config.APIConf, user *config.User, txnID uint64, prettyRe
 	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "api_type": api.Type, "metric_type": api.MetricType}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
 
 	request, err := http.NewRequest(http.MethodPost, apiURL, strings.NewReader("{}"))
-	if !user.IsSessionAlive {
-		log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
-		return orgResp, err
-	}
-
 	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
@@ -38,7 +33,6 @@ func fetchOrgUUID(api *config.APIConf, user *config.User, txnID uint64, prettyRe
 	}
 	request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
 	response, err := doRequest(request)
-
 	if err != nil {
 		user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
@@ -84,10 +78,6 @@ func fetchAccUUID(api *config.APIConf, user *config.User, org config.OrgDetails,
 		return accResp, err
 	}
 
-	if !user.IsSessionAlive {
-		log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
-		return accResp, err
-	}
 	request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
 	response, err := doRequest(request)
 	if err != nil || len(response) == 0 {

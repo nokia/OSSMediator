@@ -146,9 +146,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.15",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -253,9 +255,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.15",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -359,9 +363,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.15",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -441,9 +447,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.15",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -524,9 +532,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.15",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -607,9 +617,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.15",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -671,6 +683,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -684,6 +697,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -705,7 +719,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -732,6 +747,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -871,6 +887,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -884,6 +901,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -905,7 +923,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -932,6 +951,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -1071,6 +1091,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -1084,6 +1105,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -1132,6 +1154,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -1272,6 +1295,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -1285,6 +1309,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -1333,6 +1358,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -1473,6 +1499,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -1486,6 +1513,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -1534,6 +1562,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -1636,6 +1665,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -1649,6 +1679,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -1697,6 +1728,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -1885,7 +1917,7 @@
               }
             ]
           },
-          "pluginVersion": "9.5.15",
+          "pluginVersion": "11.0.0",
           "targets": [
             {
               "alias": "",
@@ -2032,6 +2064,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -2045,6 +2078,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2082,7 +2116,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 14
+            "y": 52
           },
           "id": 12,
           "options": {
@@ -2093,6 +2127,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -2184,6 +2219,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -2197,6 +2233,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2234,7 +2271,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 20
+            "y": 58
           },
           "id": 13,
           "options": {
@@ -2245,6 +2282,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -2337,6 +2375,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -2350,6 +2389,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2387,7 +2427,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 26
+            "y": 64
           },
           "id": 14,
           "options": {
@@ -2398,6 +2438,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -2491,6 +2532,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -2504,6 +2546,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2541,7 +2584,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 32
+            "y": 70
           },
           "id": 15,
           "options": {
@@ -2552,6 +2595,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -2644,6 +2688,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -2657,6 +2702,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2694,7 +2740,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 38
+            "y": 76
           },
           "id": 37,
           "options": {
@@ -2705,6 +2751,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -2824,6 +2871,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -2837,6 +2885,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2874,7 +2923,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 15
+            "y": 83
           },
           "id": 20,
           "options": {
@@ -2885,6 +2934,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -2978,6 +3028,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -2991,6 +3042,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -3028,7 +3080,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 21
+            "y": 89
           },
           "id": 21,
           "options": {
@@ -3039,6 +3091,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -3132,6 +3185,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -3145,6 +3199,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -3182,7 +3237,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 27
+            "y": 95
           },
           "id": 43,
           "options": {
@@ -3193,6 +3248,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -3286,6 +3342,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -3299,6 +3356,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -3337,7 +3395,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 33
+            "y": 101
           },
           "id": 49,
           "options": {
@@ -3348,6 +3406,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -3441,6 +3500,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -3454,6 +3514,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -3488,7 +3549,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 40
+            "y": 108
           },
           "id": 48,
           "options": {
@@ -3499,6 +3560,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -3592,6 +3654,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -3605,6 +3668,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -3642,7 +3706,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 47
+            "y": 115
           },
           "id": 22,
           "options": {
@@ -3653,6 +3717,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -3746,6 +3811,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -3759,6 +3825,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -3796,7 +3863,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 53
+            "y": 121
           },
           "id": 23,
           "options": {
@@ -3807,6 +3874,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -3900,6 +3968,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -3913,6 +3982,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -3950,7 +4020,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 59
+            "y": 127
           },
           "id": 42,
           "options": {
@@ -3961,6 +4031,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -4054,6 +4125,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -4067,6 +4139,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -4104,7 +4177,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 65
+            "y": 133
           },
           "id": 24,
           "options": {
@@ -4115,6 +4188,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -4208,6 +4282,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -4221,6 +4296,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -4258,7 +4334,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 71
+            "y": 139
           },
           "id": 25,
           "options": {
@@ -4269,6 +4345,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -4362,6 +4439,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -4375,6 +4453,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -4412,7 +4491,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 77
+            "y": 145
           },
           "id": 41,
           "options": {
@@ -4423,6 +4502,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -4516,6 +4596,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -4529,6 +4610,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -4566,7 +4648,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 83
+            "y": 151
           },
           "id": 26,
           "options": {
@@ -4577,6 +4659,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -4670,6 +4753,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -4683,6 +4767,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -4720,7 +4805,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 89
+            "y": 157
           },
           "id": 27,
           "options": {
@@ -4731,6 +4816,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -4824,6 +4910,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -4837,6 +4924,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -4874,7 +4962,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 95
+            "y": 163
           },
           "id": 40,
           "options": {
@@ -4885,6 +4973,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -4978,6 +5067,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -4991,6 +5081,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -5028,7 +5119,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 101
+            "y": 169
           },
           "id": 28,
           "options": {
@@ -5039,6 +5130,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -5132,6 +5224,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -5145,6 +5238,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -5182,7 +5276,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 107
+            "y": 175
           },
           "id": 29,
           "options": {
@@ -5193,6 +5287,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -5286,6 +5381,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -5299,6 +5395,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -5336,7 +5433,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 113
+            "y": 181
           },
           "id": 39,
           "options": {
@@ -5347,6 +5444,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -5440,6 +5538,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -5453,6 +5552,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -5490,7 +5590,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 119
+            "y": 187
           },
           "id": 30,
           "options": {
@@ -5501,6 +5601,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -5594,6 +5695,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -5607,6 +5709,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -5644,7 +5747,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 125
+            "y": 193
           },
           "id": 31,
           "options": {
@@ -5655,6 +5758,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -5748,6 +5852,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -5761,6 +5866,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -5798,7 +5904,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 131
+            "y": 199
           },
           "id": 38,
           "options": {
@@ -5809,6 +5915,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -5929,6 +6036,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -5942,6 +6050,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -5979,7 +6088,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 16
+            "y": 206
           },
           "id": 34,
           "options": {
@@ -5990,6 +6099,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -6054,6 +6164,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -6067,6 +6178,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -6104,7 +6216,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 22
+            "y": 212
           },
           "id": 35,
           "options": {
@@ -6115,6 +6227,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -6179,6 +6292,7 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
                 "axisLabel": "",
@@ -6192,6 +6306,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -6229,7 +6344,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 28
+            "y": 218
           },
           "id": 36,
           "options": {
@@ -6240,6 +6355,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
@@ -6309,7 +6425,6 @@
   "refresh": "15m",
   "revision": 1,
   "schemaVersion": 38,
-  "style": "dark",
   "tags": [
     "CorePM"
   ],
@@ -6440,6 +6555,7 @@
     "from": "now-12h",
     "to": "now-15m"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "nowDelay": "15m"
   },

@@ -115,7 +115,9 @@
           },
           "custom": {
             "align": "right",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "inspect": false
           },
           "decimals": 2,
@@ -203,6 +205,18 @@
                 "value": 128
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LTE_5750a E-UTRAN Cell Availability Ratio undefined 1"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": null
+              }
+            ]
           }
         ]
       },
@@ -213,9 +227,10 @@
         "y": 0
       },
       "id": 1,
-      "links": [],
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
           "reducer": [
             "sum"
@@ -225,7 +240,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -3646,7 +3661,7 @@
             "value": "pm_data_source.dn.keyword"
           }
         ],
-        "query": "pm_data_source.hw_id.keyword,pm_data_source.dn.keyword",
+        "query": "eNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
         "skipUrlSync": false,
         "type": "custom"
       },
@@ -3719,6 +3734,7 @@
     "from": "now-30d",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "hidden": false,
     "nowDelay": "",

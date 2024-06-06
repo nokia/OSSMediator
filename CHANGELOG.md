@@ -1,6 +1,29 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.3
+
+NEW FEATURES:
+
+* OSSMediator:
+  * Added `-v` option to display the version of OSSMediator.
+  * Updated `golang` version to `1.22.3`. 
+* MediatorSetup:
+  * Added `NDAC Radio 4G PM KPI MOCN Dashboard`.
+  * Added QOS KPIs in `CORE 5G PM Dashboard` and `Radio 5G Dashboards`.
+
+BUG FIXES:
+
+* OSSMediatorCollector: Fix for data collection for ABAC user.
+
+SECURITY UPDATE:
+
+* OSSMediator:
+  * Updating base image to `alpine:3.20.0`.
+* MediatorSetup:
+  * Updating OpenSearch version to `2.14.0`.
+  * Updating Grafana version to `11.0.0`.
+
 # 4.2
 
 NEW FEATURES:

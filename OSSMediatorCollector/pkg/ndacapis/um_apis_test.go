@@ -17,7 +17,7 @@ import (
 	"testing"
 	"time"
 
-	jwt "github.com/golang-jwt/jwt/v4"
+	jwt "github.com/golang-jwt/jwt/v5"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -264,9 +264,9 @@ func TestInvalidLogin(t *testing.T) {
 
 func TestLogin(t *testing.T) {
 	mySigningKey := []byte("testtoken")
-	claims := &jwt.StandardClaims{
-		ExpiresAt: time.Now().Add(30 * time.Second).Unix(),
+	claims := &jwt.RegisteredClaims{
 		Issuer:    "test",
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(30 * time.Second)),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	tokenString, _ := token.SignedString(mySigningKey)
@@ -366,9 +366,9 @@ func TestTokenAuthorize(t *testing.T) {
 
 func TestRefreshTokenRBAC(t *testing.T) {
 	mySigningKey := []byte("testtoken")
-	claims := &jwt.StandardClaims{
-		ExpiresAt: time.Now().Add(60 * time.Second).Unix(),
+	claims := &jwt.RegisteredClaims{
 		Issuer:    "test",
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(30 * time.Second)),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	tokenString, _ := token.SignedString(mySigningKey)
@@ -415,9 +415,9 @@ func TestRefreshTokenRBAC(t *testing.T) {
 
 func TestRefreshTokenABAC(t *testing.T) {
 	mySigningKey := []byte("testtoken")
-	claims := &jwt.StandardClaims{
-		ExpiresAt: time.Now().Add(60 * time.Second).Unix(),
+	claims := &jwt.RegisteredClaims{
 		Issuer:    "test",
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(30 * time.Second)),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	tokenString, _ := token.SignedString(mySigningKey)
@@ -463,9 +463,9 @@ func TestRefreshTokenABAC(t *testing.T) {
 
 func TestRefreshTokenABACError(t *testing.T) {
 	mySigningKey := []byte("testtoken")
-	claims := &jwt.StandardClaims{
-		ExpiresAt: time.Now().Add(60 * time.Second).Unix(),
+	claims := &jwt.RegisteredClaims{
 		Issuer:    "test",
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(30 * time.Second)),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	tokenString, _ := token.SignedString(mySigningKey)

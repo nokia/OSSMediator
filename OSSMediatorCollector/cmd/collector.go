@@ -32,11 +32,17 @@ var (
 	logDir           string
 	logLevel         int
 	enableConsoleLog bool
+	version          bool
+	appVersion       string
 )
 
 func main() {
 	//Read command line options
 	parseFlags()
+	if version {
+		fmt.Println(appVersion)
+		os.Exit(0)
+	}
 
 	//initialize logger
 	initLogger(logDir, logLevel)
@@ -97,7 +103,9 @@ func main() {
 		go ndacapis.RefreshToken(user)
 		//Create the sub response directory for the API under the user's base response directory.
 		utils.CreateResponseDirectory(user.ResponseDest, config.Conf.ListNhGAPI.API)
-		utils.CreateResponseDirectory(user.ResponseDest, config.Conf.ListGNGAPI.API)
+		if config.Conf.ListGNGAPI != nil {
+			utils.CreateResponseDirectory(user.ResponseDest, config.Conf.ListGNGAPI.API)
+		}
 		if strings.ToUpper(user.AuthType) == "ADTOKEN" {
 			utils.CreateResponseDirectory(user.ResponseDest, config.Conf.UserAGAPIs.ListOrgUUID)
 			utils.CreateResponseDirectory(user.ResponseDest, config.Conf.UserAGAPIs.ListAccUUID)
@@ -127,6 +135,7 @@ func parseFlags() {
 	flag.StringVar(&logDir, "log_dir", "../log", "Log directory")
 	flag.IntVar(&logLevel, "log_level", 4, "Log level")
 	flag.BoolVar(&enableConsoleLog, "enable_console_log", false, "Enable console logging, if true logs won't be written to file")
+	flag.BoolVar(&version, "v", false, "Prints OSSMediator's version")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: ./collector [options]\n")
 		fmt.Fprintf(os.Stderr, "Options:\n")
@@ -136,7 +145,8 @@ func parseFlags() {
 		fmt.Fprintf(os.Stderr, "\t-log_dir string\n\t\tLog Directory (default \"../log\"), logs will be stored in collector.log file.\n")
 		fmt.Fprintf(os.Stderr, "\t-log_level int\n\t\tLog Level (default 4). Values: 0 (PANIC), 1 (FATAl), 2 (ERROR), 3 (WARNING), 4 (INFO), 5 (DEBUG)\n")
 		fmt.Fprintf(os.Stderr, "\t-skip_tls\n\t\tSkip TLS Authentication\n")
-		fmt.Fprintf(os.Stderr, "\t-enable_console_log\n\t\tEnable console logging, if true logs won't be written to file\n")
+		fmt.Fprintf(os.Stderr, "\t-enable_console_long\n\t\tEnable console logging, if true logs won't be written to file\n")
+		fmt.Fprintf(os.Stderr, "\t-v\n\t\tPrints OSSMediator's version\n")
 	}
 	flag.Parse()
 }

@@ -3,14 +3,14 @@ set -e
 
 install_grafana() {
 	if [ -x "$(command -v yum)" ]; then
-		yum install -y https://dl.grafana.com/oss/release/grafana-9.5.18-1.x86_64.rpm
+		yum install -y https://dl.grafana.com/oss/release/grafana-11.0.0-1.x86_64.rpm
 	elif [ -x "$(command -v apt-get)" ]; then
 		apt-get install -y adduser libfontconfig1 musl
-		wget https://dl.grafana.com/oss/release/grafana_9.5.18_amd64.deb
-		dpkg -i grafana_9.5.18_amd64.deb
+		wget https://dl.grafana.com/oss/release/grafana_11.0.0_amd64.deb
+		dpkg -i grafana_11.0.0_amd64.deb
 	elif [ -x "$(command -v rpm)" ]; then
-		wget https://dl.grafana.com/oss/release/grafana-9.5.18-1.x86_64.rpm
-		rpm -Uvh grafana-9.5.18-1.x86_64.rpm
+		wget https://dl.grafana.com/oss/release/grafana-11.0.0-1.x86_64.rpm
+		rpm -Uvh grafana-11.0.0-1.x86_64.rpm
 	else
 		echo "Error can't install Grafana, please install it manually and re-run the script."
 		exit 1;
@@ -43,7 +43,7 @@ if ! [ -x "$(command -v grafana-server)" ]; then
 	echo "Grafana version is $(grafana-server -v)."
 else
   grafana_version=$(grafana-server -v | cut -d' ' -f 2)
-  min_grafana_version=9.5.18
+  min_grafana_version=11.0.0
 
   if version_gt $min_grafana_version $grafana_version; then
     echo "Grafana version is $grafana_version."
@@ -89,7 +89,7 @@ cp ./grafana_data/dashboards/*.json /etc/grafana/dashboards/.
 chmod 775 /etc/grafana/provisioning/datasources/*
 chmod 775 /etc/grafana/provisioning/dashboards/*
 chmod 775 /etc/grafana/dashboards/*
-grafana-cli plugins install grafana-opensearch-datasource v2.14.7
+grafana-cli plugins install grafana-opensearch-datasource
 
 systemctl daemon-reload
 systemctl enable collector.service
@@ -101,7 +101,7 @@ name='ndac_oss_opensearch'
 if [[ $(docker ps -f "name=$name" --format '{{.Names}}') == $name ]]; then
   docker update --restart=always $name
 else
-  docker run --name "$name" --restart=always -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size" -v $(pwd)/es_data:/usr/share/opensearch/data opensearchproject/opensearch:2.13.0
+  docker run --name "$name" --restart=always -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size" -v $(pwd)/es_data:/usr/share/opensearch/data opensearchproject/opensearch:2.14.0
 fi
 
 echo "Checking OpenSearch status"

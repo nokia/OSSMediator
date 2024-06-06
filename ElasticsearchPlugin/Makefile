@@ -1,4 +1,5 @@
 SHELL := /bin/bash
+VERSION = $(shell cat ../VERSION)
 
 all: clean docker_build_all copy_binary
 
@@ -6,25 +7,27 @@ docker_build_all:
 	@echo "---------------------------------------------------------------------------------"
 	@echo "Starting docker build and test process, for ElasticsearchPlugin......"
 	@echo "---------------------------------------------------------------------------------"
-	@docker build -t elasticsearchplugin:$(shell cat ../VERSION) . --network host
+	@cp ../VERSION .
+	@docker build -t elasticsearchplugin:$(VERSION) . --network host
 	@echo "docker build completed."
 
 docker_build:
 	@echo "---------------------------------------------------------------------------------"
 	@echo "Starting docker build process, for ElasticsearchPlugin......"
 	@echo "---------------------------------------------------------------------------------"
-	@docker build -t elasticsearchplugin:$(shell cat ../VERSION) . --network host --build-arg BUILD_CMD="build"
+	@cp ../VERSION .
+	@docker build -t elasticsearchplugin:$(VERSION) . --network host --build-arg BUILD_CMD="build"
 	@echo "docker build completed."
 
 copy_binary:
-	@docker create --name elasticsearchplugin elasticsearchplugin:$(shell cat ../VERSION)
+	@docker create --name elasticsearchplugin elasticsearchplugin:$(VERSION)
 	@mkdir -p bin
 	@docker cp elasticsearchplugin:/plugin/bin/. ./bin/
 	@docker rm elasticsearchplugin
 
 build:
 	@echo Building ElasticsearchPlugin
-	@go mod download && go build -o bin/elasticsearchplugin cmd/main.go || (echo "ElasticsearchPlugin build failed"; exit 1)
+	@go mod download && go build -ldflags "-X main.appVersion=$(VERSION)" -o bin/elasticsearchplugin cmd/main.go || (echo "ElasticsearchPlugin build failed"; exit 1)
 	@echo Running go lint
 	@go vet ./... > lint-report.xml
 	@echo Build Successful.
@@ -32,8 +35,8 @@ build:
 build_package:
 	@echo Creating ElasticsearchPlugin package
 	@mkdir -p package && mkdir -p package/bin && cp -R resources package && cp bin/elasticsearchplugin package/bin && chmod 777 package/bin/elasticsearchplugin
-	@cd package && zip -r ElasticsearchPlugin-$(shell cat ../VERSION).zip bin resources && rm -rf bin resources
-	@echo Package created at package/ElasticsearchPlugin-$(shell cat ../VERSION).zip
+	@cd package && zip -r ElasticsearchPlugin-$(VERSION).zip bin resources && rm -rf bin resources
+	@echo Package created at package/ElasticsearchPlugin-$(VERSION).zip
 
 test:
 	@echo "Started :ElasticsearchPlugin Tests"

@@ -101,7 +101,6 @@
         "y": 0
       },
       "id": 5,
-      "links": [],
       "options": {
         "code": {
           "language": "plaintext",
@@ -111,7 +110,7 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "9.5.18",
+      "pluginVersion": "11.0.0",
       "title": "NDAC ALL FM HISTORY ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
@@ -157,7 +156,6 @@
         "y": 2
       },
       "id": 16,
-      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -170,9 +168,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.18",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -252,7 +252,6 @@
         "y": 2
       },
       "id": 9,
-      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -265,9 +264,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.18",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -347,7 +348,6 @@
         "y": 2
       },
       "id": 13,
-      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -360,9 +360,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.18",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -441,7 +443,6 @@
         "y": 2
       },
       "id": 14,
-      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -454,9 +455,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.18",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -535,7 +538,6 @@
         "y": 2
       },
       "id": 15,
-      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -548,9 +550,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.18",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -628,7 +632,6 @@
         "y": 2
       },
       "id": 11,
-      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -641,9 +644,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.18",
+      "pluginVersion": "11.0.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -692,7 +697,7 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": "center",
+            "align": "left",
             "cellOptions": {
               "type": "auto"
             },
@@ -874,6 +879,18 @@
                 "value": "string"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "AlarmID"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 155
+              }
+            ]
           }
         ]
       },
@@ -886,7 +903,6 @@
       "hideTimeOverride": false,
       "id": 2,
       "interval": "",
-      "links": [],
       "options": {
         "cellHeight": "sm",
         "footer": {
@@ -901,7 +917,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "9.5.18",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "bucketAggs": [],
@@ -1012,7 +1028,6 @@
   ],
   "refresh": "1m",
   "schemaVersion": 38,
-  "style": "dark",
   "tags": [
     "AllAlarms"
   ],
@@ -1183,6 +1198,7 @@
     "from": "now-7d",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "refresh_intervals": [
       "5s",

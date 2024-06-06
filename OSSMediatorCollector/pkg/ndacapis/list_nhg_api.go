@@ -54,18 +54,13 @@ func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64, prettyR
 
 func listNhgRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
 	apiURL := config.Conf.BaseURL + api.API
-	if !user.IsSessionAlive {
-		log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
-		return
-	}
-
 	//wait if refresh token api is running
 	user.Wg.Wait()
 
 	log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
 	request, err := http.NewRequest("GET", apiURL, nil)
 	if err != nil {
-		user.IsSessionAlive = false
+		//user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
 		return
 	}
@@ -73,7 +68,7 @@ func listNhgRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 	request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
 	response, err := doRequest(request)
 	if err != nil {
-		user.IsSessionAlive = false
+		//user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
 		return
 	}
@@ -81,7 +76,7 @@ func listNhgRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 	resp := new(nhgAPIResponse)
 	err = json.NewDecoder(bytes.NewReader(response)).Decode(&resp)
 	if err != nil {
-		user.IsSessionAlive = false
+		//user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to decode response")
 		return
 	}
@@ -89,7 +84,7 @@ func listNhgRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 	//check response for status code
 	err = checkStatusCode(resp.Status)
 	if err != nil {
-		user.IsSessionAlive = false
+		//user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
 		return
 	}
@@ -105,8 +100,6 @@ func listNhgRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 	if len(user.NhgIDs) == 0 {
 		//user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Info("no active nhg found for user")
-	} else {
-		user.IsSessionAlive = true
 	}
 }
 
@@ -136,10 +129,13 @@ func storeUserHwIDRBAC(nhgData []NetworkInfo, user *config.User, txnID uint64) {
 	for hwID := range hwIDs {
 		user.HwIDs = append(user.HwIDs, hwID)
 	}
-	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDs}).Info("user's access point hardware")
+	//log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDs}).Debug("user's access point hardware")
 }
 
 func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
+	//wait if refresh token api is running
+	user.Wg.Wait()
+
 	orgResponse, err := fetchOrgUUID(api, user, txnID, prettyResponse)
 	if err != nil {
 		user.IsSessionAlive = false
@@ -154,11 +150,11 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 	for _, org := range orgResponse.OrgDetails {
 		accResponse, err := fetchAccUUID(api, user, org, txnID, prettyResponse)
 		if err != nil {
-			log.WithFields(log.Fields{"tid": txnID, "user": user, "org_id": org, "error": err}).Errorf("Error while getting account_id")
+			log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "org_id": org, "error": err}).Errorf("Error while getting account_id")
 			continue
 		}
-		if err != nil || len(accResponse.AccDetails) == 0 {
-			log.WithFields(log.Fields{"tid": txnID, "user": user, "org_id": org}).Debug("No accounts mapped")
+		if len(accResponse.AccDetails) == 0 {
+			log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "org_id": org}).Debug("No accounts mapped")
 			continue
 		}
 
@@ -170,14 +166,6 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 
 		for _, acc := range accResponse.AccDetails {
 			apiURL := config.Conf.BaseURL + api.API
-			if !user.IsSessionAlive {
-				log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
-				return
-			}
-
-			//wait if refresh token api is running
-			user.Wg.Wait()
-
 			log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
 			request, err := http.NewRequest(http.MethodGet, apiURL, nil)
 			if err != nil {
@@ -211,7 +199,7 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 			}
 
 			if len(resp.NetworkInfo) == 0 {
-				log.WithFields(log.Fields{"tid": txnID, "user": user, "org_id": org.OrgUUID, "acc_id": acc.AccUUID}).Debugf("No nhg mapped")
+				log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "org_id": org.OrgUUID, "acc_id": acc.AccUUID}).Debugf("No nhg mapped")
 				continue
 			}
 
@@ -229,8 +217,6 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 	if len(user.NhgIDsABAC) == 0 {
 		//user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Info("no active nhg found for user")
-	} else {
-		user.IsSessionAlive = true
 	}
 }
 
@@ -272,5 +258,5 @@ func storeUserHwIDABAC(nhgData []NetworkInfo, user *config.User, org *config.Org
 	for hwID := range hwIDsMap {
 		user.HwIDsABAC[hwID] = orgAcc
 	}
-	log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDsABAC}).Info("user's access point hardware")
+	//log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "hw_ids": user.HwIDsABAC}).Debug("user's access point hardware")
 }

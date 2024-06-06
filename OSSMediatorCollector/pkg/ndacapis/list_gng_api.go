@@ -67,11 +67,15 @@ func listGngRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 	}
 
 	storeUserGngRBAC(resp.GngInfo, user)
-	gngData := new(gngAPIAllResponse)
-	_ = json.NewDecoder(bytes.NewReader(response)).Decode(&gngData)
-	err = utils.WriteResponse(user, api, gngData.GngInfo, "", txnID, prettyResponse)
-	if err != nil {
-		log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
+	if len(resp.GngInfo) > 0 {
+		gngData := new(gngAPIAllResponse)
+		_ = json.NewDecoder(bytes.NewReader(response)).Decode(&gngData)
+		err = utils.WriteResponse(user, api, gngData.GngInfo, "", txnID, prettyResponse)
+		if err != nil {
+			log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
+		}
+	} else {
+		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Debug("no GNG found for user")
 	}
 	if len(user.NhgIDs) == 0 {
 		user.IsSessionAlive = false
@@ -92,11 +96,9 @@ func storeUserGngRBAC(gngData []GngInfo, user *config.User) {
 }
 
 func listGngABAC(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
-	if len(user.AccountIDsABAC) == 0 {
-		user.IsSessionAlive = false
-		return
-	}
-
+	//wait if refresh token api is running
+	user.Wg.Wait()
+	apiURL := config.Conf.BaseURL + api.API
 	for orgID, accIDs := range user.AccountIDsABAC {
 		if len(accIDs) == 0 {
 			log.WithFields(log.Fields{"tid": txnID, "user": user, "org_id": orgID}).Debug("No accounts mapped")
@@ -104,15 +106,6 @@ func listGngABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 		}
 
 		for _, accID := range accIDs {
-			apiURL := config.Conf.BaseURL + api.API
-			if !user.IsSessionAlive {
-				log.WithFields(log.Fields{"tid": txnID, "api_url": apiURL}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
-				return
-			}
-
-			//wait if refresh token api is running
-			user.Wg.Wait()
-
 			log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
 			request, err := http.NewRequest("GET", apiURL, nil)
 			if err != nil {
@@ -146,11 +139,15 @@ func listGngABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 			}
 
 			storeUserGngABAC(resp.GngInfo, user, orgID, accID)
-			gngData := new(gngAPIAllResponse)
-			_ = json.NewDecoder(bytes.NewReader(response)).Decode(&gngData)
-			err = utils.WriteResponse(user, api, gngData.GngInfo, "", txnID, prettyResponse)
-			if err != nil {
-				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
+			if len(resp.GngInfo) > 0 {
+				gngData := new(gngAPIAllResponse)
+				_ = json.NewDecoder(bytes.NewReader(response)).Decode(&gngData)
+				err = utils.WriteResponse(user, api, gngData.GngInfo, "", txnID, prettyResponse)
+				if err != nil {
+					log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
+				}
+			} else {
+				log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Debug("no GNG found for user")
 			}
 		}
 	}

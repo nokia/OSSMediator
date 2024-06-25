@@ -23,19 +23,18 @@ type UserAGConf struct {
 
 // Config keeps the config from json
 type Config struct {
-	BaseURL              string     `json:"base_url"` //Base URL of the API
-	AzureSessionAPIs     AzureConf  `json:"azure_session_api"`
-	UMAPIs               UMConf     `json:"um_api"`       //User management Configuration
-	ListNhGAPI           *APIConf   `json:"list_nhg_api"` //list NHG API to keep track of all ACTIVE NHG of the user.
-	ListGNGAPI           *APIConf   `json:"list_gng_api"` //list GNG API to keep track of all ACTIVE GNG of the user.
-	MetricAPIs           []*APIConf `json:"metric_apis"`  //Array of API config
-	SimAPIs              []*APIConf `json:"sim_apis"`     //Array of API config
-	UserAGAPIs           UserAGConf `json:"userAG_apis"`  //Array of API config
-	Users                []*User    `json:"users"`        //Keep track of all the user's details
-	Limit                int        `json:"limit"`
-	Delay                int        `json:"delay"`
-	MaxConcurrentProcess int        `json:"max_concurrent_process"`
-	PrettyResponse       bool       `json:"pretty_response"`
+	BaseURL              string              `json:"base_url"` //Base URL of the API
+	AzureSessionAPIs     AzureConf           `json:"azure_session_api"`
+	UMAPIs               UMConf              `json:"um_api"`           //User management Configuration
+	ListNetworkAPI       *ListNetworkAPIConf `json:"list_network_api"` //list network API to keep track of all ACTIVE networks of the user.
+	MetricAPIs           []*APIConf          `json:"metric_apis"`      //Array of API config
+	SimAPIs              []*APIConf          `json:"sim_apis"`         //Array of API config
+	UserAGAPIs           UserAGConf          `json:"userAG_apis"`      //Array of API config
+	Users                []*User             `json:"users"`            //Keep track of all the user's details
+	Limit                int                 `json:"limit"`
+	Delay                int                 `json:"delay"`
+	MaxConcurrentProcess int                 `json:"max_concurrent_process"`
+	PrettyResponse       bool                `json:"pretty_response"`
 }
 
 type OrgDetails struct {
@@ -61,6 +60,7 @@ type User struct {
 	ResponseDest   string        `json:"response_dest"` //Base directory where sub-directories will be created for each APIs to store its response.
 	SessionToken   *SessionToken //SessionToken variable keeps track of access_token, refresh_token and expiry_time of the token. It is used for authenticating the API calls.
 	Wg             sync.WaitGroup
+	NhgWg          sync.WaitGroup
 	IsSessionAlive bool
 	NhgIDsABAC     map[string]OrgAccDetails
 	HwIDsABAC      map[string]OrgAccDetails
@@ -96,6 +96,13 @@ type APIConf struct {
 	Interval     int    `json:"interval"`      //Interval at which the API will be triggered periodically.
 	SyncDuration int    `json:"sync_duration"` //Interval in minutes for which duration FM will be re-synced.
 	Aggregation  string `json:"aggregation"`
+}
+
+// ListNetworkAPIConf keeps network API configs
+type ListNetworkAPIConf struct {
+	NhgAPI   string `json:"nhg_api"`  //list NHG API to keep track of all ACTIVE NHG of the user.
+	GngAPI   string `json:"gng_api"`  //list GNG API to keep track of all ACTIVE GNG of the user.
+	Interval int    `json:"interval"` //Interval at which the API will be triggered periodically.
 }
 
 var (

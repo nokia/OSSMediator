@@ -44,6 +44,8 @@ func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64, prettyR
 	user.HwIDsABAC = map[string]config.OrgAccDetails{}
 	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
 	user.AccountIDsABAC = map[string][]string{}
+	user.NhgIDs = []string{}
+	user.HwIDs = []string{}
 	authType := strings.ToUpper(user.AuthType)
 	if authType == "ADTOKEN" {
 		listNhgABAC(api, user, txnID, prettyResponse)
@@ -104,7 +106,6 @@ func listNhgRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 }
 
 func storeUserNhgRBAC(nhgData []NetworkInfo, user *config.User) {
-	user.NhgIDs = []string{}
 	for _, nhgInfo := range nhgData {
 		if nhgInfo.NhgConfigStatus == activeNhgStatus {
 			user.NhgIDs = append(user.NhgIDs, nhgInfo.NhgID)
@@ -113,7 +114,6 @@ func storeUserNhgRBAC(nhgData []NetworkInfo, user *config.User) {
 }
 
 func storeUserHwIDRBAC(nhgData []NetworkInfo, user *config.User, txnID uint64) {
-	user.HwIDs = []string{}
 	hwIDs := make(map[string]struct{})
 	for _, nhgInfo := range nhgData {
 		if nhgInfo.NhgConfigStatus != activeNhgStatus {

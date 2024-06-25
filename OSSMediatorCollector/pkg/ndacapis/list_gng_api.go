@@ -78,10 +78,8 @@ func listGngRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Debug("no GNG found for user")
 	}
 	if len(user.NhgIDs) == 0 {
-		user.IsSessionAlive = false
+		//user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Info("no active nhg found for user")
-	} else {
-		user.IsSessionAlive = true
 	}
 }
 
@@ -152,10 +150,8 @@ func listGngABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 		}
 	}
 	if len(user.NhgIDsABAC) == 0 {
-		user.IsSessionAlive = false
+		//user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Info("no active nhg found for user")
-	} else {
-		user.IsSessionAlive = true
 	}
 }
 

@@ -102,9 +102,9 @@ func main() {
 	for _, user := range config.Conf.Users {
 		go ndacapis.RefreshToken(user)
 		//Create the sub response directory for the API under the user's base response directory.
-		utils.CreateResponseDirectory(user.ResponseDest, config.Conf.ListNhGAPI.API)
-		if config.Conf.ListGNGAPI != nil {
-			utils.CreateResponseDirectory(user.ResponseDest, config.Conf.ListGNGAPI.API)
+		utils.CreateResponseDirectory(user.ResponseDest, config.Conf.ListNetworkAPI.NhgAPI)
+		if config.Conf.ListNetworkAPI.GngAPI != "" {
+			utils.CreateResponseDirectory(user.ResponseDest, config.Conf.ListNetworkAPI.GngAPI)
 		}
 		if strings.ToUpper(user.AuthType) == "ADTOKEN" {
 			utils.CreateResponseDirectory(user.ResponseDest, config.Conf.UserAGAPIs.ListOrgUUID)

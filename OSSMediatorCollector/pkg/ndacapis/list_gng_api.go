@@ -66,7 +66,9 @@ func listGngRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 		return
 	}
 
+	user.NhgMux.Lock()
 	storeUserGngRBAC(resp.GngInfo, user)
+	user.NhgMux.Unlock()
 	if len(resp.GngInfo) > 0 {
 		gngData := new(gngAPIAllResponse)
 		_ = json.NewDecoder(bytes.NewReader(response)).Decode(&gngData)
@@ -75,13 +77,11 @@ func listGngRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 			log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 		}
 	} else {
-		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Debug("no GNG found for user")
+		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Info("no GNG found for user")
 	}
 	if len(user.NhgIDs) == 0 {
-		user.IsSessionAlive = false
+		//user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Info("no active nhg found for user")
-	} else {
-		user.IsSessionAlive = true
 	}
 }
 
@@ -99,6 +99,8 @@ func listGngABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 	//wait if refresh token api is running
 	user.Wg.Wait()
 	apiURL := config.Conf.BaseURL + api.API
+	user.NhgMux.Lock()
+	defer user.NhgMux.Unlock()
 	for orgID, accIDs := range user.AccountIDsABAC {
 		if len(accIDs) == 0 {
 			log.WithFields(log.Fields{"tid": txnID, "user": user, "org_id": orgID}).Debug("No accounts mapped")
@@ -147,15 +149,13 @@ func listGngABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 					log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
 				}
 			} else {
-				log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Debug("no GNG found for user")
+				log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "org_id": orgID, "acc_id": accID}).Info("no GNG found for user")
 			}
 		}
 	}
 	if len(user.NhgIDsABAC) == 0 {
-		user.IsSessionAlive = false
+		//user.IsSessionAlive = false
 		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Info("no active nhg found for user")
-	} else {
-		user.IsSessionAlive = true
 	}
 }
 

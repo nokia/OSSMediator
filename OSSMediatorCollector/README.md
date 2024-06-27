@@ -95,12 +95,9 @@ PM / FM data collection by collector is performed using REST interface at regula
     "refresh": "/refresh-session",
     "logout": "/logout-session"
   },
-  "list_nhg_api": {
-    "api": "/network-hardware-groups",
-    "interval": 60
-  },
-  "list_gng_api": {
-    "api": "/generic-network-groups",
+  "list_network_api": {
+    "nhg_api": "/network-hardware-groups",
+    "gng_api": "/generic-network-groups",
     "interval": 60
   },
   "sim_apis": [
@@ -229,10 +226,9 @@ PM / FM data collection by collector is performed using REST interface at regula
 | um_api.login              | string              | Customer portal login API.                                                                                                                                                                                                                                                         |
 | um_api.refresh            | string              | Customer portal refresh session API.                                                                                                                                                                                                                                               |
 | um_api.logout             | string              | Customer portal logout API.                                                                                                                                                                                                                                                        |
-| list_nhg_api.api          | string              | API URl for getting user's network details. Collector uses the list of NHGs for each FM/PM data collection.                                                                                                                                                                        |
-| list_nhg_api.interval     | integer             | Interval at which list_nhg_api will be called..                                                                                                                                                                                                                                    |
-| list_gng_api.api          | string              | API URl for getting user's MXIE network details. Collector uses the list of GNGs for each FM/PM data collection.                                                                                                                                                                   |
-| list_gng_api.interval     | integer             | Interval at which list_gng_api will be called..                                                                                                                                                                                                                                    |
+| list_network_api.nhg_api  | string              | API URl for getting user's network details. Collector uses the list of NHGs for each FM/PM data collection.                                                                                                                                                                        |
+| list_network_api.gng_api  | string              | API URl for getting user's MXIE network details. Collector uses the list of GNGs for each FM/PM data collection.                                                                                                                                                                   |
+| list_network_api.interval | integer             | Interval at which list_nhg_api will be called..                                                                                                                                                                                                                                    |
 | sim_apis                  | [object] (Optional) | Get SIM APIs.                                                                                                                                                                                                                                                                      |
 | sim_apis.api              | string              | API URL for fetching SIM data.                                                                                                                                                                                                                                                     |
 | sim_apis.interval         | integer             | Interval at which SIM API should be called to collect data.                                                                                                                                                                                                                        |

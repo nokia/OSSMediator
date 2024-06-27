@@ -103,6 +103,8 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, pret
 
 	wg := sync.WaitGroup{}
 	requests := make(chan struct{}, config.Conf.MaxConcurrentProcess)
+	user.NhgMux.RLock()
+	defer user.NhgMux.RUnlock()
 	if authType == "ADTOKEN" {
 		//ABAC user
 		for nhg, orgAcc := range user.NhgIDsABAC {

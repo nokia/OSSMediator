@@ -32,6 +32,7 @@ const (
 	fmdataResponseType   = "fmdata"
 	pmdataResponseType   = "pmdata"
 	nhgResponseType      = "network-hardware-groups"
+	gngResponseType      = "generic-network-groups"
 	simsResponseType     = "sims"
 	orgResponseType      = "organizations"
 	accountsResponseType = "accounts"
@@ -93,7 +94,7 @@ func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id 
 		if id != "" {
 			fileName += "_" + id
 		}
-	} else if fileName == nhgResponseType {
+	} else if fileName == nhgResponseType || fileName == gngResponseType {
 		fileName += "_" + user.Email
 	} else if strings.Contains(fileName, simsResponseType) {
 		if id != "" {

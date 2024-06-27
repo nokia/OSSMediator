@@ -31,8 +31,8 @@ var (
 			{Email: "user1@nokia.com", Password: "dGVzdDE=", ResponseDest: "/statistics/reports/user1"},
 			{Email: "user2@nokia.com", Password: "dGVzdDI=", ResponseDest: "/statistics/reports/user2"},
 		},
-		ListNhGAPI: &config.APIConf{
-			API:      "/network-hardware-groups",
+		ListNetworkAPI: &config.ListNetworkAPIConf{
+			NhgAPI:   "/network-hardware-groups",
 			Interval: 60,
 		},
 		Limit: 200,
@@ -179,20 +179,20 @@ func TestValidateConfWithInvalidAPIMetricTypeForFM(t *testing.T) {
 
 func TestValidateConfWithInvalidListNhgAPIInterval(t *testing.T) {
 	tmp := conf.MetricAPIs
-	conf.ListNhGAPI.Interval = 0
+	conf.ListNetworkAPI.Interval = 0
 	defer func() { conf.MetricAPIs = tmp }()
 	err := ValidateConf(conf)
-	if err == nil || !strings.Contains(err.Error(), "list_nhg_api API call interval can't be zero") {
+	if err == nil || !strings.Contains(err.Error(), "list_network_api API call interval can't be zero") {
 		t.Error(err)
 	}
 }
 
 func TestValidateConfWithInvalidListNhgAPI(t *testing.T) {
 	tmp := conf.MetricAPIs
-	conf.ListNhGAPI = &config.APIConf{}
+	conf.ListNetworkAPI = &config.ListNetworkAPIConf{}
 	defer func() { conf.MetricAPIs = tmp }()
 	err := ValidateConf(conf)
-	if err == nil || !strings.Contains(err.Error(), "list_nhg_api API URL can't be empty") {
+	if err == nil || !strings.Contains(err.Error(), "list_network_api API URL can't be empty") {
 		t.Error(err)
 	}
 }

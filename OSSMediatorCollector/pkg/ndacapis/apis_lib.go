@@ -71,18 +71,23 @@ type fn func(*config.APIConf, *config.User, uint64, bool)
 
 // StartDataCollection starts the tickers for PM/FM APIs.
 func StartDataCollection() {
+	for _, user := range config.Conf.Users {
+		if config.Conf.ListNetworkAPI != nil {
+			getNhgDetails(&config.APIConf{API: config.Conf.ListNetworkAPI.NhgAPI, Interval: config.Conf.ListNetworkAPI.Interval}, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
+			if config.Conf.ListNetworkAPI.GngAPI != "" {
+				getGngDetails(&config.APIConf{API: config.Conf.ListNetworkAPI.GngAPI, Interval: config.Conf.ListNetworkAPI.Interval}, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
+			}
+			ticker := time.NewTicker(time.Duration(config.Conf.ListNetworkAPI.Interval) * time.Minute)
+			go triggerNetworkAPI(ticker, config.Conf.ListNetworkAPI, user, config.Conf.PrettyResponse)
+		}
+	}
+
 	currentTime := utils.CurrentTime()
 	diff := currentTime.Minute() - (currentTime.Minute() / interval * interval) - config.Conf.Delay
 	begTime := currentTime.Add(time.Duration(-1*diff) * time.Minute)
 	if currentTime.After(begTime) {
 		begTime = begTime.Add(time.Duration(interval) * time.Minute)
 		for _, user := range config.Conf.Users {
-			if config.Conf.ListNetworkAPI != nil {
-				getNhgDetails(&config.APIConf{API: config.Conf.ListNetworkAPI.NhgAPI, Interval: config.Conf.ListNetworkAPI.Interval}, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
-				if config.Conf.ListNetworkAPI.GngAPI != "" {
-					getGngDetails(&config.APIConf{API: config.Conf.ListNetworkAPI.GngAPI, Interval: config.Conf.ListNetworkAPI.Interval}, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
-				}
-			}
 			for _, api := range config.Conf.MetricAPIs {
 				go fetchMetricsData(api, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
 			}
@@ -96,14 +101,6 @@ func StartDataCollection() {
 	<-timer.C
 	//For each APIs creates ticker to trigger the API periodically at specified interval.
 	for _, user := range config.Conf.Users {
-		if config.Conf.ListNetworkAPI != nil {
-			getNhgDetails(&config.APIConf{API: config.Conf.ListNetworkAPI.NhgAPI, Interval: config.Conf.ListNetworkAPI.Interval}, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
-			if config.Conf.ListNetworkAPI.GngAPI != "" {
-				getGngDetails(&config.APIConf{API: config.Conf.ListNetworkAPI.GngAPI, Interval: config.Conf.ListNetworkAPI.Interval}, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
-			}
-			ticker := time.NewTicker(time.Duration(config.Conf.ListNetworkAPI.Interval) * time.Minute)
-			go triggerNetworkAPI(ticker, config.Conf.ListNetworkAPI, user, config.Conf.PrettyResponse)
-		}
 		for _, api := range config.Conf.MetricAPIs {
 			go fetchMetricsData(api, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)
 			ticker := time.NewTicker(time.Duration(api.Interval) * time.Minute)
@@ -121,8 +118,6 @@ func StartDataCollection() {
 func triggerNetworkAPI(ticker *time.Ticker, api *config.ListNetworkAPIConf, user *config.User, prettyResponse bool) {
 	for {
 		<-ticker.C
-		user.NhgWg.Add(1)
-		defer user.NhgWg.Done()
 		getNhgDetails(&config.APIConf{API: api.NhgAPI, Interval: api.Interval}, user, atomic.AddUint64(&txnID, 1), prettyResponse)
 		if config.Conf.ListNetworkAPI.GngAPI != "" {
 			getGngDetails(&config.APIConf{API: api.GngAPI, Interval: api.Interval}, user, atomic.AddUint64(&txnID, 1), prettyResponse)
@@ -134,7 +129,6 @@ func triggerNetworkAPI(ticker *time.Ticker, api *config.ListNetworkAPIConf, user
 func trigger(ticker *time.Ticker, api *config.APIConf, user *config.User, prettyResponse bool, method fn) {
 	for {
 		<-ticker.C
-		user.NhgWg.Wait()
 		method(api, user, atomic.AddUint64(&txnID, 1), prettyResponse)
 	}
 }

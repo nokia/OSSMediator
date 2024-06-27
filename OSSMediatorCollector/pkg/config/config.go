@@ -60,7 +60,7 @@ type User struct {
 	ResponseDest   string        `json:"response_dest"` //Base directory where sub-directories will be created for each APIs to store its response.
 	SessionToken   *SessionToken //SessionToken variable keeps track of access_token, refresh_token and expiry_time of the token. It is used for authenticating the API calls.
 	Wg             sync.WaitGroup
-	NhgWg          sync.WaitGroup
+	NhgMux         sync.RWMutex
 	IsSessionAlive bool
 	NhgIDsABAC     map[string]OrgAccDetails
 	HwIDsABAC      map[string]OrgAccDetails

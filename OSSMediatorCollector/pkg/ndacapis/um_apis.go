@@ -206,8 +206,16 @@ func RefreshToken(user *config.User) {
 		duration = getRefreshDuration(user)
 		if duration < 10*time.Second {
 			log.WithFields(log.Fields{"refresh_duration": duration, "user": user.Email}).Debugf("Found less refresh duration, login will be tried for %s.", user.Email)
-			duration = 5 * time.Second
-			user.IsSessionAlive = false
+			user.Wg.Add(1)
+			err = Login(user)
+			if err != nil {
+				log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
+				user.IsSessionAlive = false
+				go retryLogin(initialBackoff, user)
+			} else {
+				user.IsSessionAlive = true
+				user.Wg.Done()
+			}
 		}
 		user.Wg.Wait()
 		log.Infof("Token refreshed for %s.", user.Email)

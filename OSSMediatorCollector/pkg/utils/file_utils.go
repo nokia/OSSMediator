@@ -38,10 +38,11 @@ const (
 	accountsResponseType = "accounts"
 
 	//field name to extract data from PM response file
-	pmSourceField    = "pm_data_source"
-	fmSourceField    = "fm_data"
-	eventTimeFieldPM = "end_timestamp"
-	eventTimeFieldFM = "event_time"
+	pmSourceField           = "pm_data_source"
+	fmSourceField           = "fm_data"
+	eventTimeFieldPM        = "timestamp"
+	radioPMEventTimeFieldPM = "end_timestamp"
+	eventTimeFieldFM        = "event_time"
 
 	//event time format
 	eventTimeFormatBaiCell   = "2006-01-02T15:04:05Z07:00"
@@ -163,7 +164,7 @@ func getLastReceivedDataTime(user *config.User, api *config.APIConf, nhgID strin
 }
 
 // StoreLastReceivedDataTime writes the last received metric's event time to a file so that next time that time stamp will be used as start_time for api calls.
-// Creates file for each user and each APIs.
+// Creates file for each user and each API.
 // returns error if writing to or reading from the response directory fails.
 func StoreLastReceivedDataTime(user *config.User, data interface{}, api *config.APIConf, nhgID string, txnID uint64) error {
 	var fieldName, source string
@@ -172,8 +173,12 @@ func StoreLastReceivedDataTime(user *config.User, data interface{}, api *config.
 		source = fmSourceField
 		fieldName = eventTimeFieldFM
 	} else if baseAPIPath == pmdataResponseType {
+		if api.MetricType == "RADIO" {
+			fieldName = radioPMEventTimeFieldPM
+		} else {
+			fieldName = eventTimeFieldPM
+		}
 		source = pmSourceField
-		fieldName = eventTimeFieldPM
 	}
 
 	receivedData := make(map[string]struct{})

@@ -103,7 +103,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the average number of UE's having data in RLC level buffers during the measurement period per cell for downlink direction and per PLMN.",
+      "description": "This KPI shows the number of intra-frequency intra-gNB intra-DU preparation attempts in stand alone operation. It is calculated from the number of successful preparations (that lead to an execution attempt) plus the failed preparations.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -218,7 +218,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C6",
+              "field": "pm_data.NRANS_M55145C00301",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -226,7 +226,7 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C7",
+              "field": "pm_data.NRANS_M55145C00303",
               "hide": true,
               "id": "4",
               "meta": {},
@@ -234,21 +234,29 @@
               "type": "sum"
             },
             {
-              "field": "select field",
-              "id": "9",
-              "meta": {},
+              "field": "pm_data.NRANS_M55145C00304",
+              "hide": true,
+              "id": "10",
+              "type": "sum"
+            },
+            {
+              "id": "11",
               "pipelineVariables": [
                 {
-                  "name": "M8038C6",
+                  "name": "M55145C00301",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C7",
+                  "name": "M55145C00303",
                   "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C00304",
+                  "pipelineAgg": "10"
                 }
               ],
               "settings": {
-                "script": "params.M8038C6/params.M8038C7"
+                "script": "params.M55145C00301 + params.M55145C00303 + params.M55145C00304"
               },
               "type": "bucket_script"
             }
@@ -259,7 +267,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5840a E-UTRAN Average Active UEs with data in the buffer DL per PLMN [#]",
+      "title": "NR_5174b 5G SA intra-frequency intra-gNB intra-DU handover preparation attempts [#]",
       "type": "timeseries"
     },
     {
@@ -267,7 +275,355 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the average number of UE's having data in RLC level buffers during the measurement period per cell for uplink direction and per PLMN.",
+      "description": "This KPI shows the success ratio of the intra-frequency intra-gNB intra-DU preparation procedure in stand alone operation.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 36,
+      "interval": "15m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.5.15",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "pm_data_source.dn.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.end_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "15m",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.NRANS_M55145C00301",
+              "hide": true,
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C00303",
+              "hide": true,
+              "id": "4",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C00304",
+              "hide": true,
+              "id": "6",
+              "type": "sum"
+            },
+            {
+              "id": "7",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C00301",
+                  "pipelineAgg": "1"
+                },
+                {
+                  "name": "M55145C00303",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C00304",
+                  "pipelineAgg": "6"
+                }
+              ],
+              "settings": {
+                "script": "if (params.M55145C00301 == null) { return null }  else if (params.M55145C00301 == 0) { return 0 } else { return (100 * params.M55145C00301)/( params.M55145C00301 + params.M55145C00303 + params.M55145C00304) }"
+              },
+              "type": "bucket_script"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "NR_5175b 5G SA intra-frequency intra-gNB intra-DU handover preparation success ratio [%]",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI shows the success ratio of the intra-frequency intra-gNB intra-DU preparation procedure in stand alone operation.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 37,
+      "interval": "15m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.5.15",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "pm_data_source.dn.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.end_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "15m",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.NRANS_M55145C00301",
+              "hide": true,
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C00303",
+              "hide": true,
+              "id": "4",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C00304",
+              "hide": true,
+              "id": "6",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C00302",
+              "hide": true,
+              "id": "8",
+              "type": "sum"
+            },
+            {
+              "id": "9",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C00301",
+                  "pipelineAgg": "1"
+                },
+                {
+                  "name": "M55145C00302",
+                  "pipelineAgg": "8"
+                },
+                {
+                  "name": "M55145C00303",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C00304",
+                  "pipelineAgg": "6"
+                }
+              ],
+              "settings": {
+                "script": "if (params.M55145C00302 == null) { return null }  else if (params.M55145C00302 == 0) { return 0 } else { return (100 * params.M55145C00302)/( params.M55145C00301 + params.M55145C00303 + params.M55145C00304) }"
+              },
+              "type": "bucket_script"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "NR_5177b 5G SA intra-frequency intra-gNB intra-DU handover total success ratio [%]",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI shows the number of intra-frequency Xn based inter-gNB handover execution attempts per PLMN in stand alone operation, calculated on the source cell.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -329,321 +685,6 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 5
-      },
-      "id": 36,
-      "interval": "15m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "pm_data_source.dn.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.end_timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C8",
-              "hide": true,
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C9",
-              "hide": true,
-              "id": "4",
-              "type": "sum"
-            },
-            {
-              "id": "5",
-              "pipelineVariables": [
-                {
-                  "name": "M8038C9",
-                  "pipelineAgg": "4"
-                },
-                {
-                  "name": "M8038C8",
-                  "pipelineAgg": "1"
-                }
-              ],
-              "settings": {
-                "script": "params.M8038C8/params.M8038C9"
-              },
-              "type": "bucket_script"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "LTE_5841a E-UTRAN Average Active UEs with data in the buffer UL per PLMN [#]",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "description": "This KPI shows the average number of UE's having one SRB during the measurement period per PLMN.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 6,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "always",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 10
-      },
-      "id": 37,
-      "interval": "15m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "pm_data_source.dn.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.end_timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C0",
-              "hide": true,
-              "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C1",
-              "hide": true,
-              "id": "4",
-              "type": "sum"
-            },
-            {
-              "id": "5",
-              "pipelineVariables": [
-                {
-                  "name": "M8038C0",
-                  "pipelineAgg": "4"
-                },
-                {
-                  "name": "M8038C1",
-                  "pipelineAgg": "1"
-                }
-              ],
-              "settings": {
-                "script": "params.M8038C0/params.M8038C1"
-              },
-              "type": "bucket_script"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "LTE_5842a E-UTRAN Average RRC Connected UEs per PLMN [#]",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "description": "This KPI shows the PDCP SDU signaling volume on eUu interface per cell in downlink direction and per PLMN.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 6,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "always",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "decmbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
         "y": 15
       },
       "id": 38,
@@ -696,25 +737,12 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C3",
-              "hide": true,
+              "field": "pm_data.NRANS_M55145C00341",
+              "hide": false,
               "id": "1",
               "meta": {},
               "settings": {},
               "type": "sum"
-            },
-            {
-              "id": "4",
-              "pipelineVariables": [
-                {
-                  "name": "M8038C3",
-                  "pipelineAgg": "1"
-                }
-              ],
-              "settings": {
-                "script": "params.M8038C3/1000000"
-              },
-              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -723,7 +751,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5843a E-UTRAN PDCP SDU Signaling Volume for DL per PLMN [MB]",
+      "title": "NR_5182b 5G SA intra-frequency Xn based inter-gNB handover execution attempts per PLMN [#]",
       "type": "timeseries"
     },
     {
@@ -731,7 +759,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the PDCP SDU user volume on eUu interface per cell in downlink direction and per PLMN.",
+      "description": "This KPI shows the number of intra-frequency Xn based inter-gNB handover execution attempts per PLMN in stand alone operation, calculated on the source cell.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -769,13 +797,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -783,7 +813,7 @@
               }
             ]
           },
-          "unit": "decmbytes"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -843,7 +873,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C2",
+              "field": "pm_data.NRANS_M55145C00342",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -851,15 +881,25 @@
               "type": "sum"
             },
             {
+              "field": "pm_data.NRANS_M55145C00341",
+              "hide": true,
               "id": "4",
+              "type": "sum"
+            },
+            {
+              "id": "5",
               "pipelineVariables": [
                 {
-                  "name": "M8038C2",
+                  "name": "M55145C00341",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C00342",
                   "pipelineAgg": "1"
                 }
               ],
               "settings": {
-                "script": "params.M8038C2/1000000"
+                "script": "if (params.M55145C00342 == null) { return null }  else if (params.M55145C00342 == 0) { return 0 } else { return 100 * params.M55145C00342 / params.M55145C00341 }"
               },
               "type": "bucket_script"
             }
@@ -870,7 +910,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5844a E-UTRAN PDCP SDU User Volume for DL per PLMN [MB]",
+      "title": "NR_5183b 5G SA intra-frequency Xn based inter-gNB handover execution success ratio per PLMN [%]",
       "type": "timeseries"
     },
     {
@@ -878,7 +918,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the PDCP SDU signaling volume on eUu interface per cell in uplink direction and per PLMN.",
+      "description": "This KPI shows the number of intra-frequency Xn based inter-gNB handover execution attempts per PLMN in stand alone operation, calculated on the source cell.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -916,13 +956,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -930,7 +972,7 @@
               }
             ]
           },
-          "unit": "decmbytes"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -990,25 +1032,12 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C5",
-              "hide": true,
+              "field": "pm_data.NRANS_M55145C00301",
+              "hide": false,
               "id": "1",
               "meta": {},
               "settings": {},
               "type": "sum"
-            },
-            {
-              "id": "4",
-              "pipelineVariables": [
-                {
-                  "name": "M8038C5",
-                  "pipelineAgg": "1"
-                }
-              ],
-              "settings": {
-                "script": "params.M8038C5/1000000"
-              },
-              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -1017,7 +1046,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5845a E-UTRAN PDCP SDU Signaling Volume UL per PLMN [MB]",
+      "title": "NR_5199a 5G SA intra-frequency intra-DU handover execution attempts for SA per PLMN [#]",
       "type": "timeseries"
     },
     {
@@ -1025,7 +1054,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the PDCP SDU user volume on eUu interface per cell in uplink direction and per PLMN.",
+      "description": "This KPI shows the success ratio of intra-frequency intra-DU handover execution procedure for SA, per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1063,13 +1092,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1077,7 +1108,7 @@
               }
             ]
           },
-          "unit": "decmbytes"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -1137,7 +1168,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C4",
+              "field": "pm_data.NRANS_M55145C00301",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -1145,15 +1176,25 @@
               "type": "sum"
             },
             {
+              "field": "pm_data.NRANS_M55145C00302",
+              "hide": true,
               "id": "4",
+              "type": "sum"
+            },
+            {
+              "id": "5",
               "pipelineVariables": [
                 {
-                  "name": "M8038C4",
+                  "name": "M55145C00301",
                   "pipelineAgg": "1"
+                },
+                {
+                  "name": "M55145C00302",
+                  "pipelineAgg": "4"
                 }
               ],
               "settings": {
-                "script": "params.M8038C4/1000000"
+                "script": "if (params.M55145C00302 == null) { return null }  else if (params.M55145C00302 == 0) { return 0 } else { return 100 * params.M55145C00302 / params.M55145C00301 }"
               },
               "type": "bucket_script"
             }
@@ -1164,7 +1205,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5846a E-UTRAN PDCP SDU User Volume UL per PLMN [MB]",
+      "title": "NR_5200a 5G SA intra-frequency intra-DU handover execution success ratio for SA per PLMN [%]",
       "type": "timeseries"
     },
     {
@@ -1172,7 +1213,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in DL for QCI1 services per PLMN.",
+      "description": "This KPI shows the SA inter-frequency intra-DU handover attempts for SA per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1210,14 +1251,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1225,7 +1267,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -1285,35 +1327,12 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C28",
-              "hide": true,
+              "field": "pm_data.NRANS_M55145C00321",
+              "hide": false,
               "id": "1",
               "meta": {},
               "settings": {},
               "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C29",
-              "hide": true,
-              "id": "5",
-              "type": "sum"
-            },
-            {
-              "id": "6",
-              "pipelineVariables": [
-                {
-                  "name": "M8038C28",
-                  "pipelineAgg": "1"
-                },
-                {
-                  "name": "M8038C29",
-                  "pipelineAgg": "5"
-                }
-              ],
-              "settings": {
-                "script": "params.M8038C28/params.M8038C29"
-              },
-              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -1322,7 +1341,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5847a E-UTRAN Averaged IP scheduled Throughput in DL, QCI1, PLMN [kbps]",
+      "title": "NR_5201a 5G SA Inter-frequency intra-DU handover execution attempts per PLMN [#]",
       "type": "timeseries"
     },
     {
@@ -1330,7 +1349,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in DL for QCI2 services per PLMN.",
+      "description": "This KPI shows the success ratio of inter-frequency intra-DU handover execution procedure for SA, per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1368,14 +1387,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1383,7 +1403,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -1443,7 +1463,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C30",
+              "field": "pm_data.NRANS_M55145C00321",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -1451,25 +1471,25 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C31",
+              "field": "pm_data.NRANS_M55145C00322",
               "hide": true,
-              "id": "5",
+              "id": "4",
               "type": "sum"
             },
             {
-              "id": "6",
+              "id": "5",
               "pipelineVariables": [
                 {
-                  "name": "M8038C30",
+                  "name": "M55145C00321",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C31",
-                  "pipelineAgg": "5"
+                  "name": "M55145C00322",
+                  "pipelineAgg": "4"
                 }
               ],
               "settings": {
-                "script": "params.M8038C30/params.M8038C31"
+                "script": "if (params.M55145C00322 == null) { return null }  else if (params.M55145C00322 == 0) { return 0 } else { return 100 * params.M55145C00322 / params.M55145C00321 }"
               },
               "type": "bucket_script"
             }
@@ -1480,7 +1500,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5848a E-UTRAN Averaged IP scheduled Throughput in DL, QCI2, PLMN [kbps]",
+      "title": "NR_5202a 5G SA Inter-frequency intra-DU handover execution success ratio per PLMN [%]",
       "type": "timeseries"
     },
     {
@@ -1488,7 +1508,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in DL for QCI3 services per PLMN.",
+      "description": "This KPI shows the Xn based inter-gNB inter-frequency HO execution attempts per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1526,14 +1546,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1541,7 +1562,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -1601,35 +1622,12 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C32",
-              "hide": true,
+              "field": "pm_data.NRANS_M55145C00351",
+              "hide": false,
               "id": "1",
               "meta": {},
               "settings": {},
               "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C33",
-              "hide": true,
-              "id": "5",
-              "type": "sum"
-            },
-            {
-              "id": "6",
-              "pipelineVariables": [
-                {
-                  "name": "M8038C32",
-                  "pipelineAgg": "1"
-                },
-                {
-                  "name": "M8038C33",
-                  "pipelineAgg": "5"
-                }
-              ],
-              "settings": {
-                "script": "params.M8038C32/params.M8038C33"
-              },
-              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -1638,7 +1636,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5849a E-UTRAN Averaged IP scheduled Throughput in DL, QCI3, PLMN [kbps]",
+      "title": "NR_5205a 5G SA Xn based Inter-gNB inter-frequency HO execution attempts per PLMN [#]",
       "type": "timeseries"
     },
     {
@@ -1646,7 +1644,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in DL for QCI4 services per PLMN.",
+      "description": "This KPI shows the Xn based inter-gNB inter-frequency HO execution success ratio per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1684,14 +1682,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1699,7 +1698,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -1759,7 +1758,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C34",
+              "field": "pm_data.NRANS_M55145C00351",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -1767,25 +1766,25 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C35",
+              "field": "pm_data.NRANS_M55145C00352",
               "hide": true,
-              "id": "5",
+              "id": "4",
               "type": "sum"
             },
             {
-              "id": "6",
+              "id": "5",
               "pipelineVariables": [
                 {
-                  "name": "M8038C34",
+                  "name": "M55145C00351",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C35",
-                  "pipelineAgg": "5"
+                  "name": "M55145C00352",
+                  "pipelineAgg": "4"
                 }
               ],
               "settings": {
-                "script": "params.M8038C34/params.M8038C35"
+                "script": "if (params.M55145C00352 == null) { return null }  else if (params.M55145C00352 == 0) { return 0 } else { return 100 * params.M55145C00352 / params.M55145C00351 }"
               },
               "type": "bucket_script"
             }
@@ -1796,7 +1795,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5850a E-UTRAN Averaged IP scheduled Throughput in DL, QCI4, PLMN [kbps]",
+      "title": "NR_5206a 5G SA Xn based Inter-gNB inter-frequency HO execution success ratio per PLMN [%]",
       "type": "timeseries"
     },
     {
@@ -1804,7 +1803,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in DL for QCI5 services per PLMN.\n",
+      "description": "This KPI shows the A1 based handover preparation attempts for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1842,14 +1841,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1857,7 +1857,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -1917,7 +1917,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C36",
+              "field": "pm_data.NRANS_M55145C02005",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -1925,25 +1925,55 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C37",
+              "field": "pm_data.NRANS_M55145C02006",
+              "hide": true,
+              "id": "4",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C02009",
               "hide": true,
               "id": "5",
               "type": "sum"
             },
             {
+              "field": "pm_data.NRANS_M55145C02011",
+              "hide": true,
               "id": "6",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C02012",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "id": "8",
               "pipelineVariables": [
                 {
-                  "name": "M8038C36",
+                  "name": "M55145C02005",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C37",
+                  "name": "M55145C02006",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C02009",
                   "pipelineAgg": "5"
+                },
+                {
+                  "name": "M55145C02011",
+                  "pipelineAgg": "6"
+                },
+                {
+                  "name": "M55145C02012",
+                  "pipelineAgg": "7"
                 }
               ],
               "settings": {
-                "script": "params.M8038C36/params.M8038C37"
+                "script": "params.M55145C02005 + params.M55145C02006 + params.M55145C02009 + params.M55145C02011 + params.M55145C02012"
               },
               "type": "bucket_script"
             }
@@ -1954,7 +1984,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5851a E-UTRAN Averaged IP scheduled Throughput in DL, QCI5, PLMN [kbps]",
+      "title": "NR_5309a 5G NSA A1 based HO preparation attempts for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN [#]",
       "type": "timeseries"
     },
     {
@@ -1962,7 +1992,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in DL for QCI6 services per PLMN.",
+      "description": "This KPI shows the A1 based handover preparation success ratio for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2000,14 +2030,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2015,7 +2046,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -2075,7 +2106,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C38",
+              "field": "pm_data.NRANS_M55145C02005",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -2083,25 +2114,55 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C39",
+              "field": "pm_data.NRANS_M55145C02006",
+              "hide": true,
+              "id": "4",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C02009",
               "hide": true,
               "id": "5",
               "type": "sum"
             },
             {
+              "field": "pm_data.NRANS_M55145C02011",
+              "hide": true,
               "id": "6",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C02012",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "id": "8",
               "pipelineVariables": [
                 {
-                  "name": "M8038C38",
+                  "name": "M55145C02005",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C39",
+                  "name": "M55145C02006",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C02009",
                   "pipelineAgg": "5"
+                },
+                {
+                  "name": "M55145C02011",
+                  "pipelineAgg": "6"
+                },
+                {
+                  "name": "M55145C02012",
+                  "pipelineAgg": "7"
                 }
               ],
               "settings": {
-                "script": "params.M8038C38/params.M8038C39"
+                "script": "if (params.M55145C02005 + params.M55145C02006 == null) { return null }  else if (params.M55145C02005 + params.M55145C02006 == 0) { return 0 } else { return 100 * (params.M55145C02005 + params.M55145C02006) / (params.M55145C02005 + params.M55145C02006 + params.M55145C02009 + params.M55145C02011 + params.M55145C02012) }"
               },
               "type": "bucket_script"
             }
@@ -2112,7 +2173,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5852a E-UTRAN Averaged IP scheduled Throughput in DL, QCI6, PLMN [kbps]",
+      "title": "NR_5310a 5G NSA A1 based HO preparation success ratio for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN [%]",
       "type": "timeseries"
     },
     {
@@ -2120,7 +2181,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in DL for QCI7 services per PLMN.",
+      "description": "This KPI shows the A1 based handover execution attempts for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2158,14 +2219,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2173,7 +2235,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -2233,7 +2295,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C40",
+              "field": "pm_data.NRANS_M55145C02005",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -2241,25 +2303,25 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C41",
+              "field": "pm_data.NRANS_M55145C02006",
               "hide": true,
-              "id": "5",
+              "id": "4",
               "type": "sum"
             },
             {
-              "id": "6",
+              "id": "5",
               "pipelineVariables": [
                 {
-                  "name": "M8038C40",
+                  "name": "M55145C02005",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C41",
-                  "pipelineAgg": "5"
+                  "name": "M55145C02006",
+                  "pipelineAgg": "4"
                 }
               ],
               "settings": {
-                "script": "params.M8038C40/params.M8038C41"
+                "script": "params.M55145C02005+params.M55145C02006"
               },
               "type": "bucket_script"
             }
@@ -2270,7 +2332,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5853a E-UTRAN Averaged IP scheduled Throughput in DL, QCI7, PLMN [kbps]",
+      "title": "NR_5311a 5G NSA A1 based HO execution attempts for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN [#]",
       "type": "timeseries"
     },
     {
@@ -2278,7 +2340,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in DL for QCI8 services per PLMN.",
+      "description": "This KPI shows the A1 based handover execution success ratio for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2316,14 +2378,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2331,7 +2394,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -2391,7 +2454,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C42",
+              "field": "pm_data.NRANS_M55145C02005",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -2399,25 +2462,55 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C43",
+              "field": "pm_data.NRANS_M55145C02006",
+              "hide": true,
+              "id": "4",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C02008",
               "hide": true,
               "id": "5",
               "type": "sum"
             },
             {
+              "field": "pm_data.NRANS_M55145C02010",
+              "hide": true,
               "id": "6",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C02007",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "id": "8",
               "pipelineVariables": [
                 {
-                  "name": "M8038C42",
+                  "name": "M55145C02005",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C43",
+                  "name": "M55145C02006",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C02008",
                   "pipelineAgg": "5"
+                },
+                {
+                  "name": "M55145C02010",
+                  "pipelineAgg": "6"
+                },
+                {
+                  "name": "M55145C02007",
+                  "pipelineAgg": "7"
                 }
               ],
               "settings": {
-                "script": "params.M8038C42/params.M8038C43"
+                "script": "100 * (params.M55145C02005 + params.M55145C02006 - params.M55145C02008 - params.M55145C02010 - params.M55145C02007) / (params.M55145C02005 + params.M55145C02006)"
               },
               "type": "bucket_script"
             }
@@ -2428,7 +2521,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5854a E-UTRAN Averaged IP scheduled Throughput in DL, QCI8, PLMN [kbps]",
+      "title": "NR_5312a 5G NSA A1 based HO execution success ratio for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN [%]",
       "type": "timeseries"
     },
     {
@@ -2436,7 +2529,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled en duser throughput in DL for QCI9 services per PLMN.",
+      "description": "This KPI shows the A1 based handover total success ratio for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2474,14 +2567,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2489,7 +2583,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -2549,7 +2643,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C44",
+              "field": "pm_data.NRANS_M55145C02005",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -2557,25 +2651,85 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C45",
+              "field": "pm_data.NRANS_M55145C02006",
+              "hide": true,
+              "id": "4",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C02008",
               "hide": true,
               "id": "5",
               "type": "sum"
             },
             {
+              "field": "pm_data.NRANS_M55145C02010",
+              "hide": true,
               "id": "6",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C02007",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C02009",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C02011",
+              "hide": true,
+              "id": "10",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C02012",
+              "hide": true,
+              "id": "11",
+              "type": "sum"
+            },
+            {
+              "id": "12",
               "pipelineVariables": [
                 {
-                  "name": "M8038C44",
+                  "name": "M55145C02005",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C45",
+                  "name": "M55145C02006",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C02008",
                   "pipelineAgg": "5"
+                },
+                {
+                  "name": "M55145C02010",
+                  "pipelineAgg": "6"
+                },
+                {
+                  "name": "M55145C02007",
+                  "pipelineAgg": "7"
+                },
+                {
+                  "name": "M55145C02009",
+                  "pipelineAgg": "9"
+                },
+                {
+                  "name": "M55145C02011",
+                  "pipelineAgg": "10"
+                },
+                {
+                  "name": "M55145C02012",
+                  "pipelineAgg": "11"
                 }
               ],
               "settings": {
-                "script": "params.M8038C44/params.M8038C45"
+                "script": "100 * (params.M55145C02005 + params.M55145C02006 - params.M55145C02008 - params.M55145C02010 - params.M55145C02007) / (params.M55145C02005 + params.M55145C02006 + params.M55145C02009 + params.M55145C02011 + params.M55145C02012)"
               },
               "type": "bucket_script"
             }
@@ -2586,7 +2740,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5855a E-UTRAN Averaged IP scheduled Throughput in DL, QCI9, PLMN [kbps]",
+      "title": "NR_5313a 5G NSA A1 based HO total success ratio for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN [%]",
       "type": "timeseries"
     },
     {
@@ -2594,7 +2748,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in UL for QCI1 services per PLMN.",
+      "description": "This KPI shows the A2 based handover preparation attempts for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2632,14 +2786,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2647,7 +2802,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -2707,7 +2862,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C10",
+              "field": "pm_data.NRANS_M55145C03001",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -2715,7 +2870,13 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C11",
+              "field": "pm_data.NRANS_M55145C03003",
+              "hide": true,
+              "id": "4",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03004",
               "hide": true,
               "id": "5",
               "type": "sum"
@@ -2724,16 +2885,20 @@
               "id": "6",
               "pipelineVariables": [
                 {
-                  "name": "M8038C10",
+                  "name": "M55145C03001",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C11",
+                  "name": "M55145C03003",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C03004",
                   "pipelineAgg": "5"
                 }
               ],
               "settings": {
-                "script": "params.M8038C10/params.M8038C11"
+                "script": "params.M55145C03001 + params.M55145C03003 + params.M55145C03004"
               },
               "type": "bucket_script"
             }
@@ -2744,7 +2909,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5856a E-UTRAN Averaged IP scheduled Throughput in UL, QCI1, PLMN [kbps]",
+      "title": "NR_5314a 5G SA A2 based HO preparation attempts for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN [#]",
       "type": "timeseries"
     },
     {
@@ -2752,7 +2917,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in UL for QCI2 services per PLMN.",
+      "description": "This KPI shows the A2 based handover preparation success ratio for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2790,14 +2955,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2805,7 +2971,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -2865,7 +3031,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C12",
+              "field": "pm_data.NRANS_M55145C03001",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -2873,7 +3039,13 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C13",
+              "field": "pm_data.NRANS_M55145C03003",
+              "hide": true,
+              "id": "4",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03004",
               "hide": true,
               "id": "5",
               "type": "sum"
@@ -2882,16 +3054,20 @@
               "id": "6",
               "pipelineVariables": [
                 {
-                  "name": "M8038C12",
+                  "name": "M55145C03001",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C13",
+                  "name": "M55145C03003",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C03004",
                   "pipelineAgg": "5"
                 }
               ],
               "settings": {
-                "script": "params.M8038C12/params.M8038C13"
+                "script": "if (params.M55145C03001 == null) { return null }  else if (params.M55145C03001 == 0) { return 0 } else { return 100 * params.M55145C03001 / (params.M55145C03001 + params.M55145C03003 + params.M55145C03004) }"
               },
               "type": "bucket_script"
             }
@@ -2902,7 +3078,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5857a E-UTRAN Averaged IP scheduled Throughput in UL, QCI2, PLMN [kbps]",
+      "title": "NR_5315a 5G SA A2 based HO preparation success ratio for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN [%]",
       "type": "timeseries"
     },
     {
@@ -2910,7 +3086,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in UL for QCI3 services per PLMN.",
+      "description": "This KPI shows the A2 based handover execution attempts for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2948,14 +3124,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2963,7 +3140,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -3023,35 +3200,12 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C14",
-              "hide": true,
+              "field": "pm_data.NRANS_M55145C03001",
+              "hide": false,
               "id": "1",
               "meta": {},
               "settings": {},
               "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C15",
-              "hide": true,
-              "id": "5",
-              "type": "sum"
-            },
-            {
-              "id": "6",
-              "pipelineVariables": [
-                {
-                  "name": "M8038C14",
-                  "pipelineAgg": "1"
-                },
-                {
-                  "name": "M8038C15",
-                  "pipelineAgg": "5"
-                }
-              ],
-              "settings": {
-                "script": "params.M8038C14/params.M8038C15"
-              },
-              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -3060,7 +3214,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5858a E-UTRAN Averaged IP scheduled Throughput in UL, QCI3, PLMN [kbps]",
+      "title": "NR_5316a 5G SA A2 based HO execution attempts for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN [#]",
       "type": "timeseries"
     },
     {
@@ -3068,7 +3222,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in UL for QCI4 services per PLMN.",
+      "description": "This KPI shows the A2 based handover execution success ratio for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3106,14 +3260,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3121,7 +3276,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -3181,7 +3336,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C16",
+              "field": "pm_data.NRANS_M55145C03002",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -3189,25 +3344,25 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C17",
+              "field": "pm_data.NRANS_M55145C03001",
               "hide": true,
-              "id": "5",
+              "id": "4",
               "type": "sum"
             },
             {
-              "id": "6",
+              "id": "5",
               "pipelineVariables": [
                 {
-                  "name": "M8038C16",
+                  "name": "M55145C03002",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C17",
-                  "pipelineAgg": "5"
+                  "name": "M55145C03001",
+                  "pipelineAgg": "4"
                 }
               ],
               "settings": {
-                "script": "params.M8038C16/params.M8038C17"
+                "script": "if (params.M55145C03002 == null) { return null }  else if (params.M55145C03002 == 0) { return 0 } else { return 100 * params.M55145C03002 / params.M55145C03001 }"
               },
               "type": "bucket_script"
             }
@@ -3218,7 +3373,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5859a E-UTRAN Averaged IP scheduled Throughput in UL, QCI4, PLMN [kbps]",
+      "title": "NR_5317a 5G SA A2 based HO execution success ratio for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN [%]",
       "type": "timeseries"
     },
     {
@@ -3226,7 +3381,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in UL for QCI5 services per PLMN.",
+      "description": "This KPI shows the A2 based handover total success ratio for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3264,14 +3419,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3279,7 +3435,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -3339,7 +3495,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C18",
+              "field": "pm_data.NRANS_M55145C03002",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -3347,25 +3503,45 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C19",
+              "field": "pm_data.NRANS_M55145C03001",
               "hide": true,
-              "id": "5",
+              "id": "4",
               "type": "sum"
             },
             {
+              "field": "pm_data.NRANS_M55145C03003",
+              "hide": true,
               "id": "6",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03004",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "id": "8",
               "pipelineVariables": [
                 {
-                  "name": "M8038C18",
+                  "name": "M55145C03002",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C19",
-                  "pipelineAgg": "5"
+                  "name": "M55145C03001",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C03003",
+                  "pipelineAgg": "6"
+                },
+                {
+                  "name": "M55145C03004",
+                  "pipelineAgg": "7"
                 }
               ],
               "settings": {
-                "script": "params.M8038C18/params.M8038C19"
+                "script": "if (params.M55145C03002 == null) { return null }  else if (params.M55145C03002 == 0) { return 0 } else { return 100 * params.M55145C03002 / (params.M55145C03001 + params.M55145C03003 + params.M55145C03004) }"
               },
               "type": "bucket_script"
             }
@@ -3376,7 +3552,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5860a E-UTRAN Averaged IP scheduled Throughput in UL, QCI5, PLMN [kbps]",
+      "title": "NR_5318a 5G SA A2 based HO total success ratio for 5G SA Intra-gNB Intra-DU per PLMN [%]",
       "type": "timeseries"
     },
     {
@@ -3384,7 +3560,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in UL for QCI6 services per PLMN.",
+      "description": "This KPI shows the SA Intra-freq Intra-gNB Inter-DU HO preparation attempts per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3422,14 +3598,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3437,7 +3614,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -3497,7 +3674,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C20",
+              "field": "pm_data.NRANS_M55145C03501",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -3505,7 +3682,13 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C21",
+              "field": "pm_data.NRANS_M55145C03502",
+              "hide": true,
+              "id": "4",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03503",
               "hide": true,
               "id": "5",
               "type": "sum"
@@ -3514,16 +3697,20 @@
               "id": "6",
               "pipelineVariables": [
                 {
-                  "name": "M8038C20",
+                  "name": "M55145C03501",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C21",
+                  "name": "M55145C03502",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C03503",
                   "pipelineAgg": "5"
                 }
               ],
               "settings": {
-                "script": "params.M8038C20/params.M8038C21"
+                "script": "params.M55145C03501 + params.M55145C03502 + params.M55145C03503"
               },
               "type": "bucket_script"
             }
@@ -3534,7 +3721,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5861a E-UTRAN Averaged IP scheduled Throughput in UL, QCI6, PLMN [kbps]",
+      "title": "NR_5375a 5G SA Intra-freq Intra-gNB Inter-DU HO preparation attempts per PLMN-ID [#]",
       "type": "timeseries"
     },
     {
@@ -3542,7 +3729,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in UL for QCI7 services per PLMN.",
+      "description": "This KPI shows the SA Intra-freq Intra-gNB Inter-DU HO preparation Success Ratio per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3580,14 +3767,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3595,7 +3783,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -3655,7 +3843,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C22",
+              "field": "pm_data.NRANS_M55145C03501",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -3663,7 +3851,13 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C23",
+              "field": "pm_data.NRANS_M55145C03502",
+              "hide": true,
+              "id": "4",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03503",
               "hide": true,
               "id": "5",
               "type": "sum"
@@ -3672,16 +3866,20 @@
               "id": "6",
               "pipelineVariables": [
                 {
-                  "name": "M8038C22",
+                  "name": "M55145C03501",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C23",
+                  "name": "M55145C03502",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "M55145C03503",
                   "pipelineAgg": "5"
                 }
               ],
               "settings": {
-                "script": "params.M8038C22/params.M8038C23"
+                "script": "if (params.M55145C03503 == null) { return null }  else if (params.M55145C03503 == 0) { return 0 } else { return 100 * params.M55145C03503 / (params.M55145C03501 + params.M55145C03502 + params.M55145C03503) }"
               },
               "type": "bucket_script"
             }
@@ -3692,7 +3890,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5862a E-UTRAN Averaged IP scheduled Throughput in UL, QCI7, PLMN [kbps]",
+      "title": "NR_5376a 5G SA Intra-freq Intra-gNB Inter-DU HO preparation Success Ratio per PLMN-ID [%]",
       "type": "timeseries"
     },
     {
@@ -3700,7 +3898,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in UL for QCI8 services per PLMN.",
+      "description": "This KPI shows the SA Intra-freq Intra-gNB Inter-DU HO execution Success Ratio per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3738,14 +3936,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3753,7 +3952,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -3813,7 +4012,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C24",
+              "field": "pm_data.NRANS_M55145C03504",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -3821,7 +4020,7 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C25",
+              "field": "pm_data.NRANS_M55145C03503",
               "hide": true,
               "id": "5",
               "type": "sum"
@@ -3830,16 +4029,16 @@
               "id": "6",
               "pipelineVariables": [
                 {
-                  "name": "M8038C24",
+                  "name": "M55145C03504",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8038C25",
+                  "name": "M55145C03503",
                   "pipelineAgg": "5"
                 }
               ],
               "settings": {
-                "script": "params.M8038C24/params.M8038C25"
+                "script": "if (params.M55145C03504 == null) { return null }  else if (params.M55145C03504 == 0) { return 0 } else { return 100 * params.M55145C03504 / params.M55145C03503 }"
               },
               "type": "bucket_script"
             }
@@ -3850,7 +4049,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5863a E-UTRAN Averaged IP scheduled Throughput in UL, QCI8, PLMN [kbps]",
+      "title": "NR_5377a 5G SA Intra-freq Intra-gNB Inter-DU HO execution Success Ratio per PLMN-ID [%]",
       "type": "timeseries"
     },
     {
@@ -3858,7 +4057,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI provides the IP scheduled end user throughput in UL for QCI9 services per PLMN.",
+      "description": "This KPI shows the SA Intra-freq Intra-gNB Inter-DU HO Total Success Ratio per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3896,14 +4095,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3911,7 +4111,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -3971,7 +4171,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C26",
+              "field": "pm_data.NRANS_M55145C03504",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -3979,25 +4179,45 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C27",
+              "field": "pm_data.NRANS_M55145C03503",
               "hide": true,
               "id": "5",
               "type": "sum"
             },
             {
+              "field": "pm_data.NRANS_M55145C03501",
+              "hide": true,
               "id": "6",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03502",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "id": "8",
               "pipelineVariables": [
                 {
-                  "name": "M8038C26",
-                  "pipelineAgg": "1"
+                  "name": "M55145C03501",
+                  "pipelineAgg": "6"
                 },
                 {
-                  "name": "M8038C27",
+                  "name": "M55145C03502",
+                  "pipelineAgg": "7"
+                },
+                {
+                  "name": "M55145C03503",
                   "pipelineAgg": "5"
+                },
+                {
+                  "name": "M55145C03504",
+                  "pipelineAgg": "1"
                 }
               ],
               "settings": {
-                "script": "params.M8038C26/params.M8038C27"
+                "script": "if (params.M55145C03504 == null) { return null }  else if (params.M55145C03504 == 0) { return 0 } else { return 100 * params.M55145C03504 / (params.M55145C03501+params.M55145C03502+params.M55145C03503) }"
               },
               "type": "bucket_script"
             }
@@ -4008,7 +4228,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_5864a E-UTRAN Averaged IP scheduled Throughput in UL, QCI9, PLMN [kbps]",
+      "title": "NR_5378a 5G SA Intra-freq Intra-gNB Inter-DU HO Total Success Ratio per PLMN-ID [%]",
       "type": "timeseries"
     },
     {
@@ -4016,7 +4236,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The KPI shows percentage of time during which Access Class Barring (ACB) was active for the respective PLMN.",
+      "description": "This KPI shows the SA Inter-freq Intra-gNB Inter-DU HO preparation attempts per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4054,13 +4274,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4068,7 +4290,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -4128,7 +4350,7 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C46",
+              "field": "pm_data.NRANS_M55145C03505",
               "hide": true,
               "id": "1",
               "meta": {},
@@ -4136,25 +4358,35 @@
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_UE_Quantity_M8051C61",
+              "field": "pm_data.NRANS_M55145C03506",
               "hide": true,
               "id": "5",
               "type": "sum"
             },
             {
+              "field": "pm_data.NRANS_M55145C03507",
+              "hide": true,
               "id": "6",
+              "type": "sum"
+            },
+            {
+              "id": "7",
               "pipelineVariables": [
                 {
-                  "name": "M8038C46",
+                  "name": "M55145C03505",
                   "pipelineAgg": "1"
                 },
                 {
-                  "name": "M8051C61",
+                  "name": "M55145C03506",
                   "pipelineAgg": "5"
+                },
+                {
+                  "name": "M55145C03507",
+                  "pipelineAgg": "6"
                 }
               ],
               "settings": {
-                "script": "100* params.M8038C46/params.M8051C61"
+                "script": "params.M55145C03505 + params.M55145C03506 + params.M55145C03507"
               },
               "type": "bucket_script"
             }
@@ -4165,7 +4397,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_6608a E-UTRAN Percentage of Automatic Access Class Barring triggered via RRC Connection Failure Rate [%]",
+      "title": "NR_5379a 5G SA Inter-freq Intra-gNB Inter-DU HO preparation attempts per PLMN-ID [#]",
       "type": "timeseries"
     },
     {
@@ -4173,7 +4405,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the Downlink Average PRB usage for DTCH traffic for SAEB QoS level 1 for respective PLMN.",
+      "description": "This KPI shows the SA Inter-freq Intra-gNB Inter-DU HO preparation Success Ratio per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4211,13 +4443,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4285,21 +4519,43 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C48",
+              "field": "pm_data.NRANS_M55145C03505",
               "hide": true,
               "id": "1",
-              "type": "avg"
+              "meta": {},
+              "settings": {},
+              "type": "sum"
             },
             {
-              "id": "4",
+              "field": "pm_data.NRANS_M55145C03506",
+              "hide": true,
+              "id": "5",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03507",
+              "hide": true,
+              "id": "6",
+              "type": "sum"
+            },
+            {
+              "id": "8",
               "pipelineVariables": [
                 {
-                  "name": "M8038C48",
+                  "name": "M55145C03507",
+                  "pipelineAgg": "6"
+                },
+                {
+                  "name": "M55145C03506",
+                  "pipelineAgg": "5"
+                },
+                {
+                  "name": "M55145C03505",
                   "pipelineAgg": "1"
                 }
               ],
               "settings": {
-                "script": "params.M8038C48/10"
+                "script": "if (params.M55145C03507 == null) { return null }  else if (params.M55145C03507 == 0) { return 0 } else { return 100 * params.M55145C03507 / (params.M55145C03505 + params.M55145C03506 + params.M55145C03507) }"
               },
               "type": "bucket_script"
             }
@@ -4310,7 +4566,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_6703a E-UTRAN Downlink Average PRB usage for DTCH traffic for SAEB QoS level 1 for respective PLMN [%]",
+      "title": "NR_5380a 5G SA Inter-freq Intra-gNB Inter-DU HO preparation Success Ratio per PLMN-ID [%]",
       "type": "timeseries"
     },
     {
@@ -4318,7 +4574,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the Uplink Average PRB usage for DTCH traffic for SAEB QoS level 1 for respective PLMN.",
+      "description": "This KPI shows the SA Inter-freq Intra-gNB Inter-DU HO execution Success Ratio per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4356,13 +4612,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4430,21 +4688,33 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C47",
+              "field": "pm_data.NRANS_M55145C03508",
               "hide": true,
               "id": "1",
-              "type": "avg"
+              "meta": {},
+              "settings": {},
+              "type": "sum"
             },
             {
-              "id": "4",
+              "field": "pm_data.NRANS_M55145C03507",
+              "hide": true,
+              "id": "6",
+              "type": "sum"
+            },
+            {
+              "id": "7",
               "pipelineVariables": [
                 {
-                  "name": "M8038C47",
+                  "name": "M55145C03508",
                   "pipelineAgg": "1"
+                },
+                {
+                  "name": "M55145C03507",
+                  "pipelineAgg": "6"
                 }
               ],
               "settings": {
-                "script": "params.M8038C47/10"
+                "script": "if (params.M55145C03508 == null) { return null }  else if (params.M55145C03508 == 0) { return 0 } else { return 100 * params.M55145C03508 / params.M55145C03507 }"
               },
               "type": "bucket_script"
             }
@@ -4455,7 +4725,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_6704a E-UTRAN Uplink Average PRB usage for DTCH traffic for SAEB QoS level 1 for respective PLMN [%]",
+      "title": "NR_5381a 5G SA Inter-freq Intra-gNB Inter-DU HO execution Success Ratio per PLMN-ID [%]",
       "type": "timeseries"
     },
     {
@@ -4463,7 +4733,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the average number of UE's having data in RLC level buffers for QCI1 DRBs during the measurement period per cell and PLMN ID for uplink direction.",
+      "description": "This KPI shows the SA Inter-freq Intra-gNB Inter-DU HO Total Success Ratio per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4501,13 +4771,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4515,7 +4787,7 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -4575,13 +4847,55 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C55",
-              "hide": false,
+              "field": "pm_data.NRANS_M55145C03508",
+              "hide": true,
               "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03507",
+              "hide": true,
+              "id": "6",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03505",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03506",
+              "hide": true,
+              "id": "8",
+              "type": "sum"
+            },
+            {
+              "id": "9",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C03505",
+                  "pipelineAgg": "7"
+                },
+                {
+                  "name": "M55145C03506",
+                  "pipelineAgg": "8"
+                },
+                {
+                  "name": "M55145C03507",
+                  "pipelineAgg": "6"
+                },
+                {
+                  "name": "M55145C03508",
+                  "pipelineAgg": "1"
+                }
+              ],
               "settings": {
-                "script": "_value/100"
+                "script": "if (params.M55145C03508 == null) { return null }  else if (params.M55145C03508 == 0) { return 0 } else { return 100 * params.M55145C03508 / (params.M55145C03505 + params.M55145C03506 + params.M55145C03507) }"
               },
-              "type": "avg"
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -4590,7 +4904,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_6847a E-UTRAN Average Active UEs with data in the buffer UL for QCI1 DRBs per PLMN [#]",
+      "title": "NR_5382a 5G SA Inter-freq Intra-gNB Inter-DU HO Total Success Ratio per PLMN-ID [%]",
       "type": "timeseries"
     },
     {
@@ -4598,7 +4912,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the average number of UE's having data in RLC level buffers for non-GBR DRBs during the measurement period per cell and PLMN ID for uplink direction.",
+      "description": "This KPI shows the NSA Intra-freq Intra-gNB Inter-DU HO (PSCell Change) preparation attempts per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4636,13 +4950,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4650,7 +4966,7 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -4710,13 +5026,45 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C56",
-              "hide": false,
+              "field": "pm_data.NRANS_M55145C03511",
+              "hide": true,
               "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03512",
+              "hide": true,
+              "id": "6",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03513",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "id": "9",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C03513",
+                  "pipelineAgg": "7"
+                },
+                {
+                  "name": "M55145C03512",
+                  "pipelineAgg": "6"
+                },
+                {
+                  "name": "M55145C03511",
+                  "pipelineAgg": "1"
+                }
+              ],
               "settings": {
-                "script": "_value/100"
+                "script": "params.M55145C03511 + params.M55145C03512 + params.M55145C03513"
               },
-              "type": "avg"
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -4725,7 +5073,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_6848a E-UTRAN Average Active UEs with data in the buffer UL for non-GBR DRBs per PLMN [#]",
+      "title": "NR_5383a 5G NSA Intra-freq Intra-gNB Inter-DU HO (PSCell Change) preparation attempts per PLMN-ID [#]",
       "type": "timeseries"
     },
     {
@@ -4733,7 +5081,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the ratio of services in a cell being available for end-users per PLMN.",
+      "description": "This KPI shows the NSA Intra-freq Intra-gNB Inter-DU HO (PSCell Change) preparation Success Ratio per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4771,13 +5119,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4845,31 +5195,43 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C54",
+              "field": "pm_data.NRANS_M55145C03511",
               "hide": true,
               "id": "1",
+              "meta": {},
+              "settings": {},
               "type": "sum"
             },
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C57",
+              "field": "pm_data.NRANS_M55145C03512",
               "hide": true,
-              "id": "4",
+              "id": "6",
               "type": "sum"
             },
             {
-              "id": "5",
+              "field": "pm_data.NRANS_M55145C03513",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "id": "9",
               "pipelineVariables": [
                 {
-                  "name": "M8038C54",
-                  "pipelineAgg": "1"
+                  "name": "M55145C03513",
+                  "pipelineAgg": "7"
                 },
                 {
-                  "name": "M8038C57",
-                  "pipelineAgg": "4"
+                  "name": "M55145C03512",
+                  "pipelineAgg": "6"
+                },
+                {
+                  "name": "M55145C03511",
+                  "pipelineAgg": "1"
                 }
               ],
               "settings": {
-                "script": "100* params.M8038C54/params.M8038C57"
+                "script": "if (params.M55145C03513 == null) { return null }  else if (params.M55145C03513 == 0) { return 0 } else { return 100 * params.M55145C03513 / (params.M55145C03511 + params.M55145C03512 + params.M55145C03513) }"
               },
               "type": "bucket_script"
             }
@@ -4880,7 +5242,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_6994a E-UTRAN Cell Availability Ratio per PLMN [%]",
+      "title": "NR_5384a 5G NSA Intra-freq Intra-gNB Inter-DU HO (PSCell Change) preparation Success Ratio per PLMN-ID [%]",
       "type": "timeseries"
     },
     {
@@ -4888,7 +5250,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The KPI shows the mean QCI 65 E-RAB setup time (3GPP TS 32.425, 36.413, 23.203) per PLMN ID .",
+      "description": "This KPI shows the NSA Intra-freq Intra-gNB Inter-DU HO (PSCell Change) execution Success Ratio per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4926,13 +5288,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4940,7 +5304,7 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -5000,9 +5364,33 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C67",
-              "id": "1",
-              "type": "avg"
+              "field": "pm_data.NRANS_M55145C03514",
+              "hide": true,
+              "id": "6",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03513",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "id": "9",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C03513",
+                  "pipelineAgg": "7"
+                },
+                {
+                  "name": "M55145C03514",
+                  "pipelineAgg": "6"
+                }
+              ],
+              "settings": {
+                "script": "if (params.M55145C03514 == null) { return null }  else if (params.M55145C03514 == 0) { return 0 } else { return 100 * params.M55145C03514 / params.M55145C03513 }"
+              },
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -5011,7 +5399,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_8061a E-UTRAN Mean QCI 65 E-RAB Setup Time per PLMN ID [ms]",
+      "title": "NR_5385a 5G NSA Intra-freq Intra-gNB Inter-DU HO (PSCell Change) execution Success Ratio per PLMN-ID [%]",
       "type": "timeseries"
     },
     {
@@ -5019,7 +5407,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The KPI shows the maximum QCI 65 E-RAB setup time (3GPP TS 32.425, 36.413, 23.203) per PLMN ID .",
+      "description": "This KPI shows the NSA Intra-freq Intra-gNB Inter-DU HO (PSCell Change) Total Success Ratio per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5057,13 +5445,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5071,7 +5461,7 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -5131,9 +5521,53 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C68",
-              "id": "1",
-              "type": "max"
+              "field": "pm_data.NRANS_M55145C03514",
+              "hide": true,
+              "id": "6",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03513",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03511",
+              "hide": true,
+              "id": "8",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03512",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "id": "10",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C03511",
+                  "pipelineAgg": "8"
+                },
+                {
+                  "name": "M55145C03512",
+                  "pipelineAgg": "9"
+                },
+                {
+                  "name": "M55145C03513",
+                  "pipelineAgg": "7"
+                },
+                {
+                  "name": "M55145C03514",
+                  "pipelineAgg": "6"
+                }
+              ],
+              "settings": {
+                "script": "if (params.M55145C03514 == null) { return null }  else if (params.M55145C03514 == 0) { return 0 } else { return 100 * params.M55145C03514 / (params.M55145C03511 + params.M55145C03512 + params.M55145C03513) }"
+              },
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -5142,7 +5576,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_8062a E-UTRAN Maximum QCI 65 E-RAB Setup Time per PLMN ID [ms]",
+      "title": "NR_5386a 5G NSA Intra-freq Intra-gNB Inter-DU HO (PSCell Change) Total Success Ratio per PLMN-ID [%]",
       "type": "timeseries"
     },
     {
@@ -5150,7 +5584,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The KPI shows the mean QCI 66 E-RAB setup time (3GPP TS 32.425, 36.413, 23.203) per PLMN ID .",
+      "description": "This KPI shows the NSA Inter-freq Intra-gNB Inter-DU HO (PSCell Change) preparation attempts per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5188,13 +5622,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5202,7 +5638,7 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -5262,9 +5698,43 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C69",
-              "id": "1",
-              "type": "avg"
+              "field": "pm_data.NRANS_M55145C03515",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03516",
+              "hide": true,
+              "id": "8",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03517",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "id": "10",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C03516",
+                  "pipelineAgg": "8"
+                },
+                {
+                  "name": "M55145C03517",
+                  "pipelineAgg": "9"
+                },
+                {
+                  "name": "M55145C03515",
+                  "pipelineAgg": "7"
+                }
+              ],
+              "settings": {
+                "script": "params.M55145C03515 + params.M55145C03516 + params.M55145C03517"
+              },
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -5273,7 +5743,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_8063a E-UTRAN Mean QCI 66 E-RAB Setup Time per PLMN ID [ms]",
+      "title": "NR_5387a 5G NSA Inter-freq Intra-gNB Inter-DU HO (PSCell Change) preparation attempts per PLMN-ID [#]",
       "type": "timeseries"
     },
     {
@@ -5281,7 +5751,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The KPI shows the maximum QCI 66 E-RAB setup time (3GPP TS 32.425, 36.413, 23.203) per PLMN ID.",
+      "description": "This KPI shows the NSA Inter-freq Intra-gNB Inter-DU HO (PSCell Change) preparation Success Ratio per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5319,13 +5789,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5333,7 +5805,7 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -5393,9 +5865,43 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C70",
-              "id": "1",
-              "type": "max"
+              "field": "pm_data.NRANS_M55145C03515",
+              "hide": true,
+              "id": "7",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03516",
+              "hide": true,
+              "id": "8",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03517",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "id": "10",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C03516",
+                  "pipelineAgg": "8"
+                },
+                {
+                  "name": "M55145C03517",
+                  "pipelineAgg": "9"
+                },
+                {
+                  "name": "M55145C03515",
+                  "pipelineAgg": "7"
+                }
+              ],
+              "settings": {
+                "script": "if (params.M55145C03517 == null) { return null }  else if (params.M55145C03517 == 0) { return 0 } else { return 100 * params.M55145C03517 / (params.M55145C03515 + params.M55145C03516 + params.M55145C03517) }"
+              },
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -5404,7 +5910,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_8064a E-UTRAN Maximum QCI 66 E-RAB Setup Time per PLMN ID [ms]",
+      "title": "NR_5388a 5G NSA Inter-freq Intra-gNB Inter-DU HO (PSCell Change) preparation Success Ratio per PLMN-ID [%]",
       "type": "timeseries"
     },
     {
@@ -5412,7 +5918,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the average value of the Physical Resource Block (PRB) utilization per TTI in downlink direction per PLMN. The utilization is defined by the ratio of used to available PRBs per TTI.",
+      "description": "This KPI shows the NSA Inter-freq Intra-gNB Inter-DU HO (PSCell Change) execution Success Ratio per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5450,13 +5956,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5524,21 +6032,31 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C80",
+              "field": "pm_data.NRANS_M55145C03518",
               "hide": true,
-              "id": "1",
-              "type": "avg"
+              "id": "8",
+              "type": "sum"
             },
             {
-              "id": "4",
+              "field": "pm_data.NRANS_M55145C03517",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "id": "10",
               "pipelineVariables": [
                 {
-                  "name": "M8038C80",
-                  "pipelineAgg": "1"
+                  "name": "M55145C03518",
+                  "pipelineAgg": "8"
+                },
+                {
+                  "name": "M55145C03517",
+                  "pipelineAgg": "9"
                 }
               ],
               "settings": {
-                "script": "params.M8038C80/10"
+                "script": "if (params.M55145C03518 == null) { return null }  else if (params.M55145C03518 == 0) { return 0 } else { return 100 * params.M55145C03518 / params.M55145C03517 }"
               },
               "type": "bucket_script"
             }
@@ -5549,7 +6067,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_8072a E-UTRAN average PRB usage per TTI DL per PLMN [%]",
+      "title": "NR_5389a 5G NSA Inter-freq Intra-gNB Inter-DU HO (PSCell Change) execution Success Ratio per PLMN-ID [%]",
       "type": "timeseries"
     },
     {
@@ -5557,7 +6075,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the minimum value of the Physical Resource Block (PRB) utilization per TTI in downlink direction per PLMN. The utilization is defined by the ratio of used to available PRBs per TTI.",
+      "description": "This KPI shows the NSA Inter-freq Intra-gNB Inter-DU HO (PSCell Change) Total Success Ratio per PLMN-ID.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5595,13 +6113,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5669,9 +6189,53 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C78",
-              "id": "1",
-              "type": "min"
+              "field": "pm_data.NRANS_M55145C03518",
+              "hide": true,
+              "id": "8",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03517",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03515",
+              "hide": true,
+              "id": "10",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C03516",
+              "hide": true,
+              "id": "11",
+              "type": "sum"
+            },
+            {
+              "id": "12",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C03515",
+                  "pipelineAgg": "10"
+                },
+                {
+                  "name": "M55145C03516",
+                  "pipelineAgg": "11"
+                },
+                {
+                  "name": "M55145C03517",
+                  "pipelineAgg": "9"
+                },
+                {
+                  "name": "M55145C03518",
+                  "pipelineAgg": "8"
+                }
+              ],
+              "settings": {
+                "script": "if (params.M55145C03518 == null) { return null }  else if (params.M55145C03518 == 0) { return 0 } else { return 100 * params.M55145C03518 / (params.M55145C03515 + params.M55145C03516 + params.M55145C03517) }"
+              },
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -5680,7 +6244,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_8073a E-UTRAN minimum PRB usage per TTI DL per PLMN [%]",
+      "title": "NR_5390a 5G NSA Inter-freq Intra-gNB Inter-DU HO (PSCell Change) Total Success Ratio per PLMN-ID [%]",
       "type": "timeseries"
     },
     {
@@ -5688,7 +6252,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the maximum value of the Physical Resource Block (PRB) utilization per TTI in downlink direction per PLMN. The utilization is defined by the ratio of used to available PRBs per TTI.",
+      "description": "This KPI shows the handover preparation attempts for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5726,13 +6290,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5740,7 +6306,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -5800,9 +6366,43 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C79",
-              "id": "1",
-              "type": "max"
+              "field": "pm_data.NRANS_M55145C00321",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C00323",
+              "hide": true,
+              "id": "10",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C00324",
+              "hide": true,
+              "id": "11",
+              "type": "sum"
+            },
+            {
+              "id": "12",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C00323",
+                  "pipelineAgg": "10"
+                },
+                {
+                  "name": "M55145C00324",
+                  "pipelineAgg": "11"
+                },
+                {
+                  "name": "M55145C00321",
+                  "pipelineAgg": "9"
+                }
+              ],
+              "settings": {
+                "script": "params.M55145C00321 + params.M55145C00323 + params.M55145C00324"
+              },
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -5811,7 +6411,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_8074a E-UTRAN maximum PRB usage per TTI DL per PLMN [%]",
+      "title": "NR_5427a 5G SA Intra-gNB intra-DU inter-frequency HO preparation attempts per PLMN [#]",
       "type": "timeseries"
     },
     {
@@ -5819,7 +6419,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the average value of the Physical Resource Block (PRB) utilization per TTI in uplink direction per PLMN. The utilization is defined by the ratio of used to available PRBs per TTI.",
+      "description": "This KPI shows the handover preparation success ratio for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5857,13 +6457,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5880,151 +6482,6 @@
         "w": 24,
         "x": 0,
         "y": 190
-      },
-      "id": 73,
-      "interval": "15m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "pm_data_source.dn.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.end_timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "hide": false,
-          "metrics": [
-            {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C77",
-              "hide": true,
-              "id": "1",
-              "type": "avg"
-            },
-            {
-              "id": "4",
-              "pipelineVariables": [
-                {
-                  "name": "M8038C77",
-                  "pipelineAgg": "1"
-                }
-              ],
-              "settings": {
-                "script": "params.M8038C77/10"
-              },
-              "type": "bucket_script"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "LTE_8077a E-UTRAN average PRB usage per TTI UL per PLMN [%]",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "description": "This KPI shows the minimum value of the Physical Resource Block (PRB) utilization per TTI in uplink direction per PLMN. The utilization is defined by the ratio of used to available PRBs per TTI.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 6,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "always",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 195
       },
       "id": 74,
       "interval": "15m",
@@ -6076,9 +6533,43 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C75",
-              "id": "1",
-              "type": "min"
+              "field": "pm_data.NRANS_M55145C00321",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C00323",
+              "hide": true,
+              "id": "10",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C00324",
+              "hide": true,
+              "id": "11",
+              "type": "sum"
+            },
+            {
+              "id": "12",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C00323",
+                  "pipelineAgg": "10"
+                },
+                {
+                  "name": "M55145C00324",
+                  "pipelineAgg": "11"
+                },
+                {
+                  "name": "M55145C00321",
+                  "pipelineAgg": "9"
+                }
+              ],
+              "settings": {
+                "script": "if (params.M55145C00321 == null) { return null }  else if (params.M55145C00321 == 0) { return 0 } else { return 100 * params.M55145C00321 / (params.M55145C00321 + params.M55145C00323 + params.M55145C00324) }"
+              },
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -6087,7 +6578,7 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_8078a E-UTRAN minimum PRB usage per TTI UL per PLMN [%]",
+      "title": "NR_5428a 5G SA Intra-gNB intra-DU inter-frequency HO preparation success ratio per PLMN [%]",
       "type": "timeseries"
     },
     {
@@ -6095,7 +6586,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the maximum value of the Physical Resource Block (PRB) utilization per TTI in uplink direction per PLMN. The utilization is defined by the ratio of used to available PRBs per TTI.",
+      "description": "This KPI shows the handover total success ratio for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -6133,13 +6624,15 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6148,6 +6641,183 @@
             ]
           },
           "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 195
+      },
+      "id": 73,
+      "interval": "15m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.5.15",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "pm_data_source.dn.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.end_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "15m",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.NRANS_M55145C00321",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C00323",
+              "hide": true,
+              "id": "10",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C00324",
+              "hide": true,
+              "id": "11",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C00322",
+              "hide": true,
+              "id": "12",
+              "type": "sum"
+            },
+            {
+              "id": "13",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C00321",
+                  "pipelineAgg": "9"
+                },
+                {
+                  "name": "M55145C00322",
+                  "pipelineAgg": "12"
+                },
+                {
+                  "name": "M55145C00323",
+                  "pipelineAgg": "10"
+                },
+                {
+                  "name": "M55145C00324",
+                  "pipelineAgg": "11"
+                }
+              ],
+              "settings": {
+                "script": "if (params.M55145C00322 == null) { return null }  else if (params.M55145C00322 == 0) { return 0 } else { return 100 * params.M55145C00322 / (params.M55145C00321 + params.M55145C00323 + params.M55145C00324) }"
+              },
+              "type": "bucket_script"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "NR_5429a 5G SA Intra-gNB intra-DU inter-frequency HO total success ratio per PLMN [%]",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI shows the A2 Intra-gNB Intra-DU inter-frequency PSCell Change preparation attempts per PLMN.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
         },
         "overrides": []
       },
@@ -6207,9 +6877,43 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.LTE_RAN_Sharing_M8038C76",
-              "id": "1",
-              "type": "max"
+              "field": "pm_data.NRANS_M55145C04021",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C04022",
+              "hide": true,
+              "id": "10",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C04023",
+              "hide": true,
+              "id": "12",
+              "type": "sum"
+            },
+            {
+              "id": "13",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C04021",
+                  "pipelineAgg": "9"
+                },
+                {
+                  "name": "M55145C04023",
+                  "pipelineAgg": "12"
+                },
+                {
+                  "name": "M55145C04022",
+                  "pipelineAgg": "10"
+                }
+              ],
+              "settings": {
+                "script": "params.M55145C04023 + params.M55145C04021 + params.M55145C04022"
+              },
+              "type": "bucket_script"
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
@@ -6218,22 +6922,657 @@
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE_8079a E-UTRAN maximum PRB usage per TTI UL per PLMN [%]",
+      "title": "NR_5489a A2 Intra-gNB Intra-DU inter-frequency PSCell Change preparation attempts per PLMN [#]",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI shows the A2 Intra-gNB Intra-DU inter-frequency PSCell Change preparation success ratio per PLMN.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 205
+      },
+      "id": 76,
+      "interval": "15m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.5.15",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "pm_data_source.dn.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.end_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "15m",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.NRANS_M55145C04021",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C04022",
+              "hide": true,
+              "id": "10",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C04023",
+              "hide": true,
+              "id": "12",
+              "type": "sum"
+            },
+            {
+              "id": "13",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C04021",
+                  "pipelineAgg": "9"
+                },
+                {
+                  "name": "M55145C04023",
+                  "pipelineAgg": "12"
+                },
+                {
+                  "name": "M55145C04022",
+                  "pipelineAgg": "10"
+                }
+              ],
+              "settings": {
+                "script": "if (params.M55145C04023 == null) { return null }  else if (params.M55145C04023 == 0) { return 0 } else { return 100 * params.M55145C04023 / (params.M55145C04023 + params.M55145C04021 + params.M55145C04022) }"
+              },
+              "type": "bucket_script"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "NR_5490a A2 Intra-gNB Intra-DU inter-frequency PSCell Change preparation success ratio per PLMN [%]",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI shows the A2 Intra-gNB Intra-DU inter-frequency PSCell Change execution attempts per PLMN.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 210
+      },
+      "id": 77,
+      "interval": "15m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.5.15",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "pm_data_source.dn.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.end_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "15m",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.NRANS_M55145C04023",
+              "hide": false,
+              "id": "9",
+              "type": "sum"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "NR_5491a A2 Intra-gNB Intra-DU inter-frequency PSCell Change execution attempts per PLMN [#]",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI shows the A2 Intra-gNB Intra-DU inter-frequency PSCell Change execution success ratio per PLMN.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 215
+      },
+      "id": 78,
+      "interval": "15m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.5.15",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "pm_data_source.dn.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.end_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "15m",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.NRANS_M55145C04023",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C04024",
+              "hide": true,
+              "id": "10",
+              "type": "sum"
+            },
+            {
+              "id": "11",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C04023",
+                  "pipelineAgg": "9"
+                },
+                {
+                  "name": "M55145C04024",
+                  "pipelineAgg": "10"
+                }
+              ],
+              "settings": {
+                "script": "if (params.M55145C04024 == null) { return null }  else if (params.M55145C04024 == 0) { return 0 } else { return 100 * params.M55145C04024 / params.M55145C04023 }"
+              },
+              "type": "bucket_script"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "NR_5492a A2 Intra-gNB Intra-DU inter-frequency PSCell Change execution success ratio per PLMN [%]",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI shows the A2 Intra-gNB Intra-DU inter-frequency PSCell Change total success ratio per PLMN.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 220
+      },
+      "id": 79,
+      "interval": "15m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.5.15",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "pm_data_source.dn.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.end_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "15m",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.NRANS_M55145C04023",
+              "hide": true,
+              "id": "9",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C04024",
+              "hide": true,
+              "id": "10",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C04021",
+              "hide": true,
+              "id": "11",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.NRANS_M55145C04022",
+              "hide": true,
+              "id": "12",
+              "type": "sum"
+            },
+            {
+              "id": "13",
+              "pipelineVariables": [
+                {
+                  "name": "M55145C04021",
+                  "pipelineAgg": "11"
+                },
+                {
+                  "name": "M55145C04022",
+                  "pipelineAgg": "12"
+                },
+                {
+                  "name": "M55145C04023",
+                  "pipelineAgg": "9"
+                },
+                {
+                  "name": "M55145C04024",
+                  "pipelineAgg": "10"
+                }
+              ],
+              "settings": {
+                "script": "if (params.M55145C04024 == null) { return null }  else if (params.M55145C04024 == 0) { return 0 } else { return 100 * params.M55145C04024 / (params.M55145C04023 + params.M55145C04021 + params.M55145C04022) }"
+              },
+              "type": "bucket_script"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$plmn_id",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "NR_5493a A2 Intra-gNB Intra-DU inter-frequency PSCell Change total success ratio per PLMN [%]",
       "type": "timeseries"
     }
   ],
   "refresh": "15m",
   "schemaVersion": 39,
   "tags": [
-    "Radio4G"
+    "Radio5G"
   ],
   "templating": {
     "list": [
       {
         "current": {
           "selected": false,
-          "text": "dac-radio-4g-pm",
-          "value": "PFC4EB007C01A233F"
+          "text": "dac-radio-5g-pm",
+          "value": "PC1EB916CEA4FA59D"
         },
         "hide": 2,
         "includeAll": false,
@@ -6243,16 +7582,15 @@
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
-        "regex": "dac-radio-4g-pm",
+        "regex": "dac-radio-5g-pm",
         "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
+          "selected": true,
+          "text": "EL1000-GR_78_79_INST_PC_test",
+          "value": "EL1000-GR_78_79_INST_PC_test"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -6280,10 +7618,12 @@
         "current": {
           "selected": true,
           "text": [
-            "All"
+            "PLMN-PLMN/MCC-123/MNC-45",
+            "PLMN-PLMN/MCC-999/MNC-40"
           ],
           "value": [
-            "$__all"
+            "PLMN-PLMN/MCC-123/MNC-45",
+            "PLMN-PLMN/MCC-999/MNC-40"
           ]
         },
         "datasource": {
@@ -6339,7 +7679,7 @@
     ]
   },
   "timezone": "",
-  "title": "NDAC Radio 4G PM KPI MOCN Dashboard",
-  "uid": "radio4gpmmocn",
+  "title": "NDAC Radio 5G PM KPI MOCN Dashboard",
+  "uid": "radio5gpmmocn",
   "weekStart": ""
 }

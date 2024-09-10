@@ -40,7 +40,7 @@ const (
 	//field name to extract data from PM response file
 	pmSourceField    = "pm_data_source"
 	fmSourceField    = "fm_data"
-	eventTimeFieldPM = "timestamp"
+	eventTimeFieldPM = "end_timestamp"
 	eventTimeFieldFM = "event_time"
 
 	//event time format
@@ -187,13 +187,10 @@ func StoreLastReceivedDataTime(user *config.User, data interface{}, api *config.
 	data = nil
 	var eventTimes []time.Time
 	for key := range receivedData {
-		eventTime, err := time.Parse(eventTimeFormatBaiCell, key)
+		eventTime, err := time.Parse(eventTimeFormatNokiaCell, key)
 		if err != nil {
-			eventTime, err = time.Parse(eventTimeFormatNokiaCell, key)
-			if err != nil {
-				log.WithFields(log.Fields{"error": err, "event_time": eventTime}).Errorf("Unable to parse event time using Nokia cell or BaiCell time format")
-				continue
-			}
+			log.WithFields(log.Fields{"error": err, "event_time": eventTime}).Errorf("Unable to parse event time using Nokia cell or BaiCell time format")
+			continue
 		}
 		eventTimes = append(eventTimes, eventTime)
 	}

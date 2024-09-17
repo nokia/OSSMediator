@@ -33,17 +33,17 @@ var (
 )
 
 var (
-	//clientID     = "4748e241-b573-422c-a423-e2cd0af95de2"     //grafana-trial
-	//clientSecret = "Ayh8Q~MhHURqNFE7aYGVdMHT6Oyie.FMDTCrobd9" //grafana-trial
-	clientID     = "634d076a-8d0f-4ce3-bf02-ed1a28fbb60a"     //dev2
-	clientSecret = "I0V8Q~RkEMzw0qSqQFPz1D4V~x7zr3HIq9b.hdgS" //dev2
+	//clientID     = "******"     //grafana-trial
+	//clientSecret = "*****************" //grafana-trial
+	clientID     = "*************************"     //dev2
+	clientSecret = "******************************" //dev2
 	redirectURI  = "https://10.183.35.228:9000/callback"
 	//redirectURI  = "http://localhost:8080/callback"
 	oauth2Config = oauth2.Config{
 		ClientID:     clientID,
 		ClientSecret: clientSecret,
 		RedirectURL:  redirectURI,
-		Endpoint:     microsoft.AzureADEndpoint("c8c2a43b-31cc-430e-87b1-394e4cc06d9b"),
+		Endpoint:     microsoft.AzureADEndpoint("***************************"),
 		Scopes:       []string{"openid", "profile", "offline_access", "User.Read", "api://634d076a-8d0f-4ce3-bf02-ed1a28fbb60a/token"},
 	}
 )

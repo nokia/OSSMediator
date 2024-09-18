@@ -145,7 +145,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.2.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -177,7 +177,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge CPU Usage",
+      "title": "NDAC Edge CPU Usage [%]",
       "type": "gauge"
     },
     {
@@ -240,7 +240,7 @@
           "titleSize": 8
         }
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.2.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -284,7 +284,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge disk temperature",
+      "title": "NDAC Edge disk temperature [°C]",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -343,6 +343,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -354,7 +355,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.2.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -386,7 +387,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge RAM usage ",
+      "title": "NDAC Edge RAM usage [%]",
       "type": "stat"
     },
     {
@@ -436,6 +437,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -447,7 +449,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.2.0",
       "queryType": "lucene",
       "targets": [
         {
@@ -490,7 +492,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge disk usage",
+      "title": "NDAC Edge disk usage [%]",
       "type": "stat"
     },
     {
@@ -511,6 +513,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -603,7 +606,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge CPU Usage",
+      "title": "NDAC Edge CPU Usage [%]",
       "type": "timeseries"
     },
     {
@@ -624,6 +627,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -727,7 +731,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge disk temperature",
+      "title": "NDAC Edge disk temperature [°C]",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -757,6 +761,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -787,7 +792,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -847,7 +853,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge RAM usage ",
+      "title": "NDAC Edge RAM usage [%]",
       "type": "timeseries"
     },
     {
@@ -868,6 +874,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -898,7 +905,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -968,7 +976,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge disk usage",
+      "title": "NDAC Edge disk usage [%]",
       "type": "timeseries"
     }
   ],
@@ -1128,7 +1136,6 @@
     "from": "now-24h",
     "to": "now-15m"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "nowDelay": "15m"
   },

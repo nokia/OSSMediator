@@ -13,6 +13,8 @@ IMPROVEMENTS:
 
 * MediatorSetup:
   * Updated `NDAC Radio 4G KPI System Program Report` for `24R1` dashboard.
+* OSSMediatorCollector:
+  * To update user's access and refresh token in the secret file after session refresh for ABAC user. 
 
 BUG FIXES:
 
@@ -26,7 +28,7 @@ SECURITY UPDATE:
   * Updated base image to `alpine:3.20.3`.
   * Updated `golang` version to `1.23.1`.
 * MediatorSetup:
-  * Updated OpenSearch version to `2.16.0`.
+  * Updated OpenSearch version to `2.17.0`.
   * Updated Grafana version to `11.2.0`.
 
 # 4.3

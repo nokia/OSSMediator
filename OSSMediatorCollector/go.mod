@@ -2,7 +2,7 @@ module collector
 
 go 1.22
 
-replace golang.org/x/sys => golang.org/x/sys v0.20.0
+replace golang.org/x/sys => golang.org/x/sys v0.25.0
 
 require (
 	github.com/golang-jwt/jwt/v5 v5.2.1

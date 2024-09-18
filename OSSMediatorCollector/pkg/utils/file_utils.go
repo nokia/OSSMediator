@@ -38,14 +38,12 @@ const (
 	accountsResponseType = "accounts"
 
 	//field name to extract data from PM response file
-	pmSourceField           = "pm_data_source"
-	fmSourceField           = "fm_data"
-	eventTimeFieldPM        = "timestamp"
-	radioPMEventTimeFieldPM = "end_timestamp"
-	eventTimeFieldFM        = "event_time"
+	pmSourceField    = "pm_data_source"
+	fmSourceField    = "fm_data"
+	eventTimeFieldPM = "timestamp"
+	eventTimeFieldFM = "event_time"
 
 	//event time format
-	eventTimeFormatBaiCell   = "2006-01-02T15:04:05Z07:00"
 	eventTimeFormatNokiaCell = "2006-01-02T15:04:05Z07:00:00"
 )
 
@@ -173,11 +171,7 @@ func StoreLastReceivedDataTime(user *config.User, data interface{}, api *config.
 		source = fmSourceField
 		fieldName = eventTimeFieldFM
 	} else if baseAPIPath == pmdataResponseType {
-		if api.MetricType == "RADIO" {
-			fieldName = radioPMEventTimeFieldPM
-		} else {
-			fieldName = eventTimeFieldPM
-		}
+		fieldName = eventTimeFieldPM
 		source = pmSourceField
 	}
 

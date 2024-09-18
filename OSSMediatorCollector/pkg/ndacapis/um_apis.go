@@ -10,6 +10,7 @@ import (
 	"bytes"
 	"collector/pkg/config"
 	"collector/pkg/utils"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -273,6 +274,14 @@ func callRefreshAPI(apiURL string, user *config.User) error {
 		return err
 	}
 	setToken(resp, user)
+	if authType == "ADTOKEN" {
+		fileName := ".secret/." + user.Email
+		encodedPassword := base64.StdEncoding.EncodeToString([]byte(resp.UAT.AccessToken)) + "\n" + base64.StdEncoding.EncodeToString([]byte(resp.RT.RefreshToken))
+		err = os.WriteFile(fileName, []byte(encodedPassword), 0600)
+		if err != nil {
+			log.WithFields(log.Fields{"error": err}).Errorf("Unable to store session token for %v to %v", user, fileName)
+		}
+	}
 	return nil
 }
 

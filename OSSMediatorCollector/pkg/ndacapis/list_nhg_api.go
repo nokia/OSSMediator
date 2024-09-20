@@ -41,9 +41,6 @@ const (
 
 // get nhg details for the customer
 func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
-	user.HwIDsABAC = map[string]config.OrgAccDetails{}
-	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
-	user.AccountIDsABAC = map[string][]string{}
 	authType := strings.ToUpper(user.AuthType)
 	if authType == "ADTOKEN" {
 		listNhgABAC(api, user, txnID, prettyResponse)
@@ -89,8 +86,10 @@ func listNhgRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 		return
 	}
 
+	user.NhgMux.Lock()
 	storeUserNhgRBAC(resp.NetworkInfo, user)
 	storeUserHwIDRBAC(resp.NetworkInfo, user, txnID)
+	user.NhgMux.Unlock()
 	nhgData := new(nhgAPIAllResponse)
 	_ = json.NewDecoder(bytes.NewReader(response)).Decode(&nhgData)
 	err = utils.WriteResponse(user, api, nhgData.NhgDetails, "", txnID, prettyResponse)
@@ -147,6 +146,11 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 		return
 	}
 
+	user.NhgMux.Lock()
+	defer user.NhgMux.Unlock()
+	user.HwIDsABAC = map[string]config.OrgAccDetails{}
+	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
+	user.AccountIDsABAC = map[string][]string{}
 	for _, org := range orgResponse.OrgDetails {
 		accResponse, err := fetchAccUUID(api, user, org, txnID, prettyResponse)
 		if err != nil {
@@ -199,7 +203,7 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 			}
 
 			if len(resp.NetworkInfo) == 0 {
-				log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "org_id": org.OrgUUID, "acc_id": acc.AccUUID}).Debugf("No nhg mapped")
+				log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "org_id": org.OrgUUID, "acc_id": acc.AccUUID}).Info("No nhg mapped")
 				continue
 			}
 

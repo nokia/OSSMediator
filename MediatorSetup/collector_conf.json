@@ -20,12 +20,9 @@
     "refresh": "/refresh-session",
     "logout": "/logout-session"
   },
-  "list_nhg_api": {
-    "api": "/network-hardware-groups",
-    "interval": 60
-  },
-  "list_gng_api": {
-    "api": "/generic-network-groups",
+  "list_network_api": {
+    "nhg_api": "/network-hardware-groups",
+    "gng_api": "/generic-network-groups",
     "interval": 60
   },
   "userAG_apis": {

@@ -10,6 +10,7 @@ import (
 	"bytes"
 	"collector/pkg/config"
 	"collector/pkg/utils"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -206,8 +207,16 @@ func RefreshToken(user *config.User) {
 		duration = getRefreshDuration(user)
 		if duration < 10*time.Second {
 			log.WithFields(log.Fields{"refresh_duration": duration, "user": user.Email}).Debugf("Found less refresh duration, login will be tried for %s.", user.Email)
-			duration = 5 * time.Second
-			user.IsSessionAlive = false
+			user.Wg.Add(1)
+			err = Login(user)
+			if err != nil {
+				log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
+				user.IsSessionAlive = false
+				go retryLogin(initialBackoff, user)
+			} else {
+				user.IsSessionAlive = true
+				user.Wg.Done()
+			}
 		}
 		user.Wg.Wait()
 		log.Infof("Token refreshed for %s.", user.Email)
@@ -265,6 +274,14 @@ func callRefreshAPI(apiURL string, user *config.User) error {
 		return err
 	}
 	setToken(resp, user)
+	if authType == "ADTOKEN" {
+		fileName := ".secret/." + user.Email
+		encodedPassword := base64.StdEncoding.EncodeToString([]byte(resp.UAT.AccessToken)) + "\n" + base64.StdEncoding.EncodeToString([]byte(resp.RT.RefreshToken))
+		err = os.WriteFile(fileName, []byte(encodedPassword), 0600)
+		if err != nil {
+			log.WithFields(log.Fields{"error": err}).Errorf("Unable to store session token for %v to %v", user, fileName)
+		}
+	}
 	return nil
 }
 

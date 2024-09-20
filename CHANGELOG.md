@@ -1,6 +1,36 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.4
+
+NEW FEATURES:
+
+* MediatorSetup:
+  * Added `NDAC Radio 5G PM KPI MOCN Dashboard`.
+  * Added Slice KPIs in `CORE 5G PM Dashboard` and `Radio 5G Dashboards`.
+
+IMPROVEMENTS:
+
+* MediatorSetup:
+  * Updated `NDAC Radio 4G KPI System Program Report` for `24R1` dashboard.
+* OSSMediatorCollector:
+  * To update user's access and refresh token in the secret file after session refresh for ABAC user. 
+
+BUG FIXES:
+
+* OSSMediatorCollector:
+  * Fix for data collection delay when GNG and NHG APIs are called concurrently.
+  * Config updated to combine `/generic-network-groups` and `/network-hardware-groups` APIs under `list_network_api` config parameter.
+
+SECURITY UPDATE:
+
+* OSSMediator:
+  * Updated base image to `alpine:3.20.3`.
+  * Updated `golang` version to `1.23.1`.
+* MediatorSetup:
+  * Updated OpenSearch version to `2.17.0`.
+  * Updated Grafana version to `11.2.0`.
+
 # 4.3
 
 NEW FEATURES:
@@ -38,7 +68,7 @@ NEW FEATURES:
 
 REMOVED:
 
-* MediatorSetup: Removed RADIO, CORE, DAC, IXR and APPLICATION specific alarm dashboards..
+* MediatorSetup: Removed RADIO, CORE, DAC, IXR and APPLICATION specific alarm dashboards.
 
 SECURITY UPDATE:
 

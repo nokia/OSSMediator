@@ -32,6 +32,7 @@ const (
 	fmdataResponseType   = "fmdata"
 	pmdataResponseType   = "pmdata"
 	nhgResponseType      = "network-hardware-groups"
+	gngResponseType      = "generic-network-groups"
 	simsResponseType     = "sims"
 	orgResponseType      = "organizations"
 	accountsResponseType = "accounts"
@@ -43,7 +44,6 @@ const (
 	eventTimeFieldFM = "event_time"
 
 	//event time format
-	eventTimeFormatBaiCell   = "2006-01-02T15:04:05Z07:00"
 	eventTimeFormatNokiaCell = "2006-01-02T15:04:05Z07:00:00"
 )
 
@@ -93,7 +93,7 @@ func WriteResponse(user *config.User, api *config.APIConf, data interface{}, id 
 		if id != "" {
 			fileName += "_" + id
 		}
-	} else if fileName == nhgResponseType {
+	} else if fileName == nhgResponseType || fileName == gngResponseType {
 		fileName += "_" + user.Email
 	} else if strings.Contains(fileName, simsResponseType) {
 		if id != "" {
@@ -162,7 +162,7 @@ func getLastReceivedDataTime(user *config.User, api *config.APIConf, nhgID strin
 }
 
 // StoreLastReceivedDataTime writes the last received metric's event time to a file so that next time that time stamp will be used as start_time for api calls.
-// Creates file for each user and each APIs.
+// Creates file for each user and each API.
 // returns error if writing to or reading from the response directory fails.
 func StoreLastReceivedDataTime(user *config.User, data interface{}, api *config.APIConf, nhgID string, txnID uint64) error {
 	var fieldName, source string
@@ -171,8 +171,8 @@ func StoreLastReceivedDataTime(user *config.User, data interface{}, api *config.
 		source = fmSourceField
 		fieldName = eventTimeFieldFM
 	} else if baseAPIPath == pmdataResponseType {
-		source = pmSourceField
 		fieldName = eventTimeFieldPM
+		source = pmSourceField
 	}
 
 	receivedData := make(map[string]struct{})
@@ -186,13 +186,10 @@ func StoreLastReceivedDataTime(user *config.User, data interface{}, api *config.
 	data = nil
 	var eventTimes []time.Time
 	for key := range receivedData {
-		eventTime, err := time.Parse(eventTimeFormatBaiCell, key)
+		eventTime, err := time.Parse(eventTimeFormatNokiaCell, key)
 		if err != nil {
-			eventTime, err = time.Parse(eventTimeFormatNokiaCell, key)
-			if err != nil {
-				log.WithFields(log.Fields{"error": err, "event_time": eventTime}).Errorf("Unable to parse event time using Nokia cell or BaiCell time format")
-				continue
-			}
+			log.WithFields(log.Fields{"error": err, "event_time": eventTime}).Errorf("Unable to parse event time using Nokia cell or BaiCell time format")
+			continue
 		}
 		eventTimes = append(eventTimes, eventTime)
 	}

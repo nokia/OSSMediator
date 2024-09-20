@@ -62,6 +62,8 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64, prettyRe
 		return
 	}
 	authType := strings.ToUpper(user.AuthType)
+	user.NhgMux.RLock()
+	defer user.NhgMux.RUnlock()
 	if strings.Contains(api.API, accessPointSimsAPI) {
 		if authType == "ADTOKEN" {
 			log.WithFields(log.Fields{"tid": txnID, "hw_ids": len(user.HwIDsABAC)}).Infof("starting ap_sims api")

@@ -71,21 +71,12 @@ const (
 )
 
 func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
-	authType := strings.ToUpper(user.AuthType)
-	if authType == "ADTOKEN" {
-		if len(user.NhgIDsABAC) == 0 {
-			user.IsSessionAlive = false
-		}
-	} else {
-		if len(user.NhgIDs) == 0 {
-			user.IsSessionAlive = false
-		}
-	}
+	user.NhgMux.RLock()
+	defer user.NhgMux.RUnlock()
 	if !user.IsSessionAlive {
 		log.WithFields(log.Fields{"tid": txnID, "api": api.API, "api_type": api.Type, "metric_type": api.MetricType}).Warnf("Skipping API call for %s at %v as user's session is inactive", user.Email, utils.CurrentTime())
 		return
 	}
-
 	apiKey := user.Email + "_" + path.Base(api.API) + "_" + api.MetricType
 	if api.Type != "" {
 		apiKey += "_" + api.Type
@@ -103,8 +94,7 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, pret
 
 	wg := sync.WaitGroup{}
 	requests := make(chan struct{}, config.Conf.MaxConcurrentProcess)
-	user.NhgMux.RLock()
-	defer user.NhgMux.RUnlock()
+	authType := strings.ToUpper(user.AuthType)
 	if authType == "ADTOKEN" {
 		//ABAC user
 		for nhg, orgAcc := range user.NhgIDsABAC {

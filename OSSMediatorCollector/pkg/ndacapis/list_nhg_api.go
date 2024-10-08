@@ -170,11 +170,11 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 
 		for _, acc := range accResponse.AccDetails {
 			apiURL := config.Conf.BaseURL + api.API
-			log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
+			log.WithFields(log.Fields{"tid": txnID, "org_id": org, "acc_id": acc}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
 			request, err := http.NewRequest(http.MethodGet, apiURL, nil)
 			if err != nil {
-				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
-				return
+				log.WithFields(log.Fields{"tid": txnID, "error": err, "org_id": org, "acc_id": acc}).Errorf("Error while calling %s for %s", apiURL, user.Email)
+				continue
 			}
 
 			request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
@@ -184,22 +184,22 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 			request.URL.RawQuery = query.Encode()
 			response, err := doRequest(request)
 			if err != nil {
-				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
-				return
+				log.WithFields(log.Fields{"tid": txnID, "error": err, "org_id": org, "acc_id": acc}).Errorf("Error while calling %s for %s", apiURL, user.Email)
+				continue
 			}
 
 			resp := new(nhgAPIResponse)
 			err = json.NewDecoder(bytes.NewReader(response)).Decode(&resp)
 			if err != nil {
-				log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to decode response")
-				return
+				log.WithFields(log.Fields{"tid": txnID, "error": err, "org_id": org, "acc_id": acc}).Error("Unable to decode response")
+				continue
 			}
 
 			//check response for status code
 			err = checkStatusCode(resp.Status)
 			if err != nil {
-				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
-				return
+				log.WithFields(log.Fields{"tid": txnID, "error": err, "org_id": org, "acc_id": acc}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
+				continue
 			}
 
 			if len(resp.NetworkInfo) == 0 {
@@ -214,7 +214,7 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 			_ = json.NewDecoder(bytes.NewReader(response)).Decode(&nhgData)
 			err = utils.WriteResponse(user, api, nhgData.NhgDetails, "", txnID, prettyResponse)
 			if err != nil {
-				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
+				log.WithFields(log.Fields{"tid": txnID, "error": err, "org_id": org, "acc_id": acc}).Errorf("unable to write response for %s", user.Email)
 			}
 		}
 	}

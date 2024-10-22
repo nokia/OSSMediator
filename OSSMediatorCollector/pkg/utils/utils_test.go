@@ -58,7 +58,7 @@ func TestGetTimeIntervalWithSyncDuration(t *testing.T) {
 
 func TestCallAPIWIthLastReceivedFile(t *testing.T) {
 	user := &config.User{Email: "testuser@nokia.com"}
-	api := &config.APIConf{API: "/fmdata", Interval: 15, SyncDuration: 30}
+	api := &config.APIConf{API: "/fmdata", Interval: 5, SyncDuration: 30}
 	nhgID := "test_nhg_1"
 	lastDataTime := "2018-03-14T13:55:00+05:30"
 

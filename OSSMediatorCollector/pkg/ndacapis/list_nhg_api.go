@@ -88,7 +88,7 @@ func listNhgRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 
 	user.NhgMux.Lock()
 	storeUserNhgRBAC(resp.NetworkInfo, user)
-	storeUserHwIDRBAC(resp.NetworkInfo, user, txnID)
+	storeUserHwIDRBAC(resp.NetworkInfo, user)
 	user.NhgMux.Unlock()
 	nhgData := new(nhgAPIAllResponse)
 	_ = json.NewDecoder(bytes.NewReader(response)).Decode(&nhgData)
@@ -111,7 +111,7 @@ func storeUserNhgRBAC(nhgData []NetworkInfo, user *config.User) {
 	}
 }
 
-func storeUserHwIDRBAC(nhgData []NetworkInfo, user *config.User, txnID uint64) {
+func storeUserHwIDRBAC(nhgData []NetworkInfo, user *config.User) {
 	user.HwIDs = []string{}
 	hwIDs := make(map[string]struct{})
 	for _, nhgInfo := range nhgData {

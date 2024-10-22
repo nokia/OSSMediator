@@ -57,7 +57,7 @@ type User struct {
 	Email          string        `json:"email_id"` //User's email ID
 	Password       string        //User's password read from configuration file
 	AuthType       string        `json:"auth_type"`     //authentication type
-	ResponseDest   string        `json:"response_dest"` //Base directory where sub-directories will be created for each APIs to store its response.
+	ResponseDest   string        `json:"response_dest"` //Base directory where subdirectories will be created for each APIs to store its response.
 	SessionToken   *SessionToken //SessionToken variable keeps track of access_token, refresh_token and expiry_time of the token. It is used for authenticating the API calls.
 	Wg             sync.WaitGroup
 	NhgMux         sync.RWMutex

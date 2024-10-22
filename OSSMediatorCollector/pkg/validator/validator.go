@@ -72,12 +72,6 @@ func ValidateConf(conf config.Config) error {
 		return fmt.Errorf("UM's refresh URL can't be empty")
 	}
 
-	for _, user := range conf.Users {
-		if !isEmailValid(user.Email) {
-			return fmt.Errorf("invalid user's email id %s", user.Email)
-		}
-	}
-
 	if conf.Delay < 1 || conf.Delay > 15 {
 		return fmt.Errorf("API delay limit should be within 1-15, delay: %d", conf.Delay)
 	}
@@ -87,10 +81,6 @@ func ValidateConf(conf config.Config) error {
 	}
 
 	return nil
-}
-
-func isEmailValid(emailID string) bool {
-	return true
 }
 
 func isURLValid(baseURL string) bool {

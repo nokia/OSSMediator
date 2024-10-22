@@ -25,7 +25,7 @@ import (
 
 const (
 	//Backoff duration for retrying refresh token.
-	initialBackoff = 60 * time.Second
+	initialBackoff = 90 * time.Second
 	maxBackoff     = 16 * time.Minute
 	multiplier     = 2
 )
@@ -154,7 +154,6 @@ func RefreshToken(user *config.User) {
 			if authType == "ADTOKEN" {
 				if err.Error() == "500: Failed to refresh azure token" {
 					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
-					user.IsSessionAlive = false
 					log.Info("Terminating DA OSS Collector...")
 					os.Exit(0)
 				}
@@ -168,23 +167,20 @@ func RefreshToken(user *config.User) {
 						err = callRefreshAPI(apiURL, user)
 						if err != nil {
 							log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s", user.Email)
-							errStr := strings.Split(err.Error(), ":")
+							errStr = strings.Split(err.Error(), ":")
 							errNo, _ = strconv.Atoi(errStr[0])
 							if errNo < 500 {
 								log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
-								user.IsSessionAlive = false
 								log.Info("Terminating DA OSS Collector...")
 								os.Exit(0)
 							}
 						} else {
 							user.IsSessionAlive = true
-							user.Wg.Done()
 							break
 						}
 					}
 				} else {
 					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
-					user.IsSessionAlive = false
 					log.Info("Terminating DA OSS Collector...")
 					os.Exit(0)
 				}
@@ -194,31 +190,31 @@ func RefreshToken(user *config.User) {
 				if err != nil {
 					log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
 					user.IsSessionAlive = false
-					go retryLogin(initialBackoff, user)
+					done := make(chan bool, 1)
+					go retryLogin(initialBackoff, user, done)
+					<-done
 				} else {
 					user.IsSessionAlive = true
-					user.Wg.Done()
 				}
 			}
 		} else {
 			user.IsSessionAlive = true
-			user.Wg.Done()
 		}
 		duration = getRefreshDuration(user)
 		if duration < 10*time.Second {
 			log.WithFields(log.Fields{"refresh_duration": duration, "user": user.Email}).Debugf("Found less refresh duration, login will be tried for %s.", user.Email)
-			user.Wg.Add(1)
 			err = Login(user)
 			if err != nil {
 				log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
 				user.IsSessionAlive = false
-				go retryLogin(initialBackoff, user)
+				done := make(chan bool, 1)
+				go retryLogin(initialBackoff, user, done)
+				<-done
 			} else {
 				user.IsSessionAlive = true
-				user.Wg.Done()
 			}
 		}
-		user.Wg.Wait()
+		user.Wg.Done()
 		log.Infof("Token refreshed for %s.", user.Email)
 		refreshTimer.Reset(duration)
 	}
@@ -285,7 +281,7 @@ func callRefreshAPI(apiURL string, user *config.User) error {
 	return nil
 }
 
-func retryLogin(backoff time.Duration, user *config.User) {
+func retryLogin(backoff time.Duration, user *config.User, done chan bool) {
 	timer := time.NewTimer(backoff)
 	for {
 		<-timer.C
@@ -300,7 +296,7 @@ func retryLogin(backoff time.Duration, user *config.User) {
 			timer.Reset(backoff)
 		} else {
 			user.IsSessionAlive = true
-			user.Wg.Done()
+			done <- true
 			return
 		}
 	}

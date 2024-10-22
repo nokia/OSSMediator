@@ -99,7 +99,7 @@ func StartDataCollection() {
 
 	timer := time.NewTimer(time.Until(begTime))
 	<-timer.C
-	//For each APIs creates ticker to trigger the API periodically at specified interval.
+	//For each API creates ticker to trigger the API periodically at specified interval.
 	for _, user := range config.Conf.Users {
 		for _, api := range config.Conf.MetricAPIs {
 			go fetchMetricsData(api, user, atomic.AddUint64(&txnID, 1), config.Conf.PrettyResponse)

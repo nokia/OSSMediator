@@ -38,6 +38,10 @@ func GetTimeInterval(user *config.User, api *config.APIConf, nhgID string) (stri
 	if startTime == "" {
 		startTime = truncateSeconds(begTime).Format(time.RFC3339)
 	}
+
+	stTime, _ := time.Parse(time.RFC3339, startTime)
+	startTime = stTime.Truncate(time.Minute * time.Duration(api.Interval)).Format(time.RFC3339)
+
 	if api.SyncDuration > 0 {
 		stTime, _ := time.Parse(time.RFC3339, startTime)
 		gap := endTime.Sub(stTime)

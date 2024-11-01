@@ -28,8 +28,26 @@ func getGngDetails(api *config.APIConf, user *config.User, txnID uint64, prettyR
 	authType := strings.ToUpper(user.AuthType)
 	if authType == "ADTOKEN" {
 		listGngABAC(api, user, txnID, prettyResponse)
+		nhgs := make([]string, len(user.NhgIDsABAC))
+		i := 0
+		for k := range user.NhgIDsABAC {
+			nhgs[i] = k
+			i++
+		}
+		if len(user.NhgIDsABAC) == 0 {
+			user.IsSessionAlive = false
+		} else {
+			user.IsSessionAlive = true
+		}
+		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Infof("active networks: %v", nhgs)
 	} else {
 		listGngRBAC(api, user, txnID, prettyResponse)
+		if len(user.NhgIDs) == 0 {
+			user.IsSessionAlive = false
+		} else {
+			user.IsSessionAlive = true
+		}
+		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Infof("active networks: %v", user.NhgIDs)
 	}
 }
 
@@ -108,11 +126,11 @@ func listGngABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 		}
 
 		for _, accID := range accIDs {
-			log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
+			log.WithFields(log.Fields{"tid": txnID, "org_id": orgID, "acc_id": accID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
 			request, err := http.NewRequest("GET", apiURL, nil)
 			if err != nil {
-				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
-				return
+				log.WithFields(log.Fields{"tid": txnID, "error": err, "org_id": orgID, "acc_id": accID}).Errorf("Error while calling %s for %s", apiURL, user.Email)
+				continue
 			}
 
 			request.Header.Set(authorizationHeader, user.SessionToken.AccessToken)
@@ -122,22 +140,22 @@ func listGngABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 			request.URL.RawQuery = query.Encode()
 			response, err := doRequest(request)
 			if err != nil {
-				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Error while calling %s for %s", apiURL, user.Email)
-				return
+				log.WithFields(log.Fields{"tid": txnID, "error": err, "org_id": orgID, "acc_id": accID}).Errorf("Error while calling %s for %s", apiURL, user.Email)
+				continue
 			}
 
 			resp := new(gngAPIResponse)
 			err = json.NewDecoder(bytes.NewReader(response)).Decode(&resp)
 			if err != nil {
-				log.WithFields(log.Fields{"tid": txnID, "error": err}).Error("Unable to decode response")
-				return
+				log.WithFields(log.Fields{"tid": txnID, "error": err, "org_id": orgID, "acc_id": accID}).Error("Unable to decode response")
+				continue
 			}
 
 			//check response for status code
 			err = checkStatusCode(resp.Status)
 			if err != nil {
-				log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
-				return
+				log.WithFields(log.Fields{"tid": txnID, "error": err, "org_id": orgID, "acc_id": accID}).Errorf("Invalid status code received while calling %s for %s", apiURL, user.Email)
+				continue
 			}
 
 			storeUserGngABAC(resp.GngInfo, user, orgID, accID)
@@ -146,7 +164,7 @@ func listGngABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 				_ = json.NewDecoder(bytes.NewReader(response)).Decode(&gngData)
 				err = utils.WriteResponse(user, api, gngData.GngInfo, "", txnID, prettyResponse)
 				if err != nil {
-					log.WithFields(log.Fields{"tid": txnID, "error": err}).Errorf("unable to write response for %s", user.Email)
+					log.WithFields(log.Fields{"tid": txnID, "error": err, "org_id": orgID, "acc_id": accID}).Errorf("unable to write response for %s", user.Email)
 				}
 			} else {
 				log.WithFields(log.Fields{"tid": txnID, "user": user.Email, "org_id": orgID, "acc_id": accID}).Info("no GNG found for user")

@@ -633,7 +633,9 @@ func TestRetryLogin(t *testing.T) {
 	defer func() {
 		log.SetOutput(os.Stderr)
 	}()
-	go retryLogin(100*time.Millisecond, &user)
+
+	done := make(chan bool, 1)
+	go retryLogin(100*time.Millisecond, &user, done)
 	time.Sleep(200 * time.Millisecond)
 	if !strings.Contains(buf.String(), "Retrying to login with "+user.Email) {
 		t.Fail()

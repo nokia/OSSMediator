@@ -429,7 +429,7 @@ func TestStoreHWRBAC(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserHwIDRBAC(resp2.NetworkInfo, &user, 1234)
+	storeUserHwIDRBAC(resp2.NetworkInfo, &user)
 	if len(user.HwIDs) != 1 {
 		t.Fail()
 	}

@@ -86,7 +86,6 @@
       "url": ""
     }
   ],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -145,8 +144,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.2.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "CPU Usage",
@@ -240,8 +238,7 @@
           "titleSize": 8
         }
       },
-      "pluginVersion": "11.2.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -355,8 +352,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Ram Usage",
@@ -449,8 +445,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Memory Usage",
@@ -573,8 +568,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.2",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "CPU Usage",
@@ -687,8 +681,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.2",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -821,8 +814,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.2",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Ram Usage",
@@ -934,7 +926,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.2",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Memory Usage",
@@ -980,9 +972,9 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "15m",
-  "revision": 1,
-  "schemaVersion": 38,
+  "schemaVersion": 40,
   "tags": [
     "EdgePM"
   ],
@@ -990,20 +982,17 @@
     "list": [
       {
         "current": {
-          "selected": false,
           "text": "dac-edge-pm",
           "value": "dac-edge-pm"
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-edge-pm",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
@@ -1017,18 +1006,13 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
-        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
@@ -1042,31 +1026,23 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
-        "hide": 0,
         "includeAll": false,
         "label": "Slice ID",
-        "multi": false,
         "name": "edgealias",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": true,
           "text": "1m",
           "value": "1m"
         },
         "description": "Aggregation",
-        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
-        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -1126,8 +1102,6 @@
           }
         ],
         "query": "1m,5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       }
     ]

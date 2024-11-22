@@ -96,7 +96,6 @@
       "type": "dashboards"
     }
   ],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -116,6 +115,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -182,7 +182,7 @@
           "sort": "asc"
         }
       },
-      "pluginVersion": "9.5.15",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -280,6 +280,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -346,8 +347,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -439,6 +439,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -504,8 +505,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -597,6 +597,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -628,7 +629,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -661,8 +663,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -744,6 +745,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -775,7 +777,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -808,8 +811,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -891,6 +893,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -922,7 +925,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -955,8 +959,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -1038,6 +1041,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1069,7 +1073,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1102,8 +1107,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -1185,6 +1189,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1217,7 +1222,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1250,8 +1256,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -1343,6 +1348,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1375,7 +1381,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1408,8 +1415,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -1501,6 +1507,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1533,7 +1540,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1566,8 +1574,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -1659,6 +1666,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1691,7 +1699,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1724,8 +1733,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -1817,6 +1825,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1849,7 +1858,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1882,8 +1892,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -1975,6 +1984,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2007,7 +2017,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2040,8 +2051,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -2133,6 +2143,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2165,7 +2176,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2198,8 +2210,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -2291,6 +2302,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2323,7 +2335,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2356,8 +2369,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -2449,6 +2461,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2481,7 +2494,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2514,8 +2528,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -2607,6 +2620,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2639,7 +2653,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2672,8 +2687,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -2765,6 +2779,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2797,7 +2812,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2830,8 +2846,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -2923,6 +2938,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2955,7 +2971,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2988,8 +3005,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -3081,6 +3097,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3113,7 +3130,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3146,8 +3164,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -3239,6 +3256,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3271,7 +3289,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3304,8 +3323,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -3397,6 +3415,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3429,7 +3448,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3462,8 +3482,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -3555,6 +3574,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3587,7 +3607,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3620,8 +3641,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -3713,6 +3733,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3745,7 +3766,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3778,8 +3800,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -3871,6 +3892,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3903,7 +3925,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3936,8 +3959,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -4029,6 +4051,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -4060,7 +4083,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4093,8 +4117,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -4186,6 +4209,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -4217,7 +4241,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4250,8 +4275,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -4331,6 +4355,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -4362,7 +4387,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4395,8 +4421,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -4476,6 +4501,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -4507,7 +4533,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4540,8 +4567,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -4611,6 +4637,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -4642,7 +4669,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4675,8 +4703,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -4746,6 +4773,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -4777,7 +4805,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4810,8 +4839,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -4901,6 +4929,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -4932,7 +4961,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -4965,8 +4995,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -5032,6 +5061,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -5063,7 +5093,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5096,8 +5127,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -5163,6 +5193,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -5194,7 +5225,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5227,8 +5259,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -5294,6 +5325,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -5325,7 +5357,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5358,8 +5391,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -5425,6 +5457,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -5456,7 +5489,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5489,8 +5523,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -5570,6 +5603,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -5601,7 +5635,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5634,8 +5669,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -5701,6 +5735,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -5732,7 +5767,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5765,8 +5801,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -5832,6 +5867,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -5863,7 +5899,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5896,8 +5933,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -5977,6 +6013,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -6008,7 +6045,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6041,8 +6079,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -6108,6 +6145,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -6139,7 +6177,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6172,8 +6211,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.5.15",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -6222,8 +6260,9 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "15m",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [
     "Radio4G"
   ],
@@ -6231,54 +6270,40 @@
     "list": [
       {
         "current": {
-          "selected": false,
           "text": "dac-radio-4g-pm",
-          "value": "PFC4EB007C01A233F"
+          "value": "dac-radio-4g-pm"
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-4g-pm",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
+          "text": "test",
+          "value": "test"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
-        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
         "current": {
-          "selected": true,
           "text": [
             "All"
           ],
@@ -6292,7 +6317,6 @@
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "description": "PLMN ID",
-        "hide": 0,
         "includeAll": true,
         "label": "PLMN ID",
         "multi": true,
@@ -6301,8 +6325,6 @@
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "refresh": 1,
         "regex": ".*MCC.*MNC.*",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       }
     ]
@@ -6312,31 +6334,7 @@
     "to": "now-15m"
   },
   "timepicker": {
-    "hidden": false,
-    "nowDelay": "15m",
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "nowDelay": "15m"
   },
   "timezone": "",
   "title": "NDAC Radio 4G PM KPI MOCN Dashboard",

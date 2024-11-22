@@ -87,12 +87,11 @@
       "url": ""
     }
   ],
-  "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
       },
       "gridPos": {
         "h": 2,
@@ -110,7 +109,7 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.3.0",
       "title": "NDAC ALL FM HISTORY ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
@@ -161,6 +160,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -172,8 +172,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Critical",
@@ -257,6 +256,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -268,8 +268,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Major",
@@ -353,6 +352,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -364,8 +364,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Critical",
@@ -448,6 +447,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -459,8 +459,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Critical",
@@ -543,6 +542,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -554,8 +554,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -637,6 +636,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -648,8 +648,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -900,9 +899,7 @@
         "x": 0,
         "y": 7
       },
-      "hideTimeOverride": false,
       "id": 2,
-      "interval": "",
       "options": {
         "cellHeight": "sm",
         "footer": {
@@ -917,7 +914,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [],
@@ -1026,8 +1023,9 @@
       "type": "table"
     }
   ],
+  "preload": false,
   "refresh": "1m",
-  "schemaVersion": 38,
+  "schemaVersion": 40,
   "tags": [
     "AllAlarms"
   ],
@@ -1039,10 +1037,8 @@
           "text": "All",
           "value": "dac-all-fm"
         },
-        "hide": 0,
         "includeAll": false,
         "label": "Alarm Type",
-        "multi": false,
         "name": "alarmType",
         "options": [
           {
@@ -1077,31 +1073,25 @@
           }
         ],
         "query": "All : dac-all-fm, RADIO : dac-radio-fm, DAC : dac-fm, CORE : dac-core-fm, IXR : dac-ixr-fm, APPLICATION : dac-application-fm",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       },
       {
         "current": {
-          "selected": false,
           "text": "dac-all-fm",
           "value": "dac-all-fm"
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "$alarmType",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "current": {
-          "selected": true,
           "text": [
             "All"
           ],
@@ -1114,26 +1104,18 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": true,
         "label": "Network Hw Group Name",
         "multi": true,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
         "current": {
-          "selected": true,
           "text": [
             "All"
           ],
@@ -1146,26 +1128,18 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data.severity.keyword\"}",
-        "hide": 0,
         "includeAll": true,
         "label": "Severity",
         "multi": true,
         "name": "severity",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"fm_data.severity.keyword\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
         "current": {
-          "selected": true,
           "text": [
             "All"
           ],
@@ -1178,18 +1152,14 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data.alarm_state.keyword\"}",
-        "hide": 0,
         "includeAll": true,
         "label": "Alarm State",
         "multi": true,
         "name": "alarmstate",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"fm_data.alarm_state.keyword\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       }
     ]
@@ -1198,32 +1168,7 @@
     "from": "now-7d",
     "to": "now"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
-  "timepicker": {
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
-  },
+  "timepicker": {},
   "timezone": "browser",
   "title": "NDAC ALL FM Alarms Dashboard",
   "uid": "allalarm",

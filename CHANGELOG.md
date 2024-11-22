@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.4.1
+
+IMPROVEMENTS:
+
+* MediatorSetup:
+  * Updated Radio PM Dashboards for `24R3` release.
+
+SECURITY UPDATE:
+
+* OSSMediator:
+  * Updated `golang` version to `1.23.3`.
+* MediatorSetup:
+  * Updated OpenSearch version to `2.18.0`.
+  * Updated Grafana version to `11.3.1`.
+
 # 4.4
 
 NEW FEATURES:

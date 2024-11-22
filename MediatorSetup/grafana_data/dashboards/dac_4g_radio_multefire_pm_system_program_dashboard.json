@@ -100,7 +100,6 @@
       "url": ""
     }
   ],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -119,6 +118,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -184,7 +184,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -275,10 +275,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -305,6 +301,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -413,6 +410,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -525,6 +523,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -589,6 +588,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8020C3",
@@ -701,10 +701,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -731,6 +727,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -795,6 +792,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -912,6 +910,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -976,6 +975,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -1105,6 +1105,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -1169,6 +1170,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8029C32",
@@ -1299,10 +1301,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1328,6 +1326,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -1392,6 +1391,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8013C18",
@@ -1575,6 +1575,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -1639,6 +1640,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -1828,6 +1830,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -1892,6 +1895,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -2060,6 +2064,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2124,6 +2129,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8013C13",
@@ -2428,6 +2434,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2492,6 +2499,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -2597,6 +2605,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2661,6 +2670,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -2754,6 +2764,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2818,6 +2829,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8008C2",
@@ -2917,6 +2929,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2981,6 +2994,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8008C1",
@@ -3069,10 +3083,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3098,6 +3108,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -3162,6 +3173,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8007C0",
@@ -3261,6 +3273,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -3325,6 +3338,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -3430,6 +3444,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -3494,6 +3509,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -3792,10 +3808,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3821,6 +3833,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -3886,7 +3899,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C0",
@@ -3986,6 +3999,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -4051,7 +4065,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C1",
@@ -4163,6 +4177,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -4228,7 +4243,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C255",
@@ -4532,6 +4547,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -4597,7 +4613,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C255",
@@ -4913,6 +4929,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -4978,7 +4995,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C255",
@@ -5294,6 +5311,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -5359,7 +5377,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C255",
@@ -5687,6 +5705,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -5752,7 +5771,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C189",
@@ -5897,6 +5916,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -5962,7 +5982,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C189",
@@ -6079,6 +6099,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -6144,7 +6165,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C189",
@@ -6261,6 +6282,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -6326,7 +6348,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C189",
@@ -6443,6 +6465,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -6508,7 +6531,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C189",
@@ -6625,6 +6648,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -6690,7 +6714,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C189",
@@ -6807,6 +6831,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -6872,7 +6897,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C189",
@@ -6989,6 +7014,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -7054,7 +7080,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C189",
@@ -7171,6 +7197,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -7236,7 +7263,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C207",
@@ -7372,6 +7399,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -7437,7 +7465,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C208",
@@ -7578,6 +7606,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -7643,7 +7672,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C207",
@@ -7779,6 +7808,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -7844,7 +7874,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C207",
@@ -7980,6 +8010,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -8045,7 +8076,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C207",
@@ -8181,6 +8212,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -8246,7 +8278,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C207",
@@ -8382,6 +8414,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -8447,7 +8480,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C207",
@@ -8583,6 +8616,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -8648,7 +8682,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8006C207",
@@ -8784,6 +8818,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -8849,7 +8884,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8013C5",
@@ -9298,6 +9333,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -9363,7 +9399,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8013C5",
@@ -10063,6 +10099,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -10128,7 +10165,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -10319,6 +10356,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -10384,7 +10422,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -10671,6 +10709,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -10736,7 +10775,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -10878,6 +10917,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -10943,7 +10983,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -11037,6 +11077,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -11102,7 +11143,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -11196,6 +11237,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -11261,7 +11303,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -11355,6 +11397,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -11420,7 +11463,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -11515,6 +11558,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -11580,7 +11624,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -11782,6 +11826,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -11847,7 +11892,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -11960,6 +12005,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -12025,7 +12071,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -12138,6 +12184,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -12203,7 +12250,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -12316,6 +12363,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -12381,7 +12429,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -12483,10 +12531,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -12512,6 +12556,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -12576,6 +12621,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -12670,6 +12716,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -12734,6 +12781,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -12827,6 +12875,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -12891,6 +12940,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -12997,6 +13047,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -13061,6 +13112,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -13166,6 +13218,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -13230,6 +13283,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -13324,6 +13378,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -13388,6 +13443,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -13482,6 +13538,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -13546,6 +13603,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -13640,6 +13698,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -13704,6 +13763,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -13786,10 +13846,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -13815,6 +13871,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -13879,6 +13936,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -13985,6 +14043,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -14049,6 +14108,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -14154,6 +14214,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -14218,6 +14279,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -14323,6 +14385,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -14387,6 +14450,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -14492,6 +14556,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -14556,6 +14621,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -14661,6 +14727,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -14725,6 +14792,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -14830,6 +14898,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -14894,6 +14963,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -14999,6 +15069,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -15063,6 +15134,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -15168,6 +15240,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -15232,6 +15305,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -15337,6 +15411,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -15401,6 +15476,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -15506,6 +15582,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -15570,6 +15647,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -15663,6 +15741,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -15727,6 +15806,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -15820,6 +15900,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -15884,6 +15965,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -15977,6 +16059,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -16041,6 +16124,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -16134,6 +16218,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -16198,6 +16283,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -16291,6 +16377,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -16355,6 +16442,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -16448,6 +16536,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -16512,6 +16601,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -16605,6 +16695,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -16669,6 +16760,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -16762,6 +16854,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -16826,6 +16919,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -16919,6 +17013,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -16983,6 +17078,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -17065,10 +17161,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -17094,6 +17186,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -17158,6 +17251,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -17239,6 +17333,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -17303,6 +17398,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -17373,10 +17469,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -17402,6 +17494,7 @@
                 "axisLabel": "[Bit/s/Hz]",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -17466,6 +17559,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -17583,6 +17677,7 @@
                 "axisLabel": "[Bit/s/Hz]",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -17647,6 +17742,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "attribute": "M8012C19",
@@ -17759,10 +17855,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -17788,6 +17880,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -17853,7 +17946,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -17959,6 +18052,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -18024,7 +18118,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -18118,6 +18212,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -18183,7 +18278,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -18289,6 +18384,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -18354,7 +18450,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -18448,6 +18544,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -18513,7 +18610,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -18608,10 +18705,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -18637,6 +18730,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -18701,6 +18795,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -18818,6 +18913,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -18882,6 +18978,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -18975,6 +19072,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -19039,6 +19137,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -19144,6 +19243,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -19208,6 +19308,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -19301,6 +19402,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -19365,6 +19467,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -19482,6 +19585,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -19546,6 +19650,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -19663,6 +19768,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -19727,6 +19833,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -19820,6 +19927,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -19884,6 +19992,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -19989,6 +20098,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -20053,6 +20163,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -20146,6 +20257,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -20210,6 +20322,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -20316,10 +20429,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -20345,6 +20454,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -20409,6 +20519,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -20514,6 +20625,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -20578,6 +20690,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -20671,6 +20784,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -20735,6 +20849,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -20840,6 +20955,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -20904,6 +21020,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -20986,10 +21103,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -21015,6 +21128,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -21079,6 +21193,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -21172,6 +21287,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -21236,6 +21352,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -21341,6 +21458,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -21405,6 +21523,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -21487,10 +21606,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -21517,6 +21632,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -21626,7 +21742,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -21763,6 +21879,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -21872,7 +21989,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -21997,6 +22114,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -22106,7 +22224,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -22267,6 +22385,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -22376,7 +22495,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -22471,6 +22590,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -22580,7 +22700,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -22717,6 +22837,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -22826,7 +22947,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -22909,10 +23030,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -22938,6 +23055,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -23002,6 +23120,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -23107,6 +23226,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -23171,6 +23291,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -23277,6 +23398,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -23341,6 +23463,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -23434,6 +23557,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -23498,6 +23622,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -23591,6 +23716,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -23655,6 +23781,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -23749,6 +23876,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -23813,6 +23941,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -23918,6 +24047,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -23982,6 +24112,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -24075,6 +24206,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -24139,6 +24271,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -24232,6 +24365,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -24296,6 +24430,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -24389,6 +24524,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -24453,6 +24589,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -24535,10 +24672,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -24564,6 +24697,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -24628,6 +24762,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -24710,6 +24845,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -24774,6 +24910,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -24855,6 +24992,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -24919,6 +25057,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -25001,6 +25140,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -25065,6 +25205,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -25146,6 +25287,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -25210,6 +25352,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -25291,6 +25434,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -25355,6 +25499,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -25436,6 +25581,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -25500,6 +25646,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -25581,6 +25728,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -25645,6 +25793,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -25726,6 +25875,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -25790,6 +25940,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -25872,6 +26023,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -25936,6 +26088,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -26018,6 +26171,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -26082,6 +26236,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -26187,6 +26342,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -26251,6 +26407,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -26345,6 +26502,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -26409,6 +26567,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -26503,6 +26662,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -26567,6 +26727,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -26660,6 +26821,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -26724,6 +26886,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -26829,6 +26992,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -26893,6 +27057,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -26975,10 +27140,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -27005,6 +27166,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -27069,6 +27231,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -27199,10 +27362,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -27228,6 +27387,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -27292,6 +27452,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -27378,6 +27539,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -27442,6 +27604,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -27523,6 +27686,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -27587,6 +27751,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -27680,6 +27845,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -27744,6 +27910,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -27837,6 +28004,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -27901,6 +28069,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -27994,6 +28163,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -28058,6 +28228,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -28151,6 +28322,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -28215,6 +28387,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -28308,6 +28481,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -28372,6 +28546,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -28465,6 +28640,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -28529,6 +28705,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -28622,6 +28799,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -28686,6 +28864,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -28779,6 +28958,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -28843,6 +29023,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -28925,10 +29106,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -28954,6 +29131,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -29019,7 +29197,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.5.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -29125,6 +29303,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -29190,7 +29369,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.5.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -29285,10 +29464,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -29314,6 +29489,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -29379,7 +29555,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -30146,10 +30322,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -30175,6 +30347,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -30240,7 +30413,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -30514,6 +30687,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -30579,7 +30753,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -30853,6 +31027,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -30918,7 +31093,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -31000,6 +31175,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -31065,7 +31241,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -31411,6 +31587,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -31476,7 +31653,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -31822,6 +31999,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -31887,7 +32065,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -32233,6 +32411,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -32298,7 +32477,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -32644,6 +32823,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -32709,7 +32889,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -33175,6 +33355,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -33240,7 +33421,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -33706,6 +33887,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -33771,7 +33953,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -34201,6 +34383,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -34266,7 +34449,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -34396,6 +34579,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -34461,7 +34645,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -34639,6 +34823,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -34704,7 +34889,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -34822,6 +35007,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -34887,7 +35073,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -35005,6 +35191,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -35070,7 +35257,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -35164,6 +35351,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -35229,7 +35417,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -35695,6 +35883,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -35760,7 +35949,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -36190,6 +36379,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -36255,7 +36445,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -36685,6 +36875,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -36750,7 +36941,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -37276,6 +37467,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -37341,7 +37533,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -37856,10 +38048,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -37885,6 +38073,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -37949,6 +38138,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -38042,6 +38232,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -38106,6 +38297,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -38199,6 +38391,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -38263,6 +38456,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -38356,6 +38550,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -38420,6 +38615,7 @@
               "sort": "none"
             }
           },
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -38502,10 +38698,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -38531,6 +38723,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -38596,7 +38789,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -38702,6 +38895,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -38767,7 +38961,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -38838,10 +39032,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -38867,6 +39057,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -38932,7 +39123,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -39027,10 +39218,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -39056,6 +39243,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -39121,7 +39309,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -39239,6 +39427,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -39304,7 +39493,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -39458,6 +39647,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -39523,7 +39713,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -39617,6 +39807,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -39682,7 +39873,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -39776,6 +39967,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -39841,7 +40033,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -39967,6 +40159,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -40032,7 +40225,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -40126,6 +40319,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -40191,7 +40385,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -40285,6 +40479,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -40350,7 +40545,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -40420,8 +40615,9 @@
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "15m",
-  "schemaVersion": 37,
+  "schemaVersion": 40,
   "tags": [
     "Radio4G"
   ],
@@ -40429,20 +40625,17 @@
     "list": [
       {
         "current": {
-          "selected": false,
           "text": "dac-radio-4g-pm",
           "value": "dac-radio-4g-pm"
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-4g-pm",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
@@ -40456,26 +40649,17 @@
           "uid": "$datasource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
-        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
         "current": {
-          "selected": true,
           "text": [
             "All"
           ],
@@ -40488,22 +40672,15 @@
           "uid": "$datasource"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
-        "hide": 0,
         "includeAll": true,
         "label": "Access Point ID",
         "multi": true,
         "name": "ap_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": ".*BTS-(\\d+).*",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
         "current": {
@@ -40511,10 +40688,8 @@
           "text": "Cell",
           "value": "pm_data_source.dn.keyword"
         },
-        "hide": 0,
         "includeAll": false,
         "label": "Object Level",
-        "multi": false,
         "name": "groupby",
         "options": [
           {
@@ -40529,7 +40704,6 @@
           }
         ],
         "query": "eNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
-        "skipUrlSync": false,
         "type": "custom"
       }
     ]
@@ -40538,32 +40712,8 @@
     "from": "now-24h",
     "to": "now-15m"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
-    "nowDelay": "15m",
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "nowDelay": "15m"
   },
   "timezone": "",
   "title": "NDAC Radio 4G MulteFire eNB System Program Report - KPI",

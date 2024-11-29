@@ -3,10 +3,16 @@ All notable changes to this project will be documented in this file.
 
 # 4.4.1
 
+NEW FEATURES:
+
+* MediatorSetup:
+  * Added `NDAC Radio 5G PM KPI - Slice aware scheduling KPIs` dashboard.
+
 IMPROVEMENTS:
 
 * MediatorSetup:
   * Updated Radio PM Dashboards for `24R3` release.
+  * Updated `CORE 4G PM Dashboard` to include `PDN Connection` and `S1U packets` KPIs.
 
 SECURITY UPDATE:
 

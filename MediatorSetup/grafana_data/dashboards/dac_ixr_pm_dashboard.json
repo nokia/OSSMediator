@@ -370,7 +370,7 @@
               "type": "max"
             }
           ],
-          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.dn.keyword:*SOURCE* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -776,7 +776,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
+          "query": "pm_data.ndac_rr_ixr_port_stats_in_packets_rate:* AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
           "queryType": "lucene",
           "refId": "Rate",
           "timeField": "pm_data_source.timestamp"
@@ -913,7 +913,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data.ndac_rr_ixr_port_stats_out_packets_rate:* AND pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "Rate",
           "timeField": "pm_data_source.timestamp"
@@ -1054,7 +1054,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data.ndac_rr_ixr_port_stats_in_octets_rate:* AND pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "Rate",
           "timeField": "pm_data_source.timestamp"
@@ -1194,7 +1194,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data.ndac_rr_ixr_port_stats_out_octets_rate:* AND pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "Rate",
           "timeField": "pm_data_source.timestamp"
@@ -1331,7 +1331,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
+          "query": "pm_data.ndac_rr_ixr_port_stats_in_errors_rate:* AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
           "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
@@ -1468,7 +1468,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
+          "query": "pm_data.ndac_rr_ixr_port_stats_out_errors_rate:* AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
           "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"

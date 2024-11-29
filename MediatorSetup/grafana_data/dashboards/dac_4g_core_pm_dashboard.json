@@ -1081,6 +1081,324 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
+          "description": "Number of DL packets sent on S1u interface.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 17
+          },
+          "id": 54,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_packets",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_packets",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "KPI for S1U DL packets",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Number of packets received in UL on S1u interface",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 23
+          },
+          "id": 55,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_packets",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_packets",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "KPI for S1U UL packets",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
           "description": "Bits per second rate in DL on S1u interface",
           "fieldConfig": {
             "defaults": {
@@ -1142,7 +1460,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 17
+            "y": 29
           },
           "id": 44,
           "options": {
@@ -1348,7 +1666,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 23
+            "y": 35
           },
           "id": 5,
           "options": {
@@ -1554,7 +1872,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 29
+            "y": 41
           },
           "id": 6,
           "options": {
@@ -1722,7 +2040,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 35
+            "y": 47
           },
           "id": 7,
           "options": {
@@ -1898,7 +2216,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 41
+            "y": 53
           },
           "id": 50,
           "options": {
@@ -2365,7 +2683,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "description": "Number of received Create Session Requests",
+          "description": "Number of received data Create Session Requests",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -2516,7 +2834,7 @@
               "timeField": "pm_data_source.timestamp"
             }
           ],
-          "title": "Num of PDN Conn Requests",
+          "title": "Num of Data PDN Conn Requests",
           "type": "timeseries"
         },
         {
@@ -2524,7 +2842,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "description": "Number of Successful Create Session procedures",
+          "description": "Number of Successful Data PDN Connection over last 5 min",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -2674,7 +2992,7 @@
               "timeField": "pm_data_source.timestamp"
             }
           ],
-          "title": "PDN Conn Success",
+          "title": "Data PDN Conn Success",
           "type": "timeseries"
         },
         {
@@ -2682,7 +3000,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "description": "Number of Successful PDN Connectivity procedures per second.",
+          "description": "Number of Successful Data PDN Connectivity procedures per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -2790,7 +3108,7 @@
               },
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2820,7 +3138,7 @@
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_success_rate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2832,7 +3150,689 @@
               "timeField": "pm_data_source.timestamp"
             }
           ],
-          "title": "PDN Conn Success Rate",
+          "title": "Data PDN Conn Success Rate",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Number of requested PDN Connection over last 5 mins",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 36
+          },
+          "id": 53,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success",
+                  "hide": true,
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_failure",
+                  "hide": true,
+                  "id": "4",
+                  "type": "sum"
+                },
+                {
+                  "id": "5",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "1"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "4"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success",
+                  "hide": true,
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_failure",
+                  "hide": true,
+                  "id": "3",
+                  "type": "sum"
+                },
+                {
+                  "id": "4",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "1"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "3"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "PDN Conn Requests",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Number of Successful PDN Connection over last 5 mins",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 42
+          },
+          "id": 56,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "PDN Conn Success",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Number of Failed PDN Connection over last 5 mins",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 48
+          },
+          "id": 51,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_failure",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_failure",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "PDN Conn Failures",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Successful PDN Connection ratio over last 5 mins",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 54
+          },
+          "id": 52,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_ratio",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_ratio",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "PDN Conn Success Ratio",
           "type": "timeseries"
         }
       ],
@@ -2898,8 +3898,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2915,7 +3914,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 7
+            "y": 273
           },
           "id": 20,
           "options": {
@@ -3056,8 +4055,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3073,7 +4071,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 13
+            "y": 279
           },
           "id": 21,
           "options": {
@@ -3214,8 +4212,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3231,7 +4228,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 19
+            "y": 285
           },
           "id": 43,
           "options": {
@@ -3373,8 +4370,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3390,7 +4386,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 25
+            "y": 291
           },
           "id": 49,
           "options": {
@@ -3532,8 +4528,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -3545,7 +4540,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 32
+            "y": 298
           },
           "id": 48,
           "options": {
@@ -3686,8 +4681,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3703,7 +4697,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 39
+            "y": 305
           },
           "id": 22,
           "options": {
@@ -3844,8 +4838,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3861,7 +4854,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 45
+            "y": 311
           },
           "id": 23,
           "options": {
@@ -4002,8 +4995,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4019,7 +5011,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 51
+            "y": 317
           },
           "id": 42,
           "options": {
@@ -4160,8 +5152,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4177,7 +5168,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 57
+            "y": 323
           },
           "id": 24,
           "options": {
@@ -4318,8 +5309,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4335,7 +5325,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 63
+            "y": 329
           },
           "id": 25,
           "options": {
@@ -4476,8 +5466,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4493,7 +5482,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 69
+            "y": 335
           },
           "id": 41,
           "options": {
@@ -4634,8 +5623,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4651,7 +5639,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 75
+            "y": 341
           },
           "id": 26,
           "options": {
@@ -4792,8 +5780,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4809,7 +5796,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 81
+            "y": 347
           },
           "id": 27,
           "options": {
@@ -4950,8 +5937,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4967,7 +5953,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 87
+            "y": 353
           },
           "id": 40,
           "options": {
@@ -5108,8 +6094,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5125,7 +6110,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 93
+            "y": 359
           },
           "id": 28,
           "options": {
@@ -5266,8 +6251,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5283,7 +6267,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 99
+            "y": 365
           },
           "id": 29,
           "options": {
@@ -5424,8 +6408,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5441,7 +6424,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 105
+            "y": 371
           },
           "id": 39,
           "options": {
@@ -5582,8 +6565,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5599,7 +6581,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 111
+            "y": 377
           },
           "id": 30,
           "options": {
@@ -5740,8 +6722,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5757,7 +6738,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 117
+            "y": 383
           },
           "id": 31,
           "options": {
@@ -5898,8 +6879,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5915,7 +6895,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 123
+            "y": 389
           },
           "id": 38,
           "options": {
@@ -6070,8 +7050,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6087,7 +7066,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 8
+            "y": 274
           },
           "id": 34,
           "options": {
@@ -6199,8 +7178,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6216,7 +7194,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 14
+            "y": 280
           },
           "id": 35,
           "options": {
@@ -6328,8 +7306,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6345,7 +7322,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 20
+            "y": 286
           },
           "id": 36,
           "options": {

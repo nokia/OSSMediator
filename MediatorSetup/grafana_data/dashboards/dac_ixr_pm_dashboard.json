@@ -86,7 +86,6 @@
       "url": ""
     }
   ],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -289,8 +288,7 @@
           }
         ]
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -372,7 +370,7 @@
               "type": "max"
             }
           ],
-          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.dn.keyword:*SOURCE* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
@@ -483,6 +481,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -562,8 +561,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "8.5.11",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -676,6 +674,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -707,7 +706,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -739,7 +739,7 @@
           "sort": "desc"
         }
       },
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -776,7 +776,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
+          "query": "pm_data.ndac_rr_ixr_port_stats_in_packets_rate:* AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
           "queryType": "lucene",
           "refId": "Rate",
           "timeField": "pm_data_source.timestamp"
@@ -812,6 +812,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -842,7 +843,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -874,7 +876,7 @@
           "sort": "desc"
         }
       },
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -911,7 +913,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data.ndac_rr_ixr_port_stats_out_packets_rate:* AND pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "Rate",
           "timeField": "pm_data_source.timestamp"
@@ -947,6 +949,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -978,7 +981,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1010,7 +1014,7 @@
           "sort": "desc"
         }
       },
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -1050,7 +1054,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data.ndac_rr_ixr_port_stats_in_octets_rate:* AND pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "Rate",
           "timeField": "pm_data_source.timestamp"
@@ -1086,6 +1090,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1117,7 +1122,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1149,7 +1155,7 @@
           "sort": "desc"
         }
       },
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -1188,7 +1194,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
+          "query": "pm_data.ndac_rr_ixr_port_stats_out_octets_rate:* AND pm_data_source.dn.keyword:*PORT* AND pm_data_source.edge_alias.keyword:$slice",
           "queryType": "lucene",
           "refId": "Rate",
           "timeField": "pm_data_source.timestamp"
@@ -1224,6 +1230,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1254,7 +1261,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1286,8 +1294,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.3.6",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -1324,7 +1331,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
+          "query": "pm_data.ndac_rr_ixr_port_stats_in_errors_rate:* AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
           "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
@@ -1360,6 +1367,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1390,7 +1398,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1422,8 +1431,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.3.6",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -1460,7 +1468,7 @@
               "type": "avg"
             }
           ],
-          "query": "pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
+          "query": "pm_data.ndac_rr_ixr_port_stats_out_errors_rate:* AND pm_data_source.edge_alias.keyword:$slice AND pm_data_source.dn.keyword:*PORT*",
           "queryType": "lucene",
           "refId": "B",
           "timeField": "pm_data_source.timestamp"
@@ -1517,7 +1525,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1537,6 +1546,12 @@
       "id": 50,
       "options": {
         "displayMode": "gradient",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
         "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
@@ -1550,14 +1565,13 @@
           "values": false
         },
         "showUnfilled": true,
-        "sizing": "auto",
+        "sizing": "manual",
         "text": {
           "valueSize": 10
         },
         "valueMode": "color"
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -1699,7 +1713,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1719,6 +1734,12 @@
       "id": 3,
       "options": {
         "displayMode": "gradient",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
         "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
@@ -1735,7 +1756,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -1854,6 +1875,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1885,7 +1907,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -1913,7 +1936,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -1981,6 +2004,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2012,7 +2036,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2044,6 +2069,7 @@
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -2103,9 +2129,9 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "15m",
-  "revision": 1,
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [
     "IXRPM"
   ],
@@ -2113,20 +2139,17 @@
     "list": [
       {
         "current": {
-          "selected": false,
           "text": "dac-ixr-pm",
           "value": "dac-ixr-pm"
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-ixr-pm",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
@@ -2140,18 +2163,13 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\":\"pm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
-        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\":\"pm_data_source.nhg_alias.keyword\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
@@ -2165,31 +2183,23 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
-        "hide": 0,
         "includeAll": false,
         "label": "Slice ID",
-        "multi": false,
         "name": "slice",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
-        "queryType": "lucene",
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": true,
           "text": "5m",
           "value": "5m"
         },
         "description": "",
-        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
-        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -2244,13 +2254,10 @@
           }
         ],
         "query": "5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       },
       {
         "current": {
-          "selected": false,
           "text": "/IP-169.254.1.2",
           "value": "/IP-169.254.1.2"
         },
@@ -2261,15 +2268,11 @@
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.edge_alias.keyword:$slice\"}",
         "hide": 2,
         "includeAll": false,
-        "multi": false,
         "name": "snvrf",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.edge_alias.keyword:$slice\"}",
-        "queryType": "lucene",
         "refresh": 1,
         "regex": ".*(.+IP-.*)/SOURCE-.*",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       }
     ]
@@ -2278,7 +2281,6 @@
     "from": "now-12h",
     "to": "now-15m"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "nowDelay": "15m"
   },

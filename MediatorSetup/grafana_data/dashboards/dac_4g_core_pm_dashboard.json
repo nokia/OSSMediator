@@ -100,7 +100,6 @@
       "url": ""
     }
   ],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -139,6 +138,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -150,8 +150,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -248,6 +247,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -259,8 +259,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -356,6 +355,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -367,8 +367,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -440,6 +439,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -451,8 +451,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -525,6 +524,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -536,8 +536,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -610,6 +609,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -621,8 +621,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -659,10 +658,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -689,6 +684,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -752,7 +748,7 @@
               "sort": "desc"
             }
           },
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -893,6 +889,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -956,7 +953,7 @@
               "sort": "desc"
             }
           },
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -1084,7 +1081,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "description": "Bits per second rate in DL on S1u interface",
+          "description": "Number of DL packets sent on S1u interface.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -1097,6 +1094,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -1127,7 +1125,326 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 17
+          },
+          "id": 54,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_packets",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_packets",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "KPI for S1U DL packets",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Number of packets received in UL on S1u interface",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 23
+          },
+          "id": 55,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_packets",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_packets",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "KPI for S1U UL packets",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Bits per second rate in DL on S1u interface",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1143,7 +1460,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 17
+            "y": 29
           },
           "id": 44,
           "options": {
@@ -1159,7 +1476,7 @@
               "sort": "desc"
             }
           },
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -1301,6 +1618,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -1331,7 +1649,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1347,7 +1666,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 23
+            "y": 35
           },
           "id": 5,
           "options": {
@@ -1363,7 +1682,7 @@
               "sort": "desc"
             }
           },
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -1505,6 +1824,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -1535,7 +1855,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1551,7 +1872,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 29
+            "y": 41
           },
           "id": 6,
           "options": {
@@ -1567,7 +1888,7 @@
               "sort": "desc"
             }
           },
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "",
@@ -1671,6 +1992,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -1701,7 +2023,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1717,7 +2040,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 35
+            "y": 47
           },
           "id": 7,
           "options": {
@@ -1733,7 +2056,7 @@
               "sort": "desc"
             }
           },
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "",
@@ -1852,7 +2175,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1892,7 +2216,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 41
+            "y": 53
           },
           "id": 50,
           "options": {
@@ -1917,7 +2241,7 @@
               }
             ]
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "",
@@ -2026,24 +2350,11 @@
           "type": "table"
         }
       ],
-      "targets": [
-        {
-          "datasource": {
-            "type": "datasource",
-            "uid": "grafana"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Traffic KPIs",
       "type": "row"
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2070,6 +2381,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -2100,7 +2412,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2116,7 +2429,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 52
+            "y": 6
           },
           "id": 12,
           "options": {
@@ -2132,7 +2445,7 @@
               "sort": "desc"
             }
           },
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -2225,6 +2538,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -2255,7 +2569,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2271,7 +2586,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 58
+            "y": 12
           },
           "id": 13,
           "options": {
@@ -2287,7 +2602,7 @@
               "sort": "desc"
             }
           },
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -2368,7 +2683,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "description": "Number of received Create Session Requests",
+          "description": "Number of received data Create Session Requests",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -2381,6 +2696,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -2411,7 +2727,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2427,7 +2744,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 64
+            "y": 18
           },
           "id": 14,
           "options": {
@@ -2443,7 +2760,7 @@
               "sort": "desc"
             }
           },
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -2517,7 +2834,7 @@
               "timeField": "pm_data_source.timestamp"
             }
           ],
-          "title": "Num of PDN Conn Requests",
+          "title": "Num of Data PDN Conn Requests",
           "type": "timeseries"
         },
         {
@@ -2525,7 +2842,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "description": "Number of Successful Create Session procedures",
+          "description": "Number of Successful Data PDN Connection over last 5 min",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -2538,6 +2855,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -2568,7 +2886,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2584,7 +2903,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 70
+            "y": 24
           },
           "id": 15,
           "options": {
@@ -2600,7 +2919,7 @@
               "sort": "desc"
             }
           },
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -2662,6 +2981,530 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_success",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "Data PDN Conn Success",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Number of Successful Data PDN Connectivity procedures per second.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "cps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 30
+          },
+          "id": 37,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_success_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_data_pdn_conn_success_rate",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "Data PDN Conn Success Rate",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Number of requested PDN Connection over last 5 mins",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 36
+          },
+          "id": 53,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success",
+                  "hide": true,
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_failure",
+                  "hide": true,
+                  "id": "4",
+                  "type": "sum"
+                },
+                {
+                  "id": "5",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "1"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "4"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success",
+                  "hide": true,
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_failure",
+                  "hide": true,
+                  "id": "3",
+                  "type": "sum"
+                },
+                {
+                  "id": "4",
+                  "pipelineVariables": [
+                    {
+                      "name": "var1",
+                      "pipelineAgg": "1"
+                    },
+                    {
+                      "name": "var2",
+                      "pipelineAgg": "3"
+                    }
+                  ],
+                  "settings": {
+                    "script": "params.var1+params.var2"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "PDN Conn Requests",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Number of Successful PDN Connection over last 5 mins",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 42
+          },
+          "id": 56,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2681,7 +3524,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "description": "Number of Successful PDN Connectivity procedures per second.",
+          "description": "Number of Failed PDN Connection over last 5 mins",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -2694,6 +3537,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -2724,7 +3568,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2732,7 +3577,7 @@
                   }
                 ]
               },
-              "unit": "cps"
+              "unit": "short"
             },
             "overrides": []
           },
@@ -2740,9 +3585,9 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 76
+            "y": 48
           },
-          "id": 37,
+          "id": 51,
           "options": {
             "legend": {
               "calcs": [],
@@ -2756,7 +3601,7 @@
               "sort": "desc"
             }
           },
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -2787,13 +3632,13 @@
               },
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_failure",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
@@ -2817,29 +3662,178 @@
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_rate",
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_failure",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
               "queryType": "lucene",
               "refId": "B",
               "timeField": "pm_data_source.timestamp"
             }
           ],
-          "title": "PDN Conn Success Rate",
+          "title": "PDN Conn Failures",
           "type": "timeseries"
-        }
-      ],
-      "targets": [
+        },
         {
           "datasource": {
-            "type": "datasource",
-            "uid": "grafana"
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
           },
-          "refId": "A"
+          "description": "Successful PDN Connection ratio over last 5 mins",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 54
+          },
+          "id": 52,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_ratio",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_ratio",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "PDN Conn Success Ratio",
+          "type": "timeseries"
         }
       ],
       "title": "SGW Control KPIs",
@@ -2847,10 +3841,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2877,6 +3867,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -2923,7 +3914,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 83
+            "y": 273
           },
           "id": 20,
           "options": {
@@ -2939,8 +3930,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3034,6 +4024,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -3080,7 +4071,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 89
+            "y": 279
           },
           "id": 21,
           "options": {
@@ -3096,8 +4087,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3191,6 +4181,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -3237,7 +4228,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 95
+            "y": 285
           },
           "id": 43,
           "options": {
@@ -3253,8 +4244,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3348,6 +4338,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -3395,7 +4386,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 101
+            "y": 291
           },
           "id": 49,
           "options": {
@@ -3411,8 +4402,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.11",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3506,6 +4496,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -3549,7 +4540,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 108
+            "y": 298
           },
           "id": 48,
           "options": {
@@ -3565,8 +4556,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.11",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3660,6 +4650,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -3706,7 +4697,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 115
+            "y": 305
           },
           "id": 22,
           "options": {
@@ -3722,8 +4713,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3817,6 +4807,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -3863,7 +4854,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 121
+            "y": 311
           },
           "id": 23,
           "options": {
@@ -3879,8 +4870,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3974,6 +4964,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -4020,7 +5011,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 127
+            "y": 317
           },
           "id": 42,
           "options": {
@@ -4036,8 +5027,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4131,6 +5121,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -4177,7 +5168,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 133
+            "y": 323
           },
           "id": 24,
           "options": {
@@ -4193,8 +5184,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4288,6 +5278,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -4334,7 +5325,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 139
+            "y": 329
           },
           "id": 25,
           "options": {
@@ -4350,8 +5341,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4445,6 +5435,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -4491,7 +5482,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 145
+            "y": 335
           },
           "id": 41,
           "options": {
@@ -4507,8 +5498,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4602,6 +5592,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -4648,7 +5639,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 151
+            "y": 341
           },
           "id": 26,
           "options": {
@@ -4664,8 +5655,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4759,6 +5749,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -4805,7 +5796,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 157
+            "y": 347
           },
           "id": 27,
           "options": {
@@ -4821,8 +5812,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4916,6 +5906,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -4962,7 +5953,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 163
+            "y": 353
           },
           "id": 40,
           "options": {
@@ -4978,8 +5969,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5073,6 +6063,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -5119,7 +6110,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 169
+            "y": 359
           },
           "id": 28,
           "options": {
@@ -5135,8 +6126,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5230,6 +6220,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -5276,7 +6267,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 175
+            "y": 365
           },
           "id": 29,
           "options": {
@@ -5292,8 +6283,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5387,6 +6377,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -5433,7 +6424,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 181
+            "y": 371
           },
           "id": 39,
           "options": {
@@ -5449,8 +6440,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5544,6 +6534,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -5590,7 +6581,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 187
+            "y": 377
           },
           "id": 30,
           "options": {
@@ -5606,8 +6597,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5701,6 +6691,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -5747,7 +6738,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 193
+            "y": 383
           },
           "id": 31,
           "options": {
@@ -5763,8 +6754,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5858,6 +6848,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -5904,7 +6895,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 199
+            "y": 389
           },
           "id": 38,
           "options": {
@@ -5920,8 +6911,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5998,24 +6988,11 @@
           "type": "timeseries"
         }
       ],
-      "targets": [
-        {
-          "datasource": {
-            "type": "datasource",
-            "uid": "grafana"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "MME KPIs",
       "type": "row"
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -6042,6 +7019,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -6088,7 +7066,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 206
+            "y": 274
           },
           "id": 34,
           "options": {
@@ -6104,8 +7082,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6170,6 +7147,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -6216,7 +7194,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 212
+            "y": 280
           },
           "id": 35,
           "options": {
@@ -6232,8 +7210,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6298,6 +7275,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 0,
                 "gradientMode": "none",
@@ -6344,7 +7322,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 218
+            "y": 286
           },
           "id": 36,
           "options": {
@@ -6360,8 +7338,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "8.5.2",
-          "queryType": "lucene",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6409,50 +7386,35 @@
           "type": "timeseries"
         }
       ],
-      "targets": [
-        {
-          "datasource": {
-            "type": "datasource",
-            "uid": "grafana"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "3GPP KPIs",
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "15m",
-  "revision": 1,
-  "schemaVersion": 38,
+  "schemaVersion": 40,
   "tags": [
     "CorePM"
   ],
   "templating": {
     "list": [
       {
-        "allFormat": "glob",
         "current": {
-          "selected": false,
           "text": "dac-core-pm",
           "value": "dac-core-pm"
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-core-pm",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
-        "allFormat": "glob",
         "current": {
-          "selected": true,
           "text": [
             "All"
           ],
@@ -6465,32 +7427,24 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": true,
         "label": "Network Hw Group Name",
         "multi": true,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
-        "allFormat": "glob",
         "current": {
-          "selected": true,
           "text": "5m",
           "value": "5m"
         },
         "description": "Aggregation",
-        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
-        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -6545,8 +7499,6 @@
           }
         ],
         "query": "5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       }
     ]
@@ -6555,7 +7507,6 @@
     "from": "now-12h",
     "to": "now-15m"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "nowDelay": "15m"
   },

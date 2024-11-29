@@ -100,7 +100,6 @@
       "url": ""
     }
   ],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -146,7 +145,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 96,
+      "id": 63,
       "interval": "15m",
       "options": {
         "minVizHeight": 75,
@@ -163,8 +162,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -271,12 +269,13 @@
         "x": 3,
         "y": 0
       },
-      "id": 116,
+      "id": 64,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -288,7 +287,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -306,7 +305,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "format": "table",
+          "format": "list",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Avail_M8020C3",
@@ -343,6 +342,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -393,7 +393,7 @@
         "x": 6,
         "y": 0
       },
-      "id": 102,
+      "id": 66,
       "options": {
         "legend": {
           "calcs": [],
@@ -407,7 +407,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Avg PDCP Throughput UL",
@@ -495,6 +495,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -545,7 +546,7 @@
         "x": 12,
         "y": 0
       },
-      "id": 106,
+      "id": 67,
       "options": {
         "legend": {
           "calcs": [],
@@ -559,7 +560,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Avg PDCP Throughput DL",
@@ -659,12 +660,13 @@
         "x": 18,
         "y": 0
       },
-      "id": 104,
+      "id": 68,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -676,8 +678,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Avg PDCP Throughput UL",
@@ -776,7 +777,7 @@
         "x": 21,
         "y": 0
       },
-      "id": 110,
+      "id": 70,
       "interval": "15m",
       "options": {
         "minVizHeight": 75,
@@ -793,8 +794,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -893,12 +893,13 @@
         "x": 3,
         "y": 3
       },
-      "id": 117,
+      "id": 65,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -910,7 +911,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "",
@@ -928,7 +929,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "format": "table",
+          "format": "list",
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Avail_M8020C3",
@@ -976,12 +977,13 @@
         "x": 18,
         "y": 3
       },
-      "id": 108,
+      "id": 69,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -993,8 +995,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
-      "queryType": "lucene",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "alias": "Avg PDCP Throughput DL",
@@ -1049,7 +1050,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the ratio of services in a cell being available for end users.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1062,6 +1062,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1102,7 +1103,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -1124,10 +1125,10 @@
         "tooltip": {
           "maxHeight": 600,
           "mode": "multi",
-          "sort": "asc"
+          "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -1209,7 +1210,7 @@
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Avail_M8020C3:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
@@ -1220,10 +1221,8 @@
     },
     {
       "datasource": {
-        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "E-UTRAN LTE_UE_Quantity_M8051C58\n",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1236,6 +1235,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1286,6 +1286,202 @@
         "x": 0,
         "y": 11
       },
+      "id": 19,
+      "interval": "15m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "$groupby",
+              "id": "4",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.end_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "15m",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dsType": "grafana-opensearch-datasource",
+          "metrics": [
+            {
+              "field": "pm_data.LTE_Cell_Avail_M8020C3",
+              "hide": true,
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.LTE_Cell_Avail_M8020C6",
+              "hide": true,
+              "id": "7",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.LTE_Cell_Avail_M8020C3",
+              "hide": true,
+              "id": "9",
+              "meta": {},
+              "settings": {},
+              "type": "avg"
+            },
+            {
+              "field": "pm_data.LTE_Cell_Avail_M8020C4",
+              "hide": true,
+              "id": "10",
+              "meta": {},
+              "pipelineVariables": [
+                {
+                  "name": "c3",
+                  "pipelineAgg": "1"
+                },
+                {
+                  "name": "denom",
+                  "pipelineAgg": "7"
+                },
+                {
+                  "name": "var3",
+                  "pipelineAgg": "9"
+                }
+              ],
+              "settings": {},
+              "type": "sum"
+            },
+            {
+              "field": "select field",
+              "id": "11",
+              "meta": {},
+              "pipelineVariables": [
+                {
+                  "name": "M8020C3",
+                  "pipelineAgg": "1"
+                },
+                {
+                  "name": "M8020C6",
+                  "pipelineAgg": "7"
+                },
+                {
+                  "name": "M8020C4",
+                  "pipelineAgg": "10"
+                },
+                {
+                  "name": "av_c3",
+                  "pipelineAgg": "9"
+                }
+              ],
+              "settings": {
+                "script": "if (params.av_c3 == null) { return null } else if ((params.M8020C6 - params.M8020C4) == 0) { return 0 } else { return 100*(params.M8020C3/(params.M8020C6 - params.M8020C4)) }"
+              },
+              "type": "bucket_script"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "LTE_5239a E-UTRAN Cell Availability, excluding blocked by user state (BLU)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "E-UTRAN LTE_UE_Quantity_M8051C58\n",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
       "id": 36,
       "interval": "15m",
       "options": {
@@ -1301,8 +1497,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "9.3.6",
-      "repeatDirection": "h",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -1381,10 +1576,8 @@
     },
     {
       "datasource": {
-        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "E-UTRAN Average Latency Downlink [ms]\n",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1397,141 +1590,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 6,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "always",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 16
-      },
-      "id": 114,
-      "interval": "15m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "pluginVersion": "8.5.9",
-      "queryType": "lucene",
-      "repeatDirection": "h",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "$groupby",
-              "id": "3",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "field": "pm_data_source.end_timestamp",
-              "id": "2",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Cell_Load_M8001C2",
-              "hide": false,
-              "id": "4",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Load_M8001C2:*",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "LTE_5134a\tE-UTRAN Average Latency Downlink [ms]",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "description": "The KPI shows the number of attempts for the elementary procedure \"RRC connection establishment\" used to set up a radio connection from UE to eNB (involves SRB1 establishment).",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1597,7 +1656,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -1624,10 +1683,6 @@
               "type": "date_histogram"
             }
           ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -1750,7 +1805,7 @@
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_State_M8013C17:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
@@ -1761,10 +1816,8 @@
     },
     {
       "datasource": {
-        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The KPI indicates the number of E-RAB setup attempts.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1777,6 +1830,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1842,7 +1896,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -1869,10 +1923,6 @@
               "type": "date_histogram"
             }
           ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -1911,7 +1961,7 @@
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C0:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
@@ -1922,10 +1972,8 @@
     },
     {
       "datasource": {
-        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The KPI shows the setup success ratio for the RRC connection re-establishment procedure. The procedure is used in case of a failure situation (such as a radio or handover failure) to keep the UE in an LTE RRC_CONNECTED state and continue the RRC connection without going to an RRC_IDLE state.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1938,6 +1986,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -1978,7 +2027,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -2003,7 +2052,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -2030,10 +2079,6 @@
               "type": "date_histogram"
             }
           ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -2084,7 +2129,7 @@
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_RRC_M8008C5:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
@@ -2095,10 +2140,8 @@
     },
     {
       "datasource": {
-        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The KPI shows the Data Radio Bearer Setup Attempts.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2111,6 +2154,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2176,7 +2220,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -2203,10 +2247,6 @@
               "type": "date_histogram"
             }
           ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -2245,7 +2285,7 @@
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Radio_Bearer_M8007C0:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
@@ -2256,10 +2296,8 @@
     },
     {
       "datasource": {
-        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the average number of UEs having one SRB during the measurement period.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2272,6 +2310,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2337,7 +2376,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -2365,10 +2404,6 @@
               "type": "date_histogram"
             }
           ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -2419,7 +2454,7 @@
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C61:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
@@ -2430,10 +2465,8 @@
     },
     {
       "datasource": {
-        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the PDCP SDU volume on an eUu interface per cell in a downlink direction.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2446,6 +2479,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2486,7 +2520,7 @@
               }
             ]
           },
-          "unit": "decmbytes"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -2511,7 +2545,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -2539,12 +2573,7 @@
               "type": "date_histogram"
             }
           ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
           "dsType": "grafana-opensearch-datasource",
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
@@ -2582,72 +2611,9 @@
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C20:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        },
-        {
-          "alias": "Total volume",
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "pm_data_source.end_timestamp",
-              "id": "7",
-              "settings": {
-                "interval": "auto",
-                "min_doc_count": 0,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "dsType": "grafana-opensearch-datasource",
-          "hide": false,
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Cell_Throughput_M8012C20",
-              "hide": true,
-              "id": "4",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Cell_Throughput_M8012C20",
-              "hide": true,
-              "id": "8",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            },
-            {
-              "field": "select field",
-              "id": "9",
-              "meta": {},
-              "pipelineVariables": [
-                {
-                  "name": "M8012C20",
-                  "pipelineAgg": "4"
-                },
-                {
-                  "name": "AV_C20",
-                  "pipelineAgg": "8"
-                }
-              ],
-              "settings": {
-                "script": "if (params.AV_C20 == null) { return null }  else { return (params.M8012C20/1000000) }"
-              },
-              "type": "bucket_script"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C20:*",
-          "queryType": "lucene",
-          "refId": "B",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
@@ -2656,10 +2622,8 @@
     },
     {
       "datasource": {
-        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the PDCP SDU volume on an eUu interface per cell in an uplink direction.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2672,6 +2636,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2712,7 +2677,7 @@
               }
             ]
           },
-          "unit": "decmbytes"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -2737,7 +2702,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -2747,7 +2712,6 @@
               "id": "7",
               "settings": {
                 "min_doc_count": 1,
-                "missing": "0",
                 "order": "desc",
                 "orderBy": "_term",
                 "size": "0"
@@ -2766,10 +2730,6 @@
               "type": "date_histogram"
             }
           ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -2808,71 +2768,9 @@
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C19:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        },
-        {
-          "alias": "Total volume",
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "pm_data_source.end_timestamp",
-              "id": "7",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "dsType": "grafana-opensearch-datasource",
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Cell_Throughput_M8012C19",
-              "hide": true,
-              "id": "4",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Cell_Throughput_M8012C19",
-              "hide": true,
-              "id": "8",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            },
-            {
-              "field": "select field",
-              "id": "9",
-              "meta": {},
-              "pipelineVariables": [
-                {
-                  "name": "M8012C19",
-                  "pipelineAgg": "4"
-                },
-                {
-                  "name": "AV_C19",
-                  "pipelineAgg": "8"
-                }
-              ],
-              "settings": {
-                "script": "if (params.AV_C19 == null) { return null }  else { return (params.M8012C19/1000000) }"
-              },
-              "type": "bucket_script"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C19:*",
-          "queryType": "lucene",
-          "refId": "B",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
@@ -2884,7 +2782,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean UL PDCP traffic throughput.\nThis counter is updated when a PDCP SDU is received from UE.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2897,6 +2794,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -2937,7 +2835,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -2962,7 +2860,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -2997,54 +2895,88 @@
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
-              "field": "pm_data.LTE_Cell_Throughput_M8012C23",
+              "field": "pm_data.LTE_Cell_Throughput_M8012C19",
+              "hide": true,
               "id": "4",
               "meta": {},
               "settings": {},
               "type": "sum"
+            },
+            {
+              "field": "pm_data.LTE_Cell_Throughput_M8012C19",
+              "hide": true,
+              "id": "8",
+              "meta": {},
+              "settings": {},
+              "type": "avg"
+            },
+            {
+              "field": "pm_data.LTE_Cell_Throughput_M8012C89",
+              "hide": true,
+              "id": "9",
+              "meta": {},
+              "pipelineVariables": [
+                {
+                  "name": "M8012C19",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "AV_C19",
+                  "pipelineAgg": "8"
+                }
+              ],
+              "settings": {},
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.LTE_X2_gNB_per_LNCEL_M8080C11",
+              "hide": true,
+              "id": "10",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.LTE_X2_gNB_per_LNCEL_M8080C11",
+              "hide": true,
+              "id": "11",
+              "type": "avg"
+            },
+            {
+              "id": "12",
+              "pipelineVariables": [
+                {
+                  "name": "am8012c19",
+                  "pipelineAgg": "8"
+                },
+                {
+                  "name": "m8012c19",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "m8012c89",
+                  "pipelineAgg": "9"
+                },
+                {
+                  "name": "m8080c11",
+                  "pipelineAgg": "10"
+                },
+                {
+                  "name": "am8080c11",
+                  "pipelineAgg": "11"
+                }
+              ],
+              "settings": {
+                "script": "if (params.am8012c19 == null || params.am8080c11 == null) { return null }  else if (params.m8012c89 == 0) { return 0 } else { return 8*(params.m8012c19 + params.m8080c11)/params.m8012c89}"
+              },
+              "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
-        },
-        {
-          "alias": "Total Avg PDCP Datarate UL",
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "pm_data_source.end_timestamp",
-              "id": "3",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "dsType": "grafana-opensearch-datasource",
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Cell_Throughput_M8012C23",
-              "id": "4",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C23:*",
-          "queryType": "lucene",
-          "refId": "B",
-          "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "Average PDCP Layer Throughput UL",
+      "title": "LTE_5289e E-UTRAN average PDCP Layer Active Cell Throughput UL",
       "type": "timeseries"
     },
     {
@@ -3052,7 +2984,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean DL PDCP traffic throughput.\nThis counter is updated when a PDCP SDU is transmitted towards the UE.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3065,6 +2996,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3105,7 +3037,7 @@
               }
             ]
           },
-          "unit": "Kbits"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -3130,7 +3062,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -3165,54 +3097,88 @@
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
-              "field": "pm_data.LTE_Cell_Throughput_M8012C26",
+              "field": "pm_data.LTE_Cell_Throughput_M8012C20",
+              "hide": true,
               "id": "4",
               "meta": {},
               "settings": {},
               "type": "sum"
+            },
+            {
+              "field": "pm_data.LTE_Cell_Throughput_M8012C20",
+              "hide": true,
+              "id": "8",
+              "meta": {},
+              "settings": {},
+              "type": "avg"
+            },
+            {
+              "field": "pm_data.LTE_Cell_Throughput_M8012C90",
+              "hide": true,
+              "id": "9",
+              "meta": {},
+              "pipelineVariables": [
+                {
+                  "name": "M8012C19",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "AV_C19",
+                  "pipelineAgg": "8"
+                }
+              ],
+              "settings": {},
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.LTE_X2_gNB_per_LNCEL_M8080C5",
+              "hide": true,
+              "id": "10",
+              "type": "avg"
+            },
+            {
+              "field": "pm_data.LTE_X2_gNB_per_LNCEL_M8080C5",
+              "hide": true,
+              "id": "11",
+              "type": "sum"
+            },
+            {
+              "id": "12",
+              "pipelineVariables": [
+                {
+                  "name": "am8012c20",
+                  "pipelineAgg": "8"
+                },
+                {
+                  "name": "m8012c20",
+                  "pipelineAgg": "4"
+                },
+                {
+                  "name": "m8012c90",
+                  "pipelineAgg": "9"
+                },
+                {
+                  "name": "am8080c5",
+                  "pipelineAgg": "10"
+                },
+                {
+                  "name": "m8080c5",
+                  "pipelineAgg": "11"
+                }
+              ],
+              "settings": {
+                "script": "if (params.am8012c20 == null || params.am8080c5 == null) { return null }  else if (params.m8012c90 == 0) { return 0 } else { return 8*(params.m8012c20 + params.m8080c5)/params.m8012c90}"
+              },
+              "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
-        },
-        {
-          "alias": "Total Avg PDCP Datarate DL",
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "pm_data_source.end_timestamp",
-              "id": "3",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "dsType": "grafana-opensearch-datasource",
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Cell_Throughput_M8012C26",
-              "id": "4",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Throughput_M8012C26:*",
-          "queryType": "lucene",
-          "refId": "B",
-          "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "Average PDCP Layer Throughput DL",
+      "title": "LTE_5292e E-UTRAN average PDCP Layer Active Cell Throughput DL",
       "type": "timeseries"
     },
     {
@@ -3220,7 +3186,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI describes the total number of RA preambles.\nBoth contention based and dedicated preambles are considered within the KPI.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3233,6 +3198,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3298,7 +3264,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -3381,48 +3347,84 @@
               "type": "sum"
             },
             {
-              "field": "select field",
+              "field": "pm_data.LTE_Cell_Load_M8001C522",
+              "hide": true,
               "id": "13",
-              "meta": {},
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.LTE_Cell_Load_M8001C521",
+              "hide": true,
+              "id": "14",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.LTE_Cell_Load_M8001C520",
+              "hide": true,
+              "id": "15",
+              "type": "sum"
+            },
+            {
+              "field": "pm_data.LTE_Cell_Load_M8001C519",
+              "hide": true,
+              "id": "16",
+              "type": "sum"
+            },
+            {
+              "id": "17",
               "pipelineVariables": [
                 {
-                  "name": "AV_C6",
+                  "name": "am8001c6",
                   "pipelineAgg": "8"
                 },
                 {
-                  "name": "M8001C7",
+                  "name": "m8001c6",
+                  "pipelineAgg": "12"
+                },
+                {
+                  "name": "m8001c7",
                   "pipelineAgg": "10"
                 },
                 {
-                  "name": "M8001C286",
+                  "name": "m8001c286",
                   "pipelineAgg": "11"
                 },
                 {
-                  "name": "M8001C6",
-                  "pipelineAgg": "12"
+                  "name": "m8001c519",
+                  "pipelineAgg": "16"
+                },
+                {
+                  "name": "m8001c520",
+                  "pipelineAgg": "15"
+                },
+                {
+                  "name": "m8001c521",
+                  "pipelineAgg": "14"
+                },
+                {
+                  "name": "m8001c522",
+                  "pipelineAgg": "13"
                 }
               ],
               "settings": {
-                "script": "if (params.AV_C6 == null) { return null }  else { return (params.M8001C6 + params.M8001C7 + params.M8001C286) }"
+                "script": "if (params.am8001c6 == null) { return null }  else { return (params.m8001c6 + params.m8001c7 + params.m8001c286 - params.m8001c519 - params.m8001c520 - params.m8001c521 - params.m8001c522) }"
               },
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Load_M8001C6:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
-      "title": "LTE 6159a E-Utran RACH Setup Attempts",
+      "title": "LTE_6159b E-UTRAN RACH Setup Attempts",
       "type": "timeseries"
     },
     {
       "datasource": {
-        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The KPI shows the setup success ratio for the elementary procedure \"RRC connection establishment\" used to set up a radio connection from UE to eNB (involves SRB1 establishment) .",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3435,6 +3437,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3475,7 +3478,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -3500,7 +3503,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -3528,10 +3531,6 @@
               "type": "date_histogram"
             }
           ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -3666,7 +3665,7 @@
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_State_M8013C5:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
@@ -3677,10 +3676,8 @@
     },
     {
       "datasource": {
-        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI describes the ratio of abnormally released (dropped) E-RABs from RAN point of view.\nEach bearer of the Bearer to be Released List IE is counted. RAN point of view means that as abnormal E-RAB drops only those ones initiated by eNB are counted.E-RAB releases due to pre-emption initiated by eNB are counted as normal releases as they are not real drops resulted from any radio quality problems. In denominator of the formula normal E-RAB releases due to successful HO to eHRPD are not counted.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3693,6 +3690,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3733,7 +3731,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -3758,7 +3756,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -3786,10 +3784,6 @@
               "type": "date_histogram"
             }
           ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -4109,12 +4103,12 @@
                 }
               ],
               "settings": {
-                "script": "if (params.AV_C261 == null) { return null }  else if ((params.M8006C254 + params.M8006C261 + params.M8006C6 + params.M8006C7 + params.M8006C8 + params.M8006C9 + params.M8006C277 - params.M8006C301 + params.M8006C303 + params.M8006C306 + params.M8006C309 + params.M8006C310 + params.M8006C311 + params.M8006C312 + params.M8006C313) == 0) { return 0 } else { return 100*((params.M8006C261 + params.M8006C254 - params.M8006C255 - params.M8006C258 - params.M8006C341 - params.M8006C301 + params.M8006C309 + params.M8006C311 + params.M8006C313)/(params.M8006C254 + params.M8006C261 + params.M8006C6 + params.M8006C7 + params.M8006C8 + params.M8006C9 + params.M8006C277 - params.M8006C301 + params.M8006C303 + params.M8006C306 + params.M8006C309 + params.M8006C310 + params.M8006C311 + params.M8006C312 + params.M8006C313)) }"
+                "script": "if (params.AV_C261 == null) { return null }  else if ((params.M8006C254 + params.M8006C261 + params.M8006C6 + params.M8006C7 + params.M8006C8 + params.M8006C9 + params.M8006C277 - params.M8006C301 + params.M8006C303 + params.M8006C306 + params.M8006C309 + params.M8006C310 + params.M8006C311 + params.M8006C312 + params.M8006C313) == 0) { return 0 } else { return ((params.M8006C261 + params.M8006C254 - params.M8006C255 - params.M8006C258 - params.M8006C341 - params.M8006C301 + params.M8006C309 + params.M8006C311 + params.M8006C313)/(params.M8006C254 + params.M8006C261 + params.M8006C6 + params.M8006C7 + params.M8006C8 + params.M8006C9 + params.M8006C277 - params.M8006C301 + params.M8006C303 + params.M8006C306 + params.M8006C309 + params.M8006C310 + params.M8006C311 + params.M8006C312 + params.M8006C313)) }"
               },
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C261:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
@@ -4125,10 +4119,8 @@
     },
     {
       "datasource": {
-        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The KPI indicates the setup success ratio of the elementary E-RAB setup procedure, used to set up the E-RAB between MME and UE.\nIt shows the E-UTRAN's contribution to network accessibility for the end user, not the whole end-to-end service accessibility.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4141,6 +4133,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -4181,7 +4174,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -4206,7 +4199,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -4234,10 +4227,6 @@
               "type": "date_histogram"
             }
           ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -4288,7 +4277,7 @@
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_EPS_Bearer_M8006C0:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
@@ -4302,7 +4291,6 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "The KPI shows the RRC Connection Re-establishment Attempts per type, e.g. total, due to \"HandoverFailure\", due to \"otherFailure\" or due to \"reconfigFailure\".",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4315,6 +4303,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -4380,7 +4369,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.11",
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "bucketAggs": [
@@ -4408,10 +4397,6 @@
               "type": "date_histogram"
             }
           ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
           "dsType": "grafana-opensearch-datasource",
           "metrics": [
             {
@@ -4450,7 +4435,7 @@
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_RRC_M8008C4:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
@@ -4458,1583 +4443,11 @@
       ],
       "title": "LTE_6161a\tRRC Connection Re-establishment Attempts per type total attempts",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "description": "This KPI shows the average value of the physical resource block (PRB) utilization per TTI in a downlink direction. The utilization is defined by the ratio of used to available PRBs per TTI.\nThe monitoring also includes almost blank subframes (ABSs) for the cells that are configured as macro ones in the eICIC partnership.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 6,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "always",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 91
-      },
-      "id": 76,
-      "interval": "15m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.5.11",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "$groupby",
-              "id": "16",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "fake": true,
-              "field": "pm_data_source.end_timestamp",
-              "id": "15",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "dsType": "grafana-opensearch-datasource",
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Cell_Resource_M8011C37",
-              "hide": true,
-              "id": "14",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            },
-            {
-              "field": "pm_data.LTE_Cell_Resource_M8011C37",
-              "hide": true,
-              "id": "17",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "select field",
-              "id": "19",
-              "meta": {},
-              "pipelineVariables": [
-                {
-                  "name": "Avg_C37",
-                  "pipelineAgg": "14"
-                },
-                {
-                  "name": "M8011C37",
-                  "pipelineAgg": "17"
-                }
-              ],
-              "settings": {
-                "script": "if ( params.Avg_C37 == null ) { return null } else { return params.M8011C37/10 }"
-              },
-              "type": "bucket_script"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Resource_M8011C37:*",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "LTE_5276b\tE-UTRAN average PRB usage per TTI DL / E-UTRAN Avg PRB usage per TTI DL",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "description": "This KPI shows the average value of the physical resource block (PRB) utilization per TTI in an uplink direction. The utilization is defined by the ratio of used to available PRBs per TTI.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 6,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "always",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 96
-      },
-      "id": 111,
-      "interval": "15m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.5.11",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "$groupby",
-              "id": "16",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "fake": true,
-              "field": "pm_data_source.end_timestamp",
-              "id": "15",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "dsType": "grafana-opensearch-datasource",
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Cell_Resource_M8011C24",
-              "hide": true,
-              "id": "14",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            },
-            {
-              "field": "pm_data.LTE_Cell_Resource_M8011C24",
-              "hide": true,
-              "id": "17",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "select field",
-              "id": "19",
-              "meta": {},
-              "pipelineVariables": [
-                {
-                  "name": "Avg_C24",
-                  "pipelineAgg": "14"
-                },
-                {
-                  "name": "M8011C24",
-                  "pipelineAgg": "17"
-                }
-              ],
-              "settings": {
-                "script": "if ( params.Avg_C24 == null ) { return null } else { return params.M8011C24/10 }"
-              },
-              "type": "bucket_script"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Resource_M8011C24:*",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "LTE_5273b\tE-UTRAN Average PRB usage per TTI UL",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "description": "This KPI shows the average UE reported Channel\nQuality Indicator (CQI) value.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 6,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "always",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 101
-      },
-      "id": 94,
-      "interval": "15m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.5.11",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "$groupby",
-              "id": "16",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "fake": true,
-              "field": "pm_data_source.end_timestamp",
-              "id": "15",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "dsType": "grafana-opensearch-datasource",
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C36",
-              "hide": true,
-              "id": "17",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C37",
-              "hide": true,
-              "id": "19",
-              "meta": {},
-              "pipelineVariables": [
-                {
-                  "name": "Avg_C37",
-                  "pipelineAgg": "14"
-                },
-                {
-                  "name": "M8011C37",
-                  "pipelineAgg": "17"
-                }
-              ],
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C38",
-              "hide": true,
-              "id": "20",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C39",
-              "hide": true,
-              "id": "21",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C40",
-              "hide": true,
-              "id": "22",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C41",
-              "hide": true,
-              "id": "23",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C42",
-              "hide": true,
-              "id": "24",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C43",
-              "hide": true,
-              "id": "25",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C44",
-              "hide": true,
-              "id": "26",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C45",
-              "hide": true,
-              "id": "27",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C46",
-              "hide": true,
-              "id": "28",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C47",
-              "hide": true,
-              "id": "29",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C48",
-              "hide": true,
-              "id": "30",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C49",
-              "hide": true,
-              "id": "31",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C50",
-              "hide": true,
-              "id": "32",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C51",
-              "hide": true,
-              "id": "33",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "select field",
-              "id": "34",
-              "meta": {},
-              "pipelineVariables": [
-                {
-                  "name": "c36",
-                  "pipelineAgg": "17"
-                },
-                {
-                  "name": "c37",
-                  "pipelineAgg": "19"
-                },
-                {
-                  "name": "c38",
-                  "pipelineAgg": "20"
-                },
-                {
-                  "name": "c39",
-                  "pipelineAgg": "21"
-                },
-                {
-                  "name": "c40",
-                  "pipelineAgg": "22"
-                },
-                {
-                  "name": "c41",
-                  "pipelineAgg": "23"
-                },
-                {
-                  "name": "c42",
-                  "pipelineAgg": "24"
-                },
-                {
-                  "name": "c43",
-                  "pipelineAgg": "25"
-                },
-                {
-                  "name": "c44",
-                  "pipelineAgg": "26"
-                },
-                {
-                  "name": "c45",
-                  "pipelineAgg": "27"
-                },
-                {
-                  "name": "c46",
-                  "pipelineAgg": "28"
-                },
-                {
-                  "name": "c47",
-                  "pipelineAgg": "29"
-                },
-                {
-                  "name": "c48",
-                  "pipelineAgg": "30"
-                },
-                {
-                  "name": "c49",
-                  "pipelineAgg": "31"
-                },
-                {
-                  "name": "c50",
-                  "pipelineAgg": "32"
-                },
-                {
-                  "name": "c51",
-                  "pipelineAgg": "33"
-                },
-                {
-                  "name": "c116",
-                  "pipelineAgg": "35"
-                },
-                {
-                  "name": "c117",
-                  "pipelineAgg": "36"
-                },
-                {
-                  "name": "c118",
-                  "pipelineAgg": "37"
-                },
-                {
-                  "name": "c119",
-                  "pipelineAgg": "38"
-                },
-                {
-                  "name": "c120",
-                  "pipelineAgg": "39"
-                },
-                {
-                  "name": "c121",
-                  "pipelineAgg": "40"
-                },
-                {
-                  "name": "c122",
-                  "pipelineAgg": "41"
-                },
-                {
-                  "name": "c123",
-                  "pipelineAgg": "42"
-                },
-                {
-                  "name": "c124",
-                  "pipelineAgg": "43"
-                },
-                {
-                  "name": "c125",
-                  "pipelineAgg": "44"
-                },
-                {
-                  "name": "c126",
-                  "pipelineAgg": "45"
-                },
-                {
-                  "name": "c127",
-                  "pipelineAgg": "46"
-                },
-                {
-                  "name": "c128",
-                  "pipelineAgg": "47"
-                },
-                {
-                  "name": "c129",
-                  "pipelineAgg": "48"
-                },
-                {
-                  "name": "c130",
-                  "pipelineAgg": "49"
-                },
-                {
-                  "name": "c131",
-                  "pipelineAgg": "50"
-                }
-              ],
-              "settings": {
-                "script": "if ((params.c36 + params.c116 + params.c37 + params.c117 + params.c38 + params.c118 + params.c39 + params.c119 + params.c40 + params.c120 + params.c41 + params.c121 + params.c42 + params.c122 + params.c43 + params.c123 + params.c44 + params.c124 + params.c45 + params.c125 + params.c46 + params.c126 + params.c47 + params.c127 + params.c48 + params.c128 + params.c49 + params.c129 + params.c50 + params.c130 + params.c51 + params.c131) == 0) { return 0 } else { return (1*(params.c37 + params.c117) + 2*(params.c38 + params.c118) + 3*(params.c39 + params.c119) + 4*(params.c40 + params.c120) + 5*(params.c41 + params.c121) + 6*(params.c42 + params.c122) + 7*(params.c43 + params.c123) + 8*(params.c44 + params.c124) + 9*(params.c45 + params.c125) + 10*(params.c46 + params.c126) + 11*(params.c47 + params.c127) + 12*(params.c48 + params.c128) + 13*(params.c49 + params.c129) + 14*(params.c50 + params.c130) + 15*(params.c51 + params.c131))/(params.c36 + params.c116 + params.c37 + params.c117 + params.c38 + params.c118 + params.c39 + params.c119 + params.c40 + params.c120 + params.c41 + params.c121 + params.c42 + params.c122 + params.c43 + params.c123 + params.c44 + params.c124 + params.c45 + params.c125 + params.c46 + params.c126 + params.c47 + params.c127 + params.c48 + params.c128 + params.c49 + params.c129 + params.c50 + params.c130 + params.c51 + params.c131) }"
-              },
-              "type": "bucket_script"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C116",
-              "hide": true,
-              "id": "35",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C117",
-              "hide": true,
-              "id": "36",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C118",
-              "hide": true,
-              "id": "37",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C119",
-              "hide": true,
-              "id": "38",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C120",
-              "hide": true,
-              "id": "39",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C121",
-              "hide": true,
-              "id": "40",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C122",
-              "hide": true,
-              "id": "41",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C123",
-              "hide": true,
-              "id": "42",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C124",
-              "hide": true,
-              "id": "43",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C125",
-              "hide": true,
-              "id": "44",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C126",
-              "hide": true,
-              "id": "45",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C127",
-              "hide": true,
-              "id": "46",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C128",
-              "hide": true,
-              "id": "47",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C129",
-              "hide": true,
-              "id": "48",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C130",
-              "hide": true,
-              "id": "49",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_DL_M8010C131",
-              "hide": true,
-              "id": "50",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_DL_M8010C36:*",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "LTE_5427b\tE-UTRAN Average CQI",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "description": "This KPI indicates the success ratio for the inter-frequency HO when the source eNB receives information that the UE is successfully connected to the target cell within the target eNB. The KPI is defined independently of network topology (intra-eNB HO/inter-eNB HO) and of the usage of measurement gaps.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 6,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "always",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 106
-      },
-      "id": 72,
-      "interval": "15m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.5.11",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "$groupby",
-              "id": "16",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "fake": true,
-              "field": "pm_data_source.end_timestamp",
-              "id": "15",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "dsType": "grafana-opensearch-datasource",
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Handover_M8021C2",
-              "hide": true,
-              "id": "14",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
-            },
-            {
-              "field": "pm_data.LTE_Handover_M8021C2",
-              "hide": true,
-              "id": "17",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Handover_M8021C0",
-              "hide": true,
-              "id": "19",
-              "meta": {},
-              "pipelineVariables": [
-                {
-                  "name": "Avg_C20",
-                  "pipelineAgg": "14"
-                },
-                {
-                  "name": "M8012C20",
-                  "pipelineAgg": "17"
-                },
-                {
-                  "name": "M8051C101",
-                  "pipelineAgg": "20"
-                }
-              ],
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Handover_M8021C0",
-              "id": "20",
-              "meta": {},
-              "pipelineVariables": [
-                {
-                  "name": "Avg_c2",
-                  "pipelineAgg": "14"
-                },
-                {
-                  "name": "M8021C2",
-                  "pipelineAgg": "17"
-                },
-                {
-                  "name": "M8021C0",
-                  "pipelineAgg": "19"
-                }
-              ],
-              "settings": {
-                "script": "if ( params.Avg_c2 == null ) { return null } else if ( params.M8021C0 == 0 ) { return 0 } else { return 100*(params.M8021C2/params.M8021C0) }"
-              },
-              "type": "bucket_script"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Handover_M8021C2:*",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "LTE_5114a\tE-UTRAN Inter-Frequency HO Success Ratio",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "description": "This KPI indicates attempts at an intra-frequency HO when the source eNB receives information that the UE is successfully connected to the target cell. The KPI is defined independently of  network topology (intra-eNB HO/inter-eNB HO).",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 6,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "always",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 111
-      },
-      "id": 74,
-      "interval": "15m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.5.11",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "$groupby",
-              "id": "16",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "fake": true,
-              "field": "pm_data_source.end_timestamp",
-              "id": "15",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "dsType": "grafana-opensearch-datasource",
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Intra_eNB_HO_M8009C7",
-              "hide": true,
-              "id": "14",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Inter_eNB_HO_M8014C7",
-              "hide": true,
-              "id": "17",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Inter_eNB_HO_M8014C19",
-              "hide": true,
-              "id": "19",
-              "meta": {},
-              "pipelineVariables": [
-                {
-                  "name": "Avg_C20",
-                  "pipelineAgg": "14"
-                },
-                {
-                  "name": "M8012C20",
-                  "pipelineAgg": "17"
-                },
-                {
-                  "name": "M8051C101",
-                  "pipelineAgg": "20"
-                }
-              ],
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Handover_M8021C2",
-              "hide": true,
-              "id": "20",
-              "meta": {},
-              "pipelineVariables": [
-                {
-                  "name": "Avg_c2",
-                  "pipelineAgg": "14"
-                },
-                {
-                  "name": "M8021C2",
-                  "pipelineAgg": "17"
-                },
-                {
-                  "name": "M8021C0",
-                  "pipelineAgg": "19"
-                }
-              ],
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Intra_eNB_HO_M8009C6",
-              "hide": true,
-              "id": "21",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Inter_eNB_HO_M8014C6",
-              "hide": true,
-              "id": "22",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Inter_eNB_HO_M8014C18",
-              "hide": true,
-              "id": "23",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "pm_data.LTE_Handover_M8021C0",
-              "hide": true,
-              "id": "24",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
-            },
-            {
-              "field": "select field",
-              "id": "25",
-              "meta": {},
-              "pipelineVariables": [
-                {
-                  "name": "M8009C7",
-                  "pipelineAgg": "14"
-                },
-                {
-                  "name": "M8014C7",
-                  "pipelineAgg": "17"
-                },
-                {
-                  "name": "M8014C19",
-                  "pipelineAgg": "19"
-                },
-                {
-                  "name": "M8021C2",
-                  "pipelineAgg": "20"
-                },
-                {
-                  "name": "M8009C6",
-                  "pipelineAgg": "21"
-                },
-                {
-                  "name": "M8014C6",
-                  "pipelineAgg": "22"
-                },
-                {
-                  "name": "M8014C18",
-                  "pipelineAgg": "23"
-                },
-                {
-                  "name": "M8021C0",
-                  "pipelineAgg": "24"
-                }
-              ],
-              "settings": {
-                "script": "if ( (params.M8009C6 + params.M8014C6 + params.M8014C18 - params.M8021C0) == 0 ) { return 0 } else { return 100*(params.M8009C7 + params.M8014C7 + params.M8014C19 - params.M8021C2)/(params.M8009C6 + params.M8014C6 +params.M8014C18 - params.M8021C0) }"
-              },
-              "type": "bucket_script"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND (pm_data.LTE_Intra_eNB_HO_M8009C7:* OR pm_data.LTE_Inter_eNB_HO_M8014C7:* OR pm_data.LTE_Handover_M8021C2:*)",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "LTE_5568a\tE-UTRAN Intra-Frequency HO Success Ratio",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "description": "This KPI shows the average Received Signal Strength Indicator (RSSI) value measured in the eNB for a physical UL control channel (PUCCH) per cell and normalized per the number of PRBs applicable to PUCCH.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 6,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "always",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "dBm"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 116
-      },
-      "id": 112,
-      "interval": "15m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.5.9",
-      "queryType": "lucene",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "$groupby",
-              "id": "16",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "fake": true,
-              "field": "pm_data_source.end_timestamp",
-              "id": "15",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "dsType": "grafana-opensearch-datasource",
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_UL_M8005C208",
-              "id": "14",
-              "type": "avg"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_UL_M8005C208:*",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "LTE_5368a\tE-UTRAN Average RSSI per Cell for PUCCH",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-opensearch-datasource",
-        "uid": "${datasource}"
-      },
-      "description": "This KPI shows the average Received Signal Strength Indicator (RSSI) value measured in the eNB for a physical UL shared channel (PUSCH) per cell and normalized per bandwidth (that is, a total number of PRBs).",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 6,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "always",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "dBm"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 121
-      },
-      "id": 113,
-      "interval": "15m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.5.9",
-      "queryType": "lucene",
-      "targets": [
-        {
-          "bucketAggs": [
-            {
-              "fake": true,
-              "field": "$groupby",
-              "id": "16",
-              "settings": {
-                "min_doc_count": 1,
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
-              "fake": true,
-              "field": "pm_data_source.end_timestamp",
-              "id": "15",
-              "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
-              },
-              "type": "date_histogram"
-            }
-          ],
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "dsType": "grafana-opensearch-datasource",
-          "metrics": [
-            {
-              "field": "pm_data.LTE_Pwr_and_Qual_UL_M8005C233",
-              "id": "14",
-              "type": "avg"
-            }
-          ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Pwr_and_Qual_UL_M8005C233:*",
-          "queryType": "lucene",
-          "refId": "A",
-          "timeField": "pm_data_source.end_timestamp"
-        }
-      ],
-      "title": "LTE_5369a   E-UTRAN Average RSSI per Cell for PUSCH",
-      "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "15m",
-  "schemaVersion": 37,
-  "style": "dark",
+  "schemaVersion": 40,
   "tags": [
     "Radio4G"
   ],
@@ -6042,20 +4455,17 @@
     "list": [
       {
         "current": {
-          "selected": false,
           "text": "dac-radio-4g-pm",
           "value": "dac-radio-4g-pm"
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-4g-pm",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
@@ -6069,54 +4479,34 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
-        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
         "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
-        "hide": 0,
         "includeAll": true,
         "label": "Access Point ID",
         "multi": true,
         "name": "ap_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": ".*BTS-(\\d+).*",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
         "current": {
@@ -6124,10 +4514,8 @@
           "text": "Cell",
           "value": "pm_data_source.dn.keyword"
         },
-        "hide": 0,
         "includeAll": false,
         "label": "Object Level",
-        "multi": false,
         "name": "groupby",
         "options": [
           {
@@ -6142,8 +4530,6 @@
           }
         ],
         "query": "eNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       }
     ]
@@ -6152,33 +4538,8 @@
     "from": "now-24h",
     "to": "now-15m"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
-    "hidden": false,
-    "nowDelay": "15m",
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "nowDelay": "15m"
   },
   "timezone": "",
   "title": "NDAC Radio 4G PM KPI - Dashboard",

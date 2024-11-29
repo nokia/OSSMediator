@@ -100,7 +100,6 @@
       "url": ""
     }
   ],
-  "liveNow": false,
   "panels": [
     {
       "collapsed": true,
@@ -117,7 +116,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the non-GBR DRB radio admission requests for SA user, for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -131,6 +129,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -196,7 +195,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "10.2.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -265,7 +264,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NSL_M55149C00002:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -279,7 +278,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the success ratio of non-GBR DRB radio admission for SA user, for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -293,6 +291,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -358,7 +357,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "10.2.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -438,7 +437,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NSL_M55149C00002:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -452,7 +451,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the number of GBR DRB radio admission requests for SA user, for the given slice.",
           "fieldConfig": {
             "defaults": {
@@ -466,6 +464,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -497,7 +496,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -530,7 +530,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "10.2.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -598,7 +598,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NSL_M55149C01001:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -612,7 +612,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the success ratio of radio admission of GBR DRBs for SA user, per slice.",
           "fieldConfig": {
             "defaults": {
@@ -626,6 +625,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -657,7 +657,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -690,7 +691,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "10.2.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -770,7 +771,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NSL_M55149C01001:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -798,7 +799,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the success ratio of establishing a GBR DRB on CU upon successful PDU session establishment or modification, for SA user, per slice.",
           "fieldConfig": {
             "defaults": {
@@ -812,6 +812,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -843,7 +844,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -859,7 +861,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 2
+            "y": 30
           },
           "id": 234,
           "interval": "15m",
@@ -876,7 +878,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "10.2.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -956,7 +958,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NSL_M55149C01001:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -984,7 +986,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the PDCP SDU data volume transmitted via gNB in downlink direction for the given Slice and PLMN. Discarded DL PDCP SDUs are not counted.",
           "fieldConfig": {
             "defaults": {
@@ -998,6 +999,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -1029,7 +1031,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1045,7 +1048,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 3
+            "y": 38
           },
           "id": 236,
           "interval": "15m",
@@ -1062,7 +1065,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "10.2.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -1129,7 +1132,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NPSL_M55328C00003:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -1143,7 +1146,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the PDCP SDU data volume received at gNB in uplink direction for the given Slice and PLMN. Discarded UL PDCP SDUs are not counted.",
           "fieldConfig": {
             "defaults": {
@@ -1157,6 +1159,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -1188,7 +1191,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1204,7 +1208,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 10
+            "y": 45
           },
           "id": 237,
           "interval": "15m",
@@ -1221,7 +1225,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "10.2.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -1288,7 +1292,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NPSL_M55328C00005:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -1316,7 +1320,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the downlink average delay for PDCP SDUs per slice, calculated as time difference between the reception of the PDCP SDU from NG-U and DL PDCP PDU is sent towards RLC layer.",
           "fieldConfig": {
             "defaults": {
@@ -1330,6 +1333,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -1361,7 +1365,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1371,38 +1376,13 @@
               },
               "unit": "µs"
             },
-            "overrides": [
-              {
-                "__systemRef": "hideSeriesFrom",
-                "matcher": {
-                  "id": "byNames",
-                  "options": {
-                    "mode": "exclude",
-                    "names": [
-                      "PLMN-PLMN/SST-1/SD-16777215"
-                    ],
-                    "prefix": "All except:",
-                    "readOnly": true
-                  }
-                },
-                "properties": [
-                  {
-                    "id": "custom.hideFrom",
-                    "value": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": true
-                    }
-                  }
-                ]
-              }
-            ]
+            "overrides": []
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 4
+            "y": 53
           },
           "id": 239,
           "interval": "15m",
@@ -1419,7 +1399,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "10.2.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -1495,7 +1475,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NPSL_M55328C00006:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -1509,7 +1489,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the uplink average delay for PDCP SDUs per slice, calculated as time difference between reception of UL PDCP PDU from RLC layer, and when the PDCP SDU is sent towards NG-U.",
           "fieldConfig": {
             "defaults": {
@@ -1523,6 +1502,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -1554,7 +1534,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1564,38 +1545,13 @@
               },
               "unit": "µs"
             },
-            "overrides": [
-              {
-                "__systemRef": "hideSeriesFrom",
-                "matcher": {
-                  "id": "byNames",
-                  "options": {
-                    "mode": "exclude",
-                    "names": [
-                      "PLMN-PLMN/SST-1/SD-16777215"
-                    ],
-                    "prefix": "All except:",
-                    "readOnly": true
-                  }
-                },
-                "properties": [
-                  {
-                    "id": "custom.hideFrom",
-                    "value": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": true
-                    }
-                  }
-                ]
-              }
-            ]
+            "overrides": []
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 11
+            "y": 60
           },
           "id": 240,
           "interval": "15m",
@@ -1612,7 +1568,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "10.2.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -1688,7 +1644,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NPSL_M55328C00007:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -1703,10 +1659,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1720,7 +1672,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the success ratio of intra-frequency intra-gNB intra-DU handover for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -1734,6 +1685,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -1765,7 +1717,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1781,7 +1734,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 2
+            "y": 68
           },
           "id": 216,
           "interval": "15m",
@@ -1798,7 +1751,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "10.2.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -1878,7 +1831,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NSL_M55149C00005:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -1893,10 +1846,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1910,7 +1859,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the success ratio of intra-frequency inter-gNB intra-DU handover for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -1924,6 +1872,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -1955,7 +1904,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1971,7 +1921,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 3
+            "y": 76
           },
           "id": 219,
           "interval": "15m",
@@ -1988,7 +1938,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.3.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -2068,7 +2018,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NSL_M55149C00007:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -2083,10 +2033,6 @@
     },
     {
       "collapsed": true,
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2100,7 +2046,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the success ratio of the intra-frequency inter-gNB outgoing handover for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -2114,6 +2059,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2145,7 +2091,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2161,7 +2108,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 4
+            "y": 84
           },
           "id": 222,
           "interval": "15m",
@@ -2178,7 +2125,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "8.0.3",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -2258,7 +2205,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NSL_M55149C00009:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -2286,7 +2233,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the number of inter-frequency intra-gNB intra-DU handover attempts for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -2300,6 +2246,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2331,7 +2278,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2347,7 +2295,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 5
+            "y": 92
           },
           "id": 226,
           "interval": "15m",
@@ -2364,7 +2312,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "9.5.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -2430,7 +2378,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NSL_M55149C00550:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -2444,7 +2392,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "queryType": "lucene",
           "description": "This KPI shows the success ratio of inter-frequency intra-gNB intra-DU handover for the given slice and PLMN.",
           "fieldConfig": {
             "defaults": {
@@ -2458,6 +2405,7 @@
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2489,7 +2437,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2505,7 +2454,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 12
+            "y": 99
           },
           "id": 227,
           "interval": "15m",
@@ -2522,7 +2471,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "9.5.2",
+          "pluginVersion": "11.3.0",
           "targets": [
             {
               "bucketAggs": [
@@ -2598,7 +2547,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.NSL_M55149C00550:* AND (pm_data_source.dn:*NRBTS* OR pm_data_source.dn:*SST*)",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
@@ -2612,9 +2561,9 @@
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "15m",
-  "schemaVersion": 37,
-  "style": "dark",
+  "schemaVersion": 40,
   "tags": [
     "Radio5G"
   ],
@@ -2622,92 +2571,45 @@
     "list": [
       {
         "current": {
-          "selected": false,
           "text": "dac-radio-5g-pm",
           "value": "dac-radio-5g-pm"
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-5g-pm",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "current": {
-          "selected": false,
-          "text": "TALOS_HPE_151_5G_SA",
-          "value": "TALOS_HPE_151_5G_SA"
+          "text": "MXIE_CE_140",
+          "value": "MXIE_CE_140"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
-        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "queryType": "lucene",
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
         "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": {
-          "type": "grafana-opensearch-datasource",
-          "uid": "${datasource}"
-        },
-        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Access Point ID",
-        "multi": true,
-        "name": "ap_id",
-        "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
-        "queryType": "lucene",
-        "refresh": 2,
-        "regex": ".*MRBTS-(\\d+).*",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "selected": true,
           "text": "Cell",
           "value": "pm_data_source.dn.keyword"
         },
-        "hide": 0,
         "includeAll": false,
         "label": "Object Level",
-        "multi": false,
         "name": "groupby",
         "options": [
           {
@@ -2722,8 +2624,6 @@
           }
         ],
         "query": "gNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       }
     ]
@@ -2732,21 +2632,8 @@
     "from": "now-24h",
     "to": "now-15m"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
-    "nowDelay": "15m",
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ]
+    "nowDelay": "15m"
   },
   "timezone": "",
   "title": "NDAC Radio 5G PM KPI - Slice Performance 5G035",

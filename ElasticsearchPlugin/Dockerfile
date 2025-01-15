@@ -1,17 +1,17 @@
 # Staging: for building go app (ElasticsearchPlugin)
-FROM golang:1.23.3 AS builder
+FROM golang:1.23.4 AS builder
 
 # download dependencies for build
 RUN go install github.com/jstemmer/go-junit-report@latest
 
 # copy project directory to be built
 COPY . /ElasticsearchPlugin/.
-COPY ./VERSION ../.
 
 # set the working directory
 WORKDIR /ElasticsearchPlugin/
 
 ARG BUILD_CMD="build test"
+ARG VERSION="1.1"
 
 #unit test setup
 RUN if echo "$BUILD_CMD" | grep -q "test" > /dev/null ; then \
@@ -31,10 +31,10 @@ RUN if echo "$BUILD_CMD" | grep -q "test" > /dev/null ; then \
     fi
 
 # build the go app (ElasticsearchPlugin)
-RUN make $BUILD_CMD
+RUN make $BUILD_CMD VERSION=$VERSION
 
 # staging: base package for app deployment
-FROM alpine:3.20.3
+FROM alpine:3.21.2
 
 RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 

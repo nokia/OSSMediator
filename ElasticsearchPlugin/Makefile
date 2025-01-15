@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-VERSION = $(shell cat ../VERSION)
+VERSION := $(shell cat ../VERSION)
 
 all: clean docker_build_all copy_binary
 
@@ -8,7 +8,7 @@ docker_build_all:
 	@echo "Starting docker build and test process, for ElasticsearchPlugin......"
 	@echo "---------------------------------------------------------------------------------"
 	@cp ../VERSION .
-	@docker build -t elasticsearchplugin:$(VERSION) . --network host
+	@docker build -t elasticsearchplugin:$(VERSION) . --network host --build-arg VERSION=$(VERSION)
 	@echo "docker build completed."
 
 docker_build:
@@ -16,7 +16,7 @@ docker_build:
 	@echo "Starting docker build process, for ElasticsearchPlugin......"
 	@echo "---------------------------------------------------------------------------------"
 	@cp ../VERSION .
-	@docker build -t elasticsearchplugin:$(VERSION) . --network host --build-arg BUILD_CMD="build"
+	@docker build -t elasticsearchplugin:$(VERSION) . --network host --build-arg BUILD_CMD="build" --build-arg VERSION=$(VERSION)
 	@echo "docker build completed."
 
 copy_binary:

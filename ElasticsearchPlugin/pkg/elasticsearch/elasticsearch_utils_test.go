@@ -399,9 +399,20 @@ func TestPushNhgDataToElasticsearch(t *testing.T) {
 	}
 
 	PushData(fileName, esConf)
+	searchURL := elasticsearchURL + "/nhg-data/_search"
+	resp, err := httpCall(http.MethodGet, searchURL, "", "", nil, nil, defaultTimeout)
+	if err != nil {
+		t.Error(err)
+	}
+	t.Logf("1 %s", string(resp))
 	time.Sleep(2 * time.Second)
+	resp, err = httpCall(http.MethodGet, searchURL, "", "", nil, nil, defaultTimeout)
+	if err != nil {
+		t.Error(err)
+	}
+	t.Logf("2 %s", string(resp))
 	searchResult, err := searchOnElastic([]string{"nhg-data"})
-	t.Log(searchResult)
+	t.Logf("3 %s", searchResult)
 	if err != nil {
 		t.Error(err)
 	}

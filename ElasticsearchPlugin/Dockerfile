@@ -1,5 +1,5 @@
 # Staging: for building go app (ElasticsearchPlugin)
-FROM golang:1.23.4 AS builder
+FROM golang:1.24.0 AS builder
 
 # download dependencies for build
 RUN go install github.com/jstemmer/go-junit-report@latest
@@ -15,26 +15,21 @@ ARG VERSION="1.1"
 
 #unit test setup
 RUN if echo "$BUILD_CMD" | grep -q "test" > /dev/null ; then \
-    export JAVA_BIN="/usr/local/jre1.8.0_171/bin/" && \
-    export PATH=$PATH:$GOBIN:$JAVA_BIN && \
-    mkdir -p /tmp/java && \
-    wget -O jre-8u171-linux-x64.tar.gz http://javadl.oracle.com/webapps/download/AutoDL?BundleId=233162_512cd62ec5174c3487ac17c61aaa89e8 && \
-    tar -C /usr/local -xzf jre-8u171-linux-x64.tar.gz && \
-    mkdir /elasticsearch/ && cd /elasticsearch && \
-    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.0.1-linux-x86_64.tar.gz && \
-    tar -xzf elasticsearch-7.0.1-linux-x86_64.tar.gz && \
-    # create required directory for ElasticsearchPlugin
-    mkdir -p /ElasticsearchPlugin/ /elasticsearch/elasticsearch-7.0.1/data/ && \
-    #Creating user to run elastic search
-    groupadd -f -g 1000 elasticsearch && useradd -m -u 1000 -g 1000 -s /bin/bash elasticsearch && \
-    chown -R elasticsearch /elasticsearch/elasticsearch-7.0.1/bin/elasticsearch /elasticsearch/elasticsearch-7.0.1/data/ /elasticsearch/elasticsearch-7.0.1/config/ /elasticsearch/elasticsearch-7.0.1/logs/; \
+    mkdir /opensearch && cd /opensearch && \
+    wget https://artifacts.opensearch.org/releases/core/opensearch/2.19.0/opensearch-min-2.19.0-linux-x64.tar.gz && \
+    tar -xzf opensearch-min-2.19.0-linux-x64.tar.gz && \
+    export OPENSEARCH_JAVA_HOME=/opensearch/opensearch-2.19.0/jdk && \
+    #Creating user to run opensearch \
+    mkdir -p /opensearch/opensearch-2.19.0/data/ && \
+    groupadd -f -g 1000 opensearch && useradd -m -u 1000 -g 1000 -s /bin/bash opensearch && \
+    chown -R opensearch /opensearch/opensearch-2.19.0/jdk /opensearch/opensearch-2.19.0/bin/opensearch /opensearch/opensearch-2.19.0/data/ /opensearch/opensearch-2.19.0/config/ /opensearch/opensearch-2.19.0/logs/; \
     fi
 
 # build the go app (ElasticsearchPlugin)
 RUN make $BUILD_CMD VERSION=$VERSION
 
 # staging: base package for app deployment
-FROM alpine:3.21.2
+FROM alpine:3.21.3
 
 RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 

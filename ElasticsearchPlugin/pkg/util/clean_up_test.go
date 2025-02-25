@@ -8,7 +8,6 @@ package util
 
 import (
 	"bytes"
-	"io/ioutil"
 	"os"
 	"strings"
 	"testing"
@@ -25,13 +24,13 @@ func TestRemoveFiles(t *testing.T) {
 	if err != nil {
 		t.Fail()
 	}
-	ioutil.TempFile(path, "test_file1")
-	ioutil.TempFile(path, "test_file2")
+	os.CreateTemp(path, "test_file1")
+	os.CreateTemp(path, "test_file2")
 
 	CleanUp(cleanupDuration, path)
 	time.Sleep(61 * time.Second)
 	defer os.RemoveAll(path)
-	files, _ := ioutil.ReadDir(path)
+	files, _ := os.ReadDir(path)
 	if len(files) != 0 {
 		t.Fail()
 	}

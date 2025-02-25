@@ -9,7 +9,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/signal"
 	"path/filepath"
@@ -50,6 +49,7 @@ func main() {
 	}
 
 	//add elasticsearch mapping for core-pm and ixr-pm index
+	elasticsearch.SetConfig(conf.ElasticsearchConf)
 	elasticsearch.AddPMMapping(conf.ElasticsearchConf, "core-pm")
 	elasticsearch.AddPMMapping(conf.ElasticsearchConf, "ixr-pm")
 
@@ -74,7 +74,7 @@ func main() {
 	if conf.CleanupDuration > 0 {
 		for _, sourceDir := range conf.SourceDirs {
 			//cleanup of files collected by collector
-			files, err := ioutil.ReadDir(sourceDir)
+			files, err := os.ReadDir(sourceDir)
 			if err != nil {
 				log.WithFields(log.Fields{"error": err}).Errorf("Error while reading source directory %s", sourceDir)
 			}

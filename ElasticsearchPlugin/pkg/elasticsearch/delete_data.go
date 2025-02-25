@@ -16,7 +16,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-//CleanUp deletes older data and indices from elasticsearch every day at 1 o'clock.
+// CleanUp deletes older data and indices from elasticsearch every day at 1 o'clock.
 func CleanUp(esConf config.ElasticsearchConf) {
 	cleanup(esConf)
 	timer := time.NewTimer(getNextTickDuration())

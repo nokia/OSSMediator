@@ -121,7 +121,7 @@ func pushNHGData(filePath string, esConf config.ElasticsearchConf) {
 			Timestamp:                currTime,
 		}
 		if len(nhg.Clusters) == 0 {
-			id := strings.Join([]string{"nhg-data", "test@nokia.com", nhgDetail.NhgID}, "_")
+			id := strings.Join([]string{metric, user, nhgDetail.NhgID}, "_")
 			postData += addToBulkReq(index, id, nhgDetail)
 		}
 		for _, cluster := range nhg.Clusters {
@@ -141,7 +141,7 @@ func pushNHGData(filePath string, esConf config.ElasticsearchConf) {
 				SliceID:                      cluster.SliceID,
 			}
 			if len(cluster.HwSet) == 0 {
-				id := strings.Join([]string{"nhg-data", "test@nokia.com", nhgDetail.NhgID, nhgDetail.Cluster.ClusterID}, "_")
+				id := strings.Join([]string{metric, user, nhgDetail.NhgID, nhgDetail.Cluster.ClusterID}, "_")
 				postData += addToBulkReq(index, id, nhgDetail)
 			}
 			for _, hwSet := range cluster.HwSet {

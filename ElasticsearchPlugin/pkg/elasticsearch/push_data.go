@@ -11,7 +11,7 @@ import (
 	"crypto/tls"
 	"elasticsearchplugin/pkg/config"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"path"
@@ -58,6 +58,7 @@ const (
 	elkBulkAPI           = "/_bulk"
 	elkDeleteAPI         = "/_delete_by_query"
 	elkCatIndicesAPI     = "/_cat/indices/"
+	elkClusterSettingAPI = "/_cluster/settings"
 	elkWaitQueryParam    = "wait_for_completion"
 	elkIgnoreUnavailable = "ignore_unavailable"
 	elkNoOfRecordsPerAPI = 2000
@@ -160,7 +161,7 @@ func httpCall(httpMethod, elkURL, elkUser, elkPassword string, data *string, que
 		return nil, fmt.Errorf("Received response' status code: %d, status: %s", response.StatusCode, response.Status)
 	}
 
-	resp, err := ioutil.ReadAll(response.Body)
+	resp, err := io.ReadAll(response.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -212,7 +213,7 @@ func readFile(filePath string) ([]byte, error) {
 		return nil, err
 	}
 	defer f.Close()
-	data, err := ioutil.ReadAll(f)
+	data, err := io.ReadAll(f)
 	if err != nil {
 		log.WithFields(log.Fields{"error": err}).Errorf("Error while reading file: %s", filePath)
 		return nil, err

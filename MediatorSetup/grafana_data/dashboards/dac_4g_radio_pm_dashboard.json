@@ -162,7 +162,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -287,7 +287,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "",
@@ -402,12 +402,13 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "Avg PDCP Throughput UL",
@@ -555,12 +556,13 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "Avg PDCP Throughput DL",
@@ -678,7 +680,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "Avg PDCP Throughput UL",
@@ -794,7 +796,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -911,7 +913,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "",
@@ -995,7 +997,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "Avg PDCP Throughput DL",
@@ -1114,7 +1116,7 @@
         "y": 6
       },
       "id": 1,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -1123,12 +1125,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1149,7 +1152,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -1210,13 +1213,41 @@
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_Cell_Avail_M8020C3:*",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE_5750a E-UTRAN Cell Availability Ratio",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1287,7 +1318,7 @@
         "y": 11
       },
       "id": 19,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -1296,12 +1327,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1321,7 +1353,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -1405,12 +1437,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE_5239a E-UTRAN Cell Availability, excluding blocked by user state (BLU)",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1483,7 +1543,7 @@
         "y": 16
       },
       "id": 36,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -1492,24 +1552,25 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
-          "sort": "desc"
+          "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
+          "alias": "",
           "bucketAggs": [
             {
-              "fake": true,
               "field": "$groupby",
-              "id": "3",
+              "id": "6",
               "settings": {
-                "min_doc_count": 1,
+                "min_doc_count": "1",
                 "order": "desc",
                 "orderBy": "_term",
-                "size": "0"
+                "size": "10"
               },
               "type": "terms"
             },
@@ -1517,9 +1578,8 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
-                "min_doc_count": 1,
-                "trimEdges": 0
+                "interval": "$agg",
+                "min_doc_count": "1"
               },
               "type": "date_histogram"
             }
@@ -1528,50 +1588,74 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
+          "format": "table",
           "metrics": [
             {
               "field": "pm_data.LTE_UE_Quantity_M8051C58",
               "hide": true,
               "id": "1",
-              "meta": {},
-              "settings": {},
-              "type": "sum"
+              "type": "avg"
             },
             {
               "field": "pm_data.LTE_UE_Quantity_M8051C58",
               "hide": true,
-              "id": "4",
-              "meta": {},
-              "settings": {},
-              "type": "avg"
+              "id": "3",
+              "type": "sum"
             },
             {
-              "field": "select field",
-              "id": "5",
-              "meta": {},
+              "id": "4",
               "pipelineVariables": [
                 {
-                  "name": "av_58",
-                  "pipelineAgg": "4"
+                  "name": "am8051C58",
+                  "pipelineAgg": "1"
                 },
                 {
-                  "name": "C58",
-                  "pipelineAgg": "1"
+                  "name": "m8051C58",
+                  "pipelineAgg": "3"
                 }
               ],
               "settings": {
-                "script": "if (params.av_58 == null) { return null } else { return params.C58 }"
+                "script": "if (params.am8051C58 == null) { return null } else { return params.m8051C58 }"
               },
               "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL* AND pm_data.LTE_UE_Quantity_M8051C58:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "M8051C58 - E-UTRAN LTE_UE_Quantity",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1642,7 +1726,7 @@
         "y": 21
       },
       "id": 23,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -1651,12 +1735,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1676,7 +1761,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -1806,12 +1891,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE_6160b Total E-UTRAN RRC Connection Setup Attempts",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1882,7 +1995,7 @@
         "y": 26
       },
       "id": 33,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -1891,12 +2004,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1916,7 +2030,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -1962,12 +2076,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE_5118a E-UTRAN E-RAB Setup Attempts",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2038,7 +2180,7 @@
         "y": 31
       },
       "id": 26,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -2047,12 +2189,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2072,7 +2215,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -2130,12 +2273,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE_5143a Total E-UTRAN RRC Connection Re-establishment Success Ratio",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2206,7 +2377,7 @@
         "y": 36
       },
       "id": 30,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -2215,12 +2386,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2240,7 +2412,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -2286,12 +2458,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE_5116a E-UTRAN Data Radio Bearer Attempts",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2362,7 +2562,7 @@
         "y": 41
       },
       "id": 42,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -2371,12 +2571,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2397,7 +2598,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -2455,12 +2656,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE 5242b E-Utran Average RRC Connected UEs",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2531,7 +2760,7 @@
         "y": 46
       },
       "id": 44,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -2540,12 +2769,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2566,7 +2796,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -2612,12 +2842,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE 5212a E-Utran PDCP SDU Volume DL ",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2688,7 +2946,7 @@
         "y": 51
       },
       "id": 46,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -2697,12 +2955,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2723,7 +2982,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -2769,12 +3028,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE 5213a E-Utran PDCP SDU Volume UL",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2846,7 +3133,7 @@
         "y": 56
       },
       "id": 48,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -2855,12 +3142,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2881,7 +3169,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -2971,12 +3259,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE_5289e E-UTRAN average PDCP Layer Active Cell Throughput UL",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3048,7 +3364,7 @@
         "y": 61
       },
       "id": 50,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -3057,12 +3373,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3083,7 +3400,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -3173,12 +3490,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE_5292e E-UTRAN average PDCP Layer Active Cell Throughput DL",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3250,7 +3595,7 @@
         "y": 66
       },
       "id": 58,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -3259,12 +3604,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3285,7 +3631,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -3413,12 +3759,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE_6159b E-UTRAN RACH Setup Attempts",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3489,7 +3863,7 @@
         "y": 71
       },
       "id": 40,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -3498,12 +3872,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3524,7 +3899,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -3666,12 +4041,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE 5218g Total E-UTRAN RRC Connection Setup Success Ratio",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3742,7 +4145,7 @@
         "y": 76
       },
       "id": 54,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -3751,12 +4154,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3777,7 +4181,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -4109,12 +4513,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE_5025i E-UTRAN E-RAB Drop Ratio, RAN View",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4185,7 +4617,7 @@
         "y": 81
       },
       "id": 61,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -4194,12 +4626,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4220,7 +4653,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -4278,17 +4711,44 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE_5017a\tE-UTRAN E-RAB Setup Success Ratio",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": {
-        "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
       "fieldConfig": {
@@ -4355,7 +4815,7 @@
         "y": 86
       },
       "id": 62,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -4364,12 +4824,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4390,7 +4851,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "15",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -4436,16 +4897,44 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*LNCEL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "LTE_6161a\tRRC Connection Re-establishment Attempts per type total attempts",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     }
   ],
-  "preload": false,
+  "preload": true,
   "refresh": "15m",
   "schemaVersion": 40,
   "tags": [
@@ -4470,9 +4959,8 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "OE-90007",
-          "value": "OE-90007"
+          "text": "LaaS19",
+          "value": "LaaS19"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -4510,7 +4998,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "Cell",
           "value": "pm_data_source.dn.keyword"
         },
@@ -4530,6 +5018,70 @@
           }
         ],
         "query": "eNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
+        "type": "custom"
+      },
+      {
+        "current": {
+          "text": "15m",
+          "value": "15m"
+        },
+        "description": "The interval is used to aggregate the metrics over time.",
+        "includeAll": false,
+        "label": "Aggregation",
+        "name": "agg",
+        "options": [
+          {
+            "selected": true,
+            "text": "15m",
+            "value": "15m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "3h",
+            "value": "3h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "15d",
+            "value": "15d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
         "type": "custom"
       }
     ]

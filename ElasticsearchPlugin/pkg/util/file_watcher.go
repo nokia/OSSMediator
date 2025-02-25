@@ -8,7 +8,6 @@ package util
 
 import (
 	"fmt"
-	"io/ioutil"
 	"math"
 	"os"
 	"sync"
@@ -24,7 +23,7 @@ var (
 	watcher *fsnotify.Watcher
 )
 
-//AddWatcher adds source directory specified in config that will be watched for any file creation events.
+// AddWatcher adds source directory specified in config that will be watched for any file creation events.
 func AddWatcher(conf config.Config) error {
 	var err error
 	if watcher == nil {
@@ -41,7 +40,7 @@ func AddWatcher(conf config.Config) error {
 		if _, err = os.Stat(sourceDir); os.IsNotExist(err) {
 			return fmt.Errorf("source directory %s not found, error: %v", sourceDir, err)
 		}
-		files, err := ioutil.ReadDir(sourceDir)
+		files, err := os.ReadDir(sourceDir)
 		if err != nil {
 			return fmt.Errorf("error while reading source directory %s, error: %v", sourceDir, err)
 		}
@@ -63,7 +62,7 @@ func AddWatcher(conf config.Config) error {
 	return nil
 }
 
-//Adds a directory to be watched for any file creation events.
+// Adds a directory to be watched for any file creation events.
 func add(sourceDir string) error {
 	err := watcher.Add(sourceDir)
 	if err != nil {
@@ -73,7 +72,7 @@ func add(sourceDir string) error {
 	return nil
 }
 
-//WatchEvents watches file creation events and formats PM/FM data.
+// WatchEvents watches file creation events and formats PM/FM data.
 func WatchEvents(conf config.Config) {
 	requests := make(chan struct{}, conf.MaxConcurrentProcess)
 	for {
@@ -93,13 +92,13 @@ func WatchEvents(conf config.Config) {
 	}
 }
 
-//Process all the existing collected file from PM/FM APIs using collector.
+// Process all the existing collected file from PM/FM APIs using collector.
 func processExistingFiles(directory string, conf config.Config) {
 	//cleanup files from the directory which were written 60 mins ago
 	if conf.CleanupDuration > 0 {
 		RemoveFiles(conf.CleanupDuration, directory)
 	}
-	files, err := ioutil.ReadDir(directory)
+	files, err := os.ReadDir(directory)
 	if err != nil {
 		log.Error(err)
 		return

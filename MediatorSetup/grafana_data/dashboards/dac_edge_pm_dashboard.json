@@ -124,7 +124,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 5,
+        "w": 6,
         "x": 0,
         "y": 0
       },
@@ -144,7 +144,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "CPU Usage",
@@ -215,8 +215,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 9,
-        "x": 5,
+        "w": 6,
+        "x": 6,
         "y": 0
       },
       "id": 6,
@@ -238,22 +238,11 @@
           "titleSize": 8
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "",
           "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
             {
               "field": "pm_data_source.timestamp",
               "id": "2",
@@ -330,8 +319,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 5,
-        "x": 14,
+        "w": 6,
+        "x": 12,
         "y": 0
       },
       "id": 5,
@@ -352,7 +341,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "Ram Usage",
@@ -423,8 +412,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 5,
-        "x": 19,
+        "w": 6,
+        "x": 18,
         "y": 0
       },
       "id": 4,
@@ -445,22 +434,11 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "Memory Usage",
           "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
             {
               "field": "pm_data_source.timestamp",
               "id": "2",
@@ -558,21 +536,62 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "table",
+          "displayMode": "list",
           "placement": "right",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
-          "alias": "CPU Usage",
+          "alias": "Average CPU Usage",
           "bucketAggs": [
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_edge_cpu_usage_percentage",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.edge_alias.keyword:$edgealias",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.edge_alias.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
             {
               "field": "pm_data_source.timestamp",
               "id": "2",
@@ -676,27 +695,17 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
-          "alias": "",
+          "alias": "Average Disk Temp",
           "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
             {
               "field": "pm_data_source.timestamp",
               "id": "2",
@@ -722,6 +731,58 @@
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "{{pm_data_source.edge_alias.keyword}}/{{pm_data_source.dn.keyword}}",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.edge_alias.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.dn.keyword",
+              "id": "5",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg",
+                "min_doc_count": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_edge_disk_temp_celsius",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.edge_alias.keyword:$edgealias AND pm_data.ndac_rr_edge_disk_temp_celsius\n:* ",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
         }
       ],
       "title": "NDAC Edge disk temperature [°C]",
@@ -729,8 +790,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".*/DISK-(.*)",
-            "renamePattern": "$1"
+            "regex": "(.*)/ACCOUNT.*/DISK-(.*)",
+            "renamePattern": "$1 $2"
           }
         }
       ],
@@ -804,20 +865,21 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom",
-          "showLegend": false
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
-          "alias": "Ram Usage",
+          "alias": "Average Ram Usage",
           "bucketAggs": [
             {
               "field": "pm_data_source.timestamp",
@@ -842,6 +904,46 @@
           "query": "pm_data_source.edge_alias.keyword:$edgealias",
           "queryType": "lucene",
           "refId": "A",
+          "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.edge_alias.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_edge_ram_usage_percentage",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.edge_alias.keyword:$edgealias",
+          "queryType": "lucene",
+          "refId": "B",
           "timeField": "pm_data_source.timestamp"
         }
       ],
@@ -916,32 +1018,22 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom",
-          "showLegend": false
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
-          "alias": "Memory Usage",
+          "alias": "Average Memory Usage",
           "bucketAggs": [
-            {
-              "field": "pm_data_source.dn.keyword",
-              "id": "3",
-              "settings": {
-                "min_doc_count": "1",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
             {
               "field": "pm_data_source.timestamp",
               "id": "2",
@@ -966,14 +1058,54 @@
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
+        },
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "pm_data_source.edge_alias.keyword",
+              "id": "4",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "field": "pm_data.ndac_rr_edge_disk_usage_percentage",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "pm_data_source.edge_alias.keyword:$edgealias AND pm_data.ndac_rr_edge_disk_usage_percentage:*",
+          "queryType": "lucene",
+          "refId": "B",
+          "timeField": "pm_data_source.timestamp"
         }
       ],
       "title": "NDAC Edge disk usage [%]",
       "type": "timeseries"
     }
   ],
-  "preload": false,
-  "refresh": "15m",
+  "preload": true,
+  "refresh": "5m",
   "schemaVersion": 40,
   "tags": [
     "EdgePM"
@@ -997,9 +1129,8 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "Cont_syve 5GNSA",
-          "value": "Cont_syve 5GNSA"
+          "text": "LaaS19",
+          "value": "LaaS19"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -1017,16 +1148,15 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "18-505-n-1",
-          "value": "18-505-n-1"
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
-        "includeAll": false,
+        "includeAll": true,
         "label": "Slice ID",
         "name": "edgealias",
         "options": [],
@@ -1067,6 +1197,21 @@
           },
           {
             "selected": false,
+            "text": "3h",
+            "value": "3h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
             "text": "1d",
             "value": "1d"
           },
@@ -1082,26 +1227,11 @@
           },
           {
             "selected": false,
-            "text": "1w",
-            "value": "1w"
-          },
-          {
-            "selected": false,
             "text": "1M",
             "value": "1M"
-          },
-          {
-            "selected": false,
-            "text": "2M",
-            "value": "2M"
-          },
-          {
-            "selected": false,
-            "text": "3M",
-            "value": "3M"
           }
         ],
-        "query": "1m,5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
+        "query": "1m,5m,15m,1h,3h,6h,12h,1d,7d,15d,1M",
         "type": "custom"
       }
     ]

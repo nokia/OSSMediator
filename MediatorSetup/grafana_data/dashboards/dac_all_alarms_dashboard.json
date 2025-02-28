@@ -94,7 +94,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 1,
         "w": 24,
         "x": 0,
         "y": 0
@@ -109,8 +109,8 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "11.3.0",
-      "title": "NDAC ALL FM HISTORY ALARMS DASHBOARD",
+      "pluginVersion": "11.5.1",
+      "title": "NDAC ALL FM ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
     },
@@ -152,7 +152,7 @@
         "h": 5,
         "w": 4,
         "x": 0,
-        "y": 2
+        "y": 1
       },
       "id": 16,
       "options": {
@@ -172,7 +172,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "Critical",
@@ -248,7 +248,7 @@
         "h": 5,
         "w": 4,
         "x": 4,
-        "y": 2
+        "y": 1
       },
       "id": 9,
       "options": {
@@ -268,7 +268,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "Major",
@@ -344,7 +344,7 @@
         "h": 5,
         "w": 4,
         "x": 8,
-        "y": 2
+        "y": 1
       },
       "id": 13,
       "options": {
@@ -364,7 +364,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "Critical",
@@ -439,7 +439,7 @@
         "h": 5,
         "w": 4,
         "x": 12,
-        "y": 2
+        "y": 1
       },
       "id": 14,
       "options": {
@@ -459,7 +459,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "Critical",
@@ -534,7 +534,7 @@
         "h": 5,
         "w": 4,
         "x": 16,
-        "y": 2
+        "y": 1
       },
       "id": 15,
       "options": {
@@ -554,7 +554,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -628,7 +628,7 @@
         "h": 5,
         "w": 4,
         "x": 20,
-        "y": 2
+        "y": 1
       },
       "id": 11,
       "options": {
@@ -648,7 +648,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -722,45 +722,41 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "fm_data.event_time"
+              "options": "EventTime"
             },
             "properties": [
               {
-                "id": "displayName",
-                "value": "EventTime"
+                "id": "unit",
+                "value": "dateTimeAsLocal"
               },
               {
-                "id": "unit",
-                "value": "time: YYYY-MM-DD HH:mm:ss"
+                "id": "custom.width",
+                "value": 177
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "fm_data.last_updated_time"
+              "options": "LastUpdatedTime"
             },
             "properties": [
               {
-                "id": "displayName",
-                "value": "LastUpdatedTime"
+                "id": "unit",
+                "value": "dateTimeAsLocal"
               },
               {
-                "id": "unit",
-                "value": "dateTimeAsSystem"
+                "id": "custom.width",
+                "value": 182
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "fm_data_source.edge_hostname"
+              "options": "DN"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "EdgeHostName"
-              },
               {
                 "id": "unit",
                 "value": "string"
@@ -770,29 +766,9 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "fm_data_source.dn"
+              "options": "AlarmID"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "DN"
-              },
-              {
-                "id": "unit",
-                "value": "string"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "fm_data.alarm_identifier"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "AlarmID"
-              },
               {
                 "id": "unit",
                 "value": "none"
@@ -802,13 +778,25 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "fm_data.severity"
+              "options": "Severity"
             },
             "properties": [
               {
-                "id": "displayName",
-                "value": "Severity"
+                "id": "unit",
+                "value": "string"
               },
+              {
+                "id": "custom.width",
+                "value": 87
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "AlarmText"
+            },
+            "properties": [
               {
                 "id": "unit",
                 "value": "string"
@@ -818,13 +806,9 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "fm_data.alarm_text"
+              "options": "EdgeID"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "AlarmText"
-              },
               {
                 "id": "unit",
                 "value": "string"
@@ -834,13 +818,9 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "fm_data_source.edge_id"
+              "options": "NHGName"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "EdgeID"
-              },
               {
                 "id": "unit",
                 "value": "string"
@@ -850,32 +830,16 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "fm_data_source.nhg_id"
+              "options": "AlarmState"
             },
             "properties": [
               {
-                "id": "displayName",
-                "value": "NHGID"
-              },
-              {
                 "id": "unit",
                 "value": "string"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "fm_data.alarm_state"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "AlarmState"
               },
               {
-                "id": "unit",
-                "value": "string"
+                "id": "custom.width",
+                "value": 94
               }
             ]
           },
@@ -890,6 +854,34 @@
                 "value": 155
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ClearAlarmTime"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeAsLocal"
+              },
+              {
+                "id": "custom.width",
+                "value": 182
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "RadioSpecProb"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 120
+              }
+            ]
           }
         ]
       },
@@ -897,7 +889,7 @@
         "h": 21,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 6
       },
       "id": 2,
       "options": {
@@ -914,7 +906,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [],
@@ -973,6 +965,7 @@
               "fm_data_source.technology": true,
               "timestamp": true
             },
+            "includeByName": {},
             "indexByName": {
               "_id": 12,
               "_index": 13,
@@ -1011,10 +1004,17 @@
               "timestamp": 34
             },
             "renameByName": {
+              "fm_data.alarm_identifier": "AlarmID",
+              "fm_data.alarm_state": "AlarmState",
               "fm_data.alarm_text": "AlarmText",
               "fm_data.clear_alarm_time": "ClearAlarmTime",
               "fm_data.clear_text": "ClearText",
+              "fm_data.event_time": "EventTime",
+              "fm_data.last_updated_time": "LastUpdatedTime",
+              "fm_data.severity": "Severity",
               "fm_data.specific_problem": "RadioSpecProb",
+              "fm_data_source.dn": "DN",
+              "fm_data_source.edge_id": "EdgeID",
               "fm_data_source.nhg_alias": "NHGName"
             }
           }
@@ -1023,7 +1023,7 @@
       "type": "table"
     }
   ],
-  "preload": false,
+  "preload": true,
   "refresh": "1m",
   "schemaVersion": 40,
   "tags": [
@@ -1033,8 +1033,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
-          "text": "All",
+          "text": "dac-all-fm",
           "value": "dac-all-fm"
         },
         "includeAll": false,
@@ -1092,9 +1091,7 @@
       },
       {
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
@@ -1116,9 +1113,7 @@
       },
       {
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
@@ -1140,9 +1135,7 @@
       },
       {
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]

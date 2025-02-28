@@ -10,14 +10,14 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/url"
+	"os"
 	"strings"
 
 	log "github.com/sirupsen/logrus"
 )
 
-//Config read from resources/conf.json file
+// Config read from resources/conf.json file
 type Config struct {
 	SourceDirs           []string          `json:"source_dirs"`
 	CleanupDuration      int               `json:"cleanup_duration"`
@@ -30,12 +30,13 @@ type ElasticsearchConf struct {
 	User                  string `json:"user"`
 	Password              string `json:"password"`
 	DataRetentionDuration int    `json:"data_retention_duration"`
+	MaxShardsPerNode      int    `json:"max_shards_per_node"`
 }
 
-//ReadConfig reads the configurations from conf.json file
+// ReadConfig reads the configurations from conf.json file
 func ReadConfig(confFile string) (Config, error) {
 	var config Config
-	contents, err := ioutil.ReadFile(confFile)
+	contents, err := os.ReadFile(confFile)
 	if err != nil {
 		return config, err
 	}

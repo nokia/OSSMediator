@@ -168,7 +168,7 @@
         "y": 0
       },
       "id": 1,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -177,12 +177,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "asc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -203,7 +204,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "3",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -268,6 +269,35 @@
         }
       ],
       "title": "NR_5174b 5G SA intra-frequency intra-gNB intra-DU handover preparation attempts [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -341,7 +371,7 @@
         "y": 5
       },
       "id": 36,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -350,12 +380,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -375,7 +406,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -437,6 +468,35 @@
         }
       ],
       "title": "NR_5175b 5G SA intra-frequency intra-gNB intra-DU handover preparation success ratio [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -510,7 +570,7 @@
         "y": 10
       },
       "id": 37,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -519,12 +579,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -544,7 +605,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -616,6 +677,35 @@
         }
       ],
       "title": "NR_5177b 5G SA intra-frequency intra-gNB intra-DU handover total success ratio [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -689,7 +779,7 @@
         "y": 15
       },
       "id": 38,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -698,12 +788,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -723,7 +814,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -752,6 +843,35 @@
         }
       ],
       "title": "NR_5182b 5G SA intra-frequency Xn based inter-gNB handover execution attempts per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -825,7 +945,7 @@
         "y": 20
       },
       "id": 39,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -834,12 +954,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -859,7 +980,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -911,6 +1032,35 @@
         }
       ],
       "title": "NR_5183b 5G SA intra-frequency Xn based inter-gNB handover execution success ratio per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -984,7 +1134,7 @@
         "y": 25
       },
       "id": 40,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -993,12 +1143,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1018,7 +1169,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -1047,6 +1198,35 @@
         }
       ],
       "title": "NR_5199a 5G SA intra-frequency intra-DU handover execution attempts for SA per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1120,7 +1300,7 @@
         "y": 30
       },
       "id": 41,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -1129,12 +1309,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1154,7 +1335,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -1206,6 +1387,35 @@
         }
       ],
       "title": "NR_5200a 5G SA intra-frequency intra-DU handover execution success ratio for SA per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1279,7 +1489,7 @@
         "y": 35
       },
       "id": 42,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -1288,12 +1498,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1313,7 +1524,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -1342,6 +1553,35 @@
         }
       ],
       "title": "NR_5201a 5G SA Inter-frequency intra-DU handover execution attempts per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1415,7 +1655,7 @@
         "y": 40
       },
       "id": 43,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -1424,12 +1664,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1449,7 +1690,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -1501,6 +1742,35 @@
         }
       ],
       "title": "NR_5202a 5G SA Inter-frequency intra-DU handover execution success ratio per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1574,7 +1844,7 @@
         "y": 45
       },
       "id": 44,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -1583,12 +1853,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1608,7 +1879,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -1637,6 +1908,35 @@
         }
       ],
       "title": "NR_5205a 5G SA Xn based Inter-gNB inter-frequency HO execution attempts per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1710,7 +2010,7 @@
         "y": 50
       },
       "id": 45,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -1719,12 +2019,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1744,7 +2045,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -1796,6 +2097,35 @@
         }
       ],
       "title": "NR_5206a 5G SA Xn based Inter-gNB inter-frequency HO execution success ratio per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1869,7 +2199,7 @@
         "y": 55
       },
       "id": 46,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -1878,12 +2208,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1903,7 +2234,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -1985,6 +2316,35 @@
         }
       ],
       "title": "NR_5309a 5G NSA A1 based HO preparation attempts for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2058,7 +2418,7 @@
         "y": 60
       },
       "id": 47,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -2067,12 +2427,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2092,7 +2453,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -2174,6 +2535,35 @@
         }
       ],
       "title": "NR_5310a 5G NSA A1 based HO preparation success ratio for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2247,7 +2637,7 @@
         "y": 65
       },
       "id": 48,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -2256,12 +2646,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2281,7 +2672,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -2333,6 +2724,35 @@
         }
       ],
       "title": "NR_5311a 5G NSA A1 based HO execution attempts for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2407,7 +2827,7 @@
         "y": 70
       },
       "id": 49,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -2416,12 +2836,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2441,7 +2862,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -2523,6 +2944,35 @@
         }
       ],
       "title": "NR_5312a 5G NSA A1 based HO execution success ratio for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2597,7 +3047,7 @@
         "y": 75
       },
       "id": 50,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -2606,12 +3056,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2631,7 +3082,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -2743,6 +3194,35 @@
         }
       ],
       "title": "NR_5313a 5G NSA A1 based HO total success ratio for 5G NSA Intra-gNB Intra-DU inter-frequency per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2816,7 +3296,7 @@
         "y": 80
       },
       "id": 51,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -2825,12 +3305,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2850,7 +3331,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -2912,6 +3393,35 @@
         }
       ],
       "title": "NR_5314a 5G SA A2 based HO preparation attempts for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2985,7 +3495,7 @@
         "y": 85
       },
       "id": 52,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -2994,12 +3504,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3019,7 +3530,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -3081,6 +3592,35 @@
         }
       ],
       "title": "NR_5315a 5G SA A2 based HO preparation success ratio for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3154,7 +3694,7 @@
         "y": 90
       },
       "id": 53,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -3163,12 +3703,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3188,7 +3729,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -3217,6 +3758,35 @@
         }
       ],
       "title": "NR_5316a 5G SA A2 based HO execution attempts for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3290,7 +3860,7 @@
         "y": 95
       },
       "id": 54,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -3299,12 +3869,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3324,7 +3895,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -3376,6 +3947,35 @@
         }
       ],
       "title": "NR_5317a 5G SA A2 based HO execution success ratio for 5G SA Intra-gNB Intra-DU inter-frequency per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3449,7 +4049,7 @@
         "y": 100
       },
       "id": 55,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -3458,12 +4058,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3483,7 +4084,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -3555,6 +4156,35 @@
         }
       ],
       "title": "NR_5318a 5G SA A2 based HO total success ratio for 5G SA Intra-gNB Intra-DU per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3628,7 +4258,7 @@
         "y": 105
       },
       "id": 56,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -3637,12 +4267,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3662,7 +4293,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -3724,6 +4355,35 @@
         }
       ],
       "title": "NR_5375a 5G SA Intra-freq Intra-gNB Inter-DU HO preparation attempts per PLMN-ID [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3797,7 +4457,7 @@
         "y": 110
       },
       "id": 57,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -3806,12 +4466,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3831,7 +4492,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -3893,6 +4554,35 @@
         }
       ],
       "title": "NR_5376a 5G SA Intra-freq Intra-gNB Inter-DU HO preparation Success Ratio per PLMN-ID [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3966,7 +4656,7 @@
         "y": 115
       },
       "id": 58,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -3975,12 +4665,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4000,7 +4691,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -4052,6 +4743,35 @@
         }
       ],
       "title": "NR_5377a 5G SA Intra-freq Intra-gNB Inter-DU HO execution Success Ratio per PLMN-ID [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4125,7 +4845,7 @@
         "y": 120
       },
       "id": 59,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -4134,12 +4854,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4159,7 +4880,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -4231,6 +4952,35 @@
         }
       ],
       "title": "NR_5378a 5G SA Intra-freq Intra-gNB Inter-DU HO Total Success Ratio per PLMN-ID [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4304,7 +5054,7 @@
         "y": 125
       },
       "id": 60,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -4313,12 +5063,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4338,7 +5089,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -4400,6 +5151,35 @@
         }
       ],
       "title": "NR_5379a 5G SA Inter-freq Intra-gNB Inter-DU HO preparation attempts per PLMN-ID [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4473,7 +5253,7 @@
         "y": 130
       },
       "id": 61,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -4482,12 +5262,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4507,7 +5288,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -4569,6 +5350,35 @@
         }
       ],
       "title": "NR_5380a 5G SA Inter-freq Intra-gNB Inter-DU HO preparation Success Ratio per PLMN-ID [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4642,7 +5452,7 @@
         "y": 135
       },
       "id": 62,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -4651,12 +5461,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4676,7 +5487,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -4728,6 +5539,35 @@
         }
       ],
       "title": "NR_5381a 5G SA Inter-freq Intra-gNB Inter-DU HO execution Success Ratio per PLMN-ID [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4801,7 +5641,7 @@
         "y": 140
       },
       "id": 63,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -4810,12 +5650,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4835,7 +5676,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -4907,6 +5748,35 @@
         }
       ],
       "title": "NR_5382a 5G SA Inter-freq Intra-gNB Inter-DU HO Total Success Ratio per PLMN-ID [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4980,7 +5850,7 @@
         "y": 145
       },
       "id": 64,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -4989,12 +5859,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5014,7 +5885,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -5076,6 +5947,35 @@
         }
       ],
       "title": "NR_5383a 5G NSA Intra-freq Intra-gNB Inter-DU HO (PSCell Change) preparation attempts per PLMN-ID [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5149,7 +6049,7 @@
         "y": 150
       },
       "id": 65,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -5158,12 +6058,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5183,7 +6084,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -5245,6 +6146,35 @@
         }
       ],
       "title": "NR_5384a 5G NSA Intra-freq Intra-gNB Inter-DU HO (PSCell Change) preparation Success Ratio per PLMN-ID [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5318,7 +6248,7 @@
         "y": 155
       },
       "id": 66,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -5327,12 +6257,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5352,7 +6283,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -5402,6 +6333,35 @@
         }
       ],
       "title": "NR_5385a 5G NSA Intra-freq Intra-gNB Inter-DU HO (PSCell Change) execution Success Ratio per PLMN-ID [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5475,7 +6435,7 @@
         "y": 160
       },
       "id": 67,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -5484,12 +6444,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5509,7 +6470,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -5579,6 +6540,35 @@
         }
       ],
       "title": "NR_5386a 5G NSA Intra-freq Intra-gNB Inter-DU HO (PSCell Change) Total Success Ratio per PLMN-ID [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5652,7 +6642,7 @@
         "y": 165
       },
       "id": 68,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -5661,12 +6651,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5686,7 +6677,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -5746,6 +6737,35 @@
         }
       ],
       "title": "NR_5387a 5G NSA Inter-freq Intra-gNB Inter-DU HO (PSCell Change) preparation attempts per PLMN-ID [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5819,7 +6839,7 @@
         "y": 170
       },
       "id": 69,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -5828,12 +6848,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5853,7 +6874,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -5913,6 +6934,35 @@
         }
       ],
       "title": "NR_5388a 5G NSA Inter-freq Intra-gNB Inter-DU HO (PSCell Change) preparation Success Ratio per PLMN-ID [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5986,7 +7036,7 @@
         "y": 175
       },
       "id": 70,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -5995,12 +7045,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6020,7 +7071,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -6070,6 +7121,35 @@
         }
       ],
       "title": "NR_5389a 5G NSA Inter-freq Intra-gNB Inter-DU HO (PSCell Change) execution Success Ratio per PLMN-ID [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -6143,7 +7223,7 @@
         "y": 180
       },
       "id": 71,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -6152,12 +7232,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6177,7 +7258,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -6247,6 +7328,35 @@
         }
       ],
       "title": "NR_5390a 5G NSA Inter-freq Intra-gNB Inter-DU HO (PSCell Change) Total Success Ratio per PLMN-ID [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -6320,7 +7430,7 @@
         "y": 185
       },
       "id": 72,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -6329,12 +7439,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6354,7 +7465,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -6414,6 +7525,35 @@
         }
       ],
       "title": "NR_5427a 5G SA Intra-gNB intra-DU inter-frequency HO preparation attempts per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -6487,7 +7627,7 @@
         "y": 190
       },
       "id": 74,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -6496,12 +7636,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6521,7 +7662,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -6581,6 +7722,35 @@
         }
       ],
       "title": "NR_5428a 5G SA Intra-gNB intra-DU inter-frequency HO preparation success ratio per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -6654,7 +7824,7 @@
         "y": 195
       },
       "id": 73,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -6663,12 +7833,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6688,7 +7859,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -6758,6 +7929,35 @@
         }
       ],
       "title": "NR_5429a 5G SA Intra-gNB intra-DU inter-frequency HO total success ratio per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -6831,7 +8031,7 @@
         "y": 200
       },
       "id": 75,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -6840,12 +8040,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6865,7 +8066,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -6925,6 +8126,35 @@
         }
       ],
       "title": "NR_5489a A2 Intra-gNB Intra-DU inter-frequency PSCell Change preparation attempts per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -6998,7 +8228,7 @@
         "y": 205
       },
       "id": 76,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -7007,12 +8237,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7032,7 +8263,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -7092,6 +8323,35 @@
         }
       ],
       "title": "NR_5490a A2 Intra-gNB Intra-DU inter-frequency PSCell Change preparation success ratio per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -7165,7 +8425,7 @@
         "y": 210
       },
       "id": 77,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -7174,12 +8434,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7199,7 +8460,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -7226,6 +8487,35 @@
         }
       ],
       "title": "NR_5491a A2 Intra-gNB Intra-DU inter-frequency PSCell Change execution attempts per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -7299,7 +8589,7 @@
         "y": 215
       },
       "id": 78,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -7308,12 +8598,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7333,7 +8624,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -7383,6 +8674,35 @@
         }
       ],
       "title": "NR_5492a A2 Intra-gNB Intra-DU inter-frequency PSCell Change execution success ratio per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -7456,7 +8776,7 @@
         "y": 220
       },
       "id": 79,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
@@ -7465,12 +8785,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7490,7 +8811,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -7560,10 +8881,39 @@
         }
       ],
       "title": "NR_5493a A2 Intra-gNB Intra-DU inter-frequency PSCell Change total success ratio per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     }
   ],
-  "preload": false,
+  "preload": true,
   "refresh": "15m",
   "schemaVersion": 40,
   "tags": [
@@ -7588,9 +8938,8 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "INST_PC_test",
-          "value": "INST_PC_test"
+          "text": "LaaS19",
+          "value": "LaaS19"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -7608,9 +8957,7 @@
       },
       {
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
@@ -7628,8 +8975,72 @@
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "refresh": 1,
-        "regex": ".*MCC.*MNC.*",
+        "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
         "type": "query"
+      },
+      {
+        "current": {
+          "text": "15m",
+          "value": "15m"
+        },
+        "description": "The interval is used to aggregate the metrics over time.",
+        "includeAll": false,
+        "label": "Aggregation",
+        "name": "agg",
+        "options": [
+          {
+            "selected": true,
+            "text": "15m",
+            "value": "15m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "3h",
+            "value": "3h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "15d",
+            "value": "15d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
+        "type": "custom"
       }
     ]
   },

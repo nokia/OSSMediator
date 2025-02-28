@@ -61,7 +61,7 @@ Options:
 
 ## Configuration
 
-ElasticsearchPlugin reads all the collected PM/FM from OSSMediatorCollector and inserts the data to elasticsearch.
+ElasticsearchPlugin reads all the collected PM/FM from OSSMediatorCollector and inserts the data to Elasticsearch/OpenSearch.
 
 * To insert PM/FM metrics in elasticsearch, modify conf.json configuration file under the "resources" directory as shown in the example:
 
@@ -75,22 +75,24 @@ ElasticsearchPlugin reads all the collected PM/FM from OSSMediatorCollector and 
     "url":"http://localhost:9200",
     "user": "<USERNAME>",
     "password": "<PASSWORD>",
-    "data_retention_duration": 90
+    "data_retention_duration": 90,
+    "max_shards_per_node": 2000
   },
-  "cleanup_duration": 1440,
+  "cleanup_duration": 60,
   "max_concurrent_process": 1
 }
 ````
 
-| Field                                 | Type               | Description                                                                                                                                                                                                               |
-|---------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| source_dirs                           | [string]           | Base directory path of the respective user where PM/FM data is pushed by the collector. This path has to be same as the path mentioned in response_dest directory of respective user in mediator collector configuration. |
-| elasticsearch.url                     | string             | The url to connect to elasticSearch data source. Default: "http://localhost:9200".                                                                                                                                        |
-| elasticsearch.user                    | string (Optional)  | Elasticsearch user name.                                                                                                                                                                                                  |
-| elasticsearch.password                | string (Optional)  | Elasticsearch user's password encoded as base64 string.                                                                                                                                                                   |
-| elasticsearch.data_retention_duration | integer            | Duration in days, for which ElasticsearchPlugin will cleanup the metrics from Elasticsearch data source.                                                                                                                  |
-| cleanup_duration                      | integer            | Duration in minutes, after which ElasticsearchPlugin will cleanup the collected files on the local file system.                                                                                                           |
-| max_concurrent_process                | integer (Optional) | Default value is 1. Maximum no. of concurrent process for pushing PM/FM data to elasticsearch.                                                                                                                            |
+| Field                                 | Type               | Description                                                                                                                                                                                                                                                |
+|---------------------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| source_dirs                           | [string]           | Base directory path of the respective user where PM/FM data is pushed by the collector. This path has to be same as the path mentioned in response_dest directory of respective user in mediator collector configuration.                                  |
+| elasticsearch.url                     | string             | The url to connect to Elasticsearch/OpenSearch data source. Default: "http://localhost:9200".                                                                                                                                                              |
+| elasticsearch.user                    | string (Optional)  | Elasticsearch/OpenSearch user name.                                                                                                                                                                                                                        |
+| elasticsearch.password                | string (Optional)  | Elasticsearch/OpenSearch user's password encoded as base64 string.                                                                                                                                                                                         |
+| elasticsearch.data_retention_duration | integer            | Duration in days, for which ElasticsearchPlugin will cleanup the metrics from Elasticsearch/OpenSearch data source. Default value is 90 days.                                                                                                              |
+| elasticsearch.max_shards_per_node     | integer            | Maximum shards in Elasticsearch/OpenSearch, default value is 2000. OpenSearch requires two shards for each indices created for NDAC KPIs, OSSMediator creates ~250 indices monthly. Keep the no. of shards as per `elasticsearch.data_retention_duration`. |
+| cleanup_duration                      | integer            | Duration in minutes, after which ElasticsearchPlugin will cleanup the collected files on the local file system. Default value is 60m.                                                                                                                      |
+| max_concurrent_process                | integer (Optional) | Default value is 1. Maximum no. of concurrent process for pushing PM/FM data to Elasticsearch/OpenSearch.                                                                                                                                                  |
 
 ````
 NOTE: 

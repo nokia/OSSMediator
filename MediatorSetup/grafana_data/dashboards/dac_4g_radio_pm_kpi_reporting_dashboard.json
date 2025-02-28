@@ -154,6 +154,10 @@
               },
               {
                 "id": "custom.align"
+              },
+              {
+                "id": "custom.width",
+                "value": 165
               }
             ]
           },
@@ -215,6 +219,42 @@
                 "id": "custom.width"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LTE_5750a E-UTRAN Cell Availability Ratio PLMN-PLMN/MRBTS-1022/LNBTS-1022/LNCEL-0,PLMN-PLMN/MCC-999/MNC-40"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 963
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LTE_5750a E-UTRAN Cell Availability Ratio PLMN-PLMN/MRBTS-1022/LNBTS-1022/LNCEL-0"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 159
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LTE_5750a E-UTRAN Cell Availability Ratio PLMN-PLMN/MRBTS-1002/LNBTS-1002/LNCEL-0"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 159
+              }
+            ]
           }
         ]
       },
@@ -238,7 +278,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "LTE_5750a E-UTRAN Cell Availability Ratio {{term pm_data_source.dn.keyword}}",
@@ -3544,12 +3584,19 @@
           "options": {
             "reducers": []
           }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*LNCEL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
         }
       ],
       "type": "table"
     }
   ],
-  "preload": false,
+  "preload": true,
   "refresh": "15m",
   "schemaVersion": 40,
   "tags": [
@@ -3574,9 +3621,8 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "Cont_syve 5GNSA",
-          "value": "Cont_syve 5GNSA"
+          "text": "LaaS19",
+          "value": "LaaS19"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -3594,9 +3640,7 @@
       },
       {
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
@@ -3618,6 +3662,7 @@
       },
       {
         "current": {
+          "selected": false,
           "text": "Cell",
           "value": "pm_data_source.dn.keyword"
         },
@@ -3644,6 +3689,7 @@
           "text": "1d",
           "value": "1d"
         },
+        "description": "The interval is used to aggregate the metrics over time.",
         "includeAll": false,
         "label": "Aggregation",
         "name": "agg",
@@ -3655,8 +3701,28 @@
           },
           {
             "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
             "text": "1h",
             "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "3h",
+            "value": "3h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
           },
           {
             "selected": true,
@@ -3675,26 +3741,11 @@
           },
           {
             "selected": false,
-            "text": "1w",
-            "value": "1w"
-          },
-          {
-            "selected": false,
-            "text": "1M",
-            "value": "1M"
-          },
-          {
-            "selected": false,
-            "text": "2M",
-            "value": "2M"
-          },
-          {
-            "selected": false,
-            "text": "3M",
-            "value": "3M"
+            "text": "30d",
+            "value": "30d"
           }
         ],
-        "query": "15m,1h,1d,7d,15d,1w,1M,2M,3M",
+        "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
         "type": "custom"
       }
     ]

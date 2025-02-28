@@ -106,13 +106,24 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "Bits per second rate in UL on S1u interface",
+      "description": "Uplink bitrate on S1U interface",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "index": 0,
+                  "text": "No Data"
+                }
+              },
+              "type": "special"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -132,7 +143,9 @@
         "x": 0,
         "y": 0
       },
+      "hideTimeOverride": true,
       "id": 45,
+      "interval": "1m",
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -150,7 +163,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "",
@@ -159,7 +172,8 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "$agg"
+                "interval": "$agg",
+                "min_doc_count": "1"
               },
               "type": "date_histogram"
             }
@@ -171,42 +185,20 @@
           "hide": false,
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
-              "hide": true,
+              "field": "pm_data.ndac_rr_mcn_4g_apn_sgi_outbound_bitrate",
+              "hide": false,
               "id": "1",
               "settings": {},
               "type": "sum"
-            },
-            {
-              "field": "pm_data.ndac_rr_mcn_4g_upf_ul_rate",
-              "hide": true,
-              "id": "3",
-              "type": "sum"
-            },
-            {
-              "id": "4",
-              "pipelineVariables": [
-                {
-                  "name": "var1",
-                  "pipelineAgg": "1"
-                },
-                {
-                  "name": "var2",
-                  "pipelineAgg": "3"
-                }
-              ],
-              "settings": {
-                "script": "params.var1+params.var2"
-              },
-              "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+          "query": "pm_data.ndac_rr_mcn_4g_apn_sgi_outbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         }
       ],
+      "timeFrom": "30m",
       "title": "UL Throughput",
       "type": "stat"
     },
@@ -215,13 +207,24 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "Bits per second rate in DL on S1u interface",
+      "description": "Downlink bitrate on S1U interface",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "index": 0,
+                  "text": "No Data"
+                }
+              },
+              "type": "special"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -241,7 +244,9 @@
         "x": 4,
         "y": 0
       },
+      "hideTimeOverride": true,
       "id": 4,
+      "interval": "1m",
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -259,7 +264,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "",
@@ -268,7 +273,8 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "$agg"
+                "interval": "$agg",
+                "min_doc_count": "1"
               },
               "type": "date_histogram"
             }
@@ -279,42 +285,20 @@
           },
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
-              "hide": true,
+              "field": "pm_data.ndac_rr_mcn_4g_s1u_outbound_bitrate",
+              "hide": false,
               "id": "1",
               "settings": {},
               "type": "sum"
-            },
-            {
-              "field": "pm_data.ndac_rr_mcn_4g_upf_dl_rate",
-              "hide": true,
-              "id": "3",
-              "type": "sum"
-            },
-            {
-              "id": "4",
-              "pipelineVariables": [
-                {
-                  "name": "var1",
-                  "pipelineAgg": "1"
-                },
-                {
-                  "name": "var2",
-                  "pipelineAgg": "3"
-                }
-              ],
-              "settings": {
-                "script": "params.var1+params.var2"
-              },
-              "type": "bucket_script"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+          "query": "pm_data.ndac_rr_mcn_4g_s1u_outbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         }
       ],
+      "timeFrom": "30m",
       "title": "DL throughput",
       "type": "stat"
     },
@@ -349,7 +333,9 @@
         "x": 8,
         "y": 0
       },
+      "hideTimeOverride": true,
       "id": 46,
+      "interval": "1m",
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -367,7 +353,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "",
@@ -376,7 +362,8 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "$agg"
+                "interval": "$agg",
+                "min_doc_count": "1"
               },
               "type": "date_histogram"
             }
@@ -387,18 +374,19 @@
           },
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_4g_ue_ul_rate",
+              "field": "pm_data.ndac_rr_mcn_ue_ul_bitrate",
               "id": "1",
               "settings": {},
               "type": "sum"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*IMSI*",
+          "query": "pm_data.ndac_rr_mcn_ue_ul_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*IMSI*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         }
       ],
+      "timeFrom": "30m",
       "title": "UE throughput UL",
       "type": "stat"
     },
@@ -433,7 +421,9 @@
         "x": 12,
         "y": 0
       },
+      "hideTimeOverride": true,
       "id": 47,
+      "interval": "1m",
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -451,7 +441,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "",
@@ -460,7 +450,8 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "$agg"
+                "interval": "$agg",
+                "min_doc_count": "1"
               },
               "type": "date_histogram"
             }
@@ -471,18 +462,19 @@
           },
           "metrics": [
             {
-              "field": "pm_data.ndac_rr_mcn_4g_ue_dl_rate",
+              "field": "pm_data.ndac_rr_mcn_ue_dl_bitrate",
               "id": "1",
               "settings": {},
               "type": "sum"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*IMSI*",
+          "query": "pm_data.ndac_rr_mcn_ue_dl_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*IMSI*",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         }
       ],
+      "timeFrom": "30m",
       "title": "UE throughput DL",
       "type": "stat"
     },
@@ -518,7 +510,9 @@
         "x": 16,
         "y": 0
       },
+      "hideTimeOverride": true,
       "id": 18,
+      "interval": "1m",
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -536,7 +530,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "",
@@ -545,7 +539,8 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "$agg"
+                "interval": "$agg",
+                "min_doc_count": "1"
               },
               "type": "date_histogram"
             }
@@ -562,12 +557,13 @@
               "type": "sum"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+          "query": "pm_data.ndac_rr_mcn_4g_data_emm_registered_ues:* AND pm_data_source.nhg_alias.keyword:$nhgname",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         }
       ],
+      "timeFrom": "30m",
       "title": "Num of registered UEs",
       "type": "stat"
     },
@@ -603,7 +599,9 @@
         "x": 20,
         "y": 0
       },
+      "hideTimeOverride": true,
       "id": 19,
+      "interval": "1m",
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -621,7 +619,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "alias": "",
@@ -630,7 +628,8 @@
               "field": "pm_data_source.timestamp",
               "id": "2",
               "settings": {
-                "interval": "$agg"
+                "interval": "$agg",
+                "min_doc_count": "1"
               },
               "type": "date_histogram"
             }
@@ -647,12 +646,13 @@
               "type": "sum"
             }
           ],
-          "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+          "query": "pm_data.ndac_rr_mcn_4g_data_active_ues:* AND pm_data_source.nhg_alias.keyword:$nhgname",
           "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.timestamp"
         }
       ],
+      "timeFrom": "30m",
       "title": "Num of active UEs",
       "type": "stat"
     },
@@ -671,7 +671,7 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "description": "Number of DL Bytes sent on S1u+UPF interface.",
+          "description": "Aggregate inbound bitrate traffic on S1U interface per eNodeB over last 5 mins.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -700,941 +700,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "decbytes"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 24,
-            "x": 0,
-            "y": 5
-          },
-          "id": 2,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "maxHeight": 600,
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "pluginVersion": "11.3.0",
-          "targets": [
-            {
-              "alias": "{{pm_data_source.nhg_alias.keyword}}",
-              "bucketAggs": [
-                {
-                  "field": "pm_data_source.nhg_alias.keyword",
-                  "id": "4",
-                  "settings": {
-                    "min_doc_count": "1",
-                    "order": "desc",
-                    "orderBy": "_term",
-                    "size": "0"
-                  },
-                  "type": "terms"
-                },
-                {
-                  "field": "pm_data_source.timestamp",
-                  "id": "2",
-                  "settings": {
-                    "interval": "$agg"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "datasource": {
-                "type": "grafana-opensearch-datasource",
-                "uid": "${datasource}"
-              },
-              "hide": false,
-              "metrics": [
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_bytes",
-                  "hide": true,
-                  "id": "3",
-                  "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_upf_dl_nbr_bytes",
-                  "hide": true,
-                  "id": "5",
-                  "type": "sum"
-                },
-                {
-                  "id": "6",
-                  "pipelineVariables": [
-                    {
-                      "name": "var1",
-                      "pipelineAgg": "3"
-                    },
-                    {
-                      "name": "var2",
-                      "pipelineAgg": "5"
-                    }
-                  ],
-                  "settings": {
-                    "script": "params.var1+params.var2"
-                  },
-                  "type": "bucket_script"
-                }
-              ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
-              "queryType": "lucene",
-              "refId": "A",
-              "timeField": "pm_data_source.timestamp"
-            },
-            {
-              "alias": "Total",
-              "bucketAggs": [
-                {
-                  "field": "pm_data_source.timestamp",
-                  "id": "2",
-                  "settings": {
-                    "interval": "$agg"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "datasource": {
-                "type": "grafana-opensearch-datasource",
-                "uid": "${datasource}"
-              },
-              "hide": false,
-              "metrics": [
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_bytes",
-                  "hide": true,
-                  "id": "3",
-                  "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_upf_dl_nbr_bytes",
-                  "hide": true,
-                  "id": "4",
-                  "type": "sum"
-                },
-                {
-                  "id": "5",
-                  "pipelineVariables": [
-                    {
-                      "name": "var1",
-                      "pipelineAgg": "3"
-                    },
-                    {
-                      "name": "var2",
-                      "pipelineAgg": "4"
-                    }
-                  ],
-                  "settings": {
-                    "script": "params.var1+params.var2"
-                  },
-                  "type": "bucket_script"
-                }
-              ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
-              "queryType": "lucene",
-              "refId": "B",
-              "timeField": "pm_data_source.timestamp"
-            }
-          ],
-          "title": "KPI for DL bytes",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "description": "Number of Bytes received in UL on S1u+UPF interface",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "decbytes"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 24,
-            "x": 0,
-            "y": 11
-          },
-          "id": 3,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "maxHeight": 600,
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "pluginVersion": "11.3.0",
-          "targets": [
-            {
-              "alias": "{{pm_data_source.nhg_alias.keyword}}",
-              "bucketAggs": [
-                {
-                  "field": "pm_data_source.nhg_alias.keyword",
-                  "id": "4",
-                  "settings": {
-                    "min_doc_count": "1",
-                    "order": "desc",
-                    "orderBy": "_term",
-                    "size": "0"
-                  },
-                  "type": "terms"
-                },
-                {
-                  "field": "pm_data_source.timestamp",
-                  "id": "2",
-                  "settings": {
-                    "interval": "$agg"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "datasource": {
-                "type": "grafana-opensearch-datasource",
-                "uid": "${datasource}"
-              },
-              "hide": false,
-              "metrics": [
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_bytes",
-                  "hide": true,
-                  "id": "3",
-                  "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_upf_ul_nbr_bytes",
-                  "hide": true,
-                  "id": "5",
-                  "type": "sum"
-                },
-                {
-                  "id": "6",
-                  "pipelineVariables": [
-                    {
-                      "name": "var1",
-                      "pipelineAgg": "3"
-                    },
-                    {
-                      "name": "var2",
-                      "pipelineAgg": "5"
-                    }
-                  ],
-                  "settings": {
-                    "script": "params.var1+params.var2"
-                  },
-                  "type": "bucket_script"
-                }
-              ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
-              "queryType": "lucene",
-              "refId": "A",
-              "timeField": "pm_data_source.timestamp"
-            },
-            {
-              "alias": "Total",
-              "bucketAggs": [
-                {
-                  "field": "pm_data_source.timestamp",
-                  "id": "2",
-                  "settings": {
-                    "interval": "$agg"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "datasource": {
-                "type": "grafana-opensearch-datasource",
-                "uid": "${datasource}"
-              },
-              "hide": false,
-              "metrics": [
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_bytes",
-                  "hide": true,
-                  "id": "3",
-                  "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_upf_ul_nbr_bytes",
-                  "hide": true,
-                  "id": "4",
-                  "type": "sum"
-                },
-                {
-                  "id": "5",
-                  "pipelineVariables": [
-                    {
-                      "name": "var1",
-                      "pipelineAgg": "3"
-                    },
-                    {
-                      "name": "var2",
-                      "pipelineAgg": "4"
-                    }
-                  ],
-                  "settings": {
-                    "script": "params.var1+params.var2"
-                  },
-                  "type": "bucket_script"
-                }
-              ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
-              "queryType": "lucene",
-              "refId": "B",
-              "timeField": "pm_data_source.timestamp"
-            }
-          ],
-          "title": "KPI for UL bytes",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "description": "Number of DL packets sent on S1u interface.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "none"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 24,
-            "x": 0,
-            "y": 17
-          },
-          "id": 54,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "maxHeight": 600,
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "pluginVersion": "11.3.0",
-          "targets": [
-            {
-              "alias": "{{pm_data_source.nhg_alias.keyword}}",
-              "bucketAggs": [
-                {
-                  "field": "pm_data_source.nhg_alias.keyword",
-                  "id": "4",
-                  "settings": {
-                    "min_doc_count": "1",
-                    "order": "desc",
-                    "orderBy": "_term",
-                    "size": "0"
-                  },
-                  "type": "terms"
-                },
-                {
-                  "field": "pm_data_source.timestamp",
-                  "id": "2",
-                  "settings": {
-                    "interval": "$agg"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "datasource": {
-                "type": "grafana-opensearch-datasource",
-                "uid": "${datasource}"
-              },
-              "hide": false,
-              "metrics": [
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_packets",
-                  "hide": false,
-                  "id": "3",
-                  "type": "sum"
-                }
-              ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
-              "queryType": "lucene",
-              "refId": "A",
-              "timeField": "pm_data_source.timestamp"
-            },
-            {
-              "alias": "Total",
-              "bucketAggs": [
-                {
-                  "field": "pm_data_source.timestamp",
-                  "id": "2",
-                  "settings": {
-                    "interval": "$agg"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "datasource": {
-                "type": "grafana-opensearch-datasource",
-                "uid": "${datasource}"
-              },
-              "hide": false,
-              "metrics": [
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_nbr_packets",
-                  "hide": false,
-                  "id": "3",
-                  "type": "sum"
-                }
-              ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
-              "queryType": "lucene",
-              "refId": "B",
-              "timeField": "pm_data_source.timestamp"
-            }
-          ],
-          "title": "KPI for S1U DL packets",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "description": "Number of packets received in UL on S1u interface",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "none"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 24,
-            "x": 0,
-            "y": 23
-          },
-          "id": 55,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "maxHeight": 600,
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "pluginVersion": "11.3.0",
-          "targets": [
-            {
-              "alias": "{{pm_data_source.nhg_alias.keyword}}",
-              "bucketAggs": [
-                {
-                  "field": "pm_data_source.nhg_alias.keyword",
-                  "id": "4",
-                  "settings": {
-                    "min_doc_count": "1",
-                    "order": "desc",
-                    "orderBy": "_term",
-                    "size": "0"
-                  },
-                  "type": "terms"
-                },
-                {
-                  "field": "pm_data_source.timestamp",
-                  "id": "2",
-                  "settings": {
-                    "interval": "$agg"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "datasource": {
-                "type": "grafana-opensearch-datasource",
-                "uid": "${datasource}"
-              },
-              "hide": false,
-              "metrics": [
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_packets",
-                  "hide": false,
-                  "id": "3",
-                  "type": "sum"
-                }
-              ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
-              "queryType": "lucene",
-              "refId": "A",
-              "timeField": "pm_data_source.timestamp"
-            },
-            {
-              "alias": "Total",
-              "bucketAggs": [
-                {
-                  "field": "pm_data_source.timestamp",
-                  "id": "2",
-                  "settings": {
-                    "interval": "$agg"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "datasource": {
-                "type": "grafana-opensearch-datasource",
-                "uid": "${datasource}"
-              },
-              "hide": false,
-              "metrics": [
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_nbr_packets",
-                  "hide": false,
-                  "id": "3",
-                  "type": "sum"
-                }
-              ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
-              "queryType": "lucene",
-              "refId": "B",
-              "timeField": "pm_data_source.timestamp"
-            }
-          ],
-          "title": "KPI for S1U UL packets",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "description": "Bits per second rate in DL on S1u interface",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "binbps"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 24,
-            "x": 0,
-            "y": 29
-          },
-          "id": 44,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "maxHeight": 600,
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "pluginVersion": "11.3.0",
-          "targets": [
-            {
-              "alias": "{{pm_data_source.nhg_alias.keyword}}",
-              "bucketAggs": [
-                {
-                  "field": "pm_data_source.nhg_alias.keyword",
-                  "id": "3",
-                  "settings": {
-                    "min_doc_count": "1",
-                    "order": "desc",
-                    "orderBy": "_term",
-                    "size": "0"
-                  },
-                  "type": "terms"
-                },
-                {
-                  "field": "pm_data_source.timestamp",
-                  "id": "2",
-                  "settings": {
-                    "interval": "$agg"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "datasource": {
-                "type": "grafana-opensearch-datasource",
-                "uid": "${datasource}"
-              },
-              "metrics": [
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
-                  "hide": true,
-                  "id": "1",
-                  "settings": {},
-                  "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_upf_dl_rate",
-                  "hide": true,
-                  "id": "4",
-                  "type": "sum"
-                },
-                {
-                  "id": "5",
-                  "pipelineVariables": [
-                    {
-                      "name": "var1",
-                      "pipelineAgg": "1"
-                    },
-                    {
-                      "name": "var2",
-                      "pipelineAgg": "4"
-                    }
-                  ],
-                  "settings": {
-                    "script": "params.var1+params.var2"
-                  },
-                  "type": "bucket_script"
-                }
-              ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
-              "queryType": "lucene",
-              "refId": "A",
-              "timeField": "pm_data_source.timestamp"
-            },
-            {
-              "alias": "Total",
-              "bucketAggs": [
-                {
-                  "field": "pm_data_source.timestamp",
-                  "id": "2",
-                  "settings": {
-                    "interval": "$agg"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "datasource": {
-                "type": "grafana-opensearch-datasource",
-                "uid": "${datasource}"
-              },
-              "hide": false,
-              "metrics": [
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_s1u_dl_rate",
-                  "hide": true,
-                  "id": "1",
-                  "settings": {},
-                  "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_upf_dl_rate",
-                  "hide": true,
-                  "id": "3",
-                  "type": "sum"
-                },
-                {
-                  "id": "4",
-                  "pipelineVariables": [
-                    {
-                      "name": "var1",
-                      "pipelineAgg": "1"
-                    },
-                    {
-                      "name": "var2",
-                      "pipelineAgg": "3"
-                    }
-                  ],
-                  "settings": {
-                    "script": "params.var1+params.var2"
-                  },
-                  "type": "bucket_script"
-                }
-              ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
-              "queryType": "lucene",
-              "refId": "B",
-              "timeField": "pm_data_source.timestamp"
-            }
-          ],
-          "title": "KPI for DL throughput",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
-          },
-          "description": "Bits per second rate in UL on S1u interface",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "barWidthFactor": 0.6,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1666,9 +732,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 35
+            "y": 5
           },
-          "id": 5,
+          "id": 58,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -1677,19 +744,31 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
-              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
               "bucketAggs": [
                 {
                   "field": "pm_data_source.nhg_alias.keyword",
-                  "id": "3",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.dn.keyword",
+                  "id": "5",
                   "settings": {
                     "min_doc_count": "1",
                     "order": "desc",
@@ -1711,39 +790,16 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
+              "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
-                  "hide": true,
-                  "id": "1",
-                  "settings": {},
+                  "field": "pm_data.ndac_rr_mcn_4g_enb_s1u_inbound_bitrate",
+                  "hide": false,
+                  "id": "3",
                   "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_upf_ul_rate",
-                  "hide": true,
-                  "id": "4",
-                  "type": "sum"
-                },
-                {
-                  "id": "5",
-                  "pipelineVariables": [
-                    {
-                      "name": "var1",
-                      "pipelineAgg": "1"
-                    },
-                    {
-                      "name": "var2",
-                      "pipelineAgg": "4"
-                    }
-                  ],
-                  "settings": {
-                    "script": "params.var1+params.var2"
-                  },
-                  "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "query": "pm_data.ndac_rr_mcn_4g_enb_s1u_inbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
@@ -1767,43 +823,1586 @@
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_4g_s1u_ul_rate",
-                  "hide": true,
-                  "id": "1",
-                  "settings": {},
-                  "type": "sum"
-                },
-                {
-                  "field": "pm_data.ndac_rr_mcn_4g_upf_ul_rate",
-                  "hide": true,
+                  "field": "pm_data.ndac_rr_mcn_4g_enb_s1u_inbound_bitrate",
+                  "hide": false,
                   "id": "3",
                   "type": "sum"
-                },
-                {
-                  "id": "4",
-                  "pipelineVariables": [
-                    {
-                      "name": "var1",
-                      "pipelineAgg": "1"
-                    },
-                    {
-                      "name": "var2",
-                      "pipelineAgg": "3"
-                    }
-                  ],
-                  "settings": {
-                    "script": "params.var1+params.var2"
-                  },
-                  "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
+              "query": "pm_data.ndac_rr_mcn_4g_enb_s1u_inbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "B",
               "timeField": "pm_data_source.timestamp"
             }
           ],
-          "title": "KPI for UL Throughput",
+          "title": "Per eNodeB Inbound Bitrate",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.+)/ACCOUNT-.*ENBIP-(.+).*",
+                "renamePattern": "$1/ENBIP-$2"
+              }
+            }
+          ],
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Aggregate outbound bitrate traffic on S1U interface per eNodeB over last 5 mins",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "bps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 11
+          },
+          "id": 57,
+          "interval": "1m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.5.1",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.dn.keyword",
+                  "id": "5",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_enb_s1u_outbound_bitrate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_enb_s1u_outbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_enb_s1u_outbound_bitrate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_enb_s1u_outbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "Per eNodeB Outbound Bitrate",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.+)/ACCOUNT-.*ENBIP-(.+).*",
+                "renamePattern": "$1/ENBIP-$2"
+              }
+            }
+          ],
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Aggregate inbound bitrate traffic sent on S1U interface over 5 mins.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "bps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 17
+          },
+          "id": 3,
+          "interval": "1m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.5.1",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_inbound_bitrate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_s1u_inbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_inbound_bitrate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_s1u_inbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "S1U Inbound Bitrate",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Aggregate outbound bitrate traffic sent on S1U interface over 5 mins.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "bps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 23
+          },
+          "id": 2,
+          "interval": "1m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.5.1",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_outbound_bitrate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_s1u_outbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_outbound_bitrate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_s1u_outbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "S1U Outbound Bitrate",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Aggregate inbound packets sent per second on S1U interface over 5 mins.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "pps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 29
+          },
+          "id": 54,
+          "interval": "1m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.5.1",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_inbound_packet_rate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_s1u_inbound_packet_rate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_inbound_packet_rate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_s1u_inbound_packet_rate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "S1U Inbound Packets Rate",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Aggregate outbound packets sent per second on S1U interface over 5 mins.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "pps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 35
+          },
+          "id": 55,
+          "interval": "1m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.5.1",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_outbound_packet_rate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_s1u_outbound_packet_rate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_s1u_outbound_packet_rate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_s1u_outbound_packet_rate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "S1U Outbound Packets Rate",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.+)/ACCOUNT-.*UPF-(.+).*",
+                "renamePattern": "$1/UPF-$2"
+              }
+            }
+          ],
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Aggregate inbound bitrate traffic sent per APN on SGI interface over 5 mins.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "bps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 41
+          },
+          "id": 59,
+          "interval": "1m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.5.1",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.dn.keyword",
+                  "id": "5",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_apn_sgi_inbound_bitrate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_apn_sgi_inbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_apn_sgi_inbound_bitrate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_apn_sgi_inbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "Per APN SGI Inbound Bitrate",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.+)/ACCOUNT-.*APN-(.+).*",
+                "renamePattern": "$1/APN-$2"
+              }
+            }
+          ],
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Aggregate outbound bitrate traffic sent per APN on SGI interface over 5 mins.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "bps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 47
+          },
+          "id": 60,
+          "interval": "1m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.5.1",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.dn.keyword",
+                  "id": "5",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_apn_sgi_outbound_bitrate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_apn_sgi_outbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_apn_sgi_outbound_bitrate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_apn_sgi_outbound_bitrate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "Per APN SGI Outbound Bitrate",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.+)/ACCOUNT-.*APN-(.+).*",
+                "renamePattern": "$1/APN-$2"
+              }
+            }
+          ],
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Aggregate inbound packet rate traffic sent per APN on SGI interface over 5 mins.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "pps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 53
+          },
+          "id": 61,
+          "interval": "1m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.5.1",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.dn.keyword",
+                  "id": "5",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_apn_sgi_inbound_packet_rate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_apn_sgi_inbound_packet_rate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_apn_sgi_inbound_packet_rate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_apn_sgi_inbound_packet_rate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "Per APN SGI Inbound Packets Rate",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.+)/ACCOUNT-.*APN-(.+).*",
+                "renamePattern": "$1/APN-$2"
+              }
+            }
+          ],
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Aggregate outbound packet rate traffic sent per APN on SGI interface over 5 mins.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "pps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 59
+          },
+          "id": 62,
+          "interval": "1m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "11.5.1",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.dn.keyword",
+                  "id": "5",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_apn_sgi_outbound_packet_rate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_apn_sgi_outbound_packet_rate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_apn_sgi_outbound_packet_rate",
+                  "hide": false,
+                  "id": "3",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data.ndac_rr_mcn_4g_apn_sgi_outbound_packet_rate:* AND pm_data_source.nhg_alias.keyword:$nhgname",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "Per APN SGI Outbound Packets Rate",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.+)/ACCOUNT-.*APN-(.+).*",
+                "renamePattern": "$1/APN-$2"
+              }
+            }
+          ],
           "type": "timeseries"
         },
         {
@@ -1840,7 +2439,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1872,9 +2471,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 41
+            "y": 65
           },
           "id": 6,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -1883,12 +2483,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "",
@@ -1920,7 +2521,7 @@
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_4g_ue_ul_rate",
+                  "field": "pm_data.ndac_rr_mcn_ue_ul_bitrate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -1950,7 +2551,7 @@
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_4g_ue_ul_rate",
+                  "field": "pm_data.ndac_rr_mcn_ue_ul_bitrate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2008,7 +2609,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2040,9 +2641,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 47
+            "y": 71
           },
           "id": 7,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -2051,12 +2653,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "",
@@ -2087,7 +2690,7 @@
               },
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_4g_ue_dl_rate",
+                  "field": "pm_data.ndac_rr_mcn_ue_dl_bitrate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2117,7 +2720,7 @@
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_4g_ue_dl_rate",
+                  "field": "pm_data.ndac_rr_mcn_ue_dl_bitrate",
                   "id": "1",
                   "settings": {},
                   "type": "sum"
@@ -2216,7 +2819,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 53
+            "y": 77
           },
           "id": 50,
           "options": {
@@ -2241,7 +2844,7 @@
               }
             ]
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "",
@@ -2288,12 +2891,12 @@
               "hide": false,
               "metrics": [
                 {
-                  "field": "pm_data.ndac_rr_mcn_4g_ue_ul_rate",
+                  "field": "pm_data.ndac_rr_mcn_ue_ul_bitrate",
                   "id": "1",
                   "type": "sum"
                 },
                 {
-                  "field": "pm_data.ndac_rr_mcn_4g_ue_dl_rate",
+                  "field": "pm_data.ndac_rr_mcn_ue_dl_bitrate",
                   "hide": false,
                   "id": "5",
                   "type": "sum"
@@ -2312,10 +2915,19 @@
               "options": {
                 "alias": "IMSI",
                 "binary": {
-                  "left": "pm_data_source.nhg_alias.keyword",
+                  "left": {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "pm_data_source.nhg_alias.keyword"
+                    }
+                  },
                   "operator": "+",
-                  "reducer": "sum",
-                  "right": "pm_data_source.dn.keyword"
+                  "right": {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "pm_data_source.dn.keyword"
+                    }
+                  }
                 },
                 "mode": "binary",
                 "reduce": {
@@ -2328,10 +2940,13 @@
               "id": "organize",
               "options": {
                 "excludeByName": {
+                  "Sum pm_data.ndac_rr_mcn_ue_dl_bitrate": false,
+                  "Sum pm_data.ndac_rr_mcn_ue_ul_bitrate": false,
                   "pm_data_source.dn.keyword": true,
                   "pm_data_source.nhg_alias.keyword": true,
                   "pm_data_source.timestamp": true
                 },
+                "includeByName": {},
                 "indexByName": {
                   "IMSI": 3,
                   "Sum pm_data.ndac_rr_mcn_4g_ue_dl_rate": 5,
@@ -2342,7 +2957,9 @@
                 },
                 "renameByName": {
                   "Sum pm_data.ndac_rr_mcn_4g_ue_dl_rate": "UE DL Rate",
-                  "Sum pm_data.ndac_rr_mcn_4g_ue_ul_rate": "UE UL Rate"
+                  "Sum pm_data.ndac_rr_mcn_4g_ue_ul_rate": "UE UL Rate",
+                  "Sum pm_data.ndac_rr_mcn_ue_dl_bitrate": "UE DL Rate",
+                  "Sum pm_data.ndac_rr_mcn_ue_ul_bitrate": "UE UL Rate"
                 }
               }
             }
@@ -2397,7 +3014,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2412,8 +3029,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2429,9 +3045,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 6
+            "y": 252
           },
           "id": 12,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -2440,12 +3057,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -2554,7 +3172,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2569,8 +3187,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2586,9 +3203,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 12
+            "y": 258
           },
           "id": 13,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -2597,12 +3215,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -2712,7 +3331,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2727,8 +3346,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2744,9 +3362,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 18
+            "y": 264
           },
           "id": 14,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -2755,12 +3374,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -2871,7 +3491,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2886,8 +3506,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2903,9 +3522,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 24
+            "y": 270
           },
           "id": 15,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -2914,12 +3534,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3029,7 +3650,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3044,8 +3665,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3061,9 +3681,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 30
+            "y": 276
           },
           "id": 37,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -3072,12 +3693,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3187,7 +3809,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3202,8 +3824,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3219,9 +3840,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 36
+            "y": 282
           },
           "id": 53,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -3230,12 +3852,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3394,7 +4017,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3409,8 +4032,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3426,9 +4048,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 42
+            "y": 288
           },
           "id": 56,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -3437,12 +4060,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3553,7 +4177,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3568,8 +4192,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3585,9 +4208,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 48
+            "y": 294
           },
           "id": 51,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -3596,12 +4220,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3711,7 +4336,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3726,8 +4351,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3743,9 +4367,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 54
+            "y": 300
           },
           "id": 52,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -3754,12 +4379,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3883,7 +4509,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3914,9 +4540,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 273
+            "y": 307
           },
           "id": 20,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -3925,12 +4552,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4040,7 +4668,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4071,9 +4699,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 279
+            "y": 313
           },
           "id": 21,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -4082,12 +4711,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4197,7 +4827,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4228,9 +4858,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 285
+            "y": 319
           },
           "id": 43,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -4239,12 +4870,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4354,7 +4986,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4386,9 +5018,10 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 291
+            "y": 325
           },
           "id": 49,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -4397,12 +5030,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4512,7 +5146,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4540,9 +5174,10 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 298
+            "y": 332
           },
           "id": 48,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -4551,12 +5186,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4666,7 +5302,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4697,9 +5333,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 305
+            "y": 339
           },
           "id": 22,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -4708,12 +5345,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4823,7 +5461,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4854,9 +5492,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 311
+            "y": 345
           },
           "id": 23,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -4865,12 +5504,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4980,7 +5620,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5011,9 +5651,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 317
+            "y": 351
           },
           "id": 42,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -5022,12 +5663,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5137,7 +5779,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5168,9 +5810,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 323
+            "y": 357
           },
           "id": 24,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -5179,12 +5822,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5294,7 +5938,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5325,9 +5969,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 329
+            "y": 363
           },
           "id": 25,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -5336,12 +5981,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5451,7 +6097,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5482,9 +6128,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 335
+            "y": 369
           },
           "id": 41,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -5493,12 +6140,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5608,7 +6256,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5639,9 +6287,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 341
+            "y": 375
           },
           "id": 26,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -5650,12 +6299,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5765,7 +6415,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5796,9 +6446,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 347
+            "y": 381
           },
           "id": 27,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -5807,12 +6458,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5922,7 +6574,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5953,9 +6605,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 353
+            "y": 387
           },
           "id": 40,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -5964,12 +6617,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6079,7 +6733,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6110,9 +6764,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 359
+            "y": 393
           },
           "id": 28,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -6121,12 +6776,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6236,7 +6892,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6267,9 +6923,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 365
+            "y": 399
           },
           "id": 29,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -6278,12 +6935,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6393,7 +7051,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6424,9 +7082,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 371
+            "y": 405
           },
           "id": 39,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -6435,12 +7094,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6550,7 +7210,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6581,9 +7241,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 377
+            "y": 411
           },
           "id": 30,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -6592,12 +7253,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6707,7 +7369,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6738,9 +7400,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 383
+            "y": 417
           },
           "id": 31,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -6749,12 +7412,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6864,7 +7528,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6895,9 +7559,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 389
+            "y": 423
           },
           "id": 38,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -6906,12 +7571,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7035,7 +7701,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7066,9 +7732,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 274
+            "y": 430
           },
           "id": 34,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -7077,12 +7744,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7163,7 +7831,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7194,9 +7862,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 280
+            "y": 436
           },
           "id": 35,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -7205,12 +7874,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7291,7 +7961,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "always",
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7322,9 +7992,10 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 286
+            "y": 442
           },
           "id": 36,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -7333,12 +8004,13 @@
               "showLegend": true
             },
             "tooltip": {
+              "hideZeros": false,
               "maxHeight": 600,
               "mode": "multi",
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.3.0",
+          "pluginVersion": "11.5.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7390,8 +8062,8 @@
       "type": "row"
     }
   ],
-  "preload": false,
-  "refresh": "15m",
+  "preload": true,
+  "refresh": "5m",
   "schemaVersion": 40,
   "tags": [
     "CorePM"
@@ -7415,12 +8087,8 @@
       },
       {
         "current": {
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -7464,6 +8132,21 @@
           },
           {
             "selected": false,
+            "text": "3h",
+            "value": "3h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
             "text": "1d",
             "value": "1d"
           },
@@ -7479,26 +8162,11 @@
           },
           {
             "selected": false,
-            "text": "1w",
-            "value": "1w"
-          },
-          {
-            "selected": false,
             "text": "1M",
             "value": "1M"
-          },
-          {
-            "selected": false,
-            "text": "2M",
-            "value": "2M"
-          },
-          {
-            "selected": false,
-            "text": "3M",
-            "value": "3M"
           }
         ],
-        "query": "5m,15m,1h,1d,7d,15d,1w,1M,2M,3M",
+        "query": "5m,15m,1h,3h,6h,12h,1d,7d,15d,1M",
         "type": "custom"
       }
     ]

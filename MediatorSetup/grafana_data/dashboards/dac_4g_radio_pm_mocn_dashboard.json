@@ -177,12 +177,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "asc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -260,6 +261,35 @@
         }
       ],
       "title": "LTE_5840a E-UTRAN Average Active UEs with data in the buffer DL per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -342,12 +372,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -419,6 +450,35 @@
         }
       ],
       "title": "LTE_5841a E-UTRAN Average Active UEs with data in the buffer UL per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -500,12 +560,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -577,6 +638,35 @@
         }
       ],
       "title": "LTE_5842a E-UTRAN Average RRC Connected UEs per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -658,12 +748,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -725,6 +816,35 @@
         }
       ],
       "title": "LTE_5843a E-UTRAN PDCP SDU Signaling Volume for DL per PLMN [MB]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -806,12 +926,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -873,6 +994,35 @@
         }
       ],
       "title": "LTE_5844a E-UTRAN PDCP SDU User Volume for DL per PLMN [MB]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -954,12 +1104,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1021,6 +1172,35 @@
         }
       ],
       "title": "LTE_5845a E-UTRAN PDCP SDU Signaling Volume UL per PLMN [MB]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1102,12 +1282,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1169,6 +1350,35 @@
         }
       ],
       "title": "LTE_5846a E-UTRAN PDCP SDU User Volume UL per PLMN [MB]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1251,12 +1461,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1328,6 +1539,35 @@
         }
       ],
       "title": "LTE_5847a E-UTRAN Averaged IP scheduled Throughput in DL, QCI1, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1410,12 +1650,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1487,6 +1728,35 @@
         }
       ],
       "title": "LTE_5848a E-UTRAN Averaged IP scheduled Throughput in DL, QCI2, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1569,12 +1839,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1646,6 +1917,35 @@
         }
       ],
       "title": "LTE_5849a E-UTRAN Averaged IP scheduled Throughput in DL, QCI3, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1728,12 +2028,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1805,6 +2106,35 @@
         }
       ],
       "title": "LTE_5850a E-UTRAN Averaged IP scheduled Throughput in DL, QCI4, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1887,12 +2217,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1964,6 +2295,35 @@
         }
       ],
       "title": "LTE_5851a E-UTRAN Averaged IP scheduled Throughput in DL, QCI5, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2046,12 +2406,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2123,6 +2484,35 @@
         }
       ],
       "title": "LTE_5852a E-UTRAN Averaged IP scheduled Throughput in DL, QCI6, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2205,12 +2595,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2282,6 +2673,35 @@
         }
       ],
       "title": "LTE_5853a E-UTRAN Averaged IP scheduled Throughput in DL, QCI7, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2364,12 +2784,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2441,6 +2862,35 @@
         }
       ],
       "title": "LTE_5854a E-UTRAN Averaged IP scheduled Throughput in DL, QCI8, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2523,12 +2973,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2600,6 +3051,35 @@
         }
       ],
       "title": "LTE_5855a E-UTRAN Averaged IP scheduled Throughput in DL, QCI9, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2682,12 +3162,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2759,6 +3240,35 @@
         }
       ],
       "title": "LTE_5856a E-UTRAN Averaged IP scheduled Throughput in UL, QCI1, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2841,12 +3351,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2918,6 +3429,35 @@
         }
       ],
       "title": "LTE_5857a E-UTRAN Averaged IP scheduled Throughput in UL, QCI2, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3000,12 +3540,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3077,6 +3618,35 @@
         }
       ],
       "title": "LTE_5858a E-UTRAN Averaged IP scheduled Throughput in UL, QCI3, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3159,12 +3729,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3236,6 +3807,35 @@
         }
       ],
       "title": "LTE_5859a E-UTRAN Averaged IP scheduled Throughput in UL, QCI4, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3318,12 +3918,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3395,6 +3996,35 @@
         }
       ],
       "title": "LTE_5860a E-UTRAN Averaged IP scheduled Throughput in UL, QCI5, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3477,12 +4107,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3554,6 +4185,35 @@
         }
       ],
       "title": "LTE_5861a E-UTRAN Averaged IP scheduled Throughput in UL, QCI6, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3636,12 +4296,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3713,6 +4374,35 @@
         }
       ],
       "title": "LTE_5862a E-UTRAN Averaged IP scheduled Throughput in UL, QCI7, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3795,12 +4485,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3872,6 +4563,35 @@
         }
       ],
       "title": "LTE_5863a E-UTRAN Averaged IP scheduled Throughput in UL, QCI8, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3954,12 +4674,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4031,6 +4752,35 @@
         }
       ],
       "title": "LTE_5864a E-UTRAN Averaged IP scheduled Throughput in UL, QCI9, PLMN [kbps]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4112,12 +4862,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4189,6 +4940,35 @@
         }
       ],
       "title": "LTE_6608a E-UTRAN Percentage of Automatic Access Class Barring triggered via RRC Connection Failure Rate [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4270,12 +5050,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4335,6 +5116,35 @@
         }
       ],
       "title": "LTE_6703a E-UTRAN Downlink Average PRB usage for DTCH traffic for SAEB QoS level 1 for respective PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4416,12 +5226,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4481,6 +5292,35 @@
         }
       ],
       "title": "LTE_6704a E-UTRAN Uplink Average PRB usage for DTCH traffic for SAEB QoS level 1 for respective PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4562,12 +5402,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4617,6 +5458,35 @@
         }
       ],
       "title": "LTE_6847a E-UTRAN Average Active UEs with data in the buffer UL for QCI1 DRBs per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4698,12 +5568,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4753,6 +5624,35 @@
         }
       ],
       "title": "LTE_6848a E-UTRAN Average Active UEs with data in the buffer UL for non-GBR DRBs per PLMN [#]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4834,12 +5734,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4909,6 +5810,35 @@
         }
       ],
       "title": "LTE_6994a E-UTRAN Cell Availability Ratio per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -4990,12 +5920,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5041,6 +5972,35 @@
         }
       ],
       "title": "LTE_8061a E-UTRAN Mean QCI 65 E-RAB Setup Time per PLMN ID [ms]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5122,12 +6082,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5173,6 +6134,35 @@
         }
       ],
       "title": "LTE_8062a E-UTRAN Maximum QCI 65 E-RAB Setup Time per PLMN ID [ms]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5254,12 +6244,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5305,6 +6296,35 @@
         }
       ],
       "title": "LTE_8063a E-UTRAN Mean QCI 66 E-RAB Setup Time per PLMN ID [ms]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5386,12 +6406,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5437,6 +6458,35 @@
         }
       ],
       "title": "LTE_8064a E-UTRAN Maximum QCI 66 E-RAB Setup Time per PLMN ID [ms]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5518,12 +6568,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5583,6 +6634,35 @@
         }
       ],
       "title": "LTE_8072a E-UTRAN average PRB usage per TTI DL per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5664,12 +6744,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5715,6 +6796,35 @@
         }
       ],
       "title": "LTE_8073a E-UTRAN minimum PRB usage per TTI DL per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5796,12 +6906,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5847,6 +6958,35 @@
         }
       ],
       "title": "LTE_8074a E-UTRAN maximum PRB usage per TTI DL per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -5928,12 +7068,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5993,6 +7134,35 @@
         }
       ],
       "title": "LTE_8077a E-UTRAN average PRB usage per TTI UL per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -6074,12 +7244,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6125,6 +7296,35 @@
         }
       ],
       "title": "LTE_8078a E-UTRAN minimum PRB usage per TTI UL per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -6206,12 +7406,13 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6257,10 +7458,39 @@
         }
       ],
       "title": "LTE_8079a E-UTRAN maximum PRB usage per TTI UL per PLMN [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     }
   ],
-  "preload": false,
+  "preload": true,
   "refresh": "15m",
   "schemaVersion": 40,
   "tags": [
@@ -6285,8 +7515,8 @@
       },
       {
         "current": {
-          "text": "test",
-          "value": "test"
+          "text": "LaaS19",
+          "value": "LaaS19"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -6304,9 +7534,7 @@
       },
       {
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
@@ -6324,8 +7552,72 @@
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "refresh": 1,
-        "regex": ".*MCC.*MNC.*",
+        "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
         "type": "query"
+      },
+      {
+        "current": {
+          "text": "15m",
+          "value": "15m"
+        },
+        "description": "The interval is used to aggregate the metrics over time.",
+        "includeAll": false,
+        "label": "Aggregation",
+        "name": "agg",
+        "options": [
+          {
+            "selected": true,
+            "text": "15m",
+            "value": "15m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "3h",
+            "value": "3h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "15d",
+            "value": "15d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
+        "type": "custom"
       }
     ]
   },

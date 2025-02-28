@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-VERSION = $(shell cat ../VERSION)
+VERSION := $(shell cat ../VERSION)
 
 all: clean docker_build_all copy_binary
 
@@ -7,16 +7,14 @@ docker_build_all:
 	@echo "---------------------------------------------------------------------------------"
 	@echo "Starting docker build and test process, for OSSMediatorCollector......"
 	@echo "---------------------------------------------------------------------------------"
-	@cp ../VERSION .
-	@docker build -t ossmediatorcollector:$(VERSION) . --network host
+	@docker build -t ossmediatorcollector:$(VERSION) . --network host --build-arg VERSION=$(VERSION)
 	@echo "docker build completed."
 
 docker_build:
 	@echo "---------------------------------------------------------------------------------"
 	@echo "Starting docker build process, for OSSMediatorCollector......"
 	@echo "---------------------------------------------------------------------------------"
-	@cp ../VERSION .
-	@docker build -t ossmediatorcollector:$(VERSION) . --network host --build-arg BUILD_CMD="build build_storesecret"
+	@docker build -t ossmediatorcollector:$(VERSION) . --network host --build-arg BUILD_CMD="build build_storesecret" --build-arg VERSION=$(VERSION)
 	@echo "docker build completed."
 
 copy_binary:

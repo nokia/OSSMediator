@@ -7,15 +7,14 @@
 package config
 
 import (
-	"io/ioutil"
 	"os"
 	"testing"
 )
 
-//Reading config from invalid json file
+// Reading config from invalid json file
 func TestReadConfigWithEmptyFile(t *testing.T) {
 	content := []byte(``)
-	tmpfile, err := ioutil.TempFile(".", "conf")
+	tmpfile, err := os.CreateTemp(".", "conf")
 	if err != nil {
 		t.Error(err)
 	}
@@ -34,7 +33,7 @@ func TestReadConfigWithEmptyFile(t *testing.T) {
 	}
 }
 
-//Reading valid config
+// Reading valid config
 func TestReadConfig(t *testing.T) {
 	content := []byte(`{
 		"source_dirs": [
@@ -46,7 +45,7 @@ func TestReadConfig(t *testing.T) {
 			"password": "dGVzdDE="
 		}
 	}`)
-	tmpfile, err := ioutil.TempFile(".", "conf")
+	tmpfile, err := os.CreateTemp(".", "conf")
 	if err != nil {
 		t.Error(err)
 	}
@@ -65,7 +64,7 @@ func TestReadConfig(t *testing.T) {
 	}
 }
 
-//Reading config from non existing file
+// Reading config from non-existing file
 func TestReadConfigWithNonExistingFile(t *testing.T) {
 	_, err := ReadConfig("conf.json")
 	if err == nil {

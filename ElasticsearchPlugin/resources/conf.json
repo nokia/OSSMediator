@@ -7,7 +7,8 @@
     "url": "http://localhost:9200",
     "user": "<USERNAME>",
     "password": "<PASSWORD>",
-    "data_retention_duration": 90
+    "data_retention_duration": 90,
+    "max_shards_per_node": 2000
   },
   "cleanup_duration": 60,
   "max_concurrent_process": 1

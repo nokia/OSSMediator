@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-//to read sims api response
+// to read sims api response
 type simsResponse struct {
 	Subsc []struct {
 		ApnID                 string                  `json:"apn_id"`
@@ -33,7 +33,7 @@ type simsResponse struct {
 	} `json:"subsc"`
 }
 
-//sims details for elasticsearch data
+// sims details for elasticsearch data
 type simsDetails struct {
 	ApnID                 string                `json:"apn_id"`
 	ApnName               string                `json:"apn_name"`
@@ -61,7 +61,7 @@ type PrivateNetworkDetails struct {
 	UeStatus          string      `json:"ue_status"`
 }
 
-//to read ap-sims api response
+// to read ap-sims api response
 type apSimsResponse []struct {
 	AccessPointHwID string        `json:"access_point_hw_id"`
 	ImsiDetails     []ImsiDetails `json:"imsi_details"`
@@ -74,7 +74,7 @@ type ImsiDetails struct {
 	UeReportTimestamp time.Time `json:"ue_report_timestamp"`
 }
 
-//ap-sims details for elasticsearch data
+// ap-sims details for elasticsearch data
 type apSimsDetails struct {
 	AccessPointHwID string      `json:"access_point_hw_id"`
 	ImsiDetails     ImsiDetails `json:"imsi_details"`

@@ -106,7 +106,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "This KPI shows the maximum utilization ratio of PUSCH PRBs per cell per resource group.\n",
+      "description": "This KPI shows the maximum utilization ratio of PDSCH PRBs per cell per resource group.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -170,22 +170,23 @@
         "x": 0,
         "y": 0
       },
-      "id": 4,
-      "interval": "15m",
+      "id": 7,
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "right",
+          "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -205,7 +206,193 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "metrics": [
+            {
+              "field": "pm_data.NCUPNRG_M55910C00002",
+              "hide": true,
+              "id": "3",
+              "meta": {},
+              "settings": {},
+              "type": "avg"
+            },
+            {
+              "field": "pm_data.NCUPNRG_M55910C00002",
+              "hide": true,
+              "id": "30",
+              "type": "max"
+            },
+            {
+              "id": "31",
+              "pipelineVariables": [
+                {
+                  "name": "am55910c00002",
+                  "pipelineAgg": "3"
+                },
+                {
+                  "name": "m55910c00002",
+                  "pipelineAgg": "30"
+                }
+              ],
+              "settings": {
+                "script": "if (params.am55910c00002 == null) { return null } else { return params.m55910c00002 }"
+              },
+              "type": "bucket_script"
+            }
+          ],
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL*",
+          "refId": "A",
+          "timeField": "pm_data_source.end_timestamp"
+        }
+      ],
+      "title": "NR_5965a 5G Maximum utilization ratio of PDSCH PRBs per cell per resource group [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*NRCELL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "This KPI shows the maximum utilization ratio of PUSCH PRBs per cell per resource group.\n",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 4,
+      "interval": "$agg",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "$groupby",
+              "id": "7",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "pm_data_source.end_timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -250,12 +437,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "NR_5966a 5G Maximum utilization ratio of PUSCH PRBs per cell per resource group [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*NRCELL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -325,24 +540,25 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 14
       },
       "id": 5,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "right",
+          "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -362,7 +578,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -427,12 +643,40 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "NR_5967a 5G Average utilization of PDSCH PRBs for slice-aware traffic [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*NRCELL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -502,24 +746,25 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 21
       },
       "id": 6,
-      "interval": "15m",
+      "interval": "$agg",
       "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "right",
+          "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "bucketAggs": [
@@ -539,7 +784,7 @@
               "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
-                "interval": "15m",
+                "interval": "$agg",
                 "min_doc_count": 1,
                 "trimEdges": 0
               },
@@ -605,16 +850,44 @@
             }
           ],
           "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL*",
-          "queryType": "lucene",
           "refId": "A",
           "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "NR_5968a 5G Average utilization of PUSCH PRBs for slice-aware traffic [%]",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "([^\\s,]*NRCELL-[0-9]*).*",
+            "renamePattern": "$1"
+          }
+        },
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "multi"
+          }
+        }
+      ],
       "type": "timeseries"
     }
   ],
-  "preload": false,
+  "preload": true,
   "refresh": "15m",
   "schemaVersion": 40,
   "tags": [
@@ -639,8 +912,8 @@
       },
       {
         "current": {
-          "text": "TALOS_HPE_151_5G_SA",
-          "value": "TALOS_HPE_151_5G_SA"
+          "text": "Moss-GR",
+          "value": "Moss-GR"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -678,6 +951,7 @@
       },
       {
         "current": {
+          "selected": false,
           "text": "Cell",
           "value": "pm_data_source.dn.keyword"
         },
@@ -698,6 +972,70 @@
         ],
         "query": "gNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
         "type": "custom"
+      },
+      {
+        "current": {
+          "text": "15m",
+          "value": "15m"
+        },
+        "description": "The interval is used to aggregate the metrics over time.",
+        "includeAll": false,
+        "label": "Aggregation",
+        "name": "agg",
+        "options": [
+          {
+            "selected": true,
+            "text": "15m",
+            "value": "15m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "3h",
+            "value": "3h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "15d",
+            "value": "15d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
+        "type": "custom"
       }
     ]
   },
@@ -706,6 +1044,7 @@
     "to": "now-15m"
   },
   "timepicker": {
+    "nowDelay": "15m",
     "refresh_intervals": [
       "10s",
       "30s",

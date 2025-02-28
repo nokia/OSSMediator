@@ -1,6 +1,30 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.5
+
+NEW FEATURES:
+
+* ElasticsearchPlugin:
+  * Added `elasticsearch.max_shards_per_node` config parameter to set the maximum number of shards per node for OpenSearch.
+
+IMPROVEMENTS:
+
+* MediatorSetup:
+  * Updated `Radio PM Dashboards` transformation to handle DN concatenation.
+  * Updated `IXR PM Dashboard` to include SFP, PSU and Port KPIs.
+  * Updated `CORE 4G/5G PM Dashboard` to support for UPF-APN KPIs and KPIs support at DNN level.
+
+SECURITY UPDATE:
+
+* OSSMediator:
+  * Updated base image to `alpine:3.21.3`. 
+  * Updated `golang` version to `1.24.0`.
+* MediatorSetup:
+  * Updated OpenSearch version to `2.19.0`.
+  * Updated Grafana version to `11.5.2`.
+
+
 # 4.4.1
 
 NEW FEATURES:

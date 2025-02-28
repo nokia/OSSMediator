@@ -7,7 +7,6 @@ docker_build_all:
 	@echo "---------------------------------------------------------------------------------"
 	@echo "Starting docker build and test process, for ElasticsearchPlugin......"
 	@echo "---------------------------------------------------------------------------------"
-	@cp ../VERSION .
 	@docker build -t elasticsearchplugin:$(VERSION) . --network host --build-arg VERSION=$(VERSION)
 	@echo "docker build completed."
 
@@ -15,7 +14,6 @@ docker_build:
 	@echo "---------------------------------------------------------------------------------"
 	@echo "Starting docker build process, for ElasticsearchPlugin......"
 	@echo "---------------------------------------------------------------------------------"
-	@cp ../VERSION .
 	@docker build -t elasticsearchplugin:$(VERSION) . --network host --build-arg BUILD_CMD="build" --build-arg VERSION=$(VERSION)
 	@echo "docker build completed."
 
@@ -40,8 +38,8 @@ build_package:
 
 test:
 	@echo "Started :ElasticsearchPlugin Tests"
-	@echo "---> Starting ElasticSearch"
-	@runuser -l elasticsearch -c 'cd /elasticsearch/elasticsearch-7.0.1/bin && nohup bash -c "./elasticsearch -E http.port=9299 -E transport.tcp.port=9399 &" && sleep 20'
+	@echo "---> Starting OpenSearch"
+	@runuser -l opensearch -c 'cd /opensearch/opensearch-2.19.0/bin && nohup bash -c "./opensearch -E http.port=9299 -E transport.tcp.port=9399 &" && sleep 20'
 	@echo Running Tests
 	@go test ./... -v -coverprofile=coverage.out | tee plugin_test.log | go-junit-report > unittest-result.xml || echo "ElasticsearchPlugin unit tests failed."
 	@echo Running go coverage

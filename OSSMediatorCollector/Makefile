@@ -25,14 +25,14 @@ copy_binary:
 
 build:
 	@echo Building OSSMediatorCollector
-	@go mod download && go build -ldflags "-X main.appVersion=$(VERSION)" -o bin/collector cmd/collector.go || (echo "OSSMediatorCollector build failed"; exit 1)
+	@go mod download && CGO_ENABLED=0 go build -ldflags "-X main.appVersion=$(VERSION)" -o bin/collector cmd/collector.go || (echo "OSSMediatorCollector build failed"; exit 1)
 	@echo Running go lint
 	@go vet ./... > lint-report.xml
 	@echo Build Successful.
 
 build_storesecret:
 	@echo Building storesecret
-	@cd storesecret && go mod download && go build -ldflags "-X main.appVersion=$(VERSION)" -o ../bin/storesecret storesecret.go || (echo "storesecret build failed"; exit 1)
+	@cd storesecret && CGO_ENABLED=0 go mod download && go build -ldflags "-X main.appVersion=$(VERSION)" -o ../bin/storesecret storesecret.go || (echo "storesecret build failed"; exit 1)
 	@echo storesecret build successful.
 
 build_package:

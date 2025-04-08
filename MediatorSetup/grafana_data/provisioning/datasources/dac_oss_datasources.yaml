@@ -9,7 +9,7 @@ datasources:
       database: "4g-pm*"
       timeInterval: 15m
       timeField: "pm_data_source.end_timestamp"
-      version: "2.19.0"
+      version: "2.19.1"
       flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
@@ -22,7 +22,7 @@ datasources:
       database: "5g-pm*"
       timeInterval: 15m
       timeField: "pm_data_source.end_timestamp"
-      version: "2.19.0"
+      version: "2.19.1"
       flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
@@ -35,7 +35,7 @@ datasources:
       database: "radio-fm*"
       timeInterval: 15m
       timeField: "fm_data.event_time"
-      version: "2.19.0"
+      version: "2.19.1"
       flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
@@ -48,7 +48,7 @@ datasources:
       database: "dac-fm*"
       timeInterval: 15m
       timeField: "fm_data.event_time"
-      version: "2.19.0"
+      version: "2.19.1"
       flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
@@ -61,7 +61,7 @@ datasources:
       database: "core-fm*"
       timeInterval: 15m
       timeField: "fm_data.event_time"
-      version: "2.19.0"
+      version: "2.19.1"
       flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
@@ -74,7 +74,7 @@ datasources:
       database: "application-fm*"
       timeInterval: 15m
       timeField: "fm_data.event_time"
-      version: "2.19.0"
+      version: "2.19.1"
       flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
@@ -87,7 +87,7 @@ datasources:
       database: "ixr-fm*"
       timeInterval: 15m
       timeField: "fm_data.event_time"
-      version: "2.19.0"
+      version: "2.19.1"
       flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
@@ -100,7 +100,7 @@ datasources:
       database: "ixr-pm*"
       timeInterval: 15m
       timeField: "pm_data_source.timestamp"
-      version: "2.19.0"
+      version: "2.19.1"
       flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
@@ -113,7 +113,7 @@ datasources:
       database: "core-pm*"
       timeInterval: 15m
       timeField: "pm_data_source.timestamp"
-      version: "2.19.0"
+      version: "2.19.1"
       flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
@@ -126,7 +126,7 @@ datasources:
       database: "edge-pm*"
       timeInterval: 15m
       timeField: "pm_data_source.timestamp"
-      version: "2.19.0"
+      version: "2.19.1"
       flavor: "opensearch"
       tlsSkipVerify: true
     editable: true
@@ -139,7 +139,7 @@ datasources:
       database: "*-fm"
       timeInterval: 15m
       timeField: "fm_data.event_time"
-      version: "2.19.0"
+      version: "2.19.1"
       flavor: "opensearch"
       tlsSkipVerify: true
     editable: true

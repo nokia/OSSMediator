@@ -100,9 +100,10 @@ type APIConf struct {
 
 // ListNetworkAPIConf keeps network API configs
 type ListNetworkAPIConf struct {
-	NhgAPI   string `json:"nhg_api"`  //list NHG API to keep track of all ACTIVE NHG of the user.
-	GngAPI   string `json:"gng_api"`  //list GNG API to keep track of all ACTIVE GNG of the user.
-	Interval int    `json:"interval"` //Interval at which the API will be triggered periodically.
+	NhgAPI   string   `json:"nhg_api"`  //list NHG API to keep track of all ACTIVE NHG of the user.
+	GngAPI   string   `json:"gng_api"`  //list GNG API to keep track of all ACTIVE GNG of the user.
+	Interval int      `json:"interval"` //Interval at which the API will be triggered periodically.
+	NhgIds   []string `json:"nhg_ids"`  //list of NHG IDs for which data should be fetched
 }
 
 var (

@@ -1,6 +1,28 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.5.1
+
+NEW FEATURES:
+* OSSMediatorCollector:
+  * Added `list_network_api.slice_ids` configuration parameter to allow data retrieval for specific Slice IDs.
+  * Added `severity_threshold` configuration parameter to set the severity threshold for alarms notifier.
+
+IMPROVEMENTS:
+* OSSMediator:
+  * Updated to use statically linked C libraries. Fixes binary compilation issues encountered on older Linux versions.
+* MediatorSetup:
+  * Updated Radio PM Dashboards to `25R1` release.
+  * Updated `CORE 4G PM Dashboard` to include `Failed EPS attach procedures` KPIs.
+  * Updated `CORE 5G PM Dashboard` to include `Initial registration requests`, `Initial registration success` and `Number of authentication rejections` KPIs.
+
+SECURITY UPDATE:
+* OSSMediator:
+  * Updated `golang` version to `1.24.2`.
+* MediatorSetup:
+  * Updated OpenSearch version to `2.19.1`.
+  * Updated Grafana version to `11.6.0`.
+
 # 4.5
 
 NEW FEATURES:

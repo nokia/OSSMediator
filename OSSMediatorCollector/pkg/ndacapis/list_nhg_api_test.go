@@ -91,7 +91,8 @@ var (
               					"serial_no": "AA-123"
             				}
           				],
-          			"cluster_status": "ACTIVE"
+          				"cluster_status": "ACTIVE",
+          				"slice_id": "test_slice_id"
     				}
   				],
 				"nhg_config_status": "ACTIVE"
@@ -124,7 +125,8 @@ var (
               					"serial_no": "AA-123"
             				}
           				],
-          			"cluster_status": "INACTIVE"
+          				"cluster_status": "INACTIVE",
+          				"slice_id": "test_slice_id"
     				}
   				],
 				"nhg_config_status": "NW_CFG_UNAVAILABLE"
@@ -238,6 +240,7 @@ func TestStoreNhgABACInActive(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
 	nhgMap := make(map[string]config.OrgAccDetails)
 	user.NhgIDsABAC = nhgMap
+	user.SliceIDs = map[string]string{}
 	orgUUID := config.OrgDetails{OrgUUID: "org", OrgAlias: "orgalias"}
 	accUUID := config.AccDetails{AccUUID: "acc", AccAlias: "accAlias"}
 	user.SessionToken = &config.SessionToken{
@@ -337,6 +340,7 @@ func TestStoreHWABAC(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
 	hwMap := make(map[string]config.OrgAccDetails)
 	user.HwIDsABAC = hwMap
+	user.SliceIDs = map[string]string{}
 	orgUUID := config.OrgDetails{OrgUUID: "org", OrgAlias: "orgalias"}
 	accUUID := config.AccDetails{AccUUID: "acc", AccAlias: "accAlias"}
 	user.SessionToken = &config.SessionToken{
@@ -407,7 +411,7 @@ func TestStoreHWABACInactive(t *testing.T) {
 func TestStoreHWRBAC(t *testing.T) {
 	resp2 := new(nhgAPIResponse)
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
-
+	user.SliceIDs = map[string]string{}
 	user.SessionToken = &config.SessionToken{
 		AccessToken:  "accessToken",
 		RefreshToken: "refreshToken",

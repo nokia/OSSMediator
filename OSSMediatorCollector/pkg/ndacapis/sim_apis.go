@@ -81,15 +81,19 @@ func fetchSimData(api *config.APIConf, user *config.User, txnID uint64, prettyRe
 	} else if strings.Contains(api.API, nhgPathParam) {
 		if authType == "ADTOKEN" {
 			for nhgID, orgAcc := range user.NhgIDsABAC {
-				if len(config.Conf.ListNetworkAPI.NhgIds) != 0 && !slices.Contains(config.Conf.ListNetworkAPI.NhgIds, nhgID) {
-					continue
+				if sliceID, exists := user.SliceIDs[nhgID]; exists && len(config.Conf.ListNetworkAPI.SliceIDs) != 0 {
+					if !slices.Contains(config.Conf.ListNetworkAPI.SliceIDs, sliceID) {
+						continue
+					}
 				}
 				callSimAPI(api, user, nhgID, orgAcc.OrgDetails.OrgUUID, orgAcc.AccDetails.AccUUID, 1, txnID, prettyResponse)
 			}
 		} else {
 			for _, nhgID := range user.NhgIDs {
-				if len(config.Conf.ListNetworkAPI.NhgIds) != 0 && !slices.Contains(config.Conf.ListNetworkAPI.NhgIds, nhgID) {
-					continue
+				if sliceID, exists := user.SliceIDs[nhgID]; exists && len(config.Conf.ListNetworkAPI.SliceIDs) != 0 {
+					if !slices.Contains(config.Conf.ListNetworkAPI.SliceIDs, sliceID) {
+						continue
+					}
 				}
 				callSimAPI(api, user, nhgID, "", "", 1, txnID, prettyResponse)
 			}

@@ -18,6 +18,7 @@ type gngAPIResponse struct {
 type GngInfo struct {
 	AdminState string `json:"admin_state"`
 	GngId      string `json:"gng_id"`
+	SliceID    string `json:"slice_id"`
 }
 
 type gngAPIAllResponse struct {
@@ -49,6 +50,7 @@ func getGngDetails(api *config.APIConf, user *config.User, txnID uint64, prettyR
 		}
 		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Infof("active networks: %v", user.NhgIDs)
 	}
+	log.Infof("Slice IDs: %v", user.SliceIDs)
 }
 
 func listGngRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
@@ -106,7 +108,9 @@ func listGngRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 func storeUserGngRBAC(gngData []GngInfo, user *config.User) {
 	for _, gngInfo := range gngData {
 		if strings.Contains(gngInfo.AdminState, "FULLY_ACTIVATED") {
+			log.Info("gng_info::", gngInfo)
 			if !containsNhg(user.NhgIDs, gngInfo.GngId) {
+				user.SliceIDs[gngInfo.GngId] = gngInfo.SliceID
 				user.NhgIDs = append(user.NhgIDs, gngInfo.GngId)
 			}
 		}
@@ -188,6 +192,7 @@ func storeUserGngABAC(gngData []GngInfo, user *config.User, orgID, accID string)
 	for _, gngInfo := range gngData {
 		if strings.Contains(gngInfo.AdminState, "FULLY_ACTIVATED") {
 			if _, ok := user.NhgIDsABAC[gngInfo.GngId]; !ok {
+				user.SliceIDs[gngInfo.GngId] = gngInfo.SliceID
 				user.NhgIDsABAC[gngInfo.GngId] = orgAcc
 			}
 		}

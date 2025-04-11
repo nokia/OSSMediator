@@ -1,5 +1,5 @@
 # Staging: for building go app (ElasticsearchPlugin)
-FROM golang:1.24.0 AS builder
+FROM golang:1.24.2 AS builder
 
 # download dependencies for build
 RUN go install github.com/jstemmer/go-junit-report@latest

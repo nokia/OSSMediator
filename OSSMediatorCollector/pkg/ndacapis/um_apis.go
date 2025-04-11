@@ -101,7 +101,7 @@ func Login(user *config.User) error {
 	setToken(resp, user)
 
 	log.Infof("Login successful for %s", user.Email)
-	fmt.Printf("\nLogin successful for %s", user.Email)
+	fmt.Printf("\nLogin successful for %s\n", user.Email)
 	return nil
 }
 

@@ -99,8 +99,10 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, pret
 	if authType == "ADTOKEN" {
 		//ABAC user
 		for nhg, orgAcc := range user.NhgIDsABAC {
-			if len(config.Conf.ListNetworkAPI.NhgIds) != 0 && !slices.Contains(config.Conf.ListNetworkAPI.NhgIds, nhg) {
-				continue
+			if sliceID, exists := user.SliceIDs[nhg]; exists && len(config.Conf.ListNetworkAPI.SliceIDs) != 0 {
+				if !slices.Contains(config.Conf.ListNetworkAPI.SliceIDs, sliceID) {
+					continue
+				}
 			}
 			requests <- struct{}{}
 			wg.Add(1)
@@ -128,8 +130,10 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, pret
 	} else {
 		//RBAC user
 		for _, nhg := range user.NhgIDs {
-			if len(config.Conf.ListNetworkAPI.NhgIds) != 0 && !slices.Contains(config.Conf.ListNetworkAPI.NhgIds, nhg) {
-				continue
+			if sliceID, exists := user.SliceIDs[nhg]; exists && len(config.Conf.ListNetworkAPI.SliceIDs) != 0 {
+				if !slices.Contains(config.Conf.ListNetworkAPI.SliceIDs, sliceID) {
+					continue
+				}
 			}
 			requests <- struct{}{}
 			wg.Add(1)

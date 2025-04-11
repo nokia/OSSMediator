@@ -32,7 +32,8 @@ const (
 		{
 			"admin_state": "NonGR_FULLY_ACTIVATED",
 			"is_gr_setup": "true",
-			"gng_id": "test_gng_2"
+			"gng_id": "test_gng_2",
+			"slice_id": "test_2"
 		}
 	]
 }`
@@ -45,6 +46,7 @@ func TestGetGngDetails(t *testing.T) {
 		RefreshToken: "refreshToken",
 		ExpiryTime:   utils.CurrentTime(),
 	}
+	user.SliceIDs = map[string]string{}
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintln(w, listGngResp)
@@ -161,6 +163,7 @@ func TestGetGngDetailsABAC(t *testing.T) {
 	}
 	user.HwIDsABAC = map[string]config.OrgAccDetails{}
 	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
+	user.SliceIDs = map[string]string{}
 	user.AccountIDsABAC = map[string][]string{
 		"org1": {"acc1", "acc2"},
 		"org2": {"acc3", "acc4"},

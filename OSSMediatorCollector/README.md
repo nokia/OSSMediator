@@ -298,6 +298,7 @@ This feature is optional and disabled by default.
 
 ```yaml
   webhook_url: <WEBHOOK URL>
+  severity_threshold: <""/"CRITICAL"/"MAJOR"/"MINOR"/"WARNING">
   radio_alarm_filters:
     - specific_problem: <ALARM SPECIFIC PROBLEM>
     - specific_problem: <ALARM SPECIFIC PROBLEM>

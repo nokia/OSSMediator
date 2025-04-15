@@ -50,7 +50,6 @@ func getGngDetails(api *config.APIConf, user *config.User, txnID uint64, prettyR
 		}
 		log.WithFields(log.Fields{"tid": txnID, "user": user.Email}).Infof("active networks: %v", user.NhgIDs)
 	}
-	log.Infof("Slice IDs: %v", user.SliceIDs)
 }
 
 func listGngRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {

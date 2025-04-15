@@ -107,7 +107,6 @@ func listGngRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 func storeUserGngRBAC(gngData []GngInfo, user *config.User) {
 	for _, gngInfo := range gngData {
 		if strings.Contains(gngInfo.AdminState, "FULLY_ACTIVATED") {
-			log.Info("gng_info::", gngInfo)
 			if !containsNhg(user.NhgIDs, gngInfo.GngId) {
 				user.SliceIDs[gngInfo.GngId] = gngInfo.SliceID
 				user.NhgIDs = append(user.NhgIDs, gngInfo.GngId)

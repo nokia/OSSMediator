@@ -18,6 +18,7 @@ type gngAPIResponse struct {
 type GngInfo struct {
 	AdminState string `json:"admin_state"`
 	GngId      string `json:"gng_id"`
+	SliceID    string `json:"slice_id"`
 }
 
 type gngAPIAllResponse struct {
@@ -107,6 +108,7 @@ func storeUserGngRBAC(gngData []GngInfo, user *config.User) {
 	for _, gngInfo := range gngData {
 		if strings.Contains(gngInfo.AdminState, "FULLY_ACTIVATED") {
 			if !containsNhg(user.NhgIDs, gngInfo.GngId) {
+				user.SliceIDs[gngInfo.GngId] = gngInfo.SliceID
 				user.NhgIDs = append(user.NhgIDs, gngInfo.GngId)
 			}
 		}
@@ -188,6 +190,7 @@ func storeUserGngABAC(gngData []GngInfo, user *config.User, orgID, accID string)
 	for _, gngInfo := range gngData {
 		if strings.Contains(gngInfo.AdminState, "FULLY_ACTIVATED") {
 			if _, ok := user.NhgIDsABAC[gngInfo.GngId]; !ok {
+				user.SliceIDs[gngInfo.GngId] = gngInfo.SliceID
 				user.NhgIDsABAC[gngInfo.GngId] = orgAcc
 			}
 		}

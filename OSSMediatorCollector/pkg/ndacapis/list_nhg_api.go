@@ -30,6 +30,7 @@ type NetworkInfo struct {
 		HwSet []struct {
 			HwID string `json:"hw_id"`
 		} `json:"hw_set"`
+		SliceID string `json:"slice_id"`
 	} `json:"clusters"`
 	NhgID           string `json:"nhg_id"`
 	NhgConfigStatus string `json:"nhg_config_status"`
@@ -42,6 +43,7 @@ const (
 // get nhg details for the customer
 func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
 	authType := strings.ToUpper(user.AuthType)
+	user.SliceIDs = map[string]string{}
 	if authType == "ADTOKEN" {
 		listNhgABAC(api, user, txnID, prettyResponse)
 	} else {
@@ -119,6 +121,7 @@ func storeUserHwIDRBAC(nhgData []NetworkInfo, user *config.User) {
 			continue
 		}
 		for _, cluster := range nhgInfo.Clusters {
+			user.SliceIDs[nhgInfo.NhgID] = cluster.SliceID
 			for _, hwSet := range cluster.HwSet {
 				hwIDs[hwSet.HwID] = struct{}{}
 			}
@@ -253,6 +256,7 @@ func storeUserHwIDABAC(nhgData []NetworkInfo, user *config.User, org *config.Org
 			continue
 		}
 		for _, cluster := range nhgInfo.Clusters {
+			user.SliceIDs[nhgInfo.NhgID] = cluster.SliceID
 			for _, hwSet := range cluster.HwSet {
 				hwIDsMap[hwSet.HwID] = struct{}{}
 			}

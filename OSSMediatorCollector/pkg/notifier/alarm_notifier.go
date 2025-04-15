@@ -31,9 +31,19 @@ const (
 	jsonMsgFormat    = "json"
 )
 
+var (
+	severityLevels = map[string]int{
+		"WARNING":  1,
+		"MINOR":    2,
+		"MAJOR":    3,
+		"CRITICAL": 4,
+	}
+)
+
 // AlarmNotifier keeps alarm notification config.
 type AlarmNotifier struct {
 	WebhookURL        string              `yaml:"webhook_url"`
+	SeverityThreshold string              `yaml:"severity_threshold"`
 	RadioAlarmFilters []RadioAlarmFilters `yaml:"radio_alarm_filters"`
 	DACAlarmFilters   []AlarmIDFilters    `yaml:"dac_alarm_filters"`
 	COREAlarmFilters  []AlarmIDFilters    `yaml:"core_alarm_filters"`
@@ -99,7 +109,7 @@ type RaisedNotification struct {
 	notificationTime time.Time
 }
 
-// TeamsMessage forms the body of message to be sent over MS teams.
+// TeamsMessage forms the body of message to be sent over MS Teams.
 type TeamsMessage struct {
 	Text       string `json:"text"`
 	TextFormat string `json:"textFormat,omitempty"`
@@ -215,7 +225,10 @@ func getAlarmDetails(txnID uint64, fmData string, metricType string) []FMSource 
 	removeOldRaisedAlarms()
 	for _, v := range data {
 		var isValid bool
-		if metricType == "RADIO" {
+		if !(alarmNotifier.SeverityThreshold == "" || alarmNotifier.SeverityThreshold == "NONE") {
+			isValid = checkSeverity(v.FmData.Severity)
+			log.Infof("severity: %v, isValid: %v", v.FmData.Severity, isValid)
+		} else if metricType == "RADIO" {
 			isValid = checkRadioAlarmFilter(v.FmData.SpecificProblem, v.FmData.AdditionalText, alarmNotifier.RadioAlarmFilters)
 		} else if metricType == "DAC" {
 			isValid = checkAlarmIDFilter(v.FmData.AlarmIdentifier, alarmNotifier.DACAlarmFilters)
@@ -387,4 +400,19 @@ func newNetClient() *http.Client {
 	})
 
 	return netClient
+}
+
+func checkSeverity(severity string) bool {
+	alarmLevel, ok := severityLevels[severity]
+	if !ok {
+		return false
+	}
+
+	configuredLevel, ok := severityLevels[alarmNotifier.SeverityThreshold]
+	if !ok {
+		log.Warnf("Invalid configured severity threshold: %s", alarmNotifier.SeverityThreshold)
+		return false
+	}
+
+	return alarmLevel >= configuredLevel
 }

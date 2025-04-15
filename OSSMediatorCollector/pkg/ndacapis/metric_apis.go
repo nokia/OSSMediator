@@ -15,6 +15,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"net/http"
 	"path"
+	"slices"
 	"strconv"
 	"strings"
 	"sync"
@@ -98,6 +99,11 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, pret
 	if authType == "ADTOKEN" {
 		//ABAC user
 		for nhg, orgAcc := range user.NhgIDsABAC {
+			if sliceID, exists := user.SliceIDs[nhg]; exists && len(config.Conf.ListNetworkAPI.SliceIDs) != 0 {
+				if !slices.Contains(config.Conf.ListNetworkAPI.SliceIDs, sliceID) {
+					continue
+				}
+			}
 			requests <- struct{}{}
 			wg.Add(1)
 			go func(nhgID string, accDetail config.OrgAccDetails) {
@@ -124,6 +130,11 @@ func fetchMetricsData(api *config.APIConf, user *config.User, txnID uint64, pret
 	} else {
 		//RBAC user
 		for _, nhg := range user.NhgIDs {
+			if sliceID, exists := user.SliceIDs[nhg]; exists && len(config.Conf.ListNetworkAPI.SliceIDs) != 0 {
+				if !slices.Contains(config.Conf.ListNetworkAPI.SliceIDs, sliceID) {
+					continue
+				}
+			}
 			requests <- struct{}{}
 			wg.Add(1)
 			go func(nhgID string) {

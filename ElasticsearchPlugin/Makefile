@@ -25,7 +25,7 @@ copy_binary:
 
 build:
 	@echo Building ElasticsearchPlugin
-	@go mod download && go build -ldflags "-X main.appVersion=$(VERSION)" -o bin/elasticsearchplugin cmd/main.go || (echo "ElasticsearchPlugin build failed"; exit 1)
+	@go mod download && CGO_ENABLED=0 go build -ldflags "-X main.appVersion=$(VERSION)" -o bin/elasticsearchplugin cmd/main.go || (echo "ElasticsearchPlugin build failed"; exit 1)
 	@echo Running go lint
 	@go vet ./... > lint-report.xml
 	@echo Build Successful.

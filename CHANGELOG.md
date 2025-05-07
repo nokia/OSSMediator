@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.5.2
+
+IMPROVEMENTS:
+* OSSMediator:
+  * Added `ADTOKEN` refresh retry for all error conditions.
+* MediatorSetup:
+  * Added `LTE_1093a` and missing KPIs in `NDAC Radio 4G PM KPI - Dashboard`.
+
+SECURITY UPDATE:
+* MediatorSetup:
+  * Updated Grafana version to `11.6.1`.
+
 # 4.5.1
 
 NEW FEATURES:

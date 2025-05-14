@@ -163,8 +163,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -174,32 +173,7 @@
           },
           "unit": "none"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "SNSSAI-1-000008 EL1000-GR_78_79_INST_PC_test"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 6,
@@ -223,7 +197,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -373,8 +347,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -408,7 +381,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -551,8 +524,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -586,7 +558,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -733,8 +705,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -768,7 +739,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -915,8 +886,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -950,7 +920,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -1097,8 +1067,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1132,7 +1101,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -1279,8 +1248,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1314,7 +1282,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -1461,8 +1429,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1496,7 +1463,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -1643,8 +1610,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1678,7 +1644,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -1825,8 +1791,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1856,7 +1821,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -2004,8 +1969,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2035,7 +1999,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -2183,8 +2147,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2214,7 +2177,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -2352,8 +2315,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2387,7 +2349,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "",
@@ -2521,8 +2483,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2556,7 +2517,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "",
@@ -2676,8 +2637,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2744,7 +2704,7 @@
           }
         ]
       },
-      "pluginVersion": "11.5.2",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "",
@@ -2914,8 +2874,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2931,7 +2890,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 284
+            "y": 190
           },
           "id": 100,
           "interval": "1m",
@@ -2949,7 +2908,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -3095,8 +3054,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3112,7 +3070,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 291
+            "y": 197
           },
           "id": 101,
           "interval": "1m",
@@ -3130,7 +3088,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -3276,8 +3234,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3293,7 +3250,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 298
+            "y": 204
           },
           "id": 102,
           "interval": "1m",
@@ -3311,7 +3268,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3448,8 +3405,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3465,7 +3421,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 305
+            "y": 211
           },
           "id": 103,
           "interval": "1m",
@@ -3483,7 +3439,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3620,8 +3576,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3637,7 +3592,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 312
+            "y": 218
           },
           "id": 104,
           "interval": "1m",
@@ -3655,7 +3610,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3792,8 +3747,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3809,7 +3763,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 319
+            "y": 225
           },
           "id": 105,
           "interval": "1m",
@@ -3827,7 +3781,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3964,8 +3918,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3981,7 +3934,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 326
+            "y": 232
           },
           "id": 106,
           "interval": "1m",
@@ -3999,7 +3952,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -4145,8 +4098,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4162,7 +4114,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 333
+            "y": 239
           },
           "id": 108,
           "interval": "1m",
@@ -4180,7 +4132,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -4326,8 +4278,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4343,7 +4294,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 340
+            "y": 246
           },
           "id": 110,
           "interval": "1m",
@@ -4361,7 +4312,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -4507,8 +4458,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4524,7 +4474,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 347
+            "y": 253
           },
           "id": 109,
           "interval": "1m",
@@ -4542,7 +4492,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -4688,8 +4638,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4705,7 +4654,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 354
+            "y": 260
           },
           "id": 111,
           "interval": "1m",
@@ -4723,7 +4672,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -4869,8 +4818,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4886,7 +4834,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 361
+            "y": 267
           },
           "id": 112,
           "interval": "1m",
@@ -4904,7 +4852,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5050,8 +4998,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5067,7 +5014,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 368
+            "y": 274
           },
           "id": 113,
           "interval": "1m",
@@ -5085,7 +5032,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5231,8 +5178,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5248,7 +5194,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 375
+            "y": 281
           },
           "id": 114,
           "interval": "1m",
@@ -5266,7 +5212,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5412,8 +5358,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5429,7 +5374,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 382
+            "y": 288
           },
           "id": 115,
           "interval": "1m",
@@ -5447,7 +5392,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5593,8 +5538,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5610,7 +5554,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 389
+            "y": 295
           },
           "id": 116,
           "interval": "1m",
@@ -5628,7 +5572,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5774,8 +5718,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5791,7 +5734,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 396
+            "y": 302
           },
           "id": 117,
           "interval": "1m",
@@ -5809,7 +5752,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5955,8 +5898,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5972,7 +5914,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 403
+            "y": 309
           },
           "id": 118,
           "interval": "1m",
@@ -5990,7 +5932,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -6136,8 +6078,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6153,7 +6094,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 410
+            "y": 316
           },
           "id": 119,
           "interval": "1m",
@@ -6171,7 +6112,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -6331,8 +6272,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6347,7 +6287,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 418
+            "y": 324
           },
           "id": 51,
           "interval": "1m",
@@ -6365,7 +6305,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -6511,8 +6451,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6527,7 +6466,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 425
+            "y": 331
           },
           "id": 85,
           "interval": "1m",
@@ -6545,7 +6484,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -6691,8 +6630,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6707,7 +6645,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 432
+            "y": 338
           },
           "id": 86,
           "interval": "1m",
@@ -6725,7 +6663,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -6871,8 +6809,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6887,7 +6824,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 439
+            "y": 345
           },
           "id": 87,
           "interval": "1m",
@@ -6905,7 +6842,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -7051,8 +6988,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7067,7 +7003,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 446
+            "y": 352
           },
           "id": 55,
           "interval": "1m",
@@ -7085,7 +7021,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -7231,8 +7167,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7247,7 +7182,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 453
+            "y": 359
           },
           "id": 56,
           "interval": "1m",
@@ -7265,7 +7200,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -7411,8 +7346,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7427,7 +7361,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 460
+            "y": 366
           },
           "id": 57,
           "interval": "1m",
@@ -7445,7 +7379,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -7591,8 +7525,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7607,7 +7540,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 467
+            "y": 373
           },
           "id": 58,
           "interval": "1m",
@@ -7625,7 +7558,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -7771,8 +7704,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7787,7 +7719,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 474
+            "y": 380
           },
           "id": 59,
           "interval": "1m",
@@ -7805,7 +7737,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "",
@@ -7931,8 +7863,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7947,7 +7878,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 481
+            "y": 387
           },
           "id": 60,
           "options": {
@@ -7964,7 +7895,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "",
@@ -8090,8 +8021,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -8106,7 +8036,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 488
+            "y": 394
           },
           "id": 61,
           "interval": "1m",
@@ -8124,7 +8054,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "",
@@ -8250,8 +8180,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -8266,7 +8195,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 495
+            "y": 401
           },
           "id": 62,
           "interval": "1m",
@@ -8284,7 +8213,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "",
@@ -8448,7 +8377,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 509
+            "y": 409
           },
           "id": 71,
           "interval": "1m",
@@ -8466,7 +8395,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -8629,7 +8558,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 516
+            "y": 416
           },
           "id": 72,
           "interval": "1m",
@@ -8647,7 +8576,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -8810,7 +8739,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 523
+            "y": 423
           },
           "id": 73,
           "interval": "1m",
@@ -8828,7 +8757,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -8991,7 +8920,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 530
+            "y": 430
           },
           "id": 74,
           "interval": "1m",
@@ -9009,7 +8938,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -9172,7 +9101,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 537
+            "y": 437
           },
           "id": 75,
           "interval": "1m",
@@ -9190,7 +9119,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -9353,7 +9282,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 544
+            "y": 444
           },
           "id": 76,
           "interval": "1m",
@@ -9371,7 +9300,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -9551,7 +9480,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 941
+            "y": 452
           },
           "id": 67,
           "interval": "1m",
@@ -9569,7 +9498,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -9730,7 +9659,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 948
+            "y": 459
           },
           "id": 68,
           "interval": "1m",
@@ -9748,7 +9677,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -9911,7 +9840,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 955
+            "y": 466
           },
           "id": 77,
           "interval": "1m",
@@ -9929,7 +9858,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -10092,7 +10021,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 962
+            "y": 473
           },
           "id": 78,
           "interval": "1m",
@@ -10110,7 +10039,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -10273,7 +10202,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 969
+            "y": 480
           },
           "id": 79,
           "interval": "1m",
@@ -10291,7 +10220,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "",
@@ -10435,7 +10364,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 976
+            "y": 487
           },
           "id": 80,
           "interval": "1m",
@@ -10453,7 +10382,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -10617,7 +10546,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 983
+            "y": 494
           },
           "id": 81,
           "interval": "1m",
@@ -10635,7 +10564,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -10798,7 +10727,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 990
+            "y": 501
           },
           "id": 84,
           "interval": "1m",
@@ -10816,7 +10745,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "",
@@ -10959,7 +10888,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 997
+            "y": 508
           },
           "id": 82,
           "interval": "1m",
@@ -10977,7 +10906,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "",
@@ -11120,7 +11049,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1004
+            "y": 515
           },
           "id": 83,
           "interval": "1m",
@@ -11138,7 +11067,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "11.5.2",
+          "pluginVersion": "11.6.1",
           "targets": [
             {
               "alias": "",

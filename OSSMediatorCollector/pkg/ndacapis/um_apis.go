@@ -15,7 +15,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"strconv"
 	"strings"
 	"time"
 
@@ -152,37 +151,14 @@ func RefreshToken(user *config.User) {
 		err := callRefreshAPI(apiURL, user)
 		if err != nil {
 			if authType == "ADTOKEN" {
-				if err.Error() == "500: Failed to refresh azure token" {
-					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
-					log.Info("Terminating DA OSS Collector...")
-					os.Exit(0)
-				}
-				errStr := strings.Split(err.Error(), ":")
-				errCode, _ := strconv.Atoi(errStr[0])
-				errNo := errCode
-				if errCode >= 500 && errCode <= 599 {
-					log.WithFields(log.Fields{"error": err}).Info("RefreshApi issues from server...retrying again")
-					for errNo >= 500 && errNo <= 599 {
-						time.Sleep(5 * time.Second)
-						err = callRefreshAPI(apiURL, user)
-						if err != nil {
-							log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s", user.Email)
-							errStr = strings.Split(err.Error(), ":")
-							errNo, _ = strconv.Atoi(errStr[0])
-							if errNo < 500 {
-								log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
-								log.Info("Terminating DA OSS Collector...")
-								os.Exit(0)
-							}
-						} else {
-							user.IsSessionAlive = true
-							break
-						}
-					}
+				if err != nil {
+					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying again...", user.Email)
+					user.IsSessionAlive = false
+					done := make(chan bool, 1)
+					go retryADRefresh(apiURL, initialBackoff, user, done)
+					<-done
 				} else {
-					log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, Please enter a valid refresh token", user.Email)
-					log.Info("Terminating DA OSS Collector...")
-					os.Exit(0)
+					user.IsSessionAlive = true
 				}
 			} else {
 				log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s, retrying to login", user.Email)
@@ -203,15 +179,20 @@ func RefreshToken(user *config.User) {
 		duration = getRefreshDuration(user)
 		if duration < 10*time.Second {
 			log.WithFields(log.Fields{"refresh_duration": duration, "user": user.Email}).Debugf("Found less refresh duration, login will be tried for %s.", user.Email)
-			err = Login(user)
-			if err != nil {
-				log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
+			if authType == "ADTOKEN" {
+				duration = 5 * time.Second
 				user.IsSessionAlive = false
-				done := make(chan bool, 1)
-				go retryLogin(initialBackoff, user, done)
-				<-done
 			} else {
-				user.IsSessionAlive = true
+				err = Login(user)
+				if err != nil {
+					log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s.", user.Email)
+					user.IsSessionAlive = false
+					done := make(chan bool, 1)
+					go retryLogin(initialBackoff, user, done)
+					<-done
+				} else {
+					user.IsSessionAlive = true
+				}
 			}
 		}
 		user.Wg.Done()
@@ -289,6 +270,27 @@ func retryLogin(backoff time.Duration, user *config.User, done chan bool) {
 		err := Login(user)
 		if err != nil {
 			log.WithFields(log.Fields{"error": err}).Errorf("Login Failed for %s, login will be retried after %v", user.Email, backoff)
+			backoff = backoff * multiplier
+			if backoff >= maxBackoff {
+				backoff = initialBackoff
+			}
+			timer.Reset(backoff)
+		} else {
+			user.IsSessionAlive = true
+			done <- true
+			return
+		}
+	}
+}
+
+func retryADRefresh(apiURL string, backoff time.Duration, user *config.User, done chan bool) {
+	timer := time.NewTimer(backoff)
+	for {
+		<-timer.C
+		log.Infof("Retrying to refresh for %s", user.Email)
+		err := callRefreshAPI(apiURL, user)
+		if err != nil {
+			log.WithFields(log.Fields{"error": err}).Errorf("Token refresh failed for %s, token refresh will be retried after %v", user.Email, backoff)
 			backoff = backoff * multiplier
 			if backoff >= maxBackoff {
 				backoff = initialBackoff

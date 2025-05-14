@@ -126,8 +126,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -278,7 +277,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "11.6.1",
       "targets": [
         {
           "alias": "LTE_5750a E-UTRAN Cell Availability Ratio {{term pm_data_source.dn.keyword}}",
@@ -3641,9 +3640,7 @@
       {
         "current": {
           "text": "All",
-          "value": [
-            "$__all"
-          ]
+          "value": "$__all"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",

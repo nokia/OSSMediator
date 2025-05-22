@@ -39,8 +39,8 @@ func SetConfig(esConf config.ElasticsearchConf) {
 // Check if Elasticsearch is reachable
 func waitForElasticsearch(esConf config.ElasticsearchConf) {
 	for {
-		resp, err := http.Get(esConf.URL)
-		if err == nil && resp.StatusCode == http.StatusOK {
+		_, err := httpCall(http.MethodGet, esConf.URL, esConf.User, esConf.Password, nil, nil, defaultTimeout)
+		if err == nil {
 			log.Info("Elasticsearch is reachable")
 			return
 		}

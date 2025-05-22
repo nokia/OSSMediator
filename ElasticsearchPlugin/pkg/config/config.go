@@ -30,6 +30,7 @@ type ElasticsearchConf struct {
 	User                  string `json:"user"`
 	Password              string `json:"password"`
 	DataRetentionDuration int    `json:"data_retention_duration"`
+	SetDefaultSetting     bool   `json:"set_default_setting"`
 	MaxShardsPerNode      int    `json:"max_shards_per_node"`
 }
 

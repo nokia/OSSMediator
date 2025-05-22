@@ -18,7 +18,6 @@ import (
 // SetConfig Set elasticsearch configuration for NDAC indices
 func SetConfig(esConf config.ElasticsearchConf) {
 	waitForElasticsearch(esConf)
-	log.Info("OpenSearch is reachable")
 
 	log.Info("Adding default OpenSearch settings")
 	err := enableWildcardDeletion(esConf)
@@ -39,9 +38,9 @@ func SetConfig(esConf config.ElasticsearchConf) {
 // Check if Elasticsearch is reachable
 func waitForElasticsearch(esConf config.ElasticsearchConf) {
 	for {
-		resp, err := http.Get(esConf.URL)
-		if err == nil && resp.StatusCode == http.StatusOK {
-			log.Info("Elasticsearch is reachable")
+		_, err := httpCall(http.MethodGet, esConf.URL, esConf.User, esConf.Password, nil, nil, defaultTimeout)
+		if err == nil {
+			log.Info("OpenSearch is reachable")
 			return
 		}
 		log.WithFields(log.Fields{"Error": err}).Info("Waiting for Elasticsearch to be reachable...")

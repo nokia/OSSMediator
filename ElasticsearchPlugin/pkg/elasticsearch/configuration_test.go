@@ -73,3 +73,12 @@ func TestSetClusterSettingInvalidURL(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestCheck(t *testing.T) {
+	esConf := config.ElasticsearchConf{
+		URL:      "https://api.moss.m-dev.dev.srv.da.nsn-rdnet.net",
+		User:     "mossos",
+		Password: "mossos123",
+	}
+	waitForElasticsearch(esConf)
+}

@@ -76,7 +76,7 @@ ElasticsearchPlugin reads all the collected PM/FM from OSSMediatorCollector and 
     "user": "<USERNAME>",
     "password": "<PASSWORD>",
     "data_retention_duration": 90,
-    "set_default_setting": false,
+    "initialize_cluster_setting": true,
     "max_shards_per_node": 2000
   },
   "cleanup_duration": 60,
@@ -84,17 +84,17 @@ ElasticsearchPlugin reads all the collected PM/FM from OSSMediatorCollector and 
 }
 ````
 
-| Field                                 | Type               | Description                                                                                                                                                                                                                                                                                                                         |
-|---------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| source_dirs                           | [string]           | Base directory path of the respective user where PM/FM data is pushed by the collector. This path has to be same as the path mentioned in response_dest directory of respective user in mediator collector configuration.                                                                                                           |
-| elasticsearch.url                     | string             | The url to connect to Elasticsearch/OpenSearch data source. Default: "http://localhost:9200".                                                                                                                                                                                                                                       |
-| elasticsearch.user                    | string (Optional)  | Elasticsearch/OpenSearch user name.                                                                                                                                                                                                                                                                                                 |
-| elasticsearch.password                | string (Optional)  | Elasticsearch/OpenSearch user's password encoded as base64 string.                                                                                                                                                                                                                                                                  |
-| elasticsearch.data_retention_duration | integer            | Duration in days, for which ElasticsearchPlugin will cleanup the metrics from Elasticsearch/OpenSearch data source. Default value is 90 days.                                                                                                                                                                                       |
-| elasticsearch.set_default_setting     | bool               | Default value is false. Enable setting Elasticsearch/OpenSearch configuration for Nokia DAC KPIs (index templates, max. no. of shards, search.max_buckets and script.max_compilations_rate).                                                                                                                                        |
-| elasticsearch.max_shards_per_node     | integer            | Maximum shards in Elasticsearch/OpenSearch, default value is 2000. Only applicable if `elasticsearch.set_default_setting` is set to `true`. OpenSearch requires two shards for each indices created for NDAC KPIs, OSSMediator creates ~250 indices monthly. Keep the no. of shards as per `elasticsearch.data_retention_duration`. |
-| cleanup_duration                      | integer            | Duration in minutes, after which ElasticsearchPlugin will cleanup the collected files on the local file system. Default value is 60m.                                                                                                                                                                                               |
-| max_concurrent_process                | integer (Optional) | Default value is 1. Maximum no. of concurrent process for pushing PM/FM data to Elasticsearch/OpenSearch.                                                                                                                                                                                                                           |
+| Field                                    | Type               | Description                                                                                                                                                                                                                                                                                                                         |
+|------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| source_dirs                              | [string]           | Base directory path of the respective user where PM/FM data is pushed by the collector. This path has to be same as the path mentioned in response_dest directory of respective user in mediator collector configuration.                                                                                                           |
+| elasticsearch.url                        | string             | The url to connect to Elasticsearch/OpenSearch data source. Default: "http://localhost:9200".                                                                                                                                                                                                                                       |
+| elasticsearch.user                       | string (Optional)  | Elasticsearch/OpenSearch user name.                                                                                                                                                                                                                                                                                                 |
+| elasticsearch.password                   | string (Optional)  | Elasticsearch/OpenSearch user's password encoded as base64 string.                                                                                                                                                                                                                                                                  |
+| elasticsearch.data_retention_duration    | integer            | Duration in days, for which ElasticsearchPlugin will cleanup the metrics from Elasticsearch/OpenSearch data source. Default value is 90 days.                                                                                                                                                                                       |
+| elasticsearch.initialize_cluster_setting | bool               | Default value is true. Enable setting Elasticsearch/OpenSearch configuration for Nokia DAC KPIs (index templates, max. no. of shards, search.max_buckets and script.max_compilations_rate).                                                                                                                                         |
+| elasticsearch.max_shards_per_node        | integer            | Maximum shards in Elasticsearch/OpenSearch, default value is 2000. Only applicable if `elasticsearch.set_default_setting` is set to `true`. OpenSearch requires two shards for each indices created for NDAC KPIs, OSSMediator creates ~250 indices monthly. Keep the no. of shards as per `elasticsearch.data_retention_duration`. |
+| cleanup_duration                         | integer            | Duration in minutes, after which ElasticsearchPlugin will cleanup the collected files on the local file system. Default value is 60m.                                                                                                                                                                                               |
+| max_concurrent_process                   | integer (Optional) | Default value is 1. Maximum no. of concurrent process for pushing PM/FM data to Elasticsearch/OpenSearch.                                                                                                                                                                                                                           |
 
 ````
 NOTE: 
@@ -108,6 +108,38 @@ NOTE:
           Large Network (20 nhg) : 50
           XL Network (50 nhg) : 100
           XXL Network (150 nhg) : 200
+
+    * Setting elasticsearch.initialize_cluster_setting to true will set following setting in OpenSearch:
+        * Enable index deletion with wildcard to cleanup old indices.
+          curl -XPUT "<OpenSearch_URL>/_cluster/settings" -H 'Content-Type: application/json' -d'
+          {
+            "transient": {
+              "action.destructive_requires_name": false
+            }
+          }'
+        * Create index template for Nokia DAC KPIs.
+          curl -XPUT "<OpenSearch_URL>/_index_template/dac-index" -H 'Content-Type: application/json' -d'
+          {
+            "index_patterns": [
+              "4g-pm*", "5g-pm*", "ixr-pm", "edge-pm", "core-pm", "radio-fm", "dac-fm", "core-fm", "application-fm", "ixr-fm", "nhg-data", "sims-data", "account-sims-data", "ap-sims-data"
+            ],
+            "template": {
+              "settings": {
+                "index.number_of_shards": 1
+              }
+            }
+          }'
+        * Set cluster settings (cluster.max_shards_per_node, search.max_buckets and script.max_compilations_rate).
+          curl -XPUT "<OpenSearch_URL>/_cluster/settings" -H 'Content-Type: application/json' -d'
+          {
+            "persistent": {
+              "cluster.max_shards_per_node": "MAX_SHARDS",
+              "search.max_buckets": "100000",
+              "script.max_compilations_rate": "2000/5m"
+            }
+          }'
+
+      If elasticsearch.initialize_cluster_setting is set to false, it is recommended to set the above mentioned setting on OpenSearch.
 ````
 
 * To start ElasticsearchPlugin, go to the installed path of the mediator bin directory and start by calling the following command:

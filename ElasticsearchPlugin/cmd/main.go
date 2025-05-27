@@ -48,7 +48,7 @@ func main() {
 		log.WithFields(log.Fields{"error": err}).Fatal("Error while reading config")
 	}
 
-	if conf.ElasticsearchConf.SetDefaultSetting {
+	if conf.ElasticsearchConf.InitializeClusterSetting {
 		elasticsearch.SetConfig(conf.ElasticsearchConf)
 	}
 	//add elasticsearch mapping for core-pm and ixr-pm index

@@ -26,12 +26,12 @@ type Config struct {
 }
 
 type ElasticsearchConf struct {
-	URL                   string `json:"url"`
-	User                  string `json:"user"`
-	Password              string `json:"password"`
-	DataRetentionDuration int    `json:"data_retention_duration"`
-	SetDefaultSetting     bool   `json:"set_default_setting"`
-	MaxShardsPerNode      int    `json:"max_shards_per_node"`
+	URL                      string `json:"url"`
+	User                     string `json:"user"`
+	Password                 string `json:"password"`
+	DataRetentionDuration    int    `json:"data_retention_duration"`
+	InitializeClusterSetting bool   `json:"initialize_cluster_setting"`
+	MaxShardsPerNode         int    `json:"max_shards_per_node"`
 }
 
 // ReadConfig reads the configurations from conf.json file

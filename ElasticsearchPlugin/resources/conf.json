@@ -8,6 +8,7 @@
     "user": "<USERNAME>",
     "password": "<PASSWORD>",
     "data_retention_duration": 90,
+    "initialize_cluster_setting": true,
     "max_shards_per_node": 2000
   },
   "cleanup_duration": 60,

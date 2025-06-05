@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.5.3
+
+IMPROVEMENTS:
+* ElasticsearchPlugin:
+  * Added `initialize_cluster_setting` config parameter to enable adding Nokia DAC recommended index template and cluster setting for OpenSearch.
+
+BUG FIXES:
+* ElasticsearchPlugin:
+  * Fix for external OpenSearch not connecting with user credentials.
+
 # 4.5.2
 
 IMPROVEMENTS:

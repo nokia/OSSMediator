@@ -3,14 +3,14 @@ set -e
 
 install_grafana() {
 	if [ -x "$(command -v yum)" ]; then
-		yum install -y https://dl.grafana.com/oss/release/grafana-11.6.1-1.x86_64.rpm
+		yum install -y https://dl.grafana.com/oss/release/grafana-12.1.0-1.x86_64.rpm
 	elif [ -x "$(command -v apt-get)" ]; then
 		apt-get install -y adduser libfontconfig1 musl
-    wget https://dl.grafana.com/oss/release/grafana_11.6.1_amd64.deb
-    dpkg -i grafana_11.6.1_amd64.deb
+    wget https://dl.grafana.com/oss/release/grafana_12.1.0_amd64.deb
+    dpkg -i grafana_12.1.0_amd64.deb
 	elif [ -x "$(command -v rpm)" ]; then
-		wget https://dl.grafana.com/oss/release/grafana-11.6.1-1.x86_64.rpm
-    rpm -Uvh grafana-11.6.1-1.x86_64.rpm
+		wget https://dl.grafana.com/oss/release/grafana-12.1.0-1.x86_64.rpm
+    rpm -Uvh grafana-12.1.0-1.x86_64.rpm
 	else
 		echo "Error can't install Grafana, please install it manually and re-run the script."
 		exit 1;
@@ -43,7 +43,7 @@ if ! [ -x "$(command -v grafana-server)" ]; then
 	echo "Grafana version is $(grafana-server -v)."
 else
   grafana_version=$(grafana-server -v | cut -d' ' -f 2)
-  min_grafana_version=11.6.1
+  min_grafana_version=12.1.1
 
   if version_gt $min_grafana_version $grafana_version; then
     echo "Grafana version is $grafana_version."
@@ -101,11 +101,11 @@ name='ndac_oss_opensearch'
 if [[ $(docker ps -f "name=$name" --format '{{.Names}}') == $name ]]; then
   docker update --restart=always $name
 else
-  docker run --name "$name" --restart=always -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size" -v $(pwd)/es_data:/usr/share/opensearch/data opensearchproject/opensearch:2.19.1
+  docker run --name "$name" --restart=always -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size" -v $(pwd)/es_data:/usr/share/opensearch/data opensearchproject/opensearch:3.1.0
 fi
 
 echo "Checking OpenSearch status"
-Status=`docker inspect --format "{{.State.Running}}" $name` || true
+Status=$(docker inspect --format "{{.State.Running}}" $name) || true
 if [ "$Status" == "true" ]; then
     echo "OpenSearch service started successfully"
 else
@@ -118,7 +118,7 @@ systemctl restart --quiet grafana-server
 sleep 10
 
 echo "Checking Grafana status"
-Status=`systemctl is-active grafana-server` || true
+Status=$(systemctl is-active grafana-server) || true
 if [ "$Status" == "active" ]; then
     echo "Grafana service started successfully"
 else
@@ -131,7 +131,7 @@ sleep 10
 systemctl restart elasticsearchplugin
 
 echo "Checking OSSMediatorCollector status"
-Status=`systemctl is-active collector` || true
+Status=$(systemctl is-active collector) || true
 if [ "$Status" == "active" ]; then
   echo "OSSMediatorCollector service started successfully"
 else
@@ -140,7 +140,7 @@ else
 fi
 
 echo "Checking ElasticsearchPlugin status"
-Status=`systemctl is-active elasticsearchplugin` || true
+Status=$(systemctl is-active elasticsearchplugin) || true
 if [ "$Status" == "active" ]; then
   echo "ElasticsearchPlugin service started successfully"
 else

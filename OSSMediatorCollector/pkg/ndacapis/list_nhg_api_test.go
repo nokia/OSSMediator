@@ -225,7 +225,7 @@ func TestStoreNhgABAC(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserNhgABAC(resp.NetworkInfo, &user, &orgUUID, &accUUID)
+	storeUserNetworkInfoABAC(resp.NetworkInfo, &user, &orgUUID, &accUUID)
 	if len(user.NhgIDsABAC) != 1 {
 		t.Fail()
 	}
@@ -240,7 +240,6 @@ func TestStoreNhgABACInActive(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
 	nhgMap := make(map[string]config.OrgAccDetails)
 	user.NhgIDsABAC = nhgMap
-	user.SliceIDs = map[string]string{}
 	orgUUID := config.OrgDetails{OrgUUID: "org", OrgAlias: "orgalias"}
 	accUUID := config.AccDetails{AccUUID: "acc", AccAlias: "accAlias"}
 	user.SessionToken = &config.SessionToken{
@@ -264,7 +263,7 @@ func TestStoreNhgABACInActive(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserNhgABAC(resp.NetworkInfo, &user, &orgUUID, &accUUID)
+	storeUserNetworkInfoABAC(resp.NetworkInfo, &user, &orgUUID, &accUUID)
 	if len(user.NhgIDsABAC) != 0 {
 		t.Fail()
 	}
@@ -295,7 +294,7 @@ func TestStoreNhgRBAC(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserNhgRBAC(resp.NetworkInfo, &user)
+	storeUserNetworkInfoRBAC(resp.NetworkInfo, &user)
 	if len(user.NhgIDs) != 1 {
 		t.Fail()
 	}
@@ -329,7 +328,7 @@ func TestStoreNhgRBACInactiveUser(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserNhgRBAC(resp.NetworkInfo, &user)
+	storeUserNetworkInfoRBAC(resp.NetworkInfo, &user)
 	if len(user.NhgIDs) != 0 {
 		t.Fail()
 	}
@@ -340,7 +339,6 @@ func TestStoreHWABAC(t *testing.T) {
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
 	hwMap := make(map[string]config.OrgAccDetails)
 	user.HwIDsABAC = hwMap
-	user.SliceIDs = map[string]string{}
 	orgUUID := config.OrgDetails{OrgUUID: "org", OrgAlias: "orgalias"}
 	accUUID := config.AccDetails{AccUUID: "acc", AccAlias: "accAlias"}
 	user.SessionToken = &config.SessionToken{
@@ -364,7 +362,7 @@ func TestStoreHWABAC(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserHwIDABAC(resp2.NetworkInfo, &user, &orgUUID, &accUUID)
+	storeUserNetworkInfoABAC(resp2.NetworkInfo, &user, &orgUUID, &accUUID)
 	if len(user.HwIDsABAC) != 1 {
 		t.Fail()
 	}
@@ -402,7 +400,7 @@ func TestStoreHWABACInactive(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserHwIDABAC(resp2.NetworkInfo, &user, &orgUUID, &accUUID)
+	storeUserNetworkInfoABAC(resp2.NetworkInfo, &user, &orgUUID, &accUUID)
 	if len(user.HwIDsABAC) != 0 {
 		t.Fail()
 	}
@@ -411,7 +409,6 @@ func TestStoreHWABACInactive(t *testing.T) {
 func TestStoreHWRBAC(t *testing.T) {
 	resp2 := new(nhgAPIResponse)
 	user := config.User{Email: "testuser@nokia.com", IsSessionAlive: true, ResponseDest: "./tmp"}
-	user.SliceIDs = map[string]string{}
 	user.SessionToken = &config.SessionToken{
 		AccessToken:  "accessToken",
 		RefreshToken: "refreshToken",
@@ -433,7 +430,7 @@ func TestStoreHWRBAC(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
-	storeUserHwIDRBAC(resp2.NetworkInfo, &user)
+	storeUserNetworkInfoRBAC(resp2.NetworkInfo, &user)
 	if len(user.HwIDs) != 1 {
 		t.Fail()
 	}

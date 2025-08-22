@@ -1,5 +1,5 @@
 # Staging: for building go app (OSSMediatorCollector)
-FROM golang:1.24.2 AS builder
+FROM golang:1.24.6 AS builder
 
 # download dependencies for build
 RUN go install github.com/jstemmer/go-junit-report@latest
@@ -19,7 +19,7 @@ ARG VERSION="1.1"
 RUN make $BUILD_CMD VERSION=$VERSION
 
 # staging: base package for app deployment
-FROM alpine:3.21.3
+FROM alpine:3.22.1
 
 RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 

@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	log "github.com/sirupsen/logrus"
 	"net/http"
+	"slices"
 	"strings"
 )
 
@@ -106,11 +107,11 @@ func listGngRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 
 func storeUserGngRBAC(gngData []GngInfo, user *config.User) {
 	for _, gngInfo := range gngData {
-		if strings.Contains(gngInfo.AdminState, "FULLY_ACTIVATED") {
-			if !containsNhg(user.NhgIDs, gngInfo.GngId) {
-				user.SliceIDs[gngInfo.GngId] = gngInfo.SliceID
-				user.NhgIDs = append(user.NhgIDs, gngInfo.GngId)
+		if strings.Contains(gngInfo.AdminState, "FULLY_ACTIVATED") && !containsNhg(user.NhgIDs, gngInfo.GngId) {
+			if len(user.AllowedSliceIDs) != 0 && !slices.Contains(user.AllowedSliceIDs, gngInfo.SliceID) {
+				continue
 			}
+			user.NhgIDs = append(user.NhgIDs, gngInfo.GngId)
 		}
 	}
 }
@@ -190,7 +191,9 @@ func storeUserGngABAC(gngData []GngInfo, user *config.User, orgID, accID string)
 	for _, gngInfo := range gngData {
 		if strings.Contains(gngInfo.AdminState, "FULLY_ACTIVATED") {
 			if _, ok := user.NhgIDsABAC[gngInfo.GngId]; !ok {
-				user.SliceIDs[gngInfo.GngId] = gngInfo.SliceID
+				if len(user.AllowedSliceIDs) != 0 && !slices.Contains(user.AllowedSliceIDs, gngInfo.SliceID) {
+					continue
+				}
 				user.NhgIDsABAC[gngInfo.GngId] = orgAcc
 			}
 		}

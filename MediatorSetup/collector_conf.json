@@ -4,12 +4,14 @@
     {
       "email_id": "<USER EMAIL>",
       "response_dest": "<DIRECTORY PATH>",
-      "auth_type": "<PASSWORD/ADTOKEN>"
+      "auth_type": "<PASSWORD/ADTOKEN>",
+      "slice_ids": []
     },
     {
       "email_id": "<USER EMAIL>",
       "response_dest": "<DIRECTORY PATH>",
-      "auth_type": "<PASSWORD/ADTOKEN>"
+      "auth_type": "<PASSWORD/ADTOKEN>",
+      "slice_ids": []
     }
   ],
   "azure_session_api": {
@@ -23,8 +25,7 @@
   "list_network_api": {
     "nhg_api": "/network-hardware-groups",
     "gng_api": "/generic-network-groups",
-    "interval": 60,
-    "slice_ids": []
+    "interval": 60
   },
   "userAG_apis": {
     "list_orgUUID": "/organizations",
@@ -57,52 +58,13 @@
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "ACTIVE",
-      "metric_type": "RADIO",
+      "metric_type": "ALL",
       "interval": 30
     },
     {
       "api": "/network-hardware-groups/{nhg_id}/fmdata",
       "type": "HISTORY",
-      "metric_type": "RADIO",
-      "interval": 1,
-      "sync_duration": 15
-    },
-    {
-      "api": "/network-hardware-groups/{nhg_id}/fmdata",
-      "type": "ACTIVE",
-      "metric_type": "DAC",
-      "interval": 30
-    },
-    {
-      "api": "/network-hardware-groups/{nhg_id}/fmdata",
-      "type": "HISTORY",
-      "metric_type": "DAC",
-      "interval": 1,
-      "sync_duration": 15
-    },
-    {
-      "api": "/network-hardware-groups/{nhg_id}/fmdata",
-      "type": "ACTIVE",
-      "metric_type": "CORE",
-      "interval": 30
-    },
-    {
-      "api": "/network-hardware-groups/{nhg_id}/fmdata",
-      "type": "HISTORY",
-      "metric_type": "CORE",
-      "interval": 1,
-      "sync_duration": 15
-    },
-    {
-      "api": "/network-hardware-groups/{nhg_id}/fmdata",
-      "type": "ACTIVE",
-      "metric_type": "IXR",
-      "interval": 30
-    },
-    {
-      "api": "/network-hardware-groups/{nhg_id}/fmdata",
-      "type": "HISTORY",
-      "metric_type": "IXR",
+      "metric_type": "ALL",
       "interval": 1,
       "sync_duration": 15
     }

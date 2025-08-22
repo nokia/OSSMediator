@@ -55,8 +55,8 @@ func ValidateConf(conf config.Config) error {
 		if strings.Contains(api.API, "fm") && !(api.Type == "HISTORY" || api.Type == "ACTIVE") {
 			return fmt.Errorf("API type for fmdata should be HISTORY/ACTIVE")
 		}
-		if strings.Contains(api.API, "fm") && !(api.MetricType == "RADIO" || api.MetricType == "DAC" || api.MetricType == "CORE" || api.MetricType == "APPLICATION" || api.MetricType == "IXR") {
-			return fmt.Errorf("API metric type for fmdata should be RADIO/DAC/CORE/APPLICATION/IXR")
+		if strings.Contains(api.API, "fm") && !(api.MetricType == "ALL" || api.MetricType == "RADIO" || api.MetricType == "DAC" || api.MetricType == "CORE" || api.MetricType == "APPLICATION" || api.MetricType == "IXR") {
+			return fmt.Errorf("API metric type for fmdata should be ALL/RADIO/DAC/CORE/APPLICATION/IXR")
 		}
 	}
 

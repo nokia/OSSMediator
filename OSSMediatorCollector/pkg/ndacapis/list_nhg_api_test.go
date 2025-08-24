@@ -362,6 +362,7 @@ func TestStoreHWABAC(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
+	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
 	storeUserNetworkInfoABAC(resp2.NetworkInfo, &user, &orgUUID, &accUUID)
 	if len(user.HwIDsABAC) != 1 {
 		t.Fail()
@@ -400,6 +401,7 @@ func TestStoreHWABACInactive(t *testing.T) {
 		fmt.Println("Failed to unmarshal JSON:", err)
 		return
 	}
+	user.NhgIDsABAC = map[string]config.OrgAccDetails{}
 	storeUserNetworkInfoABAC(resp2.NetworkInfo, &user, &orgUUID, &accUUID)
 	if len(user.HwIDsABAC) != 0 {
 		t.Fail()

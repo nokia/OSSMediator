@@ -29,10 +29,10 @@ This document provides step-by-step instructions to upgrade OSSMediator from a p
     - `collector_conf.json`
     - `plugin_conf.json`
     - Any custom dashboards or scripts.
-    - Data directories (e.g., `/reports`)
-    - OpenSearch data (e.g., `es_data`)
-    - Grafana data (e.g., `grafana_storage`)
-    - Secret directories (e.g., `.secret`)
+    - OSSMediatorCollector response directory (e.g., `/reports`)
+    - OpenSearch data (`es_data`)
+    - Grafana data (`grafana_storage`)
+    - Secret directories (`.secret`)
 
 ## Upgrade Steps
 1. Download the latest OSSMediator package from the Info Center.

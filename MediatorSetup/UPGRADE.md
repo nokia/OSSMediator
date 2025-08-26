@@ -49,5 +49,6 @@ This document provides step-by-step instructions to upgrade OSSMediator from a p
 - Verify data collection and dashboard updates.
 
 ## Troubleshooting
-- Review logs in the `logs` directory.
+- Review logs in the `collector/logs` and `plugin/logs` directory.
+- To check OpenSearch logs, run: `docker logs ndac_oss_opensearch`.
 - Consult the Nokia DAC support for unresolved issues.

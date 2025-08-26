@@ -1,6 +1,33 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.6.0
+NEW FEATURES:
+* OSSMediatorCollector:
+  * Added `ALL` alarms API calls for retrieving and storing all alarms.
+* ElasticsearchPlugin:
+  * Added support for processing and pushing alarms retrieved using the ALL metric_type from the fmdata API to OpenSearch.
+
+IMPROVEMENTS:
+* OSSMediatorCollector:
+  * Moved `slice_ids` configuration parameter from `list_network_api` to `users` config to allow data retrieval for specific Slice IDs.
+* MediatorSetup:
+  * Replaced NR_5967a and NR_5968a with NR_6127a and NR_6128a KPI in `NDAC Radio 5G - Slice aware scheduling KPIs Dashboard`.
+  * Added Radio PM Dashboards for `25R2` release.
+  * Maintains Radio PM Dashboards for previous radio releases (n-1). Radio release names are now included in Radio PM Dashboards.
+  * Updated required grafana version to `12.1.1`.
+
+REMOVED:
+* OSSMediator: Removed RADIO, CORE, DAC, IXR and APPLICATION specific alarm calls from OSSMediatorCollector.
+
+SECURITY UPDATE:
+* OSSMediator:
+  * Updated `golang` version to `1.24.6`.
+  * Updated base image to `alpine:3.22.1`.
+* MediatorSetup:
+  * Updated OpenSearch version to `3.1.0`.
+  * Updated Grafana version to `12.1.1`.
+
 # 4.5.3
 
 IMPROVEMENTS:

@@ -13,6 +13,7 @@ import (
 	"encoding/json"
 	log "github.com/sirupsen/logrus"
 	"net/http"
+	"slices"
 	"strings"
 )
 
@@ -43,7 +44,6 @@ const (
 // get nhg details for the customer
 func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
 	authType := strings.ToUpper(user.AuthType)
-	user.SliceIDs = map[string]string{}
 	if authType == "ADTOKEN" {
 		listNhgABAC(api, user, txnID, prettyResponse)
 	} else {
@@ -89,8 +89,7 @@ func listNhgRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 	}
 
 	user.NhgMux.Lock()
-	storeUserNhgRBAC(resp.NetworkInfo, user)
-	storeUserHwIDRBAC(resp.NetworkInfo, user)
+	storeUserNetworkInfoRBAC(resp.NetworkInfo, user)
 	user.NhgMux.Unlock()
 	nhgData := new(nhgAPIAllResponse)
 	_ = json.NewDecoder(bytes.NewReader(response)).Decode(&nhgData)
@@ -104,27 +103,25 @@ func listNhgRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 	}
 }
 
-func storeUserNhgRBAC(nhgData []NetworkInfo, user *config.User) {
-	user.NhgIDs = []string{}
-	for _, nhgInfo := range nhgData {
-		if nhgInfo.NhgConfigStatus == activeNhgStatus {
-			user.NhgIDs = append(user.NhgIDs, nhgInfo.NhgID)
-		}
-	}
-}
-
-func storeUserHwIDRBAC(nhgData []NetworkInfo, user *config.User) {
+func storeUserNetworkInfoRBAC(nhgData []NetworkInfo, user *config.User) {
 	user.HwIDs = []string{}
 	hwIDs := make(map[string]struct{})
 	for _, nhgInfo := range nhgData {
 		if nhgInfo.NhgConfigStatus != activeNhgStatus {
 			continue
 		}
+		isNhgAllowed := true
 		for _, cluster := range nhgInfo.Clusters {
-			user.SliceIDs[nhgInfo.NhgID] = cluster.SliceID
+			if len(user.AllowedSliceIDs) != 0 && !slices.Contains(user.AllowedSliceIDs, cluster.SliceID) {
+				isNhgAllowed = false
+				break
+			}
 			for _, hwSet := range cluster.HwSet {
 				hwIDs[hwSet.HwID] = struct{}{}
 			}
+		}
+		if isNhgAllowed {
+			user.NhgIDs = append(user.NhgIDs, nhgInfo.NhgID)
 		}
 	}
 
@@ -210,9 +207,7 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 				continue
 			}
 
-			storeUserNhgABAC(resp.NetworkInfo, user, &org, &acc)
-			storeUserHwIDABAC(resp.NetworkInfo, user, &org, &acc)
-
+			storeUserNetworkInfoABAC(resp.NetworkInfo, user, &org, &acc)
 			nhgData := new(nhgAPIAllResponse)
 			_ = json.NewDecoder(bytes.NewReader(response)).Decode(&nhgData)
 			err = utils.WriteResponse(user, api, nhgData.NhgDetails, "", txnID, prettyResponse)
@@ -227,22 +222,7 @@ func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyRes
 	}
 }
 
-func storeUserNhgABAC(nhgData []NetworkInfo, user *config.User, org *config.OrgDetails, acc *config.AccDetails) {
-	orgAcc := config.OrgAccDetails{}
-	orgDet := config.OrgDetails{OrgUUID: org.OrgUUID, OrgAlias: org.OrgAlias}
-	accDet := config.AccDetails{AccUUID: acc.AccUUID, AccAlias: acc.AccAlias}
-
-	orgAcc.OrgDetails = orgDet
-	orgAcc.AccDetails = accDet
-
-	for _, nhgInfo := range nhgData {
-		if nhgInfo.NhgConfigStatus == activeNhgStatus {
-			user.NhgIDsABAC[nhgInfo.NhgID] = orgAcc
-		}
-	}
-}
-
-func storeUserHwIDABAC(nhgData []NetworkInfo, user *config.User, org *config.OrgDetails, acc *config.AccDetails) {
+func storeUserNetworkInfoABAC(nhgData []NetworkInfo, user *config.User, org *config.OrgDetails, acc *config.AccDetails) {
 	orgAcc := config.OrgAccDetails{}
 	orgDet := config.OrgDetails{OrgUUID: org.OrgUUID, OrgAlias: org.OrgAlias}
 	accDet := config.AccDetails{AccUUID: acc.AccUUID, AccAlias: acc.AccAlias}
@@ -255,11 +235,18 @@ func storeUserHwIDABAC(nhgData []NetworkInfo, user *config.User, org *config.Org
 		if nhgInfo.NhgConfigStatus != activeNhgStatus {
 			continue
 		}
+		isNhgAllowed := true
 		for _, cluster := range nhgInfo.Clusters {
-			user.SliceIDs[nhgInfo.NhgID] = cluster.SliceID
+			if len(user.AllowedSliceIDs) != 0 && !slices.Contains(user.AllowedSliceIDs, cluster.SliceID) {
+				isNhgAllowed = false
+				break
+			}
 			for _, hwSet := range cluster.HwSet {
 				hwIDsMap[hwSet.HwID] = struct{}{}
 			}
+		}
+		if isNhgAllowed {
+			user.NhgIDsABAC[nhgInfo.NhgID] = orgAcc
 		}
 	}
 

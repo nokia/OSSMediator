@@ -126,7 +126,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-red"
+                "color": "dark-red",
+                "value": 0
               },
               {
                 "color": "dark-green",
@@ -161,7 +162,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -250,7 +251,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -285,7 +287,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "alias": "",
@@ -372,7 +374,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -405,7 +408,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "alias": "Avg PDCP Throughput UL",
@@ -525,7 +528,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -558,7 +562,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "alias": "Avg PDCP Throughput DL",
@@ -643,7 +647,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           },
@@ -675,7 +680,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "alias": "Avg PDCP Throughput UL",
@@ -751,7 +756,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-green"
+                "color": "dark-green",
+                "value": 0
               },
               {
                 "color": "orange",
@@ -790,7 +796,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -871,7 +877,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -906,7 +913,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "alias": "",
@@ -957,7 +964,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           },
@@ -989,7 +997,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "alias": "Avg PDCP Throughput DL",
@@ -1089,7 +1097,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1123,7 +1132,7 @@
           "sort": "asc"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1293,7 +1302,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1327,7 +1337,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1483,7 +1493,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1517,7 +1528,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1646,7 +1657,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1680,7 +1692,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1921,7 +1933,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1955,7 +1968,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2112,7 +2125,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -2146,7 +2160,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2315,7 +2329,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -2349,7 +2364,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2506,7 +2521,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -2540,7 +2556,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2710,7 +2726,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -2744,7 +2761,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2966,7 +2983,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -3000,7 +3018,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3221,7 +3239,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -3255,7 +3274,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3419,7 +3438,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -3453,7 +3473,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3617,7 +3637,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -3651,7 +3672,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3849,7 +3870,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -3883,7 +3905,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4137,7 +4159,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -4171,7 +4194,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4615,7 +4638,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -4649,7 +4673,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4819,7 +4843,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -4853,7 +4878,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5011,7 +5036,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -5045,7 +5071,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5203,7 +5229,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -5237,7 +5264,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5395,7 +5422,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -5429,7 +5457,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5957,7 +5985,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -5991,7 +6020,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6175,7 +6204,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -6209,7 +6239,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6467,7 +6497,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -6501,7 +6532,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6629,7 +6660,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -6663,7 +6695,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6791,7 +6823,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -6825,7 +6858,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [

@@ -172,7 +172,7 @@ func TestValidateConfWithInvalidAPIMetricTypeForFM(t *testing.T) {
 	conf.MetricAPIs[1].MetricType = ""
 	defer func() { conf.MetricAPIs[1].MetricType = tmp }()
 	err := ValidateConf(conf)
-	if err == nil || !strings.Contains(err.Error(), "API metric type for fmdata should be RADIO/DAC") {
+	if err == nil || !strings.Contains(err.Error(), "API metric type for fmdata should be ALL/RADIO/DAC") {
 		t.Error(err)
 	}
 }

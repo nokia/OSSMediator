@@ -109,7 +109,7 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "title": "NDAC ALL FM ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
@@ -139,7 +139,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-red"
+                "color": "dark-red",
+                "value": 0
               }
             ]
           },
@@ -171,7 +172,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "alias": "Critical",
@@ -234,7 +235,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "orange"
+                "color": "orange",
+                "value": 0
               }
             ]
           },
@@ -266,7 +268,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "alias": "Major",
@@ -329,7 +331,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": 0
               }
             ]
           },
@@ -361,7 +364,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "alias": "Critical",
@@ -423,7 +426,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-blue"
+                "color": "dark-blue",
+                "value": 0
               }
             ]
           },
@@ -455,7 +459,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "alias": "Critical",
@@ -517,7 +521,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "rgb(158, 158, 156)"
+                "color": "rgb(158, 158, 156)",
+                "value": 0
               }
             ]
           },
@@ -549,7 +554,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -610,7 +615,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-red"
+                "color": "dark-red",
+                "value": 0
               }
             ]
           },
@@ -642,7 +648,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -702,7 +708,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -899,7 +906,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "bucketAggs": [],
@@ -941,6 +948,7 @@
               "fm_data.notification_type": true,
               "fm_data.probable_cause": true,
               "fm_data.specific_problem": false,
+              "fm_data_source.alarm_source": true,
               "fm_data_source.ap_id": true,
               "fm_data_source.app_id": true,
               "fm_data_source.app_name": true,
@@ -951,6 +959,7 @@
               "fm_data_source.edge_hostname": true,
               "fm_data_source.hw_alias": true,
               "fm_data_source.hw_id": true,
+              "fm_data_source.metric_type": true,
               "fm_data_source.nhg_alias": false,
               "fm_data_source.nhg_id": true,
               "fm_data_source.serial_no": true,

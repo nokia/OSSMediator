@@ -16,6 +16,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"slices"
 	"strings"
 	"testing"
 	"time"
@@ -202,4 +203,42 @@ func TestStartDataCollection(t *testing.T) {
 	if !strings.Contains(buf.String(), "Writing response") {
 		t.Fail()
 	}
+}
+
+func Test5(t *testing.T) {
+	allowedSlices := []string{}
+	gngData := []GngInfo{
+		{
+			AdminState: "FULLY_ACTIVATED",
+			GngId:      "gng1",
+			SliceID:    "slice1",
+		},
+		{
+			AdminState: "FULLY_ACTIVATED",
+			GngId:      "gng2",
+			SliceID:    "slice2",
+		},
+		{
+			AdminState: "FULLY_ACTIVATED",
+			GngId:      "gng3",
+			SliceID:    "slice3",
+		},
+		{
+			AdminState: "ACTIVATED",
+			GngId:      "gng4",
+			SliceID:    "slice4",
+		},
+	}
+	nhg := []string{"gng1"}
+
+	for _, gngInfo := range gngData {
+		if strings.Contains(gngInfo.AdminState, "FULLY_ACTIVATED") && !containsNhg(nhg, gngInfo.GngId) {
+			if len(allowedSlices) != 0 && !slices.Contains(allowedSlices, gngInfo.SliceID) {
+				continue
+			}
+			nhg = append(nhg, gngInfo.GngId)
+		}
+	}
+
+	fmt.Println(nhg)
 }

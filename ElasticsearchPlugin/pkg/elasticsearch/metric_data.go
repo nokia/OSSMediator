@@ -52,6 +52,9 @@ const (
 func pushFMData(filePath string, esConf config.ElasticsearchConf) {
 	elkURL := esConf.URL + elkBulkAPI
 	log.Infof("Pushing data from %s to elasticsearch", filePath)
+	fileName := path.Base(filePath)
+	baseMetricType := strings.Split(fileName, "_")[1]
+	baseMetricType = strings.ToLower(baseMetricType)
 
 	file, err := os.Open(filePath)
 	if err != nil {
@@ -60,10 +63,7 @@ func pushFMData(filePath string, esConf config.ElasticsearchConf) {
 	}
 	defer file.Close()
 
-	fileName := path.Base(filePath)
-	metricType := strings.Split(fileName, "_")[1]
-	metricType = strings.ToLower(metricType)
-	index := strings.Join([]string{metricType, "fm"}, "-")
+	index := strings.Join([]string{baseMetricType, "fm"}, "-")
 	var postData string
 	dec := json.NewDecoder(file)
 
@@ -82,6 +82,7 @@ func pushFMData(filePath string, esConf config.ElasticsearchConf) {
 	i := 0
 	for dec.More() {
 		var resp fmResponse
+		var id, metricType string
 		err = dec.Decode(&resp)
 		if err != nil {
 			log.WithFields(log.Fields{"error": err}).Errorf("Error while decoding json: %s", filePath)
@@ -96,8 +97,13 @@ func pushFMData(filePath string, esConf config.ElasticsearchConf) {
 		eventTime := resp.FMData["event_time"].(string)
 		hwID := resp.FMDataSource["hw_id"].(string)
 		alarmID := resp.FMData["alarm_identifier"].(string)
-		var id string
-		if metricType == "radio" {
+		if baseMetricType == "all" {
+			metricType = resp.FMDataSource["metric_type"].(string)
+			metricType = strings.ToLower(metricType)
+			index = strings.Join([]string{metricType, "fm"}, "-")
+		}
+
+		if baseMetricType == "radio" || metricType == "radio" {
 			specificProb := resp.FMData["specific_problem"].(string)
 			id = strings.Join([]string{hwID, dn, alarmID, specificProb, eventTime}, "_")
 		} else {

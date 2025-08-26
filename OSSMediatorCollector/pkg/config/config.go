@@ -54,20 +54,20 @@ type OrgAccDetails struct {
 
 // User keeps Login configurations
 type User struct {
-	Email          string        `json:"email_id"` //User's email ID
-	Password       string        //User's password read from configuration file
-	AuthType       string        `json:"auth_type"`     //authentication type
-	ResponseDest   string        `json:"response_dest"` //Base directory where subdirectories will be created for each APIs to store its response.
-	SessionToken   *SessionToken //SessionToken variable keeps track of access_token, refresh_token and expiry_time of the token. It is used for authenticating the API calls.
-	Wg             sync.WaitGroup
-	NhgMux         sync.RWMutex
-	IsSessionAlive bool
-	NhgIDsABAC     map[string]OrgAccDetails
-	HwIDsABAC      map[string]OrgAccDetails
-	AccountIDsABAC map[string][]string
-	NhgIDs         []string
-	HwIDs          []string
-	SliceIDs       map[string]string
+	Email           string        `json:"email_id"` //User's email ID
+	Password        string        //User's password read from configuration file
+	AuthType        string        `json:"auth_type"`     //authentication type
+	ResponseDest    string        `json:"response_dest"` //Base directory where subdirectories will be created for each APIs to store its response.
+	AllowedSliceIDs []string      `json:"slice_ids"`
+	SessionToken    *SessionToken //SessionToken variable keeps track of access_token, refresh_token and expiry_time of the token. It is used for authenticating the API calls.
+	Wg              sync.WaitGroup
+	NhgMux          sync.RWMutex
+	IsSessionAlive  bool
+	NhgIDsABAC      map[string]OrgAccDetails
+	HwIDsABAC       map[string]OrgAccDetails
+	AccountIDsABAC  map[string][]string
+	NhgIDs          []string
+	HwIDs           []string
 }
 
 // SessionToken struct tracks the access_token, refresh_token and expiry_time of the token
@@ -101,10 +101,9 @@ type APIConf struct {
 
 // ListNetworkAPIConf keeps network API configs
 type ListNetworkAPIConf struct {
-	NhgAPI   string   `json:"nhg_api"`  //list NHG API to keep track of all ACTIVE NHG of the user.
-	GngAPI   string   `json:"gng_api"`  //list GNG API to keep track of all ACTIVE GNG of the user.
-	Interval int      `json:"interval"` //Interval at which the API will be triggered periodically.
-	SliceIDs []string `json:"slice_ids"`
+	NhgAPI   string `json:"nhg_api"`  //list NHG API to keep track of all ACTIVE NHG of the user.
+	GngAPI   string `json:"gng_api"`  //list GNG API to keep track of all ACTIVE GNG of the user.
+	Interval int    `json:"interval"` //Interval at which the API will be triggered periodically.
 }
 
 var (

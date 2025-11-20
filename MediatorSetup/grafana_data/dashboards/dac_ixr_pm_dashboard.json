@@ -105,6 +105,9 @@
               "type": "color-text"
             },
             "filterable": false,
+            "footer": {
+              "reducers": []
+            },
             "inspect": false,
             "minWidth": 500,
             "width": 300
@@ -150,19 +153,11 @@
       "interval": "1m",
       "options": {
         "cellHeight": "md",
-        "footer": {
-          "countRows": false,
-          "enablePagination": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
+        "enablePagination": false,
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -259,6 +254,9 @@
             "align": "center",
             "cellOptions": {
               "type": "auto"
+            },
+            "footer": {
+              "reducers": []
             },
             "inspect": false,
             "minWidth": 50
@@ -544,6 +542,32 @@
                 "value": "dateTimeAsLocal"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "include",
+                "names": [
+                  "Average pm_data.ndac_rr_ixr_port_stats_in_packets_rate",
+                  "Average pm_data.ndac_rr_ixr_port_stats_out_packets_rate",
+                  "Average pm_data.ndac_rr_ixr_port_stats_in_octets_rate",
+                  "Average pm_data.ndac_rr_ixr_port_stats_out_octets_rate",
+                  "Average pm_data.ndac_rr_ixr_port_stats_in_errors_rate",
+                  "Average pm_data.ndac_rr_ixr_port_stats_out_errors_rate",
+                  "Port Status",
+                  "Max pm_data.ndac_rr_ixr_port_admin_state_admin_state"
+                ]
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.footer.reducers",
+                "value": [
+                  "sum"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -558,24 +582,7 @@
       "interval": "1m",
       "options": {
         "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "enablePagination": false,
-          "fields": [
-            "Average pm_data.ndac_rr_ixr_port_stats_in_packets_rate",
-            "Average pm_data.ndac_rr_ixr_port_stats_out_packets_rate",
-            "Average pm_data.ndac_rr_ixr_port_stats_in_octets_rate",
-            "Average pm_data.ndac_rr_ixr_port_stats_out_octets_rate",
-            "Average pm_data.ndac_rr_ixr_port_stats_in_errors_rate",
-            "Average pm_data.ndac_rr_ixr_port_stats_out_errors_rate",
-            "Port Status",
-            "Max pm_data.ndac_rr_ixr_port_admin_state_admin_state"
-          ],
-          "reducer": [
-            "sum"
-          ],
-          "show": true
-        },
+        "enablePagination": false,
         "showHeader": true,
         "sortBy": [
           {
@@ -584,7 +591,7 @@
           }
         ]
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -806,6 +813,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -875,7 +883,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -1005,6 +1013,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -1073,7 +1082,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -1204,6 +1213,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -1254,7 +1264,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -1346,6 +1356,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -1396,7 +1407,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -1486,6 +1497,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -1536,7 +1548,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -1626,6 +1638,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -1675,7 +1688,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -1765,6 +1778,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1814,7 +1828,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -1904,6 +1918,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1953,7 +1968,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -2026,6 +2041,9 @@
               "type": "auto"
             },
             "filterable": false,
+            "footer": {
+              "reducers": []
+            },
             "inspect": false
           },
           "mappings": [],
@@ -2080,17 +2098,9 @@
       "interval": "1m",
       "options": {
         "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -2253,7 +2263,7 @@
         },
         "valueMode": "color"
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -2441,7 +2451,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -2592,7 +2602,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -2776,7 +2786,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -2897,7 +2907,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -3018,7 +3028,7 @@
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -3112,6 +3122,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3167,7 +3178,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -3258,6 +3269,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3302,7 +3314,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -3462,7 +3474,7 @@
             "sizing": "auto",
             "valueMode": "color"
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -3559,6 +3571,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3651,7 +3664,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -3750,6 +3763,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3793,7 +3807,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -3890,6 +3904,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3933,7 +3948,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -4033,6 +4048,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4076,7 +4092,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -4173,6 +4189,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4216,7 +4233,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -4317,6 +4334,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4360,7 +4378,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -4457,6 +4475,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4500,7 +4519,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -4590,10 +4609,13 @@
               "custom": {
                 "align": "left",
                 "cellOptions": {
-                  "type": "color-text",
-                  "wrapText": false
+                  "type": "color-text"
                 },
-                "inspect": false
+                "footer": {
+                  "reducers": []
+                },
+                "inspect": false,
+                "wrapText": false
               },
               "fieldMinMax": false,
               "mappings": [
@@ -4672,18 +4694,10 @@
           "interval": "1m",
           "options": {
             "cellHeight": "md",
-            "footer": {
-              "countRows": false,
-              "enablePagination": false,
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
+            "enablePagination": false,
             "showHeader": true
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -4802,6 +4816,9 @@
                 "cellOptions": {
                   "type": "auto"
                 },
+                "footer": {
+                  "reducers": []
+                },
                 "inspect": false
               },
               "mappings": [
@@ -4855,17 +4872,9 @@
           "interval": "1m",
           "options": {
             "cellHeight": "md",
-            "footer": {
-              "countRows": false,
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
             "showHeader": true
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -4966,6 +4975,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5036,7 +5046,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -5123,6 +5133,9 @@
                   "type": "auto"
                 },
                 "filterable": false,
+                "footer": {
+                  "reducers": []
+                },
                 "inspect": false
               },
               "mappings": [
@@ -5251,19 +5264,11 @@
           "id": 108,
           "options": {
             "cellHeight": "sm",
-            "footer": {
-              "countRows": false,
-              "enablePagination": false,
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
+            "enablePagination": false,
             "showHeader": true,
             "sortBy": []
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -5469,6 +5474,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5518,7 +5524,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -5607,6 +5613,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5656,7 +5663,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -5745,6 +5752,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5794,7 +5802,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -5897,6 +5905,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5947,7 +5956,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -6040,6 +6049,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6090,7 +6100,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -6183,6 +6193,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6229,7 +6240,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -6314,6 +6325,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6360,7 +6372,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -6445,6 +6457,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6491,7 +6504,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -6561,7 +6574,7 @@
   ],
   "preload": true,
   "refresh": "5m",
-  "schemaVersion": 41,
+  "schemaVersion": 42,
   "tags": [
     "IXRPM"
   ],
@@ -6713,7 +6726,7 @@
     "nowDelay": "15m"
   },
   "timezone": "",
-  "title": "NDAC IXR PM KPI",
+  "title": "Nokia DAC IXR PM KPI",
   "uid": "ixrpm",
-  "weekStart": ""
+  "version": 1
 }

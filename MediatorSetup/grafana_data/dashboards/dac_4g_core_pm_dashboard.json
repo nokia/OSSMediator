@@ -106,7 +106,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "Uplink bitrate on S1U interface",
+      "description": "Uplink Throughput (outbound bitrate on SGI interface)",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -163,7 +163,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -207,7 +207,7 @@
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
-      "description": "Downlink bitrate on S1U interface",
+      "description": "Downlink Throughput (outbound bitrate on S1U interface)",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -264,7 +264,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -353,7 +353,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -441,7 +441,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -530,7 +530,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -564,7 +564,7 @@
         }
       ],
       "timeFrom": "30m",
-      "title": "Num of registered UEs",
+      "title": "Registered UEs",
       "type": "stat"
     },
     {
@@ -619,7 +619,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -653,7 +653,7 @@
         }
       ],
       "timeFrom": "30m",
-      "title": "Num of active UEs",
+      "title": "Active UEs",
       "type": "stat"
     },
     {
@@ -701,6 +701,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -750,7 +751,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -882,6 +883,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -931,7 +933,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -1063,6 +1065,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1112,7 +1115,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -1224,6 +1227,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1273,7 +1277,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -1385,6 +1389,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1434,7 +1439,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -1546,6 +1551,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1595,7 +1601,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -1716,6 +1722,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1765,7 +1772,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -1897,6 +1904,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1946,7 +1954,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -2078,6 +2086,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2127,7 +2136,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -2259,6 +2268,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2308,7 +2318,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -2440,6 +2450,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2489,7 +2500,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -2610,6 +2621,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2659,7 +2671,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -2760,6 +2772,9 @@
                   "type": "auto"
                 },
                 "filterable": false,
+                "footer": {
+                  "reducers": []
+                },
                 "inspect": false
               },
               "mappings": [
@@ -2812,6 +2827,26 @@
                     "value": "bps"
                   }
                 ]
+              },
+              {
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "include",
+                    "names": [
+                      "Sum pm_data.ndac_rr_mcn_4g_ue_ul_rate",
+                      "Sum pm_data.ndac_rr_mcn_4g_ue_dl_rate"
+                    ]
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.footer.reducers",
+                    "value": [
+                      "sum"
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -2824,18 +2859,7 @@
           "id": 50,
           "options": {
             "cellHeight": "sm",
-            "footer": {
-              "countRows": false,
-              "enablePagination": true,
-              "fields": [
-                "Sum pm_data.ndac_rr_mcn_4g_ue_ul_rate",
-                "Sum pm_data.ndac_rr_mcn_4g_ue_dl_rate"
-              ],
-              "reducer": [
-                "sum"
-              ],
-              "show": true
-            },
+            "enablePagination": true,
             "showHeader": true,
             "sortBy": [
               {
@@ -2844,7 +2868,7 @@
               }
             ]
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "",
@@ -3015,6 +3039,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3064,7 +3089,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3174,6 +3199,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3223,7 +3249,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3334,6 +3360,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3383,7 +3410,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3421,7 +3448,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
@@ -3451,7 +3478,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "B",
               "timeField": "pm_data_source.timestamp"
@@ -3495,6 +3522,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3544,7 +3572,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3581,7 +3609,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
@@ -3611,7 +3639,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "B",
               "timeField": "pm_data_source.timestamp"
@@ -3655,6 +3683,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3704,7 +3733,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3815,6 +3844,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3864,7 +3894,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3926,7 +3956,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
@@ -3980,7 +4010,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "B",
               "timeField": "pm_data_source.timestamp"
@@ -4024,6 +4054,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4073,7 +4104,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4111,7 +4142,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
@@ -4141,7 +4172,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "B",
               "timeField": "pm_data_source.timestamp"
@@ -4185,6 +4216,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4234,7 +4266,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4271,7 +4303,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
@@ -4301,7 +4333,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "B",
               "timeField": "pm_data_source.timestamp"
@@ -4345,7 +4377,8 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
-                "spanNulls": false,
+                "showValues": false,
+                "spanNulls": true,
                 "stacking": {
                   "group": "A",
                   "mode": "none"
@@ -4394,7 +4427,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4427,11 +4460,10 @@
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_ratio",
                   "id": "1",
-                  "settings": {},
-                  "type": "sum"
+                  "type": "avg"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "A",
               "timeField": "pm_data_source.timestamp"
@@ -4457,11 +4489,10 @@
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_pdn_conn_success_ratio",
                   "id": "1",
-                  "settings": {},
-                  "type": "sum"
+                  "type": "avg"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*mme*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname",
               "queryType": "lucene",
               "refId": "B",
               "timeField": "pm_data_source.timestamp"
@@ -4505,6 +4536,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4554,7 +4586,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4628,6 +4660,366 @@
           ],
           "title": "Failed EPS attach procedures",
           "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Number of Failed UE Secondary Authentication Attempts per APN",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "showValues": false,
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": 0
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 148
+          },
+          "id": 64,
+          "interval": "1m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "12.2.1",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.dn.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pgw_auth_failed_apn",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.ndac_rr_mcn_4g_pgw_auth_failed_apn:*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_pgw_auth_failed_apn",
+                  "id": "1",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.ndac_rr_mcn_4g_pgw_auth_failed_apn:*",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "Number of Failed UE Secondary Authentication Attempts",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.+)/ACCOUNT-.*APN-(.+).*",
+                "renamePattern": "$1/APN-$2"
+              }
+            }
+          ],
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "Mean number of Framed Routes Established per APN",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "showValues": false,
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": 0
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 154
+          },
+          "id": 65,
+          "interval": "1m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "12.2.1",
+          "targets": [
+            {
+              "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.nhg_alias.keyword",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.dn.keyword",
+                  "id": "4",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_num_framed_routes_apn",
+                  "id": "1",
+                  "settings": {},
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.ndac_rr_mcn_4g_upf_num_framed_routes_apn:*",
+              "queryType": "lucene",
+              "refId": "A",
+              "timeField": "pm_data_source.timestamp"
+            },
+            {
+              "alias": "Total",
+              "bucketAggs": [
+                {
+                  "field": "pm_data_source.timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "pm_data.ndac_rr_mcn_4g_upf_num_framed_routes_apn",
+                  "id": "1",
+                  "type": "sum"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data.ndac_rr_mcn_4g_upf_num_framed_routes_apn:*",
+              "queryType": "lucene",
+              "refId": "B",
+              "timeField": "pm_data_source.timestamp"
+            }
+          ],
+          "title": "Mean number of Framed Routes Established",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.+)/ACCOUNT-.*APN-(.+).*",
+                "renamePattern": "$1/APN-$2"
+              }
+            }
+          ],
+          "type": "timeseries"
         }
       ],
       "title": "SGW Control KPIs",
@@ -4678,6 +5070,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4709,7 +5102,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 149
+            "y": 161
           },
           "id": 20,
           "interval": "1m",
@@ -4727,7 +5120,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4838,6 +5231,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4869,7 +5263,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 155
+            "y": 167
           },
           "id": 21,
           "interval": "1m",
@@ -4887,7 +5281,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4998,6 +5392,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5029,7 +5424,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 161
+            "y": 173
           },
           "id": 43,
           "interval": "1m",
@@ -5047,7 +5442,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5158,6 +5553,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5190,7 +5586,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 167
+            "y": 179
           },
           "id": 49,
           "interval": "1m",
@@ -5208,7 +5604,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5319,6 +5715,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5347,7 +5744,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 174
+            "y": 186
           },
           "id": 48,
           "interval": "1m",
@@ -5365,7 +5762,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5476,6 +5873,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5507,7 +5905,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 181
+            "y": 193
           },
           "id": 22,
           "interval": "1m",
@@ -5525,7 +5923,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5636,6 +6034,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5667,7 +6066,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 187
+            "y": 199
           },
           "id": 23,
           "interval": "1m",
@@ -5685,7 +6084,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5796,6 +6195,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5827,7 +6227,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 193
+            "y": 205
           },
           "id": 42,
           "interval": "1m",
@@ -5845,7 +6245,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5956,6 +6356,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5987,7 +6388,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 199
+            "y": 211
           },
           "id": 24,
           "interval": "1m",
@@ -6005,7 +6406,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6116,6 +6517,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6147,7 +6549,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 205
+            "y": 217
           },
           "id": 25,
           "interval": "1m",
@@ -6165,7 +6567,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6276,6 +6678,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6307,7 +6710,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 211
+            "y": 223
           },
           "id": 41,
           "interval": "1m",
@@ -6325,7 +6728,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6436,6 +6839,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6467,7 +6871,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 217
+            "y": 229
           },
           "id": 26,
           "interval": "1m",
@@ -6485,7 +6889,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6596,6 +7000,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6627,7 +7032,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 223
+            "y": 235
           },
           "id": 27,
           "interval": "1m",
@@ -6645,7 +7050,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6756,6 +7161,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6787,7 +7193,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 229
+            "y": 241
           },
           "id": 40,
           "interval": "1m",
@@ -6805,7 +7211,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6916,6 +7322,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6947,7 +7354,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 235
+            "y": 247
           },
           "id": 28,
           "interval": "1m",
@@ -6965,7 +7372,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7076,6 +7483,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7107,7 +7515,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 241
+            "y": 253
           },
           "id": 29,
           "interval": "1m",
@@ -7125,7 +7533,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7236,6 +7644,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7267,7 +7676,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 247
+            "y": 259
           },
           "id": 39,
           "interval": "1m",
@@ -7285,7 +7694,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7396,6 +7805,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7427,7 +7837,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 253
+            "y": 265
           },
           "id": 30,
           "interval": "1m",
@@ -7445,7 +7855,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7556,6 +7966,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7587,7 +7998,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 259
+            "y": 271
           },
           "id": 31,
           "interval": "1m",
@@ -7605,7 +8016,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7716,6 +8127,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7747,7 +8159,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 265
+            "y": 277
           },
           "id": 38,
           "interval": "1m",
@@ -7765,7 +8177,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7890,7 +8302,8 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
-                "spanNulls": false,
+                "showValues": false,
+                "spanNulls": true,
                 "stacking": {
                   "group": "A",
                   "mode": "none"
@@ -7921,7 +8334,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 272
+            "y": 284
           },
           "id": 34,
           "interval": "1m",
@@ -7939,7 +8352,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7971,10 +8384,8 @@
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_4g_eps_attach_success_rate",
-                  "hide": false,
                   "id": "1",
-                  "settings": {},
-                  "type": "sum"
+                  "type": "avg"
                 }
               ],
               "query": "pm_data_source.nhg_alias.keyword:$nhgname",
@@ -8021,6 +8432,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -8052,7 +8464,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 278
+            "y": 290
           },
           "id": 35,
           "interval": "1m",
@@ -8070,7 +8482,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -8152,6 +8564,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -8183,7 +8596,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 284
+            "y": 296
           },
           "id": 36,
           "interval": "1m",
@@ -8201,7 +8614,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -8255,7 +8668,7 @@
   ],
   "preload": true,
   "refresh": "5m",
-  "schemaVersion": 41,
+  "schemaVersion": 42,
   "tags": [
     "CorePM"
   ],
@@ -8370,7 +8783,7 @@
     "nowDelay": "15m"
   },
   "timezone": "",
-  "title": "NDAC CORE 4G PM KPI",
+  "title": "Nokia DAC CORE 4G PM KPI",
   "uid": "core4g",
-  "version": 6
+  "version": 1
 }

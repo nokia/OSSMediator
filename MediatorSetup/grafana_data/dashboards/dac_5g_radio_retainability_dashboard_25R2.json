@@ -149,6 +149,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -199,7 +200,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "bucketAggs": [
@@ -339,6 +340,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -389,7 +391,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "bucketAggs": [
@@ -533,6 +535,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -583,7 +586,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "bucketAggs": [
@@ -727,6 +730,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -777,7 +781,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "bucketAggs": [
@@ -949,6 +953,7 @@
               "type": "linear"
             },
             "showPoints": "always",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -999,7 +1004,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1201,6 +1206,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1251,7 +1257,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1449,6 +1455,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1499,7 +1506,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1676,6 +1683,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1726,7 +1734,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1835,7 +1843,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NRRCC_M55124C00503:* OR pm_data.NRRCC_M55124C00510:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NRRCC_M55124C00503:*",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -1910,6 +1918,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -1960,7 +1969,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2069,7 +2078,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NRRCC_M55124C00504:* OR pm_data.NRRCC_M55124C00511:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NRRCC_M55124C00504:*",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -2144,6 +2153,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2194,7 +2204,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2303,7 +2313,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NRRCC_M55124C00505:* OR pm_data.NRRCC_M55124C00512:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NRRCC_M55124C00505:*",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -2379,6 +2389,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2429,7 +2440,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2620,6 +2631,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2670,7 +2682,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2857,6 +2869,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -2907,7 +2920,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -3095,6 +3108,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3145,7 +3159,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -3337,6 +3351,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3388,7 +3403,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -3618,6 +3633,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3668,7 +3684,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -3833,6 +3849,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -3883,7 +3900,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4027,6 +4044,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4077,7 +4095,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4242,6 +4260,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4292,7 +4311,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4476,6 +4495,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4526,7 +4546,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4710,6 +4730,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -4760,7 +4781,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4974,6 +4995,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5024,7 +5046,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5182,6 +5204,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5232,7 +5255,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5380,6 +5403,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5430,7 +5454,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5582,6 +5606,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5632,7 +5657,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5775,6 +5800,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -5825,7 +5851,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5987,6 +6013,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6037,7 +6064,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6189,6 +6216,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6239,7 +6267,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6391,6 +6419,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6441,7 +6470,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6581,6 +6610,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6631,7 +6661,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6801,6 +6831,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -6851,7 +6882,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7035,6 +7066,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7085,7 +7117,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7269,6 +7301,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7319,7 +7352,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7483,6 +7516,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7533,7 +7567,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7783,6 +7817,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7833,7 +7868,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7998,6 +8033,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -8048,7 +8084,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8262,6 +8298,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -8312,7 +8349,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8477,6 +8514,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -8527,7 +8565,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8692,6 +8730,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -8742,7 +8781,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8907,6 +8946,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -8957,7 +8997,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9122,6 +9162,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -9172,7 +9213,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9337,6 +9378,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -9387,7 +9429,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9552,6 +9594,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -9602,7 +9645,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9767,6 +9810,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -9817,7 +9861,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9982,6 +10026,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -10032,7 +10077,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10197,6 +10242,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -10247,7 +10293,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10421,6 +10467,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -10471,7 +10518,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10645,6 +10692,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -10694,7 +10742,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10868,6 +10916,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -10917,7 +10966,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11081,6 +11130,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -11130,7 +11180,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11258,7 +11308,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NRRCC_M55124C01501:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NRRCC_M55124C01501:* OR pm_data.NNGCC_M55125C00503:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -11334,6 +11384,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -11383,7 +11434,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11547,6 +11598,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -11596,7 +11648,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11760,6 +11812,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -11809,7 +11862,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11973,6 +12026,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -12022,7 +12076,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12186,6 +12240,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -12235,7 +12290,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12367,7 +12422,7 @@
         {
           "datasource": {
             "type": "grafana-opensearch-datasource",
-            "uid": "${datasource}"
+            "uid": "PFC4EB007C01A233F"
           },
           "description": "This KPI shows the ratio of normal releases, due to inactivity, redirection, preemption, serving cell load reduction, UE not reachable in RRC_INACTIVE state and due to UE preference with UAI, initiated by gNB, compared to all releases, for SA access.",
           "fieldConfig": {
@@ -12399,6 +12454,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -12449,34 +12505,129 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
-              "alias": "",
               "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "$groupby",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
                 {
                   "field": "pm_data_source.end_timestamp",
                   "id": "2",
                   "settings": {
-                    "interval": "auto"
+                    "interval": "$agg",
+                    "min_doc_count": 1,
+                    "trimEdges": 0
                   },
                   "type": "date_histogram"
                 }
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "${datasource}"
+                "uid": "P6087224E95B5121E"
               },
-              "format": "table",
-              "luceneQueryType": "Metric",
               "metrics": [
                 {
-                  "id": "1",
-                  "type": "count"
+                  "field": "pm_data.NNGCC_M55125C00503",
+                  "hide": true,
+                  "id": "6",
+                  "type": "avg"
+                },
+                {
+                  "field": "pm_data.NNGCC_M55125C00503",
+                  "hide": true,
+                  "id": "9",
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NNGCC_M55125C13053",
+                  "hide": true,
+                  "id": "10",
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NNGCC_M55125C11501",
+                  "hide": true,
+                  "id": "11",
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NNGCC_M55125C12001",
+                  "hide": true,
+                  "id": "12",
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NNGCC_M55125C00018",
+                  "hide": true,
+                  "id": "13",
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NNGCC_M55125C01001",
+                  "hide": true,
+                  "id": "14",
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NNGCC_M55125C00014",
+                  "hide": true,
+                  "id": "15",
+                  "type": "sum"
+                },
+                {
+                  "id": "16",
+                  "pipelineVariables": [
+                    {
+                      "name": "m55125c13053",
+                      "pipelineAgg": "10"
+                    },
+                    {
+                      "name": "am55125c00503",
+                      "pipelineAgg": "6"
+                    },
+                    {
+                      "name": "m55125c00503",
+                      "pipelineAgg": "9"
+                    },
+                    {
+                      "name": "m55125c11501",
+                      "pipelineAgg": "11"
+                    },
+                    {
+                      "name": "m55125c12001",
+                      "pipelineAgg": "12"
+                    },
+                    {
+                      "name": "m55125c00018",
+                      "pipelineAgg": "13"
+                    },
+                    {
+                      "name": "m55125c01001",
+                      "pipelineAgg": "14"
+                    },
+                    {
+                      "name": "m55125c00014",
+                      "pipelineAgg": "15"
+                    }
+                  ],
+                  "settings": {
+                    "script": "if ( params.am55125c00503 == null) { return null } else if (params.m55125c01001 == 0) { return 0 } else { return (100*(params.m55125c13053 + params.m55125c00503 + params.m55125c11501 + params.m55125c12001 + params.m55125c00018 + params.m55125c00014)/(params.m55125c01001))}"
+                  },
+                  "type": "bucket_script"
                 }
               ],
-              "query": "",
-              "queryType": "lucene",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NNGCC_M55125C00503:*",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -12552,6 +12703,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -12601,7 +12753,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12696,7 +12848,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NRLFC_M55129C00003:* OR pm_data.NNGCC_M55125C00501:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NNGCC_M55125C00501:* OR pm_data.NRLFC_M55129C00003:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -12786,6 +12938,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -12835,7 +12988,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12987,6 +13140,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -13036,7 +13190,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13211,6 +13365,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -13260,7 +13415,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13435,6 +13590,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -13484,7 +13640,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13659,6 +13815,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -13708,7 +13865,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13883,6 +14040,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -13932,7 +14090,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14107,6 +14265,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -14156,7 +14315,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14331,6 +14490,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -14380,7 +14540,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14555,6 +14715,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -14604,7 +14765,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14747,6 +14908,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -14796,7 +14958,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14961,6 +15123,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -15011,7 +15174,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -15239,6 +15402,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -15288,7 +15452,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -15472,6 +15636,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -15521,7 +15686,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -15695,6 +15860,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -15744,7 +15910,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -15918,6 +16084,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -15967,7 +16134,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16155,6 +16322,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -16203,7 +16371,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16365,6 +16533,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -16413,7 +16582,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16589,6 +16758,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -16638,7 +16808,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16790,6 +16960,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -16839,7 +17010,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16991,6 +17162,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -17040,7 +17212,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -17202,6 +17374,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -17251,7 +17424,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -17413,6 +17586,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -17462,7 +17636,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -17634,6 +17808,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -17683,7 +17858,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -17869,6 +18044,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -17917,7 +18093,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18067,6 +18243,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -18115,7 +18292,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18269,6 +18446,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -18318,7 +18496,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18424,7 +18602,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NNGCC_M55125C09516:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NNGCC_M55125C09516:* OR pm_data.NX2CC_M55112C00502:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -18500,6 +18678,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -18549,7 +18728,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18701,6 +18880,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -18750,7 +18930,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18912,6 +19092,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -18960,7 +19141,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19136,6 +19317,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -19184,7 +19366,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19346,6 +19528,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -19394,7 +19577,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19580,6 +19763,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -19629,7 +19813,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19801,6 +19985,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -19850,7 +20035,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20022,6 +20207,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -20071,7 +20257,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20233,6 +20419,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -20282,7 +20469,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20444,6 +20631,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -20493,7 +20681,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20655,6 +20843,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -20704,7 +20893,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20866,6 +21055,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -20915,7 +21105,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21077,6 +21267,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -21126,7 +21317,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21288,6 +21479,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -21337,7 +21529,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21499,6 +21691,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -21548,7 +21741,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21710,6 +21903,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -21759,7 +21953,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21921,6 +22115,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -21970,7 +22165,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22132,6 +22327,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -22181,7 +22377,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22319,6 +22515,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -22368,7 +22565,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22506,6 +22703,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -22555,7 +22753,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22693,6 +22891,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -22742,7 +22941,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22880,6 +23079,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -22929,7 +23129,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23067,6 +23267,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -23116,7 +23317,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23254,6 +23455,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -23303,7 +23505,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23441,6 +23643,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -23490,7 +23693,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23628,6 +23831,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -23677,7 +23881,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23815,6 +24019,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -23864,7 +24069,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24002,6 +24207,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -24051,7 +24257,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24189,6 +24395,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -24238,7 +24445,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24376,6 +24583,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -24425,7 +24633,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24527,6 +24735,224 @@
             }
           ],
           "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
+          "description": "This KPI shows the ratio of the number of abnormally released E-RAB (SCG split bearers) attempts initiated by SgNB and MeNB to total number of E-RAB release attempts (SgNB and MeNB initiated).",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 6,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "always",
+                "showValues": false,
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": 0
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 837
+          },
+          "id": 555,
+          "interval": "$agg",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "maxHeight": 600,
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.2.1",
+          "targets": [
+            {
+              "bucketAggs": [
+                {
+                  "fake": true,
+                  "field": "$groupby",
+                  "id": "7",
+                  "settings": {
+                    "min_doc_count": 1,
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "pm_data_source.end_timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "$agg",
+                    "min_doc_count": 1,
+                    "trimEdges": 0
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "grafana-opensearch-datasource",
+                "uid": "${datasource}"
+              },
+              "metrics": [
+                {
+                  "field": "pm_data.NX2CC_M55112C06006",
+                  "hide": true,
+                  "id": "11",
+                  "type": "avg"
+                },
+                {
+                  "field": "pm_data.NX2CC_M55112C06006",
+                  "hide": true,
+                  "id": "12",
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NX2CC_M55112C06003",
+                  "hide": true,
+                  "id": "13",
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NX2CC_M55112C06004",
+                  "hide": true,
+                  "id": "14",
+                  "type": "sum"
+                },
+                {
+                  "field": "pm_data.NX2CC_M55112C06001",
+                  "hide": true,
+                  "id": "15",
+                  "type": "sum"
+                },
+                {
+                  "id": "16",
+                  "pipelineVariables": [
+                    {
+                      "name": "am55112c06006",
+                      "pipelineAgg": "11"
+                    },
+                    {
+                      "name": "m55112c06006",
+                      "pipelineAgg": "12"
+                    },
+                    {
+                      "name": "m55112c06003",
+                      "pipelineAgg": "13"
+                    },
+                    {
+                      "name": "m55112c06004",
+                      "pipelineAgg": "14"
+                    },
+                    {
+                      "name": "m55112c06001",
+                      "pipelineAgg": "14"
+                    }
+                  ],
+                  "settings": {
+                    "script": "if (params.am55112c06006 == null) { return null } else if ( params.m55112c06004 + params.m55112c06001 == 0) { return 0 } else  { return (100*( params.m55112c06006 + params.m55112c06003)/(params.m55112c06004 + params.m55112c06001))}"
+                  },
+                  "type": "bucket_script"
+                }
+              ],
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NX2CC_M55112C06006:*",
+              "refId": "A",
+              "timeField": "pm_data_source.end_timestamp"
+            }
+          ],
+          "title": "NR_5355a 5G NSA E-RAB Drop Ratio - User view / NSA ERAB drop R user v [%]",
+          "transformations": [
+            {
+              "id": "seriesToRows",
+              "options": {}
+            },
+            {
+              "id": "prepareTimeSeries",
+              "options": {
+                "format": "multi"
+              }
+            },
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.*,+)?([^\\s,]*NRCELL-[0-9]*).*",
+                "renamePattern": "$2"
+              }
+            },
+            {
+              "id": "seriesToRows",
+              "options": {}
+            },
+            {
+              "id": "prepareTimeSeries",
+              "options": {
+                "format": "multi"
+              }
+            },
+            {
+              "id": "prepareTimeSeries",
+              "options": {}
+            }
+          ],
+          "type": "timeseries"
         }
       ],
       "title": "NSA E-RAB retainability",
@@ -24577,6 +25003,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -24609,7 +25036,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 838
+            "y": 845
           },
           "id": 550,
           "interval": "$agg",
@@ -24627,7 +25054,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24711,7 +25138,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NX2CC_M55112C06004:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NX2CC_M55112C01011:*",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -24787,6 +25214,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -24819,7 +25247,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 845
+            "y": 852
           },
           "id": 551,
           "interval": "$agg",
@@ -24837,7 +25265,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24931,7 +25359,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NX2CC_M55112C06001:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NX2CC_M55112C01011:*",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -25007,6 +25435,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -25038,7 +25467,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 852
+            "y": 859
           },
           "id": 553,
           "interval": "$agg",
@@ -25056,7 +25485,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25152,7 +25581,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NX2CC_M55112C06001:* OR pm_data.PDCPC_M55350C00038:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.PDCPC_M55350C00038:* OR pm_data.NX2CC_M55112C06001:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -25228,6 +25657,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -25260,7 +25690,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 859
+            "y": 866
           },
           "id": 552,
           "interval": "$agg",
@@ -25278,7 +25708,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25459,6 +25889,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -25489,7 +25920,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 867
+            "y": 874
           },
           "id": 393,
           "interval": "$agg",
@@ -25507,7 +25938,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25629,7 +26060,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NX2CC_M55112C00502:* OR pm_data.NNSAUE_M55116C00009:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NNSAUE_M55116C00009:* OR pm_data.NX2CC_M55112C00502:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -25705,6 +26136,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -25735,7 +26167,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 874
+            "y": 881
           },
           "id": 529,
           "interval": "$agg",
@@ -25753,7 +26185,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25889,7 +26321,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NX2CC_M55112C00502:* OR pm_data.NNSAUE_M55116C00009:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NNSAUE_M55116C00009:* OR pm_data.NX2CC_M55112C00502:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -25965,6 +26397,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -25995,7 +26428,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 881
+            "y": 888
           },
           "id": 475,
           "interval": "$agg",
@@ -26013,7 +26446,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -26149,7 +26582,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NX2CC_M55112C00502:* OR pm_data.NNSAUE_M55116C00009:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NNSAUE_M55116C00009:* OR pm_data.NX2CC_M55112C00502:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -26225,6 +26658,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -26255,7 +26689,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 888
+            "y": 895
           },
           "id": 530,
           "interval": "$agg",
@@ -26273,7 +26707,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -26419,7 +26853,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NX2CC_M55112C00502:* OR pm_data.NNSAUE_M55116C00009:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NNSAUE_M55116C00009:* OR pm_data.NX2CC_M55112C00502:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -26494,6 +26928,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -26524,7 +26959,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 895
+            "y": 902
           },
           "id": 394,
           "interval": "$agg",
@@ -26542,7 +26977,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -26644,7 +27079,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NX2CC_M55112C00007:* OR pm_data.NNSAUE_M55116C00009:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NNSAUE_M55116C00009:* OR pm_data.NX2CC_M55112C00007:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -26720,6 +27155,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -26750,7 +27186,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 902
+            "y": 909
           },
           "id": 395,
           "interval": "$agg",
@@ -26768,7 +27204,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -26894,7 +27330,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NX2CC_M55112C00502:* OR pm_data.NNSAUE_M55116C00009:* OR pm_data.RACCU_M55114C00011:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.RACCU_M55114C00011:* OR pm_data.NX2CC_M55112C00502:* OR pm_data.NNSAUE_M55116C00009:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -26970,6 +27406,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -27000,7 +27437,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 909
+            "y": 916
           },
           "id": 531,
           "interval": "$agg",
@@ -27018,7 +27455,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -27230,6 +27667,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -27260,7 +27698,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 916
+            "y": 923
           },
           "id": 396,
           "interval": "$agg",
@@ -27278,7 +27716,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -27470,6 +27908,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -27500,7 +27939,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 923
+            "y": 930
           },
           "id": 397,
           "interval": "$agg",
@@ -27518,7 +27957,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -27710,6 +28149,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -27740,7 +28180,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 930
+            "y": 937
           },
           "id": 464,
           "interval": "$agg",
@@ -27758,7 +28198,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -27874,7 +28314,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NNGCC_M55125C11503:* OR pm_data.NNSAUE_M55116C00009:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NNSAUE_M55116C00009:* OR pm_data.NNGCC_M55125C11503:* OR pm_data.NX2CC_M55112C00007:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -27963,6 +28403,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -27993,7 +28434,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 938
+            "y": 945
           },
           "id": 400,
           "interval": "$agg",
@@ -28011,7 +28452,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28178,6 +28619,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -28208,7 +28650,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 945
+            "y": 952
           },
           "id": 388,
           "interval": "$agg",
@@ -28226,7 +28668,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28363,6 +28805,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -28393,7 +28836,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 952
+            "y": 959
           },
           "id": 389,
           "interval": "$agg",
@@ -28411,7 +28854,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28578,6 +29021,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -28608,7 +29052,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 959
+            "y": 966
           },
           "id": 390,
           "interval": "$agg",
@@ -28626,7 +29070,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28777,6 +29221,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -28807,7 +29252,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 967
+            "y": 974
           },
           "id": 356,
           "interval": "$agg",
@@ -28825,7 +29270,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29012,6 +29457,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -29042,7 +29488,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 974
+            "y": 981
           },
           "id": 374,
           "interval": "$agg",
@@ -29060,7 +29506,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29198,6 +29644,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -29228,7 +29675,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 981
+            "y": 988
           },
           "id": 375,
           "interval": "$agg",
@@ -29246,7 +29693,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29362,7 +29809,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NF1CC_M55113C01006:* OR pm_data.NX2CC_M55112C00007:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NF1CC_M55113C01006:* OR pm_data.NX2CC_M55112C00007:* OR pm_data.NNSAUE_M55116C00009:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -29437,6 +29884,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -29467,7 +29915,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 988
+            "y": 995
           },
           "id": 376,
           "interval": "$agg",
@@ -29485,7 +29933,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29622,6 +30070,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -29652,7 +30101,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 995
+            "y": 1002
           },
           "id": 377,
           "interval": "$agg",
@@ -29670,7 +30119,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29857,6 +30306,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -29887,7 +30337,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1002
+            "y": 1009
           },
           "id": 378,
           "interval": "$agg",
@@ -29905,7 +30355,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30042,6 +30492,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -30072,7 +30523,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1009
+            "y": 1016
           },
           "id": 379,
           "interval": "$agg",
@@ -30090,7 +30541,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30277,6 +30728,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -30307,7 +30759,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1016
+            "y": 1023
           },
           "id": 380,
           "interval": "$agg",
@@ -30325,7 +30777,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30463,6 +30915,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -30493,7 +30946,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1023
+            "y": 1030
           },
           "id": 381,
           "interval": "$agg",
@@ -30511,7 +30964,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30702,6 +31155,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -30732,7 +31186,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1030
+            "y": 1037
           },
           "id": 382,
           "interval": "$agg",
@@ -30750,7 +31204,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30887,6 +31341,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -30917,7 +31372,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1037
+            "y": 1044
           },
           "id": 383,
           "interval": "$agg",
@@ -30935,7 +31390,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31122,6 +31577,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -31152,7 +31608,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1044
+            "y": 1051
           },
           "id": 384,
           "interval": "$agg",
@@ -31170,7 +31626,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31307,6 +31763,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -31337,7 +31794,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1051
+            "y": 1058
           },
           "id": 402,
           "interval": "$agg",
@@ -31355,7 +31812,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31542,6 +31999,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -31572,7 +32030,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1058
+            "y": 1065
           },
           "id": 403,
           "interval": "$agg",
@@ -31590,7 +32048,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31727,6 +32185,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -31757,7 +32216,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1065
+            "y": 1072
           },
           "id": 404,
           "interval": "$agg",
@@ -31775,7 +32234,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31962,6 +32421,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -31992,7 +32452,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1072
+            "y": 1079
           },
           "id": 405,
           "interval": "$agg",
@@ -32010,7 +32470,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32148,6 +32608,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -32178,7 +32639,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1079
+            "y": 1086
           },
           "id": 522,
           "interval": "$agg",
@@ -32196,7 +32657,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32401,6 +32862,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -32431,7 +32893,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1087
+            "y": 1094
           },
           "id": 373,
           "interval": "$agg",
@@ -32449,7 +32911,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32626,6 +33088,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -32656,7 +33119,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1094
+            "y": 1101
           },
           "id": 366,
           "interval": "$agg",
@@ -32674,7 +33137,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32811,6 +33274,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -32841,7 +33305,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1101
+            "y": 1108
           },
           "id": 367,
           "interval": "$agg",
@@ -32859,7 +33323,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32969,7 +33433,7 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NX2CC_M55112C02001:* OR pm_data.NNSAUE_M55116C00009:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NNSAUE_M55116C00009:* OR pm_data.NX2CC_M55112C02001:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -33044,6 +33508,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -33074,7 +33539,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1108
+            "y": 1115
           },
           "id": 368,
           "interval": "$agg",
@@ -33092,7 +33557,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33229,6 +33694,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -33259,7 +33725,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1115
+            "y": 1122
           },
           "id": 369,
           "interval": "$agg",
@@ -33277,7 +33743,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33462,6 +33928,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -33492,7 +33959,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1122
+            "y": 1129
           },
           "id": 370,
           "interval": "$agg",
@@ -33510,7 +33977,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33647,6 +34114,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -33677,7 +34145,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1129
+            "y": 1136
           },
           "id": 401,
           "interval": "$agg",
@@ -33695,7 +34163,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33856,6 +34324,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -33887,7 +34356,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1137
+            "y": 1144
           },
           "id": 325,
           "interval": "$agg",
@@ -33905,7 +34374,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34044,6 +34513,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -34075,7 +34545,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1144
+            "y": 1151
           },
           "id": 327,
           "interval": "$agg",
@@ -34093,7 +34563,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34313,6 +34783,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -34344,7 +34815,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1151
+            "y": 1158
           },
           "id": 532,
           "interval": "$agg",
@@ -34362,7 +34833,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34610,6 +35081,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -34642,7 +35114,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1159
+            "y": 1166
           },
           "id": 301,
           "interval": "$agg",
@@ -34660,7 +35132,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34916,6 +35388,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -34948,7 +35421,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1166
+            "y": 1173
           },
           "id": 302,
           "interval": "$agg",
@@ -34966,7 +35439,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -35188,6 +35661,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -35220,7 +35694,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1173
+            "y": 1180
           },
           "id": 303,
           "interval": "$agg",
@@ -35238,7 +35712,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -35621,6 +36095,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -35653,7 +36128,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1180
+            "y": 1187
           },
           "id": 304,
           "interval": "$agg",
@@ -35671,7 +36146,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -35914,7 +36389,7 @@
                   "type": "sum"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS* AND (pm_data.NX2CC_M55112C00007:* OR pm_data.NX2CB_M55110C00020:* OR pm_data.NNSAUE_M55116C00009:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRBTS* AND (pm_data.NX2CB_M55110C00020:* OR pm_data.NNSAUE_M55116C00009:* OR pm_data.NX2CC_M55112C00007:*)",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -35989,6 +36464,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -36021,7 +36497,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1187
+            "y": 1194
           },
           "id": 305,
           "interval": "$agg",
@@ -36039,7 +36515,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -36178,6 +36654,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -36210,7 +36687,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1194
+            "y": 1201
           },
           "id": 306,
           "interval": "$agg",
@@ -36228,7 +36705,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -36389,6 +36866,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -36421,7 +36899,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1201
+            "y": 1208
           },
           "id": 307,
           "interval": "$agg",
@@ -36439,7 +36917,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -36578,6 +37056,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -36609,7 +37088,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1208
+            "y": 1215
           },
           "id": 308,
           "interval": "$agg",
@@ -36627,7 +37106,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -36788,6 +37267,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -36819,7 +37299,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1215
+            "y": 1222
           },
           "id": 309,
           "interval": "$agg",
@@ -36837,7 +37317,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -36976,6 +37456,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -37007,7 +37488,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1222
+            "y": 1229
           },
           "id": 310,
           "interval": "$agg",
@@ -37025,7 +37506,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37186,6 +37667,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -37217,7 +37699,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1229
+            "y": 1236
           },
           "id": 311,
           "interval": "$agg",
@@ -37235,7 +37717,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37344,7 +37826,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NX2CC_M55112C00005:* OR pm_data.NX2CC_M55112C00017:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NX2CC_M55112C00005:*",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -37419,6 +37901,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -37450,7 +37933,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1236
+            "y": 1243
           },
           "id": 312,
           "interval": "$agg",
@@ -37468,7 +37951,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37607,6 +38090,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -37638,7 +38122,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1243
+            "y": 1250
           },
           "id": 313,
           "interval": "$agg",
@@ -37656,7 +38140,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37795,6 +38279,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -37826,7 +38311,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1250
+            "y": 1257
           },
           "id": 314,
           "interval": "$agg",
@@ -37844,7 +38329,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37953,7 +38438,7 @@
                   "type": "avg"
                 }
               ],
-              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND (pm_data.NX2CC_M55112C00007:* OR pm_data.NX2CC_M55112C05001:*)",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:$ap_id AND pm_data_source.dn:*NRCELL* AND pm_data.NX2CC_M55112C00007:*",
               "refId": "A",
               "timeField": "pm_data_source.end_timestamp"
             }
@@ -38028,6 +38513,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -38059,7 +38545,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1257
+            "y": 1264
           },
           "id": 316,
           "interval": "$agg",
@@ -38077,7 +38563,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38238,6 +38724,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -38269,7 +38756,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1264
+            "y": 1271
           },
           "id": 317,
           "interval": "$agg",
@@ -38287,7 +38774,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38450,6 +38937,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -38481,7 +38969,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1272
+            "y": 1279
           },
           "id": 318,
           "interval": "$agg",
@@ -38499,7 +38987,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38660,6 +39148,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -38691,7 +39180,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1279
+            "y": 1286
           },
           "id": 319,
           "interval": "$agg",
@@ -38709,7 +39198,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38862,6 +39351,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -38893,7 +39383,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1287
+            "y": 1294
           },
           "id": 320,
           "interval": "$agg",
@@ -38911,7 +39401,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39099,6 +39589,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -39130,7 +39621,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1294
+            "y": 1301
           },
           "id": 321,
           "interval": "$agg",
@@ -39148,7 +39639,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39289,6 +39780,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -39319,7 +39811,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1301
+            "y": 1308
           },
           "id": 387,
           "interval": "$agg",
@@ -39337,7 +39829,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39485,6 +39977,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -39515,7 +40008,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1308
+            "y": 1315
           },
           "id": 444,
           "interval": "$agg",
@@ -39533,7 +40026,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39685,6 +40178,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -39715,7 +40209,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1315
+            "y": 1322
           },
           "id": 465,
           "interval": "$agg",
@@ -39733,7 +40227,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39885,6 +40379,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -39915,7 +40410,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1322
+            "y": 1329
           },
           "id": 523,
           "interval": "$agg",
@@ -39933,7 +40428,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40085,6 +40580,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -40115,7 +40611,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1329
+            "y": 1336
           },
           "id": 524,
           "interval": "$agg",
@@ -40133,7 +40629,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40275,6 +40771,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -40305,7 +40802,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1336
+            "y": 1343
           },
           "id": 525,
           "interval": "$agg",
@@ -40323,7 +40820,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40465,6 +40962,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -40495,7 +40993,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1343
+            "y": 1350
           },
           "id": 526,
           "interval": "$agg",
@@ -40513,7 +41011,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40655,6 +41153,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -40685,7 +41184,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1350
+            "y": 1357
           },
           "id": 527,
           "interval": "$agg",
@@ -40703,7 +41202,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40888,6 +41387,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -40919,7 +41419,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1358
+            "y": 1365
           },
           "id": 322,
           "interval": "$agg",
@@ -40937,7 +41437,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41098,6 +41598,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -41129,7 +41630,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1365
+            "y": 1372
           },
           "id": 323,
           "interval": "$agg",
@@ -41147,7 +41648,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41286,6 +41787,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -41317,7 +41819,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1372
+            "y": 1379
           },
           "id": 324,
           "interval": "$agg",
@@ -41335,7 +41837,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41488,6 +41990,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -41519,7 +42022,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1380
+            "y": 1387
           },
           "id": 328,
           "interval": "$agg",
@@ -41537,7 +42040,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41763,6 +42266,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -41794,7 +42298,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1387
+            "y": 1394
           },
           "id": 346,
           "interval": "$agg",
@@ -41812,7 +42316,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -42038,6 +42542,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -42069,7 +42574,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1394
+            "y": 1401
           },
           "id": 330,
           "interval": "$agg",
@@ -42087,7 +42592,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -42275,6 +42780,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -42306,7 +42812,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1401
+            "y": 1408
           },
           "id": 347,
           "interval": "$agg",
@@ -42324,7 +42830,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -42550,6 +43056,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -42581,7 +43088,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1408
+            "y": 1415
           },
           "id": 348,
           "interval": "$agg",
@@ -42599,7 +43106,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -42787,6 +43294,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -42818,7 +43326,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1415
+            "y": 1422
           },
           "id": 349,
           "interval": "$agg",
@@ -42836,7 +43344,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -43062,6 +43570,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -43093,7 +43602,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1422
+            "y": 1429
           },
           "id": 350,
           "interval": "$agg",
@@ -43111,7 +43620,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -43337,6 +43846,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -43368,7 +43878,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1429
+            "y": 1436
           },
           "id": 335,
           "interval": "$agg",
@@ -43386,7 +43896,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -43631,6 +44141,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -43662,7 +44173,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1436
+            "y": 1443
           },
           "id": 336,
           "interval": "$agg",
@@ -43680,7 +44191,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -43938,6 +44449,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -43969,7 +44481,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1444
+            "y": 1451
           },
           "id": 337,
           "interval": "$agg",
@@ -43987,7 +44499,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -44174,6 +44686,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -44205,7 +44718,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1452
+            "y": 1459
           },
           "id": 338,
           "interval": "$agg",
@@ -44223,7 +44736,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -44384,6 +44897,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -44415,7 +44929,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1459
+            "y": 1466
           },
           "id": 339,
           "interval": "$agg",
@@ -44433,7 +44947,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -44608,6 +45122,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -44639,7 +45154,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1467
+            "y": 1474
           },
           "id": 340,
           "interval": "$agg",
@@ -44657,7 +45172,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -44796,6 +45311,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -44827,7 +45343,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1474
+            "y": 1481
           },
           "id": 341,
           "interval": "$agg",
@@ -44845,7 +45361,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45006,6 +45522,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -45037,7 +45554,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1481
+            "y": 1488
           },
           "id": 342,
           "interval": "$agg",
@@ -45055,7 +45572,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45194,6 +45711,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -45225,7 +45743,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1488
+            "y": 1495
           },
           "id": 343,
           "interval": "$agg",
@@ -45243,7 +45761,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45418,6 +45936,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -45448,7 +45967,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1496
+            "y": 1503
           },
           "id": 365,
           "interval": "$agg",
@@ -45466,7 +45985,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45613,6 +46132,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -45643,7 +46163,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1503
+            "y": 1510
           },
           "id": 354,
           "interval": "$agg",
@@ -45661,7 +46181,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45798,6 +46318,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -45828,7 +46349,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1510
+            "y": 1517
           },
           "id": 353,
           "interval": "$agg",
@@ -45846,7 +46367,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45993,6 +46514,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -46023,7 +46545,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1517
+            "y": 1524
           },
           "id": 355,
           "interval": "$agg",
@@ -46041,7 +46563,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46178,6 +46700,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -46208,7 +46731,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1524
+            "y": 1531
           },
           "id": 357,
           "interval": "$agg",
@@ -46226,7 +46749,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46373,6 +46896,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -46403,7 +46927,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1531
+            "y": 1538
           },
           "id": 358,
           "interval": "$agg",
@@ -46421,7 +46945,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46568,6 +47092,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -46598,7 +47123,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1538
+            "y": 1545
           },
           "id": 359,
           "interval": "$agg",
@@ -46616,7 +47141,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46753,6 +47278,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -46783,7 +47309,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1545
+            "y": 1552
           },
           "id": 360,
           "interval": "$agg",
@@ -46801,7 +47327,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46952,6 +47478,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -46983,7 +47510,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1553
+            "y": 1560
           },
           "id": 344,
           "interval": "$agg",
@@ -47001,7 +47528,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47140,6 +47667,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -47171,7 +47699,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1560
+            "y": 1567
           },
           "id": 345,
           "interval": "$agg",
@@ -47189,7 +47717,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47365,6 +47893,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -47396,7 +47925,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1568
+            "y": 1575
           },
           "id": 468,
           "interval": "$agg",
@@ -47414,7 +47943,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47598,6 +48127,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -47629,7 +48159,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1575
+            "y": 1582
           },
           "id": 469,
           "interval": "$agg",
@@ -47647,7 +48177,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47831,6 +48361,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -47862,7 +48393,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1582
+            "y": 1589
           },
           "id": 470,
           "interval": "$agg",
@@ -47880,7 +48411,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -48064,6 +48595,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -48095,7 +48627,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1589
+            "y": 1596
           },
           "id": 471,
           "interval": "$agg",
@@ -48113,7 +48645,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "12.2.1",
           "targets": [
             {
               "bucketAggs": [
@@ -48269,7 +48801,7 @@
   ],
   "preload": true,
   "refresh": "15m",
-  "schemaVersion": 40,
+  "schemaVersion": 42,
   "tags": [
     "Radio5G"
   ],
@@ -48292,8 +48824,8 @@
       },
       {
         "current": {
-          "text": "Laas13",
-          "value": "Laas13"
+          "text": "GR",
+          "value": "GR"
         },
         "datasource": {
           "type": "grafana-opensearch-datasource",
@@ -48310,6 +48842,26 @@
         "type": "query"
       },
       {
+        "allowCustomValue": false,
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "grafana-opensearch-datasource",
+          "uid": "${datasource}"
+        },
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
+        "includeAll": true,
+        "label": "Slice ID",
+        "name": "slice_id",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
+        "refresh": 2,
+        "regex": "",
+        "type": "query"
+      },
+      {
         "current": {
           "text": "All",
           "value": [
@@ -48320,20 +48872,19 @@
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
-        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
+        "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data.pm_data_source.dn:*NRBTS*)\", \"size\": 10000}",
         "includeAll": true,
         "label": "Access Point ID",
         "multi": true,
         "name": "ap_id",
         "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\"}",
+        "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data.pm_data_source.dn:*NRBTS*)\", \"size\": 10000}",
         "refresh": 2,
         "regex": ".*MRBTS-(\\d+).*",
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
           "text": "Cell",
           "value": "pm_data_source.dn.keyword"
         },
@@ -48439,6 +48990,7 @@
     ]
   },
   "timezone": "",
-  "title": "NDAC Radio 5G PM KPI - Retainability 5G003 (25R2)",
-  "uid": "radio5gret-25r2"
+  "title": "Nokia DAC Radio 5G PM KPI - Retainability 5G003 (25R2)",
+  "uid": "radio5gret-25r2",
+  "version": 1
 }

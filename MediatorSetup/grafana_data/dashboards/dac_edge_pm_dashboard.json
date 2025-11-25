@@ -144,7 +144,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "CPU Usage",
@@ -175,7 +175,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge CPU Usage [%]",
+      "title": "Edge CPU Usage [%]",
       "type": "gauge"
     },
     {
@@ -238,7 +238,7 @@
           "titleSize": 8
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "",
@@ -270,7 +270,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge disk temperature [°C]",
+      "title": "Edge disk temperature [°C]",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -341,7 +341,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "Ram Usage",
@@ -372,7 +372,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge RAM usage [%]",
+      "title": "Edge RAM usage [%]",
       "type": "stat"
     },
     {
@@ -434,7 +434,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "Memory Usage",
@@ -465,7 +465,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge disk usage [%]",
+      "title": "Edge disk usage [%]",
       "type": "stat"
     },
     {
@@ -503,6 +503,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -547,7 +548,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "Average CPU Usage",
@@ -619,7 +620,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge CPU Usage [%]",
+      "title": "Edge CPU Usage [%]",
       "type": "timeseries"
     },
     {
@@ -657,6 +658,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -701,7 +703,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "Average Disk Temp",
@@ -785,7 +787,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge disk temperature [°C]",
+      "title": "Edge disk temperature [°C]",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -832,6 +834,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -876,7 +879,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "Average Ram Usage",
@@ -947,7 +950,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge RAM usage [%]",
+      "title": "Edge RAM usage [%]",
       "type": "timeseries"
     },
     {
@@ -985,6 +988,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -1029,7 +1033,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.1",
+      "pluginVersion": "12.2.1",
       "targets": [
         {
           "alias": "Average Memory Usage",
@@ -1100,13 +1104,13 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "NDAC Edge disk usage [%]",
+      "title": "Edge disk usage [%]",
       "type": "timeseries"
     }
   ],
   "preload": true,
   "refresh": "5m",
-  "schemaVersion": 40,
+  "schemaVersion": 42,
   "tags": [
     "EdgePM"
   ],
@@ -1244,7 +1248,7 @@
     "nowDelay": "15m"
   },
   "timezone": "",
-  "title": "NDAC EDGE PM KPI",
+  "title": "Nokia DAC EDGE PM KPI",
   "uid": "edgepm",
-  "weekStart": ""
+  "version": 1
 }

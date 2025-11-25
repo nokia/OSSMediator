@@ -1,13 +1,13 @@
 module collector
 
-go 1.24.6
+go 1.25.4
 
-replace golang.org/x/sys => golang.org/x/sys v0.35.0
+replace golang.org/x/sys => golang.org/x/sys v0.38.0
 
 require (
 	github.com/golang-jwt/jwt/v5 v5.3.0
 	github.com/sirupsen/logrus v1.9.3
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.1
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 	gopkg.in/yaml.v3 v3.0.1
 )

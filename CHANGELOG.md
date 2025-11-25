@@ -1,6 +1,25 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.6.1
+BUG FIXES:
+* MediatorSetup:
+    * Fix for all Access Points and KPI data not visible in Radio PM Dashboards.
+
+IMPROVEMENTS:
+* MediatorSetup:
+    * Added Radio PM Dashboards for `25R3` release.
+    * Maintains Radio PM Dashboards for previous radio releases (n-2).
+    * Added  summary KPIs in `CORE 5G PM Dashboard`
+
+SECURITY UPDATE:
+* OSSMediator:
+    * Updated `golang` version to `1.25.4`.
+    * Updated base image to `alpine:3.22.2`.
+* MediatorSetup:
+    * Updated OpenSearch version to `3.3.2`.
+    * Updated Grafana version to `12.3.0`.
+
 # 4.6.0
 NEW FEATURES:
 * OSSMediatorCollector:

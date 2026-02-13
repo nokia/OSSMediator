@@ -3,14 +3,14 @@ set -e
 
 install_grafana() {
 	if [ -x "$(command -v yum)" ]; then
-		yum install -y https://dl.grafana.com/grafana/release/12.3.0/grafana_12.3.0_19497075765_linux_amd64.rpm
+		yum install -y https://dl.grafana.com/grafana/release/12.3.2/grafana_12.3.2_21390657659_linux_amd64.rpm
 	elif [ -x "$(command -v apt-get)" ]; then
 		apt-get install -y adduser libfontconfig1 musl
-    wget https://dl.grafana.com/grafana/release/12.3.0/grafana_12.3.0_19497075765_linux_amd64.deb
-    dpkg -i grafana_12.3.0_19497075765_linux_amd64.deb
+		wget https://dl.grafana.com/grafana/release/12.3.2/grafana_12.3.2_21390657659_linux_amd64.deb
+		dpkg -i grafana_12.3.2_21390657659_linux_amd64.deb
 	elif [ -x "$(command -v rpm)" ]; then
-		wget https://dl.grafana.com/grafana/release/12.3.0/grafana_12.3.0_19497075765_linux_amd64.rpm
-    rpm -Uvh grafana_12.3.0_19497075765_linux_amd64.rpm
+		wget https://dl.grafana.com/grafana/release/12.3.2/grafana_12.3.2_21390657659_linux_amd64.rpm
+		rpm -Uvh grafana_12.3.2_21390657659_linux_amd64.rpm
 	else
 		echo "Error can't install Grafana, please install it manually and re-run the script."
 		exit 1;
@@ -37,7 +37,7 @@ if ! [ -x "$(command -v grafana-server)" ]; then
 	echo "Grafana version is $(grafana-server -v)."
 else
   grafana_version=$(grafana-server -v | cut -d' ' -f 2)
-  min_grafana_version=12.1.1
+  min_grafana_version=12.3.0
 
   if version_gt $grafana_version $min_grafana_version; then
     echo "Grafana version is $grafana_version."

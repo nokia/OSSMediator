@@ -80,6 +80,21 @@ func ValidateConf(conf config.Config) error {
 		return fmt.Errorf("API response limit should be within 1-10000, limit: %d", conf.Limit)
 	}
 
+	if conf.Proxy.Enabled {
+		if conf.Proxy.Mode != "CONFIG" && conf.Proxy.Mode != "SYSTEM" {
+			return fmt.Errorf("invalid proxy mode: %s, accepted values are CONFIG/SYSTEM", conf.Proxy.Mode)
+		}
+		if conf.Proxy.Mode == "CONFIG" {
+			if conf.Proxy.URL == "" {
+				return fmt.Errorf("proxy URL can't be empty in CONFIG mode")
+			}
+			_, err := url.Parse(conf.Proxy.URL)
+			if err != nil {
+				return fmt.Errorf("invalid proxy URL: %w", err)
+			}
+		}
+	}
+
 	return nil
 }
 

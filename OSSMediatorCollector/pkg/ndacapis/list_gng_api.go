@@ -5,10 +5,11 @@ import (
 	"collector/pkg/config"
 	"collector/pkg/utils"
 	"encoding/json"
-	log "github.com/sirupsen/logrus"
 	"net/http"
 	"slices"
 	"strings"
+
+	log "github.com/sirupsen/logrus"
 )
 
 type gngAPIResponse struct {

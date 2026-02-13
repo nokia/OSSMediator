@@ -11,12 +11,13 @@ import (
 	"collector/pkg/config"
 	"collector/pkg/utils"
 	"fmt"
-	log "github.com/sirupsen/logrus"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"strings"
 	"testing"
+
+	log "github.com/sirupsen/logrus"
 )
 
 var (

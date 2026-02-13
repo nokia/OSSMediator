@@ -109,7 +109,7 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "title": "Nokia DAC ALL FM ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
@@ -172,7 +172,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "Critical",
@@ -268,7 +268,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "Major",
@@ -364,7 +364,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "Critical",
@@ -459,7 +459,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "Critical",
@@ -554,7 +554,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "bucketAggs": [
@@ -648,7 +648,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "bucketAggs": [
@@ -901,7 +901,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "bucketAggs": [],
@@ -1020,9 +1020,9 @@
       "type": "table"
     }
   ],
-  "preload": true,
+  "preload": false,
   "refresh": "1m",
-  "schemaVersion": 40,
+  "schemaVersion": 42,
   "tags": [
     "AllAlarms"
   ],
@@ -1088,9 +1088,7 @@
       },
       {
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
@@ -1184,5 +1182,5 @@
   "timezone": "browser",
   "title": "Nokia DAC ALL FM Alarms Dashboard",
   "uid": "allalarm",
-  "weekStart": ""
+  "version": 1
 }

@@ -8,12 +8,11 @@ package util
 
 import (
 	"bytes"
+	"elasticsearchplugin/pkg/config"
 	"os"
 	"strings"
 	"testing"
 	"time"
-
-	"elasticsearchplugin/pkg/config"
 
 	"github.com/fsnotify/fsnotify"
 	log "github.com/sirupsen/logrus"

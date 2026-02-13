@@ -158,6 +158,12 @@ PM / FM data collection by collector is performed using REST interface at regula
       "sync_duration": 15
     }
   ],
+  "proxy": {
+    "enabled": false,
+    "mode": "<SYSTEM/CONFIG>",
+    "url": ""
+  },
+  "timeout": 120,
   "limit": 10000,
   "delay": 10,
   "max_concurrent_process": 1,
@@ -190,6 +196,11 @@ PM / FM data collection by collector is performed using REST interface at regula
 | metric_apis.metric_type   | string              | Type of metric for PM("RADIO" or "CORE" or "EDGE") or FM("DAC" or "RADIO" or "CORE" or "APPLICATION").                                                                                                                                                                             |
 | metric_apis.sync_duration | integer             | Time duration in minutes, for syncing FM for the given duration.                                                                                                                                                                                                                   |
 | metric_apis.aggregation   | string              | Aggregation value on which time series data will be divided between start_timestamp and end_timestamp in minutes(m) allowed values (1-9999999) / hours(h) (1-99999) / days(d) (1-9999) / weeks(w) (1-999) / years(y) (1-9), example: "1m, 1d". Only for IXR, CORE and EDGE PM API. |
+| proxy                     | [object] (Optional) | Proxy configuration.                                                                                                                                                                                                                                                               |
+| proxy.enabled             | boolean             | Default value if false. Enable or disable proxy usage.                                                                                                                                                                                                                             |
+| proxy.mode                | string              | Proxy mode, allowed values: `SYSTEM` (use system proxy) or `CONFIG` (use custom proxy URL).                                                                                                                                                                                        |
+| proxy.url                 | string              | Proxy URL to be used when `mode` is set to `CONFIG`.                                                                                                                                                                                                                               |
+| timeout                   | integer             | Default value is 120s. Timeout in seconds for API requests.                                                                                                                                                                                                                        |
 | limit                     | integer             | Number of records to be fetched from the API, should be within 1-10000.                                                                                                                                                                                                            |
 | delay                     | integer             | Time duration in minutes, for adding delay in API calls.                                                                                                                                                                                                                           |
 | max_concurrent_process    | integer (Optional)  | Default value is 1. Maximum no. of concurrent process for calling each PM/FM APIs.                                                                                                                                                                                                 |

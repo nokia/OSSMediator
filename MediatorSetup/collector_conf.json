@@ -69,6 +69,12 @@
       "sync_duration": 15
     }
   ],
+  "proxy": {
+    "enabled": false,
+    "mode": "",
+    "url": ""
+  },
+  "timeout": 120,
   "limit": 10000,
   "delay": 10,
   "max_concurrent_process": 1,

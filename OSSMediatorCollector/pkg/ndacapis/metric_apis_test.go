@@ -11,7 +11,6 @@ import (
 	"collector/pkg/config"
 	"collector/pkg/utils"
 	"fmt"
-	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -19,6 +18,8 @@ import (
 	"strconv"
 	"strings"
 	"testing"
+
+	log "github.com/sirupsen/logrus"
 )
 
 var (

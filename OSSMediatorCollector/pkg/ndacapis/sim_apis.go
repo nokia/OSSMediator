@@ -11,10 +11,11 @@ import (
 	"collector/pkg/config"
 	"collector/pkg/utils"
 	"encoding/json"
-	log "github.com/sirupsen/logrus"
 	"net/http"
 	"strconv"
 	"strings"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // SimAPIResponse struct for sims api response.

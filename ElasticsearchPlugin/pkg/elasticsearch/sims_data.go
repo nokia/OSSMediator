@@ -9,10 +9,11 @@ package elasticsearch
 import (
 	"elasticsearchplugin/pkg/config"
 	"encoding/json"
-	log "github.com/sirupsen/logrus"
 	"path"
 	"strings"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // to read sims api response

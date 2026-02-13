@@ -3,14 +3,14 @@ set -e
 
 install_grafana() {
 	if [ -x "$(command -v yum)" ]; then
-		yum install -y https://dl.grafana.com/grafana/release/12.3.0/grafana_12.3.0_19497075765_linux_amd64.rpm
+		yum install -y https://dl.grafana.com/grafana/release/12.3.2/grafana_12.3.2_21390657659_linux_amd64.rpm
 	elif [ -x "$(command -v apt-get)" ]; then
 		apt-get install -y adduser libfontconfig1 musl
-    wget https://dl.grafana.com/grafana/release/12.3.0/grafana_12.3.0_19497075765_linux_amd64.deb
-    dpkg -i grafana_12.3.0_19497075765_linux_amd64.deb
+		wget https://dl.grafana.com/grafana/release/12.3.2/grafana_12.3.2_21390657659_linux_amd64.deb
+		dpkg -i grafana_12.3.2_21390657659_linux_amd64.deb
 	elif [ -x "$(command -v rpm)" ]; then
-		wget https://dl.grafana.com/grafana/release/12.3.0/grafana_12.3.0_19497075765_linux_amd64.rpm
-    rpm -Uvh grafana_12.3.0_19497075765_linux_amd64.rpm
+		wget https://dl.grafana.com/grafana/release/12.3.2/grafana_12.3.2_21390657659_linux_amd64.rpm
+		rpm -Uvh grafana_12.3.2_21390657659_linux_amd64.rpm
 	else
 		echo "Error can't install Grafana, please install it manually and re-run the script."
 		exit 1;
@@ -43,7 +43,7 @@ if ! [ -x "$(command -v grafana-server)" ]; then
 	echo "Grafana version is $(grafana-server -v)."
 else
   grafana_version=$(grafana-server -v | cut -d' ' -f 2)
-  min_grafana_version=12.1.1
+  min_grafana_version=12.3.0
 
   if version_gt $min_grafana_version $grafana_version; then
     echo "Grafana version is $grafana_version."
@@ -68,6 +68,9 @@ cp -r .secret/ ./collector/bin/
 
 unzip -o ElasticsearchPlugin*.zip -d ./plugin
 cp plugin_conf.json ./plugin/resources/conf.json
+
+echo "HTTP_PROXY=$HTTP_PROXY" | sudo tee ./collector/proxy
+echo "HTTPS_PROXY=$HTTPS_PROXY" | sudo tee -a ./collector/proxy
 
 echo "Creating services file"
 sed -i -e 's?COLLECTOR_PATH?'`pwd`\/collector'?g' ./services_template/collector.service
@@ -101,7 +104,7 @@ name='ndac_oss_opensearch'
 if [[ $(docker ps -f "name=$name" --format '{{.Names}}') == $name ]]; then
   docker update --restart=always $name
 else
-  docker run --name "$name" --restart=always -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size" -v $(pwd)/es_data:/usr/share/opensearch/data opensearchproject/opensearch:3.3.2
+  docker run --name "$name" --restart=always -t -d -p 9200:9200 -p 9600:9600 --ulimit nofile=65535:65535 -e "discovery.type=single-node" -e 'DISABLE_SECURITY_PLUGIN=true' -e OPENSEARCH_JAVA_OPTS="-Xms$heap_size -Xmx$heap_size" -v $(pwd)/es_data:/usr/share/opensearch/data opensearchproject/opensearch:3.4.0
 fi
 
 echo "Checking OpenSearch status"

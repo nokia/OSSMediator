@@ -2,7 +2,7 @@ module elasticsearchplugin
 
 go 1.25.6
 
-replace golang.org/x/sys => golang.org/x/sys v0.40.0
+replace golang.org/x/sys => golang.org/x/sys v0.41.0
 
 require (
 	github.com/fsnotify/fsnotify v1.9.0

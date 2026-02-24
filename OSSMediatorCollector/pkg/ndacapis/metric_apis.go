@@ -12,13 +12,14 @@ import (
 	"collector/pkg/notifier"
 	"collector/pkg/utils"
 	"encoding/json"
-	log "github.com/sirupsen/logrus"
 	"net/http"
 	"path"
 	"strconv"
 	"strings"
 	"sync"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // GetAPIResponse keeps track of response received from PM/FM API.

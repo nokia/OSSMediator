@@ -5,11 +5,12 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"golang.org/x/term"
 	"log"
 	"os"
 	"strings"
 	"syscall"
+
+	"golang.org/x/term"
 )
 
 type Config struct {

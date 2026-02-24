@@ -273,7 +273,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "LTE_5750a E-UTRAN Cell Availability Ratio {{term pm_data_source.dn.keyword}}",
@@ -3591,7 +3591,7 @@
       "type": "table"
     }
   ],
-  "preload": true,
+  "preload": false,
   "refresh": "15m",
   "schemaVersion": 42,
   "tags": [

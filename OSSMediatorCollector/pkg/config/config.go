@@ -9,16 +9,23 @@ package config
 import (
 	"encoding/json"
 	"fmt"
-	log "github.com/sirupsen/logrus"
 	"os"
 	"strings"
 	"sync"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 type UserAGConf struct {
 	ListOrgUUID string `json:"list_orgUUID"` //fetch OrgUUID API
 	ListAccUUID string `json:"list_accUUID"` //fetch acc UUID API
+}
+
+type ProxyConfig struct {
+	Enabled bool   `json:"enabled"`
+	Mode    string `json:"mode"` // SYSTEM | CONFIG
+	URL     string `json:"url"`
 }
 
 // Config keeps the config from json
@@ -35,6 +42,8 @@ type Config struct {
 	Delay                int                 `json:"delay"`
 	MaxConcurrentProcess int                 `json:"max_concurrent_process"`
 	PrettyResponse       bool                `json:"pretty_response"`
+	Proxy                ProxyConfig         `json:"proxy"`
+	Timeout              int                 `json:"timeout"`
 }
 
 type OrgDetails struct {
@@ -154,6 +163,10 @@ func ReadConfig(confFile string) error {
 
 	if Conf.MaxConcurrentProcess <= 0 {
 		Conf.MaxConcurrentProcess = 1
+	}
+
+	if Conf.Timeout <= 0 {
+		Conf.Timeout = 120
 	}
 	log.Info("Config read successfully.")
 	return nil

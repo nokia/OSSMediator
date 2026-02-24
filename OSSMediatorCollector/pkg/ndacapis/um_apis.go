@@ -16,6 +16,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"sync"
 	"time"
 
 	jwt "github.com/golang-jwt/jwt/v5"
@@ -134,6 +135,7 @@ func setToken(response *UMResponse, user *config.User) {
 // RefreshToken refreshes the session token before expiry_time.
 // Input parameter apiUrl is the API URL for refreshing session.
 func RefreshToken(user *config.User) {
+	var refreshMu sync.Mutex
 	user.Wg.Add(1)
 	apiURL := config.Conf.BaseURL
 	authType := strings.ToUpper(user.AuthType)
@@ -143,10 +145,19 @@ func RefreshToken(user *config.User) {
 		apiURL = apiURL + config.Conf.UMAPIs.Refresh
 	}
 	duration := getRefreshDuration(user)
+	if duration <= 0 || authType == "ADTOKEN" {
+		log.Infof("Token is expired for %s, refreshing token...", user.Email)
+		err := callRefreshAPI(apiURL, user)
+		if err != nil {
+			log.WithFields(log.Fields{"error": err}).Errorf("Refresh token failed for %s", user.Email)
+			user.IsSessionAlive = false
+		}
+	}
 	refreshTimer := time.NewTimer(duration)
 	user.Wg.Done()
 	for {
 		<-refreshTimer.C
+		refreshMu.Lock()
 		user.Wg.Add(1)
 		err := callRefreshAPI(apiURL, user)
 		if err != nil {
@@ -196,6 +207,7 @@ func RefreshToken(user *config.User) {
 			}
 		}
 		user.Wg.Done()
+		refreshMu.Unlock()
 		log.Infof("Token refreshed for %s.", user.Email)
 		refreshTimer.Reset(duration)
 	}

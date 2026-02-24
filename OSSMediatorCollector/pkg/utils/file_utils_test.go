@@ -11,11 +11,12 @@ import (
 	"collector/pkg/config"
 	"encoding/json"
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestWriteFile_Success(t *testing.T) {

@@ -8,11 +8,12 @@ package elasticsearch
 
 import (
 	"elasticsearchplugin/pkg/config"
-	log "github.com/sirupsen/logrus"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // SetConfig Set elasticsearch configuration for NDAC indices

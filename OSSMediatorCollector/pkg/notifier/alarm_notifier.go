@@ -12,14 +12,15 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	log "github.com/sirupsen/logrus"
-	yaml "gopkg.in/yaml.v3"
 	"net/http"
 	"os"
 	"regexp"
 	"strings"
 	"sync"
 	"time"
+
+	log "github.com/sirupsen/logrus"
+	yaml "gopkg.in/yaml.v3"
 )
 
 const (
@@ -309,12 +310,10 @@ func checkSpecificProblem(specificProblem string, alarmSpecificProblems []string
 }
 
 func formJSONMessage(txnID uint64, alarmToNotify []FMSource) []byte {
-	alarmData, err := json.Marshal(alarmToNotify)
-	if err != nil {
-		log.WithFields(log.Fields{"tid": txnID}).Debugf("Unable to marshal message")
-		return nil
+	type JsonMessage struct {
+		Text []FMSource `json:"text"`
 	}
-	message := TeamsMessage{Text: string(alarmData)}
+	message := JsonMessage{Text: alarmToNotify}
 	data, err := json.Marshal(message)
 	if err != nil {
 		log.WithFields(log.Fields{"tid": txnID}).Debugf("Unable to marshal message")

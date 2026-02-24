@@ -1,6 +1,30 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.6.2
+NEW FEATURES:
+* OSSMediatorCollector:
+  * Proxy Support Added: Introduced `proxy` configuration section in collector_conf.json.
+    * enabled: Enable or disable proxy usage (true/false).
+    * mode: Select proxy mode (SYSTEM or CONFIG).
+    * url: Specify the proxy URL when using CONFIG mode.
+  * Added `timeout` parameter to control the maximum duration (in seconds) for API requests.
+
+BUG FIXES:
+* OSSMediatorCollector:
+    * Fix for crash during Azure refresh token failure.
+
+REMOVED:
+* MediatorSetup: Removed Radio 4G Multefire dashboards.
+
+SECURITY UPDATE:
+* OSSMediator:
+    * Updated `golang` version to `1.25.6`.
+    * Updated base image to `alpine:3.23.3`.
+* MediatorSetup:
+    * Updated OpenSearch version to `3.4.0`.
+    * Updated Grafana version to `12.3.2`.
+
 # 4.6.1
 BUG FIXES:
 * MediatorSetup:

@@ -10,13 +10,14 @@ import (
 	"elasticsearchplugin/pkg/config"
 	"encoding/json"
 	"fmt"
-	log "github.com/sirupsen/logrus"
 	"net/http"
 	"os"
 	"path"
 	"strconv"
 	"strings"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 type pmResponse struct {

@@ -16,6 +16,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"os"
 	"sync"
 	"sync/atomic"
@@ -25,9 +26,6 @@ import (
 )
 
 const (
-	//Timeout duration for HTTP calls
-	timeout = 120 * time.Second
-
 	//Maximum no. of retry attempt for API call
 	maxRetryAttempts = 3
 
@@ -137,37 +135,46 @@ func trigger(ticker *time.Ticker, api *config.APIConf, user *config.User, pretty
 // certFile keeps the server certificate file path
 // skipTLS if true all API calls will skip TLS auth.
 func CreateHTTPClient(certFile string, skipTLS bool) {
+	var tr *http.Transport
 	if skipTLS {
 		//skipping certificates
-		tr := &http.Transport{
+		tr = &http.Transport{
 			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 		}
-		client = &http.Client{Transport: tr, Timeout: timeout}
 		log.Debugf("Skipping TLS authentication")
 	} else if certFile == "" {
-		client = &http.Client{Timeout: timeout}
+		tr = &http.Transport{}
 		log.Debugf("TLS authentication using root certificates")
 	} else {
 		//Load CA cert
 		caCert, err := os.ReadFile(certFile)
 		if err != nil {
 			log.WithFields(log.Fields{"error": err}).Error("Error while reading server certificate file")
-			client = &http.Client{Timeout: timeout}
+			tr = &http.Transport{}
 			log.Debugf("TLS authentication using root certificates")
-			return
-		}
-		caCertPool := x509.NewCertPool()
-		caCertPool.AppendCertsFromPEM(caCert)
+		} else {
+			caCertPool := x509.NewCertPool()
+			caCertPool.AppendCertsFromPEM(caCert)
 
-		//Setup HTTPS client
-		tlsConfig := &tls.Config{
-			RootCAs: caCertPool,
+			//Setup HTTPS client
+			tlsConfig := &tls.Config{
+				RootCAs: caCertPool,
+			}
+			tlsConfig.BuildNameToCertificate()
+			tr = &http.Transport{TLSClientConfig: tlsConfig}
+			log.Debugf("Using CA certificate %s", certFile)
 		}
-		tlsConfig.BuildNameToCertificate()
-		tr := &http.Transport{TLSClientConfig: tlsConfig}
-		client = &http.Client{Transport: tr, Timeout: timeout}
-		log.Debugf("Using CA certificate %s", certFile)
 	}
+
+	if config.Conf.Proxy.Enabled {
+		if config.Conf.Proxy.Mode == "SYSTEM" {
+			tr.Proxy = http.ProxyFromEnvironment
+		} else if config.Conf.Proxy.Mode == "CONFIG" {
+			proxyURL, _ := url.Parse(config.Conf.Proxy.URL)
+			tr.Proxy = http.ProxyURL(proxyURL)
+		}
+	}
+	client = &http.Client{Transport: tr, Timeout: time.Second * time.Duration(config.Conf.Timeout)}
 }
 
 // Executes the request.

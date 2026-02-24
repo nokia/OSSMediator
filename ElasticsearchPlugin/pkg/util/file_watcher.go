@@ -7,13 +7,12 @@
 package util
 
 import (
+	"elasticsearchplugin/pkg/config"
+	"elasticsearchplugin/pkg/elasticsearch"
 	"fmt"
 	"math"
 	"os"
 	"sync"
-
-	"elasticsearchplugin/pkg/config"
-	"elasticsearchplugin/pkg/elasticsearch"
 
 	"github.com/fsnotify/fsnotify"
 	log "github.com/sirupsen/logrus"

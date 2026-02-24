@@ -1,7 +1,7 @@
 module storesecret
 
-go 1.25.4
+go 1.25.6
 
-require golang.org/x/term v0.37.0
+require golang.org/x/term v0.40.0
 
-require golang.org/x/sys v0.38.0 // indirect
+require golang.org/x/sys v0.41.0 // indirect

@@ -144,7 +144,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "CPU Usage",
@@ -238,7 +238,7 @@
           "titleSize": 8
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "",
@@ -341,7 +341,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "Ram Usage",
@@ -434,7 +434,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "Memory Usage",
@@ -548,7 +548,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "Average CPU Usage",
@@ -703,7 +703,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "Average Disk Temp",
@@ -879,7 +879,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "Average Ram Usage",
@@ -1033,7 +1033,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
           "alias": "Average Memory Usage",
@@ -1108,7 +1108,7 @@
       "type": "timeseries"
     }
   ],
-  "preload": true,
+  "preload": false,
   "refresh": "5m",
   "schemaVersion": 42,
   "tags": [

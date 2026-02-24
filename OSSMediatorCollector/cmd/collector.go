@@ -7,6 +7,10 @@
 package main
 
 import (
+	"collector/pkg/config"
+	"collector/pkg/ndacapis"
+	"collector/pkg/utils"
+	"collector/pkg/validator"
 	"flag"
 	"fmt"
 	"io"
@@ -15,11 +19,6 @@ import (
 	"os/signal"
 	"strings"
 	"syscall"
-
-	"collector/pkg/config"
-	"collector/pkg/ndacapis"
-	"collector/pkg/utils"
-	"collector/pkg/validator"
 
 	log "github.com/sirupsen/logrus"
 	lumberjack "gopkg.in/natefinch/lumberjack.v2"

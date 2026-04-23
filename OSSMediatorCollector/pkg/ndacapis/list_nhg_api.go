@@ -55,7 +55,9 @@ func getNhgDetails(api *config.APIConf, user *config.User, txnID uint64, prettyR
 func listNhgRBAC(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
 	apiURL := config.Conf.BaseURL + api.API
 	//wait if refresh token api is running
-	user.Wg.Wait()
+	if user != nil && user.RefreshDone != nil {
+		<-user.RefreshDone
+	}
 
 	log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
 	request, err := http.NewRequest("GET", apiURL, nil)
@@ -134,7 +136,9 @@ func storeUserNetworkInfoRBAC(nhgData []NetworkInfo, user *config.User) {
 
 func listNhgABAC(api *config.APIConf, user *config.User, txnID uint64, prettyResponse bool) {
 	//wait if refresh token api is running
-	user.Wg.Wait()
+	if user != nil && user.RefreshDone != nil {
+		<-user.RefreshDone
+	}
 
 	orgResponse, err := fetchOrgUUID(api, user, txnID, prettyResponse)
 	if err != nil {

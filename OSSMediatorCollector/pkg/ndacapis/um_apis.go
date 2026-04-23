@@ -136,7 +136,11 @@ func setToken(response *UMResponse, user *config.User) {
 // Input parameter apiUrl is the API URL for refreshing session.
 func RefreshToken(user *config.User) {
 	var refreshMu sync.Mutex
-	user.Wg.Add(1)
+	// Re-create RefreshDone channel before starting refresh cycle
+	if user.RefreshDone != nil {
+		close(user.RefreshDone)
+	}
+	user.RefreshDone = make(chan struct{})
 	apiURL := config.Conf.BaseURL
 	authType := strings.ToUpper(user.AuthType)
 	if authType == "ADTOKEN" {
@@ -154,11 +158,13 @@ func RefreshToken(user *config.User) {
 		}
 	}
 	refreshTimer := time.NewTimer(duration)
-	user.Wg.Done()
+	// Signal that refresh is done
+	close(user.RefreshDone)
 	for {
 		<-refreshTimer.C
 		refreshMu.Lock()
-		user.Wg.Add(1)
+		// Re-create RefreshDone channel for next refresh
+		user.RefreshDone = make(chan struct{})
 		err := callRefreshAPI(apiURL, user)
 		if err != nil {
 			if authType == "ADTOKEN" {
@@ -206,7 +212,8 @@ func RefreshToken(user *config.User) {
 				}
 			}
 		}
-		user.Wg.Done()
+		// Signal that refresh is done
+		close(user.RefreshDone)
 		refreshMu.Unlock()
 		log.Infof("Token refreshed for %s.", user.Email)
 		refreshTimer.Reset(duration)

@@ -106,7 +106,9 @@ func callSimAPI(api *config.APIConf, user *config.User, nhgID string, orgUUID st
 	apiURL = strings.Replace(apiURL, "{nhg_id}", nhgID, -1)
 
 	//wait if refresh token api is running
-	user.Wg.Wait()
+	if user != nil && user.RefreshDone != nil {
+		<-user.RefreshDone
+	}
 
 	log.WithFields(log.Fields{"tid": txnID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
 	request, err := http.NewRequest(http.MethodGet, apiURL, nil)
@@ -166,7 +168,9 @@ func callSimAPI(api *config.APIConf, user *config.User, nhgID string, orgUUID st
 func callAccessPointsSimAPI(api *config.APIConf, user *config.User, hwID string, orgUUID string, accUUID string, txnID uint64, prettyResponse bool) {
 	apiURL := config.Conf.BaseURL + api.API
 	//wait if refresh token api is running
-	user.Wg.Wait()
+	if user != nil && user.RefreshDone != nil {
+		<-user.RefreshDone
+	}
 
 	log.WithFields(log.Fields{"tid": txnID, "hw_id": hwID}).Infof("Triggered %s for %s at %v", apiURL, user.Email, utils.CurrentTime())
 	request, err := http.NewRequest(http.MethodGet, apiURL, nil)

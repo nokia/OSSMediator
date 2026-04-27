@@ -1,11 +1,29 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 4.6.3
+IMPROVEMENTS:
+* OSSMediatorCollector:
+  * Added support for alarm notification for `ALL` metric_type.
+* MediatorSetup:
+  * Added Radio PM Dashboards for `26R1` release.
+
+REMOVED:
+* MediatorSetup: Removed Radio PM `25R1` dashboards.
+
+SECURITY UPDATE:
+* OSSMediator:
+  * Updated `golang` version to `1.26.2`.
+  * Updated base image to `alpine:3.23.4`.
+* MediatorSetup:
+  * Updated OpenSearch version to `3.6.0`.
+  * Updated Grafana version to `13.0.1`.
+
 # 4.6.2
 NEW FEATURES:
 * OSSMediatorCollector:
-  * Proxy Support Added: Introduced `proxy` configuration section in collector_conf.json.
-    * enabled: Enable or disable proxy usage (true/false).
+  * Proxy Support Added: Introduced `proxy` configuration section in collector_conf.json. 
+    * enabled: Enable or disable proxy usage (true/false). 
     * mode: Select proxy mode (SYSTEM or CONFIG).
     * url: Specify the proxy URL when using CONFIG mode.
   * Added `timeout` parameter to control the maximum duration (in seconds) for API requests.

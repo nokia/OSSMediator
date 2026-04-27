@@ -4,7 +4,7 @@
       {
         "builtIn": 1,
         "datasource": {
-          "type": "datasource",
+          "type": "grafana",
           "uid": "grafana"
         },
         "enable": true,
@@ -29,19 +29,27 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio4G"
       ],
+      "targetBlank": false,
       "title": "Radio 4G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio5G"
       ],
+      "targetBlank": false,
       "title": "Radio 5G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
@@ -87,12 +95,9 @@
       "url": ""
     }
   ],
+  "liveNow": false,
   "panels": [
     {
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -109,7 +114,8 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
+      "targets": [],
       "title": "Nokia DAC ALL FM ALARMS DASHBOARD",
       "transparent": true,
       "type": "text"
@@ -122,7 +128,6 @@
       "description": "Provides the count of major alarms",
       "fieldConfig": {
         "defaults": {
-          "links": [],
           "mappings": [
             {
               "options": {
@@ -145,8 +150,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -172,7 +176,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "Critical",
@@ -193,7 +197,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "select field",
@@ -218,7 +221,6 @@
       "description": "Provides the count of major alarms",
       "fieldConfig": {
         "defaults": {
-          "links": [],
           "mappings": [
             {
               "options": {
@@ -241,8 +243,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -268,7 +269,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "Major",
@@ -289,7 +290,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "select field",
@@ -314,7 +314,6 @@
       "description": "Provides the count of minor alarms",
       "fieldConfig": {
         "defaults": {
-          "links": [],
           "mappings": [
             {
               "options": {
@@ -337,8 +336,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -364,7 +362,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "Critical",
@@ -409,7 +407,6 @@
       "description": "Provides the count of warning alarms",
       "fieldConfig": {
         "defaults": {
-          "links": [],
           "mappings": [
             {
               "options": {
@@ -432,8 +429,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -459,7 +455,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "Critical",
@@ -504,7 +500,6 @@
       "description": "Provides the count of cleared alarms",
       "fieldConfig": {
         "defaults": {
-          "links": [],
           "mappings": [
             {
               "options": {
@@ -527,8 +522,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -554,7 +548,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -598,7 +592,6 @@
       "description": "Provides the count of active alarms",
       "fieldConfig": {
         "defaults": {
-          "links": [],
           "mappings": [
             {
               "options": {
@@ -621,8 +614,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -648,7 +640,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -706,7 +698,6 @@
             },
             "inspect": false
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -901,7 +892,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [],
@@ -909,7 +900,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "id": "1",
@@ -1022,19 +1012,22 @@
   ],
   "preload": false,
   "refresh": "1m",
-  "schemaVersion": 42,
+  "schemaVersion": 40,
   "tags": [
     "AllAlarms"
   ],
   "templating": {
     "list": [
       {
+        "allowCustomValue": true,
         "current": {
           "text": "dac-all-fm",
           "value": "dac-all-fm"
         },
+        "hide": 0,
         "includeAll": false,
         "label": "Alarm Type",
+        "multi": false,
         "name": "alarmType",
         "options": [
           {
@@ -1069,9 +1062,12 @@
           }
         ],
         "query": "All : dac-all-fm, RADIO : dac-radio-fm, DAC : dac-fm, CORE : dac-core-fm, IXR : dac-ixr-fm, APPLICATION : dac-application-fm",
-        "type": "custom"
+        "skipUrlSync": false,
+        "type": "custom",
+        "valuesFormat": "csv"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "dac-all-fm",
           "value": "dac-all-fm"
@@ -1079,14 +1075,17 @@
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
+        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "$alarmType",
+        "skipUrlSync": false,
         "type": "datasource"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "All",
           "value": [
@@ -1098,6 +1097,7 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
+        "hide": 0,
         "includeAll": true,
         "label": "Network Hw Group Name",
         "multi": true,
@@ -1106,6 +1106,9 @@
         "query": "{\"find\": \"terms\", \"field\": \"fm_data_source.nhg_alias.keyword\"}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
@@ -1119,16 +1122,22 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data_source.slice_id.keyword\", \"query\":\"fm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
+        "hide": 0,
         "includeAll": true,
         "label": "Slice ID",
+        "multi": false,
         "name": "slice_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"fm_data_source.slice_id.keyword\", \"query\":\"fm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
         "refresh": 1,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "All",
           "value": [
@@ -1140,6 +1149,7 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data.severity.keyword\"}",
+        "hide": 0,
         "includeAll": true,
         "label": "Severity",
         "multi": true,
@@ -1148,9 +1158,13 @@
         "query": "{\"find\": \"terms\", \"field\": \"fm_data.severity.keyword\"}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "All",
           "value": [
@@ -1162,6 +1176,7 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"fm_data.alarm_state.keyword\"}",
+        "hide": 0,
         "includeAll": true,
         "label": "Alarm State",
         "multi": true,
@@ -1170,6 +1185,9 @@
         "query": "{\"find\": \"terms\", \"field\": \"fm_data.alarm_state.keyword\"}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       }
     ]
@@ -1178,9 +1196,22 @@
     "from": "now-7d",
     "to": "now"
   },
-  "timepicker": {},
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
   "timezone": "browser",
   "title": "Nokia DAC ALL FM Alarms Dashboard",
   "uid": "allalarm",
-  "version": 1
+  "weekStart": ""
 }

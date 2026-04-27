@@ -4,7 +4,7 @@
       {
         "builtIn": 1,
         "datasource": {
-          "type": "datasource",
+          "type": "grafana",
           "uid": "grafana"
         },
         "enable": true,
@@ -28,19 +28,27 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio5G"
       ],
+      "targetBlank": false,
       "title": "Radio 5G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio4G"
       ],
+      "targetBlank": false,
       "title": "Radio 4G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
@@ -100,6 +108,7 @@
       "url": ""
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
@@ -109,8 +118,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 209,
-      "panels": [],
+      "id": 556,
       "title": "RRC releases",
       "type": "row"
     },
@@ -159,8 +167,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -175,8 +181,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 7,
@@ -187,6 +192,10 @@
       "id": 292,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -200,7 +209,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -227,6 +236,10 @@
               "type": "date_histogram"
             }
           ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
           "metrics": [
             {
               "field": "pm_data.NRRCC_M55124C00001",
@@ -350,8 +363,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -366,8 +377,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 7,
@@ -378,6 +388,10 @@
       "id": 410,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -391,7 +405,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -545,8 +559,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -561,8 +573,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 7,
@@ -573,6 +584,10 @@
       "id": 411,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -586,7 +601,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -740,8 +755,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -756,8 +769,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 7,
@@ -768,6 +780,10 @@
       "id": 455,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -781,7 +797,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -963,8 +979,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -979,8 +993,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 7,
@@ -991,6 +1004,10 @@
       "id": 477,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1004,7 +1021,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1169,7 +1186,7 @@
         "x": 0,
         "y": 36
       },
-      "id": 207,
+      "id": 557,
       "panels": [
         {
           "datasource": {
@@ -1216,8 +1233,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1232,18 +1247,21 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 72
+            "y": 37
           },
           "id": 293,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -1257,7 +1275,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1465,8 +1483,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1481,18 +1497,21 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 79
+            "y": 44
           },
           "id": 294,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -1506,7 +1525,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1651,6 +1670,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of RRC re-establishment procedures when the re-establishment cause is reconfiguration failure. ",
@@ -1693,8 +1713,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1709,18 +1727,21 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 86
+            "y": 51
           },
           "id": 295,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -1734,7 +1755,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1763,6 +1784,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:82",
@@ -1886,6 +1911,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of RRC re-establishment procedures when the re-establishment cause is handover failure. ",
@@ -1928,8 +1954,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1944,18 +1968,21 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 93
+            "y": 58
           },
           "id": 296,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -1969,7 +1996,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1998,6 +2025,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:281",
@@ -2121,6 +2152,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of RRC re-establishment procedures when the re-establishment cause is other failure.",
@@ -2163,8 +2195,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2179,18 +2209,21 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 100
+            "y": 65
           },
           "id": 297,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -2204,7 +2237,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2233,6 +2266,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:547",
@@ -2399,8 +2436,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2415,18 +2450,21 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 107
+            "y": 72
           },
           "id": 298,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -2440,7 +2478,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2599,6 +2637,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows ratio of RRC re-establishment requests that were caused by handover failure compared to the total numer of RRC re-establishment requests. ",
@@ -2641,8 +2680,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2657,18 +2694,21 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 114
+            "y": 79
           },
           "id": 299,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -2682,7 +2722,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2709,6 +2749,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NRRCC_M55124C00503",
@@ -2837,6 +2881,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows ratio of RRC re-establishment requests that were caused by other failure compared to the total numer of RRC re-establishment requests. ",
@@ -2879,8 +2924,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2895,14 +2938,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 121
+            "y": 86
           },
           "id": 300,
           "interval": "$agg",
@@ -2947,6 +2989,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NRRCC_M55124C00503",
@@ -3118,8 +3164,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -3134,14 +3178,13 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 128
+            "y": 93
           },
           "id": 412,
           "interval": "$agg",
@@ -3362,8 +3405,6 @@
                 }
               },
               "decimals": 2,
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -3378,14 +3419,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 135
+            "y": 100
           },
           "id": 413,
           "interval": "$agg",
@@ -3643,8 +3683,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -3659,14 +3697,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 142
+            "y": 107
           },
           "id": 414,
           "interval": "$agg",
@@ -3859,8 +3896,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -3875,14 +3910,13 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 149
+            "y": 114
           },
           "id": 415,
           "interval": "$agg",
@@ -4054,8 +4088,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -4070,14 +4102,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 156
+            "y": 121
           },
           "id": 416,
           "interval": "$agg",
@@ -4270,8 +4301,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -4286,14 +4315,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 163
+            "y": 128
           },
           "id": 417,
           "interval": "$agg",
@@ -4505,8 +4533,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -4521,14 +4547,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 170
+            "y": 135
           },
           "id": 456,
           "interval": "$agg",
@@ -4740,8 +4765,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -4756,14 +4779,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 177
+            "y": 142
           },
           "id": 478,
           "interval": "$agg",
@@ -5005,8 +5027,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -5021,14 +5041,13 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 184
+            "y": 149
           },
           "id": 479,
           "interval": "$agg",
@@ -5214,8 +5233,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -5230,14 +5247,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 191
+            "y": 156
           },
           "id": 480,
           "interval": "$agg",
@@ -5413,8 +5429,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -5429,14 +5443,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 198
+            "y": 163
           },
           "id": 481,
           "interval": "$agg",
@@ -5569,7 +5582,7 @@
         "x": 0,
         "y": 37
       },
-      "id": 482,
+      "id": 558,
       "panels": [
         {
           "datasource": {
@@ -5616,8 +5629,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -5632,14 +5643,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 206
+            "y": 38
           },
           "id": 483,
           "interval": "$agg",
@@ -5810,8 +5820,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -5826,14 +5834,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 213
+            "y": 45
           },
           "id": 484,
           "interval": "$agg",
@@ -6023,8 +6030,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -6039,14 +6044,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 220
+            "y": 52
           },
           "id": 485,
           "interval": "$agg",
@@ -6226,8 +6230,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -6242,14 +6244,13 @@
                 ]
               },
               "unit": "s"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 227
+            "y": 59
           },
           "id": 486,
           "interval": "$agg",
@@ -6429,8 +6430,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -6445,14 +6444,13 @@
                 ]
               },
               "unit": "s"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 234
+            "y": 66
           },
           "id": 487,
           "interval": "$agg",
@@ -6620,8 +6618,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -6636,14 +6632,13 @@
                 ]
               },
               "unit": "s"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 241
+            "y": 73
           },
           "id": 488,
           "interval": "$agg",
@@ -6841,8 +6836,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -6857,14 +6850,13 @@
                 ]
               },
               "unit": "s"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 248
+            "y": 80
           },
           "id": 533,
           "interval": "$agg",
@@ -7029,7 +7021,7 @@
         "x": 0,
         "y": 38
       },
-      "id": 407,
+      "id": 559,
       "panels": [
         {
           "datasource": {
@@ -7076,8 +7068,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -7092,14 +7082,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 256
+            "y": 39
           },
           "id": 409,
           "interval": "$agg",
@@ -7311,8 +7300,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -7327,14 +7314,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 263
+            "y": 46
           },
           "id": 476,
           "interval": "$agg",
@@ -7536,8 +7522,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -7552,14 +7536,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 270
+            "y": 53
           },
           "id": 544,
           "interval": "$agg",
@@ -7847,8 +7830,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -7863,14 +7844,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 277
+            "y": 60
           },
           "id": 418,
           "interval": "$agg",
@@ -8063,8 +8043,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -8079,14 +8057,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 284
+            "y": 67
           },
           "id": 472,
           "interval": "$agg",
@@ -8328,8 +8305,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -8344,14 +8319,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 291
+            "y": 74
           },
           "id": 419,
           "interval": "$agg",
@@ -8544,8 +8518,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -8560,14 +8532,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 298
+            "y": 81
           },
           "id": 420,
           "interval": "$agg",
@@ -8760,8 +8731,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -8776,14 +8745,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 305
+            "y": 88
           },
           "id": 421,
           "interval": "$agg",
@@ -8976,8 +8944,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -8992,14 +8958,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 312
+            "y": 95
           },
           "id": 422,
           "interval": "$agg",
@@ -9192,8 +9157,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -9208,14 +9171,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 319
+            "y": 102
           },
           "id": 423,
           "interval": "$agg",
@@ -9408,8 +9370,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -9424,14 +9384,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 326
+            "y": 109
           },
           "id": 424,
           "interval": "$agg",
@@ -9624,8 +9583,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -9640,14 +9597,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 333
+            "y": 116
           },
           "id": 425,
           "interval": "$agg",
@@ -9840,8 +9796,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -9856,14 +9810,13 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 340
+            "y": 123
           },
           "id": 426,
           "interval": "$agg",
@@ -10056,8 +10009,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -10072,14 +10023,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 347
+            "y": 130
           },
           "id": 445,
           "interval": "$agg",
@@ -10272,8 +10222,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -10288,14 +10236,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 354
+            "y": 137
           },
           "id": 473,
           "interval": "$agg",
@@ -10507,8 +10454,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -10523,14 +10468,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 361
+            "y": 144
           },
           "id": 460,
           "interval": "$agg",
@@ -10732,8 +10676,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -10747,14 +10689,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 368
+            "y": 151
           },
           "id": 457,
           "interval": "$agg",
@@ -10956,8 +10897,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -10971,14 +10910,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 375
+            "y": 158
           },
           "id": 458,
           "interval": "$agg",
@@ -11170,8 +11108,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -11185,14 +11121,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 382
+            "y": 165
           },
           "id": 459,
           "interval": "$agg",
@@ -11424,8 +11359,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -11439,14 +11372,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 389
+            "y": 172
           },
           "id": 489,
           "interval": "$agg",
@@ -11638,8 +11570,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -11653,14 +11583,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 396
+            "y": 179
           },
           "id": 490,
           "interval": "$agg",
@@ -11852,8 +11781,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -11867,14 +11794,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 403
+            "y": 186
           },
           "id": 491,
           "interval": "$agg",
@@ -12066,8 +11992,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -12081,14 +12005,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 410
+            "y": 193
           },
           "id": 492,
           "interval": "$agg",
@@ -12280,8 +12203,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -12295,14 +12216,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 417
+            "y": 200
           },
           "id": 493,
           "interval": "$agg",
@@ -12494,8 +12414,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -12510,14 +12428,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 424
+            "y": 207
           },
           "id": 494,
           "interval": "$agg",
@@ -12763,8 +12680,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -12778,14 +12693,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 431
+            "y": 214
           },
           "id": 495,
           "interval": "$agg",
@@ -12951,7 +12865,7 @@
         "x": 0,
         "y": 39
       },
-      "id": 428,
+      "id": 560,
       "panels": [
         {
           "datasource": {
@@ -12998,8 +12912,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -13013,14 +12925,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 439
+            "y": 40
           },
           "id": 454,
           "interval": "$agg",
@@ -13200,8 +13111,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -13215,14 +13124,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 446
+            "y": 47
           },
           "id": 429,
           "interval": "$agg",
@@ -13425,8 +13333,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -13440,14 +13346,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 453
+            "y": 54
           },
           "id": 430,
           "interval": "$agg",
@@ -13650,8 +13555,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -13665,14 +13568,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 460
+            "y": 61
           },
           "id": 431,
           "interval": "$agg",
@@ -13875,8 +13777,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -13890,14 +13790,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 467
+            "y": 68
           },
           "id": 432,
           "interval": "$agg",
@@ -14100,8 +13999,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -14115,14 +14012,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 474
+            "y": 75
           },
           "id": 433,
           "interval": "$agg",
@@ -14325,8 +14221,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -14340,14 +14234,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 481
+            "y": 82
           },
           "id": 434,
           "interval": "$agg",
@@ -14550,8 +14443,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -14565,14 +14456,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 488
+            "y": 89
           },
           "id": 435,
           "interval": "$agg",
@@ -14775,8 +14665,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -14790,14 +14678,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 495
+            "y": 96
           },
           "id": 436,
           "interval": "$agg",
@@ -14968,8 +14855,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -14983,14 +14868,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 502
+            "y": 103
           },
           "id": 450,
           "interval": "$agg",
@@ -15183,8 +15067,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -15199,14 +15081,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 509
+            "y": 110
           },
           "id": 474,
           "interval": "$agg",
@@ -15462,8 +15343,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -15477,14 +15356,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 516
+            "y": 117
           },
           "id": 461,
           "interval": "$agg",
@@ -15696,8 +15574,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -15711,14 +15587,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 523
+            "y": 124
           },
           "id": 462,
           "interval": "$agg",
@@ -15920,8 +15795,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -15935,14 +15808,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 530
+            "y": 131
           },
           "id": 496,
           "interval": "$agg",
@@ -16144,8 +16016,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -16159,14 +16029,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 537
+            "y": 138
           },
           "id": 497,
           "interval": "$agg",
@@ -16335,7 +16204,7 @@
         "x": 0,
         "y": 40
       },
-      "id": 447,
+      "id": 561,
       "panels": [
         {
           "datasource": {
@@ -16382,7 +16251,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -16397,14 +16265,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 545
+            "y": 41
           },
           "id": 448,
           "interval": "$agg",
@@ -16604,7 +16471,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -16619,14 +16485,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 552
+            "y": 48
           },
           "id": 449,
           "interval": "$agg",
@@ -16783,7 +16648,7 @@
         "x": 0,
         "y": 41
       },
-      "id": 498,
+      "id": 562,
       "panels": [
         {
           "datasource": {
@@ -16830,7 +16695,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -16845,14 +16709,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 560
+            "y": 42
           },
           "id": 499,
           "interval": "$agg",
@@ -17032,7 +16895,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -17047,14 +16909,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 567
+            "y": 49
           },
           "id": 500,
           "interval": "$agg",
@@ -17244,7 +17105,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -17259,14 +17119,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 574
+            "y": 56
           },
           "id": 501,
           "interval": "$agg",
@@ -17466,7 +17325,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -17481,14 +17339,13 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 581
+            "y": 63
           },
           "id": 502,
           "interval": "$agg",
@@ -17678,7 +17535,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -17693,14 +17549,13 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 588
+            "y": 70
           },
           "id": 503,
           "interval": "$agg",
@@ -17900,7 +17755,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -17915,14 +17769,13 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 595
+            "y": 77
           },
           "id": 535,
           "interval": "$agg",
@@ -18089,7 +17942,7 @@
         "x": 0,
         "y": 42
       },
-      "id": 504,
+      "id": 563,
       "panels": [
         {
           "datasource": {
@@ -18136,7 +17989,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -18150,14 +18002,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 603
+            "y": 43
           },
           "id": 505,
           "interval": "$agg",
@@ -18335,7 +18186,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -18349,14 +18199,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 610
+            "y": 50
           },
           "id": 506,
           "interval": "$agg",
@@ -18491,7 +18340,7 @@
         "x": 0,
         "y": 43
       },
-      "id": 438,
+      "id": 564,
       "panels": [
         {
           "datasource": {
@@ -18538,7 +18387,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -18553,14 +18401,13 @@
                 ]
               },
               "unit": "ms"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 618
+            "y": 44
           },
           "id": 439,
           "interval": "$agg",
@@ -18750,7 +18597,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -18765,14 +18611,13 @@
                 ]
               },
               "unit": "ms"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 625
+            "y": 51
           },
           "id": 507,
           "interval": "$agg",
@@ -18952,7 +18797,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -18967,14 +18811,13 @@
                 ]
               },
               "unit": "ms"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 632
+            "y": 58
           },
           "id": 508,
           "interval": "$agg",
@@ -19164,7 +19007,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -19179,14 +19021,13 @@
                 ]
               },
               "unit": "ms"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 639
+            "y": 65
           },
           "id": 509,
           "interval": "$agg",
@@ -19353,7 +19194,7 @@
         "x": 0,
         "y": 44
       },
-      "id": 510,
+      "id": 565,
       "panels": [
         {
           "datasource": {
@@ -19400,7 +19241,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -19414,14 +19254,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 647
+            "y": 45
           },
           "id": 511,
           "interval": "$agg",
@@ -19611,7 +19450,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -19625,14 +19463,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 654
+            "y": 52
           },
           "id": 512,
           "interval": "$agg",
@@ -19799,7 +19636,7 @@
         "x": 0,
         "y": 45
       },
-      "id": 441,
+      "id": 566,
       "panels": [
         {
           "datasource": {
@@ -19846,7 +19683,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -19861,14 +19697,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 662
+            "y": 46
           },
           "id": 442,
           "interval": "$agg",
@@ -20068,7 +19903,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -20083,14 +19917,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 669
+            "y": 53
           },
           "id": 443,
           "interval": "$agg",
@@ -20290,7 +20123,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -20305,14 +20137,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 676
+            "y": 60
           },
           "id": 463,
           "interval": "$agg",
@@ -20502,7 +20333,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -20517,14 +20347,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 683
+            "y": 67
           },
           "id": 513,
           "interval": "$agg",
@@ -20714,7 +20543,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -20729,14 +20557,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 690
+            "y": 74
           },
           "id": 514,
           "interval": "$agg",
@@ -20926,7 +20753,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -20941,14 +20767,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 697
+            "y": 81
           },
           "id": 515,
           "interval": "$agg",
@@ -21138,7 +20963,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -21153,14 +20977,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 704
+            "y": 88
           },
           "id": 516,
           "interval": "$agg",
@@ -21350,7 +21173,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -21365,14 +21187,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 711
+            "y": 95
           },
           "id": 517,
           "interval": "$agg",
@@ -21562,7 +21383,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -21577,14 +21397,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 718
+            "y": 102
           },
           "id": 518,
           "interval": "$agg",
@@ -21774,7 +21593,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -21789,14 +21607,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 725
+            "y": 109
           },
           "id": 519,
           "interval": "$agg",
@@ -21986,7 +21803,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -22001,14 +21817,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 732
+            "y": 116
           },
           "id": 520,
           "interval": "$agg",
@@ -22198,7 +22013,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -22213,14 +22027,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 739
+            "y": 123
           },
           "id": 521,
           "interval": "$agg",
@@ -22410,7 +22223,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -22425,14 +22237,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 746
+            "y": 130
           },
           "id": 536,
           "interval": "$agg",
@@ -22598,7 +22409,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -22613,14 +22423,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 753
+            "y": 137
           },
           "id": 546,
           "interval": "$agg",
@@ -22786,7 +22595,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -22801,14 +22609,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 760
+            "y": 144
           },
           "id": 545,
           "interval": "$agg",
@@ -22974,7 +22781,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -22989,14 +22795,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 767
+            "y": 151
           },
           "id": 537,
           "interval": "$agg",
@@ -23162,7 +22967,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -23177,14 +22981,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 774
+            "y": 158
           },
           "id": 538,
           "interval": "$agg",
@@ -23350,7 +23153,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -23365,14 +23167,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 781
+            "y": 165
           },
           "id": 539,
           "interval": "$agg",
@@ -23538,7 +23339,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -23553,14 +23353,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 788
+            "y": 172
           },
           "id": 554,
           "interval": "$agg",
@@ -23726,7 +23525,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -23741,14 +23539,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 795
+            "y": 179
           },
           "id": 540,
           "interval": "$agg",
@@ -23914,7 +23711,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -23929,14 +23725,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 802
+            "y": 186
           },
           "id": 541,
           "interval": "$agg",
@@ -24102,7 +23897,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -24117,14 +23911,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 809
+            "y": 193
           },
           "id": 543,
           "interval": "$agg",
@@ -24290,7 +24083,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -24305,14 +24097,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 816
+            "y": 200
           },
           "id": 542,
           "interval": "$agg",
@@ -24478,7 +24269,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -24493,14 +24283,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 823
+            "y": 207
           },
           "id": 548,
           "interval": "$agg",
@@ -24666,7 +24455,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -24681,14 +24469,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 830
+            "y": 214
           },
           "id": 547,
           "interval": "$agg",
@@ -24854,7 +24641,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -24869,14 +24655,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 837
+            "y": 221
           },
           "id": 555,
           "interval": "$agg",
@@ -25039,7 +24824,7 @@
         "x": 0,
         "y": 46
       },
-      "id": 549,
+      "id": 567,
       "panels": [
         {
           "datasource": {
@@ -25086,8 +24871,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -25102,14 +24885,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 845
+            "y": 47
           },
           "id": 550,
           "interval": "$agg",
@@ -25297,8 +25079,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -25313,14 +25093,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 852
+            "y": 54
           },
           "id": 551,
           "interval": "$agg",
@@ -25518,7 +25297,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -25533,14 +25311,13 @@
                 ]
               },
               "unit": "ms"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 859
+            "y": 61
           },
           "id": 553,
           "interval": "$agg",
@@ -25740,8 +25517,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -25756,14 +25531,13 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 866
+            "y": 68
           },
           "id": 552,
           "interval": "$agg",
@@ -25926,10 +25700,11 @@
         "x": 0,
         "y": 47
       },
-      "id": 392,
+      "id": 568,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI indicates SgNB initiated abnormal Release Ratio fOR pm_data.SCG split bearers, excluding the relases caused by X2 reset. MeNB initiated releases are considered as normal releases.\nRLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
@@ -25972,7 +25747,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -25986,14 +25760,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 874
+            "y": 48
           },
           "id": 393,
           "interval": "$agg",
@@ -26038,6 +25811,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00009",
@@ -26219,7 +25996,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -26233,14 +26009,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 881
+            "y": 55
           },
           "id": 529,
           "interval": "$agg",
@@ -26480,7 +26255,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -26494,14 +26268,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 888
+            "y": 62
           },
           "id": 475,
           "interval": "$agg",
@@ -26741,7 +26514,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -26755,14 +26527,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 895
+            "y": 69
           },
           "id": 530,
           "interval": "$agg",
@@ -26969,6 +26740,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the total number of releases after RACH success, excluding the releases caused by X2 reset. It includes SgNB iniated and MeNB initiated releases.\nRLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
@@ -27011,7 +26783,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -27025,14 +26796,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 902
+            "y": 76
           },
           "id": 394,
           "interval": "$agg",
@@ -27077,6 +26847,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00007",
@@ -27238,7 +27012,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -27252,14 +27025,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 909
+            "y": 83
           },
           "id": 395,
           "interval": "$agg",
@@ -27489,7 +27261,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -27503,14 +27274,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 916
+            "y": 90
           },
           "id": 531,
           "interval": "$agg",
@@ -27750,7 +27520,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -27764,14 +27533,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 923
+            "y": 97
           },
           "id": 396,
           "interval": "$agg",
@@ -27991,7 +27759,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -28005,14 +27772,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 930
+            "y": 104
           },
           "id": 397,
           "interval": "$agg",
@@ -28232,7 +27998,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -28246,14 +28011,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 937
+            "y": 111
           },
           "id": 464,
           "interval": "$agg",
@@ -28440,10 +28204,11 @@
         "x": 0,
         "y": 48
       },
-      "id": 386,
+      "id": 569,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE relases initiated by the UE with root cause Random Access Problem, among all releases excluding X2 reset. In denominator, all releases are considered.",
@@ -28486,7 +28251,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -28500,14 +28264,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 945
+            "y": 49
           },
           "id": 400,
           "interval": "$agg",
@@ -28552,6 +28315,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00009",
@@ -28660,6 +28427,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UE releases due to RLF initiated by UE with cause Random Access Problem.",
@@ -28702,7 +28470,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -28716,14 +28483,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 952
+            "y": 56
           },
           "id": 388,
           "interval": "$agg",
@@ -28768,6 +28534,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00009",
@@ -28846,6 +28616,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by UE with cause SCG change failure, among all releases excluding X2 reset. In denominator, all releases are considered.",
@@ -28888,7 +28659,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -28902,14 +28672,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 959
+            "y": 63
           },
           "id": 389,
           "interval": "$agg",
@@ -28954,6 +28723,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00012",
@@ -29062,6 +28835,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UE releases due to RLF initiated by UE with cause SCG change failure.",
@@ -29104,7 +28878,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -29118,14 +28891,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 966
+            "y": 70
           },
           "id": 390,
           "interval": "$agg",
@@ -29170,6 +28942,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00012",
@@ -29258,10 +29034,11 @@
         "x": 0,
         "y": 49
       },
-      "id": 372,
+      "id": 570,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by the gNB, among all releases excluding X2 reset. In denominator, only releases after successful RACH procedure are considered.",
@@ -29304,7 +29081,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -29318,14 +29094,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 974
+            "y": 50
           },
           "id": 356,
           "interval": "$agg",
@@ -29370,6 +29145,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00004",
@@ -29498,6 +29277,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UE releases due to RLF initiated by the gNB.",
@@ -29540,7 +29320,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -29554,14 +29333,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 981
+            "y": 57
           },
           "id": 374,
           "interval": "$agg",
@@ -29606,6 +29384,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00004",
@@ -29727,7 +29509,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -29741,14 +29522,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 988
+            "y": 64
           },
           "id": 375,
           "interval": "$agg",
@@ -29925,6 +29705,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UE Context Modification Required received due to rl-failure-rlc.\n",
@@ -29967,7 +29748,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -29981,14 +29761,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 995
+            "y": 71
           },
           "id": 376,
           "interval": "$agg",
@@ -30033,6 +29812,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NF1CC_M55113C01006",
@@ -30111,6 +29894,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by UE with cause T310 expiry, among all releases excluding X2 reset. In denominator, only releases after successful RACH procedure are considered.",
@@ -30153,7 +29937,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -30167,14 +29950,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1002
+            "y": 78
           },
           "id": 377,
           "interval": "$agg",
@@ -30219,6 +30001,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00008",
@@ -30347,6 +30133,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UE releases due to RLF initiated by UE with cause T310 expiry.",
@@ -30389,7 +30176,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -30403,14 +30189,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1009
+            "y": 85
           },
           "id": 378,
           "interval": "$agg",
@@ -30455,6 +30240,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00008",
@@ -30533,6 +30322,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by UE with cause cause maximum RLC retransmission, among all releases excluding X2 reset. In denominator, only releases after successful RACH procedure are considered.",
@@ -30575,7 +30365,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -30589,14 +30378,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1016
+            "y": 92
           },
           "id": 379,
           "interval": "$agg",
@@ -30641,6 +30429,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00010",
@@ -30769,6 +30561,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UE releases due to RLF initiated by UE with cause cause maximum RLC retransmission.",
@@ -30811,7 +30604,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -30825,14 +30617,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1023
+            "y": 99
           },
           "id": 380,
           "interval": "$agg",
@@ -30877,6 +30668,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00010",
@@ -30998,7 +30793,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -31012,14 +30806,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1030
+            "y": 106
           },
           "id": 381,
           "interval": "$agg",
@@ -31196,6 +30989,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UE releases due to RLF initiated by UE with cause SRB3 integrity failure.",
@@ -31238,7 +31032,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -31252,14 +31045,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1037
+            "y": 113
           },
           "id": 382,
           "interval": "$agg",
@@ -31304,6 +31096,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00011",
@@ -31382,6 +31178,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by UE with cause SCG reconfig failure, among all releases excluding X2 reset. In denominator, only releases after successful RACH procedure are considered.",
@@ -31424,7 +31221,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -31438,14 +31234,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1044
+            "y": 120
           },
           "id": 383,
           "interval": "$agg",
@@ -31490,6 +31285,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00013",
@@ -31618,6 +31417,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UE releases due to RLF initiated by UE with cause SCG reconfig failure.",
@@ -31660,7 +31460,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -31674,14 +31473,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1051
+            "y": 127
           },
           "id": 384,
           "interval": "$agg",
@@ -31726,6 +31524,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00013",
@@ -31804,6 +31606,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of releases caused by radio link failure initiated gNB with the root cause DL HARQ OR pm_data.CSI reporting.",
@@ -31846,7 +31649,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -31860,14 +31662,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1058
+            "y": 134
           },
           "id": 402,
           "interval": "$agg",
@@ -31912,6 +31713,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00014",
@@ -32040,6 +31845,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UEs released due to radio link failure initiated gNB with the root cause DL HARQ OR pm_data.CSI reporting.",
@@ -32082,7 +31888,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -32096,14 +31901,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1065
+            "y": 141
           },
           "id": 403,
           "interval": "$agg",
@@ -32148,6 +31952,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00014",
@@ -32226,6 +32034,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of releases caused by radio link failure initiated gNB with the root cause Maximum RLC retransmission.",
@@ -32268,7 +32077,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -32282,14 +32090,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1072
+            "y": 148
           },
           "id": 404,
           "interval": "$agg",
@@ -32334,6 +32141,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00015",
@@ -32462,6 +32273,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UEs released due to radio link failure initiated gNB with the root cause Maximum RLC retransmission.",
@@ -32504,7 +32316,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -32518,14 +32329,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1079
+            "y": 155
           },
           "id": 405,
           "interval": "$agg",
@@ -32570,6 +32380,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00015",
@@ -32691,7 +32505,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -32705,14 +32518,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1086
+            "y": 162
           },
           "id": 522,
           "interval": "$agg",
@@ -32899,10 +32711,11 @@
         "x": 0,
         "y": 50
       },
-      "id": 362,
+      "id": 571,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of SgNB releases initiated by LTE eNB, among all releases excluding X2 reset. RLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
@@ -32945,7 +32758,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -32959,14 +32771,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1094
+            "y": 51
           },
           "id": 373,
           "interval": "$agg",
@@ -33011,6 +32822,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00005",
@@ -33129,6 +32944,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of SgNB release procedures initiated by MeNB.",
@@ -33171,7 +32987,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -33185,14 +33000,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1101
+            "y": 58
           },
           "id": 366,
           "interval": "$agg",
@@ -33237,6 +33051,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00005",
@@ -33315,6 +33133,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of SgNB releases initiated by SgNB due to UE inactivity, among all releases excluding X2 reset.\nRLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
@@ -33357,7 +33176,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -33371,14 +33189,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1108
+            "y": 65
           },
           "id": 367,
           "interval": "$agg",
@@ -33423,6 +33240,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C02001",
@@ -33549,6 +33370,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of releases required by the SgNB due to user inactivity.\n",
@@ -33591,7 +33413,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -33605,14 +33426,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1115
+            "y": 72
           },
           "id": 368,
           "interval": "$agg",
@@ -33657,6 +33477,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C02001",
@@ -33735,6 +33559,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of SgNB releases initiated by SgNB due to A2 measurement, among all releases excluding X2 reset.\nRLF_INITIATED_UE_RACH_FAIL and RLF_INITIATED_UE_SCG_CHGE_FAIL are excluded as they happen before RACH success.",
@@ -33777,7 +33602,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -33791,14 +33615,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1122
+            "y": 79
           },
           "id": 369,
           "interval": "$agg",
@@ -33843,6 +33666,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C05001",
@@ -33969,6 +33796,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number SgNB releases initated due to A2 measurement",
@@ -34011,7 +33839,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -34025,14 +33852,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1129
+            "y": 86
           },
           "id": 370,
           "interval": "$agg",
@@ -34077,6 +33903,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C05001",
@@ -34155,6 +33985,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of SgNB initiated releases that were interrupted by the MeNB sending SGNB RELEASE REQUEST.",
@@ -34197,7 +34028,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -34211,14 +34041,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1136
+            "y": 93
           },
           "id": 401,
           "interval": "$agg",
@@ -34263,6 +34092,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00018",
@@ -34361,10 +34194,11 @@
         "x": 0,
         "y": 51
       },
-      "id": 197,
+      "id": 572,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UE releases due to abnormal reasons (triggered by PDCP Count Rollover). ",
@@ -34407,8 +34241,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -34422,14 +34254,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1144
+            "y": 52
           },
           "id": 325,
           "interval": "$agg",
@@ -34474,6 +34305,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C01001",
@@ -34554,6 +34389,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UEs released due to radio link failure.",
@@ -34596,8 +34432,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -34611,14 +34445,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1151
+            "y": 59
           },
           "id": 327,
           "interval": "$agg",
@@ -34663,6 +34496,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00008",
@@ -34866,8 +34703,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -34881,14 +34716,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1158
+            "y": 66
           },
           "id": 532,
           "interval": "$agg",
@@ -35117,7 +34951,7 @@
         "x": 0,
         "y": 52
       },
-      "id": 205,
+      "id": 573,
       "panels": [
         {
           "datasource": {
@@ -35164,8 +34998,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -35180,14 +35012,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1166
+            "y": 53
           },
           "id": 301,
           "interval": "$agg",
@@ -35471,8 +35302,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -35487,14 +35316,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1173
+            "y": 60
           },
           "id": 302,
           "interval": "$agg",
@@ -35744,8 +35572,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -35760,14 +35586,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1180
+            "y": 67
           },
           "id": 303,
           "interval": "$agg",
@@ -36178,8 +36003,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -36194,14 +36017,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1187
+            "y": 74
           },
           "id": 304,
           "interval": "$agg",
@@ -36505,6 +36327,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of releases required by the SgNB due to user inactivity. ",
@@ -36547,8 +36370,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -36563,14 +36384,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1194
+            "y": 81
           },
           "id": 305,
           "interval": "$agg",
@@ -36615,6 +36435,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C02001",
@@ -36695,6 +36519,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of the SgNB initiated SgNB Release due to user Inactivity. ",
@@ -36737,8 +36562,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -36753,14 +36576,13 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1201
+            "y": 88
           },
           "id": 306,
           "interval": "$agg",
@@ -36805,6 +36627,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C02001",
@@ -36907,6 +36733,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of SgNB release procedures initiated by MeNB. ",
@@ -36949,8 +36776,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -36965,14 +36790,13 @@
                 ]
               },
               "unit": "short"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1208
+            "y": 95
           },
           "id": 307,
           "interval": "$agg",
@@ -37017,6 +36841,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00005",
@@ -37097,6 +36925,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of the SgNB release procedure initiated by MeNB. ",
@@ -37139,8 +36968,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -37154,14 +36981,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1215
+            "y": 102
           },
           "id": 308,
           "interval": "$agg",
@@ -37206,6 +37032,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00005",
@@ -37308,6 +37138,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the SgNB release requests initiated by SgNB. ",
@@ -37350,8 +37181,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -37365,14 +37194,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1222
+            "y": 109
           },
           "id": 309,
           "interval": "$agg",
@@ -37417,6 +37245,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00007",
@@ -37497,6 +37329,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of SgNB release requests initiated by SgNB that received the confirmation message. ",
@@ -37539,8 +37372,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -37554,14 +37385,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1229
+            "y": 116
           },
           "id": 310,
           "interval": "$agg",
@@ -37606,6 +37436,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00007",
@@ -37708,6 +37542,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the failure ratio of the SgNB release procedure initiated by MeNB when SgNB responds to MeNB with SGNB RELEASE REQUEST REJECT. ",
@@ -37750,8 +37585,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -37765,14 +37598,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1236
+            "y": 123
           },
           "id": 311,
           "interval": "$agg",
@@ -37819,6 +37651,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:781",
@@ -37942,6 +37778,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of not received \"SgNB Release Confirmed\" messages. ",
@@ -37984,8 +37821,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -37999,14 +37834,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1243
+            "y": 130
           },
           "id": 312,
           "interval": "$agg",
@@ -38051,6 +37885,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00015",
@@ -38131,6 +37969,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of outgoing SN STATUS TRANSFER sent to LTE eNB. ",
@@ -38173,8 +38012,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -38188,14 +38025,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1250
+            "y": 137
           },
           "id": 313,
           "interval": "$agg",
@@ -38240,6 +38076,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00009",
@@ -38320,6 +38160,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the percentage of SgNB initiated releases due to A2 measurement among SgNB initated SgNB releases. ",
@@ -38362,8 +38203,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -38377,14 +38216,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1257
+            "y": 144
           },
           "id": 314,
           "interval": "$agg",
@@ -38431,6 +38269,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:879",
@@ -38554,6 +38396,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of the procedure of SgNB release when it is started due to A2 measurement. ",
@@ -38596,8 +38439,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -38611,14 +38452,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1264
+            "y": 151
           },
           "id": 316,
           "interval": "$agg",
@@ -38663,6 +38503,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C05002",
@@ -38765,6 +38609,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number SgNB releases initated due to A2 measurement ",
@@ -38807,8 +38652,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -38822,14 +38665,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1271
+            "y": 158
           },
           "id": 317,
           "interval": "$agg",
@@ -38874,6 +38716,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C05001",
@@ -38974,10 +38820,11 @@
         "x": 0,
         "y": 53
       },
-      "id": 203,
+      "id": 574,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of the SgNB release procedure inititiated due to Ue lost. ",
@@ -39020,8 +38867,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -39035,14 +38880,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1279
+            "y": 54
           },
           "id": 318,
           "interval": "$agg",
@@ -39087,6 +38931,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00502",
@@ -39189,6 +39037,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of requests fOR pm_data.SgNB release procedure inititiated due to Ue lost. ",
@@ -39231,8 +39080,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -39246,14 +39093,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1286
+            "y": 61
           },
           "id": 319,
           "interval": "$agg",
@@ -39298,6 +39144,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00502",
@@ -39388,10 +39238,11 @@
         "x": 0,
         "y": 54
       },
-      "id": 201,
+      "id": 575,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the retainability fOR pm_data.stand alone UEs (connected to 5G Core) calculated as the ratio of UE context releases inititated by 5G RAN due to inactivity plus 5G core initated releases among all UE releases (5G RAN and 5G Core initated).",
@@ -39434,8 +39285,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -39449,14 +39298,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1294
+            "y": 55
           },
           "id": 320,
           "interval": "$agg",
@@ -39501,6 +39349,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNGCC_M55125C00501",
@@ -39672,8 +39524,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -39687,14 +39537,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1301
+            "y": 62
           },
           "id": 321,
           "interval": "$agg",
@@ -39821,6 +39670,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of inter RAT handover preparations that cause a UE context release due to TNGRELOCoverall timer expiry",
@@ -39863,7 +39713,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -39877,14 +39726,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1308
+            "y": 69
           },
           "id": 387,
           "interval": "$agg",
@@ -39929,6 +39777,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNGCC_M55125C02007",
@@ -40060,7 +39912,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -40074,14 +39925,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1315
+            "y": 76
           },
           "id": 444,
           "interval": "$agg",
@@ -40261,7 +40111,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -40275,14 +40124,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1322
+            "y": 83
           },
           "id": 465,
           "interval": "$agg",
@@ -40462,7 +40310,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -40476,14 +40323,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1329
+            "y": 90
           },
           "id": 523,
           "interval": "$agg",
@@ -40663,7 +40509,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -40677,14 +40522,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1336
+            "y": 97
           },
           "id": 524,
           "interval": "$agg",
@@ -40854,7 +40698,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -40868,14 +40711,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1343
+            "y": 104
           },
           "id": 525,
           "interval": "$agg",
@@ -41045,7 +40887,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -41059,14 +40900,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1350
+            "y": 111
           },
           "id": 526,
           "interval": "$agg",
@@ -41236,7 +41076,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -41250,14 +41089,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1357
+            "y": 118
           },
           "id": 527,
           "interval": "$agg",
@@ -41424,10 +41262,11 @@
         "x": 0,
         "y": 55
       },
-      "id": 199,
+      "id": 576,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of the UE context release procedure when initiated by the gNB-CU. The release is considered successful when gNB-CU receives the UE CONTEXT RELEASE COMPLETE message.",
@@ -41470,8 +41309,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -41485,14 +41322,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1365
+            "y": 56
           },
           "id": 322,
           "interval": "$agg",
@@ -41537,6 +41373,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NF1CC_M55113C01009",
@@ -41639,6 +41479,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UE Context Release Command messages sent from gNB-CU. ",
@@ -41681,8 +41522,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -41696,14 +41535,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1372
+            "y": 63
           },
           "id": 323,
           "interval": "$agg",
@@ -41748,6 +41586,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NF1CC_M55113C01009",
@@ -41828,6 +41670,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of UE context release requests initiated by the gNB-DU. ",
@@ -41870,8 +41713,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -41885,14 +41726,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1379
+            "y": 70
           },
           "id": 324,
           "interval": "$agg",
@@ -41937,6 +41777,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NF1CC_M55113C01008",
@@ -42027,10 +41871,11 @@
         "x": 0,
         "y": 56
       },
-      "id": 195,
+      "id": 577,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by the gNB, among all releases excluding X2 reset. In denominator, only releases after successful RACH procedure are considered.",
@@ -42073,8 +41918,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -42088,14 +41931,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1387
+            "y": 57
           },
           "id": 328,
           "interval": "$agg",
@@ -42142,6 +41984,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:804",
@@ -42307,6 +42153,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by UE with cause T310 expiry, among all releases excluding X2 reset. In denominator, only releases after successful RACH procedure are considered.",
@@ -42349,8 +42196,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -42364,14 +42209,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1394
+            "y": 64
           },
           "id": 346,
           "interval": "$agg",
@@ -42418,6 +42262,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:804",
@@ -42583,6 +42431,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE relases initiated by the UE with root cause Random Access Problem, among all releases excluding X2 reset. In denominator, all releases are considered.",
@@ -42625,8 +42474,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -42640,14 +42487,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1401
+            "y": 71
           },
           "id": 330,
           "interval": "$agg",
@@ -42694,6 +42540,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:1618",
@@ -42821,6 +42671,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by UE with cause cause maximum RLC retransmission, among all releases excluding X2 reset. In denominator, only releases after successful RACH procedure are considered.",
@@ -42863,8 +42714,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -42878,14 +42727,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1408
+            "y": 78
           },
           "id": 347,
           "interval": "$agg",
@@ -42932,6 +42780,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:804",
@@ -43097,6 +42949,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by UE with cause SCG change failure, among all releases excluding X2 reset. In denominator, all releases are considered.  ",
@@ -43139,8 +42992,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -43154,14 +43005,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1415
+            "y": 85
           },
           "id": 348,
           "interval": "$agg",
@@ -43208,6 +43058,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:1618",
@@ -43335,6 +43189,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by UE with cause SCG reconfig failure, among all releases excluding X2 reset. In denominator, only releases after successful RACH procedure are considered.",
@@ -43377,8 +43232,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -43392,14 +43245,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1422
+            "y": 92
           },
           "id": 349,
           "interval": "$agg",
@@ -43446,6 +43298,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:804",
@@ -43611,6 +43467,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of UE releases due to RLF initiated by UE with cause SRB3 integrity failure, among all releases excluding X2 reset. In denominator, only releases after successful RACH procedure are considered.",
@@ -43653,8 +43510,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -43668,14 +43523,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1429
+            "y": 99
           },
           "id": 350,
           "interval": "$agg",
@@ -43722,6 +43576,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:804",
@@ -43887,6 +43745,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the fraction of UE relases due to radio link failure initiated by UE in case PSCell Change could not be triggered because gNB received faulty measurements . ",
@@ -43929,8 +43788,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -43944,14 +43801,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1436
+            "y": 106
           },
           "id": 335,
           "interval": "$agg",
@@ -43996,6 +43852,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00004",
@@ -44182,6 +44042,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the fraction of UE relases due to radio link failure initiated by UE in case PSCell Change was triggered but could not be completed successfully.\n",
@@ -44224,8 +44085,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -44239,14 +44098,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1443
+            "y": 113
           },
           "id": 336,
           "interval": "$agg",
@@ -44293,6 +44151,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "$$hashKey": "object:3731",
@@ -44486,10 +44348,11 @@
         "x": 0,
         "y": 57
       },
-      "id": 193,
+      "id": 578,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the percentage of successfull recovery procedure with PS-Cell change after radio link failure initiated by UE. ",
@@ -44532,8 +44395,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -44547,14 +44408,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1451
+            "y": 58
           },
           "id": 337,
           "interval": "$agg",
@@ -44599,6 +44459,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNSAUE_M55116C00007",
@@ -44723,10 +44587,11 @@
         "x": 0,
         "y": 58
       },
-      "id": 191,
+      "id": 579,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of the NGAP Path Switch Request procedure. The calculation considers that in all attempts there is a response from AMF. ",
@@ -44769,8 +44634,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -44784,14 +44647,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1459
+            "y": 59
           },
           "id": 338,
           "interval": "$agg",
@@ -44836,6 +44698,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNGCC_M55125C01501",
@@ -44938,6 +44804,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of NGAP Path Switch Request procedures calculated from the number of responses received from AMF. ",
@@ -44980,8 +44847,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -44995,14 +44860,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1466
+            "y": 66
           },
           "id": 339,
           "interval": "$agg",
@@ -45047,6 +44911,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNGCC_M55125C01501",
@@ -45159,10 +45027,11 @@
         "x": 0,
         "y": 59
       },
-      "id": 189,
+      "id": 580,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the total number of RRC Connection Reconfiguration attempts fOR pm_data.UL data split mode reconfiguration towards LTE due to measured degradation in UL NR quality fOR pm_data.NSA. ",
@@ -45205,8 +45074,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -45220,14 +45087,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1474
+            "y": 60
           },
           "id": 340,
           "interval": "$agg",
@@ -45272,6 +45138,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NRBC_M55146C01001",
@@ -45352,6 +45222,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of RRC Reconfiguration fOR pm_data.UL data split mode reconfiguration from LTE+NR OR pm_data.NR only mode to LTE only mode due to measured degradation in UL NR quality fOR pm_data.NSA 3X user. ",
@@ -45394,8 +45265,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -45409,14 +45278,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1481
+            "y": 67
           },
           "id": 341,
           "interval": "$agg",
@@ -45461,6 +45329,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NRBC_M55146C01001",
@@ -45563,6 +45435,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of RRC Reconfiguration attempts fOR pm_data.UL data split mode reconfiguration from LTE only mode to LTE+NR OR pm_data.NR only mode due to measured improvement in UL NR quality fOR pm_data.NSA 3x user.\n",
@@ -45605,8 +45478,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -45620,14 +45491,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1488
+            "y": 74
           },
           "id": 342,
           "interval": "$agg",
@@ -45672,6 +45542,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NRBC_M55146C01003",
@@ -45752,6 +45626,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of RRC Reconfiguration fOR pm_data.UL data split mode reconfiguration from LTE only mode to LTE+NR OR pm_data.NR only mode due to measured improvement UL NR quality fOR pm_data.NSA 3x user.\n",
@@ -45794,8 +45669,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -45809,14 +45682,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1495
+            "y": 81
           },
           "id": 343,
           "interval": "$agg",
@@ -45861,6 +45733,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NRBC_M55146C01003",
@@ -45973,10 +45849,11 @@
         "x": 0,
         "y": 60
       },
-      "id": 352,
+      "id": 581,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of the SgNB release procedure inititiated due to Ue lost.",
@@ -46019,7 +45896,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -46033,14 +45909,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1503
+            "y": 61
           },
           "id": 365,
           "interval": "$agg",
@@ -46085,6 +45960,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00501",
@@ -46173,6 +46052,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of requests fOR pm_data.SgNB release procedure inititiated due to Ue lost.",
@@ -46215,7 +46095,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -46229,14 +46108,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1510
+            "y": 68
           },
           "id": 354,
           "interval": "$agg",
@@ -46281,6 +46159,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00502",
@@ -46359,6 +46241,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the success ratio of the SgNB release procedure initiated by MeNB.",
@@ -46401,7 +46284,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -46415,14 +46297,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1517
+            "y": 75
           },
           "id": 353,
           "interval": "$agg",
@@ -46467,6 +46348,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00014",
@@ -46555,6 +46440,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the SgNB release requests initiated by SgNB.",
@@ -46597,7 +46483,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -46611,14 +46496,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1524
+            "y": 82
           },
           "id": 355,
           "interval": "$agg",
@@ -46663,6 +46547,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00007",
@@ -46741,6 +46629,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of SgNB release requests initiated by SgNB that received the confirmation message.",
@@ -46783,7 +46672,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -46797,14 +46685,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1531
+            "y": 89
           },
           "id": 357,
           "interval": "$agg",
@@ -46849,6 +46736,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00008",
@@ -46937,6 +46828,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the failure ratio of the SgNB release procedure initiated by MeNB when SgNB responds to MeNB with SGNB RELEASE REQUEST REJECT.",
@@ -46979,7 +46871,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -46993,14 +46884,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1538
+            "y": 96
           },
           "id": 358,
           "interval": "$agg",
@@ -47045,6 +46935,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00017",
@@ -47133,6 +47027,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of not received \"SgNB Release Confirmed\" messages.",
@@ -47175,7 +47070,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -47189,14 +47083,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1545
+            "y": 103
           },
           "id": 359,
           "interval": "$agg",
@@ -47241,6 +47134,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00015",
@@ -47319,6 +47216,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of outgoing SN STATUS TRANSFER sent to LTE eNB.",
@@ -47361,7 +47259,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -47375,14 +47272,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1552
+            "y": 110
           },
           "id": 360,
           "interval": "$agg",
@@ -47427,6 +47323,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NX2CC_M55112C00009",
@@ -47515,10 +47415,11 @@
         "x": 0,
         "y": 61
       },
-      "id": 187,
+      "id": 582,
       "panels": [
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the number of NGAP: PDU SESSION RESOURCE RELEASE COMMAND messages received at gNB-CU. ",
@@ -47561,8 +47462,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -47576,14 +47475,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1560
+            "y": 62
           },
           "id": 344,
           "interval": "$agg",
@@ -47628,6 +47526,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNGCC_M55125C02507",
@@ -47708,6 +47610,7 @@
         },
         {
           "datasource": {
+            "type": "datasource",
             "uid": "${datasource}"
           },
           "description": "This KPI shows the ratio of NGAP: PDU SESSION RESOURCE RELEASE RESPONSE messages sent as response to NGAP: PDU SESSION RESOURCE RELEASE COMMAND messages received. ",
@@ -47750,8 +47653,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -47765,14 +47666,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1567
+            "y": 69
           },
           "id": 345,
           "interval": "$agg",
@@ -47817,6 +47717,10 @@
                   "type": "date_histogram"
                 }
               ],
+              "datasource": {
+                "type": "datasource",
+                "uid": "${datasource}"
+              },
               "metrics": [
                 {
                   "field": "pm_data.NNGCC_M55125C02507",
@@ -47929,7 +47833,7 @@
         "x": 0,
         "y": 62
       },
-      "id": 467,
+      "id": 583,
       "panels": [
         {
           "datasource": {
@@ -47976,8 +47880,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -47991,14 +47893,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1575
+            "y": 63
           },
           "id": 468,
           "interval": "$agg",
@@ -48210,8 +48111,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -48225,14 +48124,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1582
+            "y": 70
           },
           "id": 469,
           "interval": "$agg",
@@ -48444,8 +48342,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -48459,14 +48355,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1589
+            "y": 77
           },
           "id": 470,
           "interval": "$agg",
@@ -48678,8 +48573,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -48693,14 +48586,13 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1596
+            "y": 84
           },
           "id": 471,
           "interval": "$agg",
@@ -48881,6 +48773,7 @@
   "templating": {
     "list": [
       {
+        "allowCustomValue": true,
         "current": {
           "text": "dac-radio-5g-pm",
           "value": "dac-radio-5g-pm"
@@ -48888,14 +48781,17 @@
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
+        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-5g-pm",
+        "skipUrlSync": false,
         "type": "datasource"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "MOSS_SA_NHG",
           "value": "MOSS_SA_NHG"
@@ -48905,13 +48801,18 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
+        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
@@ -48925,16 +48826,22 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
+        "hide": 0,
         "includeAll": true,
         "label": "Slice ID",
+        "multi": false,
         "name": "slice_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "All",
           "value": [
@@ -48946,6 +48853,7 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data.pm_data.pm_data_source.dn:*NRBTS*)\", \"size\": 10000}",
+        "hide": 0,
         "includeAll": true,
         "label": "Access Point ID",
         "multi": true,
@@ -48954,15 +48862,21 @@
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data.pm_data.pm_data_source.dn:*NRBTS*)\", \"size\": 10000}",
         "refresh": 2,
         "regex": ".*MRBTS-(\\d+).*",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "Cell",
           "value": "pm_data_source.dn.keyword"
         },
+        "hide": 0,
         "includeAll": false,
         "label": "Object Level",
+        "multi": false,
         "name": "groupby",
         "options": [
           {
@@ -48977,16 +48891,21 @@
           }
         ],
         "query": "gNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
-        "type": "custom"
+        "skipUrlSync": false,
+        "type": "custom",
+        "valuesFormat": "csv"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "15m",
           "value": "15m"
         },
         "description": "The interval is used to aggregate the metrics over time.",
+        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
+        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -49041,7 +48960,9 @@
           }
         ],
         "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
-        "type": "custom"
+        "skipUrlSync": false,
+        "type": "custom",
+        "valuesFormat": "csv"
       }
     ]
   },
@@ -49062,7 +48983,7 @@
       "1d"
     ]
   },
-  "timezone": "",
+  "timezone": "browser",
   "title": "Nokia DAC Radio 5G PM KPI - Retainability 5G003 (25R3)",
   "uid": "radio5gret-25r3",
   "version": 1

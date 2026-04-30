@@ -65,7 +65,7 @@ cp ./services_template/elasticsearchplugin.service /etc/systemd/system/.
 
 if [ -x "$(command -v sestatus)" ] && [ $(sestatus | cut -d':' -f 2 | awk '{print $1}' | head -1) == "enabled" ] ; then
 	echo "Disabling selinux"
-  chcon -h system_u:object_r:bin_t:s0 ./collector/bin/collector
+	chcon -h system_u:object_r:bin_t:s0 ./collector/bin/collector
 	chcon -h system_u:object_r:bin_t:s0 ./plugin/bin/elasticsearchplugin
 fi
 
@@ -77,7 +77,7 @@ cp ./grafana_data/dashboards/*.json /etc/grafana/dashboards/.
 chmod 775 /etc/grafana/provisioning/datasources/*
 chmod 775 /etc/grafana/provisioning/dashboards/*
 chmod 775 /etc/grafana/dashboards/*
-grafana-cli plugins install grafana-opensearch-datasource
+grafana cli plugins install grafana-opensearch-datasource
 
 systemctl daemon-reload
 systemctl enable collector.service

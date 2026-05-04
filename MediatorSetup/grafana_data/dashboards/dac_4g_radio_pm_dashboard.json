@@ -4,7 +4,7 @@
       {
         "builtIn": 1,
         "datasource": {
-          "type": "datasource",
+          "type": "grafana",
           "uid": "grafana"
         },
         "enable": true,
@@ -28,19 +28,27 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio4G"
       ],
+      "targetBlank": false,
       "title": "Radio 4G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio5G"
       ],
+      "targetBlank": false,
       "title": "Radio 5G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
@@ -100,6 +108,7 @@
       "url": ""
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -111,15 +120,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
           "max": 100,
           "min": 0,
           "thresholds": {
@@ -136,8 +136,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 6,
@@ -148,6 +147,14 @@
       "id": 96,
       "interval": "15m",
       "options": {
+        "barShape": "flat",
+        "barWidthFactor": 0.5,
+        "effects": {
+          "barGlow": false,
+          "centerGlow": false,
+          "gradient": false
+        },
+        "endpointMarker": "point",
         "minVizHeight": 75,
         "minVizWidth": 75,
         "orientation": "horizontal",
@@ -158,11 +165,16 @@
           "fields": "",
           "values": false
         },
+        "segmentCount": 1,
+        "segmentSpacing": 0.3,
+        "shape": "gauge",
         "showThresholdLabels": false,
         "showThresholdMarkers": true,
-        "sizing": "auto"
+        "sizing": "auto",
+        "sparkline": false,
+        "textMode": "auto"
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -177,6 +189,10 @@
               "type": "date_histogram"
             }
           ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "${datasource}"
+          },
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Avail_M8020C3",
@@ -246,7 +262,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -260,8 +275,7 @@
               }
             ]
           }
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 3,
@@ -287,7 +301,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "",
@@ -369,8 +383,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -385,8 +397,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 6,
@@ -396,6 +407,10 @@
       },
       "id": 102,
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -409,7 +424,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "Avg PDCP Throughput UL",
@@ -524,8 +539,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -540,8 +553,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 6,
@@ -551,6 +563,10 @@
       },
       "id": 106,
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -564,7 +580,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "Avg PDCP Throughput DL",
@@ -644,7 +660,6 @@
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean UL PDCP traffic throughput.",
       "fieldConfig": {
         "defaults": {
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -655,8 +670,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 3,
@@ -682,7 +696,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "Avg PDCP Throughput UL",
@@ -743,15 +757,6 @@
             "mode": "thresholds"
           },
           "displayName": "",
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "0",
-              "type": 1,
-              "value": "null"
-            }
-          ],
           "max": 2500,
           "min": 0,
           "thresholds": {
@@ -772,8 +777,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 6,
@@ -784,6 +788,14 @@
       "id": 110,
       "interval": "15m",
       "options": {
+        "barShape": "flat",
+        "barWidthFactor": 0.5,
+        "effects": {
+          "barGlow": false,
+          "centerGlow": false,
+          "gradient": false
+        },
+        "endpointMarker": "point",
         "minVizHeight": 75,
         "minVizWidth": 75,
         "orientation": "horizontal",
@@ -794,13 +806,19 @@
           "fields": "",
           "values": false
         },
+        "segmentCount": 1,
+        "segmentSpacing": 0.3,
+        "shape": "gauge",
         "showThresholdLabels": false,
         "showThresholdMarkers": true,
-        "sizing": "auto"
+        "sizing": "auto",
+        "sparkline": false,
+        "textMode": "auto"
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
+          "alias": " ",
           "bucketAggs": [
             {
               "field": "pm_data_source.end_timestamp",
@@ -836,6 +854,7 @@
             },
             {
               "field": "select field",
+              "hide": false,
               "id": "8",
               "meta": {},
               "pipelineVariables": [
@@ -874,7 +893,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -888,8 +906,7 @@
               }
             ]
           }
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 3,
@@ -915,7 +932,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "",
@@ -961,7 +978,6 @@
       "description": "The measurement gives indication of the eUu interface traffic load by reporting Mean DL PDCP traffic throughput.",
       "fieldConfig": {
         "defaults": {
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -972,8 +988,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 3,
@@ -999,7 +1014,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "Avg PDCP Throughput DL",
@@ -1094,8 +1109,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1110,8 +1123,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1122,6 +1134,10 @@
       "id": 1,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1135,7 +1151,7 @@
           "sort": "asc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1300,8 +1316,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1316,8 +1330,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1328,6 +1341,10 @@
       "id": 36,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1341,7 +1358,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1492,8 +1509,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1508,8 +1523,7 @@
             ]
           },
           "unit": "ms"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1520,6 +1534,10 @@
       "id": 114,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1533,7 +1551,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1657,8 +1675,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1673,8 +1689,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1685,6 +1700,10 @@
       "id": 23,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1698,7 +1717,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1934,8 +1953,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1950,8 +1967,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1962,6 +1978,10 @@
       "id": 33,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1975,7 +1995,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2127,8 +2147,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2143,8 +2161,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2155,6 +2172,10 @@
       "id": 26,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2168,7 +2189,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2332,8 +2353,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2348,8 +2367,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2360,6 +2378,10 @@
       "id": 30,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2373,7 +2395,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2525,8 +2547,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2541,8 +2561,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2553,6 +2572,10 @@
       "id": 42,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2566,7 +2589,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2731,8 +2754,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2747,8 +2768,7 @@
             ]
           },
           "unit": "decmbytes"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2759,6 +2779,10 @@
       "id": 44,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2772,7 +2796,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2805,7 +2829,6 @@
             "uid": "${datasource}"
           },
           "dsType": "grafana-opensearch-datasource",
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
@@ -2868,7 +2891,6 @@
             "uid": "${datasource}"
           },
           "dsType": "grafana-opensearch-datasource",
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_Cell_Throughput_M8012C20",
@@ -2989,8 +3011,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3005,8 +3025,7 @@
             ]
           },
           "unit": "decmbytes"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3017,6 +3036,10 @@
       "id": 46,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3030,7 +3053,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3246,8 +3269,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3262,8 +3283,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3274,6 +3294,10 @@
       "id": 48,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3287,7 +3311,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3446,8 +3470,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3462,8 +3484,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3474,6 +3495,10 @@
       "id": 50,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3487,7 +3512,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3646,8 +3671,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3662,8 +3685,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3880,8 +3902,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3896,8 +3916,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4170,8 +4189,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -4186,8 +4203,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4650,8 +4666,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -4666,8 +4680,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4856,8 +4869,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -4872,8 +4883,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5050,8 +5060,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5066,8 +5074,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5244,8 +5251,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5260,8 +5265,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5438,8 +5442,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5454,8 +5456,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6002,8 +6003,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6018,8 +6017,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6222,8 +6220,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6238,8 +6234,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6516,8 +6511,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6532,8 +6525,7 @@
             ]
           },
           "unit": "dBm"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6680,8 +6672,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6696,8 +6686,7 @@
             ]
           },
           "unit": "dBm"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6844,8 +6833,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6860,8 +6847,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -7017,6 +7003,7 @@
   "templating": {
     "list": [
       {
+        "allowCustomValue": true,
         "current": {
           "text": "dac-radio-4g-pm",
           "value": "dac-radio-4g-pm"
@@ -7024,14 +7011,17 @@
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
+        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-4g-pm",
+        "skipUrlSync": false,
         "type": "datasource"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "LaaS19",
           "value": "LaaS19"
@@ -7041,13 +7031,18 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
+        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
@@ -7061,16 +7056,22 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
+        "hide": 0,
         "includeAll": true,
         "label": "Slice ID",
+        "multi": false,
         "name": "slice_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "All",
           "value": "$__all"
@@ -7080,6 +7081,7 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\", \"size\": 10000}",
+        "hide": 0,
         "includeAll": true,
         "label": "Access Point ID",
         "multi": true,
@@ -7088,15 +7090,21 @@
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*LNCEL*\", \"size\": 10000}",
         "refresh": 2,
         "regex": ".*BTS-(\\d+).*",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "Cell",
           "value": "pm_data_source.dn.keyword"
         },
+        "hide": 0,
         "includeAll": false,
         "label": "Object Level",
+        "multi": false,
         "name": "groupby",
         "options": [
           {
@@ -7111,16 +7119,21 @@
           }
         ],
         "query": "eNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
-        "type": "custom"
+        "skipUrlSync": false,
+        "type": "custom",
+        "valuesFormat": "csv"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "15m",
           "value": "15m"
         },
         "description": "The interval is used to aggregate the metrics over time.",
+        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
+        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -7175,7 +7188,9 @@
           }
         ],
         "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
-        "type": "custom"
+        "skipUrlSync": false,
+        "type": "custom",
+        "valuesFormat": "csv"
       }
     ]
   },
@@ -7184,9 +7199,21 @@
     "to": "now-15m"
   },
   "timepicker": {
-    "nowDelay": "15m"
+    "nowDelay": "15m",
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
   },
-  "timezone": "",
+  "timezone": "browser",
   "title": "Nokia DAC Radio 4G PM KPI - Dashboard",
   "uid": "radio4gpm",
   "version": 1

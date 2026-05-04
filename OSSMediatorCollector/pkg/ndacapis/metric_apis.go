@@ -260,7 +260,9 @@ func callAPI(req apiCallRequest, txnID uint64, prettyResponse bool) (*GetAPIResp
 	}
 
 	//wait if refresh token api is running
-	req.user.Wg.Wait()
+	if req.user.RefreshDone != nil {
+		<-req.user.RefreshDone
+	}
 
 	request.Header.Set(authorizationHeader, req.user.SessionToken.AccessToken)
 	//requesting compressed response
@@ -335,7 +337,7 @@ func callAPI(req apiCallRequest, txnID uint64, prettyResponse bool) (*GetAPIResp
 	}
 
 	if path.Base(req.api.API) == fmResponseType {
-		go notifier.RaiseAlarmNotification(txnID, resp.Data, req.api.MetricType, req.api.Type)
+		go notifier.RaiseAlarmNotification(txnID, resp.Data, req.api.Type)
 	}
 	//write response
 	err = utils.WriteResponse(req.user, req.api, resp.Data, req.nhgID, txnID, prettyResponse)

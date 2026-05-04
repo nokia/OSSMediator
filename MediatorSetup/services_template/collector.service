@@ -10,7 +10,7 @@ Type=simple
 Restart=always
 RestartSec=300
 WorkingDirectory=COLLECTOR_PATH/bin
-EnvironmentFile=COLLECTOR_PATH/collector/proxy
+EnvironmentFile=COLLECTOR_PATH/proxy
 ExecStart=COLLECTOR_PATH/bin/collector
 
 [Install]

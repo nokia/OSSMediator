@@ -28,19 +28,27 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio4G"
       ],
+      "targetBlank": false,
       "title": "Radio 4G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio5G"
       ],
+      "targetBlank": false,
       "title": "Radio 5G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
@@ -100,6 +108,7 @@
       "url": ""
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -134,8 +143,7 @@
             ]
           },
           "unit": "bps"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 4,
@@ -163,7 +171,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "",
@@ -182,7 +190,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.ndac_rr_mcn_5g_dnn_n6_outbound_bitrate",
@@ -235,8 +242,7 @@
             ]
           },
           "unit": "bps"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 4,
@@ -264,7 +270,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "",
@@ -313,7 +319,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -324,8 +329,7 @@
             ]
           },
           "unit": "bps"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 4,
@@ -353,7 +357,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "",
@@ -401,7 +405,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -412,8 +415,7 @@
             ]
           },
           "unit": "bps"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 4,
@@ -441,7 +443,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "",
@@ -489,7 +491,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -501,8 +502,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 4,
@@ -530,7 +530,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "alias": "",
@@ -575,7 +575,7 @@
         "x": 0,
         "y": 4
       },
-      "id": 89,
+      "id": 139,
       "panels": [
         {
           "datasource": {
@@ -622,7 +622,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -637,8 +636,7 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -649,6 +647,10 @@
           "id": 90,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -662,7 +664,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -704,7 +706,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_amf_mean_reg_nbr",
@@ -736,7 +737,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_amf_mean_reg_nbr",
@@ -808,7 +808,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -823,8 +822,7 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -835,6 +833,10 @@
           "id": 91,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -848,7 +850,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -916,7 +918,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_rsr_initial_reg",
@@ -987,7 +988,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1002,8 +1002,7 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -1014,6 +1013,10 @@
           "id": 92,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -1027,7 +1030,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -1099,7 +1102,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_rsr_mobility_reg",
@@ -1170,7 +1172,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1185,8 +1186,7 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -1197,6 +1197,10 @@
           "id": 93,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -1210,7 +1214,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -1282,7 +1286,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_rsr_periodic_reg",
@@ -1353,7 +1356,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1368,8 +1370,7 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -1380,6 +1381,10 @@
           "id": 94,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -1393,7 +1398,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -1465,7 +1470,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pdu_session_est_sr",
@@ -1536,7 +1540,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1551,8 +1554,7 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -1563,6 +1565,10 @@
           "id": 95,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -1576,7 +1582,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -1648,7 +1654,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_utsnsi",
@@ -1719,7 +1724,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1734,8 +1738,7 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -1746,6 +1749,10 @@
           "id": 96,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -1759,7 +1766,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -1831,7 +1838,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_dtsnsi",
@@ -1902,7 +1908,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1917,8 +1922,7 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -1929,6 +1933,10 @@
           "id": 97,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -1942,7 +1950,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -2014,7 +2022,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pdu_ses_mean_nbr",
@@ -2085,7 +2092,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2100,8 +2106,7 @@
                 ]
               },
               "unit": "ms"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -2112,6 +2117,10 @@
           "id": 98,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -2125,7 +2134,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -2197,7 +2206,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pdu_est_time",
@@ -2268,7 +2276,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2279,8 +2286,7 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -2291,6 +2297,10 @@
           "id": 122,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -2304,7 +2314,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -2346,7 +2356,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_rm_reg_init_req",
@@ -2377,7 +2386,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_rm_reg_init_req",
@@ -2448,7 +2456,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2459,8 +2466,7 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -2471,6 +2477,10 @@
           "id": 123,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -2484,7 +2494,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}} {{pm_data_source.nhg_alias.keyword}}",
@@ -2526,7 +2536,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_rm_reg_init_succ",
@@ -2557,7 +2566,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_rm_reg_init_succ",
@@ -2628,7 +2636,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2639,8 +2646,7 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -2651,6 +2657,10 @@
           "id": 120,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -2664,7 +2674,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -2736,7 +2746,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_ue_info_ue_auth_failure_num",
@@ -2798,7 +2807,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2809,8 +2817,7 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -2821,6 +2828,10 @@
           "id": 137,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -2834,7 +2845,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -2906,7 +2917,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_smf_auth_failed_dnn",
@@ -2977,7 +2987,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2988,8 +2997,7 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -3000,6 +3008,10 @@
           "id": 138,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -3013,7 +3025,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -3085,7 +3097,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_upf_num_framed_routes_dnn",
@@ -3156,7 +3167,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -3171,8 +3181,7 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -3183,6 +3192,10 @@
           "id": 53,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -3196,7 +3209,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "",
@@ -3254,7 +3267,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_ue_dl_rate",
@@ -3326,7 +3338,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -3341,8 +3352,7 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 6,
@@ -3353,6 +3363,10 @@
           "id": 52,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -3366,7 +3380,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "",
@@ -3395,7 +3409,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_ue_ul_rate",
@@ -3425,7 +3438,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_ue_ul_rate",
@@ -3566,7 +3578,7 @@
               }
             ]
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "",
@@ -3610,7 +3622,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_ue_ul_rate",
@@ -3689,7 +3700,7 @@
         "x": 0,
         "y": 5
       },
-      "id": 99,
+      "id": 140,
       "panels": [
         {
           "datasource": {
@@ -3736,7 +3747,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -3751,18 +3761,21 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 112
+            "y": 6
           },
           "id": 100,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -3776,7 +3789,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -3816,7 +3829,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_gnb_n3_inbound_bitrate",
@@ -3846,7 +3858,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_gnb_n3_inbound_bitrate",
@@ -3918,7 +3929,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -3933,18 +3943,21 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 119
+            "y": 13
           },
           "id": 101,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -3958,7 +3971,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -3998,7 +4011,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_gnb_n3_outbound_bitrate",
@@ -4028,7 +4040,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_gnb_n3_outbound_bitrate",
@@ -4100,7 +4111,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -4115,18 +4125,21 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 126
+            "y": 20
           },
           "id": 102,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -4140,7 +4153,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4180,7 +4193,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_n3_inbound_bitrate",
@@ -4210,7 +4222,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_n3_inbound_bitrate",
@@ -4273,7 +4284,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -4288,18 +4298,21 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 133
+            "y": 27
           },
           "id": 103,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -4313,7 +4326,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4353,7 +4366,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_n3_outbound_bitrate",
@@ -4383,7 +4395,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_n3_outbound_bitrate",
@@ -4446,7 +4457,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -4461,18 +4471,21 @@
                 ]
               },
               "unit": "pps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 140
+            "y": 34
           },
           "id": 104,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -4486,7 +4499,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4526,7 +4539,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_n3_inbound_packet_rate",
@@ -4556,7 +4568,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_n3_inbound_packet_rate",
@@ -4619,7 +4630,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -4634,18 +4644,21 @@
                 ]
               },
               "unit": "pps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 147
+            "y": 41
           },
           "id": 105,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -4659,7 +4672,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4699,7 +4712,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_n3_outbound_packet_rate",
@@ -4729,7 +4741,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_n3_outbound_packet_rate",
@@ -4792,7 +4803,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -4807,18 +4817,21 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 154
+            "y": 48
           },
           "id": 106,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -4832,7 +4845,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -4872,7 +4885,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_dnn_n6_inbound_bitrate",
@@ -4902,7 +4914,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_dnn_n6_inbound_bitrate",
@@ -4974,7 +4985,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -4989,18 +4999,21 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 161
+            "y": 55
           },
           "id": 108,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -5014,7 +5027,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5054,7 +5067,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_dnn_n6_outbound_bitrate",
@@ -5084,7 +5096,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_dnn_n6_outbound_bitrate",
@@ -5156,7 +5167,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -5171,18 +5181,21 @@
                 ]
               },
               "unit": "pps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 168
+            "y": 62
           },
           "id": 110,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -5196,7 +5209,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5236,7 +5249,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_dnn_n6_inbound_packet_rate",
@@ -5266,7 +5278,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_dnn_n6_inbound_packet_rate",
@@ -5338,7 +5349,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -5353,18 +5363,21 @@
                 ]
               },
               "unit": "pps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 175
+            "y": 69
           },
           "id": 109,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -5378,7 +5391,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5418,7 +5431,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_dnn_n6_outbound_packet_rate",
@@ -5448,7 +5460,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_dnn_n6_outbound_packet_rate",
@@ -5520,7 +5531,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -5535,18 +5545,21 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 182
+            "y": 76
           },
           "id": 115,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -5560,7 +5573,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5600,7 +5613,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_5qi_n3_inbound_bitrate",
@@ -5630,7 +5642,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_5qi_n3_inbound_bitrate",
@@ -5702,7 +5713,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -5717,18 +5727,21 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 189
+            "y": 83
           },
           "id": 116,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -5742,7 +5755,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5782,7 +5795,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_5qi_n3_outbound_bitrate",
@@ -5812,7 +5824,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_5qi_n3_outbound_bitrate",
@@ -5884,7 +5895,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -5899,18 +5909,21 @@
                 ]
               },
               "unit": "pps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 196
+            "y": 90
           },
           "id": 117,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -5924,7 +5937,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5964,7 +5977,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_5qi_n3_inbound_packet_loss",
@@ -5994,7 +6006,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_5qi_n3_inbound_packet_loss",
@@ -6066,7 +6077,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -6081,18 +6091,21 @@
                 ]
               },
               "unit": "pps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 203
+            "y": 97
           },
           "id": 118,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -6106,7 +6119,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -6146,7 +6159,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_5qi_n3_outbound_packet_loss",
@@ -6176,7 +6188,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_5qi_n3_outbound_packet_loss",
@@ -6248,7 +6259,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -6263,18 +6273,21 @@
                 ]
               },
               "unit": "pps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 210
+            "y": 104
           },
           "id": 119,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -6288,7 +6301,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -6328,7 +6341,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_5qi_n3_packet_disorder",
@@ -6358,7 +6370,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_5qi_n3_packet_disorder",
@@ -6397,7 +6408,7 @@
         "x": 0,
         "y": 6
       },
-      "id": 124,
+      "id": 141,
       "panels": [
         {
           "datasource": {
@@ -6444,7 +6455,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -6459,18 +6469,21 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 218
+            "y": 7
           },
           "id": 126,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -6484,7 +6497,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -6524,7 +6537,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_slice_n3_inbound_bitrate",
@@ -6554,7 +6566,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_slice_n3_inbound_bitrate",
@@ -6626,7 +6637,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -6641,18 +6651,21 @@
                 ]
               },
               "unit": "bps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 225
+            "y": 14
           },
           "id": 127,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -6666,7 +6679,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -6706,7 +6719,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_slice_n3_outbound_bitrate",
@@ -6736,7 +6748,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_slice_n3_outbound_bitrate",
@@ -6808,7 +6819,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -6823,18 +6833,21 @@
                 ]
               },
               "unit": "pps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 232
+            "y": 21
           },
           "id": 128,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -6848,7 +6861,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -6888,7 +6901,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_slice_n3_inbound_packet_rate",
@@ -6918,7 +6930,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_slice_n3_inbound_packet_rate",
@@ -6990,7 +7001,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -7005,18 +7015,21 @@
                 ]
               },
               "unit": "pps"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 239
+            "y": 28
           },
           "id": 129,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -7030,7 +7043,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -7070,7 +7083,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_slice_n3_outbound_packet_rate",
@@ -7100,7 +7112,6 @@
                 "type": "grafana-opensearch-datasource",
                 "uid": "${datasource}"
               },
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_slice_n3_outbound_packet_rate",
@@ -7139,7 +7150,7 @@
         "x": 0,
         "y": 7
       },
-      "id": 64,
+      "id": 142,
       "panels": [
         {
           "datasource": {
@@ -7176,6 +7187,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7185,7 +7197,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -7199,18 +7210,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 579
+            "y": 8
           },
           "id": 51,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -7224,7 +7238,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -7265,7 +7279,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_create_req",
@@ -7295,7 +7308,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_create_req",
@@ -7356,6 +7368,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7365,7 +7378,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -7379,18 +7391,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 586
+            "y": 15
           },
           "id": 85,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -7404,7 +7419,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -7445,7 +7460,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_create_succ",
@@ -7475,7 +7489,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_create_succ",
@@ -7536,6 +7549,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7545,7 +7559,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -7559,18 +7572,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 593
+            "y": 22
           },
           "id": 86,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -7584,7 +7600,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -7625,7 +7641,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_create_fail",
@@ -7655,7 +7670,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_create_fail",
@@ -7716,6 +7730,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7725,7 +7740,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -7739,18 +7753,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 600
+            "y": 29
           },
           "id": 87,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -7764,7 +7781,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -7805,7 +7822,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_mod_req",
@@ -7835,7 +7851,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_mod_req",
@@ -7896,6 +7911,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -7905,7 +7921,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -7919,18 +7934,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 607
+            "y": 36
           },
           "id": 55,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -7944,7 +7962,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -7985,7 +8003,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_mod_succ",
@@ -8015,7 +8032,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_mod_succ",
@@ -8076,6 +8092,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -8085,7 +8102,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -8099,18 +8115,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 614
+            "y": 43
           },
           "id": 56,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -8124,7 +8143,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -8165,7 +8184,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_mod_fail",
@@ -8195,7 +8213,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_mod_fail",
@@ -8256,6 +8273,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -8265,7 +8283,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -8279,18 +8296,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 621
+            "y": 50
           },
           "id": 57,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -8304,7 +8324,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -8345,7 +8365,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_nbr_mean",
@@ -8375,7 +8394,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_nbr_mean",
@@ -8436,6 +8454,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -8445,7 +8464,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -8459,18 +8477,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 628
+            "y": 57
           },
           "id": 58,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -8484,7 +8505,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -8525,7 +8546,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_nbr_peak",
@@ -8555,7 +8575,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_qos_nbr_peak",
@@ -8616,6 +8635,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -8625,7 +8645,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -8639,18 +8658,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 635
+            "y": 64
           },
           "id": 59,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -8664,7 +8686,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "",
@@ -8694,7 +8716,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_n4_mod_req",
@@ -8724,7 +8745,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_n4_mod_req",
@@ -8776,6 +8796,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -8785,7 +8806,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -8799,17 +8819,20 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 642
+            "y": 71
           },
           "id": 60,
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -8823,7 +8846,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "",
@@ -8853,7 +8876,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_n4_mod_fail",
@@ -8883,7 +8905,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_n4_mod_fail",
@@ -8935,6 +8956,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -8944,7 +8966,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -8958,18 +8979,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 649
+            "y": 78
           },
           "id": 61,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -8983,7 +9007,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "",
@@ -9013,7 +9037,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_n4_del_req",
@@ -9043,7 +9066,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_n4_del_req",
@@ -9095,6 +9117,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -9104,7 +9127,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -9118,18 +9140,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 656
+            "y": 85
           },
           "id": 62,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -9143,7 +9168,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "",
@@ -9173,7 +9198,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_n4_del_fail",
@@ -9203,7 +9227,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_n4_del_fail",
@@ -9241,7 +9264,7 @@
         "x": 0,
         "y": 8
       },
-      "id": 70,
+      "id": 143,
       "panels": [
         {
           "datasource": {
@@ -9278,6 +9301,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -9287,7 +9311,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -9301,18 +9324,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 9508
+            "y": 9
           },
           "id": 71,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -9326,7 +9352,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -9367,7 +9393,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pa_policy_sm_asso_req",
@@ -9398,7 +9423,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pa_policy_sm_asso_req",
@@ -9460,6 +9484,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -9469,7 +9494,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -9483,18 +9507,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 9515
+            "y": 16
           },
           "id": 72,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -9508,7 +9535,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -9549,7 +9576,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pa_policy_sm_asso_succ",
@@ -9580,7 +9606,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pa_policy_sm_asso_succ",
@@ -9642,6 +9667,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -9651,7 +9677,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -9665,18 +9690,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 9522
+            "y": 23
           },
           "id": 73,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -9690,7 +9718,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -9731,7 +9759,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pcf_policy_sm_assoc_update_req",
@@ -9762,7 +9789,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pcf_policy_sm_assoc_update_req",
@@ -9824,6 +9850,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -9833,7 +9860,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -9847,18 +9873,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 9529
+            "y": 30
           },
           "id": 74,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -9872,7 +9901,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -9913,7 +9942,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pcf_policy_sm_assoc_update_succ",
@@ -9944,7 +9972,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pcf_policy_sm_assoc_update_succ",
@@ -10006,6 +10033,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -10015,7 +10043,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -10029,18 +10056,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 9536
+            "y": 37
           },
           "id": 75,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -10054,7 +10084,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -10095,7 +10125,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pcf_policy_sm_assoc_notif_req",
@@ -10126,7 +10155,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pcf_policy_sm_assoc_notif_req",
@@ -10188,6 +10216,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -10197,7 +10226,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -10211,18 +10239,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 9543
+            "y": 44
           },
           "id": 76,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -10236,7 +10267,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -10277,7 +10308,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pcf_policy_sm_assoc_notif_succ",
@@ -10308,7 +10338,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_pcf_policy_sm_assoc_notif_succ",
@@ -10347,7 +10376,7 @@
         "x": 0,
         "y": 9
       },
-      "id": 66,
+      "id": 144,
       "panels": [
         {
           "datasource": {
@@ -10387,6 +10416,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -10396,7 +10426,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -10410,18 +10439,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1755
+            "y": 10
           },
           "id": 67,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -10435,7 +10467,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -10476,7 +10508,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_nbr_mean",
@@ -10506,7 +10537,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_nbr_mean",
@@ -10567,6 +10597,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -10576,7 +10607,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -10590,18 +10620,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1762
+            "y": 17
           },
           "id": 68,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -10615,7 +10648,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -10656,7 +10689,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_nbr_max",
@@ -10687,7 +10719,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_nbr_max",
@@ -10749,6 +10780,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -10758,7 +10790,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -10772,18 +10803,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1769
+            "y": 24
           },
           "id": 77,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -10797,7 +10831,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -10838,7 +10872,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_create_req",
@@ -10869,7 +10902,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_create_req",
@@ -10931,6 +10963,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -10940,7 +10973,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -10954,18 +10986,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1776
+            "y": 31
           },
           "id": 78,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -10979,7 +11014,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -11020,7 +11055,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_create_succ",
@@ -11051,7 +11085,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_create_succ",
@@ -11113,6 +11146,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -11122,7 +11156,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -11136,18 +11169,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1783
+            "y": 38
           },
           "id": 79,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -11161,7 +11197,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "",
@@ -11191,7 +11227,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_create_fail",
@@ -11222,7 +11257,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_create_fail",
@@ -11275,6 +11309,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -11284,7 +11319,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -11299,18 +11333,21 @@
                 ]
               },
               "unit": "ms"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1790
+            "y": 45
           },
           "id": 80,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -11324,7 +11361,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -11365,7 +11402,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_time_mean",
@@ -11396,7 +11432,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_time_mean",
@@ -11458,6 +11493,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -11467,7 +11503,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -11482,18 +11517,21 @@
                 ]
               },
               "unit": "ms"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1797
+            "y": 52
           },
           "id": 81,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -11507,7 +11545,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "{{pm_data_source.dn.keyword}}/{{pm_data_source.nhg_alias.keyword}}",
@@ -11548,7 +11586,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_time_max",
@@ -11579,7 +11616,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_time_max",
@@ -11641,6 +11677,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -11650,7 +11687,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -11664,18 +11700,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1804
+            "y": 59
           },
           "id": 84,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -11689,7 +11728,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "",
@@ -11719,7 +11758,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_mod_smfinit_req",
@@ -11750,7 +11788,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_mod_smfinit_req",
@@ -11803,6 +11840,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -11812,7 +11850,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -11826,18 +11863,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1811
+            "y": 66
           },
           "id": 82,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -11851,7 +11891,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "",
@@ -11881,7 +11921,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_mod_smfinit_succ",
@@ -11912,7 +11951,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_mod_smfinit_succ",
@@ -11965,6 +12003,7 @@
                   "type": "linear"
                 },
                 "showPoints": "always",
+                "showValues": false,
                 "spanNulls": false,
                 "stacking": {
                   "group": "A",
@@ -11974,7 +12013,6 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -11988,18 +12026,21 @@
                   }
                 ]
               }
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 1818
+            "y": 73
           },
           "id": 83,
           "interval": "1m",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
@@ -12013,7 +12054,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.1.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "alias": "",
@@ -12043,7 +12084,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_mod_smfinit_fail",
@@ -12074,7 +12114,6 @@
                 "uid": "${datasource}"
               },
               "format": "table",
-              "hide": false,
               "metrics": [
                 {
                   "field": "pm_data.ndac_rr_mcn_5g_sm_pdus_mod_smfinit_fail",
@@ -12106,6 +12145,7 @@
   "templating": {
     "list": [
       {
+        "allowCustomValue": true,
         "current": {
           "text": "dac-core-pm",
           "value": "dac-core-pm"
@@ -12113,14 +12153,17 @@
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
+        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-core-pm",
+        "skipUrlSync": false,
         "type": "datasource"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "All",
           "value": "$__all"
@@ -12130,6 +12173,7 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "hide": 0,
         "includeAll": true,
         "label": "Network Hw Group Name",
         "multi": true,
@@ -12138,10 +12182,13 @@
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "All",
           "value": "$__all"
@@ -12151,6 +12198,7 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND  pm_data_source.dn.keyword:*SNSSAI* AND NOT pm_data_source.dn.keyword:*FIVEQI*\"}",
+        "hide": 0,
         "includeAll": true,
         "label": "SNSSAI",
         "multi": true,
@@ -12159,17 +12207,22 @@
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\",\n\"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND  pm_data_source.dn.keyword:*SNSSAI* AND NOT pm_data_source.dn.keyword:*FIVEQI*\"}",
         "refresh": 2,
         "regex": "/.*SNSSAI-(?<SNSSAI>.*)/",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "5m",
           "value": "5m"
         },
         "description": "Aggregation",
+        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
+        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -12224,7 +12277,9 @@
           }
         ],
         "query": "5m,15m,1h,3h,6h,12h,1d,7d,15d,1M",
-        "type": "custom"
+        "skipUrlSync": false,
+        "type": "custom",
+        "valuesFormat": "csv"
       }
     ]
   },
@@ -12233,9 +12288,21 @@
     "to": "now-15m"
   },
   "timepicker": {
-    "nowDelay": "15m"
+    "nowDelay": "15m",
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
   },
-  "timezone": "",
+  "timezone": "browser",
   "title": "Nokia DAC CORE 5G PM KPI",
   "uid": "core5g",
   "version": 1

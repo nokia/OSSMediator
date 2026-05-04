@@ -4,7 +4,7 @@
       {
         "builtIn": 1,
         "datasource": {
-          "type": "datasource",
+          "type": "grafana",
           "uid": "grafana"
         },
         "enable": true,
@@ -28,19 +28,27 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio5G"
       ],
+      "targetBlank": false,
       "title": "Radio 5G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio4G"
       ],
+      "targetBlank": false,
       "title": "Radio 4G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
@@ -100,6 +108,7 @@
       "url": ""
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
@@ -109,8 +118,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 228,
-      "panels": [],
+      "id": 241,
       "title": "Admission control per slice",
       "type": "row"
     },
@@ -159,8 +167,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -175,8 +181,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 7,
@@ -187,10 +192,14 @@
       "id": 229,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
-          "displayMode": "table",
-          "placement": "right",
+          "displayMode": "list",
+          "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
@@ -200,7 +209,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -217,7 +226,7 @@
               "type": "terms"
             },
             {
-              "field": "timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -233,7 +242,7 @@
           },
           "metrics": [
             {
-              "field": "NSL_M55149C00002",
+              "field": "pm_data.NSL_M55149C00002",
               "hide": true,
               "id": "3",
               "meta": {},
@@ -241,7 +250,7 @@
               "type": "avg"
             },
             {
-              "field": "NSL_M55149C00002",
+              "field": "pm_data.NSL_M55149C00002",
               "hide": true,
               "id": "4",
               "meta": {},
@@ -269,9 +278,9 @@
               "type": "bucket_script"
             }
           ],
-          "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NSL_M55149C00002:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NSL_M55149C00002:*",
           "refId": "A",
-          "timeField": "timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "NR_5207a 5G SA Number of non-GBR DRB radio admission requests for SA user, per PLMN, per slice / nonGBR DRB AC req PLMN slice [#]",
@@ -338,8 +347,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -354,8 +361,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 7,
@@ -366,10 +372,14 @@
       "id": 230,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
-          "displayMode": "table",
-          "placement": "right",
+          "displayMode": "list",
+          "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
@@ -379,7 +389,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -396,7 +406,7 @@
               "type": "terms"
             },
             {
-              "field": "timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -412,7 +422,7 @@
           },
           "metrics": [
             {
-              "field": "NSL_M55149C00002",
+              "field": "pm_data.NSL_M55149C00002",
               "hide": true,
               "id": "3",
               "meta": {},
@@ -420,7 +430,7 @@
               "type": "avg"
             },
             {
-              "field": "NSL_M55149C00002",
+              "field": "pm_data.NSL_M55149C00002",
               "hide": true,
               "id": "4",
               "meta": {},
@@ -428,7 +438,7 @@
               "type": "sum"
             },
             {
-              "field": "NSL_M55149C00003",
+              "field": "pm_data.NSL_M55149C00003",
               "hide": true,
               "id": "5",
               "meta": {},
@@ -459,9 +469,9 @@
               "type": "bucket_script"
             }
           ],
-          "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NSL_M55149C00002:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NSL_M55149C00002:*",
           "refId": "A",
-          "timeField": "timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "NR_5208a 5G SA Non-GBR DRB admission control success ratio for SA user, per PLMN, per slice / nonGBR DRB AC SR PLMN slice [%]",
@@ -528,8 +538,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -544,8 +552,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 7,
@@ -556,10 +563,14 @@
       "id": 231,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
-          "displayMode": "table",
-          "placement": "right",
+          "displayMode": "list",
+          "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
@@ -569,7 +580,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -586,7 +597,7 @@
               "type": "terms"
             },
             {
-              "field": "timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -602,7 +613,7 @@
           },
           "metrics": [
             {
-              "field": "NSL_M55149C01001",
+              "field": "pm_data.NSL_M55149C01001",
               "hide": true,
               "id": "3",
               "meta": {},
@@ -610,7 +621,7 @@
               "type": "avg"
             },
             {
-              "field": "NSL_M55149C01001",
+              "field": "pm_data.NSL_M55149C01001",
               "hide": true,
               "id": "4",
               "meta": {},
@@ -637,9 +648,9 @@
               "type": "bucket_script"
             }
           ],
-          "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NSL_M55149C01001:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NSL_M55149C01001:*",
           "refId": "A",
-          "timeField": "timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "NR_1295a 5G SA Number of number of GBR DRBs radio admission requests for SA user per slice / SA GBR DRB AC req slice\t[#]",
@@ -706,8 +717,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -722,8 +731,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 7,
@@ -734,10 +742,14 @@
       "id": 232,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
-          "displayMode": "table",
-          "placement": "right",
+          "displayMode": "list",
+          "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
@@ -747,7 +759,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -764,7 +776,7 @@
               "type": "terms"
             },
             {
-              "field": "timestamp",
+              "field": "pm_data_source.end_timestamp",
               "id": "2",
               "settings": {
                 "interval": "$agg",
@@ -780,7 +792,7 @@
           },
           "metrics": [
             {
-              "field": "NSL_M55149C01001",
+              "field": "pm_data.NSL_M55149C01001",
               "hide": true,
               "id": "3",
               "meta": {},
@@ -788,7 +800,7 @@
               "type": "avg"
             },
             {
-              "field": "NSL_M55149C01001",
+              "field": "pm_data.NSL_M55149C01001",
               "hide": true,
               "id": "4",
               "meta": {},
@@ -796,7 +808,7 @@
               "type": "sum"
             },
             {
-              "field": "NSL_M55149C01002",
+              "field": "pm_data.NSL_M55149C01002",
               "hide": true,
               "id": "5",
               "meta": {},
@@ -827,9 +839,9 @@
               "type": "bucket_script"
             }
           ],
-          "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NSL_M55149C01001:*",
+          "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NSL_M55149C01001:*",
           "refId": "A",
-          "timeField": "timestamp"
+          "timeField": "pm_data_source.end_timestamp"
         }
       ],
       "title": "NR_1296a 5G SA Radio admission success ratio of GBR DRBs per slice / SA GBR DRB AC SR slice [%]",
@@ -859,7 +871,7 @@
         "x": 0,
         "y": 29
       },
-      "id": 233,
+      "id": 242,
       "panels": [
         {
           "datasource": {
@@ -906,8 +918,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -922,22 +932,25 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 58
+            "y": 30
           },
           "id": 234,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
-              "displayMode": "table",
-              "placement": "right",
+              "displayMode": "list",
+              "placement": "bottom",
               "showLegend": true
             },
             "tooltip": {
@@ -947,7 +960,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -964,7 +977,7 @@
                   "type": "terms"
                 },
                 {
-                  "field": "timestamp",
+                  "field": "pm_data_source.end_timestamp",
                   "id": "2",
                   "settings": {
                     "interval": "$agg",
@@ -980,7 +993,7 @@
               },
               "metrics": [
                 {
-                  "field": "NSL_M55149C01001",
+                  "field": "pm_data.NSL_M55149C01001",
                   "hide": true,
                   "id": "3",
                   "meta": {},
@@ -988,7 +1001,7 @@
                   "type": "avg"
                 },
                 {
-                  "field": "NSL_M55149C01001",
+                  "field": "pm_data.NSL_M55149C01001",
                   "hide": true,
                   "id": "4",
                   "meta": {},
@@ -996,7 +1009,7 @@
                   "type": "sum"
                 },
                 {
-                  "field": "NSL_M55149C01003",
+                  "field": "pm_data.NSL_M55149C01003",
                   "hide": true,
                   "id": "5",
                   "meta": {},
@@ -1027,9 +1040,9 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NSL_M55149C01001:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NSL_M55149C01001:*",
               "refId": "A",
-              "timeField": "timestamp"
+              "timeField": "pm_data_source.end_timestamp"
             }
           ],
           "title": "NR_1297a 5G SA GBR DRB setup success ratio per slice / SA GBR DRB stp SR slice [%]",
@@ -1063,7 +1076,7 @@
         "x": 0,
         "y": 30
       },
-      "id": 235,
+      "id": 243,
       "panels": [
         {
           "datasource": {
@@ -1110,8 +1123,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1126,22 +1137,25 @@
                 ]
               },
               "unit": "decmbytes"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 66
+            "y": 31
           },
           "id": 236,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
-              "displayMode": "table",
-              "placement": "right",
+              "displayMode": "list",
+              "placement": "bottom",
               "showLegend": true
             },
             "tooltip": {
@@ -1151,7 +1165,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1168,7 +1182,7 @@
                   "type": "terms"
                 },
                 {
-                  "field": "timestamp",
+                  "field": "pm_data_source.end_timestamp",
                   "id": "2",
                   "settings": {
                     "interval": "$agg",
@@ -1184,7 +1198,7 @@
               },
               "metrics": [
                 {
-                  "field": "NPSL_M55328C00003",
+                  "field": "pm_data.NPSL_M55328C00003",
                   "hide": true,
                   "id": "3",
                   "meta": {},
@@ -1192,7 +1206,7 @@
                   "type": "avg"
                 },
                 {
-                  "field": "NPSL_M55328C00003",
+                  "field": "pm_data.NPSL_M55328C00003",
                   "hide": true,
                   "id": "4",
                   "meta": {},
@@ -1218,9 +1232,9 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NPSL_M55328C00003:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NPSL_M55328C00003:*",
               "refId": "A",
-              "timeField": "timestamp"
+              "timeField": "pm_data_source.end_timestamp"
             }
           ],
           "title": "NR_5136a 5G SA PDCP SDU transmitted data volume in downlink per slice / PDCP SDU vol DL slice [MB]",
@@ -1287,8 +1301,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1303,22 +1315,25 @@
                 ]
               },
               "unit": "decmbytes"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 73
+            "y": 38
           },
           "id": 237,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
-              "displayMode": "table",
-              "placement": "right",
+              "displayMode": "list",
+              "placement": "bottom",
               "showLegend": true
             },
             "tooltip": {
@@ -1328,7 +1343,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1345,7 +1360,7 @@
                   "type": "terms"
                 },
                 {
-                  "field": "timestamp",
+                  "field": "pm_data_source.end_timestamp",
                   "id": "2",
                   "settings": {
                     "interval": "$agg",
@@ -1361,7 +1376,7 @@
               },
               "metrics": [
                 {
-                  "field": "NPSL_M55328C00005",
+                  "field": "pm_data.NPSL_M55328C00005",
                   "hide": true,
                   "id": "3",
                   "meta": {},
@@ -1369,7 +1384,7 @@
                   "type": "avg"
                 },
                 {
-                  "field": "NPSL_M55328C00005",
+                  "field": "pm_data.NPSL_M55328C00005",
                   "hide": true,
                   "id": "4",
                   "meta": {},
@@ -1395,9 +1410,9 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NPSL_M55328C00005:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NPSL_M55328C00005:*",
               "refId": "A",
-              "timeField": "timestamp"
+              "timeField": "pm_data_source.end_timestamp"
             }
           ],
           "title": "NR_5137a 5G SA PDCP SDU received data volume in uplink per slice / PDCP SDU vol UL slice [MB]",
@@ -1431,7 +1446,7 @@
         "x": 0,
         "y": 31
       },
-      "id": 238,
+      "id": 244,
       "panels": [
         {
           "datasource": {
@@ -1478,8 +1493,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1494,22 +1507,25 @@
                 ]
               },
               "unit": "µs"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 81
+            "y": 32
           },
           "id": 239,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
-              "displayMode": "table",
-              "placement": "right",
+              "displayMode": "list",
+              "placement": "bottom",
               "showLegend": true
             },
             "tooltip": {
@@ -1519,7 +1535,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1536,7 +1552,7 @@
                   "type": "terms"
                 },
                 {
-                  "field": "timestamp",
+                  "field": "pm_data_source.end_timestamp",
                   "id": "2",
                   "settings": {
                     "interval": "$agg",
@@ -1552,7 +1568,7 @@
               },
               "metrics": [
                 {
-                  "field": "NPSL_M55328C00006",
+                  "field": "pm_data.NPSL_M55328C00006",
                   "hide": true,
                   "id": "3",
                   "meta": {},
@@ -1560,7 +1576,7 @@
                   "type": "avg"
                 },
                 {
-                  "field": "NPSL_M55328C00006",
+                  "field": "pm_data.NPSL_M55328C00006",
                   "hide": true,
                   "id": "4",
                   "meta": {},
@@ -1568,7 +1584,7 @@
                   "type": "sum"
                 },
                 {
-                  "field": "NPSL_M55328C00002",
+                  "field": "pm_data.NPSL_M55328C00002",
                   "hide": true,
                   "id": "5",
                   "type": "sum"
@@ -1595,9 +1611,9 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NPSL_M55328C00006:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NPSL_M55328C00006:*",
               "refId": "A",
-              "timeField": "timestamp"
+              "timeField": "pm_data_source.end_timestamp"
             }
           ],
           "title": "NR_5138a 5G SA PDCP SDU average delay in downlink per slice / PDCP SDU avg delay DL slice [microsecond]",
@@ -1664,8 +1680,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1680,22 +1694,25 @@
                 ]
               },
               "unit": "µs"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 88
+            "y": 39
           },
           "id": 240,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
-              "displayMode": "table",
-              "placement": "right",
+              "displayMode": "list",
+              "placement": "bottom",
               "showLegend": true
             },
             "tooltip": {
@@ -1705,7 +1722,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1722,7 +1739,7 @@
                   "type": "terms"
                 },
                 {
-                  "field": "timestamp",
+                  "field": "pm_data_source.end_timestamp",
                   "id": "2",
                   "settings": {
                     "interval": "$agg",
@@ -1738,7 +1755,7 @@
               },
               "metrics": [
                 {
-                  "field": "NPSL_M55328C00007",
+                  "field": "pm_data.NPSL_M55328C00007",
                   "hide": true,
                   "id": "3",
                   "meta": {},
@@ -1746,7 +1763,7 @@
                   "type": "avg"
                 },
                 {
-                  "field": "NPSL_M55328C00007",
+                  "field": "pm_data.NPSL_M55328C00007",
                   "hide": true,
                   "id": "4",
                   "meta": {},
@@ -1754,7 +1771,7 @@
                   "type": "sum"
                 },
                 {
-                  "field": "NPSL_M55328C00004",
+                  "field": "pm_data.NPSL_M55328C00004",
                   "hide": true,
                   "id": "5",
                   "type": "sum"
@@ -1781,9 +1798,9 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NPSL_M55328C00007:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NPSL_M55328C00007:*",
               "refId": "A",
-              "timeField": "timestamp"
+              "timeField": "pm_data_source.end_timestamp"
             }
           ],
           "title": "NR_5139a 5G SA PDCP SDU average delay in uplink per slice / PDCP SDU avg delay UL slice [microsecond]",
@@ -1817,7 +1834,7 @@
         "x": 0,
         "y": 32
       },
-      "id": 218,
+      "id": 245,
       "panels": [
         {
           "datasource": {
@@ -1864,8 +1881,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -1880,22 +1895,25 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 96
+            "y": 33
           },
           "id": 216,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
-              "displayMode": "table",
-              "placement": "right",
+              "displayMode": "list",
+              "placement": "bottom",
               "showLegend": true
             },
             "tooltip": {
@@ -1905,7 +1923,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1922,7 +1940,7 @@
                   "type": "terms"
                 },
                 {
-                  "field": "timestamp",
+                  "field": "pm_data_source.end_timestamp",
                   "id": "2",
                   "settings": {
                     "interval": "$agg",
@@ -1938,7 +1956,7 @@
               },
               "metrics": [
                 {
-                  "field": "NSL_M55149C00005",
+                  "field": "pm_data.NSL_M55149C00005",
                   "hide": true,
                   "id": "3",
                   "meta": {},
@@ -1946,7 +1964,7 @@
                   "type": "avg"
                 },
                 {
-                  "field": "NSL_M55149C00005",
+                  "field": "pm_data.NSL_M55149C00005",
                   "hide": true,
                   "id": "4",
                   "meta": {},
@@ -1954,7 +1972,7 @@
                   "type": "sum"
                 },
                 {
-                  "field": "NSL_M55149C00004",
+                  "field": "pm_data.NSL_M55149C00004",
                   "hide": true,
                   "id": "5",
                   "meta": {},
@@ -1985,9 +2003,9 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NSL_M55149C00005:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NSL_M55149C00005:*",
               "refId": "A",
-              "timeField": "timestamp"
+              "timeField": "pm_data_source.end_timestamp"
             }
           ],
           "title": "NR_5210a 5G SA Intra-frequency intra-gNB intra-DU handover success ratio per PLMN, per slice / intraf intraDU HO exe SR PLMN slice [%]",
@@ -2021,7 +2039,7 @@
         "x": 0,
         "y": 33
       },
-      "id": 221,
+      "id": 246,
       "panels": [
         {
           "datasource": {
@@ -2068,8 +2086,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2084,22 +2100,25 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 104
+            "y": 34
           },
           "id": 219,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
-              "displayMode": "table",
-              "placement": "right",
+              "displayMode": "list",
+              "placement": "bottom",
               "showLegend": true
             },
             "tooltip": {
@@ -2109,7 +2128,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2126,7 +2145,7 @@
                   "type": "terms"
                 },
                 {
-                  "field": "timestamp",
+                  "field": "pm_data_source.end_timestamp",
                   "id": "2",
                   "settings": {
                     "interval": "$agg",
@@ -2138,11 +2157,11 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "P6087224E95B5121E"
+                "uid": "${datasource}"
               },
               "metrics": [
                 {
-                  "field": "NSL_M55149C00007",
+                  "field": "pm_data.NSL_M55149C00007",
                   "hide": true,
                   "id": "3",
                   "meta": {},
@@ -2150,7 +2169,7 @@
                   "type": "avg"
                 },
                 {
-                  "field": "NSL_M55149C00007",
+                  "field": "pm_data.NSL_M55149C00007",
                   "hide": true,
                   "id": "4",
                   "meta": {},
@@ -2158,7 +2177,7 @@
                   "type": "sum"
                 },
                 {
-                  "field": "NSL_M55149C00006",
+                  "field": "pm_data.NSL_M55149C00006",
                   "hide": true,
                   "id": "5",
                   "meta": {},
@@ -2189,9 +2208,9 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NSL_M55149C00007:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NSL_M55149C00007:*",
               "refId": "A",
-              "timeField": "timestamp"
+              "timeField": "pm_data_source.end_timestamp"
             }
           ],
           "title": "NR_5212a 5G SA Intra-frequency intra-gNB inter-DU handover execution success ratio per PLMN, per slice / intraf inagNB interDU HO exe SR PLMN slice [%]",
@@ -2225,7 +2244,7 @@
         "x": 0,
         "y": 34
       },
-      "id": 224,
+      "id": 247,
       "panels": [
         {
           "datasource": {
@@ -2272,8 +2291,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2288,22 +2305,25 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 112
+            "y": 35
           },
           "id": 222,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
-              "displayMode": "table",
-              "placement": "right",
+              "displayMode": "list",
+              "placement": "bottom",
               "showLegend": true
             },
             "tooltip": {
@@ -2313,7 +2333,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2330,7 +2350,7 @@
                   "type": "terms"
                 },
                 {
-                  "field": "timestamp",
+                  "field": "pm_data_source.end_timestamp",
                   "id": "2",
                   "settings": {
                     "interval": "$agg",
@@ -2342,11 +2362,11 @@
               ],
               "datasource": {
                 "type": "grafana-opensearch-datasource",
-                "uid": "P6087224E95B5121E"
+                "uid": "${datasource}"
               },
               "metrics": [
                 {
-                  "field": "NSL_M55149C00009",
+                  "field": "pm_data.NSL_M55149C00009",
                   "hide": true,
                   "id": "3",
                   "meta": {},
@@ -2354,7 +2374,7 @@
                   "type": "avg"
                 },
                 {
-                  "field": "NSL_M55149C00009",
+                  "field": "pm_data.NSL_M55149C00009",
                   "hide": true,
                   "id": "4",
                   "meta": {},
@@ -2362,7 +2382,7 @@
                   "type": "sum"
                 },
                 {
-                  "field": "NSL_M55149C00008",
+                  "field": "pm_data.NSL_M55149C00008",
                   "hide": true,
                   "id": "5",
                   "meta": {},
@@ -2393,9 +2413,9 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NSL_M55149C00009:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NSL_M55149C00009:*",
               "refId": "A",
-              "timeField": "timestamp"
+              "timeField": "pm_data_source.end_timestamp"
             }
           ],
           "title": "NR_5214a 5G SA Intra-frequency inter-gNB outgoing handover execution success ratio per PLMN, per slice / intraf interNB out HO exe SR PLMN slice [%]",
@@ -2429,7 +2449,7 @@
         "x": 0,
         "y": 35
       },
-      "id": 225,
+      "id": 248,
       "panels": [
         {
           "datasource": {
@@ -2476,8 +2496,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2492,22 +2510,25 @@
                 ]
               },
               "unit": "none"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 120
+            "y": 36
           },
           "id": 226,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
-              "displayMode": "table",
-              "placement": "right",
+              "displayMode": "list",
+              "placement": "bottom",
               "showLegend": true
             },
             "tooltip": {
@@ -2517,7 +2538,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2534,7 +2555,7 @@
                   "type": "terms"
                 },
                 {
-                  "field": "timestamp",
+                  "field": "pm_data_source.end_timestamp",
                   "id": "2",
                   "settings": {
                     "interval": "$agg",
@@ -2550,7 +2571,7 @@
               },
               "metrics": [
                 {
-                  "field": "NSL_M55149C00550",
+                  "field": "pm_data.NSL_M55149C00550",
                   "hide": true,
                   "id": "3",
                   "meta": {},
@@ -2558,7 +2579,7 @@
                   "type": "avg"
                 },
                 {
-                  "field": "NSL_M55149C00550",
+                  "field": "pm_data.NSL_M55149C00550",
                   "hide": true,
                   "id": "4",
                   "meta": {},
@@ -2583,9 +2604,9 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NSL_M55149C00550:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NSL_M55149C00550:*",
               "refId": "A",
-              "timeField": "timestamp"
+              "timeField": "pm_data_source.end_timestamp"
             }
           ],
           "title": "NR_5215a 5G SA Number of inter-frequency intra-gNB intra-DU handover execution attempts per PLMN, per slice [#]",
@@ -2652,8 +2673,6 @@
                   "mode": "off"
                 }
               },
-              "links": [],
-              "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
@@ -2668,22 +2687,25 @@
                 ]
               },
               "unit": "percent"
-            },
-            "overrides": []
+            }
           },
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 127
+            "y": 43
           },
           "id": 227,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
-              "displayMode": "table",
-              "placement": "right",
+              "displayMode": "list",
+              "placement": "bottom",
               "showLegend": true
             },
             "tooltip": {
@@ -2693,7 +2715,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.0.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2710,7 +2732,7 @@
                   "type": "terms"
                 },
                 {
-                  "field": "timestamp",
+                  "field": "pm_data_source.end_timestamp",
                   "id": "2",
                   "settings": {
                     "interval": "$agg",
@@ -2726,7 +2748,7 @@
               },
               "metrics": [
                 {
-                  "field": "NSL_M55149C00550",
+                  "field": "pm_data.NSL_M55149C00550",
                   "hide": true,
                   "id": "3",
                   "meta": {},
@@ -2734,7 +2756,7 @@
                   "type": "avg"
                 },
                 {
-                  "field": "NSL_M55149C00550",
+                  "field": "pm_data.NSL_M55149C00550",
                   "hide": true,
                   "id": "4",
                   "meta": {},
@@ -2742,7 +2764,7 @@
                   "type": "sum"
                 },
                 {
-                  "field": "NSL_M55149C00551",
+                  "field": "pm_data.NSL_M55149C00551",
                   "hide": true,
                   "id": "8",
                   "type": "sum"
@@ -2769,9 +2791,9 @@
                   "type": "bucket_script"
                 }
               ],
-              "query": "nhgid:$nhgid AND ne_hw_id:$ne_hw_id AND Dn:*SST* AND NSL_M55149C00550:*",
+              "query": "pm_data_source.nhg_alias.keyword:$nhgname AND pm_data_source.dn:*SST* AND pm_data.NSL_M55149C00550:*",
               "refId": "A",
-              "timeField": "timestamp"
+              "timeField": "pm_data_source.end_timestamp"
             }
           ],
           "title": "NR_5216a 5G SA Inter-frequency intra-gNB intra-DU handover execution success ratio per PLMN, per slice [%]",
@@ -2807,6 +2829,7 @@
   "templating": {
     "list": [
       {
+        "allowCustomValue": true,
         "current": {
           "text": "dac-radio-5g-pm",
           "value": "dac-radio-5g-pm"
@@ -2814,14 +2837,17 @@
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
+        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-5g-pm",
+        "skipUrlSync": false,
         "type": "datasource"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "MOSS_SA_NHG",
           "value": "MOSS_SA_NHG"
@@ -2831,13 +2857,18 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
+        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
@@ -2851,23 +2882,30 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
+        "hide": 0,
         "includeAll": true,
         "label": "Slice ID",
+        "multi": false,
         "name": "slice_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
-          "selected": false,
           "text": "Cell",
           "value": "pm_data_source.dn.keyword"
         },
+        "hide": 0,
         "includeAll": false,
         "label": "Object Level",
+        "multi": false,
         "name": "groupby",
         "options": [
           {
@@ -2882,16 +2920,21 @@
           }
         ],
         "query": "gNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
-        "type": "custom"
+        "skipUrlSync": false,
+        "type": "custom",
+        "valuesFormat": "csv"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "15m",
           "value": "15m"
         },
         "description": "The interval is used to aggregate the metrics over time.",
+        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
+        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -2946,7 +2989,9 @@
           }
         ],
         "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
-        "type": "custom"
+        "skipUrlSync": false,
+        "type": "custom",
+        "valuesFormat": "csv"
       }
     ]
   },
@@ -2955,9 +3000,21 @@
     "to": "now-15m"
   },
   "timepicker": {
-    "nowDelay": "15m"
+    "nowDelay": "15m",
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
   },
-  "timezone": "",
+  "timezone": "browser",
   "title": "Nokia DAC Radio 5G PM KPI - Slice Performance 5G035",
   "uid": "radio5gslc",
   "version": 3

@@ -4,7 +4,7 @@
       {
         "builtIn": 1,
         "datasource": {
-          "type": "datasource",
+          "type": "grafana",
           "uid": "grafana"
         },
         "enable": true,
@@ -28,19 +28,27 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio4G"
       ],
+      "targetBlank": false,
       "title": "Radio 4G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio5G"
       ],
+      "targetBlank": false,
       "title": "Radio 5G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
@@ -88,14 +96,18 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "AllAlarms"
       ],
       "targetBlank": false,
       "title": "Alarms dashboard",
+      "tooltip": "",
       "type": "dashboards"
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -143,8 +155,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -159,8 +169,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -171,6 +180,10 @@
       "id": 1,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -184,7 +197,7 @@
           "sort": "asc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -217,7 +230,6 @@
             "uid": "${datasource}"
           },
           "dsType": "grafana-opensearch-datasource",
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C6",
@@ -339,8 +351,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -355,8 +365,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -367,6 +376,10 @@
       "id": 36,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -380,7 +393,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -411,7 +424,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C8",
@@ -528,8 +540,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -544,8 +554,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -556,6 +565,10 @@
       "id": 37,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -569,7 +582,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -600,7 +613,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C0",
@@ -717,8 +729,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -733,8 +743,7 @@
             ]
           },
           "unit": "decmbytes"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -745,6 +754,10 @@
       "id": 38,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -758,7 +771,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -789,7 +802,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C3",
@@ -896,8 +908,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -912,8 +922,7 @@
             ]
           },
           "unit": "decmbytes"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -924,6 +933,10 @@
       "id": 39,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -937,7 +950,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -968,7 +981,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C2",
@@ -1075,8 +1087,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1091,8 +1101,7 @@
             ]
           },
           "unit": "decmbytes"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1103,6 +1112,10 @@
       "id": 40,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1116,7 +1129,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1147,7 +1160,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C5",
@@ -1254,8 +1266,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1270,8 +1280,7 @@
             ]
           },
           "unit": "decmbytes"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1282,6 +1291,10 @@
       "id": 41,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1295,7 +1308,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1326,7 +1339,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C4",
@@ -1433,8 +1445,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -1450,8 +1460,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1462,6 +1471,10 @@
       "id": 42,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1475,7 +1488,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1506,7 +1519,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C28",
@@ -1623,8 +1635,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -1640,8 +1650,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1652,6 +1661,10 @@
       "id": 43,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1665,7 +1678,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1696,7 +1709,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C30",
@@ -1813,8 +1825,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -1830,8 +1840,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1842,6 +1851,10 @@
       "id": 44,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1855,7 +1868,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1886,7 +1899,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C32",
@@ -2003,8 +2015,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -2020,8 +2030,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2032,6 +2041,10 @@
       "id": 45,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2045,7 +2058,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2076,7 +2089,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C34",
@@ -2193,8 +2205,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -2210,8 +2220,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2222,6 +2231,10 @@
       "id": 46,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2235,7 +2248,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2266,7 +2279,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C36",
@@ -2383,8 +2395,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -2400,8 +2410,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2412,6 +2421,10 @@
       "id": 47,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2425,7 +2438,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2456,7 +2469,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C38",
@@ -2573,8 +2585,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -2590,8 +2600,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2602,6 +2611,10 @@
       "id": 48,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2615,7 +2628,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2646,7 +2659,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C40",
@@ -2763,8 +2775,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -2780,8 +2790,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2792,6 +2801,10 @@
       "id": 49,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2805,7 +2818,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2836,7 +2849,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C42",
@@ -2953,8 +2965,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -2970,8 +2980,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2982,6 +2991,10 @@
       "id": 50,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2995,7 +3008,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3026,7 +3039,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C44",
@@ -3143,8 +3155,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -3160,8 +3170,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3172,6 +3181,10 @@
       "id": 51,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3185,7 +3198,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3216,7 +3229,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C10",
@@ -3333,8 +3345,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -3350,8 +3360,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3362,6 +3371,10 @@
       "id": 52,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3375,7 +3388,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3406,7 +3419,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C12",
@@ -3523,8 +3535,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -3540,8 +3550,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3552,6 +3561,10 @@
       "id": 53,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3565,7 +3578,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3596,7 +3609,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C14",
@@ -3713,8 +3725,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -3730,8 +3740,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3742,6 +3751,10 @@
       "id": 54,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3755,7 +3768,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3786,7 +3799,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C16",
@@ -3903,8 +3915,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -3920,8 +3930,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3932,6 +3941,10 @@
       "id": 55,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3945,7 +3958,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3976,7 +3989,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C18",
@@ -4093,8 +4105,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -4110,8 +4120,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4122,6 +4131,10 @@
       "id": 56,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -4135,7 +4148,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4166,7 +4179,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C20",
@@ -4283,8 +4295,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -4300,8 +4310,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4312,6 +4321,10 @@
       "id": 57,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -4325,7 +4338,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4356,7 +4369,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C22",
@@ -4473,8 +4485,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -4490,8 +4500,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4502,6 +4511,10 @@
       "id": 58,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -4515,7 +4528,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4546,7 +4559,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C24",
@@ -4663,8 +4675,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -4680,8 +4690,7 @@
             ]
           },
           "unit": "Kbits"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4692,6 +4701,10 @@
       "id": 59,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -4705,7 +4718,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4736,7 +4749,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C26",
@@ -4853,8 +4865,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -4869,8 +4879,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4881,6 +4890,10 @@
       "id": 60,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -4894,7 +4907,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4925,7 +4938,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C46",
@@ -5042,8 +5054,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5058,8 +5068,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5070,6 +5079,10 @@
       "id": 61,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -5083,7 +5096,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5114,7 +5127,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C48",
@@ -5219,8 +5231,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5235,8 +5245,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5247,6 +5256,10 @@
       "id": 62,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -5260,7 +5273,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5291,7 +5304,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C47",
@@ -5396,8 +5408,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5412,8 +5422,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5424,6 +5433,10 @@
       "id": 63,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -5437,7 +5450,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5468,7 +5481,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C55",
@@ -5563,8 +5575,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5579,8 +5589,7 @@
             ]
           },
           "unit": "short"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5591,6 +5600,10 @@
       "id": 64,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -5604,7 +5617,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5635,7 +5648,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C56",
@@ -5730,8 +5742,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5746,8 +5756,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5758,6 +5767,10 @@
       "id": 65,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -5771,7 +5784,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5802,7 +5815,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C54",
@@ -5917,8 +5929,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5933,8 +5943,7 @@
             ]
           },
           "unit": "ms"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5945,6 +5954,10 @@
       "id": 66,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -5958,7 +5971,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5989,7 +6002,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C67",
@@ -6080,8 +6092,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6096,8 +6106,7 @@
             ]
           },
           "unit": "ms"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6108,6 +6117,10 @@
       "id": 67,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -6121,7 +6134,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6152,7 +6165,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C68",
@@ -6243,8 +6255,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6259,8 +6269,7 @@
             ]
           },
           "unit": "ms"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6271,6 +6280,10 @@
       "id": 68,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -6284,7 +6297,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6315,7 +6328,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C69",
@@ -6406,8 +6418,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6422,8 +6432,7 @@
             ]
           },
           "unit": "ms"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6434,6 +6443,10 @@
       "id": 69,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -6447,7 +6460,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6478,7 +6491,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C70",
@@ -6569,8 +6581,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6585,8 +6595,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6597,6 +6606,10 @@
       "id": 70,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -6610,7 +6623,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6641,7 +6654,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C80",
@@ -6746,8 +6758,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6762,8 +6772,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6774,6 +6783,10 @@
       "id": 71,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -6787,7 +6800,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6818,7 +6831,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C78",
@@ -6909,8 +6921,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6925,8 +6935,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6937,6 +6946,10 @@
       "id": 72,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -6950,7 +6963,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6981,7 +6994,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C79",
@@ -7072,8 +7084,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -7088,8 +7098,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -7100,6 +7109,10 @@
       "id": 73,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -7113,7 +7126,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7144,7 +7157,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C77",
@@ -7249,8 +7261,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -7265,8 +7275,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -7277,6 +7286,10 @@
       "id": 74,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -7290,7 +7303,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7321,7 +7334,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C75",
@@ -7412,8 +7424,6 @@
               "mode": "off"
             }
           },
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -7428,8 +7438,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -7440,6 +7449,10 @@
       "id": 75,
       "interval": "15m",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -7453,7 +7466,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.3.2",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7484,7 +7497,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.LTE_RAN_Sharing_M8038C76",
@@ -7540,6 +7552,7 @@
   "templating": {
     "list": [
       {
+        "allowCustomValue": true,
         "current": {
           "text": "dac-radio-4g-pm",
           "value": "dac-radio-4g-pm"
@@ -7547,14 +7560,17 @@
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
+        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-4g-pm",
+        "skipUrlSync": false,
         "type": "datasource"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "",
           "value": ""
@@ -7564,13 +7580,18 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
+        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
@@ -7584,16 +7605,22 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
+        "hide": 0,
         "includeAll": true,
         "label": "Slice ID",
+        "multi": false,
         "name": "slice_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "All",
           "value": "$__all"
@@ -7604,6 +7631,7 @@
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "description": "PLMN ID",
+        "hide": 0,
         "includeAll": true,
         "label": "PLMN ID",
         "multi": true,
@@ -7612,16 +7640,22 @@
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "refresh": 1,
         "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "15m",
           "value": "15m"
         },
         "description": "The interval is used to aggregate the metrics over time.",
+        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
+        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -7676,7 +7710,9 @@
           }
         ],
         "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
-        "type": "custom"
+        "skipUrlSync": false,
+        "type": "custom",
+        "valuesFormat": "csv"
       }
     ]
   },
@@ -7685,9 +7721,21 @@
     "to": "now-15m"
   },
   "timepicker": {
-    "nowDelay": "15m"
+    "nowDelay": "15m",
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
   },
-  "timezone": "",
+  "timezone": "browser",
   "title": "Nokia DAC Radio 4G PM KPI MOCN Dashboard",
   "uid": "radio4gpmmocn",
   "version": 1

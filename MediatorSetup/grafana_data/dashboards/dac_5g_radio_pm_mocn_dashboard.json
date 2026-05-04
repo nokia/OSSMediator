@@ -4,7 +4,7 @@
       {
         "builtIn": 1,
         "datasource": {
-          "type": "datasource",
+          "type": "grafana",
           "uid": "grafana"
         },
         "enable": true,
@@ -28,19 +28,27 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio4G"
       ],
+      "targetBlank": false,
       "title": "Radio 4G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "Radio5G"
       ],
+      "targetBlank": false,
       "title": "Radio 5G Dashboards",
+      "tooltip": "",
       "type": "dashboards"
     },
     {
@@ -88,14 +96,18 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
       "tags": [
         "AllAlarms"
       ],
       "targetBlank": false,
       "title": "Alarms dashboard",
+      "tooltip": "",
       "type": "dashboards"
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -143,8 +155,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -159,8 +169,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -171,6 +180,10 @@
       "id": 1,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -184,7 +197,7 @@
           "sort": "asc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -217,7 +230,6 @@
             "uid": "${datasource}"
           },
           "dsType": "grafana-opensearch-datasource",
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00301",
@@ -347,8 +359,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -363,8 +373,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -375,6 +384,10 @@
       "id": 36,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -388,7 +401,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -419,7 +432,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00301",
@@ -547,8 +559,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -563,8 +573,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -575,6 +584,10 @@
       "id": 37,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -588,7 +601,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -619,7 +632,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00301",
@@ -757,8 +769,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -773,8 +783,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -785,6 +794,10 @@
       "id": 38,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -798,7 +811,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -829,7 +842,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00341",
@@ -924,8 +936,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -940,8 +950,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -952,6 +961,10 @@
       "id": 39,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -965,7 +978,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -996,7 +1009,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00342",
@@ -1114,8 +1126,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1130,8 +1140,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1142,6 +1151,10 @@
       "id": 40,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1155,7 +1168,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1186,7 +1199,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00301",
@@ -1281,8 +1293,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1297,8 +1307,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1309,6 +1318,10 @@
       "id": 41,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1322,7 +1335,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1353,7 +1366,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00301",
@@ -1471,8 +1483,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1487,8 +1497,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1499,6 +1508,10 @@
       "id": 42,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1512,7 +1525,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1543,7 +1556,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00321",
@@ -1638,8 +1650,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1654,8 +1664,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1666,6 +1675,10 @@
       "id": 43,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1679,7 +1692,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1710,7 +1723,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00321",
@@ -1828,8 +1840,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1844,8 +1854,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -1856,6 +1865,10 @@
       "id": 44,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -1869,7 +1882,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1900,7 +1913,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00351",
@@ -1995,8 +2007,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2011,8 +2021,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2023,6 +2032,10 @@
       "id": 45,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2036,7 +2049,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2067,7 +2080,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00351",
@@ -2185,8 +2197,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2201,8 +2211,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2213,6 +2222,10 @@
       "id": 46,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2226,7 +2239,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2257,7 +2270,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C02005",
@@ -2405,8 +2417,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2421,8 +2431,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2433,6 +2442,10 @@
       "id": 47,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2446,7 +2459,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2477,7 +2490,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C02005",
@@ -2625,8 +2637,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2641,8 +2651,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2653,6 +2662,10 @@
       "id": 48,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2666,7 +2679,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2697,7 +2710,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C02005",
@@ -2771,7 +2783,6 @@
     },
     {
       "datasource": {
-        "default": false,
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
@@ -2816,8 +2827,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2832,8 +2841,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -2844,6 +2852,10 @@
       "id": 49,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -2857,7 +2869,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2888,7 +2900,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C02005",
@@ -2992,7 +3003,6 @@
     },
     {
       "datasource": {
-        "default": false,
         "type": "grafana-opensearch-datasource",
         "uid": "${datasource}"
       },
@@ -3037,8 +3047,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3053,8 +3061,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3065,6 +3072,10 @@
       "id": 50,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3078,7 +3089,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3109,7 +3120,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C02005",
@@ -3287,8 +3297,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3303,8 +3311,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3315,6 +3322,10 @@
       "id": 51,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3328,7 +3339,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3359,7 +3370,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03001",
@@ -3487,8 +3497,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3503,8 +3511,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3515,6 +3522,10 @@
       "id": 52,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3528,7 +3539,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3559,7 +3570,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03001",
@@ -3687,8 +3697,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3703,8 +3711,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3715,6 +3722,10 @@
       "id": 53,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3728,7 +3739,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3759,7 +3770,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03001",
@@ -3854,8 +3864,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3870,8 +3878,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -3882,6 +3889,10 @@
       "id": 54,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -3895,7 +3906,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3926,7 +3937,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03002",
@@ -4044,8 +4054,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -4060,8 +4068,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4072,6 +4079,10 @@
       "id": 55,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -4085,7 +4096,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4116,7 +4127,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03002",
@@ -4254,8 +4264,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -4270,8 +4278,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4282,6 +4289,10 @@
       "id": 56,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -4295,7 +4306,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4326,7 +4337,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03501",
@@ -4454,8 +4464,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -4470,8 +4478,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4482,6 +4489,10 @@
       "id": 57,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -4495,7 +4506,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4526,7 +4537,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03501",
@@ -4654,8 +4664,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -4670,8 +4678,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4682,6 +4689,10 @@
       "id": 58,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -4695,7 +4706,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4726,7 +4737,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03504",
@@ -4844,8 +4854,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -4860,8 +4868,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -4872,6 +4879,10 @@
       "id": 59,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -4885,7 +4896,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4916,7 +4927,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03504",
@@ -5054,8 +5064,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5070,8 +5078,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5082,6 +5089,10 @@
       "id": 60,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -5095,7 +5106,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5126,7 +5137,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03505",
@@ -5254,8 +5264,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5270,8 +5278,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5282,6 +5289,10 @@
       "id": 61,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -5295,7 +5306,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5326,7 +5337,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03505",
@@ -5454,8 +5464,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5470,8 +5478,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5482,6 +5489,10 @@
       "id": 62,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -5495,7 +5506,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5526,7 +5537,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03508",
@@ -5644,8 +5654,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5660,8 +5668,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5672,6 +5679,10 @@
       "id": 63,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -5685,7 +5696,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5716,7 +5727,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03508",
@@ -5854,8 +5864,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -5870,8 +5878,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -5882,6 +5889,10 @@
       "id": 64,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -5895,7 +5906,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5926,7 +5937,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03511",
@@ -6054,8 +6064,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6070,8 +6078,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6082,6 +6089,10 @@
       "id": 65,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -6095,7 +6106,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6126,7 +6137,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03511",
@@ -6254,8 +6264,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6270,8 +6278,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6282,6 +6289,10 @@
       "id": 66,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -6295,7 +6306,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6326,7 +6337,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03514",
@@ -6442,8 +6452,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6458,8 +6466,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6470,6 +6477,10 @@
       "id": 67,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -6483,7 +6494,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6514,7 +6525,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03514",
@@ -6650,8 +6660,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6666,8 +6674,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6678,6 +6685,10 @@
       "id": 68,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -6691,7 +6702,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6722,7 +6733,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03515",
@@ -6848,8 +6858,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -6864,8 +6872,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -6876,6 +6883,10 @@
       "id": 69,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -6889,7 +6900,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6920,7 +6931,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03515",
@@ -7046,8 +7056,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -7062,8 +7070,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -7074,6 +7081,10 @@
       "id": 70,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -7087,7 +7098,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7118,7 +7129,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03518",
@@ -7234,8 +7244,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -7250,8 +7258,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -7262,6 +7269,10 @@
       "id": 71,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -7275,7 +7286,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7306,7 +7317,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C03518",
@@ -7442,8 +7452,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -7458,8 +7466,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -7470,6 +7477,10 @@
       "id": 72,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -7483,7 +7494,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7514,7 +7525,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00321",
@@ -7640,8 +7650,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -7656,8 +7664,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -7668,6 +7675,10 @@
       "id": 74,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -7681,7 +7692,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7712,7 +7723,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00321",
@@ -7838,8 +7848,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -7854,8 +7862,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -7866,6 +7873,10 @@
       "id": 73,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -7879,7 +7890,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7910,7 +7921,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C00321",
@@ -8046,8 +8056,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -8062,8 +8070,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -8074,6 +8081,10 @@
       "id": 75,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -8087,7 +8098,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -8118,7 +8129,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C04021",
@@ -8244,8 +8254,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -8260,8 +8268,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -8272,6 +8279,10 @@
       "id": 76,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -8285,7 +8296,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -8316,7 +8327,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C04021",
@@ -8442,8 +8452,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -8458,8 +8466,7 @@
             ]
           },
           "unit": "none"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -8470,6 +8477,10 @@
       "id": 77,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -8483,7 +8494,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -8514,7 +8525,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C04023",
@@ -8607,8 +8617,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -8623,8 +8631,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -8635,6 +8642,10 @@
       "id": 78,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -8648,7 +8659,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -8679,7 +8690,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C04023",
@@ -8795,8 +8805,6 @@
             }
           },
           "decimals": 0,
-          "links": [],
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -8811,8 +8819,7 @@
             ]
           },
           "unit": "percent"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 5,
@@ -8823,6 +8830,10 @@
       "id": 79,
       "interval": "$agg",
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -8836,7 +8847,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "13.0.1",
       "targets": [
         {
           "bucketAggs": [
@@ -8867,7 +8878,6 @@
             "type": "grafana-opensearch-datasource",
             "uid": "${datasource}"
           },
-          "hide": false,
           "metrics": [
             {
               "field": "pm_data.NRANS_M55145C04023",
@@ -8967,6 +8977,7 @@
   "templating": {
     "list": [
       {
+        "allowCustomValue": true,
         "current": {
           "text": "dac-radio-5g-pm",
           "value": "dac-radio-5g-pm"
@@ -8974,14 +8985,17 @@
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
+        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-5g-pm",
+        "skipUrlSync": false,
         "type": "datasource"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "Laas13",
           "value": "Laas13"
@@ -8991,13 +9005,18 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
+        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
+        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
@@ -9011,16 +9030,22 @@
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
+        "hide": 0,
         "includeAll": true,
         "label": "Slice ID",
+        "multi": false,
         "name": "slice_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
         "refresh": 2,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "All",
           "value": [
@@ -9033,6 +9058,7 @@
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "description": "PLMN ID",
+        "hide": 0,
         "includeAll": true,
         "label": "PLMN ID",
         "multi": true,
@@ -9041,16 +9067,22 @@
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "refresh": 1,
         "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
+        "allowCustomValue": true,
         "current": {
           "text": "15m",
           "value": "15m"
         },
         "description": "The interval is used to aggregate the metrics over time.",
+        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
+        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -9105,7 +9137,9 @@
           }
         ],
         "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
-        "type": "custom"
+        "skipUrlSync": false,
+        "type": "custom",
+        "valuesFormat": "csv"
       }
     ]
   },
@@ -9114,9 +9148,21 @@
     "to": "now-15m"
   },
   "timepicker": {
-    "nowDelay": "15m"
+    "nowDelay": "15m",
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
   },
-  "timezone": "",
+  "timezone": "browser",
   "title": "Nokia DAC Radio 5G PM KPI MOCN Dashboard",
   "uid": "radio5gpmmocn",
   "version": 1

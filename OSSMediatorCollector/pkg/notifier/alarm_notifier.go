@@ -101,6 +101,7 @@ type FMSource struct {
 		SerialNo     string `json:"serial_no"`
 		SliceID      string `json:"slice_id"`
 		Technology   string `json:"technology"`
+		MetricType   string `json:"metric_type"`
 	} `json:"fm_data_source"`
 }
 
@@ -145,7 +146,7 @@ func readAlarmNotifierConfig(txnID uint64) error {
 }
 
 // RaiseAlarmNotification alerts about specific alarms configured in resources/alarm_notifier.yaml to MS teams.
-func RaiseAlarmNotification(txnID uint64, fmData interface{}, metricType string, eventType string) {
+func RaiseAlarmNotification(txnID uint64, fmData interface{}, eventType string) {
 	if _, err := os.Stat(alarmConfigFIlePath); os.IsNotExist(err) {
 		log.WithFields(log.Fields{"tid": txnID}).Debugf("Alarm notifier config not present, skipping alarm notification")
 		return
@@ -162,7 +163,7 @@ func RaiseAlarmNotification(txnID uint64, fmData interface{}, metricType string,
 	}
 
 	data, _ := json.Marshal(fmData)
-	alarmToNotify := getAlarmDetails(txnID, string(data), metricType)
+	alarmToNotify := getAlarmDetails(txnID, string(data))
 	if len(alarmToNotify) == 0 {
 		log.WithFields(log.Fields{"tid": txnID}).Debugf("Found no alarms to notify")
 		return
@@ -214,7 +215,7 @@ func pushToWebHook(txnID uint64, message []byte) {
 	log.WithFields(log.Fields{"tid": txnID}).Infof("Alarms notified")
 }
 
-func getAlarmDetails(txnID uint64, fmData string, metricType string) []FMSource {
+func getAlarmDetails(txnID uint64, fmData string) []FMSource {
 	var data []FMSource
 	var alarmToNotify []FMSource
 	err := json.Unmarshal([]byte(fmData), &data)
@@ -226,6 +227,7 @@ func getAlarmDetails(txnID uint64, fmData string, metricType string) []FMSource 
 	removeOldRaisedAlarms()
 	for _, v := range data {
 		var isValid bool
+		metricType := v.FmDataSource.MetricType
 		if !(alarmNotifier.SeverityThreshold == "" || alarmNotifier.SeverityThreshold == "NONE") {
 			isValid = checkSeverity(v.FmData.Severity)
 			log.Infof("severity: %v, isValid: %v", v.FmData.Severity, isValid)

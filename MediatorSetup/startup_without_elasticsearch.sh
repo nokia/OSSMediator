@@ -3,14 +3,14 @@ set -e
 
 install_grafana() {
 	if [ -x "$(command -v yum)" ]; then
-		yum install -y https://dl.grafana.com/grafana/release/13.0.1/grafana_13.0.1_24542347077_linux_amd64.rpm
+		yum install -y https://dl.grafana.com/grafana/release/13.1.3/grafana_13.1.3_31135815010_linux_amd64.rpm
 	elif [ -x "$(command -v apt-get)" ]; then
 		apt-get install -y adduser libfontconfig1 musl
-    		wget https://dl.grafana.com/grafana/release/13.0.1/grafana_13.0.1_24542347077_linux_amd64.deb
-    		dpkg -i grafana_13.0.1_24542347077_linux_amd64.deb
+		wget https://dl.grafana.com/grafana/release/13.1.3/grafana_13.1.3_31135815010_linux_amd64.deb
+		dpkg -i grafana_13.1.3_31135815010_linux_amd64.deb
 	elif [ -x "$(command -v rpm)" ]; then
-		wget https://dl.grafana.com/grafana/release/13.0.1/grafana_13.0.1_24542347077_linux_amd64.rpm
-    		rpm -Uvh grafana_13.0.1_24542347077_linux_amd64.rpm
+		wget https://dl.grafana.com/grafana/release/13.1.3/grafana_13.1.3_31135815010_linux_amd64.rpm
+		rpm -Uvh grafana_13.1.3_31135815010_linux_amd64.rpm
 	else
 		echo "Error can't install Grafana, please install it manually and re-run the script."
 		exit 1;
@@ -18,34 +18,33 @@ install_grafana() {
 }
 
 function version_gt() {
-  test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1";
+	test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1";
 }
 
 while [ $# -gt 0 ]; do
+	if [[ $1 == *"--"* ]]; then
+		param="${1/--/}"
+		declare $param="$2"
+	fi
 
-   if [[ $1 == *"--"* ]]; then
-        param="${1/--/}"
-        declare $param="$2"
-   fi
-
-  shift
+	shift
 done
 
-if ! [ -x "$(command -v grafana-server)" ]; then
-  echo "Installing Grafana..."
+if ! [ -x "$(command -v grafana server)" ]; then
+	echo "Installing Grafana..."
 	install_grafana
-	echo "Grafana version is $(grafana-server -v)."
+	echo "Grafana version is $(grafana server -v)."
 else
-  grafana_version=$(grafana-server -v | cut -d' ' -f 2)
-  min_grafana_version=12.3.0
+	grafana_version=$(grafana server -v | cut -d' ' -f 2)
+	min_grafana_version=13.1.0
 
-  if version_gt $grafana_version $min_grafana_version; then
-    echo "Grafana version is $grafana_version."
-  else
-    echo "Grafana version $grafana_version is less than recommended version $min_grafana_version, updating grafana..."
-    install_grafana
-    echo "Grafana version is $(grafana-server -v)."
-  fi
+	if version_gt $grafana_version $min_grafana_version; then
+		echo "Grafana version is $grafana_version."
+	else
+		echo "Grafana version $grafana_version is less than recommended version $min_grafana_version, updating grafana..."
+		install_grafana
+		echo "Grafana version is $(grafana server -v)."
+	fi
 fi
 
 echo "Installing OSSMediator"
@@ -91,10 +90,10 @@ sleep 10
 echo "Checking Grafana status"
 Status=`systemctl is-active grafana-server` || true
 if [ "$Status" == "active" ]; then
-    echo "Grafana service started successfully"
+	echo "Grafana service started successfully"
 else
 	echo 'Job for grafana-server.service failed See "systemctl status grafana-server.service" and "/var/log/grafana/grafana.log" for details.'
-  exit 1
+	exit 1
 fi
 
 systemctl restart collector
@@ -104,19 +103,19 @@ systemctl restart elasticsearchplugin
 echo "Checking OSSMediatorCollector status"
 Status=`systemctl is-active collector` || true
 if [ "$Status" == "active" ]; then
-  echo "OSSMediatorCollector service started successfully"
+	echo "OSSMediatorCollector service started successfully"
 else
 	echo 'OSSMediatorCollector failed See "systemctl status collector" and "./collector/log/collector.log" for details.'
-  exit 1
+	exit 1
 fi
 
 echo "Checking ElasticsearchPlugin status"
 Status=`systemctl is-active elasticsearchplugin` || true
 if [ "$Status" == "active" ]; then
-  echo "ElasticsearchPlugin service started successfully"
+	echo "ElasticsearchPlugin service started successfully"
 else
 	echo 'ElasticsearchPlugin failed See "systemctl status elasticsearchplugin" and "./plugin/log/ElasticsearchPlugin.log" for details.'
-  exit 1
+	exit 1
 fi
 
 echo "OSSMediator is started, open http://<IP_Address>:3000/dashboards to view the dashboards."

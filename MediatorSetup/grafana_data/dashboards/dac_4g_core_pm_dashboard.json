@@ -1,4 +1,47 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_DAC-CORE-PM",
+      "label": "dac-core-pm",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "grafana-opensearch-datasource",
+      "pluginName": "OpenSearch"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "13.1.1"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-opensearch-datasource",
+      "name": "OpenSearch",
+      "version": "2.34.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -143,7 +186,8 @@
             ]
           },
           "unit": "bps"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -171,7 +215,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "",
@@ -242,7 +286,8 @@
             ]
           },
           "unit": "bps"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -270,7 +315,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "",
@@ -329,7 +374,8 @@
             ]
           },
           "unit": "bps"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -357,7 +403,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "",
@@ -415,7 +461,8 @@
             ]
           },
           "unit": "bps"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -443,7 +490,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "",
@@ -502,7 +549,8 @@
             ]
           },
           "unit": "short"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -530,7 +578,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "",
@@ -589,7 +637,8 @@
             ]
           },
           "unit": "short"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -617,7 +666,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "",
@@ -741,6 +790,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -751,7 +802,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -923,6 +974,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -933,7 +986,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -1105,6 +1158,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1115,7 +1170,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -1267,6 +1322,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1277,7 +1334,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -1429,6 +1486,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1439,7 +1498,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -1591,6 +1650,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1601,7 +1662,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -1762,6 +1823,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1772,7 +1835,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -1944,6 +2007,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1954,7 +2019,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -2126,6 +2191,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -2136,7 +2203,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -2308,6 +2375,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -2318,7 +2387,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -2490,6 +2559,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -2500,7 +2571,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "",
@@ -2661,6 +2732,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -2671,7 +2744,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "",
@@ -2867,7 +2940,7 @@
               }
             ]
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "",
@@ -3079,6 +3152,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3089,7 +3164,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3240,6 +3315,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3250,7 +3327,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3402,6 +3479,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3412,7 +3491,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3564,6 +3643,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3574,7 +3655,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3726,6 +3807,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3736,7 +3819,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -3888,6 +3971,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3898,7 +3983,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4098,6 +4183,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4108,7 +4195,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4260,6 +4347,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4270,7 +4359,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4422,6 +4511,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4432,7 +4523,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4582,6 +4673,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4592,7 +4685,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -4743,6 +4836,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4753,7 +4848,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -4924,6 +5019,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4934,7 +5031,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}/{{pm_data_source.dn.keyword}}",
@@ -5119,6 +5216,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5129,7 +5228,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5281,6 +5380,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5291,7 +5392,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5443,6 +5544,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5453,7 +5556,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5606,6 +5709,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5616,7 +5721,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5765,6 +5870,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5775,7 +5882,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -5927,6 +6034,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5937,7 +6046,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6089,6 +6198,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6099,7 +6210,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6251,6 +6362,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6261,7 +6374,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6413,6 +6526,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6423,7 +6538,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6575,6 +6690,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6585,7 +6702,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6737,6 +6854,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6747,7 +6866,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -6899,6 +7018,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6909,7 +7030,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7061,6 +7182,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7071,7 +7194,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7223,6 +7346,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7233,7 +7358,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7385,6 +7510,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7395,7 +7522,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7547,6 +7674,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7557,7 +7686,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7709,6 +7838,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7719,7 +7850,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -7871,6 +8002,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7881,7 +8014,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -8033,6 +8166,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8043,7 +8178,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -8195,6 +8330,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8205,7 +8342,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -8371,6 +8508,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8381,7 +8520,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -8503,6 +8642,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8513,7 +8654,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -8637,6 +8778,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8647,7 +8790,7 @@
               "sort": "desc"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "alias": "{{pm_data_source.nhg_alias.keyword}}",
@@ -8710,33 +8853,28 @@
       {
         "allowCustomValue": true,
         "current": {
-          "text": "dac-core-pm",
-          "value": "dac-core-pm"
+          "text": "",
+          "value": "${DS_DAC-CORE-PM}",
+          "selected": true
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-core-pm",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "allowCustomValue": true,
-        "current": {
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": true,
         "label": "Network Hw Group Name",
         "multi": true,
@@ -8746,8 +8884,6 @@
         "refresh": 2,
         "regex": "",
         "regexApplyTo": "value",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
@@ -8757,10 +8893,8 @@
           "value": "5m"
         },
         "description": "Aggregation",
-        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
-        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -8815,7 +8949,6 @@
           }
         ],
         "query": "5m,15m,1h,3h,6h,12h,1d,7d,15d,1M",
-        "skipUrlSync": false,
         "type": "custom",
         "valuesFormat": "csv"
       }
@@ -8843,5 +8976,6 @@
   "timezone": "browser",
   "title": "Nokia DAC CORE 4G PM KPI",
   "uid": "core4g",
-  "version": 1
+  "version": 2,
+  "weekStart": ""
 }

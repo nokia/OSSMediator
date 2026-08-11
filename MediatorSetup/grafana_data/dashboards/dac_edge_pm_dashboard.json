@@ -1,4 +1,47 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_DAC-EDGE-PM",
+      "label": "dac-edge-pm",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "grafana-opensearch-datasource",
+      "pluginName": "OpenSearch"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "13.1.1"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-opensearch-datasource",
+      "name": "OpenSearch",
+      "version": "2.34.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -127,7 +170,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -164,7 +208,7 @@
         "sparkline": false,
         "textMode": "auto"
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "CPU Usage",
@@ -229,7 +273,8 @@
             ]
           },
           "unit": "celsius"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -269,7 +314,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "",
@@ -301,7 +346,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "Edge disk temperature [°C]",
+      "title": "Edge disk temperature [\u00b0C]",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -344,7 +389,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -370,7 +416,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "Ram Usage",
@@ -435,7 +481,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -461,7 +508,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "Memory Usage",
@@ -550,7 +597,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -567,6 +615,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -577,7 +627,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "Average CPU Usage",
@@ -705,7 +755,8 @@
             ]
           },
           "unit": "celsius"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -722,6 +773,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -732,7 +785,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "Average Disk Temp",
@@ -815,7 +868,7 @@
           "timeField": "pm_data_source.timestamp"
         }
       ],
-      "title": "Edge disk temperature [°C]",
+      "title": "Edge disk temperature [\u00b0C]",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -882,7 +935,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -899,6 +953,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -909,7 +965,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "Average Ram Usage",
@@ -1037,7 +1093,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -1054,6 +1111,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -1064,7 +1123,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "alias": "Average Memory Usage",
@@ -1149,69 +1208,54 @@
       {
         "allowCustomValue": true,
         "current": {
-          "text": "dac-edge-pm",
-          "value": "dac-edge-pm"
+          "text": "",
+          "value": "${DS_DAC-EDGE-PM}",
+          "selected": true
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-edge-pm",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "allowCustomValue": true,
-        "current": {
-          "text": "LaaS19",
-          "value": "LaaS19"
-        },
+        "current": {},
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
-        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "refresh": 2,
         "regex": "",
         "regexApplyTo": "value",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "allowCustomValue": true,
-        "current": {
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
-        "hide": 0,
         "includeAll": true,
         "label": "Slice ID",
-        "multi": false,
         "name": "edgealias",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.edge_alias.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "refresh": 2,
         "regex": "",
         "regexApplyTo": "value",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
@@ -1221,10 +1265,8 @@
           "value": "1m"
         },
         "description": "Aggregation",
-        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
-        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -1284,7 +1326,6 @@
           }
         ],
         "query": "1m,5m,15m,1h,3h,6h,12h,1d,7d,15d,1M",
-        "skipUrlSync": false,
         "type": "custom",
         "valuesFormat": "csv"
       }
@@ -1312,5 +1353,6 @@
   "timezone": "browser",
   "title": "Nokia DAC EDGE PM KPI",
   "uid": "edgepm",
-  "version": 1
+  "version": 2,
+  "weekStart": ""
 }

@@ -1,4 +1,35 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_DAC-RADIO-5G-PM",
+      "label": "dac-radio-5g-pm",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "grafana-opensearch-datasource",
+      "pluginName": "OpenSearch"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "13.1.1"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-opensearch-datasource",
+      "name": "OpenSearch",
+      "version": "2.34.0"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -181,7 +212,8 @@
             ]
           },
           "unit": "short"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -199,6 +231,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -209,7 +243,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -377,7 +411,8 @@
             ]
           },
           "unit": "short"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -395,6 +430,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -405,7 +442,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -573,7 +610,8 @@
             ]
           },
           "unit": "short"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -591,6 +629,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -601,7 +641,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -769,7 +809,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -787,6 +828,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -797,7 +840,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -993,7 +1036,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -1011,6 +1055,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -1021,7 +1067,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1265,6 +1311,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1275,7 +1323,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1515,6 +1563,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1525,7 +1575,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1745,6 +1795,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1755,7 +1807,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1986,6 +2038,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1996,7 +2050,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2227,6 +2281,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -2237,7 +2293,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2468,6 +2524,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -2478,7 +2536,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2712,6 +2770,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -2722,7 +2782,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2949,9 +3009,15 @@
           "id": 300,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -2962,7 +3028,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -3189,9 +3255,15 @@
           "id": 412,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3202,7 +3274,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -3430,9 +3502,15 @@
           "id": 413,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3443,7 +3521,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -3708,9 +3786,15 @@
           "id": 414,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3721,7 +3805,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -3921,9 +4005,15 @@
           "id": 415,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3934,7 +4024,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4113,9 +4203,15 @@
           "id": 416,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4126,7 +4222,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4326,9 +4422,15 @@
           "id": 417,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4339,7 +4441,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4558,9 +4660,15 @@
           "id": 456,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4571,7 +4679,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4790,9 +4898,15 @@
           "id": 478,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4803,7 +4917,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5052,9 +5166,15 @@
           "id": 479,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5065,7 +5185,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5258,9 +5378,15 @@
           "id": 480,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5271,7 +5397,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5454,9 +5580,15 @@
           "id": 481,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5467,7 +5599,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5654,9 +5786,15 @@
           "id": 483,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5667,7 +5805,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5845,9 +5983,15 @@
           "id": 484,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5858,7 +6002,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6055,9 +6199,15 @@
           "id": 485,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6068,7 +6218,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6255,9 +6405,15 @@
           "id": 486,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6268,7 +6424,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6455,9 +6611,15 @@
           "id": 487,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6468,7 +6630,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6643,9 +6805,15 @@
           "id": 488,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6656,7 +6824,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6861,9 +7029,15 @@
           "id": 533,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6874,7 +7048,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7093,9 +7267,15 @@
           "id": 409,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7106,7 +7286,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7325,9 +7505,15 @@
           "id": 476,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7338,7 +7524,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7547,9 +7733,15 @@
           "id": 544,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7560,7 +7752,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7855,9 +8047,15 @@
           "id": 418,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7868,7 +8066,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8068,9 +8266,15 @@
           "id": 472,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8081,7 +8285,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8330,9 +8534,15 @@
           "id": 419,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8343,7 +8553,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8543,9 +8753,15 @@
           "id": 420,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8556,7 +8772,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8756,9 +8972,15 @@
           "id": 421,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8769,7 +8991,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8969,9 +9191,15 @@
           "id": 422,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8982,7 +9210,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9182,9 +9410,15 @@
           "id": 423,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -9195,7 +9429,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9395,9 +9629,15 @@
           "id": 424,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -9408,7 +9648,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9608,9 +9848,15 @@
           "id": 425,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -9621,7 +9867,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9821,9 +10067,15 @@
           "id": 426,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -9834,7 +10086,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10034,9 +10286,15 @@
           "id": 445,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -10047,7 +10305,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10247,9 +10505,15 @@
           "id": 473,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -10260,7 +10524,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10479,9 +10743,15 @@
           "id": 460,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -10492,7 +10762,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10701,9 +10971,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -10713,7 +10989,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10922,9 +11198,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -10934,7 +11216,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11133,9 +11415,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -11145,7 +11433,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11384,9 +11672,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -11396,7 +11690,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11595,9 +11889,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -11607,7 +11907,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11806,9 +12106,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -11818,7 +12124,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12017,9 +12323,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -12029,7 +12341,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12228,9 +12540,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -12240,7 +12558,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12440,9 +12758,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -12452,7 +12776,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12705,9 +13029,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -12717,7 +13047,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12937,9 +13267,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -12949,7 +13285,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13136,9 +13472,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -13148,7 +13490,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13358,9 +13700,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -13370,7 +13718,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13580,9 +13928,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -13592,7 +13946,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13802,9 +14156,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -13814,7 +14174,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14024,9 +14384,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -14036,7 +14402,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14246,9 +14612,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -14258,7 +14630,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14468,9 +14840,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -14480,7 +14858,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14690,9 +15068,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -14702,7 +15086,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14880,9 +15264,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -14892,7 +15282,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -15093,9 +15483,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -15105,7 +15501,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -15368,9 +15764,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -15380,7 +15782,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -15599,9 +16001,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -15611,7 +16019,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -15820,9 +16228,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -15832,7 +16246,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16041,9 +16455,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -16053,7 +16473,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16277,9 +16697,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -16289,7 +16715,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16497,9 +16923,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -16509,7 +16941,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16720,9 +17152,15 @@
           "id": 499,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -16733,7 +17171,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16920,9 +17358,15 @@
           "id": 500,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -16933,7 +17377,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -17130,9 +17574,15 @@
           "id": 501,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -17143,7 +17593,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -17350,9 +17800,15 @@
           "id": 502,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -17363,7 +17819,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -17560,9 +18016,15 @@
           "id": 503,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -17573,7 +18035,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -17780,9 +18242,15 @@
           "id": 535,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -17793,7 +18261,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18014,9 +18482,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -18026,7 +18500,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18211,9 +18685,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -18223,7 +18703,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18412,9 +18892,15 @@
           "id": 439,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -18425,7 +18911,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18622,9 +19108,15 @@
           "id": 507,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -18635,7 +19127,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18822,9 +19314,15 @@
           "id": 508,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -18835,7 +19333,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19033,9 +19531,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -19045,7 +19549,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19266,9 +19770,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -19278,7 +19788,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19475,9 +19985,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -19487,7 +20003,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19708,9 +20224,15 @@
           "id": 442,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -19721,7 +20243,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19928,9 +20450,15 @@
           "id": 443,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -19941,7 +20469,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20148,9 +20676,15 @@
           "id": 463,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -20161,7 +20695,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20358,9 +20892,15 @@
           "id": 513,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -20371,7 +20911,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20568,9 +21108,15 @@
           "id": 514,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -20581,7 +21127,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20778,9 +21324,15 @@
           "id": 515,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -20791,7 +21343,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20988,9 +21540,15 @@
           "id": 516,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -21001,7 +21559,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21198,9 +21756,15 @@
           "id": 517,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -21211,7 +21775,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21408,9 +21972,15 @@
           "id": 518,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -21421,7 +21991,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21618,9 +22188,15 @@
           "id": 519,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -21631,7 +22207,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21828,9 +22404,15 @@
           "id": 520,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -21841,7 +22423,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22038,9 +22620,15 @@
           "id": 521,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -22051,7 +22639,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22248,9 +22836,15 @@
           "id": 536,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -22261,7 +22855,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22434,9 +23028,15 @@
           "id": 546,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -22447,7 +23047,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22620,9 +23220,15 @@
           "id": 545,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -22633,7 +23239,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22806,9 +23412,15 @@
           "id": 537,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -22819,7 +23431,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22992,9 +23604,15 @@
           "id": 538,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -23005,7 +23623,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23178,9 +23796,15 @@
           "id": 539,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -23191,7 +23815,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23364,9 +23988,15 @@
           "id": 554,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -23377,7 +24007,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23550,9 +24180,15 @@
           "id": 540,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -23563,7 +24199,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23736,9 +24372,15 @@
           "id": 541,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -23749,7 +24391,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23922,9 +24564,15 @@
           "id": 543,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -23935,7 +24583,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24108,9 +24756,15 @@
           "id": 542,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -24121,7 +24775,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24294,9 +24948,15 @@
           "id": 548,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -24307,7 +24967,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24480,9 +25140,15 @@
           "id": 547,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -24493,7 +25159,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24666,9 +25332,15 @@
           "id": 555,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -24679,7 +25351,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24896,9 +25568,15 @@
           "id": 550,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -24909,7 +25587,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25104,9 +25782,15 @@
           "id": 551,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -25117,7 +25801,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25322,9 +26006,15 @@
           "id": 553,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -25335,7 +26025,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25542,9 +26232,15 @@
           "id": 552,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -25555,7 +26251,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25772,9 +26468,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -25784,7 +26486,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -26021,9 +26723,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -26033,7 +26741,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -26280,9 +26988,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -26292,7 +27006,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -26539,9 +27253,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -26551,7 +27271,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -26808,9 +27528,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -26820,7 +27546,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -27037,9 +27763,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -27049,7 +27781,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -27286,9 +28018,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -27298,7 +28036,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -27545,9 +28283,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -27557,7 +28301,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -27784,9 +28528,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -27796,7 +28546,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28023,9 +28773,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -28035,7 +28791,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28276,9 +29032,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -28288,7 +29050,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28495,9 +29257,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -28507,7 +29275,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28684,9 +29452,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -28696,7 +29470,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28903,9 +29677,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -28915,7 +29695,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29106,9 +29886,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -29118,7 +29904,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29345,9 +30131,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -29357,7 +30149,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29534,9 +30326,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -29546,7 +30344,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29773,9 +30571,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -29785,7 +30589,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29962,9 +30766,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -29974,7 +30784,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30201,9 +31011,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -30213,7 +31029,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30390,9 +31206,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -30402,7 +31224,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30629,9 +31451,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -30641,7 +31469,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30818,9 +31646,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -30830,7 +31664,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31057,9 +31891,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -31069,7 +31909,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31246,9 +32086,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -31258,7 +32104,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31485,9 +32331,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -31497,7 +32349,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31674,9 +32526,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -31686,7 +32544,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31913,9 +32771,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -31925,7 +32789,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32102,9 +32966,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -32114,7 +32984,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32341,9 +33211,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -32353,7 +33229,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32530,9 +33406,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -32542,7 +33424,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32783,9 +33665,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -32795,7 +33683,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33012,9 +33900,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -33024,7 +33918,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33201,9 +34095,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -33213,7 +34113,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33438,9 +34338,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -33450,7 +34356,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33627,9 +34533,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -33639,7 +34551,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33864,9 +34776,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -33876,7 +34794,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34053,9 +34971,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -34065,7 +34989,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34266,9 +35190,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -34278,7 +35208,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34457,9 +35387,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -34469,7 +35405,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34728,9 +35664,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -34740,7 +35682,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -35023,9 +35965,15 @@
           "id": 301,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -35036,7 +35984,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -35327,9 +36275,15 @@
           "id": 302,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -35340,7 +36294,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -35597,9 +36551,15 @@
           "id": 303,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -35610,7 +36570,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -36028,9 +36988,15 @@
           "id": 304,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -36041,7 +37007,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -36395,9 +37361,15 @@
           "id": 305,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -36408,7 +37380,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -36587,9 +37559,15 @@
           "id": 306,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -36600,7 +37578,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -36801,9 +37779,15 @@
           "id": 307,
           "interval": "$agg",
           "options": {
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -36814,7 +37798,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -36993,9 +37977,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -37005,7 +37995,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37206,9 +38196,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -37218,7 +38214,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37397,9 +38393,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -37409,7 +38411,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37610,9 +38612,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -37622,7 +38630,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37846,9 +38854,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -37858,7 +38872,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38037,9 +39051,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -38049,7 +39069,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38228,9 +39248,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -38240,7 +39266,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38464,9 +39490,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -38476,7 +39508,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38677,9 +39709,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -38689,7 +39727,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38892,9 +39930,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -38904,7 +39948,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39105,9 +40149,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -39117,7 +40167,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39310,9 +40360,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -39322,7 +40378,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39549,9 +40605,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -39561,7 +40623,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39738,9 +40800,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -39750,7 +40818,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39937,9 +41005,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -39949,7 +41023,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40136,9 +41210,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -40148,7 +41228,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40335,9 +41415,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -40347,7 +41433,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40534,9 +41620,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -40546,7 +41638,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40723,9 +41815,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -40735,7 +41833,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40912,9 +42010,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -40924,7 +42028,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41101,9 +42205,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -41113,7 +42223,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41334,9 +42444,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -41346,7 +42462,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41547,9 +42663,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -41559,7 +42681,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41738,9 +42860,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -41750,7 +42878,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41943,9 +43071,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -41955,7 +43089,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -42221,9 +43355,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -42233,7 +43373,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -42499,9 +43639,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -42511,7 +43657,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -42739,9 +43885,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -42751,7 +43903,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -43017,9 +44169,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -43029,7 +44187,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -43257,9 +44415,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -43269,7 +44433,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -43535,9 +44699,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -43547,7 +44717,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -43813,9 +44983,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -43825,7 +45001,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -44110,9 +45286,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -44122,7 +45304,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -44420,9 +45602,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -44432,7 +45620,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -44659,9 +45847,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -44671,7 +45865,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -44872,9 +46066,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -44884,7 +46084,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45099,9 +46299,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -45111,7 +46317,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45290,9 +46496,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -45302,7 +46514,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45503,9 +46715,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -45515,7 +46733,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45694,9 +46912,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -45706,7 +46930,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45921,9 +47145,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -45933,7 +47163,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46120,9 +47350,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -46132,7 +47368,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46309,9 +47545,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -46321,7 +47563,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46508,9 +47750,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -46520,7 +47768,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46697,9 +47945,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -46709,7 +47963,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46896,9 +48150,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -46908,7 +48168,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47095,9 +48355,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -47107,7 +48373,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47284,9 +48550,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -47296,7 +48568,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47487,9 +48759,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -47499,7 +48777,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47678,9 +48956,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -47690,7 +48974,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47905,9 +49189,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -47917,7 +49207,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -48136,9 +49426,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -48148,7 +49444,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -48367,9 +49663,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -48379,7 +49681,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -48598,9 +49900,15 @@
           "interval": "$agg",
           "options": {
             "alertThreshold": true,
+            "annotations": {
+              "clustering": -1,
+              "multiLane": false
+            },
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -48610,7 +49918,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "12.2.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -48775,85 +50083,64 @@
       {
         "allowCustomValue": true,
         "current": {
-          "text": "dac-radio-5g-pm",
-          "value": "dac-radio-5g-pm"
+          "text": "",
+          "value": "${DS_DAC-RADIO-5G-PM}",
+          "selected": true
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-5g-pm",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "allowCustomValue": true,
-        "current": {
-          "text": "MOSS_SA_NHG",
-          "value": "MOSS_SA_NHG"
-        },
+        "current": {},
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
-        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "refresh": 2,
         "regex": "",
         "regexApplyTo": "value",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "allowCustomValue": false,
-        "current": {
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
-        "hide": 0,
         "includeAll": true,
         "label": "Slice ID",
-        "multi": false,
         "name": "slice_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
         "refresh": 2,
         "regex": "",
         "regexApplyTo": "value",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "allowCustomValue": true,
-        "current": {
-          "text": "All",
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data.pm_data.pm_data_source.dn:*NRBTS*)\", \"size\": 10000}",
-        "hide": 0,
         "includeAll": true,
         "label": "Access Point ID",
         "multi": true,
@@ -48863,20 +50150,16 @@
         "refresh": 2,
         "regex": ".*MRBTS-(\\d+).*",
         "regexApplyTo": "value",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "allowCustomValue": true,
         "current": {
-          "text": "Cell",
+          "text": "pm_data_source.dn.keyword",
           "value": "pm_data_source.dn.keyword"
         },
-        "hide": 0,
         "includeAll": false,
         "label": "Object Level",
-        "multi": false,
         "name": "groupby",
         "options": [
           {
@@ -48891,7 +50174,6 @@
           }
         ],
         "query": "gNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
-        "skipUrlSync": false,
         "type": "custom",
         "valuesFormat": "csv"
       },
@@ -48902,10 +50184,8 @@
           "value": "15m"
         },
         "description": "The interval is used to aggregate the metrics over time.",
-        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
-        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -48960,7 +50240,6 @@
           }
         ],
         "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
-        "skipUrlSync": false,
         "type": "custom",
         "valuesFormat": "csv"
       }
@@ -48986,5 +50265,6 @@
   "timezone": "browser",
   "title": "Nokia DAC Radio 5G PM KPI - Retainability 5G003 (25R3)",
   "uid": "radio5gret-25r3",
-  "version": 1
+  "version": 2,
+  "weekStart": ""
 }

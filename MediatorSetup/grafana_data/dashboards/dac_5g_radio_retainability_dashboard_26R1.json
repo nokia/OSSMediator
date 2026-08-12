@@ -1,4 +1,35 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_DAC-RADIO-5G-PM",
+      "label": "dac-radio-5g-pm",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "grafana-opensearch-datasource",
+      "pluginName": "OpenSearch"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "13.1.1"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-opensearch-datasource",
+      "name": "OpenSearch",
+      "version": "2.34.0"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -181,7 +212,8 @@
             ]
           },
           "unit": "short"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -199,6 +231,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -209,7 +243,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -377,7 +411,8 @@
             ]
           },
           "unit": "short"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -395,6 +430,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -405,7 +442,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -573,7 +610,8 @@
             ]
           },
           "unit": "short"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -591,6 +629,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -601,7 +641,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -769,7 +809,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -787,6 +828,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -797,7 +840,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -993,7 +1036,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 7,
@@ -1011,6 +1055,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -1021,7 +1067,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1265,6 +1311,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1275,7 +1323,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1505,6 +1553,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1515,7 +1565,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1735,6 +1785,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1745,7 +1797,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -1976,6 +2028,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -1986,7 +2040,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2217,6 +2271,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -2227,7 +2283,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2458,6 +2514,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -2468,7 +2526,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2702,6 +2760,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -2712,7 +2772,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -2946,6 +3006,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -2956,7 +3018,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -3190,6 +3252,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3200,7 +3264,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -3435,6 +3499,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3445,7 +3511,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -3717,6 +3783,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3727,7 +3795,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -3934,6 +4002,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -3944,7 +4014,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4130,6 +4200,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4140,7 +4212,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4347,6 +4419,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4357,7 +4431,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4583,6 +4657,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4593,7 +4669,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -4819,6 +4895,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -4829,7 +4907,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5085,6 +5163,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5095,7 +5175,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5295,6 +5375,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5305,7 +5387,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5495,6 +5577,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5505,7 +5589,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5699,6 +5783,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5709,7 +5795,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -5894,6 +5980,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -5904,7 +5992,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6108,6 +6196,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6118,7 +6208,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6312,6 +6402,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6322,7 +6414,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6516,6 +6608,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6526,7 +6620,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6708,6 +6802,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6718,7 +6814,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -6930,6 +7026,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -6940,7 +7038,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7166,6 +7264,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7176,7 +7276,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7402,6 +7502,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7412,7 +7514,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7628,6 +7730,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7638,7 +7742,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -7970,6 +8074,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -7980,7 +8086,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8187,6 +8293,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8197,7 +8305,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8453,6 +8561,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8463,7 +8573,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8670,6 +8780,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8680,7 +8792,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -8887,6 +8999,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -8897,7 +9011,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9104,6 +9218,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -9114,7 +9230,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9321,6 +9437,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -9331,7 +9449,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9538,6 +9656,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -9548,7 +9668,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9755,6 +9875,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -9765,7 +9887,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -9972,6 +10094,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -9982,7 +10106,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10189,6 +10313,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -10199,7 +10325,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10406,6 +10532,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -10416,7 +10544,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10642,6 +10770,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -10652,7 +10782,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -10869,6 +10999,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -10878,7 +11010,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11095,6 +11227,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -11104,7 +11238,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11311,6 +11445,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -11320,7 +11456,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11595,6 +11731,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -11604,7 +11742,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -11811,6 +11949,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -11820,7 +11960,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12027,6 +12167,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -12036,7 +12178,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12243,6 +12385,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -12252,7 +12396,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12459,6 +12603,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -12468,7 +12614,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12675,6 +12821,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -12684,7 +12832,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -12898,6 +13046,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -12907,7 +13057,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13114,6 +13264,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -13123,7 +13275,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13317,6 +13469,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -13326,7 +13480,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13543,6 +13697,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -13552,7 +13708,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13769,6 +13925,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -13778,7 +13936,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -13995,6 +14153,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -14004,7 +14164,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14221,6 +14381,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -14230,7 +14392,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14447,6 +14609,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -14456,7 +14620,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14673,6 +14837,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -14682,7 +14848,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -14899,6 +15065,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -14908,7 +15076,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -15093,6 +15261,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -15102,7 +15272,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -15310,6 +15480,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -15319,7 +15491,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -15619,6 +15791,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -15628,7 +15802,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -15854,6 +16028,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -15863,7 +16039,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16079,6 +16255,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -16088,7 +16266,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16304,6 +16482,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -16313,7 +16493,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16544,6 +16724,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -16553,7 +16735,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16768,6 +16950,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -16777,7 +16961,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -16995,6 +17179,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -17005,7 +17191,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -17199,6 +17385,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -17209,7 +17397,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -17413,6 +17601,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -17423,7 +17613,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -17637,6 +17827,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -17647,7 +17839,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -17851,6 +18043,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -17861,7 +18055,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18075,6 +18269,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -18085,7 +18281,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18313,6 +18509,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -18322,7 +18520,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18514,6 +18712,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -18523,7 +18723,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18719,6 +18919,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -18729,7 +18931,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -18933,6 +19135,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -18943,7 +19147,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19137,6 +19341,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -19147,7 +19353,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19352,6 +19558,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -19361,7 +19569,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19589,6 +19797,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -19598,7 +19808,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -19802,6 +20012,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -19811,7 +20023,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20039,6 +20251,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -20049,7 +20263,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20263,6 +20477,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -20273,7 +20489,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20487,6 +20703,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -20497,7 +20715,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20701,6 +20919,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -20711,7 +20931,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -20915,6 +21135,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -20925,7 +21147,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21129,6 +21351,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -21139,7 +21363,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21343,6 +21567,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -21353,7 +21579,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21557,6 +21783,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -21567,7 +21795,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21771,6 +21999,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -21781,7 +22011,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -21985,6 +22215,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -21995,7 +22227,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22199,6 +22431,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -22209,7 +22443,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22413,6 +22647,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -22423,7 +22659,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22627,6 +22863,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -22637,7 +22875,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -22817,6 +23055,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -22827,7 +23067,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23007,6 +23247,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -23017,7 +23259,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23197,6 +23439,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -23207,7 +23451,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23387,6 +23631,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -23397,7 +23643,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23577,6 +23823,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -23587,7 +23835,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23767,6 +24015,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -23777,7 +24027,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -23957,6 +24207,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -23967,7 +24219,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24147,6 +24399,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -24157,7 +24411,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24337,6 +24591,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -24347,7 +24603,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24527,6 +24783,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -24537,7 +24795,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24717,6 +24975,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -24727,7 +24987,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -24907,6 +25167,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -24917,7 +25179,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25097,6 +25359,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -25107,7 +25371,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25331,6 +25595,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -25341,7 +25607,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25543,6 +25809,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -25553,7 +25821,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25765,6 +26033,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -25775,7 +26045,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -25989,6 +26259,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -25999,7 +26271,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -26223,6 +26495,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -26232,7 +26506,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -26476,6 +26750,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -26485,7 +26761,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -26739,6 +27015,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -26748,7 +27026,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -27002,6 +27280,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -27011,7 +27291,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -27275,6 +27555,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -27284,7 +27566,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -27508,6 +27790,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -27517,7 +27801,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -27761,6 +28045,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -27770,7 +28056,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28024,6 +28310,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -28033,7 +28321,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28267,6 +28555,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -28276,7 +28566,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28510,6 +28800,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -28519,7 +28811,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28767,6 +29059,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -28776,7 +29070,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -28990,6 +29284,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -28999,7 +29295,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29183,6 +29479,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -29192,7 +29490,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29406,6 +29704,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -29415,7 +29715,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29613,6 +29913,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -29622,7 +29924,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -29856,6 +30158,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -29865,7 +30169,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30049,6 +30353,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -30058,7 +30364,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30292,6 +30598,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -30301,7 +30609,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30485,6 +30793,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -30494,7 +30804,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30728,6 +31038,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -30737,7 +31049,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -30921,6 +31233,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -30930,7 +31244,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31164,6 +31478,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -31173,7 +31489,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31357,6 +31673,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -31366,7 +31684,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31600,6 +31918,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -31609,7 +31929,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -31793,6 +32113,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -31802,7 +32124,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32036,6 +32358,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -32045,7 +32369,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32229,6 +32553,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -32238,7 +32564,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32472,6 +32798,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -32481,7 +32809,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32665,6 +32993,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -32674,7 +33004,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -32908,6 +33238,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -32917,7 +33249,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33101,6 +33433,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -33110,7 +33444,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33358,6 +33692,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -33367,7 +33703,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33591,6 +33927,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -33600,7 +33938,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -33784,6 +34122,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -33793,7 +34133,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34025,6 +34365,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -34034,7 +34376,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34218,6 +34560,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -34227,7 +34571,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34459,6 +34803,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -34468,7 +34814,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34652,6 +34998,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -34661,7 +35009,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -34869,6 +35217,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -34878,7 +35228,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -35064,6 +35414,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -35073,7 +35425,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -35339,6 +35691,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -35348,7 +35702,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -35638,6 +35992,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -35648,7 +36004,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -35946,6 +36302,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -35956,7 +36314,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -36220,6 +36578,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -36230,7 +36590,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -36655,6 +37015,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -36665,7 +37027,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37026,6 +37388,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -37036,7 +37400,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37222,6 +37586,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -37232,7 +37598,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37440,6 +37806,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -37450,7 +37818,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37636,6 +38004,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -37645,7 +38015,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -37853,6 +38223,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -37862,7 +38234,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38048,6 +38420,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -38057,7 +38431,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38265,6 +38639,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -38274,7 +38650,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38505,6 +38881,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -38514,7 +38892,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38700,6 +39078,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -38709,7 +39089,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -38895,6 +39275,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -38904,7 +39286,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39135,6 +39517,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -39144,7 +39528,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39352,6 +39736,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -39361,7 +39747,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39571,6 +39957,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -39580,7 +39968,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39788,6 +40176,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -39797,7 +40187,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -39997,6 +40387,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -40006,7 +40398,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40240,6 +40632,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -40249,7 +40643,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40433,6 +40827,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -40442,7 +40838,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40636,6 +41032,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -40645,7 +41043,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -40839,6 +41237,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -40848,7 +41248,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41042,6 +41442,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -41051,7 +41453,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41245,6 +41647,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -41254,7 +41658,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41438,6 +41842,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -41447,7 +41853,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41631,6 +42037,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -41640,7 +42048,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -41824,6 +42232,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -41833,7 +42243,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -42061,6 +42471,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -42070,7 +42482,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -42278,6 +42690,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -42287,7 +42701,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -42473,6 +42887,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -42482,7 +42898,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -42682,6 +43098,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -42691,7 +43109,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -42964,6 +43382,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -42973,7 +43393,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -43246,6 +43666,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -43255,7 +43677,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -43490,6 +43912,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -43499,7 +43923,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -43772,6 +44196,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -43781,7 +44207,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -44016,6 +44442,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -44025,7 +44453,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -44298,6 +44726,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -44307,7 +44737,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -44580,6 +45010,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -44589,7 +45021,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -44881,6 +45313,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -44890,7 +45324,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45195,6 +45629,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -45204,7 +45640,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45438,6 +45874,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -45447,7 +45885,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45655,6 +46093,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -45664,7 +46104,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -45886,6 +46326,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -45895,7 +46337,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46081,6 +46523,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -46090,7 +46534,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46298,6 +46742,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -46307,7 +46753,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46493,6 +46939,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -46502,7 +46950,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46724,6 +47172,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -46733,7 +47183,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -46927,6 +47377,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -46936,7 +47388,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47120,6 +47572,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -47129,7 +47583,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47323,6 +47777,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -47332,7 +47788,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47516,6 +47972,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -47525,7 +47983,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47719,6 +48177,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -47728,7 +48188,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -47922,6 +48382,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -47931,7 +48393,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -48115,6 +48577,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -48124,7 +48588,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -48322,6 +48786,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -48331,7 +48797,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -48517,6 +48983,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -48526,7 +48994,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -48748,6 +49216,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -48757,7 +49227,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -48983,6 +49453,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -48992,7 +49464,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -49218,6 +49690,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -49227,7 +49701,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -49453,6 +49927,8 @@
             "legend": {
               "calcs": [],
               "displayMode": "list",
+              "enableFacetedFilter": false,
+              "overflow": "ellipsis",
               "placement": "right",
               "showLegend": true
             },
@@ -49462,7 +49938,7 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "13.0.1",
+          "pluginVersion": "13.1.1",
           "targets": [
             {
               "bucketAggs": [
@@ -49627,85 +50103,64 @@
       {
         "allowCustomValue": true,
         "current": {
-          "text": "dac-radio-5g-pm",
-          "value": "dac-radio-5g-pm"
+          "text": "",
+          "value": "${DS_DAC-RADIO-5G-PM}",
+          "selected": true
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-5g-pm",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "allowCustomValue": true,
-        "current": {
-          "text": "LaaS19",
-          "value": "LaaS19"
-        },
+        "current": {},
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
-        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "refresh": 2,
         "regex": "",
         "regexApplyTo": "value",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "allowCustomValue": false,
-        "current": {
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
-        "hide": 0,
         "includeAll": true,
         "label": "Slice ID",
-        "multi": false,
         "name": "slice_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
         "refresh": 2,
         "regex": "",
         "regexApplyTo": "value",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "allowCustomValue": true,
-        "current": {
-          "text": "All",
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname AND (pm_data_source.dn:*NRCEL* OR pm_data_source.dn:*NRBTS*)\", \"size\": 10000}",
-        "hide": 0,
         "includeAll": true,
         "label": "Access Point ID",
         "multi": true,
@@ -49715,24 +50170,30 @@
         "refresh": 2,
         "regex": ".*MRBTS-(\\d+).*",
         "regexApplyTo": "value",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "allowCustomValue": true,
         "current": {
-          "text": "Cell",
+          "text": "pm_data_source.dn.keyword",
           "value": "pm_data_source.dn.keyword"
         },
-        "hide": 0,
         "includeAll": false,
         "label": "Object Level",
-        "multi": false,
         "name": "groupby",
-        "options": [],
+        "options": [
+          {
+            "selected": false,
+            "text": "gNB",
+            "value": "pm_data_source.hw_id.keyword"
+          },
+          {
+            "selected": true,
+            "text": "Cell",
+            "value": "pm_data_source.dn.keyword"
+          }
+        ],
         "query": "gNB : pm_data_source.hw_id.keyword, Cell : pm_data_source.dn.keyword",
-        "skipUrlSync": false,
         "type": "custom",
         "valuesFormat": "csv"
       },
@@ -49743,14 +50204,62 @@
           "value": "15m"
         },
         "description": "The interval is used to aggregate the metrics over time.",
-        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
-        "multi": false,
         "name": "agg",
-        "options": [],
+        "options": [
+          {
+            "selected": true,
+            "text": "15m",
+            "value": "15m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "3h",
+            "value": "3h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "15d",
+            "value": "15d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
         "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
-        "skipUrlSync": false,
         "type": "custom",
         "valuesFormat": "csv"
       }
@@ -49773,8 +50282,9 @@
       "1d"
     ]
   },
-  "timezone": "",
+  "timezone": "browser",
   "title": "Nokia DAC Radio 5G PM KPI - Retainability 5G003 (26R1)",
-  "uid": "radio5gret",
-  "version": 2
+  "uid": "radio5gret-26r1",
+  "version": 2,
+  "weekStart": ""
 }

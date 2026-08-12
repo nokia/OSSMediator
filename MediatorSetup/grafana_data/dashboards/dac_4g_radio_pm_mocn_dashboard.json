@@ -1,4 +1,35 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_DAC-RADIO-4G-PM",
+      "label": "dac-radio-4g-pm",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "grafana-opensearch-datasource",
+      "pluginName": "OpenSearch"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "13.1.1"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-opensearch-datasource",
+      "name": "OpenSearch",
+      "version": "2.34.0"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -169,7 +200,8 @@
             ]
           },
           "unit": "none"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -187,6 +219,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -197,7 +231,7 @@
           "sort": "asc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -365,7 +399,8 @@
             ]
           },
           "unit": "none"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -383,6 +418,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -393,7 +430,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -554,7 +591,8 @@
             ]
           },
           "unit": "short"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -572,6 +610,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -582,7 +622,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -743,7 +783,8 @@
             ]
           },
           "unit": "decmbytes"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -761,6 +802,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -771,7 +814,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -922,7 +965,8 @@
             ]
           },
           "unit": "decmbytes"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -940,6 +984,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -950,7 +996,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1101,7 +1147,8 @@
             ]
           },
           "unit": "decmbytes"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -1119,6 +1166,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -1129,7 +1178,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1280,7 +1329,8 @@
             ]
           },
           "unit": "decmbytes"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -1298,6 +1348,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -1308,7 +1360,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1460,7 +1512,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -1478,6 +1531,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -1488,7 +1543,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1650,7 +1705,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -1668,6 +1724,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -1678,7 +1736,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -1840,7 +1898,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -1858,6 +1917,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -1868,7 +1929,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2030,7 +2091,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -2048,6 +2110,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -2058,7 +2122,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2220,7 +2284,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -2238,6 +2303,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -2248,7 +2315,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2410,7 +2477,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -2428,6 +2496,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -2438,7 +2508,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2600,7 +2670,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -2618,6 +2689,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -2628,7 +2701,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2790,7 +2863,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -2808,6 +2882,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -2818,7 +2894,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -2980,7 +3056,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -2998,6 +3075,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -3008,7 +3087,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3170,7 +3249,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -3188,6 +3268,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -3198,7 +3280,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3360,7 +3442,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -3378,6 +3461,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -3388,7 +3473,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3550,7 +3635,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -3568,6 +3654,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -3578,7 +3666,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3740,7 +3828,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -3758,6 +3847,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -3768,7 +3859,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -3930,7 +4021,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -3948,6 +4040,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -3958,7 +4052,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4120,7 +4214,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -4138,6 +4233,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -4148,7 +4245,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4310,7 +4407,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -4328,6 +4426,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -4338,7 +4438,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4500,7 +4600,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -4518,6 +4619,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -4528,7 +4631,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4690,7 +4793,8 @@
             ]
           },
           "unit": "Kbits"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -4708,6 +4812,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -4718,7 +4824,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -4879,7 +4985,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -4897,6 +5004,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -4907,7 +5016,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5068,7 +5177,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -5086,6 +5196,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -5096,7 +5208,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5245,7 +5357,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -5263,6 +5376,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -5273,7 +5388,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5422,7 +5537,8 @@
             ]
           },
           "unit": "short"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -5440,6 +5556,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -5450,7 +5568,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5589,7 +5707,8 @@
             ]
           },
           "unit": "short"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -5607,6 +5726,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -5617,7 +5738,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5756,7 +5877,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -5774,6 +5896,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -5784,7 +5908,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -5943,7 +6067,8 @@
             ]
           },
           "unit": "ms"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -5961,6 +6086,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -5971,7 +6098,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6106,7 +6233,8 @@
             ]
           },
           "unit": "ms"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -6124,6 +6252,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -6134,7 +6264,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6269,7 +6399,8 @@
             ]
           },
           "unit": "ms"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -6287,6 +6418,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -6297,7 +6430,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6432,7 +6565,8 @@
             ]
           },
           "unit": "ms"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -6450,6 +6584,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -6460,7 +6596,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6595,7 +6731,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -6613,6 +6750,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -6623,7 +6762,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6772,7 +6911,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -6790,6 +6930,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -6800,7 +6942,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -6935,7 +7077,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -6953,6 +7096,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -6963,7 +7108,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7098,7 +7243,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -7116,6 +7262,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -7126,7 +7274,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7275,7 +7423,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -7293,6 +7442,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -7303,7 +7454,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7438,7 +7589,8 @@
             ]
           },
           "unit": "percent"
-        }
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -7456,6 +7608,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "right",
           "showLegend": true
         },
@@ -7466,7 +7620,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "13.0.1",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "bucketAggs": [
@@ -7554,84 +7708,65 @@
       {
         "allowCustomValue": true,
         "current": {
-          "text": "dac-radio-4g-pm",
-          "value": "dac-radio-4g-pm"
+          "text": "",
+          "value": "${DS_DAC-RADIO-4G-PM}",
+          "selected": true
         },
         "hide": 2,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "grafana-opensearch-datasource",
         "refresh": 1,
         "regex": "dac-radio-4g-pm",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "allowCustomValue": true,
-        "current": {
-          "text": "",
-          "value": ""
-        },
+        "current": {},
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
-        "hide": 0,
         "includeAll": false,
         "label": "Network Hw Group Name",
-        "multi": false,
         "name": "nhgname",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.nhg_alias.keyword\"}",
         "refresh": 2,
         "regex": "",
         "regexApplyTo": "value",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "allowCustomValue": false,
-        "current": {
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
-        "hide": 0,
         "includeAll": true,
         "label": "Slice ID",
-        "multi": false,
         "name": "slice_id",
         "options": [],
         "query": "{\"find\": \"terms\", \"field\": \"pm_data_source.slice_id.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\", \"size\": 10000}",
         "refresh": 2,
         "regex": "",
         "regexApplyTo": "value",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "allowCustomValue": true,
-        "current": {
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": {
           "type": "grafana-opensearch-datasource",
           "uid": "${datasource}"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"pm_data_source.dn.keyword\", \"query\":\"pm_data_source.nhg_alias.keyword:$nhgname\"}",
         "description": "PLMN ID",
-        "hide": 0,
         "includeAll": true,
         "label": "PLMN ID",
         "multi": true,
@@ -7641,8 +7776,6 @@
         "refresh": 1,
         "regex": "/.*(PLMN-PLMN/(CMCC|MCC)-[0-9]{2,3}/(CMNC|MNC)-[0-9]{2,3}).*/",
         "regexApplyTo": "value",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
@@ -7652,10 +7785,8 @@
           "value": "15m"
         },
         "description": "The interval is used to aggregate the metrics over time.",
-        "hide": 0,
         "includeAll": false,
         "label": "Aggregation",
-        "multi": false,
         "name": "agg",
         "options": [
           {
@@ -7710,7 +7841,6 @@
           }
         ],
         "query": "15m,30m,1h,3h,6h,12h,1d,7d,15d,30d",
-        "skipUrlSync": false,
         "type": "custom",
         "valuesFormat": "csv"
       }
@@ -7738,5 +7868,6 @@
   "timezone": "browser",
   "title": "Nokia DAC Radio 4G PM KPI MOCN Dashboard",
   "uid": "radio4gpmmocn",
-  "version": 1
+  "version": 2,
+  "weekStart": ""
 }
